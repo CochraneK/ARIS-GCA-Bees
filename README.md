@@ -3,87 +3,96 @@
   <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/语言-中文-red" alt="中文"></a>
 </p>
 
+<div align="center">
+
 # ARIS-GCA-Bees
 
-A computational neuroethology project on **functional self-awareness in bees**, developed through an [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) automated research pipeline.
+**A theory-and-simulation project on functional self-awareness in bees**
+
+<p>
+  <img alt="Stage" src="https://img.shields.io/badge/stage-theory%20%2B%20simulation-6C63FF">
+  <img alt="Domain" src="https://img.shields.io/badge/domain-computational%20neuroethology-2F80ED">
+  <img alt="Pipeline" src="https://img.shields.io/badge/pipeline-ARIS-27AE60">
+</p>
+
+[**Web bundle**](docs/index.html) · [**Research pipeline**](process/RESEARCH_PIPELINE_REPORT.md) · [**English manuscript**](docs/paper/en/main.html) · [**中文论文**](docs/paper/zh/main.html)
+
+</div>
 
 ## Overview
 
-This repository contains the code, figures, results, process logs, and manuscript materials for a theory-driven computational project proposing a **unified predictive coding account of functional self-awareness in bees**, see final [online file](https://cunyikang.github.io/ARIS-GCA-Bees/), including English and Chinese version. 
+ARIS-GCA-Bees is a computational neuroethology project developed through the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) automated research pipeline.
 
-The core claim is that a single latent parameter — **precision** in a predictive coding architecture instantiated in the **central complex (CX)** — can jointly explain four behavioral domains:
+The project proposes a **predictive-coding account of functional self-awareness in bees** and uses simulation to explore whether a shared latent parameter — **precision** — can jointly organize four modeled behavioral domains:
 
-- metacognitive opt-out behavior
-- tool-use anticipation
-- caste-appropriate learning
-- general cognitive ability (GCA)
+- metacognitive opt-out behavior;
+- tool-use anticipation;
+- caste-appropriate learning;
+- general cognitive ability (GCA).
 
-## Main Idea
+> [!IMPORTANT]
+> This repository is at the **theory + simulation** stage. Its relationships and sign changes are model-generated hypotheses and predictions, not empirical evidence that bees possess a particular form of self-awareness or that the proposed neural mechanism has been demonstrated in vivo.
 
-This project asks whether multiple apparently self-referential behaviors in bees can be explained by a single computational principle.
+## Main idea
 
-The proposed answer is yes:
+Within the current model, the project explores three central predictions:
 
-- **Metacognitive performance follows an inverted-U relationship with precision**
-- **Higher GCA can paradoxically predict worse metacognitive calibration**
-- **Circadian disruption can reverse the sign of the metacognition–GCA relationship**
+- metacognitive performance can follow an inverted-U relationship with precision;
+- higher modeled GCA can coincide with poorer metacognitive calibration under some parameter regimes;
+- circadian disruption can change the sign of the modeled metacognition–GCA relationship.
 
-This repository is intended as a **theory + simulation** project that generates falsifiable predictions for future empirical work.
+The value of the project is therefore in **formalization, simulation, falsifiable prediction generation, and transparent research packaging**.
 
-## Repository Structure
+## Repository structure
+
+The README previously described an older layout. The current repository is organized as follows:
 
 ```text
 ARIS-GCA-Bees/
-├── code/                  # Simulation scripts
-├── figures/               # Figure generation scripts and exported figures
-├── paper/                 # Manuscript files
-├── process/               # Research pipeline reports and review logs
-├── results/               # Numerical outputs from simulations
+├── code/                         # simulation scripts
+│   ├── experiment_r2_4domain.py
+│   ├── experiment_unified_selfmodel_full.py
+│   └── pilot_*.py
+├── docs/                         # web / manuscript bundle
+│   ├── index.html
+│   ├── zh.html
+│   ├── figures/
+│   └── paper/
+│       ├── en/
+│       ├── zh/
+│       ├── sections/
+│       └── references.bib
+├── process/                      # research-generation records
+│   ├── IDEA_REPORT.md
+│   ├── AUTO_REVIEW.md
+│   ├── PAPER_PLAN.md
+│   └── RESEARCH_PIPELINE_REPORT.md
+├── simulation_results.json
+├── simulation_results_r2.json
 ├── README.md
 └── README.zh-CN.md
 ```
 
-## Key Files
+## Start here
 
-- `process/RESEARCH_PIPELINE_REPORT.md` — summary of the full research pipeline
-- `code/experiment_r2_4domain.py` — main Round-2 simulation script
-- `figures/generate_figures.py` — figure generation script
-- `paper/main.tex` — LaTeX manuscript source
-- `paper/main.html` — HTML version of the manuscript
+| Goal | File |
+| --- | --- |
+| Understand how the project was generated | [Research Pipeline Report](process/RESEARCH_PIPELINE_REPORT.md) |
+| See the original idea development | [Idea Report](process/IDEA_REPORT.md) |
+| Review the automated critique stage | [Auto Review](process/AUTO_REVIEW.md) |
+| Read the English manuscript | [docs/paper/en/main.html](docs/paper/en/main.html) |
+| Read the Chinese manuscript | [docs/paper/zh/main.html](docs/paper/zh/main.html) |
+| Open the web landing bundle | [docs/index.html](docs/index.html) |
 
-## Research Highlights
-
-- A unified predictive coding model parameterized by **precision**
-- An analytically derived optimum for metacognitive accuracy
-- A simulated **metacognition–GCA anti-correlation**
-- A sign flip under circadian disruption
-- A manuscript-ready pipeline connecting idea generation, simulation, review, and paper writing
-
-## How to Use This Repository
-
-### 1. Explore the project logic
-
-Start with:
-
-- [`Research Pipeline Report`](./process/RESEARCH_PIPELINE_REPORT.md)
-- [`Paper source`](./paper/main.tex)
-- [`HTML manuscript`](./paper/main.html)
-
-### 2. Run the main simulation
+## Reproduce the main simulation
 
 ```bash
 python code/experiment_r2_4domain.py
 ```
 
-### 3. Generate figures
+Additional simulations and pilots are available under `code/`. Numerical outputs currently live in the repository root as `simulation_results.json` and `simulation_results_r2.json`.
 
-```bash
-python figures/generate_figures.py
-```
-
-## Project Workflow
-
-The repository follows a research-generation workflow:
+## Workflow
 
 ```text
 idea discovery
@@ -92,32 +101,18 @@ idea discovery
 → review loop
 → paper planning
 → manuscript drafting
+→ web / manuscript packaging
 ```
 
-## Current Status
-
-This project is currently at the **theory and simulation** stage.  
-It is not an empirical dataset repository. The main value of the project is:
-
-- formalization
-- computational unification
-- falsifiable prediction generation
-- manuscript-ready research packaging
-
-## Paper
-
-Working title:
+## Working paper
 
 **A Unified Predictive Coding Account of Functional Self-Awareness in Bees: Analytically Derived Precision Trade-offs Across Four Behavioral Domains**
 
-Related files:
-
-- [`LaTeX source`](./paper/main.tex)
-- [`HTML manuscript`](./paper/main.html)
+This is a working research artifact, not a published empirical paper.
 
 ## Citation
 
-If you wish to reference this repository before formal publication, please cite it as:
+If you reference the repository before formal publication:
 
 ```text
 Kang, C. (2026). ARIS-GCA-Bees: A unified predictive coding account of functional self-awareness in bees. GitHub repository.
@@ -127,4 +122,4 @@ Kang, C. (2026). ARIS-GCA-Bees: A unified predictive coding account of functiona
 
 Maintainer: **Cunyi Kang**
 
-For questions, comments, or collaboration, please open an issue on GitHub.
+For questions, comments, or collaboration, please open a GitHub issue.
