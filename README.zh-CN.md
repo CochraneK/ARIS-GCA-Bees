@@ -3,89 +3,96 @@
   <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/语言-中文-red" alt="中文"></a>
 </p>
 
+<div align="center">
+
 # ARIS-GCA-Bees
 
-一个关于**蜜蜂功能性自我意识**的计算神经行为学项目，通过 [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 的自动化研究流程生成。
+**蜜蜂功能性自我意识的理论建模与计算模拟项目**
+
+<p>
+  <img alt="Stage" src="https://img.shields.io/badge/阶段-理论%20%2B%20模拟-6C63FF">
+  <img alt="Domain" src="https://img.shields.io/badge/方向-计算神经行为学-2F80ED">
+  <img alt="Pipeline" src="https://img.shields.io/badge/流程-ARIS-27AE60">
+</p>
+
+[**网页包**](docs/index.html) · [**研究流程**](process/RESEARCH_PIPELINE_REPORT.md) · [**中文论文**](docs/paper/zh/main.html) · [**English manuscript**](docs/paper/en/main.html)
+
+</div>
 
 ## 项目简介
 
-本仓库汇集了一个理论驱动型计算研究项目的代码、图表、结果、过程记录与论文材料。项目提出了一个关于**蜜蜂功能性自我意识的统一预测编码模型**，见最终在线[汇总文档](https://cunyikang.github.io/ARIS-GCA-Bees/), 包含中英版本。
+ARIS-GCA-Bees 是一个通过 [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 自动化研究流程推进的计算神经行为学项目。
 
-项目的核心观点是：在昆虫中央复合体（central complex, CX）中，如果用一个共同的潜变量——**精度（precision）**——来表征预测编码过程，那么它可以同时解释四类行为表现：
+项目提出一个关于**蜜蜂功能性自我意识的预测编码解释框架**，并通过模拟探索共同潜变量 **precision（精度）** 是否能统一组织四类建模行为：
 
-- 元认知放弃行为（opt-out）
-- 工具使用预期
-- 与阶层角色相符的学习
-- 一般认知能力（GCA）
+- 元认知放弃行为；
+- 工具使用预期；
+- 与阶层角色相符的学习；
+- 一般认知能力（GCA）。
 
-## 核心问题
+> [!IMPORTANT]
+> 本仓库当前处于**理论 + 模拟**阶段。README 中的关系、符号翻转与机制解释属于模型产生的假设和预测，不是“蜜蜂已被实验证明具有某种自我意识”或“相应神经机制已被体内验证”的证据。
 
-本项目试图回答：蜜蜂身上看似彼此分离的“自我相关”行为，能否由一个统一的计算原理来解释？
+## 当前模型关注的预测
 
-项目给出的答案是肯定的：
+在当前模型中，项目主要探索：
 
-- **元认知表现与精度之间呈倒 U 型关系**
-- **更高的一般认知能力，反而可能对应更差的元认知校准**
-- **昼夜节律扰动可能使元认知–GCA 的相关方向发生翻转**
+- 元认知表现与 precision 之间可能出现倒 U 型关系；
+- 某些参数条件下，更高的模型 GCA 可能伴随更差的元认知校准；
+- 昼夜节律扰动可能改变模型中的元认知–GCA 关系方向。
 
-因此，本仓库更适合被理解为一个**理论 + 模拟**项目，其价值在于提出可检验的经验预测。
+因此，本项目更适合作为**概念形式化、计算模拟、可检验预测生成与研究流程打包**来阅读。
 
-## 仓库结构
+## 当前仓库结构
+
+旧 README 仍描述了已经迁移掉的根目录 `paper/`、`figures/` 和 `results/`。当前真实结构为：
 
 ```text
 ARIS-GCA-Bees/
-├── code/                  # 模拟代码
-├── figures/               # 图表生成脚本与导出图
-├── paper/                 # 论文文件
-├── process/               # 研究流程报告与评审记录
-├── results/               # 数值模拟结果
+├── code/                         # 模拟代码
+│   ├── experiment_r2_4domain.py
+│   ├── experiment_unified_selfmodel_full.py
+│   └── pilot_*.py
+├── docs/                         # 网页 / 论文发布包
+│   ├── index.html
+│   ├── zh.html
+│   ├── figures/
+│   └── paper/
+│       ├── en/
+│       ├── zh/
+│       ├── sections/
+│       └── references.bib
+├── process/                      # 研究生成过程记录
+│   ├── IDEA_REPORT.md
+│   ├── AUTO_REVIEW.md
+│   ├── PAPER_PLAN.md
+│   └── RESEARCH_PIPELINE_REPORT.md
+├── simulation_results.json
+├── simulation_results_r2.json
 ├── README.md
 └── README.zh-CN.md
 ```
 
-## 关键文件
+## 从哪里开始
 
-- `process/RESEARCH_PIPELINE_REPORT.md` —— 完整研究流程总结
-- `code/experiment_r2_4domain.py` —— Round 2 主模拟脚本
-- `figures/generate_figures.py` —— 图表生成脚本
-- `paper/main.tex` —— 论文 LaTeX 主文件
-- `paper/main.html` —— 论文 HTML 版本
+| 想看什么 | 入口 |
+| --- | --- |
+| 整个研究生成过程 | [研究流程报告](process/RESEARCH_PIPELINE_REPORT.md) |
+| 最初的 idea 如何形成 | [IDEA_REPORT](process/IDEA_REPORT.md) |
+| 自动评审与问题记录 | [AUTO_REVIEW](process/AUTO_REVIEW.md) |
+| 中文论文 | [docs/paper/zh/main.html](docs/paper/zh/main.html) |
+| 英文论文 | [docs/paper/en/main.html](docs/paper/en/main.html) |
+| 网页入口包 | [docs/index.html](docs/index.html) |
 
-## 项目亮点
-
-- 以 **precision** 为核心参数的统一预测编码模型
-- 对元认知最优点的解析推导
-- 模拟得到的 **元认知–GCA 负相关**
-- 在节律扰动条件下出现的 **符号翻转**
-- 从想法生成、模拟、评审到成稿的完整研究链条
-
-## 如何使用本仓库
-
-### 1. 先理解项目逻辑
-
-建议先阅读：
-
-- [`ARIS项目`](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 
-- [`想法构建`](./process/IDEA_REPORT.md)
-- [`自动审阅`](./process/AUTO_REVIEW.md)
-- [`写作框架`](./process/PAPER_PLAN.md)
-- [`研究流程`](./process/RESEARCH_PIPELINE_REPORT.md)
-
-### 2. 运行主模拟
+## 复现主模拟
 
 ```bash
 python code/experiment_r2_4domain.py
 ```
 
-### 3. 生成图表
+其他 pilot 与完整模拟脚本位于 `code/`；当前数值输出位于根目录的 `simulation_results.json` 与 `simulation_results_r2.json`。
 
-```bash
-python figures/generate_figures.py
-```
-
-## 项目流程
-
-本仓库遵循如下研究生成流程：
+## 研究流程
 
 ```text
 想法发现
@@ -94,41 +101,25 @@ python figures/generate_figures.py
 → 自动评审循环
 → 论文规划
 → 论文撰写
+→ 网页 / 稿件打包
 ```
 
-## 当前状态
-
-本项目当前处于**理论建模与模拟验证**阶段。  
-它不是经验数据仓库。其主要价值在于：
-
-- 概念形式化
-- 计算统一解释
-- 可证伪预测生成
-- 面向论文写作的研究打包
-
-## 论文
-
-当前工作标题：
+## 工作论文
 
 **A Unified Predictive Coding Account of Functional Self-Awareness in Bees: Analytically Derived Precision Trade-offs Across Four Behavioral Domains**
 
-相关文件：
-
-- [`HTML 介绍页面`](https://cunyikang.github.io/ARIS-GCA-Bees/)
-- [`HTML 中文论文`](https://cunyikang.github.io/ARIS-GCA-Bees/paper/zh/main.html)
-- [`HTML 英文论文`](https://cunyikang.github.io/ARIS-GCA-Bees/paper/en/main.html)
-
+当前为研究工作稿，并非已经发表的经验研究论文。
 
 ## 引用方式
 
-若在正式发表前引用本仓库，可暂按如下方式引用：
+正式发表前若需引用本仓库，可暂写为：
 
 ```text
 Kang, C. (2026). ARIS-GCA-Bees: A unified predictive coding account of functional self-awareness in bees. GitHub repository.
 ```
 
-## 联系方式
+## 联系
 
 维护者：**Cunyi Kang**
 
-如有问题、建议或合作意向，欢迎在 GitHub 提交 issue。
+问题、建议或合作可通过 GitHub Issue 提交。
