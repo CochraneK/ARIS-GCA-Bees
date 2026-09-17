@@ -1,0 +1,24 @@
+{
+  "id": "001",
+  "slug": "gca-bees",
+  "title": "A Unified Predictive Coding Account of Functional Self-Awareness in Bees",
+  "short_title": "GCA × Bees",
+  "year": 2026,
+  "status": "working-paper",
+  "domain": "computational neuroethology",
+  "summary": "A theory-and-simulation project exploring whether a shared precision parameter can organize four modeled behavioral domains in bees.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "legacy ARIS run",
+    "version": "unknown-legacy",
+    "upgrade_note": "Preserve this paper's historical provenance; use the repository-level ARIS lock for new work."
+  },
+  "links": {
+    "paper_en": "paper/en/main.html",
+    "paper_zh": "paper/zh/main.html",
+    "landing_zh": "zh.html",
+    "pipeline": "https://github.com/CochraneK/ARIS-GCA-Bees/blob/main/process/RESEARCH_PIPELINE_REPORT.md",
+    "source": "https://github.com/CochraneK/ARIS-GCA-Bees"
+  },
+  "tags": ["ARIS", "predictive coding", "bees", "self-awareness", "simulation"]
+}
