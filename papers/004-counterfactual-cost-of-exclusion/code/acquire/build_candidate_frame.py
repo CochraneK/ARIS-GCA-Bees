@@ -6,8 +6,10 @@ The script *never* inspects mental-health fields or keywords. It samples within
 historical/visibility strata from people classified by the source as
 Discovery/Science, then writes a frozen candidate frame for identity resolution.
 
-The current verified compressed mirror is UTF-8. `--encoding` remains explicit
-so a future upstream release can be handled without silently mojibaking names.
+The verified compressed mirror contains legacy/mixed text bytes: strict UTF-8
+fails, while Latin-1 decoding can expose UTF-8-as-Latin-1 mojibake in some cells.
+We therefore decode losslessly as Latin-1 and repair a cell only when its bytes
+round-trip cleanly as UTF-8. This avoids `errors=ignore` data loss.
 """
 
 from __future__ import annotations
@@ -26,6 +28,30 @@ from typing import Iterable
 def open_text(path: Path, encoding: str):
     raw = gzip.open(path, "rb") if path.suffix == ".gz" else path.open("rb")
     return io.TextIOWrapper(raw, encoding=encoding, newline="")
+
+
+def repair_utf8_mojibake(value: str) -> str:
+    """Repair UTF-8 bytes accidentally decoded as Latin-1 when reversible.
+
+    A genuine Latin-1 string such as `Föhl` cannot decode as UTF-8 after
+    Latin-1 re-encoding and is left untouched. A mojibaked `FÃ¶hl` round-trips
+    to UTF-8 and becomes `Föhl`.
+    """
+    if not value:
+        return value
+    # Avoid rewriting ordinary ASCII and most genuine Latin-1 strings.
+    markers = ("Ã", "Â", "â", "ð", "¤", "€", "™", "œ", "ž")
+    if not any(marker in value for marker in markers):
+        return value
+    try:
+        repaired = value.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return value
+    return repaired
+
+
+def clean_row(row: dict[str, str]) -> dict[str, str]:
+    return {key: repair_utf8_mojibake(value) if isinstance(value, str) else value for key, value in row.items()}
 
 
 def parse_int(value: str) -> int | None:
@@ -124,7 +150,8 @@ def eligible_rows(
     reader: Iterable[dict[str, str]], birth_min: int, birth_max: int, death_min: int, death_max: int
 ) -> list[dict[str, str]]:
     out: list[dict[str, str]] = []
-    for row in reader:
+    for raw_row in reader:
+        row = clean_row(raw_row)
         if (row.get("level1_main_occ") or "").strip().lower() != "discovery/science":
             continue
         birth = parse_int(row.get("birth", ""))
@@ -144,7 +171,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--target", type=int, default=100)
     parser.add_argument("--seed", type=int, default=20260918)
-    parser.add_argument("--encoding", default="utf-8")
+    parser.add_argument("--encoding", default="latin-1")
     parser.add_argument("--birth-min", type=int, default=1850)
     parser.add_argument("--birth-max", type=int, default=1975)
     parser.add_argument("--death-min", type=int, default=1900)
