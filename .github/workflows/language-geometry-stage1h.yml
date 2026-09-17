@@ -43,3 +43,5 @@ jobs:
           git commit -m "research: record Stage-1H GBI replication"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
+
+# Trigger after workflow registration.
