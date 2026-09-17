@@ -11,7 +11,6 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 ID_COLS = {"Entity", "Code", "Year"}
@@ -36,9 +35,6 @@ def build_former_colony(years_csv: Path) -> pd.DataFrame:
     df = df[df["Code"].notna()].copy()
     df[m] = pd.to_numeric(df[m], errors="coerce")
 
-    # OWID's series is cumulative and expanded through the end of its date range.
-    # Taking the latest non-missing observation per current ISO-coded entity yields
-    # total years under the COLDAT overseas-European-colonial definition.
     latest = (
         df.sort_values(["Code", "Year"])
         .dropna(subset=[m])
@@ -54,13 +50,24 @@ def build_former_colony(years_csv: Path) -> pd.DataFrame:
         }
     )
     out["ever_colonized"] = (out["years_colonized_total"] > 0).astype(int)
-    sd = out["years_colonized_total"].std(ddof=0)
-    out["years_colonized_sd"] = (
-        (out["years_colonized_total"] - out["years_colonized_total"].mean()) / sd
-        if sd and np.isfinite(sd)
-        else np.nan
-    )
+    # Do NOT create the preregistered one-SD exposure here. Primary scaling is
+    # computed only after the eight COLDAT imperial centers are excluded from the
+    # confirmatory former-colony sample.
     return out.sort_values("iso3c").reset_index(drop=True)
+
+
+def mode_without_multiple(values: pd.Series) -> str:
+    s = values.astype(str)
+    s = s[s != "Multiple colonizers"]
+    if s.empty:
+        return ""
+    modes = s.mode()
+    return str(sorted(modes.astype(str).tolist())[0]) if len(modes) else ""
+
+
+def unique_without_multiple(values: pd.Series) -> str:
+    vals = sorted({str(v) for v in values if str(v) != "Multiple colonizers"})
+    return "|".join(vals)
 
 
 def build_colonizer_identity(colonizer_year_csv: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -72,38 +79,28 @@ def build_colonizer_identity(colonizer_year_csv: Path) -> tuple[pd.DataFrame, pd
     df = df[df["Code"].notna()].copy()
     df[m] = df[m].astype(str).str.strip()
     colonized = df[~df[m].isin(["Not colonized", "nan", "", "None"])].copy()
-
-    # Compact state-level history summary. 'Multiple colonizers' is deliberately
-    # retained as a category rather than guessed into specific rulers.
-    def summarize(g: pd.DataFrame) -> pd.Series:
-        vals = g[m].tolist()
-        years = g["Year"].astype(int).tolist()
-        single = [v for v in vals if v != "Multiple colonizers"]
-        last_value = vals[-1] if vals else ""
-        primary = pd.Series(single).mode().iloc[0] if single else ""
-        return pd.Series(
-            {
-                "first_colonized_year": min(years) if years else np.nan,
-                "last_colonized_year": max(years) if years else np.nan,
-                "observed_colonial_year_rows": len(years),
-                "primary_single_colonizer_mode": primary,
-                "last_recorded_colonizer_category": last_value,
-                "has_multiple_colonizer_year": int("Multiple colonizers" in vals),
-                "single_colonizers_observed": "|".join(sorted(set(single))),
-            }
-        )
+    colonized["Year"] = pd.to_numeric(colonized["Year"], errors="raise").astype(int)
+    colonized = colonized.sort_values(["Code", "Year"])
 
     state = (
-        colonized.sort_values(["Code", "Year"])
-        .groupby(["Entity", "Code"], as_index=False)
-        .apply(summarize, include_groups=False)
-        .reset_index(drop=True)
+        colonized.groupby(["Entity", "Code"], as_index=False)
+        .agg(
+            first_colonized_year=("Year", "min"),
+            last_colonized_year=("Year", "max"),
+            observed_colonial_year_rows=("Year", "size"),
+            primary_single_colonizer_mode=(m, mode_without_multiple),
+            last_recorded_colonizer_category=(m, "last"),
+            has_multiple_colonizer_year=(m, lambda s: int((s == "Multiple colonizers").any())),
+            single_colonizers_observed=(m, unique_without_multiple),
+        )
         .rename(columns={"Entity": "country", "Code": "iso3c"})
+        .sort_values("iso3c")
+        .reset_index(drop=True)
     )
 
-    # Ruler profile from years with a unique colonizer only. This is explicitly a
-    # lower-bound descriptive profile because 'Multiple colonizers' years cannot
-    # be attributed to a particular ruler from this processed chart alone.
+    # Lower-bound ruler profile: processed OWID rows labelled "Multiple
+    # colonizers" cannot be assigned to a particular ruler without returning to
+    # the underlying COLDAT source.
     unique_only = colonized[colonized[m] != "Multiple colonizers"]
     ruler = (
         unique_only.groupby(m)
