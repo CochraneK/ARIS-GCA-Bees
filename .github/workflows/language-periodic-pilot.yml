@@ -26,12 +26,12 @@ jobs:
         run: python ideas/language-periodic-system/pilot.py
       - name: Commit pilot outputs
         run: |
-          if git diff --quiet -- ideas/language-periodic-system/PILOT_REPORT.md ideas/language-periodic-system/pilot-results.json; then
-            echo "No pilot output changes"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ideas/language-periodic-system/PILOT_REPORT.md ideas/language-periodic-system/pilot-results.json
+          if git diff --cached --quiet; then
+            echo "No pilot output changes"
+            exit 0
+          fi
           git commit -m "research: record language periodic-system Stage-0 pilot"
           git push
