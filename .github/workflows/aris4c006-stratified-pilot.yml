@@ -1,0 +1,43 @@
+name: ARIS4C006 stratified exposure pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-stratified-pilot.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/02_stratified_exposure_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stratified-exposure-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run field-stratified OpenAlex pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/02_stratified_exposure_pilot.py \
+            --year 2024 \
+            --per-field 300 \
+            --outdir data/pilot/stratified
+
+      - name: Upload public-safe stratified summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-stratified-exposure-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/stratified/field_exposure_summary_2024_heuristic.csv
+            ${{ env.PAPER_DIR }}/data/pilot/stratified/manifest_2024.json
+          if-no-files-found: error
+          retention-days: 30
