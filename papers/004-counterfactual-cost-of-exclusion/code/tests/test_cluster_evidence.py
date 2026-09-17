@@ -86,14 +86,20 @@ class ClusterEvidenceTests(unittest.TestCase):
     def test_low_proportion_coauthor_overlap_cannot_anchor_support(self) -> None:
         # Models the residual Fritz Strassmann false-positive pattern: two shared
         # coauthors plus an institution can accumulate 5 raw points even though
-        # they are tiny fractions of large, topically unrelated neighborhoods.
+        # they are tiny fractions of two large, topically unrelated neighborhoods.
         a_works = [
             authored_work("A1", f"Chemistry {i}", 1940 + i % 20, coauthor=f"A_CO_{i}", topic="CHEM")
             for i in range(40)
         ]
         b_works = [
-            authored_work("A2", "Medical One", 1928, coauthor="A_CO_1", topic="MED"),
-            authored_work("A2", "Medical Two", 1933, coauthor="A_CO_2", topic="MED"),
+            authored_work(
+                "A2",
+                f"Medicine {i}",
+                1928 + i % 6,
+                coauthor=("A_CO_1" if i == 0 else "A_CO_2" if i == 1 else f"B_CO_{i}"),
+                topic="MED",
+            )
+            for i in range(44)
         ]
         a = AuthorEvidence("A1", {}, a_works)
         b = AuthorEvidence("A2", {}, b_works)
