@@ -87,6 +87,22 @@ jobs:
               --summary-json "$PAPER_DIR/data/interim/openalex/identity_review_summary.json"
           fi
 
+      - name: Collect pairwise evidence for plausible author fragments
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          QUEUE="$PAPER_DIR/data/interim/openalex/identity_review_queue.csv"
+          if [ -s "$QUEUE" ]; then
+            python "$PAPER_DIR/code/resolve/openalex_cluster_evidence.py" \
+              "$QUEUE" \
+              --out-dir "$PAPER_DIR/data/interim/openalex/cluster_evidence" \
+              --year-min 1800 \
+              --year-max 2005 \
+              --max-works-per-id 200 \
+              --sleep-rps 2
+          fi
+
       - name: Summarize candidate, network and identity-review coverage
         shell: bash
         run: |
@@ -113,6 +129,9 @@ jobs:
           identity = root / "openalex" / "identity_review_summary.json"
           if identity.exists():
               summary["identity_review"] = json.loads(identity.read_text())
+          cluster = root / "openalex" / "cluster_evidence" / "cluster_evidence_summary.json"
+          if cluster.exists():
+              summary["cluster_evidence"] = json.loads(cluster.read_text())
           out = root / "pilot_summary.json"
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
@@ -136,5 +155,9 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_unresolved.csv
             ${{ env.PAPER_DIR }}/data/interim/openalex/identity_review_queue.csv
             ${{ env.PAPER_DIR }}/data/interim/openalex/identity_review_summary.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_evidence_summary.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_author_profiles.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_evidence_errors.csv
           if-no-files-found: warn
           retention-days: 30
