@@ -52,6 +52,22 @@ class CounterfactualCoreTests(unittest.TestCase):
         self.assertEqual(result.dependency_lost, [])
         self.assertAlmostEqual(result.cpe, 1.0)
 
+    def test_same_year_chain_uses_true_topological_order(self) -> None:
+        # Lexical sorting would visit a_target before m_mid before z_source and
+        # incorrectly preserve the target. A real topological order must propagate
+        # loss z_source -> m_mid -> a_target even when all share one year.
+        graph = TemporalGraph(
+            works=[
+                Work("z_source", 1900, "focal", 1.0),
+                Work("m_mid", 1900, "other", 1.0),
+                Work("a_target", 1900, "other", 1.0),
+            ],
+            edges=[("z_source", "m_mid"), ("m_mid", "a_target")],
+        )
+        result = simulate(graph, "focal", 1900, 1.0, "M1", seed=1)
+        self.assertEqual(set(result.dependency_lost), {"m_mid", "a_target"})
+        self.assertAlmostEqual(result.cpe, 3.0)
+
     def test_m2_can_be_sign_negative(self) -> None:
         graph = TemporalGraph(
             works=[Work("f1", 1900, "focal", 1.0), Work("d1", 1910, "other", 5.0)],
