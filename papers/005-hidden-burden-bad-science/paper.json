@@ -1,0 +1,36 @@
+{
+  "id": "005",
+  "slug": "hidden-burden-bad-science",
+  "title": "The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures",
+  "short_title": "Global Burden of Bad Science",
+  "year": 2026,
+  "status": "feasibility-pilot",
+  "domain": "meta-research / science of science / bibliometrics / research integrity / causal inference",
+  "summary": "A global, uncertainty-aware study that separates confirmed misconduct, probable integrity failures, and broader research waste; estimates their prevalence and propagation; and quantifies financial, human-time, career, epistemic, innovation, participant, and correction costs without collapsing unlike harms into a single score.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided run; web/Scite evidence retrieval with explicit tool-availability logging; PuddingSkill-style evidence dossier principles",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/STATUS.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/005-hidden-burden-bad-science"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "research integrity",
+    "research misconduct",
+    "retractions",
+    "research waste",
+    "bibliometrics",
+    "science of science",
+    "Bayesian latent class",
+    "capture-recapture",
+    "opportunity cost",
+    "sleeping beauties"
+  ]
+}
