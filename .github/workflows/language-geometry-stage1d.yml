@@ -43,3 +43,5 @@ jobs:
           git commit -m "research: record Stage-1D circular-Robinson sensitivity"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
+
+# Triggered after workflow registration on branch.
