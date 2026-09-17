@@ -2,57 +2,66 @@
 
 This directory stores **derived/reconstructable research data only**. Do not commit copyrighted biographies, restricted clinical/archival documents, API secrets, or a multi-hundred-GB OpenAlex snapshot.
 
-## Recommended local layout
+## Layout
 
 ```text
 data/
 ├── README.md
 ├── raw/          # local / gitignored when large or license-restricted
 ├── interim/      # identity-resolution and coding work products
-└── derived/      # public-safe analytic tables where licensing permits
+└── derived/      # public-safe frozen/analytic tables where licensing permits
 ```
 
-## Science-pilot reconstruction
+## Frozen science candidate frame
 
-### 1. Obtain the cross-verified candidate source
+`derived/science_candidates_frozen.csv` is the canonical **pre-exposure 100-person science feasibility frame**.
 
-Preferred source:
+It was generated before any mental-health evidence was used, with:
 
-- Laouenan et al. (2022), *A cross-verified database of notable people, 3500BC–2018AD*.
-- Dataset DOI: `10.21410/7E4/RDAG3O`.
-- Use the **cross-verified restricted dataset**, not the unverified exhaustive intermediate dataset.
-- The publication reports the cross-verified data under CC-BY-SA. Preserve attribution/license notices for redistributed derivatives.
+- source: Laouenan et al. (2022), *A cross-verified database of notable people, 3500BC–2018AD*;
+- dataset DOI: `10.21410/7E4/RDAG3O`;
+- verified source-mirror SHA-256: `fe44aa6f97cf9f6c12d040137f92a9f4d0fd1f50e28f7f5d80eeae29b487828d`;
+- eligibility: `Discovery/Science`, required Wikidata ID and usable birth/death years within the pilot bounds;
+- fixed random seed: `20260918`;
+- stratification: birth cohort × source visibility quartile;
+- target: 100 candidates, 5 in each of 20 strata.
 
-Expected source filename is commonly `cross-verified-database.csv` or `.csv.gz`; the script accepts either.
+The cross-verified dataset is reported by the publication under CC-BY-SA; preserve attribution/share-alike requirements for redistributed derivatives.
 
-### 2. Build the mental-health-independent candidate frame
+This frozen file should **not be regenerated merely because a later identity/exposure result is inconvenient**. Any future alternate frame must be versioned as a separate design/sensitivity frame and created without using mental-health outcomes.
+
+## Reconstructing the frozen frame from upstream data
+
+Obtain the official/cross-verified dataset and run:
 
 ```bash
 python code/acquire/build_candidate_frame.py \
   data/raw/cross-verified-database.csv.gz \
-  --output data/interim/science_candidates_frozen.csv \
+  --output data/interim/science_candidates_rebuilt.csv \
   --target 100 \
   --seed 20260918
 ```
 
-This step filters only on historical/disciplinary metadata and samples within period × visibility strata. It does **not** inspect mental-health information.
+The source mirror used during the pilot contains mixed/legacy text bytes. The script reads losslessly via Latin-1 and repairs only reversible UTF-8-as-Latin-1 mojibake at the cell level. It never uses `errors=ignore`.
 
-### 3. Enrich identifier leads from Wikidata
+The current real-data identity workflow consumes the committed frozen frame directly so resolver changes do not repeatedly download/scan the ~250MB upstream source.
+
+## Identity-resolution pipeline
+
+### 1. Enrich identifier leads from Wikidata
 
 ```bash
 python code/resolve/wikidata_identifiers.py \
-  data/interim/science_candidates_frozen.csv \
+  data/derived/science_candidates_frozen.csv \
   --output data/interim/science_candidates_identifiers.csv
 ```
 
-Wikidata ORCID/OpenAlex identifiers are identity-resolution leads. They must be validated against OpenAlex records; do not assume every historical identifier is current/correct.
+Wikidata identifiers are leads, not final identity decisions. The first 100-person pilot yielded only one ORCID lead and zero OpenAlex-ID leads through Wikidata.
 
-### 4. Fetch bounded OpenAlex metadata
-
-Keyless casual API use is supported by OpenAlex at the time this pilot was designed. For a larger pilot, create a free OpenAlex key and expose it as an environment variable; never commit it.
+### 2. Search/fetch bounded OpenAlex metadata
 
 ```bash
-# optional
+# optional free key for a larger request budget
 export OPENALEX_API_KEY="..."
 
 python code/acquire/openalex_pilot.py \
@@ -62,11 +71,44 @@ python code/acquire/openalex_pilot.py \
   --year-max 2000
 ```
 
-The acquisition script writes authors, works, unresolved rows, and a coverage summary. It does not search for mental-health terms.
+The resolver preserves `accepted`, `ambiguous`, and `unresolved` states and writes an audit trail. An automated top hit is **not** final identity verification.
+
+### 3. Detect Author-ID fragmentation
+
+```bash
+python code/resolve/openalex_cluster_review.py \
+  data/interim/openalex/openalex_resolution_audit.jsonl \
+  --output-csv data/interim/openalex/identity_review_queue.csv \
+  --summary-json data/interim/openalex/identity_review_summary.json
+```
+
+The first-30 pilot classified 11/30 candidates as possible author fragmentation, so the final mapping target is person → one or more verified OpenAlex Author IDs.
+
+### 4. Collect pairwise fragment evidence
+
+```bash
+python code/resolve/openalex_cluster_evidence.py \
+  data/interim/openalex/identity_review_queue.csv \
+  --out-dir data/interim/openalex/cluster_evidence \
+  --year-min 1800 \
+  --year-max 2026
+```
+
+This collects DOI/title overlap, coauthors, institutions, topics, publication timing, ORCID agreement/conflict, and representative works for human review. Its `support/conflict/needs_review` labels are **review-priority heuristics only** and never auto-create a verified cluster.
+
+### 5. Lock person-level identity decisions
+
+Use `identity_decisions_template.csv` and `process/IDENTITY_CODEBOOK.md`, then validate:
+
+```bash
+python code/validate_identity.py data/interim/identity_decisions.csv
+```
+
+Only `VERIFIED_SINGLE` and `VERIFIED_CLUSTER` may enter the confirmatory science-network analytic frame.
 
 ## Exposure coding
 
-Create the exposure table only **after the candidate frame is frozen**. Follow `process/EXPOSURE_CODEBOOK.md` and validate with:
+Create the exposure table only **after the network-observable identity frame is frozen without using mental-health information**. Follow `process/EXPOSURE_CODEBOOK.md` and validate with:
 
 ```bash
 python code/validate_exposure.py data/interim/exposure_codes.csv
@@ -90,10 +132,10 @@ Every derived dataset should carry or be accompanied by:
 
 Prefer committing:
 
-- IDs;
-- source citations/provenance;
-- derived numeric/network features;
-- evidence tiers and non-sensitive historical coding;
+- frozen pre-exposure candidate IDs/metadata where licensing permits;
+- verified person ↔ OpenAlex author-cluster decisions and evidence provenance;
+- derived numerical/network features;
+- historical evidence tiers and source identifiers;
 - scripts/configs/seeds.
 
 Avoid committing:
@@ -105,4 +147,4 @@ Avoid committing:
 - secret/API keys;
 - large OpenAlex snapshots.
 
-The goal is **reconstruction**, not mirroring every upstream dataset.
+The goal is **reconstruction and auditable decision provenance**, not mirroring every upstream dataset.
