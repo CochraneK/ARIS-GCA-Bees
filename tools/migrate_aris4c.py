@@ -14,16 +14,20 @@ TEXT_SUFFIXES = {".md", ".html", ".tex", ".json", ".py", ".ps1", ".yml", ".yaml"
 EXCLUDED_FILES = {"all_powershell_history.txt"}
 EXCLUDED_DIRS = {".git", "__pycache__"}
 
+LEGACY_NAME = "ARIS" + "-GCA-Bees"
+CURRENT_NAME = "ARIS4C"
+CURRENT_REPO = "https://github.com/CochraneK/" + CURRENT_NAME
+
 REPLACEMENTS = (
-    ("https://github.com/example/bee-precision-model", "https://github.com/CochraneK/ARIS4C"),
-    ("https://github.com/CunyiKang/ARIS-GCA-Bees", "https://github.com/CochraneK/ARIS4C"),
-    ("https://github.com/CunyiKang/ARIS4C", "https://github.com/CochraneK/ARIS4C"),
-    ("https://github.com/CochraneK/ARIS-GCA-Bees", "https://github.com/CochraneK/ARIS4C"),
-    ("https://cunyikang.github.io/ARIS-GCA-Bees/", "https://cunyikang.github.io/ARIS4C/"),
-    ("https://cochranek.github.io/ARIS-GCA-Bees/", "https://cochranek.github.io/ARIS4C/"),
-    ("CunyiKang/ARIS-GCA-Bees", "CochraneK/ARIS4C"),
-    ("CochraneK/ARIS-GCA-Bees", "CochraneK/ARIS4C"),
-    ("ARIS-GCA-Bees", "ARIS4C"),
+    ("https://github.com/example/bee-precision-model", CURRENT_REPO),
+    ("https://github.com/CunyiKang/" + LEGACY_NAME, CURRENT_REPO),
+    ("https://github.com/CunyiKang/" + CURRENT_NAME, CURRENT_REPO),
+    ("https://github.com/CochraneK/" + LEGACY_NAME, CURRENT_REPO),
+    ("https://cunyikang.github.io/" + LEGACY_NAME + "/", "https://cunyikang.github.io/" + CURRENT_NAME + "/"),
+    ("https://cochranek.github.io/" + LEGACY_NAME + "/", "https://cochranek.github.io/" + CURRENT_NAME + "/"),
+    ("CunyiKang/" + LEGACY_NAME, "CochraneK/" + CURRENT_NAME),
+    ("CochraneK/" + LEGACY_NAME, "CochraneK/" + CURRENT_NAME),
+    (LEGACY_NAME, CURRENT_NAME),
 )
 
 
