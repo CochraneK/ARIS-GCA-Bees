@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-"""Collect pairwise evidence for plausible OpenAlex author fragments.
+"""Collect candidate-lifetime-aware evidence for plausible OpenAlex fragments.
 
-This script is a review aid, NOT an automatic identity merger. For every
-candidate marked as possible fragmentation, it fetches bounded author/work data
-for each plausible OpenAlex Author ID and summarizes pairwise evidence:
+This is a review aid, NOT an automatic identity merger. Historical OpenAlex
+records are often fragmented or contaminated by namesakes. Evidence is therefore
+computed primarily from works in a candidate-specific plausible career window,
+not from all works attached to an OpenAlex Author ID.
 
-- ORCID agreement/conflict
-- duplicate DOI / normalized-title overlap
-- shared coauthors
-- shared institutions
-- topic overlap
-- publication-year overlap
-- representative works
+For every possible-fragmentation candidate the script reports:
+- ORCID agreement/conflict;
+- DOI/title overlap inside the candidate's plausible career window;
+- shared coauthors/institutions/topics inside that window;
+- publication timing and out-of-lifetime contamination;
+- representative plausible and implausible works.
 
-The resulting `support`, `conflict`, and `needs_review` labels prioritize human
-identity review under process/IDENTITY_CODEBOOK.md. They are not confirmatory
-identity decisions and must never be converted directly into VERIFIED_CLUSTER.
+`support`, `conflict`, and `needs_review` are review-priority labels only. They
+must never be converted directly into VERIFIED_CLUSTER.
 """
 
 from __future__ import annotations
@@ -23,7 +22,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import math
 import os
 import re
 import sys
@@ -67,6 +65,36 @@ def safe_year(value: Any) -> int | None:
     return year if 1000 <= year <= 2200 else None
 
 
+def parse_year(value: Any) -> int | None:
+    try:
+        year = int(float(value))
+    except (TypeError, ValueError):
+        return None
+    return year if 1000 <= year <= 2200 else None
+
+
+def career_window(
+    birth_year: int | None,
+    death_year: int | None,
+    min_career_age: int = 15,
+    posthumous_slack_years: int = 5,
+) -> tuple[int | None, int | None]:
+    """A permissive identity-review window, not a substantive career model."""
+    lo = birth_year + min_career_age if birth_year is not None else None
+    hi = death_year + posthumous_slack_years if death_year is not None else None
+    return lo, hi
+
+
+def within_window(year: int | None, lo: int | None, hi: int | None) -> bool:
+    if year is None:
+        return False
+    if lo is not None and year < lo:
+        return False
+    if hi is not None and year > hi:
+        return False
+    return True
+
+
 def canonical_orcid(value: str | None) -> str:
     value = (value or "").strip().lower()
     value = value.removeprefix("https://orcid.org/")
@@ -99,11 +127,7 @@ def iter_coauthors(work: dict[str, Any], focal_author_id: str) -> Iterable[str]:
             yield aid
 
 
-def iter_topic_ids(author: dict[str, Any], works: list[dict[str, Any]]) -> Iterable[str]:
-    for topic in author.get("topics") or []:
-        tid = str(topic.get("id") or "").strip()
-        if tid:
-            yield tid
+def iter_work_topic_ids(works: list[dict[str, Any]]) -> Iterable[str]:
     for work in works:
         primary = work.get("primary_topic") or {}
         tid = str(primary.get("id") or "").strip()
@@ -125,55 +149,61 @@ class AuthorEvidence:
     def orcid(self) -> str:
         return canonical_orcid(str(self.author.get("orcid") or ""))
 
-    @property
-    def dois(self) -> set[str]:
-        return {key for work in self.works if (key := work_doi_key(work))}
-
-    @property
-    def titles(self) -> set[str]:
-        return {
-            key
+    def works_in_window(self, lo: int | None, hi: int | None) -> list[dict[str, Any]]:
+        return [
+            work
             for work in self.works
-            if (key := work_title_key(work)) and len(key) >= 8
-        }
+            if within_window(safe_year(work.get("publication_year")), lo, hi)
+        ]
 
-    @property
-    def coauthors(self) -> set[str]:
-        return {
-            aid
+    def works_outside_window(self, lo: int | None, hi: int | None) -> list[dict[str, Any]]:
+        return [
+            work
             for work in self.works
-            for aid in iter_coauthors(work, self.author_id)
-        }
+            if (year := safe_year(work.get("publication_year"))) is not None
+            and not within_window(year, lo, hi)
+        ]
 
-    @property
-    def institutions(self) -> set[str]:
-        ids = {
-            str(inst.get("id") or "").strip()
-            for inst in self.author.get("last_known_institutions") or []
-            if inst.get("id")
-        }
-        ids.update(
-            iid
-            for work in self.works
-            for iid in iter_authorship_institutions(work)
-        )
-        return {x for x in ids if x}
-
-    @property
-    def topics(self) -> set[str]:
-        return set(iter_topic_ids(self.author, self.works))
-
-    @property
-    def years(self) -> set[int]:
+    def years(self, works: list[dict[str, Any]] | None = None) -> set[int]:
+        source = self.works if works is None else works
         return {
             year
-            for work in self.works
+            for work in source
             if (year := safe_year(work.get("publication_year"))) is not None
         }
 
-    def representative_works(self, n: int = 5) -> list[dict[str, Any]]:
+    def dois(self, works: list[dict[str, Any]]) -> set[str]:
+        return {key for work in works if (key := work_doi_key(work))}
+
+    def titles(self, works: list[dict[str, Any]]) -> set[str]:
+        return {
+            key for work in works if (key := work_title_key(work)) and len(key) >= 8
+        }
+
+    def coauthors(self, works: list[dict[str, Any]]) -> set[str]:
+        return {
+            aid
+            for work in works
+            for aid in iter_coauthors(work, self.author_id)
+        }
+
+    def institutions(self, works: list[dict[str, Any]]) -> set[str]:
+        # Author-level `last_known_institutions` is intentionally excluded from
+        # merge support because a contaminated Author ID can make it misleading.
+        return {
+            iid
+            for work in works
+            for iid in iter_authorship_institutions(work)
+        }
+
+    def topics(self, works: list[dict[str, Any]]) -> set[str]:
+        return set(iter_work_topic_ids(works))
+
+    def representative_works(
+        self, works: list[dict[str, Any]], n: int = 5
+    ) -> list[dict[str, Any]]:
         ordered = sorted(
-            self.works,
+            works,
             key=lambda work: (
                 int(work.get("cited_by_count") or 0),
                 safe_year(work.get("publication_year")) or 0,
@@ -221,19 +251,72 @@ def temporal_summary(years_a: set[int], years_b: set[int]) -> dict[str, Any]:
     }
 
 
-def pairwise_evidence(a: AuthorEvidence, b: AuthorEvidence) -> dict[str, Any]:
-    doi_overlap = a.dois & b.dois
-    title_overlap = a.titles & b.titles
-    coauthor_overlap = a.coauthors & b.coauthors
-    institution_overlap = a.institutions & b.institutions
-    topic_overlap = a.topics & b.topics
-    temporal = temporal_summary(a.years, b.years)
+def contamination_summary(
+    evidence: AuthorEvidence,
+    birth_year: int | None,
+    death_year: int | None,
+    lo: int | None,
+    hi: int | None,
+) -> dict[str, Any]:
+    all_years = evidence.years()
+    plausible = evidence.works_in_window(lo, hi)
+    outside = evidence.works_outside_window(lo, hi)
+    dated_n = len(plausible) + len(outside)
+    before_birth_n = 0
+    after_death_slack_n = 0
+    if birth_year is not None:
+        before_birth_n = sum(
+            (year := safe_year(work.get("publication_year"))) is not None
+            and year < birth_year
+            for work in evidence.works
+        )
+    if hi is not None:
+        after_death_slack_n = sum(
+            (year := safe_year(work.get("publication_year"))) is not None and year > hi
+            for work in evidence.works
+        )
+    return {
+        "api_attached_works_n": int(evidence.author.get("works_count") or 0),
+        "fetched_works_n": len(evidence.works),
+        "dated_works_n": dated_n,
+        "plausible_works_n": len(plausible),
+        "outside_window_works_n": len(outside),
+        "outside_window_share": (len(outside) / dated_n) if dated_n else None,
+        "before_birth_works_n": before_birth_n,
+        "after_death_slack_works_n": after_death_slack_n,
+        "all_year_min": min(all_years) if all_years else None,
+        "all_year_max": max(all_years) if all_years else None,
+    }
+
+
+def pairwise_evidence(
+    a: AuthorEvidence,
+    b: AuthorEvidence,
+    birth_year: int | None = None,
+    death_year: int | None = None,
+) -> dict[str, Any]:
+    lo, hi = career_window(birth_year, death_year)
+    a_works = a.works_in_window(lo, hi)
+    b_works = b.works_in_window(lo, hi)
+
+    a_dois, b_dois = a.dois(a_works), b.dois(b_works)
+    a_titles, b_titles = a.titles(a_works), b.titles(b_works)
+    a_coauthors, b_coauthors = a.coauthors(a_works), b.coauthors(b_works)
+    a_institutions, b_institutions = a.institutions(a_works), b.institutions(b_works)
+    a_topics, b_topics = a.topics(a_works), b.topics(b_works)
+
+    doi_overlap = a_dois & b_dois
+    title_overlap = a_titles & b_titles
+    coauthor_overlap = a_coauthors & b_coauthors
+    institution_overlap = a_institutions & b_institutions
+    topic_overlap = a_topics & b_topics
+    temporal = temporal_summary(a.years(a_works), b.years(b_works))
+    contam_a = contamination_summary(a, birth_year, death_year, lo, hi)
+    contam_b = contamination_summary(b, birth_year, death_year, lo, hi)
 
     same_orcid = bool(a.orcid and b.orcid and a.orcid == b.orcid)
     conflicting_orcid = bool(a.orcid and b.orcid and a.orcid != b.orcid)
 
-    # This score is strictly a *review-priority heuristic*. It is deliberately
-    # transparent and is never used as an automatic merge threshold.
     support_points = 0
     reasons: list[str] = []
     conflicts: list[str] = []
@@ -243,55 +326,68 @@ def pairwise_evidence(a: AuthorEvidence, b: AuthorEvidence) -> dict[str, Any]:
         reasons.append("same_nonempty_orcid")
     if doi_overlap:
         support_points += 5
-        reasons.append("duplicate_doi")
+        reasons.append("lifetime_duplicate_doi")
     if title_overlap:
         support_points += 3
-        reasons.append("normalized_title_overlap")
+        reasons.append("lifetime_normalized_title_overlap")
     if len(coauthor_overlap) >= 2:
         support_points += 3
-        reasons.append("multiple_shared_coauthors")
+        reasons.append("lifetime_multiple_shared_coauthors")
     elif len(coauthor_overlap) == 1:
         support_points += 1
-        reasons.append("one_shared_coauthor")
+        reasons.append("lifetime_one_shared_coauthor")
     if institution_overlap:
         support_points += 2
-        reasons.append("shared_institution")
-    topic_j = jaccard(a.topics, b.topics)
+        reasons.append("lifetime_shared_institution")
+    topic_j = jaccard(a_topics, b_topics)
     if topic_j is not None and topic_j >= 0.25:
         support_points += 1
-        reasons.append("topic_overlap")
+        reasons.append("lifetime_topic_overlap")
 
     if conflicting_orcid:
         conflicts.append("conflicting_nonempty_orcid")
-    if temporal["year_gap"] is not None and temporal["year_gap"] > 60:
-        conflicts.append("extreme_publication_year_gap")
+    if len(a_works) == 0:
+        conflicts.append("author_a_no_lifetime_plausible_work")
+    if len(b_works) == 0:
+        conflicts.append("author_b_no_lifetime_plausible_work")
+
+    contamination_warning = any(
+        share is not None and share > 0.50
+        for share in (contam_a["outside_window_share"], contam_b["outside_window_share"])
+    )
+    if contamination_warning:
+        reasons.append("temporal_contamination_over_50pct")
 
     if conflicts:
         review_label = "conflict"
-    elif support_points >= 5:
+    elif support_points >= 5 and not contamination_warning:
         review_label = "support"
     else:
         review_label = "needs_review"
 
     return {
+        "candidate_birth_year": birth_year,
+        "candidate_death_year": death_year,
+        "plausible_career_year_min": lo,
+        "plausible_career_year_max": hi,
         "author_id_a": a.author_id,
         "author_id_b": b.author_id,
         "orcid_a": a.orcid,
         "orcid_b": b.orcid,
         "same_orcid": same_orcid,
         "conflicting_orcid": conflicting_orcid,
-        "doi_overlap_n": len(doi_overlap),
-        "title_overlap_n": len(title_overlap),
-        "shared_coauthors_n": len(coauthor_overlap),
-        "coauthor_jaccard": jaccard(a.coauthors, b.coauthors),
-        "coauthor_overlap_coefficient": overlap_coefficient(a.coauthors, b.coauthors),
-        "shared_institutions_n": len(institution_overlap),
-        "institution_jaccard": jaccard(a.institutions, b.institutions),
-        "shared_topics_n": len(topic_overlap),
-        "topic_jaccard": topic_j,
+        "lifetime_doi_overlap_n": len(doi_overlap),
+        "lifetime_title_overlap_n": len(title_overlap),
+        "lifetime_shared_coauthors_n": len(coauthor_overlap),
+        "lifetime_coauthor_jaccard": jaccard(a_coauthors, b_coauthors),
+        "lifetime_coauthor_overlap_coefficient": overlap_coefficient(a_coauthors, b_coauthors),
+        "lifetime_shared_institutions_n": len(institution_overlap),
+        "lifetime_institution_jaccard": jaccard(a_institutions, b_institutions),
+        "lifetime_shared_topics_n": len(topic_overlap),
+        "lifetime_topic_jaccard": topic_j,
         **temporal,
-        "works_a_n": len(a.works),
-        "works_b_n": len(b.works),
+        "author_a_contamination": contam_a,
+        "author_b_contamination": contam_b,
         "support_points_for_review_only": support_points,
         "support_reasons": reasons,
         "conflict_reasons": conflicts,
@@ -333,7 +429,7 @@ def main() -> int:
     parser.add_argument("identity_review_queue", type=Path)
     parser.add_argument("--out-dir", type=Path, required=True)
     parser.add_argument("--year-min", type=int, default=1800)
-    parser.add_argument("--year-max", type=int, default=2005)
+    parser.add_argument("--year-max", type=int, default=2026)
     parser.add_argument("--max-works-per-id", type=int, default=200)
     parser.add_argument("--sleep-rps", type=float, default=2.0)
     args = parser.parse_args()
@@ -355,6 +451,7 @@ def main() -> int:
     pair_counts = {"support": 0, "conflict": 0, "needs_review": 0}
     persons_completed = 0
     author_ids_fetched = 0
+    contaminated_profiles_n = 0
 
     with pairwise_path.open("w", encoding="utf-8") as pair_file, profiles_path.open(
         "w", encoding="utf-8"
@@ -362,6 +459,9 @@ def main() -> int:
         for row in rows:
             person_id = row.get("person_id", "")
             name = row.get("canonical_name", "")
+            birth_year = parse_year(row.get("birth_year"))
+            death_year = parse_year(row.get("death_year"))
+            lo, hi = career_window(birth_year, death_year)
             ids = parse_ids(row.get("plausible_openalex_ids", ""))
             evidences: list[AuthorEvidence] = []
 
@@ -376,23 +476,35 @@ def main() -> int:
                     )
                     evidences.append(evidence)
                     author_ids_fetched += 1
+                    plausible = evidence.works_in_window(lo, hi)
+                    outside = evidence.works_outside_window(lo, hi)
+                    contamination = contamination_summary(
+                        evidence, birth_year, death_year, lo, hi
+                    )
+                    if (
+                        contamination["outside_window_share"] is not None
+                        and contamination["outside_window_share"] > 0.50
+                    ):
+                        contaminated_profiles_n += 1
                     profile_file.write(
                         json.dumps(
                             {
                                 "person_id": person_id,
                                 "canonical_name": name,
                                 "wikidata_qid": row.get("wikidata_qid", ""),
+                                "birth_year": birth_year,
+                                "death_year": death_year,
+                                "plausible_career_year_min": lo,
+                                "plausible_career_year_max": hi,
                                 "author_id": evidence.author_id,
                                 "display_name": evidence.author.get("display_name"),
                                 "orcid": evidence.orcid,
-                                "api_works_count": evidence.author.get("works_count"),
-                                "fetched_works_n": len(evidence.works),
-                                "year_min": min(evidence.years) if evidence.years else None,
-                                "year_max": max(evidence.years) if evidence.years else None,
-                                "coauthors_n": len(evidence.coauthors),
-                                "institutions_n": len(evidence.institutions),
-                                "topics_n": len(evidence.topics),
-                                "representative_works": evidence.representative_works(),
+                                "contamination": contamination,
+                                "plausible_coauthors_n": len(evidence.coauthors(plausible)),
+                                "plausible_institutions_n": len(evidence.institutions(plausible)),
+                                "plausible_topics_n": len(evidence.topics(plausible)),
+                                "representative_plausible_works": evidence.representative_works(plausible),
+                                "representative_outside_window_works": evidence.representative_works(outside),
                             },
                             ensure_ascii=False,
                         )
@@ -411,7 +523,7 @@ def main() -> int:
             if len(evidences) >= 2:
                 persons_completed += 1
             for a, b in combinations(evidences, 2):
-                result = pairwise_evidence(a, b)
+                result = pairwise_evidence(a, b, birth_year, death_year)
                 pair_counts[result["review_label"]] += 1
                 pair_file.write(
                     json.dumps(
@@ -438,6 +550,7 @@ def main() -> int:
         "fragmentation_persons_input": len(rows),
         "fragmentation_persons_with_at_least_two_ids_fetched": persons_completed,
         "author_ids_fetched": author_ids_fetched,
+        "author_profiles_with_gt50pct_temporal_contamination": contaminated_profiles_n,
         "pair_review_label_counts": pair_counts,
         "fetch_errors_n": len(errors),
         "year_min": args.year_min,
@@ -445,8 +558,8 @@ def main() -> int:
         "max_works_per_id": args.max_works_per_id,
         "api_key_used": bool(os.getenv("OPENALEX_API_KEY")),
         "interpretation": (
-            "Pair labels are review-priority evidence only. They are not identity "
-            "decisions and must not be used to auto-create VERIFIED_CLUSTER."
+            "Pair labels are lifetime-aware review-priority evidence only. They are "
+            "not identity decisions and must not auto-create VERIFIED_CLUSTER."
         ),
     }
     summary_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
