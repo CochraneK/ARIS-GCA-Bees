@@ -96,6 +96,18 @@ jobs:
               --sleep-rps 2
           fi
 
+      - name: Apply conservative identity-evidence guard
+        if: always()
+        shell: bash
+        run: |
+          PAIRS="$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence.jsonl"
+          if [ -s "$PAIRS" ]; then
+            python "$PAPER_DIR/code/resolve/cluster_evidence_guard.py" \
+              "$PAIRS" \
+              --output-jsonl "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl" \
+              --summary-json "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_guard_summary.json"
+          fi
+
       - name: Summarize candidate, network and identity-review coverage
         shell: bash
         run: |
@@ -126,7 +138,10 @@ jobs:
               summary["identity_review"] = json.loads(identity.read_text())
           cluster = root / "openalex" / "cluster_evidence" / "cluster_evidence_summary.json"
           if cluster.exists():
-              summary["cluster_evidence"] = json.loads(cluster.read_text())
+              summary["cluster_evidence_raw"] = json.loads(cluster.read_text())
+          guard = root / "openalex" / "cluster_evidence" / "cluster_guard_summary.json"
+          if guard.exists():
+              summary["cluster_evidence_guarded"] = json.loads(guard.read_text())
           out = root / "pilot_summary.json"
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
@@ -148,6 +163,8 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/openalex/identity_review_summary.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_evidence_summary.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_guard_summary.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_author_profiles.jsonl
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_evidence_errors.csv
           if-no-files-found: warn
