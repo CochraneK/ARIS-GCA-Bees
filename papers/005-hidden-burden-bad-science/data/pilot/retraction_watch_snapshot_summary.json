@@ -1,0 +1,186 @@
+{
+  "generated_at_utc": "2026-09-17T21:26:06.102285+00:00",
+  "classification": "DETECTED_CORRECTION_SNAPSHOT_SUMMARY_NOT_PREVALENCE",
+  "source_file_sha256": "74fbe41b7d95662c587bf21512359dfa087586ee4998d1049cd276bc2b63cade",
+  "rows": 72577,
+  "columns": [
+    "Record ID",
+    "Title",
+    "Subject",
+    "Institution",
+    "Journal",
+    "Publisher",
+    "Country",
+    "Author",
+    "URLS",
+    "ArticleType",
+    "RetractionDate",
+    "RetractionDOI",
+    "RetractionPubMedID",
+    "OriginalPaperDate",
+    "OriginalPaperDOI",
+    "OriginalPaperPubMedID",
+    "RetractionNature",
+    "Reason",
+    "Paywalled",
+    "Notes",
+    "",
+    "aris_raw_reason_count",
+    "e1s_narrow_auto",
+    "e1m_strong_auto",
+    "e1p_strong_auto",
+    "paper_mill_signal",
+    "e3_error_signal",
+    "manual_scientific_review",
+    "context_only_reasons",
+    "manual_review_required"
+  ],
+  "unique_original_paper_dois": 63434,
+  "rows_without_resolvable_original_doi": 6110,
+  "duplicate_original_doi_rows_after_normalization": 3033,
+  "retraction_nature_counts": {
+    "Retraction": 67013,
+    "Expression of concern": 3718,
+    "Correction": 1522,
+    "UNKNOWN": 164,
+    "Reinstatement": 160
+  },
+  "auto_flag_counts": {
+    "e1s_narrow_auto": 2130,
+    "e1m_strong_auto": 20475,
+    "e1p_strong_auto": 16279,
+    "paper_mill_signal": 11798,
+    "e3_error_signal": 6258,
+    "manual_scientific_review": 28147,
+    "context_only_reasons": 403,
+    "manual_review_required": 32639
+  },
+  "top_reasons": [
+    {
+      "reason": "Investigation by Journal/Publisher",
+      "count": 32165
+    },
+    {
+      "reason": "Unreliable Results and/or Conclusions",
+      "count": 21982
+    },
+    {
+      "reason": "Investigation by Third Party",
+      "count": 17966
+    },
+    {
+      "reason": "Concerns/Issues about Data",
+      "count": 15922
+    },
+    {
+      "reason": "Concerns/Issues about Referencing/Attributions",
+      "count": 15308
+    },
+    {
+      "reason": "Notice - Limited or No Information",
+      "count": 12118
+    },
+    {
+      "reason": "Compromised Peer Review",
+      "count": 11863
+    },
+    {
+      "reason": "Paper Mill",
+      "count": 11798
+    },
+    {
+      "reason": "Concerns/Issues about Peer Review",
+      "count": 11716
+    },
+    {
+      "reason": "Concerns/Issues about Results and/or Conclusions",
+      "count": 10034
+    },
+    {
+      "reason": "Computer-Aided Content or Computer-Generated Content",
+      "count": 9267
+    },
+    {
+      "reason": "Date of Article and/or Notice Unknown",
+      "count": 7025
+    },
+    {
+      "reason": "Duplication of/in Image",
+      "count": 5662
+    },
+    {
+      "reason": "Breach of Policy by Author",
+      "count": 4792
+    },
+    {
+      "reason": "Removed",
+      "count": 4071
+    },
+    {
+      "reason": "Objections by Author(s)",
+      "count": 3856
+    },
+    {
+      "reason": "Investigation by Company/Institution",
+      "count": 3836
+    },
+    {
+      "reason": "Euphemisms for Plagiarism",
+      "count": 3813
+    },
+    {
+      "reason": "Duplication of/in Article",
+      "count": 3722
+    },
+    {
+      "reason": "Concerns/Issues about Image",
+      "count": 3619
+    },
+    {
+      "reason": "Rogue Editor",
+      "count": 3521
+    },
+    {
+      "reason": "Author Unresponsive",
+      "count": 3340
+    },
+    {
+      "reason": "Concerns/Issues about Authorship/Affiliation",
+      "count": 3160
+    },
+    {
+      "reason": "Plagiarism of/in Article",
+      "count": 2897
+    },
+    {
+      "reason": "Lack of IRB/IACUC Approval and/or Compliance",
+      "count": 2655
+    },
+    {
+      "reason": "Original Data and/or Images not Provided and/or not Available",
+      "count": 2598
+    },
+    {
+      "reason": "Upgrade/Update of Prior Notice(s)",
+      "count": 2389
+    },
+    {
+      "reason": "Unreliable Data",
+      "count": 2384
+    },
+    {
+      "reason": "Euphemisms for Duplication",
+      "count": 2326
+    },
+    {
+      "reason": "Plagiarism of Text",
+      "count": 2224
+    }
+  ],
+  "raw_retraction_date_min_lexical": "1/1/1970 0:00",
+  "raw_retraction_date_max_lexical": "9/9/2025 0:00",
+  "warning": "Counts describe Retraction Watch/Crossref detected correction records. They are not estimates of underlying misconduct prevalence. Auto flags are screening variables and ambiguous records require adjudication.",
+  "retraction_watch_git_commit": "448a0ed262c6348dd6f06ac03f5602bae4ef2d01",
+  "source_repository": "https://gitlab.com/crossref/retraction-watch-data",
+  "redistribution_note": "Raw Retraction Watch CSV intentionally excluded from artifact/repository; summary and provenance only."
+}

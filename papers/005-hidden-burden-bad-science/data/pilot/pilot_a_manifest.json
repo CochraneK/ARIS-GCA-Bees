@@ -1,0 +1,25 @@
+{
+  "paper": "ARIS4C005",
+  "generated_at_utc": "2026-09-17T21:26:06.200252+00:00",
+  "stage": "Pilot A — public-data acquisition feasibility",
+  "confirmatory_use_allowed": false,
+  "outputs": {
+    "data/pilot/openalex_universe_counts.csv": {
+      "exists": true,
+      "bytes": 914
+    },
+    "data/pilot/openalex_universe_provenance.json": {
+      "exists": true,
+      "bytes": 491
+    },
+    "data/pilot/retraction_watch_snapshot_summary.json": {
+      "exists": true,
+      "bytes": 4615
+    }
+  },
+  "warnings": [
+    "Retraction Watch records are detected correction events, not underlying prevalence.",
+    "Automatic exposure flags are screening variables; ambiguous records require manual adjudication.",
+    "OpenAlex counts are versioned metadata counts under the documented article+review/core definition."
+  ]
+}
