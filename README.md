@@ -5,121 +5,95 @@
 
 <div align="center">
 
-# ARIS-GCA-Bees
+# ARIS Research Hub
 
-**A theory-and-simulation project on functional self-awareness in bees**
+**A living repository for papers developed with ARIS**
 
-<p>
-  <img alt="Stage" src="https://img.shields.io/badge/stage-theory%20%2B%20simulation-6C63FF">
-  <img alt="Domain" src="https://img.shields.io/badge/domain-computational%20neuroethology-2F80ED">
-  <img alt="Pipeline" src="https://img.shields.io/badge/pipeline-ARIS-27AE60">
-</p>
-
-[**Web bundle**](docs/index.html) · [**Research pipeline**](process/RESEARCH_PIPELINE_REPORT.md) · [**English manuscript**](docs/paper/en/main.html) · [**中文论文**](docs/paper/zh/main.html)
+[**Paper Hub**](docs/index.html) · [**Papers Registry**](papers/) · [**Paper 001**](docs/paper/en/main.html) · [**中文**](README.zh-CN.md)
 
 </div>
 
-## Overview
+## What this repository is becoming
 
-ARIS-GCA-Bees is a computational neuroethology project developed through the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) automated research pipeline.
+This repository started as **ARIS-GCA-Bees**, a single theory-and-simulation paper on functional self-awareness in bees. It now also serves as a long-lived research workspace for future papers developed with the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) methodology.
 
-The project proposes a **predictive-coding account of functional self-awareness in bees** and uses simulation to explore whether a shared latent parameter — **precision** — can jointly organize four modeled behavioral domains:
+The separation is deliberate:
 
-- metacognitive opt-out behavior;
-- tool-use anticipation;
-- caste-appropriate learning;
-- general cognitive ability (GCA).
+- **ARIS is the research engine** and can keep updating independently.
+- **This repository is the research archive** and keeps each paper's manuscript, code, figures, process records, provenance, and reproducibility trail.
+- **Each paper records the exact ARIS version/commit used**, so upgrading ARIS does not rewrite the history of older work.
+- **The public HTML hub is generated from paper manifests**, rather than maintained by hand.
 
-> [!IMPORTANT]
-> This repository is at the **theory + simulation** stage. Its relationships and sign changes are model-generated hypotheses and predictions, not empirical evidence that bees possess a particular form of self-awareness or that the proposed neural mechanism has been demonstrated in vivo.
-
-## Main idea
-
-Within the current model, the project explores three central predictions:
-
-- metacognitive performance can follow an inverted-U relationship with precision;
-- higher modeled GCA can coincide with poorer metacognitive calibration under some parameter regimes;
-- circadian disruption can change the sign of the modeled metacognition–GCA relationship.
-
-The value of the project is therefore in **formalization, simulation, falsifiable prediction generation, and transparent research packaging**.
-
-## Repository structure
-
-The README previously described an older layout. The current repository is organized as follows:
+## Repository model
 
 ```text
 ARIS-GCA-Bees/
-├── code/                         # simulation scripts
-│   ├── experiment_r2_4domain.py
-│   ├── experiment_unified_selfmodel_full.py
-│   └── pilot_*.py
-├── docs/                         # web / manuscript bundle
-│   ├── index.html
-│   ├── zh.html
-│   ├── figures/
-│   └── paper/
-│       ├── en/
-│       ├── zh/
-│       ├── sections/
-│       └── references.bib
-├── process/                      # research-generation records
-│   ├── IDEA_REPORT.md
-│   ├── AUTO_REVIEW.md
-│   ├── PAPER_PLAN.md
-│   └── RESEARCH_PIPELINE_REPORT.md
-├── simulation_results.json
-├── simulation_results_r2.json
-├── README.md
-└── README.zh-CN.md
+├── papers/
+│   ├── 001-gca-bees/
+│   │   └── paper.json           # manifest for the original paper
+│   └── 002-next-paper/
+│       ├── paper.json
+│       ├── code/
+│       ├── data/
+│       ├── figures/
+│       ├── manuscript/
+│       └── process/
+├── docs/
+│   └── index.html               # generated public paper hub
+├── tools/
+│   ├── new_paper.py             # scaffold the next numbered paper
+│   ├── build_papers_index.py    # regenerate the HTML hub
+│   └── sync_aris.ps1            # update the external ARIS engine on Windows
+├── aris.lock.json               # repository-level ARIS update policy
+├── code/                        # legacy Paper 001 research code
+├── process/                     # legacy Paper 001 ARIS process records
+└── simulation_results*.json     # legacy Paper 001 outputs
 ```
 
-## Start here
+The original Paper 001 files remain in their current locations for link compatibility. New papers should use the numbered `papers/` layout from the start.
 
-| Goal | File |
-| --- | --- |
-| Understand how the project was generated | [Research Pipeline Report](process/RESEARCH_PIPELINE_REPORT.md) |
-| See the original idea development | [Idea Report](process/IDEA_REPORT.md) |
-| Review the automated critique stage | [Auto Review](process/AUTO_REVIEW.md) |
-| Read the English manuscript | [docs/paper/en/main.html](docs/paper/en/main.html) |
-| Read the Chinese manuscript | [docs/paper/zh/main.html](docs/paper/zh/main.html) |
-| Open the web landing bundle | [docs/index.html](docs/index.html) |
-
-## Reproduce the main simulation
+## Start a new paper
 
 ```bash
-python code/experiment_r2_4domain.py
+python tools/new_paper.py "Your paper title" --slug short-name
 ```
 
-Additional simulations and pilots are available under `code/`. Numerical outputs currently live in the repository root as `simulation_results.json` and `simulation_results_r2.json`.
+This creates the next stable paper ID and its standard research folders. Before starting the ARIS run, record the exact ARIS tag and commit in that paper's `paper.json`.
 
-## Workflow
+## Keep ARIS current
 
-```text
-idea discovery
-→ pilot testing
-→ full simulation
-→ review loop
-→ paper planning
-→ manuscript drafting
-→ web / manuscript packaging
+ARIS itself is **not vendored into this repository**. On Windows, update a separate local ARIS clone with:
+
+```powershell
+./tools/sync_aris.ps1
 ```
 
-## Working paper
+The helper clones or pulls the upstream ARIS repository, records the local tag/commit, and uses the upstream smart-update path when Bash is available. Local engine state is gitignored.
+
+The repository currently recommends **ARIS v0.4.26** in `aris.lock.json`; historical papers retain their original provenance instead of being relabeled after upgrades.
+
+## Rebuild the public paper hub
+
+```bash
+python tools/build_papers_index.py
+```
+
+A GitHub Action also regenerates `docs/index.html` automatically when paper manifests change on `main`.
+
+## Paper 001 · GCA × Bees
 
 **A Unified Predictive Coding Account of Functional Self-Awareness in Bees: Analytically Derived Precision Trade-offs Across Four Behavioral Domains**
 
-This is a working research artifact, not a published empirical paper.
+This remains a theory + simulation working paper. Its modeled relationships are hypotheses and predictions, not empirical evidence that bees possess a particular form of self-awareness or that the proposed neural mechanism has been demonstrated in vivo.
 
-## Citation
+- [English manuscript](docs/paper/en/main.html)
+- [中文论文](docs/paper/zh/main.html)
+- [Research pipeline report](process/RESEARCH_PIPELINE_REPORT.md)
+- [Idea report](process/IDEA_REPORT.md)
+- [Auto review](process/AUTO_REVIEW.md)
 
-If you reference the repository before formal publication:
+## Principle
 
-```text
-Kang, C. (2026). ARIS-GCA-Bees: A unified predictive coding account of functional self-awareness in bees. GitHub repository.
-```
-
-## Contact
+> Upgrade the research engine; preserve the research record.
 
 Maintainer: **Cunyi Kang**
-
-For questions, comments, or collaboration, please open a GitHub issue.
