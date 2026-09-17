@@ -4,7 +4,7 @@
 **Branch:** `research/language-periodic-system-aris`  
 **ARIS lock:** v0.4.26  
 **Paper ID:** not assigned  
-**Overall state:** ACTIVE CANDIDATE — Stage 1 experiment implementation
+**Overall state:** ACTIVE CANDIDATE — Stage 1B robustness / non-periodic reframe under test
 
 ## Pipeline alignment
 
@@ -18,8 +18,9 @@ ARIS idea-discovery order:
 | research-lit | DONE (primary pass) | `idea-stage/IDEA_REPORT.md#literature-landscape` |
 | idea-creator | DONE (scope variants ranked) | `idea-stage/IDEA_REPORT.md#ranked-ideas` |
 | novelty-check | DONE as primary-executor search; FORMAL REVIEW RECEIPT PENDING | `idea-stage/IDEA_REPORT.md#novelty-verification` |
-| research-review | PENDING formal secondary ARIS reviewer | `idea-stage/IDEA_REPORT.md#external-critical-review` contains only primary stress test |
-| research-refine-pipeline | DRAFTED, NOT GATED | `refine-logs/EXPERIMENT_PLAN.md` |
+| research-review | PENDING formal secondary ARIS reviewer | `refine-logs/REVIEW_SUMMARY.md` |
+| research-refine | DRAFTED / evidence-updated | `refine-logs/FINAL_PROPOSAL.md` |
+| experiment-plan | ACTIVE | `refine-logs/EXPERIMENT_PLAN.md`, `refine-logs/EXPERIMENT_TRACKER.md` |
 
 ## Why the formal ARIS gate is not marked PASS
 
@@ -27,36 +28,65 @@ ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases
 
 ## Scientific state
 
-### Stage 0
+### Stage 0 · prerequisite signal
+
 `MIXED_SIGNAL`.
 
 - 20-component observed compression: 0.510 vs null mean 0.362 (+0.148).
 - Pairwise residual association is weak for most pairs but has a substantial upper tail.
-- Interpretation: enough non-random structure to justify model comparison; zero evidence yet for periodicity.
+- Interpretation: enough non-random structure to justify model comparison; no evidence yet for periodicity.
 
-### Novelty after stronger prior-art search
+### Stage 1 · direct model competition
+
+`REFRAME_NONPERIODIC_GEOMETRY`.
+
+On 60 well-covered TLI features:
+
+- random-split Spearman: tree 0.199, graph 0.205, low-rank 0.172, circular 0.122;
+- family-held-out Spearman: tree **0.178**, graph 0.163, low-rank/euclidean 0.150, circular **0.109**;
+- circular ordering remains moderately reproducible: family-held-out stability **0.542 ± 0.139**.
+
+Interpretation: the simple global circle is not arbitrary, but it currently predicts held-out cross-linguistic structure worse than a hierarchical/tree representation. This is a reason to reframe, not yet a sufficient rejection of the periodic hypothesis.
+
+### Stage 1B · periodic fairness robustness
+
+**RUNNING.**
+
+The robustness test addresses the two clearest attacks on Stage 1:
+
+1. the spectral affinity graph was not fully connected;
+2. the circular positions were inherited from a spectral embedding rather than directly optimized for a circular model.
+
+Stage 1B therefore forces a connected affinity, directly optimizes angular feature positions, repeats family-held-out evaluation, and checks two feature counts (40 / 60).
+
+## Novelty after stronger prior-art search
 
 The strongest collision is the Port/Marcolli program:
-- Persistent Topology of Syntax (2018)
-- Topological Analysis of Syntactic Structures (2022)
+- *Persistent Topology of Syntax* (2018)
+- *Topological Analysis of Syntactic Structures* (2022)
 
 Therefore topology, H1 loops, and geometry of syntax cannot be headline novelty. The surviving wedge is explicit predictive model competition for the periodic-table hypothesis using modern curated global data and genealogy/area-aware evaluation.
 
-## Next executable milestone
+## Current likely framing
 
-Implement Stage 1A:
+If Stage 1B confirms the current pattern, shift from “constructing a periodic system” to:
 
-1. derive train/test feature-association matrices from TLI;
-2. compare null, Euclidean low-rank, hierarchical/tree, graph-distance, and circular periodic models;
-3. score prediction of held-out associations;
-4. add Glottolog family-held-out splits;
-5. use bootstrap stability to decide GO / REFRAME / STOP.
+> **Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space**
+
+with Baker's periodic-table proposal as the historical hypothesis being tested rather than the result being assumed.
+
+If the optimized periodic model becomes competitive, retain:
+
+> **Testing the Periodic-Table Hypothesis of Human Language**
+
+and continue stronger periodic/non-periodic discrimination.
 
 ## Promotion rule
 
 Do not create `papers/002-*` until:
 
-- Stage 1 produces a scientifically interpretable result;
+- Stage 1B establishes a fair periodic baseline;
 - closest-prior-work search remains clear enough;
 - formal ARIS secondary review evidence exists;
-- the final framing is frozen as either a periodic-system result or a broader design-space-geometry result.
+- genealogy/geography-aware validation is adequate for the final wording;
+- the final framing is frozen as positive periodic, local periodic, non-periodic geometry, or parked.
