@@ -6,11 +6,13 @@ on:
     paths:
       - "papers/004-counterfactual-cost-of-exclusion/code/**"
       - "papers/004-counterfactual-cost-of-exclusion/process/EXPOSURE_CODEBOOK.md"
+      - "papers/004-counterfactual-cost-of-exclusion/process/IDENTITY_CODEBOOK.md"
       - ".github/workflows/aris4c004-ci.yml"
   pull_request:
     paths:
       - "papers/004-counterfactual-cost-of-exclusion/code/**"
       - "papers/004-counterfactual-cost-of-exclusion/process/EXPOSURE_CODEBOOK.md"
+      - "papers/004-counterfactual-cost-of-exclusion/process/IDENTITY_CODEBOOK.md"
       - ".github/workflows/aris4c004-ci.yml"
   workflow_dispatch:
 
@@ -28,5 +30,5 @@ jobs:
           python-version: "3.12"
       - name: Compile Python sources
         run: python -m compileall -q papers/004-counterfactual-cost-of-exclusion/code
-      - name: Run invariant smoke tests
-        run: python papers/004-counterfactual-cost-of-exclusion/code/tests/test_smoke.py
+      - name: Run invariant test suite
+        run: python -m unittest discover -s papers/004-counterfactual-cost-of-exclusion/code/tests -p 'test_*.py' -v
