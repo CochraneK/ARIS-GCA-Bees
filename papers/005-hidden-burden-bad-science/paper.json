@@ -4,7 +4,7 @@
   "title": "The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures",
   "short_title": "Global Burden of Bad Science",
   "year": 2026,
-  "status": "feasibility-pilot",
+  "status": "pilot-ready",
   "domain": "meta-research / science of science / bibliometrics / research integrity / causal inference",
   "summary": "A global, uncertainty-aware study that separates confirmed misconduct, probable integrity failures, and broader research waste; estimates their prevalence and propagation; and quantifies financial, human-time, career, epistemic, innovation, participant, and correction costs without collapsing unlike harms into a single score.",
   "authors": ["Cunyi Kang"],
