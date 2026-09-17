@@ -1,0 +1,122 @@
+name: ARIS4C006 surname and OpenAlex pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-pilot.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  data-feasibility-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "release"
+
+      - name: Install pinned ChineseNames release
+        shell: bash
+        run: |
+          Rscript -e 'install.packages("remotes", repos="https://cloud.r-project.org")'
+          Rscript -e 'remotes::install_version("ChineseNames", version="2025.8", repos="https://cloud.r-project.org", upgrade="never")'
+
+      - name: Export ChineseNames and build 26-letter population baseline
+        working-directory: ${{ env.PAPER_DIR }}
+        run: Rscript code/00_export_chinesenames.R
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run bounded keyless OpenAlex author-order feasibility pilot
+        continue-on-error: true
+        working-directory: ${{ env.PAPER_DIR }}
+        env:
+          OPENALEX_MAILTO: ""
+        run: |
+          python code/01_openalex_alphabetization_pilot.py \
+            --year 2024 \
+            --max-works 1000 \
+            --outdir data/pilot/openalex
+
+      - name: Build public-safe pilot summary
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+
+          root = Path("data")
+          summary = {
+              "paper": "ARIS4C006",
+              "confirmatory_use_allowed": False,
+              "purpose": "surname-baseline and author-order extraction feasibility only",
+          }
+
+          baseline = root / "derived" / "chinesenames_initial_population_baseline.csv"
+          if baseline.exists():
+              rows = list(csv.DictReader(baseline.open(encoding="utf-8-sig")))
+              summary["surname_baseline"] = {
+                  "initial_rows": len(rows),
+                  "total_population_n": sum(int(float(r["population_n"])) for r in rows),
+                  "largest_initials": sorted(
+                      [
+                          {
+                              "initial": r["initial"],
+                              "population_n": int(float(r["population_n"])),
+                              "population_share": float(r["population_share"]),
+                          }
+                          for r in rows
+                      ],
+                      key=lambda x: x["population_n"],
+                      reverse=True,
+                  )[:10],
+              }
+
+          oa_manifest = root / "pilot" / "openalex" / "manifest_2024.json"
+          if oa_manifest.exists():
+              summary["openalex"] = json.loads(oa_manifest.read_text(encoding="utf-8"))
+
+          oa_summary = root / "pilot" / "openalex" / "alphabetization_summary_2024_heuristic.csv"
+          if oa_summary.exists():
+              rows = list(csv.DictReader(oa_summary.open(encoding="utf-8-sig")))
+              summary["openalex"]["summary_cells"] = len(rows)
+
+          out = root / "pilot" / "pilot_summary.json"
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          print(out.read_text())
+          PY
+
+      - name: Remove redistributable-risk raw exports before artifact upload
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        run: rm -rf data/raw
+
+      - name: Upload public-safe feasibility artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-data-feasibility-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/derived/chinesenames_initial_population_baseline.csv
+            ${{ env.PAPER_DIR }}/data/derived/chinesenames_surname_population_baseline.csv
+            ${{ env.PAPER_DIR }}/data/metadata/chinesenames_snapshot.txt
+            ${{ env.PAPER_DIR }}/data/metadata/R_sessionInfo.txt
+            ${{ env.PAPER_DIR }}/data/pilot/pilot_summary.json
+            ${{ env.PAPER_DIR }}/data/pilot/openalex/manifest_2024.json
+            ${{ env.PAPER_DIR }}/data/pilot/openalex/alphabetization_summary_2024_heuristic.csv
+          if-no-files-found: warn
+          retention-days: 30
