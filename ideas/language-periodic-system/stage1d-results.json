@@ -1,0 +1,612 @@
+{
+  "seed": 2029,
+  "dataset": "https://raw.githubusercontent.com/annagraff/crossling-curated/main/curated_data/TLI/statisticalTLI/full/statisticalTLI_full_densified_small.csv",
+  "feature_counts": {
+    "40": {
+      "n_features": 40,
+      "n_valid_runs": 6,
+      "n_attempts": 6,
+      "runs": [
+        {
+          "split": 0,
+          "attempt": 1,
+          "n_train": 447,
+          "n_test": 197,
+          "n_eval_pairs": 780,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.21379873063827204,
+              "median_violation": 0.22577351053757316,
+              "p90_violation": 0.28470491356675154,
+              "exact_unimodal_fraction": 0.025
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.05269382036245227,
+              "internal_adjacent_median": 0.024802804948153255,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.20443487851001416,
+              "median_violation": 0.2079652285072224,
+              "p90_violation": 0.26556591825131787,
+              "exact_unimodal_fraction": 0.025
+            },
+            "closure": {
+              "closure_similarity": 0.0005136133766145588,
+              "internal_adjacent_mean": 0.06774617399457031,
+              "internal_adjacent_median": 0.03180417195494488,
+              "closure_to_internal_median_ratio": 0.01614924536711774
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.2390170276605323,
+            "mean_violation_sd": 0.004735208032730277,
+            "mean_violation_p05": 0.23075014696902557,
+            "closure_ratio_mean": 2.2374989619221566,
+            "closure_ratio_p95": 9.189063913889107
+          }
+        },
+        {
+          "split": 1,
+          "attempt": 2,
+          "n_train": 450,
+          "n_test": 194,
+          "n_eval_pairs": 780,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.24380076448616989,
+              "median_violation": 0.23275390818410538,
+              "p90_violation": 0.2986573982047628,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.03189036334838383,
+              "internal_adjacent_median": 0.0177944402337065,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.22592499348909287,
+              "median_violation": 0.22817987941499412,
+              "p90_violation": 0.2803393113481527,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0004407267344314741,
+              "internal_adjacent_mean": 0.05160137666970853,
+              "internal_adjacent_median": 0.023030318353667603,
+              "closure_to_internal_median_ratio": 0.019136805998261466
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.2503513342709133,
+            "mean_violation_sd": 0.005171014690122726,
+            "mean_violation_p05": 0.24322624098279055,
+            "closure_ratio_mean": 2.4814027806571977,
+            "closure_ratio_p95": 9.359082427159006
+          }
+        },
+        {
+          "split": 2,
+          "attempt": 3,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 780,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.2217145622484762,
+              "median_violation": 0.22325720778017927,
+              "p90_violation": 0.28527120613364754,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.01717912936099617,
+              "internal_adjacent_mean": 0.031242641390279813,
+              "internal_adjacent_median": 0.014164196428198961,
+              "closure_to_internal_median_ratio": 1.2128559108077628
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.21534831441905083,
+              "median_violation": 0.21018447923115635,
+              "p90_violation": 0.2888244291932863,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.005053213676223591,
+              "internal_adjacent_mean": 0.037252464883286894,
+              "internal_adjacent_median": 0.021311174799130323,
+              "closure_to_internal_median_ratio": 0.23711567868105937
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.2315495702144644,
+            "mean_violation_sd": 0.003954884238320507,
+            "mean_violation_p05": 0.224412027203805,
+            "closure_ratio_mean": 1.731496195802226,
+            "closure_ratio_p95": 6.807436328805127
+          }
+        },
+        {
+          "split": 3,
+          "attempt": 4,
+          "n_train": 443,
+          "n_test": 201,
+          "n_eval_pairs": 780,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.21164117183249184,
+              "median_violation": 0.20862399303007717,
+              "p90_violation": 0.2806010627182354,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.029246357249666857,
+              "internal_adjacent_mean": 0.03877946784273328,
+              "internal_adjacent_median": 0.016160117763691962,
+              "closure_to_internal_median_ratio": 1.8097861460865625
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.19471369220142662,
+              "median_violation": 0.1944699209319768,
+              "p90_violation": 0.250189614319574,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.014471700152143248,
+              "internal_adjacent_mean": 0.06127684681793845,
+              "internal_adjacent_median": 0.03960350211525937,
+              "closure_to_internal_median_ratio": 0.36541465726087485
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.2293992521536734,
+            "mean_violation_sd": 0.004694632302797093,
+            "mean_violation_p05": 0.22168739042573352,
+            "closure_ratio_mean": 2.1624574854723932,
+            "closure_ratio_p95": 7.186563736535539
+          }
+        },
+        {
+          "split": 4,
+          "attempt": 5,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 780,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.21727844305681704,
+              "median_violation": 0.22766322179249815,
+              "p90_violation": 0.27210484429105974,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.005246857106763009,
+              "internal_adjacent_mean": 0.03178744891748978,
+              "internal_adjacent_median": 0.008387974887294447,
+              "closure_to_internal_median_ratio": 0.6255213179148976
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.20494242583506392,
+              "median_violation": 0.20196003460257522,
+              "p90_violation": 0.2646939961066371,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.05169724421423068,
+              "internal_adjacent_median": 0.013710299307825729,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.22853609294970711,
+            "mean_violation_sd": 0.003676179354659406,
+            "mean_violation_p05": 0.223838060864393,
+            "closure_ratio_mean": 2.9878191616569234,
+            "closure_ratio_p95": 12.33081241747394
+          }
+        },
+        {
+          "split": 5,
+          "attempt": 6,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 780,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.22591806486647417,
+              "median_violation": 0.21883885045513934,
+              "p90_violation": 0.2991929785204176,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.038646558208944644,
+              "internal_adjacent_median": 0.014402309470211969,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.20884209269092885,
+              "median_violation": 0.20775252032521163,
+              "p90_violation": 0.2909253766848704,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.004712815887013097,
+              "internal_adjacent_mean": 0.05596474097701897,
+              "internal_adjacent_median": 0.0292780926088464,
+              "closure_to_internal_median_ratio": 0.1609673126530158
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.24217479591039875,
+            "mean_violation_sd": 0.005879030478936208,
+            "mean_violation_p05": 0.22986113621182716,
+            "closure_ratio_mean": 2.381357969934318,
+            "closure_ratio_p95": 9.749020079613121
+          }
+        }
+      ],
+      "summary": {
+        "circular_mean_violation": {
+          "mean": 0.22235862285478356,
+          "sd": 0.011720013798565248,
+          "min": 0.21164117183249184,
+          "max": 0.24380076448616989
+        },
+        "tree_mean_violation": {
+          "mean": 0.20903439952426286,
+          "sd": 0.010659992196633838,
+          "min": 0.19471369220142662,
+          "max": 0.22592499348909287
+        },
+        "random_mean_violation": {
+          "mean": 0.23683801219328152,
+          "sd": 0.008579788750786724,
+          "min": 0.22853609294970711,
+          "max": 0.2503513342709133
+        },
+        "circular_closure_ratio": {
+          "mean": 0.6080272291348704,
+          "sd": 0.7641255925432155,
+          "min": 0.0,
+          "max": 1.8097861460865625
+        },
+        "tree_closure_ratio": {
+          "mean": 0.13313061666005488,
+          "sd": 0.14828799106887877,
+          "min": 0.0,
+          "max": 0.36541465726087485
+        },
+        "circle_minus_tree_violation": {
+          "mean": 0.013324223330520654,
+          "sd": 0.004750793112133024,
+          "min": 0.006366247829425353,
+          "max": 0.017875770997077017
+        }
+      }
+    },
+    "60": {
+      "n_features": 60,
+      "n_valid_runs": 6,
+      "n_attempts": 6,
+      "runs": [
+        {
+          "split": 0,
+          "attempt": 1,
+          "n_train": 450,
+          "n_test": 194,
+          "n_eval_pairs": 1768,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.3038295315014889,
+              "median_violation": 0.30537222847013584,
+              "p90_violation": 0.354147615820272,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0035270042907849164,
+              "internal_adjacent_mean": 0.033319135828641565,
+              "internal_adjacent_median": 0.015838373065021893,
+              "closure_to_internal_median_ratio": 0.22268728461456744
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.27987620922104967,
+              "median_violation": 0.2851091535650113,
+              "p90_violation": 0.333744214961232,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.18729079583133132,
+              "internal_adjacent_mean": 0.07834446356722008,
+              "internal_adjacent_median": 0.026656907359908985,
+              "closure_to_internal_median_ratio": 7.025976168037552
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.30678779578604665,
+            "mean_violation_sd": 0.002905771749508877,
+            "mean_violation_p05": 0.30197201204389407,
+            "closure_ratio_mean": 2.3291119588492006,
+            "closure_ratio_p95": 8.329597683541548
+          }
+        },
+        {
+          "split": 1,
+          "attempt": 2,
+          "n_train": 448,
+          "n_test": 196,
+          "n_eval_pairs": 1752,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.29499644576856504,
+              "median_violation": 0.2973131236693369,
+              "p90_violation": 0.34683372043429245,
+              "exact_unimodal_fraction": 0.016666666666666666
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.04834283575565133,
+              "internal_adjacent_median": 0.01883537864740817,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.2838663621148899,
+              "median_violation": 0.2926290405915646,
+              "p90_violation": 0.3318589728247675,
+              "exact_unimodal_fraction": 0.016666666666666666
+            },
+            "closure": {
+              "closure_similarity": 0.061479077759784576,
+              "internal_adjacent_mean": 0.06504871055215192,
+              "internal_adjacent_median": 0.02947368003003759,
+              "closure_to_internal_median_ratio": 2.0858975769243386
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.3040677889225844,
+            "mean_violation_sd": 0.002951903399286961,
+            "mean_violation_p05": 0.2997582803633563,
+            "closure_ratio_mean": 1.5038647492887256,
+            "closure_ratio_p95": 5.556772246471812
+          }
+        },
+        {
+          "split": 2,
+          "attempt": 3,
+          "n_train": 448,
+          "n_test": 196,
+          "n_eval_pairs": 1691,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.28573065563255934,
+              "median_violation": 0.291657913456901,
+              "p90_violation": 0.33410746387773144,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.045771517629014956,
+              "internal_adjacent_median": 0.023565269552403734,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.2755952589471948,
+              "median_violation": 0.2750296674000269,
+              "p90_violation": 0.32403925439015885,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.00812628017174443,
+              "internal_adjacent_mean": 0.07519742058025973,
+              "internal_adjacent_median": 0.026583983088332992,
+              "closure_to_internal_median_ratio": 0.3056833185770855
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.2975223186853617,
+            "mean_violation_sd": 0.0032581505970612963,
+            "mean_violation_p05": 0.2932415106413233,
+            "closure_ratio_mean": 3.356806345023538,
+            "closure_ratio_p95": 11.259554776864157
+          }
+        },
+        {
+          "split": 3,
+          "attempt": 4,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 1762,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.29108410310141936,
+              "median_violation": 0.3033936882328431,
+              "p90_violation": 0.3389023102581993,
+              "exact_unimodal_fraction": 0.016666666666666666
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.04858904092576463,
+              "internal_adjacent_median": 0.016964832398501547,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.2742433611967198,
+              "median_violation": 0.28305034041307964,
+              "p90_violation": 0.3321951794815803,
+              "exact_unimodal_fraction": 0.016666666666666666
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.07975041692000169,
+              "internal_adjacent_median": 0.03562164237971665,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.3006015991103622,
+            "mean_violation_sd": 0.0029094854510666544,
+            "mean_violation_p05": 0.29493844442390305,
+            "closure_ratio_mean": 1.649255874774309,
+            "closure_ratio_p95": 7.162149602390266
+          }
+        },
+        {
+          "split": 4,
+          "attempt": 5,
+          "n_train": 448,
+          "n_test": 196,
+          "n_eval_pairs": 1707,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.29575422069034524,
+              "median_violation": 0.30595932113345925,
+              "p90_violation": 0.3447277029164744,
+              "exact_unimodal_fraction": 0.016666666666666666
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.06857537003343578,
+              "internal_adjacent_median": 0.03560015645740248,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.2877595354413811,
+              "median_violation": 0.2986125376688518,
+              "p90_violation": 0.3362836078452828,
+              "exact_unimodal_fraction": 0.016666666666666666
+            },
+            "closure": {
+              "closure_similarity": 0.0373780549414545,
+              "internal_adjacent_mean": 0.08729149808557335,
+              "internal_adjacent_median": 0.04175456154763968,
+              "closure_to_internal_median_ratio": 0.895184946389941
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.3136728478405049,
+            "mean_violation_sd": 0.002674184449723382,
+            "mean_violation_p05": 0.3094276885955645,
+            "closure_ratio_mean": 2.3381191768191143,
+            "closure_ratio_p95": 10.313384516121234
+          }
+        },
+        {
+          "split": 5,
+          "attempt": 6,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 1675,
+          "circular_order": {
+            "robinson": {
+              "mean_violation": 0.31025286159558646,
+              "median_violation": 0.31018466481347023,
+              "p90_violation": 0.3646432866298961,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.0,
+              "internal_adjacent_mean": 0.06015400846233444,
+              "internal_adjacent_median": 0.013509225146683936,
+              "closure_to_internal_median_ratio": 0.0
+            }
+          },
+          "tree_order": {
+            "robinson": {
+              "mean_violation": 0.30004213729759494,
+              "median_violation": 0.30591849518197634,
+              "p90_violation": 0.3432386583077606,
+              "exact_unimodal_fraction": 0.0
+            },
+            "closure": {
+              "closure_similarity": 0.01817079882477309,
+              "internal_adjacent_mean": 0.0815212992372702,
+              "internal_adjacent_median": 0.027796723704743703,
+              "closure_to_internal_median_ratio": 0.6537028974036395
+            }
+          },
+          "random_null": {
+            "mean_violation_mean": 0.32108413364069543,
+            "mean_violation_sd": 0.0036255639820385473,
+            "mean_violation_p05": 0.31609544507708054,
+            "closure_ratio_mean": 2.1554895544671755,
+            "closure_ratio_p95": 7.510209481243001
+          }
+        }
+      ],
+      "summary": {
+        "circular_mean_violation": {
+          "mean": 0.2969413030483274,
+          "sd": 0.008829748844016494,
+          "min": 0.28573065563255934,
+          "max": 0.31025286159558646
+        },
+        "tree_mean_violation": {
+          "mean": 0.2835638107031384,
+          "sd": 0.009520482042092004,
+          "min": 0.2742433611967198,
+          "max": 0.30004213729759494
+        },
+        "random_mean_violation": {
+          "mean": 0.3072894139975925,
+          "sd": 0.008738375425864746,
+          "min": 0.2975223186853617,
+          "max": 0.32108413364069543
+        },
+        "circular_closure_ratio": {
+          "mean": 0.03711454743576124,
+          "sd": 0.09091170325193684,
+          "min": 0.0,
+          "max": 0.22268728461456744
+        },
+        "tree_closure_ratio": {
+          "mean": 1.8277408178887595,
+          "sd": 2.6455100335687187,
+          "min": 0.0,
+          "max": 7.025976168037552
+        },
+        "circle_minus_tree_violation": {
+          "mean": 0.013377492345189016,
+          "sd": 0.005973396663956764,
+          "min": 0.007994685248964128,
+          "max": 0.023953322280439227
+        }
+      }
+    }
+  },
+  "verdict": "CIRCULAR_ROBINSON_NOT_SUPPORTED",
+  "verdict_reasons": [
+    "40 features: circular violation=0.222, tree=0.209, random=0.237; circular closure ratio=0.608.",
+    "60 features: circular violation=0.297, tree=0.284, random=0.307; circular closure ratio=0.037."
+  ],
+  "method_note": "Standards-inspired noisy-data diagnostic using the circular-Robinson row-unimodality characterization; not exact strict-seriation recognition.",
+  "limitations": [
+    "The optimized circular order is learned by the Stage-1B objective, not by the exact strict circular-seriation algorithm.",
+    "The row-violation score is a continuous noisy-data deviation measure introduced for this sensitivity analysis.",
+    "Linear Robinson structure can satisfy circular Robinson, so compatibility is not proof of genuinely periodic geometry.",
+    "Geographic and full phylogenetic controls remain pending."
+  ]
+}
