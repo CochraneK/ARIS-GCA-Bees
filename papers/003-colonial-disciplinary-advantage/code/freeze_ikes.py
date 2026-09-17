@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Create IKES_FROZEN.csv only after blinded A/B coding and adjudication.
 
-Unflagged A/B cells are averaged. Every missing pair or absolute disagreement
->= threshold must contain an explicit adjudicated_score in the adjudication
-file. The script writes a SHA-256 provenance record alongside the frozen score.
-It never reads contemporary research outcomes.
+Canonical key: concept_id (D01-D21). Unflagged A/B cells are averaged. Every
+missing pair or absolute disagreement >= threshold must contain an explicit
+adjudicated_score and note. Contemporary outcomes are never read.
 """
 
 from __future__ import annotations
@@ -40,17 +39,20 @@ def main() -> None:
 
     df = pd.read_csv(args.adjudication_csv)
     required = {
-        "discipline", "dimension", "score_A", "score_B",
+        "concept_id", "discipline", "dimension", "score_A", "score_B",
         "abs_diff", "needs_adjudication", "adjudicated_score", "adjudication_note",
     }
     missing = required - set(df.columns)
     if missing:
         raise SystemExit(f"Adjudication file missing columns: {sorted(missing)}")
-
     if len(df) != 21 * 11:
-        raise SystemExit(f"Expected 231 discipline×dimension rows, got {len(df)}")
-    if df.duplicated(["discipline", "dimension"]).any():
-        raise SystemExit("Duplicate discipline×dimension rows in adjudication file")
+        raise SystemExit(f"Expected 231 concept×dimension rows, got {len(df)}")
+    if df.duplicated(["concept_id", "dimension"]).any():
+        raise SystemExit("Duplicate concept_id×dimension rows in adjudication file")
+
+    expected_ids = {f"D{i:02d}" for i in range(1, 22)}
+    if set(df["concept_id"].astype(str)) != expected_ids:
+        raise SystemExit("Adjudication file does not contain exactly D01-D21")
 
     df["score_A"] = pd.to_numeric(df["score_A"], errors="coerce")
     df["score_B"] = pd.to_numeric(df["score_B"], errors="coerce")
@@ -63,7 +65,7 @@ def main() -> None:
     )
     unresolved = calculated_flag & df["adjudicated_score"].isna()
     if unresolved.any():
-        cols = ["discipline", "dimension", "score_A", "score_B"]
+        cols = ["concept_id", "discipline", "dimension", "score_A", "score_B"]
         raise SystemExit(
             "Cannot freeze IKES: flagged cells still lack adjudicated_score:\n"
             + df.loc[unresolved, cols].to_string(index=False)
@@ -82,13 +84,23 @@ def main() -> None:
     if df["final_score"].isna().any():
         raise SystemExit("Final score matrix still contains NA")
 
-    wide = df.pivot(index="discipline", columns="dimension", values="final_score")
+    labels = (
+        df[["concept_id", "discipline"]]
+        .drop_duplicates()
+        .sort_values("concept_id")
+    )
+    if labels["concept_id"].duplicated().any():
+        raise SystemExit("A concept_id has multiple discipline labels in adjudication data")
+
+    wide = df.pivot(index="concept_id", columns="dimension", values="final_score")
     missing_dims = set(DIMS) - set(wide.columns)
     if missing_dims:
         raise SystemExit(f"Missing dimensions after pivot: {sorted(missing_dims)}")
-    wide = wide[DIMS].reset_index()
+    wide = wide[DIMS].reset_index().merge(labels, on="concept_id", how="left", validate="one_to_one")
+    wide = wide[["concept_id", "discipline", *DIMS]]
     wide["IKES"] = wide[DIMS].mean(axis=1)
     wide["IKES_median"] = wide[DIMS].median(axis=1)
+    wide = wide.sort_values("concept_id").reset_index(drop=True)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     wide.to_csv(args.output, index=False, float_format="%.6f")
@@ -97,6 +109,7 @@ def main() -> None:
     payload = {
         "paper": "ARIS4C003",
         "created_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "canonical_key": "concept_id D01-D21",
         "rule": "unflagged A/B mean; missing or abs-diff>=threshold requires explicit outcome-blind adjudication",
         "threshold": args.threshold,
         "coder_a": {"path": str(args.coder_a), "sha256": sha256(args.coder_a)},
