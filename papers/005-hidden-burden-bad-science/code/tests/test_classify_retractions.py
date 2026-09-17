@@ -23,8 +23,18 @@ class RetractionClassifierTests(unittest.TestCase):
         self.assertEqual(flags["e1m_strong_auto"], 1)
         self.assertEqual(flags["e3_error_signal"], 0)
 
+    def test_reason_matching_is_case_insensitive(self):
+        flags = classify(["concerns/issues ABOUT data"])
+        self.assertEqual(flags["manual_scientific_review"], 1)
+        self.assertEqual(flags["manual_review_required"], 1)
+
     def test_plagiarism_is_misconduct_not_automatically_false_science(self):
         flags = classify(["Plagiarism of Text"])
+        self.assertEqual(flags["e1m_strong_auto"], 1)
+        self.assertEqual(flags["e1s_narrow_auto"], 0)
+
+    def test_euphemism_for_plagiarism_maps_to_integrity_violation(self):
+        flags = classify(["Euphemisms for Plagiarism"])
         self.assertEqual(flags["e1m_strong_auto"], 1)
         self.assertEqual(flags["e1s_narrow_auto"], 0)
 
@@ -50,7 +60,21 @@ class RetractionClassifierTests(unittest.TestCase):
         flags = classify(["Paper Mill"])
         self.assertEqual(flags["paper_mill_signal"], 1)
         self.assertEqual(flags["e1p_strong_auto"], 1)
+        self.assertEqual(flags["e1m_strong_auto"], 1)
         self.assertEqual(flags["e1s_narrow_auto"], 0)
+        self.assertEqual(flags["manual_review_required"], 1)
+
+    def test_compromised_peer_review_is_process_failure_not_intent(self):
+        flags = classify(["Compromised Peer Review"])
+        self.assertEqual(flags["e1p_strong_auto"], 1)
+        self.assertEqual(flags["e1m_strong_auto"], 0)
+        self.assertEqual(flags["e1s_narrow_auto"], 0)
+        self.assertEqual(flags["manual_review_required"], 1)
+
+    def test_ai_content_reason_is_not_auto_fraud(self):
+        flags = classify(["Computer-Aided Content or Computer-Generated Content"])
+        self.assertEqual(flags["e1s_narrow_auto"], 0)
+        self.assertEqual(flags["e1m_strong_auto"], 0)
         self.assertEqual(flags["manual_review_required"], 1)
 
 
