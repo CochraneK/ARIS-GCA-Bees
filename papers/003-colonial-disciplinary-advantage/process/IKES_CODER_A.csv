@@ -1,22 +1,22 @@
-discipline,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,IKES
-Anthropology,3,1,3,3,0,0,0,1,3,2,2,1.64
-Archaeology,1,1,1,3,0,0,0,1,3,0,1,1.00
-Geography,3,3,2,3,2,0,1,1,1,1,2,1.73
-Development Studies,2,1,2,2,2,2,2,3,0,1,3,1.82
-Linguistics,2,0,3,2,0,0,0,2,2,3,1,1.36
-Tropical Medicine / Public Health,3,1,2,3,1,3,1,2,2,1,3,2.00
-Agriculture & Forestry,2,2,1,3,3,1,3,2,3,1,3,2.18
-Geology / Earth-resource sciences,2,3,0,3,3,0,0,1,3,0,2,1.55
-Sociology,3,1,3,2,1,1,1,2,1,1,3,1.73
-Political Science / IR,3,1,2,1,1,0,0,3,1,0,3,1.36
-Law,3,1,1,0,1,0,0,3,2,1,2,1.27
-Economics,2,1,2,1,3,0,2,2,0,0,3,1.45
-Public Administration / Social Policy,3,2,3,1,1,2,1,3,2,1,3,2.00
-Education,2,0,1,0,0,0,0,3,1,3,3,1.18
-History,1,0,1,1,0,0,0,1,3,0,1,0.73
-Demography / Population Studies,3,1,3,0,1,2,0,2,2,0,3,1.55
-Mathematics,0,1,0,0,0,0,0,2,0,1,1,0.45
-Physics,0,1,0,1,1,0,0,1,1,0,1,0.55
-Chemistry,1,0,0,1,3,1,2,1,2,0,2,1.18
-Computer Science,0,0,0,0,0,0,0,1,0,0,2,0.27
-Materials Science,0,1,0,1,2,0,0,1,1,0,1,0.64
+concept_id,discipline,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,IKES
+D01,Anthropology,3,1,3,3,0,0,0,1,3,2,2,1.64
+D02,Archaeology,1,1,1,3,0,0,0,1,3,0,1,1.00
+D03,Geography,3,3,2,3,2,0,1,1,1,1,2,1.73
+D04,Development Studies,2,1,2,2,2,2,2,3,0,1,3,1.82
+D05,Linguistics,2,0,3,2,0,0,0,2,2,3,1,1.36
+D06,Tropical Medicine / colonial-health-related Public Health,3,1,2,3,1,3,1,2,2,1,3,2.00
+D07,Agriculture & Forestry,2,2,1,3,3,1,3,2,3,1,3,2.18
+D08,Geology / Earth-resource sciences,2,3,0,3,3,0,0,1,3,0,2,1.55
+D09,Sociology,3,1,3,2,1,1,1,2,1,1,3,1.73
+D10,Political Science / International Relations,3,1,2,1,1,0,0,3,1,0,3,1.36
+D11,Law,3,1,1,0,1,0,0,3,2,1,2,1.27
+D12,Economics,2,1,2,1,3,0,2,2,0,0,3,1.45
+D13,Public Administration / Social Policy,3,2,3,1,1,2,1,3,2,1,3,2.00
+D14,Education,2,0,1,0,0,0,0,3,1,3,3,1.18
+D15,History,1,0,1,1,0,0,0,1,3,0,1,0.73
+D16,Demography / Population Studies,3,1,3,0,1,2,0,2,2,0,3,1.55
+D17,Mathematics,0,1,0,0,0,0,0,2,0,1,1,0.45
+D18,Physics,0,1,0,1,1,0,0,1,1,0,1,0.55
+D19,Chemistry,1,0,0,1,3,1,2,1,2,0,2,1.18
+D20,Computer Science,0,0,0,0,0,0,0,1,0,0,2,0.27
+D21,Materials Science,0,1,0,1,2,0,0,1,1,0,1,0.64
