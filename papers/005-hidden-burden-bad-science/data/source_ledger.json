@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "project": "ARIS4C005",
+  "created_date": "2026-09-18",
+  "principle": "Definitions and source semantics precede numeric synthesis. Primary/official sources are preferred for material numbers; literature evidence is DOI-addressed; tool convenience layers are not canonical provenance.",
+  "sources": [
+    {
+      "id": "SRC_CROSSREF_STATS_20260916",
+      "tier": "T1",
+      "type": "official_database_status",
+      "title": "Crossref database status / Stats",
+      "publisher": "Crossref",
+      "url": "https://www.crossref.org/06members/53status.html",
+      "retrieved": "2026-09-18",
+      "use": ["global metadata denominator anchor", "journal DOI anchor"],
+      "limitations": "Counts are Crossref metadata/DOI records, not a census of unique scholarly papers."
+    },
+    {
+      "id": "SRC_OPENALEX_WORKS",
+      "tier": "T0/T1",
+      "type": "official_database_documentation",
+      "title": "Works Overview",
+      "publisher": "OpenAlex",
+      "url": "https://help.openalex.org/data/works/",
+      "retrieved": "2026-09-18",
+      "use": ["work definition", "current core-work scale", "denominator semantics"],
+      "limitations": "OpenAlex work types include more than journal papers; current counts are version-dependent."
+    },
+    {
+      "id": "SRC_OPENALEX_CORPUS",
+      "tier": "T0/T1",
+      "type": "official_database_documentation",
+      "title": "OpenAlex Corpus",
+      "publisher": "OpenAlex",
+      "url": "https://help.openalex.org/data/works/corpus/",
+      "retrieved": "2026-09-18",
+      "use": ["core vs expansion corpus definition"],
+      "limitations": "Expansion is noisier and excluded from the primary bibliometric denominator."
+    },
+    {
+      "id": "SRC_RW_CROSSREF",
+      "tier": "T0/T1",
+      "type": "official_database_documentation",
+      "title": "Retraction Watch data in Crossref",
+      "publisher": "Crossref / Retraction Watch",
+      "url": "https://www.crossref.org/documentation/retrieve-metadata/retractions/",
+      "retrieved": "2026-09-18",
+      "use": ["formal correction source", "production access description"],
+      "limitations": "Retraction records are detected/corrected cases; expressions of concern and corrections have lower completeness."
+    },
+    {
+      "id": "SRC_RW_DATA_REPO",
+      "tier": "T1",
+      "type": "official_dataset_repository",
+      "title": "Retraction Watch data",
+      "publisher": "Crossref / Retraction Watch",
+      "url": "https://gitlab.com/crossref/retraction-watch-data",
+      "retrieved": "workflow-pinned-at-run-time",
+      "use": ["Pilot A correction snapshot", "raw reason labels"],
+      "limitations": "Raw snapshot is pinned by Git commit at execution time; project commits summary/provenance rather than redistributing raw input."
+    },
+    {
+      "id": "SRC_XIE_2021",
+      "tier": "T1",
+      "type": "systematic_review_meta_analysis",
+      "title": "Research Integrity in the Era of Metrics: Empirical Evidence from Meta-Analyses of Questionable Research Practices",
+      "doi": "10.1007/s11948-021-00314-9",
+      "year": 2021,
+      "use": ["researcher-level FFP/QRP behavioral prevalence context"],
+      "limitations": "Researcher-level self-report prevalence; not article-level prevalence and never directly multiplied by publication counts."
+    },
+    {
+      "id": "SRC_GOPALAKRISHNA_2022",
+      "tier": "T1",
+      "type": "national_survey_randomized_response",
+      "title": "Prevalence of questionable research practices, research misconduct and their potential explanatory factors: A survey among academic researchers in The Netherlands",
+      "doi": "10.1371/journal.pone.0263023",
+      "year": 2022,
+      "use": ["researcher-level fabrication/falsification context", "measurement-method precedent"],
+      "limitations": "Netherlands researcher population and three-year behavioral window; not article prevalence."
+    },
+    {
+      "id": "SRC_VITALITY_2025",
+      "tier": "T1",
+      "type": "empirical_meta_research",
+      "title": "Impact of retracted randomised controlled trials on meta-analyses and clinical practice guidelines: VITALITY Study I",
+      "doi": "10.1136/bmj-2024-082068",
+      "year": 2025,
+      "use": ["evidence contamination benchmark", "leave-retracted-evidence-out distortion", "guideline propagation"],
+      "limitations": "Randomized trials and clinical evidence ecosystem; English-language guideline search; not representative of all science."
+    },
+    {
+      "id": "SRC_HUSSINGER_PELLENS_2019",
+      "tier": "T1",
+      "type": "quasi_experimental_career_study",
+      "title": "Guilt by association: How scientific misconduct harms prior collaborators",
+      "doi": "10.1016/j.respol.2018.01.012",
+      "year": 2019,
+      "use": ["collateral collaborator citation-effect anchor"],
+      "limitations": "Specific misconduct-case and collaborator sample; interpretation includes both stigma and rational updating mechanisms."
+    },
+    {
+      "id": "SRC_YILMAZ_2018",
+      "tier": "T1",
+      "type": "trial_nonpublication_study",
+      "title": "Discontinuation and nonpublication of interventional clinical trials conducted in patients with mild cognitive impairment and Alzheimer's disease",
+      "doi": "10.1016/j.trci.2018.03.005",
+      "year": 2018,
+      "use": ["participant contribution without public knowledge benchmark"],
+      "limitations": "E3 research-waste example in a disease-specific trial population; not evidence of fraud."
+    },
+    {
+      "id": "SRC_HAMILTON_2020",
+      "tier": "T1/T2",
+      "type": "peer_review_policy_study",
+      "title": "Journal policies and editors’ opinions on peer review",
+      "doi": "10.7554/elife.62529",
+      "year": 2020,
+      "use": ["peer-review labor contextual denominator"],
+      "limitations": "The 68.5M hours estimate is cited from Publons 2018 rather than newly estimated by this paper."
+    },
+    {
+      "id": "SRC_MIURA_2021",
+      "tier": "T1",
+      "type": "large_scale_bibliometric_study",
+      "title": "Identifying sleeping beauties and their princes on a citation network",
+      "doi": "10.1007/s41109-021-00389-0",
+      "year": 2021,
+      "use": ["Sleeping Beauty/Prince modeling feasibility", "large-network precedent"],
+      "limitations": "Scopus-based historical corpus and operational SB definition; not evidence for ARIS4C005 counterfactual lost discoveries."
+    },
+    {
+      "id": "SRC_STERN_2014",
+      "tier": "T1",
+      "type": "empirical_retraction_cost_study",
+      "title": "Financial costs and personal consequences of research misconduct resulting in retracted publications",
+      "doi": "10.7554/elife.02956",
+      "year": 2014,
+      "use": ["financial and career-cost precedent"],
+      "limitations": "Historical US/ORI/NIH context; not a global cost estimate."
+    },
+    {
+      "id": "SRC_FANELLI_MOHER_2019",
+      "tier": "T1_lead",
+      "type": "preprint_meta_research",
+      "title": "What difference do retractions make? An estimate of the epistemic impact of retractions on recent meta-analyses",
+      "doi": "10.1101/734137",
+      "year": 2019,
+      "use": ["epistemic-cost conceptual precedent"],
+      "limitations": "Preprint; supporting conceptual/methodological precedent rather than a final global estimate."
+    },
+    {
+      "id": "SRC_SANDOVAL_IOANNIDIS_2026",
+      "tier": "T1_lead",
+      "type": "living_analysis_preprint",
+      "title": "NIH funding and the cost of retracted publications: a living analysis",
+      "doi": "10.64898/2026.07.04.26357187",
+      "year": 2026,
+      "use": ["recent NIH attributable-cost benchmark", "associated-vs-attributable funding distinction"],
+      "limitations": "Preprint as of initialization; not peer-reviewed. Associated grant totals are not equivalent to waste."
+    }
+  ],
+  "optional_tool_layers": {
+    "scite": "Available for discovery/full-text/citation-context work; tool outputs are not canonical source provenance when the underlying DOI/primary source is available.",
+    "elicit": "Attempted but current account lacks API access. Not a dependency.",
+    "scite_collections": "Creation attempted but requires paid access. Not a dependency."
+  }
+}
