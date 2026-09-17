@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/aris4c004-pilot.yml"
+      - "papers/004-counterfactual-cost-of-exclusion/code/acquire/**"
+      - "papers/004-counterfactual-cost-of-exclusion/code/resolve/**"
+      - "papers/004-counterfactual-cost-of-exclusion/code/config/pilot_config.json"
   workflow_dispatch:
 
 permissions:
@@ -69,6 +72,7 @@ jobs:
             --year-max 2000 \
             --max-candidates 30 \
             --max-works-per-author 100 \
+            --search-n 10 \
             --sleep-rps 2
 
       - name: Summarize candidate and identifier coverage
@@ -113,6 +117,7 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/science_candidates_identifiers.csv
             ${{ env.PAPER_DIR }}/data/interim/pilot_summary.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_acquisition_summary.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_resolution_audit.jsonl
             ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_unresolved.csv
           if-no-files-found: warn
           retention-days: 30
