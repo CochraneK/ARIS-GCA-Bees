@@ -1,0 +1,118 @@
+name: ARIS4C004 real-data pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c004-pilot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  science-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Create local data directories
+        run: mkdir -p "$PAPER_DIR/data/raw" "$PAPER_DIR/data/interim/openalex"
+
+      - name: Download cross-verified notable-people dataset mirror
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://huggingface.co/datasets/jstet/laouenan-notable-people/resolve/main/cross-verified-database.csv.gz?download=true"
+          OUT="$PAPER_DIR/data/raw/cross-verified-database.csv.gz"
+          curl -L --fail --retry 5 --retry-delay 2 "$URL" -o "$OUT"
+          echo "fe44aa6f97cf9f6c12d040137f92a9f4d0fd1f50e28f7f5d80eeae29b487828d  $OUT" | sha256sum -c -
+          ls -lh "$OUT"
+
+      - name: Build frozen mental-health-independent candidate frame
+        run: |
+          python "$PAPER_DIR/code/acquire/build_candidate_frame.py" \
+            "$PAPER_DIR/data/raw/cross-verified-database.csv.gz" \
+            --output "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
+            --target 100 \
+            --seed 20260918
+
+      - name: Add Wikidata identifier leads
+        continue-on-error: true
+        run: |
+          python "$PAPER_DIR/code/resolve/wikidata_identifiers.py" \
+            "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
+            --output "$PAPER_DIR/data/interim/science_candidates_identifiers.csv"
+
+      - name: Ensure identifier table exists after transient WDQS failure
+        shell: bash
+        run: |
+          if [ ! -f "$PAPER_DIR/data/interim/science_candidates_identifiers.csv" ]; then
+            cp "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
+              "$PAPER_DIR/data/interim/science_candidates_identifiers.csv"
+          fi
+
+      - name: Run bounded keyless OpenAlex feasibility pull
+        continue-on-error: true
+        run: |
+          python "$PAPER_DIR/code/acquire/openalex_pilot.py" \
+            "$PAPER_DIR/data/interim/science_candidates_identifiers.csv" \
+            --out-dir "$PAPER_DIR/data/interim/openalex" \
+            --year-min 1900 \
+            --year-max 2000 \
+            --max-candidates 30 \
+            --max-works-per-author 100 \
+            --sleep-rps 2
+
+      - name: Summarize candidate and identifier coverage
+        shell: bash
+        run: |
+          python - <<'PY'
+          import csv, json, os
+          from collections import Counter
+          from pathlib import Path
+
+          root = Path(os.environ["PAPER_DIR"]) / "data" / "interim"
+          ids_path = root / "science_candidates_identifiers.csv"
+          rows = list(csv.DictReader(ids_path.open(encoding="utf-8-sig")))
+          summary = {
+              "candidate_n": len(rows),
+              "qid_n": sum(bool((r.get("wikidata_qid") or "").strip()) for r in rows),
+              "orcid_lead_n": sum(bool((r.get("orcid") or "").strip()) for r in rows),
+              "openalex_id_lead_n": sum(bool((r.get("openalex_author_id") or "").strip()) for r in rows),
+              "cohort_visibility_strata": Counter(r.get("pilot_stratum", "") for r in rows),
+              "regions": Counter(r.get("region", "") for r in rows),
+              "level2_occupations": Counter(r.get("level2_main_occ", "") for r in rows),
+          }
+          oa = root / "openalex" / "openalex_acquisition_summary.json"
+          if oa.exists():
+              summary["openalex_pull"] = json.loads(oa.read_text())
+          out = root / "pilot_summary.json"
+          out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
+          print(out.read_text())
+          PY
+
+      - name: Delete raw source before artifact upload
+        if: always()
+        run: rm -rf "$PAPER_DIR/data/raw"
+
+      - name: Upload public-safe pilot artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c004-science-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/interim/science_candidates_frozen.csv
+            ${{ env.PAPER_DIR }}/data/interim/science_candidates_identifiers.csv
+            ${{ env.PAPER_DIR }}/data/interim/pilot_summary.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_acquisition_summary.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_unresolved.csv
+          if-no-files-found: warn
+          retention-days: 30
