@@ -17,33 +17,35 @@ Do **not** use this current ARIS conversation as Coder B. The purpose is genuine
 
 ## Task
 
-Independently code the historical **Imperial/Colonial Knowledge Entanglement Score (IKES)** for the 21 frozen conceptual disciplines below.
+Independently code the historical **Imperial/Colonial Knowledge Entanglement Score (IKES)** for the 21 frozen conceptual disciplines below. `concept_id` is the canonical key; do not rename or reorder it.
 
 The construct is historical/institutional entanglement: whether colonial/imperial systems materially shaped a field's institutions, methods, objects/data, training, infrastructure, professional expansion, or postcolonial continuation. It is **not** a moral score and is not a measure of whether scholars supported colonialism.
 
 ### Frozen disciplines
 
-1. Anthropology
-2. Archaeology
-3. Geography
-4. Development Studies
-5. Linguistics
-6. Tropical Medicine / colonial-health-related Public Health
-7. Agriculture & Forestry
-8. Geology / Earth-resource sciences
-9. Sociology
-10. Political Science / International Relations
-11. Law
-12. Economics
-13. Public Administration / Social Policy
-14. Education
-15. History
-16. Demography / Population Studies
-17. Mathematics
-18. Physics
-19. Chemistry
-20. Computer Science
-21. Materials Science / modern engineering comparator
+| concept_id | discipline |
+|---|---|
+| D01 | Anthropology |
+| D02 | Archaeology |
+| D03 | Geography |
+| D04 | Development Studies |
+| D05 | Linguistics |
+| D06 | Tropical Medicine / colonial-health-related Public Health |
+| D07 | Agriculture & Forestry |
+| D08 | Geology / Earth-resource sciences |
+| D09 | Sociology |
+| D10 | Political Science / International Relations |
+| D11 | Law |
+| D12 | Economics |
+| D13 | Public Administration / Social Policy |
+| D14 | Education |
+| D15 | History |
+| D16 | Demography / Population Studies |
+| D17 | Mathematics |
+| D18 | Physics |
+| D19 | Chemistry |
+| D20 | Computer Science |
+| D21 | Materials Science |
 
 ---
 
@@ -95,17 +97,17 @@ Return exactly two artifacts.
 
 ### Artifact 1 — CSV matrix
 
-Use this header and one row per frozen discipline:
+Use this header and exactly one row for each D01–D21:
 
 ```csv
-discipline,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,IKES_B
+concept_id,discipline,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,IKES_B
 ```
 
 `IKES_B` is the mean of available D1-D11 scores; if any `NA` remains, flag it in Artifact 2 and do not silently impute it.
 
 ### Artifact 2 — evidence notes
 
-For each discipline provide:
+For each `concept_id` provide:
 
 - 2–5 sentence historical rationale;
 - strongest sources supporting scores ≥2;
@@ -136,4 +138,4 @@ python code/adjudicate_ikes.py \
   --output-dir process/ikes_adjudication
 ```
 
-Any discipline × dimension disagreement of **2 or more points** must be reviewed against the cited historical evidence before `IKES_FROZEN.csv` is created.
+Any concept × dimension disagreement of **2 or more points**, and every missing A/B cell, must be reviewed against cited historical evidence before `IKES_FROZEN.csv` is created.
