@@ -1,0 +1,21 @@
+{
+  "slug": "language-periodic-system",
+  "status": "pilot",
+  "working_title": "Is There a Periodic System of Human Language? A Data-Driven Test Across the World’s Languages",
+  "paper_id": null,
+  "promotion_target": "next available paper ID",
+  "core_question": "Does cross-linguistic structural diversity exhibit reproducible recurrent organization that is better modeled by a periodic geometry than by ordinary factor, hierarchical, graph, manifold, or null models?",
+  "stage0": {
+    "dataset": "TLI-statistical densified small (Graff et al. 2025)",
+    "tests": [
+      "compression beyond column-wise marginal-preserving shuffle null",
+      "residual pairwise feature association beyond permutation null"
+    ],
+    "claim_limit": "Stage 0 tests prerequisites only; it cannot establish periodicity."
+  },
+  "promotion_requires": [
+    "non-trivial residual structure in Stage 0",
+    "explicit model-comparison plan with held-out evaluation",
+    "novelty check finds no existing equivalent periodic-vs-nonperiodic test"
+  ]
+}
