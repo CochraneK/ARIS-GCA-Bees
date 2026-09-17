@@ -11,7 +11,7 @@
   "aris": {
     "provenance": "legacy ARIS run",
     "version": "unknown-legacy",
-    "upgrade_note": "Preserve this paper's historical provenance; use the repository-level ARIS lock for new work."
+    "upgrade_note": "Preserve this paper's historical provenance; use the ARIS4C repository-level ARIS lock for new work."
   },
   "links": {
     "paper_en": "paper/en/main.html",
