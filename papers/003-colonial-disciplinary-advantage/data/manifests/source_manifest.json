@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "paper": "ARIS4C003",
+  "created_utc": "2026-09-18T00:00:00+00:00",
+  "sources": {
+    "openalex": {
+      "status": "manifest_pending",
+      "landing": "https://help.openalex.org/access/snapshot/",
+      "acquisition": "public anonymous S3 snapshot; Parquet Works prefix preferred; paid daily API not required",
+      "redistribution": "do not commit raw snapshot; record release manifest/checksum"
+    },
+    "icow": {
+      "status": "local_download_pending",
+      "landing": "https://www.paulhensel.org/icowcol.html",
+      "official_download": "https://www.paulhensel.org/Data/colhist.zip",
+      "version": "1.1",
+      "redistribution": "official source explicitly requests no redistribution; raw archive must remain local"
+    },
+    "cepii_gravity": {
+      "status": "manual_official_download_pending",
+      "landing": "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8",
+      "version": "202211",
+      "license": "Etalab 2.0"
+    },
+    "leiden_open_2025_results": {
+      "status": "manual_official_download_pending",
+      "landing": "https://open.leidenranking.com/resources",
+      "doi": "https://doi.org/10.5281/zenodo.17473224",
+      "license": "CC0"
+    },
+    "leiden_open_2025_data": {
+      "status": "manual_official_download_pending",
+      "landing": "https://open.leidenranking.com/resources",
+      "doi": "https://doi.org/10.5281/zenodo.17471989",
+      "license": "CC0"
+    }
+  }
+}
