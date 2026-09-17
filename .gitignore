@@ -1,0 +1,13 @@
+# Local ARIS engine / machine state
+aris.local.json
+.aris/upstream/
+.aris/installed-skills.txt
+.claude/skills/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS / editors
+.DS_Store
+Thumbs.db
