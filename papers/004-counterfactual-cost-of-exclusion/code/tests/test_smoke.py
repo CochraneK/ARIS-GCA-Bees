@@ -14,7 +14,14 @@ sys.path.insert(0, str(CODE / "acquire"))
 
 from counterfactual_core import TemporalGraph, Work, simulate  # noqa: E402
 from build_candidate_frame import eligible_rows  # noqa: E402
-from openalex_pilot import normalize_openalex_id, normalize_orcid  # noqa: E402
+from openalex_pilot import (  # noqa: E402
+    author_name_score,
+    career_plausibility,
+    name_similarity,
+    normalize_name,
+    normalize_openalex_id,
+    normalize_orcid,
+)
 from validate_exposure import validate  # noqa: E402
 
 
@@ -53,9 +60,6 @@ class CounterfactualCoreTests(unittest.TestCase):
         self.assertAlmostEqual(result.cpe, 1.0)
 
     def test_same_year_chain_uses_true_topological_order(self) -> None:
-        # Lexical sorting would visit a_target before m_mid before z_source and
-        # incorrectly preserve the target. A real topological order must propagate
-        # loss z_source -> m_mid -> a_target even when all share one year.
         graph = TemporalGraph(
             works=[
                 Work("z_source", 1900, "focal", 1.0),
@@ -123,6 +127,29 @@ class OpenAlexHelperTests(unittest.TestCase):
         self.assertEqual(normalize_openalex_id("https://openalex.org/A1234"), "A1234")
         self.assertEqual(normalize_openalex_id("A1234"), "A1234")
         self.assertEqual(normalize_orcid("https://orcid.org/0000-0001-2345-6789"), "0000-0001-2345-6789")
+
+    def test_name_normalization_handles_diacritics_and_punctuation(self) -> None:
+        self.assertEqual(normalize_name("José-María O'Neill"), "jose maria o neill")
+
+    def test_exact_and_alias_names_score_high(self) -> None:
+        author = {
+            "display_name": "John Nash",
+            "display_name_alternatives": ["John Forbes Nash Jr."],
+        }
+        self.assertEqual(author_name_score("John Nash", author), 1.0)
+        self.assertGreater(author_name_score("John Forbes Nash Jr", author), 0.95)
+        self.assertLess(name_similarity("John Nash", "Alice Smith"), 0.5)
+
+    def test_career_plausibility_prefers_lifetime_overlap(self) -> None:
+        author = {
+            "counts_by_year": [
+                {"year": 1950, "works_count": 2},
+                {"year": 1960, "works_count": 4},
+                {"year": 1970, "works_count": 1},
+            ]
+        }
+        self.assertGreater(career_plausibility(author, 1920, 2015), 0.9)
+        self.assertEqual(career_plausibility(author, 1800, 1850), 0.0)
 
 
 class ExposureValidatorTests(unittest.TestCase):
