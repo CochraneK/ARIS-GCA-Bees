@@ -51,6 +51,14 @@ SOURCES = {
         "license": "OWID chart data marked CC BY; preserve original-source and OWID citations",
         "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests",
     },
+    "coldat_empire_counts": {
+        "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer",
+        "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer.csv?v=1&csvType=full&useColumnShortNames=false",
+        "metadata": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer.metadata.json?v=1&csvType=full&useColumnShortNames=false",
+        "source": "Bastian Becker COLDAT 3.0 plus Gapminder Population v7, processed by Our World in Data",
+        "license": "OWID page is CC BY; preserve underlying-provider citations and terms",
+        "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests",
+    },
     "icow": {
         "landing": "https://www.paulhensel.org/icowcol.html",
         "download": "https://www.paulhensel.org/Data/colhist.zip",
@@ -182,6 +190,7 @@ def cmd_coldat(args: argparse.Namespace) -> None:
     plans = {
         "coldat_years": RAW / "coldat" / "years-colonized.csv",
         "coldat_colonizer_year": RAW / "coldat" / "colonizer-by-country-year.csv",
+        "coldat_empire_counts": RAW / "coldat" / "colonies-by-colonizer.csv",
     }
     if not args.execute:
         for source, dest in plans.items():
