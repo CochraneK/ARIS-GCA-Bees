@@ -1,0 +1,32 @@
+{
+  "id": "006",
+  "slug": "chinese-alphabetical-exposure",
+  "title": "Alphabetical Exposure and Academic Careers in Chinese Science",
+  "short_title": "Chinese Surnames × Alphabetical Exposure",
+  "year": 2026,
+  "status": "feasibility",
+  "domain": "science of science / scientometrics / sociology of science / names research",
+  "summary": "A population-calibrated, cross-disciplinary study testing whether Chinese surname alphabetical position interacts with empirically measured alphabetical-authorship regimes to shape visibility, collaboration, citation, mobility, and career outcomes among Chinese scholars.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided run; public-web/GPTPage fallback for API-gated reviewer and literature-search stages",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/006-chinese-alphabetical-exposure"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "Chinese names",
+    "surname initials",
+    "alphabetical authorship",
+    "scientometrics",
+    "science of science",
+    "OpenAlex"
+  ]
+}
