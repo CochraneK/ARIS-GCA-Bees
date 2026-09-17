@@ -6,8 +6,8 @@ The script *never* inspects mental-health fields or keywords. It samples within
 historical/visibility strata from people classified by the source as
 Discovery/Science, then writes a frozen candidate frame for identity resolution.
 
-The source file has historically appeared in Latin-1 compatible encodings, so
-`--encoding latin-1` is the default; override if your official download differs.
+The current verified compressed mirror is UTF-8. `--encoding` remains explicit
+so a future upstream release can be handled without silently mojibaking names.
 """
 
 from __future__ import annotations
@@ -144,7 +144,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--target", type=int, default=100)
     parser.add_argument("--seed", type=int, default=20260918)
-    parser.add_argument("--encoding", default="latin-1")
+    parser.add_argument("--encoding", default="utf-8")
     parser.add_argument("--birth-min", type=int, default=1850)
     parser.add_argument("--birth-max", type=int, default=1975)
     parser.add_argument("--death-min", type=int, default=1900)
