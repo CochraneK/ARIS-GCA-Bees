@@ -19,7 +19,7 @@ CURRENT_NAME = "ARIS4C"
 CURRENT_REPO = "https://github.com/CochraneK/" + CURRENT_NAME
 
 REPLACEMENTS = (
-    ("https://github.com/example/bee-precision-model", CURRENT_REPO),
+    ("https://github.com/CochraneK/ARIS4C", CURRENT_REPO),
     ("https://github.com/CunyiKang/" + LEGACY_NAME, CURRENT_REPO),
     ("https://github.com/CunyiKang/" + CURRENT_NAME, CURRENT_REPO),
     ("https://github.com/CochraneK/" + LEGACY_NAME, CURRENT_REPO),
