@@ -4,7 +4,7 @@
 **Branch:** `research/language-periodic-system-aris`  
 **ARIS lock:** v0.4.26  
 **Paper ID:** not assigned  
-**Overall state:** ACTIVE CANDIDATE — Stage 1B robustness / non-periodic reframe under test
+**Overall state:** ACTIVE CANDIDATE — REFRAME toward predictive geometry; confirmatory controls pending
 
 ## Pipeline alignment
 
@@ -19,12 +19,12 @@ ARIS idea-discovery order:
 | idea-creator | DONE (scope variants ranked) | `idea-stage/IDEA_REPORT.md#ranked-ideas` |
 | novelty-check | DONE as primary-executor search; FORMAL REVIEW RECEIPT PENDING | `idea-stage/IDEA_REPORT.md#novelty-verification` |
 | research-review | PENDING formal secondary ARIS reviewer | `refine-logs/REVIEW_SUMMARY.md` |
-| research-refine | DRAFTED / evidence-updated | `refine-logs/FINAL_PROPOSAL.md` |
+| research-refine | REFRAMED / evidence-updated | `refine-logs/FINAL_PROPOSAL.md` |
 | experiment-plan | ACTIVE | `refine-logs/EXPERIMENT_PLAN.md`, `refine-logs/EXPERIMENT_TRACKER.md` |
 
-## Why the formal ARIS gate is not marked PASS
+## Formal ARIS gate
 
-ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases. A heading or primary-agent critique is not sufficient: the pipeline expects an actual identity-bearing secondary reviewer verdict/trace. No such independent reviewer has been invoked in this ChatGPT-side pass, so we do not fabricate a receipt or claim completion.
+ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases. This run has no identity-bearing secondary-review trace, so the formal review gate remains **PENDING**. No reviewer identity, verdict, or trace is fabricated.
 
 ## Scientific state
 
@@ -33,10 +33,10 @@ ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases
 `MIXED_SIGNAL`.
 
 - 20-component observed compression: 0.510 vs null mean 0.362 (+0.148).
-- Pairwise residual association is weak for most pairs but has a substantial upper tail.
-- Interpretation: enough non-random structure to justify model comparison; no evidence yet for periodicity.
+- Residual pairwise association is weak for most pairs but has a substantial upper tail.
+- Conclusion: language structure is non-random enough to justify geometry tests; this is not evidence of periodicity.
 
-### Stage 1 · direct model competition
+### Stage 1 · global model competition
 
 `REFRAME_NONPERIODIC_GEOMETRY`.
 
@@ -44,49 +44,53 @@ On 60 well-covered TLI features:
 
 - random-split Spearman: tree 0.199, graph 0.205, low-rank 0.172, circular 0.122;
 - family-held-out Spearman: tree **0.178**, graph 0.163, low-rank/euclidean 0.150, circular **0.109**;
-- circular ordering remains moderately reproducible: family-held-out stability **0.542 ± 0.139**.
+- family-held-out circular-order stability: **0.542 ± 0.139**.
 
-Interpretation: the simple global circle is not arbitrary, but it currently predicts held-out cross-linguistic structure worse than a hierarchical/tree representation. This is a reason to reframe, not yet a sufficient rejection of the periodic hypothesis.
+The simple global circle contains reproducible information but predicts less well than non-periodic alternatives.
 
-### Stage 1B · periodic fairness robustness
+### Stage 1B · fairer periodic baseline
 
-**RUNNING.**
+`MIXED_ROBUSTNESS`.
 
-The robustness test addresses the two clearest attacks on Stage 1:
+The disconnected-affinity issue was removed and angular feature positions were optimized directly.
 
-1. the spectral affinity graph was not fully connected;
-2. the circular positions were inherited from a spectral embedding rather than directly optimized for a circular model.
+- **40 features:** optimized circular 0.179; tree 0.178; connected Euclidean 0.217; circular stability 0.419.
+- **60 features:** optimized circular 0.105; tree 0.147; low-rank 0.153; circular stability 0.628.
 
-Stage 1B therefore forces a connected affinity, directly optimizes angular feature positions, repeats family-held-out evaluation, and checks two feature counts (40 / 60).
+Conclusion: the initial circle was not merely a strawman, but periodic competitiveness is feature-count sensitive and does not support a simple global periodic system.
 
-## Novelty after stronger prior-art search
+### Stage 1C · predefined subsystem test
 
-The strongest collision is the Port/Marcolli program:
-- *Persistent Topology of Syntax* (2018)
-- *Topological Analysis of Syntactic Structures* (2022)
+`NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE`.
 
-Therefore topology, H1 loops, and geometry of syntax cannot be headline novelty. The surviving wedge is explicit predictive model competition for the periodic-table hypothesis using modern curated global data and genealogy/area-aware evaluation.
+TLI's own grouping metadata were used to predefine Grammar linear order, Grammar other, Grammatical categories, Lexical, and Phonology. Every reported domain contains four valid top-level-family-held-out splits.
 
-## Current likely framing
+- **Grammar linear order:** circular optimized 0.401 with very stable ordering (0.811), but tree/low-rank ≈0.494/0.493 — stable structure, not best represented as a circle.
+- **Grammar other:** circular optimized 0.253 vs tree 0.313; stability 0.274.
+- **Grammatical categories:** circular optimized 0.252 vs tree 0.229, but stability only 0.373 — ambiguous, below the predeclared periodic-candidate threshold.
+- **Lexical:** circular optimized 0.142 vs tree 0.269; stability 0.057.
+- **Phonology:** circular optimized 0.151 vs tree 0.229; stability 0.550.
 
-If Stage 1B confirms the current pattern, shift from “constructing a periodic system” to:
+No predefined domain simultaneously met the predictive and stability criteria for local periodicity.
+
+## Current interpretation
+
+The evidence now favors the broader framing:
 
 > **Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space**
 
-with Baker's periodic-table proposal as the historical hypothesis being tested rather than the result being assumed.
+Baker's periodic-table idea remains the motivating historical hypothesis, but the empirical target is now to identify which non-periodic geometry best generalizes and whether the periodic hypothesis can be rejected fairly after standardized circular-seriation, geography, capacity, and replication checks.
 
-If the optimized periodic model becomes competitive, retain:
+This is **not yet a manuscript-level rejection** of periodicity. Circular seriation has a formal literature built around circular Robinson matrices; one standards-aligned seriation/goodness-of-fit check should be added before closing that hypothesis.
 
-> **Testing the Periodic-Table Hypothesis of Human Language**
+## Remaining decisive gates
 
-and continue stronger periodic/non-periodic discrimination.
+1. standards-aligned circular-seriation / circular-Robinson sensitivity;
+2. geography-aware blocked validation;
+3. stronger repeated-split uncertainty and model-capacity accounting;
+4. second-dataset or second-domain replication;
+5. identity-bearing ARIS secondary review.
 
 ## Promotion rule
 
-Do not create `papers/002-*` until:
-
-- Stage 1B establishes a fair periodic baseline;
-- closest-prior-work search remains clear enough;
-- formal ARIS secondary review evidence exists;
-- genealogy/geography-aware validation is adequate for the final wording;
-- the final framing is frozen as positive periodic, local periodic, non-periodic geometry, or parked.
+Do not create `papers/002-*` yet. Promotion requires the remaining controls to support a stable framing and the formal ARIS review gate to be satisfied honestly.
