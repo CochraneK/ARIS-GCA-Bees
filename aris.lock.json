@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+  "strategy": "external-upstream",
+  "recommended_release": "v0.4.26",
+  "checked_on": "2026-09-18",
+  "policy": {
+    "vendor_upstream_into_this_repo": false,
+    "preserve_paper_provenance": true,
+    "record_aris_version_per_paper": true,
+    "update_method": "git pull + upstream smart_update/install scripts"
+  },
+  "notes": "New papers should record the exact ARIS tag or commit used. Existing historical papers should not have their provenance rewritten when the engine is upgraded."
+}
