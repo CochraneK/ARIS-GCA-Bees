@@ -1,0 +1,47 @@
+name: ARIS4C005 smoke gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "papers/005-hidden-burden-bad-science/code/**"
+      - "papers/005-hidden-burden-bad-science/data/scenario_parameters.example.json"
+      - "papers/005-hidden-burden-bad-science/process/EXPOSURE_CODEBOOK.md"
+      - ".github/workflows/aris4c005-ci.yml"
+  pull_request:
+    paths:
+      - "papers/005-hidden-burden-bad-science/code/**"
+      - "papers/005-hidden-burden-bad-science/data/scenario_parameters.example.json"
+      - "papers/005-hidden-burden-bad-science/process/EXPOSURE_CODEBOOK.md"
+      - ".github/workflows/aris4c005-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Python sources
+        run: python -m compileall -q papers/005-hidden-burden-bad-science/code
+      - name: Run invariant test suite
+        run: python -m unittest discover -s papers/005-hidden-burden-bad-science/code/tests -p 'test_*.py' -v
+      - name: Exercise scenario engine
+        run: |
+          python papers/005-hidden-burden-bad-science/code/scenario_model.py \
+            papers/005-hidden-burden-bad-science/data/scenario_parameters.example.json \
+            --output /tmp/aris4c005-scenario.json
+          python - <<'PY'
+          import json
+          p = '/tmp/aris4c005-scenario.json'
+          data = json.load(open(p, encoding='utf-8'))
+          assert data['classification'] == 'SCENARIO_NOT_EMPIRICAL_ESTIMATE'
+          assert data['metrics']['rly_total']['median'] >= 0
+          print('scenario smoke OK')
+          PY
