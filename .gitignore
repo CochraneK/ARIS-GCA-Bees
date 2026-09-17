@@ -7,6 +7,23 @@ aris.local.json
 # Python
 __pycache__/
 *.py[cod]
+.venv/
+venv/
+
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+
+# Paper-local raw/intermediate data and large snapshots
+papers/*/data/raw/
+papers/*/data/interim/
+papers/*/data/snapshots/
+papers/*/data/cache/
+
+# Keep reproducible manifests and compact derived tables under version control
+!papers/*/data/manifests/
+!papers/*/data/derived/
 
 # OS / editors
 .DS_Store
