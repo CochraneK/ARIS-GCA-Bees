@@ -5,9 +5,10 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/aris4c004-pilot.yml"
-      - "papers/004-counterfactual-cost-of-exclusion/code/acquire/**"
+      - "papers/004-counterfactual-cost-of-exclusion/code/acquire/openalex_pilot.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/**"
       - "papers/004-counterfactual-cost-of-exclusion/code/config/pilot_config.json"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/science_candidates_frozen.csv"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +17,7 @@ permissions:
 jobs:
   science-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     env:
       PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
     steps:
@@ -26,26 +27,18 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Create local data directories
-        run: mkdir -p "$PAPER_DIR/data/raw" "$PAPER_DIR/data/interim/openalex"
-
-      - name: Download cross-verified notable-people dataset mirror
+      - name: Initialize from frozen pre-exposure candidate frame
         shell: bash
         run: |
           set -euo pipefail
-          URL="https://huggingface.co/datasets/jstet/laouenan-notable-people/resolve/main/cross-verified-database.csv.gz?download=true"
-          OUT="$PAPER_DIR/data/raw/cross-verified-database.csv.gz"
-          curl -L --fail --retry 5 --retry-delay 2 "$URL" -o "$OUT"
-          echo "fe44aa6f97cf9f6c12d040137f92a9f4d0fd1f50e28f7f5d80eeae29b487828d  $OUT" | sha256sum -c -
-          ls -lh "$OUT"
-
-      - name: Build frozen mental-health-independent candidate frame
-        run: |
-          python "$PAPER_DIR/code/acquire/build_candidate_frame.py" \
-            "$PAPER_DIR/data/raw/cross-verified-database.csv.gz" \
-            --output "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
-            --target 100 \
-            --seed 20260918
+          mkdir -p "$PAPER_DIR/data/interim/openalex"
+          SOURCE="$PAPER_DIR/data/derived/science_candidates_frozen.csv"
+          TARGET="$PAPER_DIR/data/interim/science_candidates_frozen.csv"
+          test -s "$SOURCE"
+          ROWS=$(($(wc -l < "$SOURCE") - 1))
+          test "$ROWS" -eq 100
+          cp "$SOURCE" "$TARGET"
+          echo "Using frozen candidate frame: $ROWS candidates"
 
       - name: Add Wikidata identifier leads
         continue-on-error: true
@@ -98,7 +91,7 @@ jobs:
               "$QUEUE" \
               --out-dir "$PAPER_DIR/data/interim/openalex/cluster_evidence" \
               --year-min 1800 \
-              --year-max 2005 \
+              --year-max 2026 \
               --max-works-per-id 200 \
               --sleep-rps 2
           fi
@@ -116,6 +109,8 @@ jobs:
           rows = list(csv.DictReader(ids_path.open(encoding="utf-8-sig")))
           summary = {
               "candidate_n": len(rows),
+              "candidate_frame_frozen": True,
+              "candidate_frame_seed": 20260918,
               "qid_n": sum(bool((r.get("wikidata_qid") or "").strip()) for r in rows),
               "orcid_lead_n": sum(bool((r.get("orcid") or "").strip()) for r in rows),
               "openalex_id_lead_n": sum(bool((r.get("openalex_author_id") or "").strip()) for r in rows),
@@ -136,10 +131,6 @@ jobs:
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
           PY
-
-      - name: Delete raw source before artifact upload
-        if: always()
-        run: rm -rf "$PAPER_DIR/data/raw"
 
       - name: Upload public-safe pilot artifact
         if: always()
