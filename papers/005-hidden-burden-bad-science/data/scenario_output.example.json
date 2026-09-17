@@ -1,0 +1,58 @@
+{
+  "scenario_name": "ILLUSTRATIVE_ONLY_DO_NOT_CITE_AS_EMPIRICAL",
+  "classification": "SCENARIO_NOT_EMPIRICAL_ESTIMATE",
+  "simulation_draws": 100000,
+  "seed": 405,
+  "annual_target_works": 6200000.0,
+  "metrics": {
+    "problematic_works": {
+      "p025": 39392.95294930279,
+      "median": 70209.09619863448,
+      "p975": 112058.20975648116,
+      "mean": 72265.5493855131
+    },
+    "rly_direct": {
+      "p025": 26317.44637211592,
+      "median": 73220.15197250723,
+      "p975": 157650.83988725053,
+      "mean": 78203.70870929958
+    },
+    "rly_followup": {
+      "p025": 4754.878978440881,
+      "median": 19037.5602926082,
+      "p975": 57056.20623915594,
+      "mean": 22141.840644930176
+    },
+    "rly_total": {
+      "p025": 38919.79340028285,
+      "median": 94492.28903406281,
+      "p975": 193084.46237716582,
+      "mean": 100345.54935422975
+    },
+    "equivalent_5yr_phd_blocks": {
+      "p025": 7783.9586800565685,
+      "median": 18898.457806812563,
+      "p975": 38616.89247543316,
+      "mean": 20069.10987084595
+    },
+    "equivalent_40yr_careers": {
+      "p025": 972.9948350070711,
+      "median": 2362.3072258515704,
+      "p975": 4827.111559429145,
+      "mean": 2508.638733855744
+    },
+    "candidate_sleeping_beauties": {
+      "p025": 2685.2601970685155,
+      "median": 8221.522416876793,
+      "p975": 16264.66070762207,
+      "mean": 8679.963427502411
+    },
+    "expected_never_woken_sleeping_beauties": {
+      "p025": 222.91808151292906,
+      "median": 938.2297615433653,
+      "p975": 2660.42490629968,
+      "mean": 1071.1665806303702
+    }
+  },
+  "warning": "These outputs were independently reproduced from the example Monte Carlo assumptions for software/narrative validation. They are NOT measurements of global misconduct, research waste, or lost discoveries and must never be cited as ARIS4C005 findings."
+}
