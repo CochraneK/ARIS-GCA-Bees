@@ -4,51 +4,130 @@ Last updated: 2026-09-18
 
 ## Current state
 
-**RUNNING — feasibility and adversarial design stage**
+**RUNNING — feasibility-pilot / identity-resolution gate**
 
-The concept has been frozen sufficiently to enter ARIS. The study is not yet preregistration-ready and no confirmatory outcome analysis should begin.
+The project has moved beyond concept-only design into a reproducible real-data science pilot. No mental-health exposure sample has yet been selected and no confirmatory CPE comparison has been run.
 
 ## Canonical question
 
-Estimate the replacement-adjusted knowledge-network opportunity cost of reducing the productive participation of people with well-documented mental-health conditions, while keeping mental-health causation, discrimination, and historical contribution as separate constructs.
+Among historically realized knowledge contributors, how does scientific/intellectual/cultural development change when productive participation is counterfactually reduced, after allowing substitution, delays, and network rewiring — and what does that imply for exclusion risks faced by people with strong surviving mental-health evidence?
 
 ## Completed
 
 - [x] Stable paper ID `004` and canonical folder created.
 - [x] ARIS v0.4.26 provenance pinned to commit `951654847b015585385b2448c5667dcd04e7b56b`.
 - [x] Core question reframed away from "mental illness causes genius."
-- [x] Primary intervention reframed from existence deletion to participation reduction/removal.
-- [x] Naïve node deletion demoted to an upper-bound stress test.
-- [x] Adaptive substitution/rewiring made mandatory.
-- [x] Mental-health evidence tiering and `Unknown != no disorder` principle frozen.
-- [x] Historical celebrity examples separated from sampling-frame construction.
-- [x] Pilot scope changed from an exposed-case quota to a mental-health-independent candidate frame.
-- [x] Three deliberately heterogeneous pilot domains specified.
-- [x] Core methodological anchors and major validity threats identified.
+- [x] Counterfactual changed from existence deletion to temporal participation attenuation.
+- [x] Sign-neutral `CPE` estimand frozen; modeled effects may be positive, zero, or negative.
+- [x] Naïve deletion demoted to a stress test; adaptive substitution/rewiring made mandatory.
+- [x] Invisible-node / never-observed-excluded-person limitation explicitly bounded.
+- [x] Causal/estimand audit added in `CAUSAL_MODEL.md`.
+- [x] Mental-health evidence codebook frozen for pilot use: A1/A2/B1/B2/C/U; `Unknown != healthy`.
+- [x] Deceased-only primary analysis rule frozen.
+- [x] Historical celebrity examples separated from candidate-frame construction.
+- [x] Three-domain portability concept specified; science/mathematics chosen as the primary quantitative route.
+- [x] Data/licensing feasibility matrix completed.
+- [x] GPTPage reviewer handoff packets completed.
+- [x] Adversarial auto-review completed.
+- [x] Minimal temporal M0/M1/M2 counterfactual simulator implemented.
+- [x] GitHub CI smoke gate implemented and passing.
+- [x] Real-data candidate-frame workflow implemented.
+- [x] 108,626 eligible Discovery/Science source candidates identified.
+- [x] Fixed-seed 100-person cohort × visibility pilot frame created without mental-health information.
+- [x] Keyless OpenAlex pilot executed on first 30 candidates.
+- [x] Mixed/legacy source-text encoding issue identified and corrected with reversible cell-level repair.
+- [x] OpenAlex author fragmentation identified as a major identity-resolution problem.
+- [x] Candidate-frame coverage and analytic-frame identity precision separated as distinct feasibility quantities.
+- [x] Author-fragment review queue implemented; automatic top-hit matches no longer count as final identity verification.
+- [x] Real pilot history recorded in `PILOT_RESULTS.md`.
+- [x] `paper.json` synchronized to `feasibility-pilot` and portfolio rebuild triggered.
+
+## Current real-data evidence
+
+Latest completed bounded pilot before explicit cluster review: GitHub Actions run `35273279428`.
+
+For the first 30 frozen science candidates:
+
+- automatic top-record acceptance: **19/30 = 63.3%**;
+- ambiguous: **1/30**;
+- unresolved: **10/30**;
+- accepted records with >=1 work in 1900–2000: **15/30 = 50.0%**;
+- OpenAlex works acquired: **311**;
+- resolver errors: **0**.
+
+These are feasibility numbers, **not validated identity accuracy**. Manual/external verification and author-cluster assembly remain mandatory before a person enters the final network analytic frame.
+
+The first pilot with explicit author-fragment classification is GitHub Actions run `35273825936`; append its final result to `PILOT_RESULTS.md` after completion.
 
 ## In progress
 
-- [ ] Closest-prior-work / novelty map.
-- [ ] Estimand/DAG audit.
-- [ ] Sampling and documentation-bias protocol.
-- [ ] Formal mental-health evidence coding manual.
-- [ ] Data-source/licensing matrix.
-- [ ] Pilot acceptance thresholds.
-- [ ] Adaptive counterfactual model specification.
-- [ ] Simulation-based N / precision design.
-- [ ] GPTPage reviewer handoff packet.
-- [ ] Full adversarial auto-review.
+- [ ] Complete author-fragment review on the first 30 candidates.
+- [ ] Define and test person ↔ OpenAlex author-cluster validation rules.
+- [ ] Measure network observability by cohort, visibility, geography, gender and science subdomain.
+- [ ] Decide whether candidate sampling needs explicit region/subdomain re-stratification.
+- [ ] Freeze the network-observable analytic frame **before** mental-health coding.
+- [ ] Pilot exposure coding and inter-rater reliability.
+- [ ] Measure Tier-A / Tier-A+B exposure yield.
+- [ ] Expand science sample using pilot-observed identity/exposure yield.
+- [ ] Calibrate adaptive simulator against star-loss empirical benchmarks.
+- [ ] Run simulation-based N / precision design.
+- [ ] Run dedicated closest-prior-work novelty packet and final preregistration adversary.
+- [ ] Audit humanities/arts portability only after science identity/network gate is stable.
 
-## Hard gates before data collection
+## Revised feasibility gates
 
-1. No manual list of "mentally ill geniuses" can define the sample.
-2. Exposure coding must be done without looking at focal network-loss outcomes where feasible.
-3. A comparison node cannot be called "healthy" merely because no mental-health record was found.
-4. Domain inclusion must depend on prospective feasibility criteria, not whether it gives the preferred result.
-5. At least one adaptive replacement model and one strong null/random-subset benchmark must be specified before confirmatory simulation.
-6. Claims about discrimination must be supported by an externally estimated participation mechanism or explicitly labelled scenario-based.
-7. Raw network importance and raw output cannot be compared directly across science, philosophy/literature, and arts.
+### Candidate-frame coverage gate
 
-## Next machine-readable checkpoint
+Do not require 95% of the broad historical frame to appear in OpenAlex. Instead:
 
-When `RESEARCH_PLAN.md`, `AUTO_REVIEW.md`, `DATA_FEASIBILITY.md`, and `GPTPAGE_HANDOFF.md` exist and all critical blockers have explicit resolutions or downgrade paths, change status from `feasibility` to `research-design` in `paper.json`.
+- report graph observability and missingness by pre-exposure frame variables;
+- require enough observable candidates in each retained stratum to support exposed/comparison analysis;
+- do not improve coverage by loosening identity rules after seeing mental-health evidence.
+
+### Analytic-frame identity gate
+
+- every final included person must have an externally auditable identity decision;
+- multiple plausible OpenAlex Author IDs require cluster review;
+- conflicting ORCID/authority evidence blocks blind merging;
+- final identity precision is prioritized over broad-frame coverage;
+- a single automated top hit is never, by itself, confirmatory identity evidence.
+
+### Exposure gate
+
+- at least 15 Tier-A/Tier-B exposed focal cases in a domain pilot to justify domain expansion;
+- strict primary exposure remains Tier A if final precision permits;
+- candidate/network frame must be frozen before exposure search.
+
+### Network gate
+
+- sufficient domain-appropriate output/network data for preregistered baseline and downstream metrics;
+- primary focal subgraphs require provenance and stable identity/edge construction;
+- historical coverage bias must be characterized rather than hidden.
+
+### Simulation gate
+
+- M0/M1/M2 results stable over seeds and prespecified parameter ranges;
+- no look-ahead substitute selection;
+- strong null/random-subset benchmark required;
+- negative CPE outcomes must remain reportable.
+
+## Hard prohibitions
+
+1. Do not hand-build a sample of famous people known to have psychiatric histories.
+2. Do not start exposure coding before the network-observable frame is frozen.
+3. Do not call unknown historical candidates "healthy controls."
+4. Do not silently merge fragmented OpenAlex author records.
+5. Do not lower identity thresholds merely to improve coverage.
+6. Do not treat a participation simulation as proof of historical mental-health discrimination.
+7. Do not pool raw science, philosophy/literature and arts network metrics into one universal importance score.
+8. Do not claim to estimate contributions of people excluded before leaving observable historical traces.
+
+## Next checkpoint
+
+Advance from `feasibility-pilot` to `research-design` only when:
+
+1. author-cluster identity protocol is stable and audited;
+2. a pre-exposure science analytic frame is frozen;
+3. Tier-A/Tier-B exposure-yield pilot is completed under the frozen codebook;
+4. simulator calibration/validation plan has passed red-team review;
+5. final confirmatory outcomes, matching families, intervention timing, and precision target are preregisterable without unresolved critical blockers.
