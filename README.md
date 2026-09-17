@@ -5,29 +5,31 @@
 
 <div align="center">
 
-# ARIS Research Hub
+# ARIS4C
 
-**A living repository for papers developed with ARIS**
+**ARIS for Cochrane · a living research hub for papers developed with ARIS**
 
 [**Paper Hub**](docs/index.html) · [**Papers Registry**](papers/) · [**Paper 001**](docs/paper/en/main.html) · [**中文**](README.zh-CN.md)
 
 </div>
 
-## What this repository is becoming
+## What is ARIS4C?
 
-This repository started as **ARIS-GCA-Bees**, a single theory-and-simulation paper on functional self-awareness in bees. It now also serves as a long-lived research workspace for future papers developed with the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) methodology.
+**ARIS4C = ARIS for Cochrane.** It is the long-lived research repository for papers developed with the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) methodology.
+
+The repository began with the GCA × Bees theory-and-simulation project and now serves as a reusable home for future papers.
 
 The separation is deliberate:
 
 - **ARIS is the research engine** and can keep updating independently.
-- **This repository is the research archive** and keeps each paper's manuscript, code, figures, process records, provenance, and reproducibility trail.
+- **ARIS4C is the research archive and portfolio** for Cochrane's ARIS-assisted research.
 - **Each paper records the exact ARIS version/commit used**, so upgrading ARIS does not rewrite the history of older work.
 - **The public HTML hub is generated from paper manifests**, rather than maintained by hand.
 
 ## Repository model
 
 ```text
-ARIS-GCA-Bees/
+ARIS4C/
 ├── papers/
 │   ├── 001-gca-bees/
 │   │   └── paper.json           # manifest for the original paper
@@ -62,7 +64,7 @@ This creates the next stable paper ID and its standard research folders. Before 
 
 ## Keep ARIS current
 
-ARIS itself is **not vendored into this repository**. On Windows, update a separate local ARIS clone with:
+ARIS itself is **not vendored into ARIS4C**. On Windows, update a separate local ARIS clone with:
 
 ```powershell
 ./tools/sync_aris.ps1
