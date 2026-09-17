@@ -75,7 +75,19 @@ jobs:
             --search-n 10 \
             --sleep-rps 2
 
-      - name: Summarize candidate and identifier coverage
+      - name: Detect likely OpenAlex author fragmentation
+        if: always()
+        shell: bash
+        run: |
+          AUDIT="$PAPER_DIR/data/interim/openalex/openalex_resolution_audit.jsonl"
+          if [ -s "$AUDIT" ]; then
+            python "$PAPER_DIR/code/resolve/openalex_cluster_review.py" \
+              "$AUDIT" \
+              --output-csv "$PAPER_DIR/data/interim/openalex/identity_review_queue.csv" \
+              --summary-json "$PAPER_DIR/data/interim/openalex/identity_review_summary.json"
+          fi
+
+      - name: Summarize candidate, network and identity-review coverage
         shell: bash
         run: |
           python - <<'PY'
@@ -98,6 +110,9 @@ jobs:
           oa = root / "openalex" / "openalex_acquisition_summary.json"
           if oa.exists():
               summary["openalex_pull"] = json.loads(oa.read_text())
+          identity = root / "openalex" / "identity_review_summary.json"
+          if identity.exists():
+              summary["identity_review"] = json.loads(identity.read_text())
           out = root / "pilot_summary.json"
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
@@ -119,5 +134,7 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_acquisition_summary.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_resolution_audit.jsonl
             ${{ env.PAPER_DIR }}/data/interim/openalex/openalex_unresolved.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_review_queue.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_review_summary.json
           if-no-files-found: warn
           retention-days: 30
