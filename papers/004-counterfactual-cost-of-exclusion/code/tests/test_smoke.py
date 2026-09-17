@@ -11,9 +11,11 @@ CODE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(CODE))
 sys.path.insert(0, str(CODE / "simulate"))
 sys.path.insert(0, str(CODE / "acquire"))
+sys.path.insert(0, str(CODE / "resolve"))
 
 from counterfactual_core import TemporalGraph, Work, simulate  # noqa: E402
-from build_candidate_frame import eligible_rows  # noqa: E402
+from build_candidate_frame import eligible_rows, repair_utf8_mojibake  # noqa: E402
+from openalex_cluster_review import classify_record  # noqa: E402
 from openalex_pilot import (  # noqa: E402
     author_name_score,
     career_plausibility,
@@ -121,6 +123,10 @@ class CandidateFrameTests(unittest.TestCase):
         selected = eligible_rows(rows, 1850, 1975, 1900, 2026)
         self.assertEqual([row["wikidata_code"] for row in selected], ["Q1"])
 
+    def test_mojibake_repair_is_reversible_not_destructive(self) -> None:
+        self.assertEqual(repair_utf8_mojibake("HernÃ¡ndez"), "Hernández")
+        self.assertEqual(repair_utf8_mojibake("Föhl"), "Föhl")
+
 
 class OpenAlexHelperTests(unittest.TestCase):
     def test_identifier_normalization(self) -> None:
@@ -150,6 +156,41 @@ class OpenAlexHelperTests(unittest.TestCase):
         }
         self.assertGreater(career_plausibility(author, 1920, 2015), 0.9)
         self.assertEqual(career_plausibility(author, 1800, 1850), 0.0)
+
+
+class OpenAlexClusterReviewTests(unittest.TestCase):
+    def test_fragmentation_is_not_silently_resolved_to_top_hit(self) -> None:
+        row = classify_record(
+            {
+                "person_id": "p1",
+                "canonical_name": "James S. Albus",
+                "status": "accepted",
+                "method": "name_search",
+                "search_candidates": [
+                    {"id": "https://openalex.org/A1", "display_name": "James S. Albus", "works_count": 1, "name_score": 1.0},
+                    {"id": "https://openalex.org/A2", "display_name": "James S. Albus", "works_count": 312, "name_score": 1.0},
+                ],
+            }
+        )
+        self.assertEqual(row["review_class"], "possible_author_fragmentation")
+        self.assertEqual(row["plausible_openalex_ids_n"], 2)
+        self.assertEqual(row["identity_verified"], "false")
+
+    def test_conflicting_orcids_prevent_blind_merge(self) -> None:
+        row = classify_record(
+            {
+                "person_id": "p2",
+                "canonical_name": "Common Name",
+                "status": "accepted",
+                "method": "name_search",
+                "search_candidates": [
+                    {"id": "https://openalex.org/A1", "display_name": "Common Name", "works_count": 20, "name_score": 1.0, "orcid": "0000-0001"},
+                    {"id": "https://openalex.org/A2", "display_name": "Common Name", "works_count": 30, "name_score": 1.0, "orcid": "0000-0002"},
+                ],
+            }
+        )
+        self.assertEqual(row["review_class"], "possible_name_collision_conflicting_orcid")
+        self.assertIn("do_not_merge", row["recommended_action"])
 
 
 class ExposureValidatorTests(unittest.TestCase):
