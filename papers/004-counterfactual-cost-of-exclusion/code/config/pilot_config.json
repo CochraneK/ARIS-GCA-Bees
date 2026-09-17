@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "project": "ARIS4C004",
+  "pilot": {
+    "primary_domain": "science-mathematics",
+    "candidate_target": 100,
+    "strict_work_year_min": 1900,
+    "strict_work_year_max": 2000,
+    "broad_work_year_min": 1800,
+    "broad_work_year_max": 2000,
+    "deceased_only": true,
+    "min_observed_works_for_network_pilot": 5,
+    "min_candidate_comparisons_per_exposed": 3,
+    "min_tier_ab_exposed_to_expand_domain": 15
+  },
+  "exposure": {
+    "primary_classes": ["A1", "A2"],
+    "sensitivity_classes": ["A1", "A2", "B1", "B2"],
+    "excluded_from_confirmatory_exposure": ["C", "U"],
+    "unknown_is_negative": false
+  },
+  "openalex": {
+    "base_url": "https://api.openalex.org",
+    "api_key_env": "OPENALEX_API_KEY",
+    "per_page": 100,
+    "max_requests_per_second": 5,
+    "max_retries": 5,
+    "timeout_seconds": 30,
+    "corpus": "core"
+  },
+  "counterfactual": {
+    "attenuation_levels": [0.25, 0.5, 0.75, 1.0],
+    "primary_timing": "early-career-gate",
+    "model_families": ["M0_naive", "M1_observed_alternative_paths", "M2_adaptive_rewiring"],
+    "allow_negative_cpe": true,
+    "forbid_future_information_for_substitute_choice": true,
+    "random_seed": 20260918
+  },
+  "feasibility_gates": {
+    "identity_resolution_rate_min": 0.95,
+    "network_coverage_rate_min": 0.8,
+    "high_medium_edge_share_min": 0.8,
+    "documentation_smd_target_max": 0.2
+  }
+}
