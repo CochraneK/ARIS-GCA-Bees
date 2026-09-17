@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-09-17T21:26:06.102285+00:00",
+  "generated_at_utc": "2026-09-17T21:27:57.699373+00:00",
   "classification": "DETECTED_CORRECTION_SNAPSHOT_SUMMARY_NOT_PREVALENCE",
-  "source_file_sha256": "74fbe41b7d95662c587bf21512359dfa087586ee4998d1049cd276bc2b63cade",
+  "source_file_sha256": "2d74d3faffa6e0ea99f714f23e7fb3746b2a32b1450b74bf0b02504c186a8338",
   "rows": 72577,
   "columns": [
     "Record ID",
@@ -32,6 +32,7 @@
     "paper_mill_signal",
     "e3_error_signal",
     "manual_scientific_review",
+    "manual_process_review",
     "context_only_reasons",
     "manual_review_required"
   ],
@@ -47,13 +48,13 @@
   },
   "auto_flag_counts": {
     "e1s_narrow_auto": 2130,
-    "e1m_strong_auto": 20475,
-    "e1p_strong_auto": 16279,
+    "e1m_strong_auto": 20524,
+    "e1p_strong_auto": 21105,
     "paper_mill_signal": 11798,
-    "e3_error_signal": 6258,
-    "manual_scientific_review": 28147,
-    "context_only_reasons": 403,
-    "manual_review_required": 32639
+    "e3_error_signal": 7156,
+    "manual_scientific_review": 32328,
+    "context_only_reasons": 5000,
+    "manual_review_required": 52528
   },
   "top_reasons": [
     {
