@@ -5,7 +5,9 @@ This script is intentionally conservative. It preserves every raw reason and
 adds screening flags; ambiguous rows remain manual-review candidates rather
 than being forced into a misconduct label.
 
-It is NOT a substitute for reading the notice or adjudicating intent.
+Reason matching is case/whitespace-insensitive because Retraction Watch has
+renamed and normalized reason labels over time. It is NOT a substitute for
+reading the notice or adjudicating intent.
 """
 
 from __future__ import annotations
@@ -13,40 +15,56 @@ from __future__ import annotations
 import argparse
 import csv
 from pathlib import Path
-from typing import Iterable
 
-# High-specificity severe scientific integrity evidence.
-E1S_NARROW = {
+
+def normalize_reason(value: str) -> str:
+    return " ".join(value.strip().split()).casefold()
+
+
+def vocab(*values: str) -> set[str]:
+    return {normalize_reason(value) for value in values}
+
+
+# High-specificity severe scientific integrity evidence. Retraction Watch's
+# current guide defines these as fabrication/falsification in order to mislead.
+E1S_NARROW = vocab(
     "Falsification/Fabrication of Data",
     "Falsification/Fabrication of Image",
     "Falsification/Fabrication of Results",
-}
+)
 
-# Strong process/organized integrity signals. Scientific unreliability may still
-# require contextual confirmation.
-E1P_STRONG = {
+# Strong publication-process/organized-integrity signals. Scientific
+# unreliability may still require contextual confirmation.
+E1P_STRONG = vocab(
     "Paper Mill",
     "False/Forged Authorship",
     "False/Forged Affiliation",
     "Rogue Editor",
     "Hoax Paper",
-}
+    "Compromised Peer Review",
+    # Historical label retained for old snapshots.
+    "Fake Peer Review",
+)
 
-# Confirmed/strong misconduct families that may not invalidate substantive data.
-E1M_STRONG = {
-    *E1S_NARROW,
+# Strong misconduct/integrity-violation families that may not invalidate the
+# substantive scientific result. Compromised Peer Review is deliberately not
+# here because Retraction Watch removed intentionality from its definition in
+# Dec 2025.
+E1M_STRONG = E1S_NARROW | vocab(
     "Plagiarism of/in Article",
     "Plagiarism of Data",
     "Plagiarism of Image",
     "Plagiarism of Text",
+    "Euphemisms for Plagiarism",
+    "Euphemisms for Misconduct",
     "Taken via Peer Review",
     "Paper Mill",
     "False/Forged Authorship",
     "False/Forged Affiliation",
-}
+)
 
 # Material unreliability / research-waste signals that do not establish intent.
-E3_ERROR = {
+E3_ERROR = vocab(
     "Error in Analyses",
     "Error in Cell Lines/Tissues",
     "Error in Data",
@@ -54,13 +72,17 @@ E3_ERROR = {
     "Error in Materials",
     "Error in Methods",
     "Error in Results and/or Conclusions",
+    "Error in Text",
     "Contamination of Cell Lines/Tissues",
     "Contamination of Materials",
     "Results Not Reproducible",
-}
+)
 
-# Reasons needing notice/context review before E1-S assignment.
-MANUAL_SCIENTIFIC_REVIEW = {
+# Reasons needing notice/context review before severe scientific-unreliability
+# assignment. These indicate possible scientific unreliability but do not by
+# themselves establish fabrication/falsification or intent.
+MANUAL_SCIENTIFIC_REVIEW = vocab(
+    "Manipulation of Data",
     "Manipulation of Data.",
     "Manipulation of Images",
     "Manipulation of Results",
@@ -68,15 +90,33 @@ MANUAL_SCIENTIFIC_REVIEW = {
     "Unreliable Image",
     "Unreliable Results and/or Conclusions",
     "Original Data and/or Images not Provided and/or not Available",
-    "Concerns/Issues About Data",
-    "Concerns/Issues About Image",
+    "Concerns/Issues about Data",
+    "Concerns/Issues about Image",
     "Concerns/Issues about Results and/or Conclusions",
-    "Euphemisms for Misconduct",
-    "Ethical Violations by Author",
-}
+    "Concerns/Issues about Methods",
+    "Computer-Aided Content or Computer-Generated Content",
+    "Hoax Paper",
+)
+
+# Reasons that can indicate a publication/research-integrity process problem but
+# need context before a stronger label. This keeps procedural concerns distinct
+# from scientific unreliability.
+MANUAL_PROCESS_REVIEW = vocab(
+    "Concerns/Issues about Peer Review",
+    "Concerns/Issues with Peer Review",
+    "Concerns/Issues about Referencing/Attributions",
+    "Concerns/Issues about Authorship/Affiliation",
+    "Concerns/Issues about Third Party Involvement",
+    "Breach of Policy by Author",
+    "Conflict of Interest",
+    "Lack of IRB/IACUC Approval and/or Compliance",
+    "Informed/Patient Consent – None/Withdrawn",
+    "Informed/Patient Consent - None/Withdrawn",
+    "Computer-Aided Content or Computer-Generated Content",
+)
 
 # Discovery/context reasons: never sufficient by themselves for misconduct.
-CONTEXT_ONLY = {
+CONTEXT_ONLY = vocab(
     "Author Unresponsive",
     "Concerns/Issues about Article",
     "Investigation by Company/Institution",
@@ -87,9 +127,10 @@ CONTEXT_ONLY = {
     "Objections by Company/Institution",
     "Objections by Third Party",
     "Legal Reasons and/or Threats",
-    "Conflict of Interest",
-    "Breach of Policy by Author",
-}
+    "Notice - Limited or No Information",
+    "Notice – Unable to Access via current resources",
+    "Date of Article and/or Notice Unknown",
+)
 
 REASON_COLUMN_CANDIDATES = (
     "Reason(s) for Retraction",
@@ -107,23 +148,20 @@ def split_reasons(raw: str | None) -> list[str]:
     return [part.strip() for part in raw.split(";") if part.strip()]
 
 
-def any_in(reasons: Iterable[str], vocabulary: set[str]) -> bool:
-    return any(reason in vocabulary for reason in reasons)
-
-
 def classify(reasons: list[str]) -> dict[str, int]:
-    reason_set = set(reasons)
+    reason_set = {normalize_reason(reason) for reason in reasons}
     e1s_narrow = bool(reason_set & E1S_NARROW)
-    paper_mill = "Paper Mill" in reason_set
+    paper_mill = normalize_reason("Paper Mill") in reason_set
     e1m_strong = bool(reason_set & E1M_STRONG)
     e1p_strong = bool(reason_set & E1P_STRONG)
     e3_error = bool(reason_set & E3_ERROR)
     manual_scientific = bool(reason_set & MANUAL_SCIENTIFIC_REVIEW)
+    manual_process = bool(reason_set & MANUAL_PROCESS_REVIEW)
     context_only = bool(reason_set) and reason_set.issubset(CONTEXT_ONLY)
 
     # Broad E1-S is deliberately *not* assigned automatically from ambiguous
-    # unreliability/manipulation labels. It equals narrow here and is intended
-    # to be updated after notice/manual adjudication downstream.
+    # unreliability/manipulation labels. It is created only after notice/manual
+    # adjudication downstream.
     return {
         "e1s_narrow_auto": int(e1s_narrow),
         "e1m_strong_auto": int(e1m_strong),
@@ -131,9 +169,11 @@ def classify(reasons: list[str]) -> dict[str, int]:
         "paper_mill_signal": int(paper_mill),
         "e3_error_signal": int(e3_error),
         "manual_scientific_review": int(manual_scientific),
+        "manual_process_review": int(manual_process),
         "context_only_reasons": int(context_only),
         "manual_review_required": int(
             manual_scientific
+            or manual_process
             or context_only
             or (e1p_strong and not e1s_narrow)
             or not reasons
