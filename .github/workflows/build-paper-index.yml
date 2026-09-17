@@ -1,4 +1,4 @@
-name: Build paper index
+name: Build ARIS4C paper index
 
 on:
   push:
@@ -6,6 +6,8 @@ on:
     paths:
       - 'papers/**/paper.json'
       - 'tools/build_papers_index.py'
+      - 'tools/migrate_aris4c.py'
+      - '.github/workflows/build-paper-index.yml'
   workflow_dispatch:
 
 permissions:
@@ -19,16 +21,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Migrate stale ARIS4C branding and links
+        run: python tools/migrate_aris4c.py
       - name: Build portfolio
         run: python tools/build_papers_index.py
-      - name: Commit generated index
+      - name: Commit generated and migrated assets
         run: |
-          if git diff --quiet -- docs/index.html; then
-            echo "No index changes"
+          if git diff --quiet; then
+            echo "No generated or migration changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html
-          git commit -m "docs: regenerate ARIS paper index"
+          git add -A
+          git commit -m "docs: apply ARIS4C migration and regenerate index"
           git push
