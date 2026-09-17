@@ -10,41 +10,57 @@
 | R2 | Directly optimized circular model | DONE | rule out obvious circular strawman | `../STAGE1B_REPORT.md` |
 | R3 | 40/60 feature-count sensitivity | DONE | robustness to feature count | `../STAGE1B_REPORT.md` |
 | R4 | Predefined TLI-domain local periodicity screen | DONE | test local periodicity without cherry-picking | `../STAGE1C_REPORT.md` |
-| R5 | Standards-aligned circular seriation / circular-Robinson test | TODO | final fair periodicity sensitivity | — |
-| R6 | More repeated family-held-out splits + uncertainty / capacity accounting | TODO | quantify model differences | — |
-| R7 | Geographic blocking / areal sensitivity | TODO | reduce contact/geographic leakage | — |
-| R8 | Second dataset or independent structural replication | TODO | external robustness | — |
-| ARIS-REV | Identity-bearing secondary novelty/research review | BLOCKED/PENDING | formal ARIS review gate | — |
+| R5 | Circular-Robinson + wrap-around closure sensitivity | DONE | direct periodic/circular diagnostic | `../STAGE1D_REPORT.md` |
+| R6 | Repeated family-held-out paired uncertainty | DONE | quantify tree/low-rank vs circle stability | `../STAGE1F_REPORT.md` |
+| R6b | Model-capacity accounting | DONE / interpretive | prevent tree-win overclaim | `MODEL_CAPACITY_NOTE.md` |
+| R7 | Geographic and joint geography+family blocking | DONE | area-aware stress test | `../STAGE1E_REPORT.md` |
+| R7b | Matched-size geographic calibration | DONE | separate geographic shift from small-test noise | `../STAGE1G_REPORT.md` |
+| R8a | GBI alternative-curation replication | DONE | robustness to dependency curation | `../STAGE1H_REPORT.md` |
+| R8b | WALS external sparse sanity replication | DONE | external qualitative direction check | `../STAGE1I_REPORT.md` |
+| ARIS-REV | Identity-bearing secondary novelty/research review | **PENDING / ONLY HARD GATE** | formal ARIS review gate | `SECONDARY_REVIEW_PACKET.md` |
 
 ## Evidence trajectory
 
 ### Stage 0
-`MIXED_SIGNAL`: substantial non-random compressibility and a tail of residual associations justified direct geometry tests.
+`MIXED_SIGNAL`: non-random compressibility and residual associations justify a geometry question.
 
-### Stage 1
-`REFRAME_NONPERIODIC_GEOMETRY`: the simple circular model predicted held-out feature associations worse than tree/graph alternatives, especially under top-level-family hold-out.
-
-### Stage 1B
-`MIXED_ROBUSTNESS`: direct angular optimization and connected affinity showed that the original circle was not purely a strawman. At 40 features the optimized circle roughly matched tree, but at 60 features it again lagged tree/low-rank models.
+### Stage 1 / 1B
+A simple global circle is reproducible but generally underpredicts tree/low-rank alternatives under family hold-out. Direct angular optimization prevents the first circle from being dismissed as an obvious strawman.
 
 ### Stage 1C
-`NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE`: five TLI-defined structural domains were screened with four valid family-held-out replicates each. None met the predeclared combination of predictive competitiveness and circular-order stability required for a local periodic candidate.
+`NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE`: no predefined TLI subsystem satisfies both predictive competitiveness and circular-order stability.
 
-The strongest circular-looking subsystem was **Grammar linear order**, where the optimized circle had Spearman 0.401 and high order stability 0.811, but tree and low-rank models were both about 0.49. This looks more like stable structured ordering than a uniquely circular geometry.
+### Stage 1D
+`CIRCULAR_ROBINSON_NOT_SUPPORTED`: the learned circular order does not achieve strong held-out row-unimodality improvement and lacks robust wrap-around closure, especially at 60 features (closure/internal-adjacency ratio ≈0.037).
 
-`Grammatical categories` remained ambiguous: optimized circle 0.252 vs tree 0.229, but circular stability 0.373 missed the predeclared 0.40 threshold.
+### Stage 1F
+`TREE_ADVANTAGE_STABLE`: across 20 TLI family-held-out splits, tree beats optimized circular in every split. Mean paired difference +0.073; 95% bootstrap CI [0.055, 0.092]. Low-rank also beats circular on average.
+
+### Stage 1E / 1G
+TLI association structure transfers poorly across large geographic blocks, and matched-size random calibration shows this is not simply small-test noise. This cannot become the headline result because external WALS behaves differently.
+
+### Stage 1H
+GBI replicates the family-held-out tree-over-circle ordering (tree 0.122 vs circular 0.073; win fraction 1.00) and weak Macroarea transfer (0.144).
+
+### Stage 1I
+WALS independently reproduces the tree-over-circle ordering (0.603 vs 0.410; win fraction 1.00), but **does not** reproduce weak Macroarea transfer (mean 0.634). This sharply separates the robust negative-periodicity result from the representation-dependent geography result.
 
 ## Current branch decision
 
-The candidate should now be **reframed rather than promoted as a periodic-table discovery**. The primary research question becomes which geometry best characterizes and predicts cross-linguistic structural space, with the historical periodic-table proposal retained as the falsified-or-constrained hypothesis under test.
+**Confirmatory screening is complete.**
 
-R5 is still required because circular seriation has a formal methodology based on circular Robinson matrices; the project should not claim a fair rejection after testing only custom/spectral circular models.
+The strongest claim is not “language is tree-shaped.” It is:
+
+> **The tested simple global circular/periodic geometry is not supported; hierarchical/non-circular models provide stronger family-held-out predictive benchmarks across TLI, GBI, and WALS.**
+
+A generic genealogy/geography paper is not the right reframe because genealogy/space effects already have strong prior art, and WALS shows that geographic portability is dataset-sensitive.
 
 ## Promotion gate
 
-A numbered paper is not created until:
+The candidate is scientifically mature enough for formal review but remains unnumbered until:
 
-- R5 establishes a standards-aligned final periodic baseline;
-- R6-R8 provide enough uncertainty, geography, and replication control for manuscript wording;
-- ARIS-REV is completed honestly with a real reviewer identity/trace;
-- the final framing is frozen as predictive non-periodic geometry, a narrower mixed result, or parked.
+- ARIS-REV produces a real identity-bearing secondary reviewer trace;
+- the reviewer finds no fatal prior-art collision with the full predictive periodic-vs-nonperiodic stress test;
+- the reviewer accepts the model-fairness and claim-boundary logic, or requests tractable revisions.
+
+If those conditions are met, promote to the next stable Paper ID and begin manuscript-generation / review loops. Do not consume Paper 002 before that gate.
