@@ -4,75 +4,77 @@
 
 Domains are defined from the TLI authors' `grouping` metadata before model comparison; no domain is selected because it happened to look circular.
 
+Every reported domain contains exactly 4 valid family-held-out runs. Invalid draws with too few jointly observed feature pairs are rejected and resampled rather than silently reducing the replicate count.
+
 ## Grammar_linear_order
 
-Features: 14 · domain verdict: `NONPERIODIC_DOMAIN`
+Features: 14 · valid splits: 4/20 attempts · domain verdict: `NONPERIODIC_DOMAIN`
 
 | Model | Spearman | Pearson | RMSE | MAE |
 |---|---:|---:|---:|---:|
-| lowrank2 | 0.434 ± 0.085 | 0.646 | 0.137 | 0.108 |
-| euclidean_connected | 0.256 ± 0.122 | 0.625 | 0.108 | 0.070 |
-| tree | 0.435 ± 0.080 | 0.755 | 0.091 | 0.063 |
-| circular_equal_spaced | 0.314 ± 0.036 | 0.474 | 0.121 | 0.075 |
-| circular_optimized | 0.285 ± 0.134 | 0.539 | 0.118 | 0.079 |
+| lowrank2 | 0.493 ± 0.137 | 0.658 | 0.137 | 0.110 |
+| euclidean_connected | 0.351 ± 0.214 | 0.658 | 0.108 | 0.071 |
+| tree | 0.494 ± 0.134 | 0.755 | 0.092 | 0.064 |
+| circular_equal_spaced | 0.396 ± 0.166 | 0.536 | 0.120 | 0.076 |
+| circular_optimized | 0.401 ± 0.256 | 0.592 | 0.113 | 0.076 |
 
-Optimized circular-order stability: 0.790 ± 0.158
+Optimized circular-order stability: 0.811 ± 0.136
 
 ## Grammar_other
 
-Features: 38 · domain verdict: `NONPERIODIC_DOMAIN`
+Features: 38 · valid splits: 4/4 attempts · domain verdict: `NONPERIODIC_DOMAIN`
 
 | Model | Spearman | Pearson | RMSE | MAE |
 |---|---:|---:|---:|---:|
-| lowrank2 | 0.290 ± 0.049 | 0.788 | 0.071 | 0.042 |
-| euclidean_connected | 0.120 ± 0.152 | 0.210 | 0.104 | 0.048 |
-| tree | 0.394 ± 0.088 | 0.735 | 0.074 | 0.038 |
-| circular_equal_spaced | 0.213 ± 0.011 | 0.292 | 0.102 | 0.048 |
-| circular_optimized | 0.138 ± 0.049 | 0.352 | 0.100 | 0.049 |
+| lowrank2 | 0.243 ± 0.125 | 0.732 | 0.064 | 0.039 |
+| euclidean_connected | 0.028 ± 0.056 | 0.098 | 0.098 | 0.047 |
+| tree | 0.313 ± 0.071 | 0.713 | 0.067 | 0.036 |
+| circular_equal_spaced | 0.153 ± 0.078 | 0.286 | 0.096 | 0.045 |
+| circular_optimized | 0.253 ± 0.075 | 0.412 | 0.092 | 0.045 |
 
-Optimized circular-order stability: 0.516 ± 0.165
+Optimized circular-order stability: 0.274 ± 0.237
 
 ## Grammatical_categories
 
-Features: 23 · domain verdict: `NONPERIODIC_DOMAIN`
+Features: 23 · valid splits: 4/8 attempts · domain verdict: `AMBIGUOUS_DOMAIN`
 
 | Model | Spearman | Pearson | RMSE | MAE |
 |---|---:|---:|---:|---:|
-| lowrank2 | -0.009 ± 0.000 | 0.565 | 0.083 | 0.059 |
-| euclidean_connected | 0.304 ± 0.000 | 0.336 | 0.058 | 0.029 |
-| tree | -0.085 ± 0.000 | 0.673 | 0.049 | 0.031 |
-| circular_equal_spaced | 0.212 ± 0.000 | 0.253 | 0.059 | 0.029 |
-| circular_optimized | 0.083 ± 0.000 | 0.239 | 0.060 | 0.034 |
+| lowrank2 | 0.125 ± 0.052 | 0.307 | 0.091 | 0.061 |
+| euclidean_connected | 0.181 ± 0.036 | 0.291 | 0.070 | 0.039 |
+| tree | 0.229 ± 0.076 | 0.485 | 0.062 | 0.036 |
+| circular_equal_spaced | 0.152 ± 0.085 | 0.304 | 0.070 | 0.039 |
+| circular_optimized | 0.252 ± 0.114 | 0.378 | 0.069 | 0.038 |
 
-Optimized circular-order stability: 0.149 ± 0.000
+Optimized circular-order stability: 0.373 ± 0.170
 
 ## Lexical
 
-Features: 18 · domain verdict: `AMBIGUOUS_DOMAIN`
+Features: 18 · valid splits: 4/13 attempts · domain verdict: `NONPERIODIC_DOMAIN`
 
 | Model | Spearman | Pearson | RMSE | MAE |
 |---|---:|---:|---:|---:|
-| lowrank2 | 0.153 ± 0.000 | 0.886 | 0.063 | 0.040 |
-| euclidean_connected | 0.286 ± 0.000 | 0.380 | 0.089 | 0.044 |
-| tree | 0.389 ± 0.000 | 0.807 | 0.057 | 0.033 |
-| circular_equal_spaced | 0.236 ± 0.000 | 0.407 | 0.088 | 0.043 |
-| circular_optimized | 0.346 ± 0.000 | 0.533 | 0.083 | 0.040 |
+| lowrank2 | 0.220 ± 0.096 | 0.693 | 0.098 | 0.056 |
+| euclidean_connected | 0.162 ± 0.093 | 0.284 | 0.122 | 0.057 |
+| tree | 0.269 ± 0.088 | 0.680 | 0.096 | 0.045 |
+| circular_equal_spaced | 0.126 ± 0.027 | 0.256 | 0.122 | 0.058 |
+| circular_optimized | 0.142 ± 0.074 | 0.298 | 0.120 | 0.058 |
 
-Optimized circular-order stability: 0.371 ± 0.000
+Optimized circular-order stability: 0.057 ± 0.101
 
 ## Phonology
 
-Features: 40 · domain verdict: `NONPERIODIC_DOMAIN`
+Features: 40 · valid splits: 4/4 attempts · domain verdict: `NONPERIODIC_DOMAIN`
 
 | Model | Spearman | Pearson | RMSE | MAE |
 |---|---:|---:|---:|---:|
-| lowrank2 | 0.218 ± 0.026 | 0.243 | 0.057 | 0.035 |
-| euclidean_connected | 0.207 ± 0.080 | 0.173 | 0.044 | 0.023 |
-| tree | 0.257 ± 0.036 | 0.348 | 0.043 | 0.022 |
-| circular_equal_spaced | 0.127 ± 0.017 | 0.144 | 0.045 | 0.024 |
-| circular_optimized | 0.158 ± 0.031 | 0.183 | 0.044 | 0.023 |
+| lowrank2 | 0.215 ± 0.022 | 0.331 | 0.052 | 0.033 |
+| euclidean_connected | 0.171 ± 0.078 | 0.167 | 0.043 | 0.023 |
+| tree | 0.229 ± 0.066 | 0.366 | 0.041 | 0.022 |
+| circular_equal_spaced | 0.100 ± 0.018 | 0.170 | 0.043 | 0.023 |
+| circular_optimized | 0.151 ± 0.018 | 0.228 | 0.042 | 0.023 |
 
-Optimized circular-order stability: 0.452 ± 0.091
+Optimized circular-order stability: 0.550 ± 0.092
 
 ## Interpretation rule
 
