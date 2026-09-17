@@ -36,6 +36,7 @@ PARAMETERS_URL = (
 )
 SEED = 2028
 N_SPLITS = 4
+MAX_SPLIT_ATTEMPTS = 24
 MAX_FEATURES_PER_DOMAIN = 40
 MIN_FEATURES_PER_DOMAIN = 12
 MIN_FEATURE_OBS = 160
@@ -164,12 +165,16 @@ def run_domain(
     reference_angles = np.asarray(full_opt.extra["angles"], dtype=float)
 
     runs = []
-    for split_id in range(N_SPLITS):
+    attempts = 0
+    rejected_attempts = 0
+    while len(runs) < N_SPLITS and attempts < MAX_SPLIT_ATTEMPTS:
+        attempts += 1
         train_idx, test_idx = base.family_split_indices(families, rng)
         train_sim, _ = base.pairwise_nmi(df.iloc[train_idx], features)
         test_sim, _ = base.pairwise_nmi(df.iloc[test_idx], features)
         mask = robust.eval_mask(train_sim, test_sim)
         if int(mask.sum()) < 40:
+            rejected_attempts += 1
             continue
 
         train_mask = robust.all_train_mask(train_sim)
@@ -185,7 +190,8 @@ def run_domain(
         opt_angles = np.asarray(opt.extra["angles"], dtype=float)
         runs.append(
             {
-                "split": split_id,
+                "split": len(runs),
+                "attempt": attempts,
                 "n_train": int(len(train_idx)),
                 "n_test": int(len(test_idx)),
                 "n_eval_pairs": int(mask.sum()),
@@ -194,9 +200,18 @@ def run_domain(
             }
         )
 
-    if not runs:
-        raise RuntimeError("No valid family-held-out runs")
-    return {"runs": runs, "summary": summarize(runs)}
+    if len(runs) < N_SPLITS:
+        raise RuntimeError(
+            f"Only {len(runs)} valid family-held-out runs after {attempts} attempts; "
+            f"required {N_SPLITS}. Refusing to report an under-sampled domain."
+        )
+    return {
+        "runs": runs,
+        "n_valid_runs": len(runs),
+        "n_attempts": attempts,
+        "n_rejected_attempts": rejected_attempts,
+        "summary": summarize(runs),
+    }
 
 
 def classify_domain(block: dict) -> tuple[str, dict]:
@@ -235,12 +250,14 @@ def write_report(results: dict) -> None:
         "",
         "Domains are defined from the TLI authors' `grouping` metadata before model comparison; no domain is selected because it happened to look circular.",
         "",
+        f"Every reported domain contains exactly {N_SPLITS} valid family-held-out runs. Invalid draws with too few jointly observed feature pairs are rejected and resampled rather than silently reducing the replicate count.",
+        "",
     ]
     for name, block in results["domains"].items():
         lines += [
             f"## {name}",
             "",
-            f"Features: {block['n_features']} · domain verdict: `{block['domain_verdict']}`",
+            f"Features: {block['n_features']} · valid splits: {block['n_valid_runs']}/{block['n_attempts']} attempts · domain verdict: `{block['domain_verdict']}`",
             "",
             "| Model | Spearman | Pearson | RMSE | MAE |",
             "|---|---:|---:|---:|---:|",
@@ -311,11 +328,12 @@ def main() -> None:
         "parameter_metadata": PARAMETERS_URL,
         "n_languages": int(len(df)),
         "n_splits": N_SPLITS,
+        "max_split_attempts": MAX_SPLIT_ATTEMPTS,
         "domains": out,
         "local_periodic_candidates": local_candidates,
         "verdict": verdict,
         "limitations": [
-            "Four family-held-out splits per domain are a screening sample, not a final uncertainty analysis.",
+            "Four valid family-held-out splits per domain are a screening sample, not a final uncertainty analysis.",
             "The domain threshold is pre-specified in code but was chosen for feasibility rather than preregistered externally.",
             "Multiple-domain screening requires multiplicity-aware confirmation.",
             "Geographic blocking and full phylogenetic covariance are not yet included.",
