@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Summarize a classified Retraction Watch CSV without redistributing raw data."""
+"""Summarize a classified Retraction Watch CSV without redistributing raw data.
+
+Outputs both event-row counts and unique-original-DOI counts. This distinction is
+critical because one original work can have several notices/events.
+"""
 
 from __future__ import annotations
 
@@ -19,9 +23,17 @@ FLAG_COLUMNS = [
     "paper_mill_signal",
     "e3_error_signal",
     "manual_scientific_review",
+    "manual_process_review",
     "context_only_reasons",
     "manual_review_required",
 ]
+
+DATE_FORMATS = (
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%Y",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d",
+)
 
 
 def sha256_file(path: Path) -> str:
@@ -50,42 +62,79 @@ def split_reasons(raw: str | None) -> list[str]:
     return [x.strip() for x in raw.split(";") if x.strip()]
 
 
+def parse_rw_date(raw: str | None) -> dt.datetime | None:
+    if not raw:
+        return None
+    value = raw.strip()
+    if not value:
+        return None
+    for fmt in DATE_FORMATS:
+        try:
+            return dt.datetime.strptime(value, fmt)
+        except ValueError:
+            continue
+    return None
+
+
 def summarize(path: Path) -> dict[str, Any]:
-    nature_counts: collections.Counter[str] = collections.Counter()
-    reason_counts: collections.Counter[str] = collections.Counter()
-    flag_counts: collections.Counter[str] = collections.Counter()
+    nature_row_counts: collections.Counter[str] = collections.Counter()
+    reason_row_counts: collections.Counter[str] = collections.Counter()
+    flag_row_counts: collections.Counter[str] = collections.Counter()
+
+    nature_dois: dict[str, set[str]] = collections.defaultdict(set)
+    reason_dois: dict[str, set[str]] = collections.defaultdict(set)
+    flag_dois: dict[str, set[str]] = collections.defaultdict(set)
+
     original_dois: set[str] = set()
     duplicate_doi_rows = 0
     missing_doi_rows = 0
     total = 0
     fields: list[str] = []
-    date_values: list[str] = []
+    parsed_dates: list[dt.datetime] = []
+    unparsed_date_rows = 0
 
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         fields = list(reader.fieldnames or [])
         for row in reader:
             total += 1
-            nature_counts[(row.get("RetractionNature") or "UNKNOWN").strip()] += 1
-            for reason in split_reasons(row.get("Reason")):
-                reason_counts[reason] += 1
+            nature = (row.get("RetractionNature") or "UNKNOWN").strip() or "UNKNOWN"
+            nature_row_counts[nature] += 1
+
+            reasons = split_reasons(row.get("Reason"))
+            for reason in reasons:
+                reason_row_counts[reason] += 1
+
+            active_flags: list[str] = []
             for flag in FLAG_COLUMNS:
                 try:
-                    flag_counts[flag] += int(row.get(flag) or 0)
+                    active = int(row.get(flag) or 0)
                 except ValueError:
-                    pass
+                    active = 0
+                if active:
+                    flag_row_counts[flag] += 1
+                    active_flags.append(flag)
 
             doi = norm_doi(row.get("OriginalPaperDOI"))
             if doi is None:
                 missing_doi_rows += 1
-            elif doi in original_dois:
-                duplicate_doi_rows += 1
             else:
+                if doi in original_dois:
+                    duplicate_doi_rows += 1
                 original_dois.add(doi)
+                nature_dois[nature].add(doi)
+                for reason in reasons:
+                    reason_dois[reason].add(doi)
+                for flag in active_flags:
+                    flag_dois[flag].add(doi)
 
-            date = (row.get("RetractionDate") or "").strip()
-            if date:
-                date_values.append(date)
+            raw_date = (row.get("RetractionDate") or "").strip()
+            if raw_date:
+                parsed = parse_rw_date(raw_date)
+                if parsed is None:
+                    unparsed_date_rows += 1
+                else:
+                    parsed_dates.append(parsed)
 
     return {
         "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -96,18 +145,40 @@ def summarize(path: Path) -> dict[str, Any]:
         "unique_original_paper_dois": len(original_dois),
         "rows_without_resolvable_original_doi": missing_doi_rows,
         "duplicate_original_doi_rows_after_normalization": duplicate_doi_rows,
-        "retraction_nature_counts": dict(nature_counts.most_common()),
-        "auto_flag_counts": {flag: int(flag_counts[flag]) for flag in FLAG_COLUMNS},
-        "top_reasons": [
-            {"reason": reason, "count": count}
-            for reason, count in reason_counts.most_common(30)
+        "event_row_counts_by_nature": dict(nature_row_counts.most_common()),
+        "unique_original_doi_counts_by_nature": {
+            nature: len(dois)
+            for nature, dois in sorted(
+                nature_dois.items(), key=lambda item: (-len(item[1]), item[0])
+            )
+        },
+        "auto_flag_event_row_counts": {
+            flag: int(flag_row_counts[flag]) for flag in FLAG_COLUMNS
+        },
+        "auto_flag_unique_original_doi_counts": {
+            flag: len(flag_dois[flag]) for flag in FLAG_COLUMNS
+        },
+        "top_reasons_by_event_rows": [
+            {
+                "reason": reason,
+                "event_rows": count,
+                "unique_original_dois": len(reason_dois[reason]),
+            }
+            for reason, count in reason_row_counts.most_common(40)
         ],
-        "raw_retraction_date_min_lexical": min(date_values) if date_values else None,
-        "raw_retraction_date_max_lexical": max(date_values) if date_values else None,
+        "parsed_retraction_date_rows": len(parsed_dates),
+        "unparsed_retraction_date_rows": unparsed_date_rows,
+        "retraction_date_min": (
+            min(parsed_dates).date().isoformat() if parsed_dates else None
+        ),
+        "retraction_date_max": (
+            max(parsed_dates).date().isoformat() if parsed_dates else None
+        ),
         "warning": (
             "Counts describe Retraction Watch/Crossref detected correction records. "
-            "They are not estimates of underlying misconduct prevalence. Auto flags "
-            "are screening variables and ambiguous records require adjudication."
+            "They are not estimates of underlying misconduct prevalence. Event-row "
+            "counts must not be substituted for unique-work counts. Auto flags are "
+            "screening variables and ambiguous records require adjudication."
         ),
     }
 
