@@ -4,8 +4,8 @@
 Historical identifiers must never be silently forced onto a modern state.
 Rows that cannot be mapped cleanly remain UNRESOLVED for manual review.
 
-Requires the Python `countrycode` package, whose panel dictionary explicitly
-supports Correlates of War codes and historical country-year reconciliation.
+Requires the Python `countrycode` package, whose country-year panel explicitly
+supports Correlates of War codes and historical code reconciliation.
 """
 
 from __future__ import annotations
@@ -87,8 +87,9 @@ def main() -> None:
             "Pass --cow-numeric-col/--cow-char-col/--name-col explicitly."
         )
 
-    # Load once so package/version failures happen before any output is written.
-    panel = load_codelist_panel()
+    # countrycode defaults to a dict here; request pandas explicitly because
+    # historical reconciliation below is a country-year DataFrame merge/filter.
+    panel = load_codelist_panel(as_type="pandas")
     panel_columns = set(panel.columns)
 
     records: list[dict[str, object]] = []
@@ -113,7 +114,6 @@ def main() -> None:
                 method = f"manual_override:{key_type}"
                 break
 
-        # Prefer a country-year panel match when year and COW code are available.
         if iso3 is None and year_col and not pd.isna(year) and "year" in panel_columns:
             try:
                 yr = int(float(year))
