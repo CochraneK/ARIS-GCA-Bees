@@ -14,7 +14,8 @@ The pilot is deliberately staged:
 2. identity-resolution leads;
 3. OpenAlex author/work observability;
 4. author-fragment / name-collision review;
-5. only after a network analytic frame is frozen: mental-health evidence coding.
+5. person-level identity validation and cluster assembly;
+6. only after a network analytic frame is frozen: mental-health evidence coding.
 
 ## Candidate-frame result
 
@@ -36,7 +37,7 @@ The pilot sampled **100 candidates** with fixed seed `20260918`, balanced across
 - Academia: 92
 - Explorer/Inventor/Developer: 8
 
-Interpretation: deterministic stratification by cohort × visibility worked, but the source frame remains heavily Europe-weighted. This is a property to measure and potentially re-stratify, not evidence that the historical contributor population was actually distributed this way.
+Interpretation: deterministic stratification by cohort × visibility worked, but the source frame remains heavily Europe-weighted. This is a property to measure and potentially re-stratify before exposure coding, not evidence that the historical contributor population was actually distributed this way.
 
 ## Identifier-lead result
 
@@ -115,6 +116,31 @@ The encoding repair therefore improved apparent automatic resolution from 56.7% 
 
 **Important:** these numbers are not final identity accuracy because OpenAlex fragmentation can make a high-scoring top hit incomplete or misleading.
 
+### Pilot v4 — explicit author-fragment review
+
+GitHub Actions run: `35273825936`
+
+The same first 30 candidates were passed through an explicit fragmentation/name-collision review layer that considers all plausible search hits rather than silently selecting only the top-scoring Author ID.
+
+Result:
+
+- candidate records reviewed: **30**
+- `possible_author_fragmentation`: **11/30 = 36.7%**
+- `single_plausible_author_record`: **9/30 = 30.0%**
+- `no_openalex_search_hit`: **9/30 = 30.0%**
+- `name_collision_or_low_similarity`: **1/30 = 3.3%**
+- apparent candidates with at least one plausible OpenAlex network lead: **20/30 = 66.7%**
+- identity-verified candidates: **0/30 by design at this stage**
+
+Interpretation:
+
+1. **Author fragmentation is a first-order problem, not an edge case.** More than one-third of this bounded historical-science pilot has multiple plausible OpenAlex Author IDs requiring cluster review.
+2. The earlier single-top-record work-coverage estimate of 50% understated apparent graph availability because fragmented records were being ignored. Once plausible fragments are retained for review, 20/30 candidates have at least one apparent network lead.
+3. The 66.7% figure is **not identity-validated coverage**. It is a review-queue observability measure only.
+4. Expanding immediately to 100 candidates without stabilizing cluster evidence would scale identity error faster than scientific information.
+
+This run changed the immediate priority from sample expansion to person-level author-cluster validation.
+
 ## Identity-resolution correction: coverage ≠ precision
 
 The original feasibility gate "95% of sampled candidates resolve" was too coarse. Two distinct quantities are now required.
@@ -127,9 +153,12 @@ Question:
 
 This quantity can legitimately be below 95%, but missingness must be characterized by era, region, visibility, discipline, gender, and other available frame variables.
 
-Current bounded estimate from the first 30 candidates, using accepted single top records only: **50% had at least one acquired 1900–2000 work**.
+Current first-30 estimates:
 
-This is a provisional lower-ish operational estimate because fragmented author records are not yet clustered.
+- accepted single-top-record with >=1 acquired 1900–2000 work: **15/30 = 50.0%**;
+- candidates with at least one plausible OpenAlex network lead after fragment review: **20/30 = 66.7%**.
+
+Neither number is yet the final verified network coverage.
 
 ### Analytic-frame identity precision
 
@@ -146,24 +175,31 @@ Target:
 
 This precision gate is more important than maximizing raw candidate-frame coverage.
 
-## OpenAlex fragmentation review
+## Person-level OpenAlex identity protocol
 
-A dedicated script now converts the raw search audit into an `identity_review_queue.csv` and classifies candidates as:
+`IDENTITY_CODEBOOK.md` now defines the target mapping as:
 
-- `no_openalex_search_hit`
-- `single_plausible_author_record`
-- `single_low_confidence_record`
-- `possible_author_fragmentation`
-- `possible_name_collision_conflicting_orcid`
-- `name_collision_or_low_similarity`
+`historical person -> {one or more verified OpenAlex Author IDs}`
 
-All rows begin with `identity_verified=false`.
+Allowed states include:
 
-GitHub Actions run `35273825936` is the first real-data pilot including this explicit fragmentation stage. Its result should be appended here once completed.
+- `VERIFIED_SINGLE`
+- `VERIFIED_CLUSTER`
+- `PROVISIONAL_SINGLE`
+- `PROVISIONAL_CLUSTER`
+- `AMBIGUOUS_COLLISION`
+- `NO_GRAPH_RECORD`
+- `EXCLUDED_IDENTITY_ERROR`
+
+Only `VERIFIED_SINGLE` and `VERIFIED_CLUSTER` can enter the confirmatory network analytic frame.
+
+Identity evidence must go beyond bare name equality unless a strong external identifier is available. Candidate signals include known works, institutions, coauthors, field/topic, career timing, ORCID/authority identifiers, duplicate works and other fragment-linking evidence.
+
+A dedicated `validate_identity.py` enforces these invariants before confirmatory network inclusion.
 
 ## Current science feasibility interpretation
 
-**Continue.** The science route has passed the minimal "data exist and can be programmatically connected" test, but has **not** passed the final identity/network analytic-frame gate.
+**Continue, but do not expand exposure coding yet.** The science route has passed the minimal "data exist and can be programmatically connected" test, but has **not** passed the final identity/network analytic-frame gate.
 
 The major bottleneck has shifted from general data availability to:
 
@@ -174,13 +210,14 @@ The major bottleneck has shifted from general data availability to:
 
 ## Revised order of operations
 
-1. Finish author-fragment review on the first 30.
-2. Define external/manual identity-validation rules.
-3. Estimate coverage and fragmentation by cohort/visibility/region.
-4. Expand identity pilot beyond 30 only after precision rules are stable.
-5. Freeze a **network-observable analytic frame without using mental-health information**.
-6. Begin exposure coding under `EXPOSURE_CODEBOOK.md`.
-7. Measure Tier-A/Tier-B yield.
-8. Decide final sample expansion and simulation-based precision target.
+1. Build fragment-cluster evidence for every plausible OpenAlex ID in the first-30 queue.
+2. Use `IDENTITY_CODEBOOK.md` to manually/externally validate the first 30, especially all 11 fragmentation cases.
+3. Estimate automated false-positive and missed-fragment rates.
+4. Estimate verified coverage and fragmentation by cohort/visibility/region.
+5. Expand identity pilot beyond 30 only after precision rules are stable.
+6. Freeze a **network-observable analytic frame without using mental-health information**.
+7. Begin exposure coding under `EXPOSURE_CODEBOOK.md`.
+8. Measure Tier-A/Tier-B yield.
+9. Decide final sample expansion and simulation-based precision target.
 
-No mental-health outcome or CPE comparison should be run before step 5–6 is frozen.
+No mental-health outcome or CPE comparison should be run before step 6–7 is frozen.
