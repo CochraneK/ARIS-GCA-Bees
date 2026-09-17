@@ -1,114 +1,96 @@
 {
   "slug": "language-periodic-system",
-  "status": "active-candidate",
-  "aris_stage": "reframe-predictive-geometry",
-  "working_title": "Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space",
-  "historical_hypothesis_title": "Testing the Periodic-Table Hypothesis of Human Language",
-  "subtitle": "A Predictive Comparison of Periodic and Non-Periodic Models of Cross-Linguistic Structure",
+  "status": "review-ready-active-candidate",
+  "aris_stage": "formal-secondary-review-pending",
+  "working_title": "Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure",
+  "alternate_title": "Beyond the Periodic Table: Stress-Testing the Geometry of Cross-Linguistic Structural Space",
   "paper_id": null,
-  "promotion_target": "next available paper ID after robustness and ARIS review gates",
-  "core_question": "What geometry best predicts cross-linguistic structural relations out of sample, and does any global or pre-defined local periodic representation add reproducible value beyond non-periodic alternatives?",
+  "promotion_target": "next available paper ID after formal ARIS secondary review",
+  "core_question": "Does an explicitly circular/periodic geometry provide reproducible out-of-sample organization of cross-linguistic structural relations beyond non-periodic alternatives?",
   "aris": {
     "recommended_release": "v0.4.26",
     "formal_secondary_review": "pending",
+    "only_hard_gate_remaining": true,
     "canonical_brief": "RESEARCH_BRIEF.md",
     "canonical_idea_report": "idea-stage/IDEA_REPORT.md",
     "final_proposal": "refine-logs/FINAL_PROPOSAL.md",
-    "experiment_plan": "refine-logs/EXPERIMENT_PLAN.md",
     "experiment_tracker": "refine-logs/EXPERIMENT_TRACKER.md",
-    "pipeline_summary": "refine-logs/PIPELINE_SUMMARY.md"
+    "review_packet": "refine-logs/SECONDARY_REVIEW_PACKET.md",
+    "capacity_note": "refine-logs/MODEL_CAPACITY_NOTE.md"
   },
-  "stage0": {
-    "state": "complete",
-    "verdict": "MIXED_SIGNAL",
-    "dataset": "TLI-statistical densified small (Graff et al. 2025)",
-    "twenty_component_variance": 0.510,
-    "twenty_component_null": 0.362,
-    "claim_limit": "Prerequisite structural signal only; no periodicity claim."
-  },
-  "stage1": {
-    "state": "complete",
-    "verdict": "REFRAME_NONPERIODIC_GEOMETRY",
-    "n_languages": 644,
-    "n_features": 60,
-    "family_heldout_spearman": {
-      "tree": 0.178,
-      "graph": 0.163,
-      "lowrank2": 0.150,
-      "euclidean2d": 0.150,
-      "circular": 0.109
+  "evidence": {
+    "stage0": {
+      "verdict": "MIXED_SIGNAL",
+      "claim": "non-random structure exists; no periodicity inference"
     },
-    "family_heldout_circular_stability": 0.542
-  },
-  "stage1b": {
-    "state": "complete",
-    "verdict": "MIXED_ROBUSTNESS",
-    "forty_features": {
-      "circular_optimized_spearman": 0.179,
-      "tree_spearman": 0.178,
-      "euclidean_spearman": 0.217,
-      "circular_stability": 0.419
-    },
-    "sixty_features": {
-      "circular_optimized_spearman": 0.105,
-      "tree_spearman": 0.147,
-      "lowrank2_spearman": 0.153,
-      "circular_stability": 0.628
-    }
-  },
-  "stage1c": {
-    "state": "complete",
-    "verdict": "NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE",
-    "family_heldout_valid_splits_per_domain": 4,
-    "domains": {
-      "Grammar_linear_order": {
-        "verdict": "NONPERIODIC_DOMAIN",
-        "circular_optimized_spearman": 0.401,
-        "tree_spearman": 0.494,
-        "circular_stability": 0.811
-      },
-      "Grammar_other": {
-        "verdict": "NONPERIODIC_DOMAIN",
-        "circular_optimized_spearman": 0.253,
-        "tree_spearman": 0.313,
-        "circular_stability": 0.274
-      },
-      "Grammatical_categories": {
-        "verdict": "AMBIGUOUS_DOMAIN",
-        "circular_optimized_spearman": 0.252,
-        "tree_spearman": 0.229,
-        "circular_stability": 0.373
-      },
-      "Lexical": {
-        "verdict": "NONPERIODIC_DOMAIN",
-        "circular_optimized_spearman": 0.142,
-        "tree_spearman": 0.269,
-        "circular_stability": 0.057
-      },
-      "Phonology": {
-        "verdict": "NONPERIODIC_DOMAIN",
-        "circular_optimized_spearman": 0.151,
-        "tree_spearman": 0.229,
-        "circular_stability": 0.550
+    "stage1": {
+      "verdict": "REFRAME_NONPERIODIC_GEOMETRY",
+      "tli_family_heldout_spearman": {
+        "tree": 0.178,
+        "graph": 0.163,
+        "circular": 0.109
       }
+    },
+    "stage1b": {
+      "verdict": "MIXED_ROBUSTNESS",
+      "claim": "direct angular optimization removes obvious circular-strawman objection; global circle remains feature-count sensitive"
+    },
+    "stage1c": {
+      "verdict": "NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE"
+    },
+    "stage1d": {
+      "verdict": "CIRCULAR_ROBINSON_NOT_SUPPORTED",
+      "sixty_feature_closure_ratio": 0.037
+    },
+    "stage1e": {
+      "verdict": "MIXED_GEOGRAPHIC_GENERALIZATION",
+      "claim": "all TLI models weaken under large geographic blocks"
+    },
+    "stage1f": {
+      "verdict": "TREE_ADVANTAGE_STABLE",
+      "tree_spearman": 0.182,
+      "circular_spearman": 0.109,
+      "tree_minus_circular": 0.073,
+      "bootstrap_ci95": [0.055, 0.092],
+      "tree_win_fraction": 1.0
+    },
+    "stage1g": {
+      "verdict": "GEOGRAPHIC_HETEROGENEITY_CONFIRMED_WITHIN_TLI",
+      "claim_limit": "not universal; contradicted by WALS geography transfer"
+    },
+    "stage1h": {
+      "verdict": "TREE_REPLICATES_OVER_CIRCULAR__WEAK_CROSS_MACROAREA_TRANSFER",
+      "dataset": "GBI alternative independence curation",
+      "n_languages": 1140,
+      "tree_spearman": 0.122,
+      "circular_spearman": 0.073,
+      "tree_win_fraction": 1.0,
+      "macroarea_transfer": 0.144
+    },
+    "stage1i": {
+      "verdict": "WALS_TREE_OVER_CIRCULAR",
+      "dataset": "WALS external sparse sanity source",
+      "n_languages": 2659,
+      "n_features": 30,
+      "tree_spearman": 0.603,
+      "circular_spearman": 0.410,
+      "tree_win_fraction": 1.0,
+      "macroarea_transfer": 0.634
     }
   },
-  "current_interpretation": "Evidence favors structured but non-periodic predictive geometry over a simple global or predefined local periodic system. Standard circular-seriation, geography, capacity, replication, and formal reviewer checks remain before manuscript-level claims.",
+  "current_interpretation": "The tested simple global circular form of the language periodic-table hypothesis is not supported. Hierarchical/non-circular models are stronger family-held-out predictive benchmarks across TLI, GBI, and WALS, but the evidence does not establish one universal tree geometry. Geographic portability is representation-dependent and secondary.",
   "strongest_prior_art": [
     "Baker 2001 - periodic table of languages",
     "Port et al. 2018 - Persistent Topology of Syntax",
     "Port, Karidi & Marcolli 2022 - Topological Analysis of Syntactic Structures",
-    "Grambank 2023 - global morphosyntactic latent structure",
-    "Graff et al. 2025 - independent structural-feature datasets",
+    "Grambank 2023 - global morphosyntactic latent structure and genealogical constraints",
+    "Graff et al. 2025 - GBI/TLI independent-feature curations",
     "Verkerk et al. 2025/2026 - spatiophylogenetic tests of grammatical universals",
-    "Armstrong, Guzman & Sing-Long 2021 - strict circular seriation / circular Robinson matrices"
+    "circular-seriation / circular-Robinson methodology"
   ],
   "promotion_requires": [
-    "standards-aligned circular-seriation sensitivity",
-    "geography-aware evaluation",
-    "model-capacity and uncertainty checks",
-    "second-dataset or domain replication",
-    "formal identity-bearing ARIS secondary reviewer evidence",
-    "closest-prior-work check still supports a distinct predictive geometry contribution"
+    "formal identity-bearing ARIS secondary reviewer receipt",
+    "no fatal prior-art collision",
+    "reviewer acceptance or tractable revision of model-fairness and claim-boundary logic"
   ]
 }
