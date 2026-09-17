@@ -17,7 +17,6 @@ import hashlib
 import json
 import shutil
 import subprocess
-import sys
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -35,6 +34,22 @@ SOURCES = {
         "s3_prefix": "s3://openalex/data/parquet/works",
         "license": "CC0/public OpenAlex metadata; verify bundled LICENSE.txt for the downloaded release",
         "redistribution": "record manifest/checksums; do not commit the hundreds-of-GB snapshot",
+    },
+    "coldat_years": {
+        "landing": "https://ourworldindata.org/grapher/years-colonized",
+        "csv": "https://ourworldindata.org/grapher/years-colonized.csv?v=1&csvType=full&useColumnShortNames=false",
+        "metadata": "https://ourworldindata.org/grapher/years-colonized.metadata.json?v=1&csvType=full&useColumnShortNames=false",
+        "source": "Bastian Becker, Colonial Dates Dataset (COLDAT) 3.0, processed by Our World in Data",
+        "license": "OWID chart data marked CC BY; preserve original-source and OWID citations",
+        "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests",
+    },
+    "coldat_colonizer_year": {
+        "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers",
+        "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.csv?v=1&csvType=full&useColumnShortNames=false",
+        "metadata": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.metadata.json?v=1&csvType=full&useColumnShortNames=false",
+        "source": "Bastian Becker, Colonial Dates Dataset (COLDAT) 3.0, processed by Our World in Data",
+        "license": "OWID chart data marked CC BY; preserve original-source and OWID citations",
+        "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests",
     },
     "icow": {
         "landing": "https://www.paulhensel.org/icowcol.html",
@@ -163,6 +178,29 @@ def cmd_openalex_snapshot(args: argparse.Namespace) -> None:
     record("openalex", None, status="snapshot_synced", local_path=str(dest.relative_to(PAPER)), command=command)
 
 
+def cmd_coldat(args: argparse.Namespace) -> None:
+    plans = {
+        "coldat_years": RAW / "coldat" / "years-colonized.csv",
+        "coldat_colonizer_year": RAW / "coldat" / "colonizer-by-country-year.csv",
+    }
+    if not args.execute:
+        for source, dest in plans.items():
+            print(source, SOURCES[source]["csv"], "->", dest)
+        return
+    for source, dest in plans.items():
+        download(SOURCES[source]["csv"], dest)
+        metadata_dest = dest.with_suffix(".metadata.json")
+        download(SOURCES[source]["metadata"], metadata_dest)
+        record(
+            source,
+            dest,
+            status="acquired_local",
+            metadata_local_path=str(metadata_dest.relative_to(PAPER)),
+            metadata_sha256=sha256(metadata_dest),
+        )
+        print(dest)
+
+
 def cmd_icow(args: argparse.Namespace) -> None:
     dest = RAW / "icow" / "colhist_v1.1.zip"
     if not args.execute:
@@ -197,6 +235,10 @@ def main() -> None:
     p = sub.add_parser("openalex-snapshot", help="sync the full public Works Parquet snapshot")
     p.add_argument("--confirm-huge-download", action="store_true")
     p.set_defaults(func=cmd_openalex_snapshot)
+
+    p = sub.add_parser("coldat", help="download OWID-processed COLDAT primary exposure files")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(func=cmd_coldat)
 
     p = sub.add_parser("icow", help="download ICOW locally from its official site")
     p.add_argument("--execute", action="store_true")
