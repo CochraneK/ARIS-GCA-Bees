@@ -1,0 +1,122 @@
+{
+  "dataset_url": "https://raw.githubusercontent.com/annagraff/crossling-curated/main/curated_data/TLI/statisticalTLI/full/statisticalTLI_full_densified_small.csv",
+  "seed": 2026,
+  "raw_languages": 644,
+  "usable_features": 245,
+  "compression": {
+    "n_features": 120,
+    "n_languages": 644,
+    "observed_cumulative_explained_variance": {
+      "10": 0.34358891946241177,
+      "20": 0.5102860222431597,
+      "50": 0.7827739382411424
+    },
+    "null": {
+      "10": {
+        "mean": 0.1986510033068273,
+        "sd": 0.0012935644475137714,
+        "p95": 0.20052909907894667
+      },
+      "20": {
+        "mean": 0.3623818718136309,
+        "sd": 0.0017157254849430692,
+        "p95": 0.3649721237295871
+      },
+      "50": {
+        "mean": 0.6998811670471795,
+        "sd": 0.0010146163177877751,
+        "p95": 0.701129229037005
+      }
+    },
+    "observed_minus_null_mean": {
+      "10": 0.14493791615558446,
+      "20": 0.14790415042952876,
+      "50": 0.08289277119396288
+    },
+    "note": "Missing values are mode-imputed feature-wise; null shuffles preserve each imputed feature's marginal distribution."
+  },
+  "residual_association": {
+    "n_features": 80,
+    "n_pairs": 3143,
+    "observed": {
+      "median": 0.007375415210600358,
+      "p90": 0.03688926771167937,
+      "p99": 0.11941039204909938,
+      "mean": 0.01591476951257649
+    },
+    "permutation_null": {
+      "median": 0.003180299899182303,
+      "p90": 0.015611367564445934,
+      "p99": 0.03857777343434225,
+      "mean": 0.0061058427368772365
+    },
+    "strongest_pairs": [
+      {
+        "nmi": 0.6190903846123957,
+        "feature_a": "TLI1069",
+        "feature_b": "TLI1005",
+        "shared_n": 242
+      },
+      {
+        "nmi": 0.402674617164586,
+        "feature_a": "TLI0613",
+        "feature_b": "TLI0035",
+        "shared_n": 219
+      },
+      {
+        "nmi": 0.36565893802737454,
+        "feature_a": "TLI1057",
+        "feature_b": "TLI0954",
+        "shared_n": 193
+      },
+      {
+        "nmi": 0.36312597105061695,
+        "feature_a": "TLI0978",
+        "feature_b": "TLI0928",
+        "shared_n": 300
+      },
+      {
+        "nmi": 0.28617801709466584,
+        "feature_a": "TLI1098",
+        "feature_b": "TLI0930",
+        "shared_n": 270
+      },
+      {
+        "nmi": 0.28101154892810243,
+        "feature_a": "TLI0839",
+        "feature_b": "TLI0044",
+        "shared_n": 250
+      },
+      {
+        "nmi": 0.26380320445466515,
+        "feature_a": "TLI1085",
+        "feature_b": "TLI1016",
+        "shared_n": 232
+      },
+      {
+        "nmi": 0.25987983235758483,
+        "feature_a": "TLI1005",
+        "feature_b": "TLI1016",
+        "shared_n": 218
+      },
+      {
+        "nmi": 0.23700185570097862,
+        "feature_a": "TLI0629",
+        "feature_b": "TLI1073",
+        "shared_n": 463
+      },
+      {
+        "nmi": 0.2298619983038537,
+        "feature_a": "TLI1091",
+        "feature_b": "TLI1085",
+        "shared_n": 356
+      }
+    ],
+    "note": "Pairwise NMI uses only jointly observed languages. The permutation null shuffles one feature within each observed pair."
+  },
+  "verdict": "MIXED_SIGNAL",
+  "verdict_reasons": [
+    "20-component compression exceeds shuffled-null mean by 0.148.",
+    "90th-percentile residual NMI (0.037) is not clearly separated from null (0.016)."
+  ]
+}
