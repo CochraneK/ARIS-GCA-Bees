@@ -1,119 +1,90 @@
-# Active Candidate · Beyond the Periodic Table
+# Review-Ready Candidate · Testing the Periodic-Table Hypothesis of Human Language
 
-**Status:** ARIS active candidate · predictive-geometry reframe  
+**Status:** ARIS active candidate · confirmatory screen complete · formal secondary review pending  
 **Paper ID:** not assigned  
-**Current working title:** *Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space*  
-**Historical hypothesis:** *Testing the Periodic-Table Hypothesis of Human Language*
+**Working title:** *Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure*  
+**Alternate title:** *Beyond the Periodic Table: Stress-Testing the Geometry of Cross-Linguistic Structural Space*
 
 ## Core question
 
-Does cross-linguistic structural diversity contain a genuinely periodic organization, or is it better described by non-periodic geometry such as hierarchy, low-rank structure, or graphs/manifolds?
+Can the historical “periodic table of languages” idea be made into a falsifiable predictive model, and does an explicitly circular/periodic geometry generalize better than non-periodic alternatives?
 
-The project treats “periodic table” as a falsifiable historical hypothesis rather than a desired visualization.
+The project does **not** draw a periodic table first and fit evidence afterward. Periodicity is allowed to lose.
 
-## What is already taken by prior work
+## What is already taken
 
-- **Baker (2001)** explicitly proposed a “periodic table of languages” and grammatical parameters as language-building atoms.
-- **Port et al. (2018)** and **Port, Karidi & Marcolli (2022)** already applied topology/persistent-homology ideas to syntactic-parameter spaces.
-- **Grambank (2023)** already studies global morphosyntactic latent structure using PCA, feature bundles, and latent classes.
-- **Graff et al. (2025)** provide dependency-curated GBI/TLI structural datasets.
-- **Verkerk et al. (2025/2026)** test grammatical universals with genealogical and geographical controls.
-- **SIGTYP / computational typology** already establish held-out typological feature prediction.
-- **Circular-seriation research** formalizes circular Robinson matrices; a serious circular-order claim should be checked against that methodology rather than only a custom circle.
+- Baker (2001): periodic-table metaphor and grammatical parameter hierarchy.
+- Port/Marcolli (2018, 2022): topology, dimensionality, clustering, persistent loops in syntactic-parameter spaces.
+- Grambank (2023): global latent structure, feature bundles, design-space and genealogy/geography analyses.
+- Graff et al. (2025): GBI/TLI dependency-curated datasets.
+- SIGTYP/computational typology: held-out typological prediction.
+- Circular-seriation literature: formal circular-Robinson structure.
 
-## Surviving novelty wedge
+The surviving novelty wedge is the **explicit predictive stress test of periodic vs non-periodic geometry**, not any of those ingredients alone.
 
-The candidate contribution is the **predictive model competition itself**:
+## Current result
 
-> operationalize the historical periodic-table hypothesis and test whether a periodic geometry generalizes better than non-periodic alternatives on modern curated global data, including language-family and later geographic controls.
+> **The tested simple global circular form of the language periodic-table hypothesis is not supported. Hierarchical/non-circular models are stronger family-held-out predictive benchmarks across TLI, GBI, and WALS, but the study does not establish one universal tree geometry.**
 
-## Evidence trajectory
+### Why that conclusion is stronger than “tree got a higher score once”
 
-### Stage 0 · prerequisite signal
+- the circle receives direct angular optimization;
+- no predefined TLI domain passes the local-periodicity rule;
+- held-out circular-Robinson / closure diagnostics fail to support a genuine global cycle;
+- tree beats optimized circle in 20/20 repeated TLI family-held-out splits;
+- GBI alternative curation reproduces tree > circle;
+- WALS external sparse sanity data also reproduces tree > circle.
 
-`MIXED_SIGNAL`
+## Key confirmatory numbers
 
-- 644 languages;
-- 20-component compression = **0.510** vs shuffled-null **0.362**;
-- residual dependencies show a substantial upper tail.
+| Check | Result |
+|---|---|
+| TLI repeated family hold-out | tree 0.182 vs circular 0.109; Δ=+0.073, 95% CI [0.055, 0.092], tree wins 20/20 |
+| Circular closure, 60 TLI features | closure/internal-adjacency ratio ≈ **0.037** |
+| GBI family hold-out | tree 0.122 vs circular 0.073; tree wins all splits |
+| WALS family hold-out | tree 0.603 vs circular 0.410; tree wins 8/8 |
 
-Conclusion: there is real organization worth modeling, but this is not periodicity evidence.
+## Important contradiction
 
-### Stage 1 · global model competition
+TLI and GBI show weak transfer of feature-association structure across large geographic regions, but WALS shows strong cross-Macroarea transfer (~0.634).
 
-`REFRAME_NONPERIODIC_GEOMETRY`
+Therefore **geographic collapse is not a universal headline result**. It remains a dataset/representation-sensitive secondary finding.
 
-Family-held-out Spearman on 60 features:
+## Claim boundary
 
-| Model | Spearman |
-|---|---:|
-| tree | **0.178** |
-| graph | 0.163 |
-| low-rank | 0.150 |
-| Euclidean | 0.150 |
-| circular | **0.109** |
+Supported:
 
-Circular-order stability was 0.542 ± 0.139: the circle captured reproducible structure, but not as well as the best non-periodic models.
+> the tested simple global circular/periodic model is not supported as the best predictive organization of cross-linguistic feature associations.
 
-### Stage 1B · fairer circle
+Not supported:
 
-`MIXED_ROBUSTNESS`
+- “no linguistic periodicity can ever exist”;
+- “language has been proven to be a tree”;
+- “geography causes the observed geometry”;
+- “typological features are chemical-like atoms.”
 
-After fixing affinity connectivity and directly optimizing angular positions:
+## Evidence artifacts
 
-- 40 features: circular 0.179, tree 0.178, Euclidean 0.217;
-- 60 features: circular 0.105, tree 0.147, low-rank 0.153.
+- `RESEARCH_BRIEF.md`
+- `idea-stage/IDEA_REPORT.md`
+- `PILOT_REPORT.md`
+- `STAGE1_REPORT.md`
+- `STAGE1B_REPORT.md`
+- `STAGE1C_REPORT.md`
+- `STAGE1D_REPORT.md` — circular-Robinson / closure
+- `STAGE1E_REPORT.md` — geographic blocking
+- `STAGE1F_REPORT.md` — repeated family-held-out uncertainty
+- `STAGE1G_REPORT.md` — matched-size geographic calibration
+- `STAGE1H_REPORT.md` — GBI replication
+- `STAGE1I_REPORT.md` — WALS external sanity replication
+- `refine-logs/MODEL_CAPACITY_NOTE.md`
+- `refine-logs/FINAL_PROPOSAL.md`
+- `refine-logs/SECONDARY_REVIEW_PACKET.md`
+- `refine-logs/EXPERIMENT_TRACKER.md`
+- `ARIS_STATUS.md`
 
-The periodic hypothesis therefore cannot be dismissed as a trivial strawman, but it is not robustly best either.
+## What remains
 
-### Stage 1C · predefined subsystem test
+Only one hard ARIS gate remains: **identity-bearing secondary novelty/research review**.
 
-`NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE`
-
-Using TLI's official feature groupings rather than cherry-picking subsets:
-
-| Domain | Optimized circle | Best relevant non-periodic signal | Circle stability | Verdict |
-|---|---:|---:|---:|---|
-| Grammar linear order | 0.401 | tree 0.494 | 0.811 | non-periodic |
-| Grammar other | 0.253 | tree 0.313 | 0.274 | non-periodic |
-| Grammatical categories | 0.252 | tree 0.229 | 0.373 | ambiguous |
-| Lexical | 0.142 | tree 0.269 | 0.057 | non-periodic |
-| Phonology | 0.151 | tree 0.229 | 0.550 | non-periodic |
-
-No predefined domain passed the predeclared combination of predictive competitiveness and order stability needed to call it a local periodic candidate.
-
-## Current interpretation
-
-The evidence currently favors:
-
-> **Human language has reproducible structural geometry, but a simple global or predefined-local periodic system is not the best description found so far.**
-
-The strongest next paper direction is therefore not to draw a periodic table. It is to ask which geometry best predicts linguistic design space and to use Baker's periodic-table proposal as the historical hypothesis being tested.
-
-## Remaining decisive checks
-
-- standards-aligned circular-seriation / circular-Robinson sensitivity;
-- more repeated family-held-out uncertainty and capacity accounting;
-- geography-aware validation;
-- second-dataset / independent-subset replication;
-- formal identity-bearing ARIS secondary review.
-
-## ARIS artifacts
-
-- `RESEARCH_BRIEF.md` — canonical research brief
-- `idea-stage/IDEA_REPORT.md` — prior art, idea ranking, novelty analysis
-- `PILOT_REPORT.md` / `pilot-results.json` — Stage 0
-- `STAGE1_REPORT.md` / `stage1-results.json` — global competition
-- `STAGE1B_REPORT.md` / `stage1b-results.json` — periodic fairness robustness
-- `STAGE1C_REPORT.md` / `stage1c-results.json` — predefined domain screen
-- `refine-logs/FINAL_PROPOSAL.md` — current paper framing
-- `refine-logs/EXPERIMENT_PLAN.md` / `EXPERIMENT_TRACKER.md` — next experiments
-- `ARIS_STATUS.md` — durable state and review gate
-
-## Formal review boundary
-
-ARIS v0.4.26 requires identity-bearing secondary-review evidence for reviewer-bearing phases. The current ChatGPT-side pass has not fabricated a reviewer receipt. Promotion to a numbered paper remains blocked on that formal gate plus the remaining confirmatory controls.
-
-## Promotion criterion
-
-Do **not** create `papers/002-*` yet. Promote only after the final periodic baseline, spatial/replication controls, and formal ARIS review support a stable manuscript framing.
+The candidate should remain unnumbered until a real secondary reviewer returns `PASS / REVISE / STOP` and the repository stores that reviewer receipt. If the reviewer returns PASS or a tractable REVISE without a fatal prior-art/design collision, promote to the next stable Paper ID and begin manuscript-generation / reviewer loops.
