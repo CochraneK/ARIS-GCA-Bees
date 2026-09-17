@@ -4,9 +4,9 @@
   "title": "The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks",
   "short_title": "Mental Health × Knowledge-Network Exclusion",
   "year": 2026,
-  "status": "feasibility",
+  "status": "feasibility-pilot",
   "domain": "science of science / computational social science / cultural analytics / mental-health stigma",
-  "summary": "A counterfactual network study estimating how much scientific, intellectual, and cultural production could be lost when people with well-documented mental-health conditions are prevented from participating in knowledge production, explicitly allowing for historical substitution, network rewiring, and uncertainty in retrospective evidence.",
+  "summary": "A sign-neutral counterfactual network study of how scientific, intellectual, and cultural development changes when the productive participation of historically realized contributors is reduced, with mental-health evidence, discrimination, adaptive substitution, identity uncertainty, and retrospective documentation handled as separate components.",
   "authors": ["Cunyi Kang"],
   "aris": {
     "provenance": "ARIS4C guided run; GPTPage/web handoff for API-gated LLM/reviewer steps",
@@ -16,7 +16,7 @@
   "links": {
     "paper_en": "",
     "paper_zh": "",
-    "pipeline": "process/RESEARCH_PLAN.md",
+    "pipeline": "process/STATUS.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/004-counterfactual-cost-of-exclusion"
   },
   "tags": [
