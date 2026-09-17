@@ -23,7 +23,15 @@
       "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.csv?v=1&csvType=full&useColumnShortNames=false",
       "source": "Bastian Becker (COLDAT 3.0), processed by Our World in Data",
       "license": "CC BY on OWID data page",
-      "role": "colonizer identity and imperial-center intensity reconstruction"
+      "role": "colonizer identity and former-colony history summary"
+    },
+    "coldat_empire_counts": {
+      "status": "official_download_script_ready",
+      "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer",
+      "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer.csv?v=1&csvType=full&useColumnShortNames=false",
+      "source": "Bastian Becker (COLDAT 3.0) plus Gapminder Population v7, processed by Our World in Data",
+      "license": "CC BY on OWID page; preserve underlying provider citations/terms",
+      "role": "imperial-center cumulative colony-years, duration, and peak-colony profiles"
     },
     "icow": {
       "status": "local_download_script_ready",
