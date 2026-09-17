@@ -72,24 +72,31 @@ class TemporalGraph:
                 raise ValueError("self edges are not allowed")
             self.outgoing[source].add(target)
             self.incoming[target].add(source)
-        self._check_acyclic()
-
-    def _check_acyclic(self) -> None:
-        indegree = {node: len(parents) for node, parents in self.incoming.items()}
-        stack = [node for node, degree in indegree.items() if degree == 0]
-        visited = 0
-        while stack:
-            node = stack.pop()
-            visited += 1
-            for child in self.outgoing[node]:
-                indegree[child] -= 1
-                if indegree[child] == 0:
-                    stack.append(child)
-        if visited != len(self.works):
-            raise ValueError("graph contains a cycle")
+        # This also checks acyclicity and ensures same-year edges are ordered by
+        # dependency, not accidentally by lexical work ID.
+        self.topological_order()
 
     def topological_order(self) -> list[str]:
-        return sorted(self.works, key=lambda wid: (self.works[wid].year, wid))
+        indegree = {node: len(parents) for node, parents in self.incoming.items()}
+        ready = [node for node, degree in indegree.items() if degree == 0]
+        order: list[str] = []
+
+        def sort_key(wid: str) -> tuple[int, str]:
+            return self.works[wid].year, wid
+
+        ready.sort(key=sort_key, reverse=True)
+        while ready:
+            node = ready.pop()
+            order.append(node)
+            for child in sorted(self.outgoing[node], key=sort_key):
+                indegree[child] -= 1
+                if indegree[child] == 0:
+                    ready.append(child)
+                    ready.sort(key=sort_key, reverse=True)
+
+        if len(order) != len(self.works):
+            raise ValueError("graph contains a cycle")
+        return order
 
     def descendants(self, starts: set[str]) -> set[str]:
         seen = set(starts)
