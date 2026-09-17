@@ -1,0 +1,43 @@
+name: ARIS4C006 Crossref family-name pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-crossref-pilot.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/03_crossref_structured_family_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  crossref-family-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run OpenAlex DOI to Crossref structured-family pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/03_crossref_structured_family_pilot.py \
+            --year 2024 \
+            --per-field 30 \
+            --outdir data/pilot/crossref
+
+      - name: Upload aggregate public-safe summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-crossref-family-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/crossref/crossref_family_summary_2024.csv
+            ${{ env.PAPER_DIR }}/data/pilot/crossref/manifest_2024.json
+          if-no-files-found: error
+          retention-days: 30
