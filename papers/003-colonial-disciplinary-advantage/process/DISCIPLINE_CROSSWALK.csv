@@ -1,0 +1,22 @@
+concept_id,conceptual_discipline,selector_level,openalex_ids,openalex_names,primary_assignment_rule,status
+D01,Anthropology,subfield,3314,Anthropology,primary_topic.subfield.id in set,FROZEN
+D02,Archaeology,subfield_set,1204;3302,Archeology;Archeology,primary_topic.subfield.id in set,FROZEN
+D03,Geography,subfield,3305,"Geography, Planning and Development",primary_topic.subfield.id in set,FROZEN
+D04,Development Studies,subfield,3303,Development,primary_topic.subfield.id in set,FROZEN
+D05,Linguistics,subfield_set,1203;3310,Language and Linguistics;Linguistics and Language,primary_topic.subfield.id in set,FROZEN
+D06,Tropical Medicine / colonial-health-related Public Health,subfield_set,2713;2739;2725;2405,Epidemiology;Public Health Environmental and Occupational Health;Infectious Diseases;Parasitology,primary_topic.subfield.id in set,FROZEN_BROAD_OPERATIONALIZATION
+D07,Agriculture & Forestry,subfield_set,1102;1107;1108;1111,Agronomy and Crop Science;Forestry;Horticulture;Soil Science,primary_topic.subfield.id in set,FROZEN
+D08,Geology / Earth-resource sciences,subfield_set,1906;1907;1908,Geochemistry and Petrology;Geology;Geophysics,primary_topic.subfield.id in set,FROZEN
+D09,Sociology,subfield,3312,Sociology and Political Science,primary_topic.subfield.id in set,FROZEN_WITH_LABEL_CAVEAT
+D10,Political Science / International Relations,subfield,3320,Political Science and International Relations,primary_topic.subfield.id in set,FROZEN
+D11,Law,subfield,3308,Law,primary_topic.subfield.id in set,FROZEN
+D12,Economics,subfield,2002,Economics and Econometrics,primary_topic.subfield.id in set,FROZEN
+D13,Public Administration / Social Policy,subfield,3321,Public Administration,primary_topic.subfield.id in set,FROZEN_NARROW_OPERATIONALIZATION
+D14,Education,subfield,3304,Education,primary_topic.subfield.id in set,FROZEN
+D15,History,subfield,1202,History,primary_topic.subfield.id in set,FROZEN
+D16,Demography / Population Studies,subfield,3317,Demography,primary_topic.subfield.id in set,FROZEN
+D17,Mathematics,field,26,Mathematics,primary_topic.field.id in set,FROZEN
+D18,Physics,field,31,Physics and Astronomy,primary_topic.field.id in set,FROZEN
+D19,Chemistry,field,16,Chemistry,primary_topic.field.id in set,FROZEN
+D20,Computer Science,field,17,Computer Science,primary_topic.field.id in set,FROZEN
+D21,Materials Science,field,25,Materials Science,primary_topic.field.id in set,FROZEN
