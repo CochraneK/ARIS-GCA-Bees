@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Compare blinded IKES coding rounds and prepare adjudication files.
 
-The script never looks at contemporary outcomes. It reports agreement and flags
-large disagreements (absolute difference >= 2 by default). It does NOT choose a
+Canonical key: concept_id (D01-D21). Display labels never determine identity.
+The script never reads contemporary outcomes. It reports agreement and flags
+large disagreements (absolute difference >=2 by default). It does NOT choose a
 winner automatically; frozen scores require documented evidence adjudication.
 """
 
@@ -39,15 +40,11 @@ def weighted_kappa(a: pd.Series, b: pd.Series, k: int = 4) -> float | None:
     for i in range(k):
         for j in range(k):
             weights[i, j] = ((i - j) / (k - 1)) ** 2
-    num = float((weights * obs).sum())
     den = float((weights * exp).sum())
-    if den == 0:
-        return None
-    return 1.0 - num / den
+    return None if den == 0 else 1.0 - float((weights * obs).sum()) / den
 
 
 def icc_2_1(matrix: np.ndarray) -> float | None:
-    """Two-way random, absolute-agreement single-measure ICC(2,1)."""
     if matrix.ndim != 2 or matrix.shape[1] != 2 or matrix.shape[0] < 3:
         return None
     if np.isnan(matrix).any():
@@ -71,18 +68,25 @@ def icc_2_1(matrix: np.ndarray) -> float | None:
 
 def load(path: Path, label: str) -> pd.DataFrame:
     df = pd.read_csv(path)
-    required = {"discipline", *DIMS}
+    required = {"concept_id", "discipline", *DIMS}
     missing = required - set(df.columns)
     if missing:
         raise SystemExit(f"{label} missing columns: {sorted(missing)}")
-    if df["discipline"].duplicated().any():
-        raise SystemExit(f"{label} has duplicate disciplines")
+    if df["concept_id"].duplicated().any():
+        raise SystemExit(f"{label} has duplicate concept_id values")
+    expected = {f"D{i:02d}" for i in range(1, 22)}
+    observed = set(df["concept_id"].astype(str))
+    if observed != expected:
+        raise SystemExit(
+            f"{label} concept_id set differs from frozen D01-D21; "
+            f"missing={sorted(expected-observed)}, extra={sorted(observed-expected)}"
+        )
     for d in DIMS:
         df[d] = pd.to_numeric(df[d], errors="coerce")
         bad = df[d].dropna()[~df[d].dropna().between(0, 3)]
         if len(bad):
             raise SystemExit(f"{label} {d} contains scores outside 0-3")
-    return df[["discipline", *DIMS]].copy()
+    return df[["concept_id", "discipline", *DIMS]].copy()
 
 
 def main() -> None:
@@ -95,20 +99,22 @@ def main() -> None:
 
     a = load(args.coder_a, "Coder A")
     b = load(args.coder_b, "Coder B")
-    merged = a.merge(b, on="discipline", how="outer", suffixes=("_A", "_B"), indicator=True)
+    merged = a.merge(b, on="concept_id", how="outer", suffixes=("_A", "_B"), indicator=True)
     if not (merged["_merge"] == "both").all():
-        missing = merged.loc[merged["_merge"] != "both", ["discipline", "_merge"]]
-        raise SystemExit("Coder discipline sets differ:\n" + missing.to_string(index=False))
+        missing = merged.loc[merged["_merge"] != "both", ["concept_id", "_merge"]]
+        raise SystemExit("Coder concept sets differ:\n" + missing.to_string(index=False))
 
+    label_mismatch = merged["discipline_A"].astype(str) != merged["discipline_B"].astype(str)
     long_rows = []
-    for _, row in merged.iterrows():
+    for _, row in merged.sort_values("concept_id").iterrows():
         for d in DIMS:
             av = row[f"{d}_A"]
             bv = row[f"{d}_B"]
             diff = abs(av - bv) if pd.notna(av) and pd.notna(bv) else np.nan
             long_rows.append(
                 {
-                    "discipline": row["discipline"],
+                    "concept_id": row["concept_id"],
+                    "discipline": row["discipline_A"],
                     "dimension": d,
                     "score_A": av,
                     "score_B": bv,
@@ -120,10 +126,7 @@ def main() -> None:
             )
     long = pd.DataFrame(long_rows)
 
-    kappas = {}
-    for d in DIMS:
-        kappas[d] = weighted_kappa(merged[f"{d}_A"], merged[f"{d}_B"])
-
+    kappas = {d: weighted_kappa(merged[f"{d}_A"], merged[f"{d}_B"]) for d in DIMS}
     a_mean = merged[[f"{d}_A" for d in DIMS]].mean(axis=1, skipna=False)
     b_mean = merged[[f"{d}_B" for d in DIMS]].mean(axis=1, skipna=False)
     ikes_icc = icc_2_1(np.column_stack([a_mean.to_numpy(), b_mean.to_numpy()]))
@@ -135,21 +138,24 @@ def main() -> None:
         "n_disciplines": int(len(merged)),
         "n_cells": int(len(long)),
         "n_missing_pairs": int(long["abs_diff"].isna().sum()),
-        "n_large_disagreements": int(long["needs_adjudication"].sum()),
+        "n_large_or_missing_disagreements": int(long["needs_adjudication"].sum()),
         "mean_absolute_difference": float(long["abs_diff"].mean()),
         "dimension_quadratic_weighted_kappa": kappas,
         "ikes_mean_icc_2_1": ikes_icc,
+        "display_label_mismatch_concept_ids": merged.loc[label_mismatch, "concept_id"].tolist(),
         "freeze_rule": "all NA and abs-difference>=2 cells require documented outcome-blind adjudication",
     }
     (args.output_dir / "AGREEMENT_SUMMARY.json").write_text(
         json.dumps(summary, indent=2) + "\n", encoding="utf-8"
     )
 
-    candidate = pd.DataFrame({"discipline": merged["discipline"]})
+    candidate = merged[["concept_id", "discipline_A"]].rename(columns={"discipline_A": "discipline"}).copy()
     for d in DIMS:
         candidate[d] = merged[[f"{d}_A", f"{d}_B"]].mean(axis=1, skipna=False)
     candidate["IKES_unadjudicated_mean"] = candidate[DIMS].mean(axis=1, skipna=False)
-    candidate.to_csv(args.output_dir / "IKES_UNADJUDICATED_MEAN.csv", index=False)
+    candidate.sort_values("concept_id").to_csv(
+        args.output_dir / "IKES_UNADJUDICATED_MEAN.csv", index=False
+    )
 
     print(json.dumps(summary, indent=2))
     print("No frozen score was created automatically.")
