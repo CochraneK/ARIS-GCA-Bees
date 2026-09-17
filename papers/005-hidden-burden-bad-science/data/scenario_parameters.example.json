@@ -1,0 +1,45 @@
+{
+  "scenario_name": "ILLUSTRATIVE_ONLY_DO_NOT_CITE_AS_EMPIRICAL",
+  "notes": [
+    "This file is for Fermi-story prototyping and software testing only.",
+    "Parameters are NOT ARIS4C005 empirical estimates.",
+    "Replace every range with evidence-backed values before any scientific use.",
+    "Researcher-level misconduct survey rates must not be inserted as paper-level prevalence."
+  ],
+  "annual_target_works": 6200000,
+  "paper_problem_prevalence": {
+    "low": 0.005,
+    "mode": 0.01,
+    "high": 0.02
+  },
+  "direct_researcher_years_per_problematic_work": {
+    "low": 0.25,
+    "mode": 1.0,
+    "high": 2.0
+  },
+  "followup_probability": {
+    "low": 0.05,
+    "mode": 0.20,
+    "high": 0.40
+  },
+  "followup_researcher_years_if_triggered": {
+    "low": 0.25,
+    "mode": 1.0,
+    "high": 3.0
+  },
+  "sleeping_beauty_extension": {
+    "enabled": true,
+    "candidate_rate": {
+      "low": 0.0002,
+      "mode": 0.001,
+      "high": 0.003
+    },
+    "counterfactual_awakening_loss_fraction": {
+      "low": 0.02,
+      "mode": 0.10,
+      "high": 0.25
+    }
+  },
+  "simulation_draws": 100000,
+  "seed": 405
+}
