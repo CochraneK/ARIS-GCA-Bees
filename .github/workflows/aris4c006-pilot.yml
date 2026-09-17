@@ -14,29 +14,33 @@ permissions:
 jobs:
   data-feasibility-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     env:
       PAPER_DIR: papers/006-chinese-alphabetical-exposure
     steps:
       - uses: actions/checkout@v4
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: "release"
-
-      - name: Install pinned ChineseNames release
-        shell: bash
-        run: |
-          Rscript -e 'install.packages("remotes", repos="https://cloud.r-project.org")'
-          Rscript -e 'remotes::install_version("ChineseNames", version="2025.8", repos="https://cloud.r-project.org", upgrade="never")'
-
-      - name: Export ChineseNames and build 26-letter population baseline
-        working-directory: ${{ env.PAPER_DIR }}
-        run: Rscript code/00_export_chinesenames.R
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Download public engineering mirror of ChineseNames familyname table
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw"
+          curl -L --fail --retry 5 --retry-delay 2 \
+            "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv" \
+            -o "$PAPER_DIR/data/raw/familyname.csv"
+          test "$(($(wc -l < "$PAPER_DIR/data/raw/familyname.csv") - 1))" -eq 1806
+
+      - name: Build 26-letter engineering baseline
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/00b_build_initial_baseline.py \
+            data/raw/familyname.csv \
+            --out data/derived/chinesenames_initial_population_baseline.csv \
+            --metadata data/metadata/chinesenames_engineering_baseline.json
 
       - name: Run bounded keyless OpenAlex author-order feasibility pilot
         continue-on-error: true
@@ -63,6 +67,10 @@ jobs:
               "paper": "ARIS4C006",
               "confirmatory_use_allowed": False,
               "purpose": "surname-baseline and author-order extraction feasibility only",
+              "baseline_provenance": (
+                  "Engineering mirror used in CI. Confirmatory analysis must reproduce "
+                  "the baseline from pinned ChineseNames 2025.8 via code/00_export_chinesenames.R."
+              ),
           }
 
           baseline = root / "derived" / "chinesenames_initial_population_baseline.csv"
@@ -92,7 +100,7 @@ jobs:
           oa_summary = root / "pilot" / "openalex" / "alphabetization_summary_2024_heuristic.csv"
           if oa_summary.exists():
               rows = list(csv.DictReader(oa_summary.open(encoding="utf-8-sig")))
-              summary["openalex"]["summary_cells"] = len(rows)
+              summary.setdefault("openalex", {})["summary_cells"] = len(rows)
 
           out = root / "pilot" / "pilot_summary.json"
           out.parent.mkdir(parents=True, exist_ok=True)
@@ -100,7 +108,7 @@ jobs:
           print(out.read_text())
           PY
 
-      - name: Remove redistributable-risk raw exports before artifact upload
+      - name: Remove source mirror before artifact upload
         if: always()
         working-directory: ${{ env.PAPER_DIR }}
         run: rm -rf data/raw
@@ -112,9 +120,7 @@ jobs:
           name: aris4c006-data-feasibility-pilot
           path: |
             ${{ env.PAPER_DIR }}/data/derived/chinesenames_initial_population_baseline.csv
-            ${{ env.PAPER_DIR }}/data/derived/chinesenames_surname_population_baseline.csv
-            ${{ env.PAPER_DIR }}/data/metadata/chinesenames_snapshot.txt
-            ${{ env.PAPER_DIR }}/data/metadata/R_sessionInfo.txt
+            ${{ env.PAPER_DIR }}/data/metadata/chinesenames_engineering_baseline.json
             ${{ env.PAPER_DIR }}/data/pilot/pilot_summary.json
             ${{ env.PAPER_DIR }}/data/pilot/openalex/manifest_2024.json
             ${{ env.PAPER_DIR }}/data/pilot/openalex/alphabetization_summary_2024_heuristic.csv
