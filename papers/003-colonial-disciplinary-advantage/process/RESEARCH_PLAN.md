@@ -2,436 +2,418 @@
 
 ## 0. Status
 
-ARIS entry complete. This document defines the executable design before large-scale outcome collection.
+**ARIS conditional GO · pre-data design.**
 
-Primary principle: **historical theory first, contemporary outcomes second.** Discipline coding and primary hypotheses must be frozen before inspecting the full contemporary country-by-field outcome matrix.
+Primary principle: **historical theory first, contemporary outcomes second.** Historical exposure definitions, discipline coding, primary outcomes, and inference rules are frozen before the full contemporary country-by-field outcome matrix is inspected.
+
+The design has three inferential layers rather than one omnibus regression:
+
+1. **Former-colony/dependency disciplinary specialization** — scalable primary analysis.
+2. **Former colonial dyad collaboration persistence** — scalable primary network analysis.
+3. **Imperial-center disciplinary profiles** — theory-critical but small-N; use comparative/exact-style inference rather than pretending repeated fields create many independent empire observations.
+
+Ranking/prestige analyses are secondary triangulation.
 
 ---
 
 ## 1. Units of analysis
 
-The project has three linked datasets.
+### A. Country × discipline × year/window
 
-### A. Country × discipline × year panel
-
-Primary unit for specialization and impact analyses.
+Primary unit for former-colony/dependency specialization and bibliometric impact.
 
 Core fields:
 - country
-- discipline / field taxonomy id
-- year or multi-year window
-- publication output
-- fractional output
-- citation impact
+- conceptual discipline + database taxonomy id
+- year/window
+- fractional publication output
+- normalized citation impact
 - elite-paper share
 - international collaboration measures
-- exposure variables
-- controls
+- historical exposure variables
+- source/coverage diagnostics
 
-### B. Country-pair × discipline × year panel
+### B. Country-pair × discipline × year/window
 
-Unit for former-colonial network persistence.
+Primary unit for network persistence.
 
 Core fields:
 - country_i
 - country_j
 - discipline
-- year/window
 - coauthorship intensity
-- former-colonial tie
+- direct former-colonial tie
 - common colonizer
 - common language
-- geographic distance
-- bilateral scientific size
-- other dyadic controls
+- distance/contiguity
+- bilateral scientific mass
+- other prespecified dyadic controls
 
-### C. University × discipline × ranking-year crosswalk
+### C. Imperial center × discipline × year/window
 
-Secondary robustness/prestige layer.
+Small-N comparative layer. Repeated discipline observations are useful for profile comparisons but do **not** increase the number of independent imperial histories.
 
-Core fields:
-- institution
-- country
-- discipline
-- ranking source/year
-- rank / score / component scores where legally/publicly available
-- OpenAlex/Leiden bibliometric counterparts
+### D. University × discipline × ranking year
 
-Do not merge these layers into a single opaque score.
+Secondary prestige/institutional layer using rankings and Leiden/OpenAlex-linked indicators where legally and publicly obtainable.
+
+Do not collapse these datasets into one opaque score.
 
 ---
 
-## 2. Primary exposures
+## 2. Historical exposures
 
-### 2.1 Imperial-center exposure
+Use the definitions in `EXPOSURE_PROTOCOL.md`.
 
-Candidate variables, to be evaluated for reproducibility and coverage:
+### 2.1 Former-colony/dependency exposure — primary scalable country-level family
 
-- `imperial_ruler_ever`
-- `years_as_overseas_colonial_ruler`
-- `dependency_years_total`
-- `number_dependencies`
-- weighted dependency-years by population/territory where defensible
+Candidate variables to freeze after source audit:
+- total years under external colonial/dependency rule;
+- ever formally colonized/dependent;
+- primary/last colonizer;
+- number of distinct colonizers;
+- independence/end-of-rule year or cohort.
 
-The primary imperial-center exposure should be chosen before outcome inspection and should have a transparent historical interpretation. Avoid a bespoke weighted index unless each weight has a documented rationale.
+The primary duration measure should come from one documented source family rather than averaging incompatible datasets.
 
-### 2.2 Former-colony/dependency exposure
+Do not prespecify a universally positive or negative coefficient. Colonizer identity, duration, institutional path, and independence period may generate heterogeneous effects.
+
+### 2.2 Dyadic former-colonial exposure — primary scalable network family
 
 Candidate variables:
-
-- `ever_colonized_or_dependent`
-- `years_under_external_rule`
-- `primary_colonizer`
-- `number_colonizers`
-- `independence_year`
-- `independence_cohort`
-
-Do not force a common coefficient for all former colonies.
-
-### 2.3 Dyadic exposure
-
-- `direct_colonial_tie_ij`
+- `direct_former_colonial_tie_ij`
 - `common_colonizer_ij`
 - `common_official_or_colonial_language_ij`
+- end year/duration where available
 
-ICOW and CEPII are initial candidates. Dataset versions and coding rules must be recorded.
+Common language is both a potential persistence mechanism and a robustness adjustment. Models should be shown before and after language adjustment.
+
+### 2.3 Imperial-center exposure — small-N secondary family
+
+Candidate summaries:
+- cumulative colony-years ruled;
+- duration as overseas colonial ruler;
+- number/peak number of dependencies;
+- empire scale measures where historically defensible.
+
+For a COLDAT-style European overseas-colonial definition there are only a handful of imperial centers. Therefore:
+- emphasize profile effect sizes;
+- use leave-one-empire-out analysis;
+- use permutation/exact-style comparisons where meaningful;
+- avoid naive large-sample clustered inference.
+
+### 2.4 Out-of-scope primary mechanisms
+
+Scientist migration, war-driven human-capital transfer, Cold War investment, and similar shocks are related **historical knowledge capital** mechanisms but are not part of the primary colonial exposure definition for ARIS4C003.
 
 ---
 
 ## 3. Discipline construct
 
-### 3.1 Confirmatory discipline set
+### 3.1 Frozen conceptual confirmatory set
 
-Freeze before full outcome inspection.
+The following 21 conceptual fields were frozen before contemporary outcome inspection:
 
-Candidate high-entanglement anchors:
-- Anthropology
-- Archaeology
-- Geography
-- Development Studies
-- Linguistics
-- Tropical Medicine / carefully mapped Public Health topics
-- Agriculture & Forestry
-- Geology / Earth-resource sciences
+1. Anthropology
+2. Archaeology
+3. Geography
+4. Development Studies
+5. Linguistics
+6. Tropical Medicine / colonial-health-related Public Health
+7. Agriculture & Forestry
+8. Geology / Earth-resource sciences
+9. Sociology
+10. Political Science / International Relations
+11. Law
+12. Economics
+13. Public Administration / Social Policy
+14. Education
+15. History
+16. Demography / Population Studies
+17. Mathematics
+18. Physics
+19. Chemistry
+20. Computer Science
+21. Materials / modern engineering comparator
 
-Candidate medium-entanglement:
-- Sociology
-- Political Science / International Relations
-- Law
-- Economics
-- Public Administration / Social Policy
-- Education
-- History
-- Demography / Population Studies
+### 3.2 Imperial/Colonial Knowledge Entanglement Score (IKES)
 
-Candidate comparison fields:
-- Mathematics
-- Physics
-- Chemistry
-- Computer Science
-- selected modern engineering/materials sciences
+Use `ENTANGLEMENT_PROTOCOL.md`.
 
-### 3.2 Entanglement score
+IKES is coded outcome-blind across 11 dimensions covering administration, mapping, population/language classification, overseas fieldwork, extraction, colonial health, agriculture/forestry transfer, institutional transplantation, collections/archives, missionary/linguistic networks, and postwar development continuity.
 
-Preferred approach: a continuous score generated from a preregistered historical coding rubric.
+Primary score: equal-weight mean after evidence review/adjudication. No contemporary performance data may be used in scoring or weighting.
 
-Possible rubric dimensions, each coded independently:
+### 3.3 Database crosswalk
 
-1. colonial administrative demand;
-2. territorial survey/mapping;
-3. classification of peoples/languages/populations;
-4. overseas expedition/field-site dependence;
-5. extractive/resource survey;
-6. colonial medicine/public-health role;
-7. agriculture/forestry transfer;
-8. legal/educational institutional transplantation;
-9. museum/archive/specimen infrastructure;
-10. missionary/linguistic networks;
-11. postwar development-administration continuity.
+Before outcome extraction, freeze `DISCIPLINE_CROSSWALK.csv` containing:
+- conceptual field;
+- OpenAlex field/subfield/topic ids;
+- inclusion/exclusion rationale;
+- ranking-category crosswalk where applicable;
+- primary vs sensitivity mapping.
 
-Recommended coding: 0 = little/unclear; 1 = documented but non-central; 2 = substantial; 3 = foundational/major historical role.
-
-Use at least two independent coders or two independent blinded evidence summaries. Adjudicate disagreements before outcome analysis. Report inter-rater reliability.
-
-### 3.3 Alternative discipline taxonomies
-
-Run robustness across at least two taxonomies where mapping is feasible, e.g. OpenAlex field/subfield/topic hierarchy and a ranking/WoS-like subject grouping. Predefine crosswalk rules.
+Use at least one alternative taxonomy/mapping as robustness where feasible.
 
 ---
 
-## 4. Outcomes
+## 4. Primary outcomes
 
-### 4.1 Primary bibliometric specialization outcomes
+### 4.1 Output specialization
 
-Prefer fractional authorship/institutional counting for country attribution.
-
-For country c, discipline d, time t:
+Country c, discipline d, period t:
 
 `RCA_output = (fractional_output_cdt / total_fractional_output_ct) / (world_output_dt / world_output_t)`
 
-Also compute:
-- log RCA or symmetric RCA transformation;
-- minimum-volume filtered RCA;
-- output share residualized on total national science size;
-- alternative specialization metric from scientometrics literature.
+Primary analysis should use a bounded/symmetric or log-type transformation chosen **before** viewing historical-exposure associations.
 
-### 4.2 Impact outcomes
+Also report absolute fractional output so that high specialization based on tiny denominators is visible.
 
-- field/year normalized citation impact;
+### 4.2 Scientific impact
+
+Candidate primary/secondary metrics:
+- field/year-normalized citation impact;
 - PP(top 10%);
-- PP(top 1%);
-- citation-based comparative advantage;
-- robustness excluding self-citations where available.
+- PP(top 1%) as secondary because of denominator instability;
+- citation-based specialization.
 
-### 4.3 Network outcomes
+### 4.3 Collaboration/network outcomes
 
 Country-level:
-- PP(international collaboration)
-- number/share of international partners
-- degree / strength
-- betweenness or brokerage only where network size/stability supports it
+- international collaboration share;
+- partner diversity/strength where stable.
 
-Dyadic:
-- fractional coauthored-paper intensity
-- normalized collaboration propensity relative to expected volume from each country's field size
+Dyadic primary candidate:
+- fractional coauthored output normalized by expected collaboration from bilateral field size.
 
-### 4.4 Prestige/ranking outcomes
+Network centrality/brokerage is secondary because it is mechanically sensitive to network size and coverage.
 
-Secondary, explicitly separated from bibliometric outcomes:
-- QS subject ranking / component indicators when accessible
-- THE subject ranking
-- Shanghai GRAS
-- Leiden Open Edition indicators as an independent bibliometric benchmark
+### 4.4 Prestige/institutional outcomes
 
-Do not equate ordinal rank spacing with cardinal performance. Prefer scores/component indicators when available. For ranks, use rank bins/top-N presence/survival-type or ordinal models rather than naive linear rank regression.
+Secondary only:
+- QS subject scores/components where publicly obtainable;
+- THE subject indicators/ranks;
+- Shanghai GRAS;
+- Leiden Open Edition as open bibliometric institutional robustness.
+
+Do not use naive OLS on ordinal rank values. Prefer component scores, top-N presence, bins, or ordinal/censored approaches when only ranks are available.
 
 ---
 
-## 5. Primary hypotheses and models
+## 5. Confirmatory hypotheses and models
 
-### H1/H2: imperial exposure × discipline entanglement
+### H1 — former-colony/dependency disciplinary gradient
 
-Primary fixed-effect structure:
+> Historical colonial/dependency exposure is associated with the contemporary shape of national disciplinary specialization as a function of outcome-blind IKES.
 
-`Y_cdt = beta * ImperialExposure_c × Entanglement_d + alpha_c + gamma_d + tau_t + Z_cdt + error_cdt`
+Primary repeated-window specification candidate:
+
+`Y_cdt = beta * HistoricalExposure_c × IKES_d + alpha_ct + gamma_dt + error_cdt`
 
 where:
-- `alpha_c`: country fixed effects
-- `gamma_d`: discipline fixed effects
-- `tau_t`: year/window fixed effects
+- `alpha_ct` = country × time fixed effects, absorbing contemporary aggregate national scientific capacity in each period;
+- `gamma_dt` = discipline × time fixed effects, absorbing global field-specific trends.
 
-Time-invariant country exposure is absorbed by country fixed effects; the estimand is the cross-disciplinary interaction.
+The estimand is cross-disciplinary covariance within country-periods. It is an association/path-dependence test, **not** proof that colonial exposure was exogenous.
 
-For repeated windows, consider country×time fixed effects if feasible to absorb changing national science capacity:
+If duration/colonizer identity are modeled, prespecify whether they enter continuously, categorically, or hierarchically.
 
-`Y_cdt = beta * ImperialExposure_c × Entanglement_d + alpha_ct + gamma_dt + error_cdt`
+### H2 — specificity
 
-This is a stronger design because country-year factors absorb GDP, total science expansion, policy shocks, etc. Identification then comes from relative field structure within the same country-year.
+The historical-exposure association should vary monotonically with IKES rather than appearing uniformly across fields. Field-specific coefficients are secondary to the preregistered gradient test.
 
-### H3: specificity
+### H3 — heterogeneity among former colonies
 
-Estimate field-specific coefficients or interact exposure with prespecified field groups. Test the joint gradient rather than declaring success from isolated significant fields.
-
-### H4: colonized-state heterogeneity
-
-Use stratified or hierarchical models by:
+Secondary prespecified analyses may stratify/hierarchically model:
 - primary colonizer;
-- independence cohort;
 - duration;
-- common language;
-- institutional/education legacy proxies.
+- independence cohort;
+- language;
+- documented institutional/educational legacy proxies.
 
-Treat this as secondary unless measurement quality is sufficient for a prespecified model.
+No universal signed effect is assumed.
 
-### H5: network persistence
+### H4 — dyadic network persistence
 
-Dyadic model:
+`Collaboration_ijdt ~ DirectColonialTie_ij × IKES_d + gravity controls + FE`
 
-`Collaboration_ijdt ~ ColonialTie_ij × Entanglement_d + dyad controls + country_i FE + country_j FE + discipline/time FE`
+Candidate controls:
+- geographic distance;
+- contiguity;
+- bilateral scientific mass;
+- region;
+- common language (shown both excluded and included);
+- other prespecified dyadic variables.
 
-Potential gravity-style controls:
-- geographic distance
-- common border
-- common language
-- bilateral scientific mass
-- GDP/population
-- region
-- migration/trade where available and theoretically justified
+For count outcomes, PPML with appropriate high-dimensional fixed effects is a leading candidate; distribution and zero structure must be checked before freezing.
 
-For count outcomes consider PPML/negative-binomial depending distribution and fixed-effect feasibility.
+### H5 — imperial-center profile consistency
 
-### H6: prestige persistence
+For the small set of imperial centers, test whether stronger historical empire exposure corresponds to greater specialization in high-IKES fields using:
+- profile correlations/slopes;
+- exact/permutation inference where defensible;
+- leave-one-empire-out stability;
+- effect-size visualization.
 
-Estimate expected prestige from contemporary bibliometrics and test whether imperial exposure predicts positive residual prestige in relevant fields.
+This is theory-critical corroboration, not the main large-sample causal estimate.
 
-Example:
+### H6 — prestige persistence
 
-`Prestige_cd = f(BibliometricPerformance_cd, InstitutionSize, Country) + ImperialExposure_c × Entanglement_d`
+Estimate whether prestige/ranking outcomes are unusually high relative to contemporary bibliometric performance in historically entangled disciplines.
 
-Do not call this a causal "premium" unless the identification strategy supports that language. Default label: **prestige residual/persistence signal**.
+Use the label **prestige persistence/residual signal**, not causal "premium," unless a stronger design emerges.
 
 ---
 
-## 6. Controls and identification strategy
+## 6. Causal estimands and controls
 
-### Preferred strategy
+Use `process/gptpage/2026-09-18_dag-review.md`.
 
-Rely on within-country cross-disciplinary comparisons with strong fixed effects rather than trying to control every national characteristic in a simple cross-sectional regression.
+Keep three estimands separate:
 
-### Candidate covariates / robustness
+1. **Total long-run historical association** — do not automatically control away modern mediators such as R&D, university stock, English use, or collaboration.
+2. **Association net of present-day aggregate capacity** — country-year fixed effects and/or explicitly labeled contemporary-capacity adjustments.
+3. **Mechanism-specific persistence** — prestige, network, language, institutional pathways modeled separately.
 
-- population
-- GDP / GDP per capita
-- R&D expenditure
-- tertiary education / researchers per capita
-- university-system age / historical university stock
-- official language / English status
-- region
-- geographic isolation
-- political stability/institutions where justified
-- overall international collaboration
-
-Do not automatically include post-treatment variables if the estimand is the total long-run effect of historical empire. Distinguish:
-
-- confounders of historical exposure/outcome association;
-- mediators through which historical knowledge capital persists;
-- modern robustness covariates.
-
-A DAG should explicitly classify each before final model selection.
+Modern GDP/R&D/university size may be descendants of historical processes and therefore cannot be treated mechanically as baseline confounders.
 
 ---
 
 ## 7. Time design
 
-Preferred bibliometric windows: rolling or fixed 4–5 year periods from the earliest reasonably reliable modern coverage through the latest complete period.
+Use fixed multi-year windows, preferably 4–5 years, from the earliest period with acceptable cross-national/field coverage through the latest complete period.
 
-Use time primarily to assess persistence/change, not to pretend there is pre-treatment modern bibliometric data for nineteenth-century empire.
+Time is used to ask whether persistence is weakening, stable, or strengthening:
 
-Possible estimand:
+`HistoricalExposure × IKES × Time`
 
-`ImperialExposure × Entanglement × Time`
-
-This tests whether the specialization gradient is weakening, stable, or strengthening in recent decades.
-
-Avoid causal language implying a modern difference-in-differences treatment unless a credible historical event-time design is separately developed.
+Do not describe this as a historical difference-in-differences design unless genuine pre/post identification is separately established.
 
 ---
 
 ## 8. Data-quality rules
 
-1. Fractional counting is primary for cross-country output/impact.
-2. Set minimum field-country publication thresholds before computing unstable ratios.
-3. Report missingness and coverage by country, field, language, and time.
-4. Conduct Anglophone/database-coverage sensitivity analysis.
-5. Avoid manually scraped ranking data when terms prohibit redistribution or automated access.
-6. Record all source versions/download dates.
-7. Store raw immutable source files separately from derived datasets when licensing allows.
-8. Do not redistribute ICOW or other sources contrary to their stated redistribution requests; provide scripts/instructions to reconstruct instead.
+1. Fractional country attribution is primary.
+2. Freeze a minimum country-field publication threshold before specialization analysis.
+3. Report missingness/coverage by country, field, language, region, and time.
+4. Conduct Anglophone/indexing sensitivity analyses.
+5. Store raw immutable source files only when licensing permits; otherwise commit acquisition scripts/instructions.
+6. Record source version, retrieval date, and checksums where practical.
+7. Never redistribute ICOW or proprietary ranking tables contrary to source terms.
+8. Keep ranking data secondary even if easier to obtain than bibliometric data.
+9. Report absolute counts alongside relative specialization metrics.
+10. Flag modern country-boundary/historical-entity crosswalk decisions explicitly.
 
 ---
 
-## 9. Ranking interpretation plan
+## 9. Data source hierarchy
 
-Rankings are not primary truth labels.
+### Historical exposure
+- COLDAT/Our World in Data processing for European overseas-colonial duration/intensity where appropriate;
+- ICOW Colonial History for broader dependency/colonizer history and dyads;
+- CEPII Gravity/GeoDist for colonial ties, common colonizer/language, distance and gravity controls.
 
-### QS
-Treat as strongly reputation-mediated where subject methodology gives high weight to academic reputation. Use for prestige-persistence tests and triangulation.
+Do not merge source concepts silently.
 
-### THE
-Treat as a broad institutional performance composite spanning teaching, research environment/quality, international outlook, and industry; subject categories are broader than many bibliometric taxonomies.
+### Bibliometrics
+- OpenAlex as primary scalable works/institution/country/field source;
+- Leiden Ranking Open Edition for independent/open institutional robustness.
 
-### Shanghai GRAS
-Treat as a more research-output/impact-oriented institutional layer, subject to its own field coverage and indicator definitions.
+### Prestige/rankings
+- QS, THE, Shanghai GRAS only through legally/publicly obtainable routes and with methodology differences preserved.
 
-### Leiden Open Edition
-Use as independent/open bibliometric robustness. Its 2025 edition is OpenAlex-based and provides impact and collaboration indicators including PP(top 1/5/10%), MNCS, and international collaboration measures.
+### Contemporary controls
+- World Bank/UNESCO/OECD or other documented public sources as needed for explicitly defined secondary estimands.
 
-Cross-ranking disagreement is analytically informative and should not be hidden by averaging all products.
+A detailed license/acquisition ledger is maintained separately.
 
 ---
 
-## 10. Planned robustness and falsification tests
+## 10. Robustness/falsification set
 
-Minimum set:
+Bounded minimum set:
 
 - fractional vs full counting;
-- RCA vs symmetric RCA vs alternative specialization measure;
-- output vs citation vs top-paper outcomes;
-- alternative field taxonomy;
-- alternative historical exposure measure;
-- minimum-volume thresholds;
-- exclude very small states;
-- exclude current overseas territories/dependencies;
-- leave-one-empire-out;
+- primary specialization transform vs one prespecified alternative;
+- output vs impact/top-10% outcomes;
+- alternative field crosswalk/taxonomy;
+- alternative historical exposure source/definition;
+- minimum-volume threshold sensitivity;
+- exclude smallest states;
 - leave-one-region-out;
-- Anglophone-only vs non-Anglophone analyses;
-- English-language publication restriction sensitivity;
-- recent-period vs longer-window estimates;
-- placebo/comparison disciplines;
-- random/permuted entanglement-score falsification;
-- blinded entanglement scoring before outcome inspection.
+- leave-one-colonizer/empire-out where sample permits;
+- Anglophone vs non-Anglophone sensitivity;
+- broader vs English/core publication coverage where measurable;
+- recent vs earlier modern bibliometric windows;
+- comparison fields;
+- permuted/random IKES falsification;
+- blinded historical scoring before outcomes.
 
-If only one analytic choice yields the headline result, the claim should be downgraded.
+If the headline appears only under one specification, downgrade the claim.
 
 ---
 
 ## 11. Multiple testing
 
-The confirmatory test should center on a small number of interaction coefficients/gradient tests.
+Confirmatory inference centers on a small number of preregistered interaction/gradient tests.
 
-For exploratory field-by-field coefficients:
-- report all fields, not only significant ones;
-- control false discovery rate where inferential p-values are emphasized;
-- visualize the full coefficient distribution and uncertainty;
-- label exploratory results explicitly.
+For exploratory field-by-field scans:
+- show every field;
+- label exploratory analyses;
+- use FDR when emphasizing p-values;
+- visualize the complete coefficient distribution and uncertainty;
+- never select only supportive fields for the manuscript narrative.
 
 ---
 
-## 12. Data source candidates and current feasibility notes
+## 12. Small-N imperial-center safeguards
 
-### ICOW Colonial History Data
-Useful for colonial rulers, dependency relations, independence information, and dyadic history. Current public page notes state-level coverage for COW members and requests that users direct others to the official source rather than redistribute the dataset.
+Because major imperial-center exposure is shared by only a small number of states:
 
-### CEPII GeoDist / Gravity
-Candidate for distance, common language, colonial link, common colonizer and related dyadic controls. Verify exact version/licence before use.
+- the country is the relevant historical treatment cluster;
+- discipline repetitions do not justify conventional large-N confidence claims;
+- report exact sample composition;
+- use leave-one-center-out diagnostics;
+- prioritize effect size/profile concordance;
+- use exact/permutation approaches only when exchangeability assumptions are defensible;
+- keep conclusions comparative and theory-supporting rather than causal.
 
-### OpenAlex
-Primary candidate for scalable contemporary works/institution/country/field data. Prefer documented bulk/snapshot or reproducible public-access route for large analyses rather than fragile ad-hoc page scraping.
-
-### Leiden Ranking Open Edition 2025
-OpenAlex-based university indicators, publication windows 2006–2009 through 2020–2023, including normalized impact and collaboration indicators. Useful both for validation and institutional robustness.
-
-### Ranking products
-Use only publicly obtainable/licensed data. Keep derived summaries if allowed; otherwise store extraction scripts/instructions and not copyrighted/proprietary tables.
+This safeguard is non-negotiable.
 
 ---
 
 ## 13. GPTPage / no-paid-LLM-API policy
 
-ARIS reasoning/reviewer stages that would normally call an external paid LLM API are replaced by reproducible prompt packets in `GPTPAGE_HANDOFF.md`.
+ARIS reasoning/reviewer stages that would normally require unavailable paid LLM APIs are replaced by reproducible prompt packets in `GPTPAGE_HANDOFF.md`.
 
-The GPTPage output must be copied back into a dated file under `process/gptpage/` before it is treated as project evidence. Human/ChatGPT-web outputs are advisory and never silently overwrite frozen hypotheses.
+Returned GPTPage/web outputs are saved under `process/gptpage/` with date/stage metadata and remain advisory until factual claims are independently checked.
 
-This policy concerns LLM/reviewer calls. Public scientific data access should preferentially use bulk downloads, snapshots, or documented public endpoints and must be separately recorded for reproducibility.
+This policy concerns **LLM/reviewer calls**. Scientific data should use documented bulk downloads, public snapshots, or legitimate public endpoints as appropriate; GPTPage is not a substitute for reproducible numerical datasets.
 
 ---
 
-## 14. Pre-data-analysis gate
+## 14. Pre-outcome gate
 
-Before the full outcome matrix is inspected, freeze:
+Already frozen:
+- [x] canonical research question
+- [x] colonizer vs colonized conceptual separation
+- [x] inferential hierarchy / small-N imperial-center treatment
+- [x] 21-field conceptual confirmatory set
+- [x] 11-dimension IKES rubric
+- [x] ranking-vs-bibliometric separation
+- [x] causal-language / estimand distinction
 
-- [ ] exact imperial exposure variable(s)
-- [ ] exact former-colony variable(s)
-- [ ] confirmatory discipline set
-- [ ] entanglement rubric and coder procedure
-- [ ] primary field taxonomy
+Still required before the full outcome matrix:
+- [ ] complete closest-prior-work search
+- [ ] first historical IKES evidence coding
+- [ ] independent second coding/adjudication
+- [ ] database discipline crosswalk
+- [ ] exact primary historical exposure variable/source
 - [ ] primary bibliometric window
-- [ ] primary outcome transformation
 - [ ] minimum publication threshold
-- [ ] fixed-effect specification
-- [ ] primary robustness set
-- [ ] missing-data rules
-- [ ] exclusion rules
-- [ ] multiple-testing policy
+- [ ] primary specialization transformation
+- [ ] clustering/exact-inference rules
+- [ ] source license/acquisition ledger
+- [ ] preregistration-style locked analysis specification
 
-Only after this checklist is frozen should the exploratory all-field scan be opened.
+Only after this gate should the confirmatory outcome matrix be opened; all-field scans remain exploratory.
