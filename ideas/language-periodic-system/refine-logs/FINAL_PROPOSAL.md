@@ -1,118 +1,147 @@
-# Final Proposal · Testing the Periodic-Table Hypothesis of Human Language
+# Final Proposal · Beyond the Periodic Table
 
-**Status:** `REVISE` pending robustness tests and formal ARIS secondary review  
+**Working title:** *Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space*  
+**Historical hypothesis:** *Testing the Periodic-Table Hypothesis of Human Language*  
+**Status:** `REVISE` — reframe supported by exploratory evidence; confirmatory controls and formal ARIS secondary review pending  
 **Candidate:** `language-periodic-system`  
 **Paper ID:** not assigned
 
 ## Problem Anchor
 
-Mark C. Baker's 2001 “periodic table of languages” made a memorable theoretical proposal: recurrent grammatical parameters might organize the diversity of human languages in a systematic way analogous to chemical elements. Two decades of typological data collection now make a stronger, falsifiable question possible:
+Mark C. Baker's 2001 “periodic table of languages” proposed that a finite set of grammatical parameters might organize language diversity in a systematic way analogous to chemistry. Modern global typological data make a stronger and falsifiable question possible:
 
-> **Does cross-linguistic structural variation exhibit a genuinely recurrent periodic geometry, or is its design space better described by non-periodic structures?**
+> **What geometry best predicts cross-linguistic structural relations, and does a genuinely periodic representation add reproducible value beyond non-periodic alternatives?**
 
-The project will not build a periodic table by visual analogy. It will compare explicit geometric hypotheses on held-out data and accept the geometry supported by predictive evidence.
+The project does not build a periodic table by visual analogy. It treats periodicity as a model class that can lose.
 
-## Final Method Thesis
+## Refined Thesis
 
-Treat the periodic-table analogy as a **model class**, not a conclusion. Fit low-capacity periodic representations of cross-linguistic feature relations and compare their out-of-sample performance against null, low-rank/Euclidean, hierarchical, and graph/manifold alternatives under increasingly strict language, family, and geographic hold-outs.
+Current evidence supports **structured but predominantly non-periodic predictive geometry** rather than a single global language periodic table. Circular representations repeatedly capture some reproducible structure, but they have not been the best predictive representation globally or within any predefined TLI subsystem under family-held-out screening.
 
-The central output is a discriminating empirical answer to the historical periodic-table hypothesis. A negative result is scientifically meaningful only if the periodic model receives a fair test and the competing geometry generalizes beyond genealogical leakage.
+The paper should therefore keep Baker's periodic-table proposal as the historically motivated hypothesis and make the empirical contribution a predictive comparison of geometric descriptions of linguistic design space.
 
 ## Dominant Contribution
 
-**The first explicit predictive model competition, located so far, that operationalizes the language-periodic-table hypothesis and tests it against non-periodic alternatives on modern dependency-curated cross-linguistic structural data.**
+**An explicit out-of-sample model competition for the historical language-periodic-table hypothesis on modern dependency-curated cross-linguistic data, with evidence used to identify a better-performing structural geometry rather than forcing the periodic analogy.**
 
-This contribution is narrower than “discovering linguistic atoms,” “finding topology,” or “predicting typological features,” all of which have substantial prior art.
+This is narrower than claiming to discover linguistic atoms, global topology, or typological feature prediction, all of which have substantial prior art.
 
-## Supporting Contributions
+## Prior-Art Boundary
 
-1. A reproducible benchmark for geometric models of cross-linguistic feature association using TLI/GBI and Glottolog metadata.
-2. A distinction between **structural recurrence** and **periodicity**: non-random organization, clustering, or an H1 loop is not sufficient evidence for a periodic system.
-3. If supported, a map of local recurrent modules; if unsupported, an empirically grounded replacement for the periodic-table metaphor.
+- Baker (2001): periodic-table metaphor and parameter hierarchy already exist.
+- Port et al. (2018) and Port, Karidi & Marcolli (2022): topology and persistent H1 loops in syntactic-parameter spaces already exist.
+- Grambank (2023): PCA, feature bundles, and latent classes over global morphosyntax already exist.
+- Graff et al. (2025): dependency-curated GBI/TLI data provide the modern substrate used here.
+- Verkerk et al. (2025/2026): grammatical universals already receive phylogenetic/spatial testing.
+- SIGTYP/computational typology: held-out typological prediction is already established.
+- Armstrong, Guzmán & Sing-Long (2021) and related circular-seriation work: circular Robinson matrices provide a formal standard for circular-order claims and motivate one remaining fairness check.
+
+The novelty claim must therefore remain **predictive hypothesis competition**, not any one ingredient above.
+
+## Evidence Ladder
+
+### Stage 0 · non-random structure exists
+
+`MIXED_SIGNAL` on 644 TLI languages.
+
+- 20-component observed compression: 0.510 vs shuffle-null 0.362 (+0.148).
+- Pairwise residual association is weak for most feature pairs but has a substantial upper tail.
+
+This justified geometry testing but did not support periodicity.
+
+### Stage 1 · simple global periodicity loses
+
+`REFRAME_NONPERIODIC_GEOMETRY`.
+
+Family-held-out mean Spearman on 60 features:
+
+- tree 0.178;
+- graph 0.163;
+- low-rank / Euclidean 0.150;
+- circular 0.109.
+
+Circular ordering was moderately reproducible (0.542 ± 0.139), so the result is not “no structure”; it is “the simple circle leaves predictive information unexplained.”
+
+### Stage 1B · fairer circle gives a mixed robustness result
+
+`MIXED_ROBUSTNESS`.
+
+After forcing connected affinity and directly optimizing angular positions:
+
+- 40 features: optimized circular 0.179, tree 0.178, Euclidean 0.217, stability 0.419;
+- 60 features: optimized circular 0.105, tree 0.147, low-rank 0.153, stability 0.628.
+
+This rules out the strongest “your circular model was obviously too weak” objection, while also showing that apparent periodic competitiveness is sensitive to feature selection/coverage.
+
+### Stage 1C · predefined domains do not rescue local periodicity
+
+`NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE`.
+
+TLI's own grouping metadata predefine five domains. Each report contains four valid top-level-family-held-out replicates.
+
+- Grammar linear order: circle 0.401, tree 0.494, circular stability 0.811.
+- Grammar other: circle 0.253, tree 0.313, stability 0.274.
+- Grammatical categories: circle 0.252, tree 0.229, stability 0.373 — ambiguous, below the predeclared stability threshold.
+- Lexical: circle 0.142, tree 0.269, stability 0.057.
+- Phonology: circle 0.151, tree 0.229, stability 0.550.
+
+No predefined subsystem met both predictive-competitiveness and stability criteria for local periodicity.
+
+## Main Hypotheses Going Forward
+
+### H0 · Most apparent geometry is inheritance/contact leakage
+Structured models lose much of their predictive value under stronger phylogenetic/geographic blocking.
+
+### H1 · A standards-aligned periodic geometry remains competitive
+A circular-seriation / circular-Robinson-compatible model yields out-of-sample value comparable to the best non-periodic model after fair capacity control.
+
+### H2 · Structured but non-periodic geometry dominates
+Tree/low-rank/graph or another non-periodic representation retains a reproducible advantage under family, geography, and replication tests.
+
+### H3 · Narrow mixed structure
+Specific subsystems exhibit stable circular orderings without a full periodic predictive geometry. Grammar linear order is a possible example of stable order without best-in-class circular prediction.
+
+Current exploratory evidence favors **H2**, with H3 plausible as a descriptive nuance.
+
+## Remaining Decisive Tests
+
+1. **Standards-aligned circular seriation:** use a circular-Robinson / circular-seriation criterion or implementation rather than relying only on custom spectral/optimized circle models.
+2. **Uncertainty / capacity:** increase repeated family-held-out evaluation and report paired model-difference intervals; document effective model complexity.
+3. **Geography:** add areal/geographic blocking or comparable spatial sensitivity.
+4. **Replication:** reproduce the main ranking on a second dataset or independent feature subset.
+5. **Formal ARIS secondary review:** obtain a real identity-bearing reviewer trace; do not self-certify.
 
 ## Complexity Intentionally Rejected
 
-- No decorative “periodic table” is constructed before the hypothesis survives testing.
-- No claim that typological features are universal linguistic atoms or natural kinds.
-- Persistent homology is not the headline method because Port/Marcolli already established topology-of-syntax analyses.
-- No torus, multi-cycle, deep neural embedding, or generative missing-cell model is added unless the simple circular model leaves reproducible periodic residual structure.
-- No frontier LLM is required for the core scientific method.
-
-## Current Evidence
-
-### Stage 0 · prerequisites
-
-TLI-statistical densified-small (644 languages) shows organization beyond an independence-style null:
-
-- 20-component compression: observed 0.510 vs shuffled-null 0.362 (+0.148).
-- Residual pairwise NMI is weak for most pairs but has a substantial upper tail.
-
-Verdict: `MIXED_SIGNAL`. This justified direct model comparison but did not support periodicity.
-
-### Stage 1 · first direct screen
-
-The first held-out comparison currently yields `REFRAME_NONPERIODIC_GEOMETRY`:
-
-- circular model mean Spearman ≈ **0.122** under random language splits;
-- circular model mean Spearman ≈ **0.109** under top-level-family-held-out splits;
-- best non-periodic family-held-out model ≈ **0.178**;
-- circular-order stability across family-held-out resampling ≈ **0.542**.
-
-Interpretation: a simple circular ordering is not arbitrary—it shows moderate reproducibility—but it currently leaves predictive structure on the table relative to a non-periodic alternative. This is evidence **against promoting a simple global periodic table at this stage**, not evidence that language lacks structure.
-
-These numbers are screening results. They must be reproduced from the durable `STAGE1_REPORT.md`/JSON output and subjected to robustness checks before entering a manuscript claim.
-
-## Main Hypotheses
-
-### H0 · No robust design-space geometry beyond genealogy/area
-All structured models lose most predictive value under family/geographic hold-out.
-
-### H1 · Global periodic geometry
-A circular/periodic model provides stable, capacity-controlled predictive value matching or exceeding non-periodic alternatives under family/area hold-out.
-
-### H2 · Structured but non-periodic global geometry
-Feature relations generalize across languages and families, but tree/graph/manifold/Euclidean models reliably outperform periodic models.
-
-### H3 · Local periodicity
-The global space is non-periodic, but train-discovered structural modules contain reproducible local cyclic organization that generalizes to held-out families.
-
-The current screen favors **H2 over H1**, while H3 remains untested.
-
-## Critical Robustness Requirements
-
-Before treating H1 as rejected rather than merely underfit, run:
-
-1. **Periodic-model fairness:** ensure the circular model is not a strawman; test at least one directly optimized circular latent model in addition to spectral-angle initialization.
-2. **Feature-count sensitivity:** repeat with multiple coverage/cardinality thresholds and feature counts.
-3. **Split sensitivity:** increase repeated family-held-out runs; report uncertainty on model differences rather than only means.
-4. **Affinity/connectivity sensitivity:** remove the disconnected spectral-graph warning or show results are robust to a connected affinity construction.
-5. **Geographic control:** add geography-aware blocked validation or equivalent sensitivity analysis.
-6. **Dataset/domain replication:** replicate the main conclusion on a second dataset or structural subset where possible.
-7. **Capacity accounting:** document free parameters/hyperparameter selection and prevent a more flexible competitor from winning by construction.
+- No decorative periodic table as a result.
+- No claim that typological features are chemical-like atoms or universal natural kinds.
+- No persistent-homology novelty claim.
+- No torus or multi-cycle model unless standards-aligned circular testing gives a reason to pursue richer periodicity.
+- No missing-cell/Mendeleev prediction until a validated generative structure exists.
+- No expensive frontier model is required for the core empirical analysis.
 
 ## Decision Logic
 
-### If periodic catches up after fairness checks
-Retain the title *Testing the Periodic-Table Hypothesis of Human Language* and pursue a positive or mixed periodic-system result.
+### If the standards-aligned periodic baseline becomes competitive
+Retain the historical-hypothesis title and report a genuinely mixed geometry result.
 
-### If non-periodic models remain clearly superior
-Keep the historical hypothesis as the motivating question but make the paper's substantive result the geometry that replaces it. A possible framing is:
+### If non-periodic models retain the advantage
+Use *Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space* and present the periodic-table proposal as an empirically constrained historical hypothesis.
 
-> *Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space*
-
-### If all models collapse under genealogy/geography controls
-Do not force a paper. Park the candidate or reframe as a methodological caution about leakage in global typological geometry.
+### If all models collapse under geography/phylogeny-aware validation
+Park the candidate or publish only if the methodological leakage result itself becomes strong and novel enough.
 
 ## Manuscript Claim Boundary
 
-Even a strong result must not claim:
+Even a successful study must not claim that:
 
-- that linguistic features are chemical-like elements;
-- that statistical geometry proves universal grammar;
-- that an association geometry is causal;
-- that family-held-out validation fully solves phylogenetic or contact dependence;
-- that unattested feature combinations are impossible languages.
+- linguistic features are chemical elements;
+- statistical geometry proves universal grammar;
+- association geometry is causal;
+- family-held-out splits fully solve phylogenetic/contact dependence;
+- unattested combinations are impossible languages;
+- the periodic hypothesis is decisively rejected before standards-aligned seriation and spatial/replication checks.
 
-## Next Action
+## Promotion Decision
 
-Run robustness Stage 1B before promotion. Then perform the formal ARIS secondary review. Only after those gates should this candidate receive the next stable ARIS4C Paper ID.
+**Do not assign Paper 002 yet.** The candidate has matured enough to justify continued ARIS work, but manuscript identity should remain unfrozen until the remaining confirmatory controls and formal reviewer gate are complete.
