@@ -1,9 +1,10 @@
 {
   "slug": "language-periodic-system",
   "status": "active-candidate",
-  "aris_stage": "stage1-model-competition",
+  "aris_stage": "stage1b-periodic-fairness",
   "working_title": "Testing the Periodic-Table Hypothesis of Human Language",
   "subtitle": "A Predictive Comparison of Periodic and Non-Periodic Models of Cross-Linguistic Structure",
+  "alternate_reframe_title": "Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space",
   "paper_id": null,
   "promotion_target": "next available paper ID after ARIS review gate",
   "core_question": "Does cross-linguistic structural diversity exhibit reproducible recurrent organization that is better modeled by a periodic geometry than by ordinary factor, hierarchical, graph/manifold, or null models?",
@@ -12,31 +13,45 @@
     "formal_secondary_review": "pending",
     "canonical_brief": "RESEARCH_BRIEF.md",
     "canonical_idea_report": "idea-stage/IDEA_REPORT.md",
-    "experiment_plan": "refine-logs/EXPERIMENT_PLAN.md"
+    "final_proposal": "refine-logs/FINAL_PROPOSAL.md",
+    "experiment_plan": "refine-logs/EXPERIMENT_PLAN.md",
+    "experiment_tracker": "refine-logs/EXPERIMENT_TRACKER.md"
   },
   "stage0": {
     "dataset": "TLI-statistical densified small (Graff et al. 2025)",
     "verdict": "MIXED_SIGNAL",
-    "tests": [
-      "compression beyond column-wise marginal-preserving shuffle null",
-      "residual pairwise feature association beyond permutation null"
-    ],
     "claim_limit": "Stage 0 tests prerequisites only; it cannot establish periodicity."
   },
   "stage1": {
+    "state": "complete",
+    "verdict": "REFRAME_NONPERIODIC_GEOMETRY",
+    "n_languages": 644,
+    "n_features": 60,
+    "random_split_spearman": {
+      "tree": 0.199,
+      "graph": 0.205,
+      "lowrank2": 0.172,
+      "euclidean2d": 0.122,
+      "circular": 0.122
+    },
+    "family_heldout_spearman": {
+      "tree": 0.178,
+      "graph": 0.163,
+      "lowrank2": 0.150,
+      "euclidean2d": 0.150,
+      "circular": 0.109
+    },
+    "family_heldout_circular_stability": 0.542,
+    "claim_limit": "A simple spectral-angle circular model underperforms tree/graph alternatives; this is a screening result, not yet a fair final rejection of periodicity."
+  },
+  "stage1b": {
     "state": "running",
-    "primary_test": "held-out feature-association prediction",
-    "split_regimes": [
-      "random language split",
-      "Glottolog top-level family-held-out split"
-    ],
-    "models": [
-      "null",
-      "lowrank2",
-      "euclidean2d",
-      "tree",
-      "graph",
-      "circular"
+    "purpose": "rule out circular strawman and disconnected spectral-affinity artifacts",
+    "tests": [
+      "connected spectral affinity",
+      "direct optimization of angular feature positions",
+      "40- and 60-feature sensitivity",
+      "Glottolog top-level family-held-out evaluation"
     ]
   },
   "strongest_prior_art": [
@@ -48,7 +63,7 @@
     "Verkerk et al. 2025/2026 - spatiophylogenetic tests of grammatical universals"
   ],
   "promotion_requires": [
-    "Stage 1 yields an interpretable GO or defensible REFRAME result",
+    "Stage 1B establishes a fair periodic baseline",
     "periodic model is operationalized without post-hoc capacity advantage",
     "family/geography-aware evaluation is included in confirmatory work",
     "formal ARIS secondary reviewer evidence exists",
