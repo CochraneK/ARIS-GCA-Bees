@@ -11,16 +11,34 @@ sys.path.insert(0, str(CODE / "resolve"))
 from openalex_cluster_evidence import AuthorEvidence, pairwise_evidence  # noqa: E402
 
 
-def authored_work(author_id: str, title: str, year: int, doi: str | None = None, coauthor: str | None = None):
-    authorships = [{"author": {"id": f"https://openalex.org/{author_id}"}, "institutions": [{"id": "I1"}]}]
+def authored_work(
+    author_id: str,
+    title: str,
+    year: int,
+    doi: str | None = None,
+    coauthor: str | None = None,
+    institution: str = "I1",
+    topic: str = "T1",
+):
+    authorships = [
+        {
+            "author": {"id": f"https://openalex.org/{author_id}"},
+            "institutions": [{"id": institution}] if institution else [],
+        }
+    ]
     if coauthor:
-        authorships.append({"author": {"id": f"https://openalex.org/{coauthor}"}, "institutions": [{"id": "I1"}]})
+        authorships.append(
+            {
+                "author": {"id": f"https://openalex.org/{coauthor}"},
+                "institutions": [{"id": institution}] if institution else [],
+            }
+        )
     return {
         "doi": doi,
         "display_name": title,
         "publication_year": year,
         "authorships": authorships,
-        "primary_topic": {"id": "T1"},
+        "primary_topic": {"id": topic} if topic else {},
     }
 
 
@@ -40,6 +58,7 @@ class ClusterEvidenceTests(unittest.TestCase):
         self.assertTrue(result["same_orcid"])
         self.assertEqual(result["lifetime_doi_overlap_n"], 1)
         self.assertEqual(result["lifetime_title_overlap_n"], 1)
+        self.assertTrue(result["strong_identity_anchor"])
         self.assertEqual(result["review_label"], "support")
 
     def test_conflicting_orcid_is_conflict_even_with_same_name_context(self) -> None:
@@ -49,16 +68,37 @@ class ClusterEvidenceTests(unittest.TestCase):
         self.assertTrue(result["conflicting_orcid"])
         self.assertEqual(result["review_label"], "conflict")
 
-    def test_no_shared_lifetime_evidence_stays_needs_review(self) -> None:
+    def test_weak_shared_context_stays_needs_review(self) -> None:
+        # Same institution/topic alone are weak contextual similarity, not a
+        # fragment identity anchor. The 3 heuristic points are expected.
         a = AuthorEvidence("A1", {}, [authored_work("A1", "Paper Alpha", 1950)])
         b = AuthorEvidence("A2", {}, [authored_work("A2", "Completely Different", 1960)])
         result = pairwise_evidence(a, b, birth_year=1920, death_year=2000)
+        self.assertEqual(result["support_points_for_review_only"], 3)
+        self.assertFalse(result["strong_identity_anchor"])
         self.assertEqual(result["review_label"], "needs_review")
-        self.assertEqual(result["support_points_for_review_only"], 0)
+
+    def test_low_proportion_coauthor_overlap_cannot_anchor_support(self) -> None:
+        # Models the residual Fritz Strassmann false-positive pattern: two shared
+        # coauthors plus an institution can accumulate points even though they are
+        # tiny fractions of large, topically unrelated author neighborhoods.
+        a_works = [
+            authored_work("A1", f"Chemistry {i}", 1940 + i % 20, coauthor=f"A_CO_{i}", topic="CHEM")
+            for i in range(40)
+        ]
+        b_works = [
+            authored_work("A2", "Medical One", 1928, coauthor="A_CO_1", topic="MED"),
+            authored_work("A2", "Medical Two", 1933, coauthor="A_CO_2", topic="MED"),
+        ]
+        a = AuthorEvidence("A1", {}, a_works)
+        b = AuthorEvidence("A2", {}, b_works)
+        result = pairwise_evidence(a, b, birth_year=1902, death_year=1980)
+        self.assertEqual(result["lifetime_shared_coauthors_n"], 2)
+        self.assertLess(result["lifetime_coauthor_overlap_coefficient"], 0.10)
+        self.assertFalse(result["strong_identity_anchor"])
+        self.assertEqual(result["review_label"], "needs_review")
 
     def test_posthumous_namesake_record_cannot_create_false_support(self) -> None:
-        # Models the failure found in the real pilot: a deceased candidate had a
-        # same-name OpenAlex record whose only works were published much later.
         a = AuthorEvidence(
             "A1",
             {},
@@ -81,8 +121,6 @@ class ClusterEvidenceTests(unittest.TestCase):
         self.assertEqual(result["review_label"], "conflict")
 
     def test_heavily_contaminated_record_cannot_be_auto_support(self) -> None:
-        # Shared in-window context may exist, but a record mostly outside the
-        # candidate lifespan is too contaminated to receive a support label.
         a = AuthorEvidence(
             "A1",
             {},
