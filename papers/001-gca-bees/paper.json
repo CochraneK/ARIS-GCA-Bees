@@ -17,8 +17,8 @@
     "paper_en": "paper/en/main.html",
     "paper_zh": "paper/zh/main.html",
     "landing_zh": "zh.html",
-    "pipeline": "https://github.com/CochraneK/ARIS-GCA-Bees/blob/main/process/RESEARCH_PIPELINE_REPORT.md",
-    "source": "https://github.com/CochraneK/ARIS-GCA-Bees"
+    "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/process/RESEARCH_PIPELINE_REPORT.md",
+    "source": "https://github.com/CochraneK/ARIS4C"
   },
-  "tags": ["ARIS", "predictive coding", "bees", "self-awareness", "simulation"]
+  "tags": ["ARIS", "ARIS4C", "predictive coding", "bees", "self-awareness", "simulation"]
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build docs/index.html from papers/*/paper.json manifests."""
+"""Build docs/index.html for ARIS4C from papers/*/paper.json manifests."""
 
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ def link(href: str, label: str, primary: bool = False) -> str:
 def card(p: dict) -> str:
     links = p.get("links", {})
     aris = p.get("aris", {})
-    tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in p.get("tags", [])[:5])
+    tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in p.get("tags", [])[:6])
     buttons = "".join([
         link(links.get("paper_en", ""), "Paper", True),
         link(links.get("paper_zh", ""), "中文"),
@@ -60,8 +60,8 @@ def build(papers: list[dict]) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ARIS Research Hub · Cunyi Kang</title>
-  <meta name="description" content="A living collection of papers and research artifacts developed with ARIS.">
+  <title>ARIS4C · ARIS for Cochrane</title>
+  <meta name="description" content="ARIS4C — ARIS for Cochrane. A living collection of papers and research artifacts developed with ARIS.">
   <style>
     :root {{ --bg:#f7f7f5; --card:#fff; --text:#171717; --muted:#707070; --line:#e7e5e4; --accent:#111827; --soft:#f1f0ed; }}
     * {{ box-sizing:border-box; }}
@@ -92,13 +92,13 @@ def build(papers: list[dict]) -> str:
 </head>
 <body>
   <header><div class="shell">
-    <div class="eyebrow">ARIS Research Hub</div>
+    <div class="eyebrow">ARIS4C · ARIS for Cochrane</div>
     <h1>Papers as a living research system.</h1>
-    <p class="lede">One repository for research produced with ARIS: each paper keeps its manuscript, code, figures, process records, provenance, and reproducibility trail while the research engine can keep evolving independently.</p>
+    <p class="lede">One repository for Cochrane's research produced with ARIS: each paper keeps its manuscript, code, figures, process records, provenance, and reproducibility trail while the research engine can keep evolving independently.</p>
     <div class="stats"><span class="stat">{len(papers)} paper{'s' if len(papers) != 1 else ''}</span><span class="stat">Manifest-driven</span><span class="stat">ARIS-upgradable</span></div>
   </div></header>
   <main><div class="shell"><section class="grid">{cards}</section></div></main>
-  <footer><div class="shell">Generated from <code>papers/*/paper.json</code>. Paper metadata is the source of truth.</div></footer>
+  <footer><div class="shell">ARIS4C · Generated from <code>papers/*/paper.json</code>. Paper metadata is the source of truth.</div></footer>
 </body>
 </html>
 """

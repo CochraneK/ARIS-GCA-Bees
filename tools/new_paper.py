@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a numbered ARIS paper workspace and metadata manifest."""
+"""Create a numbered ARIS4C paper workspace and metadata manifest."""
 
 from __future__ import annotations
 
@@ -65,16 +65,16 @@ def main() -> None:
             "paper_en": "",
             "paper_zh": "",
             "pipeline": "",
-            "source": ""
+            "source": "https://github.com/CochraneK/ARIS4C"
         },
-        "tags": []
+        "tags": ["ARIS", "ARIS4C"]
     }
     (paper_dir / "paper.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
     (paper_dir / "README.md").write_text(
-        f"# {args.title}\n\nStatus: idea\n\nARIS: {args.aris_version}\n",
+        f"# {args.title}\n\nARIS4C paper {paper_id}\n\nStatus: idea\n\nARIS: {args.aris_version}\n",
         encoding="utf-8",
     )
     print(paper_dir.relative_to(ROOT))

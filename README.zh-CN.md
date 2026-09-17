@@ -5,29 +5,31 @@
 
 <div align="center">
 
-# ARIS Research Hub
+# ARIS4C
 
-**持续使用 ARIS 产出论文的长期研究仓库**
+**ARIS for Cochrane · 持续使用 ARIS 产出论文的长期研究母仓库**
 
 [**论文总览**](docs/index.html) · [**论文注册表**](papers/) · [**Paper 001**](docs/paper/zh/main.html) · [**English**](README.md)
 
 </div>
 
-## 这个仓库正在变成什么
+## ARIS4C 是什么？
 
-本仓库最初是 **ARIS-GCA-Bees**：围绕蜜蜂功能性自我意识进行理论建模与计算模拟的单篇论文项目。现在它同时被改造成一个长期研究母仓库，用于持续保存未来通过 [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 完成的论文。
+**ARIS4C = ARIS for Cochrane。** 它是用于长期保存和展示通过 [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) 方法持续完成的研究与论文的母仓库。
+
+这个仓库最初从 GCA × Bees 的理论建模与计算模拟项目开始，现在扩展为后续论文统一使用的长期研究空间。
 
 核心原则是把“研究引擎”和“研究资产”分开：
 
 - **ARIS 是研究引擎**，可以持续跟随上游升级；
-- **本仓库是研究档案**，长期保存每篇论文的论文稿、代码、图、过程记录、来源信息与复现材料；
+- **ARIS4C 是研究档案与论文展示层**，用于保存 Cochrane 的 ARIS 辅助研究；
 - **每篇论文记录实际使用的 ARIS 版本或 commit**，以后升级 ARIS 不会篡改旧论文的历史；
 - **公开 HTML 首页从论文 manifest 自动生成**，不再手工维护论文卡片。
 
-## 新的仓库模型
+## 仓库模型
 
 ```text
-ARIS-GCA-Bees/
+ARIS4C/
 ├── papers/
 │   ├── 001-gca-bees/
 │   │   └── paper.json           # 第一篇论文的 manifest
@@ -50,7 +52,7 @@ ARIS-GCA-Bees/
 └── simulation_results*.json     # Paper 001 的旧输出
 ```
 
-为了不打断现有链接，Paper 001 暂时保留原来的根目录结构；从 Paper 002 开始直接使用新的编号式结构。
+为了不打断现有论文内部链接，Paper 001 暂时保留原来的根目录结构；从 Paper 002 开始直接使用新的编号式结构。
 
 ## 开始下一篇论文
 
@@ -58,11 +60,11 @@ ARIS-GCA-Bees/
 python tools/new_paper.py "你的论文标题" --slug short-name
 ```
 
-脚本会自动分配下一个论文编号，并创建标准的研究目录。正式运行 ARIS 前，把当时实际使用的 ARIS tag 和 commit 写入该论文的 `paper.json`。
+脚本会自动分配下一个论文编号，并创建标准研究目录。正式运行 ARIS 前，把当时实际使用的 ARIS tag 和 commit 写入该论文的 `paper.json`。
 
 ## 如何持续同步最新版 ARIS
 
-ARIS 本体**不复制进这个仓库**。Windows 下建议把 ARIS 保存在独立位置，并运行：
+ARIS 本体**不复制进 ARIS4C**。Windows 下建议把 ARIS 保存在独立位置，并运行：
 
 ```powershell
 ./tools/sync_aris.ps1
