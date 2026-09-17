@@ -1,0 +1,133 @@
+name: ARIS4C005 public-data feasibility pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c005-pilot.yml"
+      - "papers/005-hidden-burden-bad-science/code/build_universe.py"
+      - "papers/005-hidden-burden-bad-science/code/classify_retractions.py"
+      - "papers/005-hidden-burden-bad-science/code/summarize_retractions.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pilot-a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test ARIS4C005 code
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Build OpenAlex 2000-2025 core article + review denominator
+        working-directory: ${{ env.PAPER_DIR }}
+        env:
+          OPENALEX_MAILTO: ""
+        run: |
+          python code/build_universe.py \
+            --start 2000 \
+            --end 2025 \
+            --types article,review \
+            --corpus core \
+            --output data/pilot/openalex_universe_counts.csv \
+            --provenance data/pilot/openalex_universe_provenance.json
+
+      - name: Acquire pinned Retraction Watch snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/rw"
+          git clone --depth 1 https://gitlab.com/crossref/retraction-watch-data.git "$RUNNER_TEMP/rw/repo"
+          cd "$RUNNER_TEMP/rw/repo"
+          git rev-parse HEAD > "$RUNNER_TEMP/rw/git_commit.txt"
+          CSV="$(find . -type f -iname '*.csv' -printf '%s %p\n' | sort -nr | head -1 | cut -d' ' -f2-)"
+          test -n "$CSV"
+          cp "$CSV" "$RUNNER_TEMP/rw/retraction_watch.csv"
+          echo "Selected Retraction Watch CSV: $CSV"
+
+      - name: Classify Retraction Watch reasons conservatively
+        run: |
+          mkdir -p "$PAPER_DIR/data/pilot"
+          python "$PAPER_DIR/code/classify_retractions.py" \
+            "$RUNNER_TEMP/rw/retraction_watch.csv" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv"
+          python "$PAPER_DIR/code/summarize_retractions.py" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv" \
+            "$PAPER_DIR/data/pilot/retraction_watch_snapshot_summary.json"
+
+      - name: Add Retraction Watch snapshot provenance
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+
+          paper = Path(os.environ['PAPER_DIR'])
+          summary_path = paper / 'data/pilot/retraction_watch_snapshot_summary.json'
+          data = json.loads(summary_path.read_text(encoding='utf-8'))
+          commit = Path(os.environ['RUNNER_TEMP'] + '/rw/git_commit.txt').read_text().strip()
+          data['retraction_watch_git_commit'] = commit
+          data['source_repository'] = 'https://gitlab.com/crossref/retraction-watch-data'
+          data['redistribution_note'] = 'Raw Retraction Watch CSV intentionally excluded from artifact/repository; summary and provenance only.'
+          summary_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          print(json.dumps(data, indent=2)[:8000])
+          PY
+
+      - name: Build pilot manifest
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, os
+          from pathlib import Path
+
+          paper = Path(os.environ['PAPER_DIR'])
+          manifest = {
+              'paper': 'ARIS4C005',
+              'generated_at_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
+              'stage': 'Pilot A — public-data acquisition feasibility',
+              'confirmatory_use_allowed': False,
+              'outputs': {},
+              'warnings': [
+                  'Retraction Watch records are detected correction events, not underlying prevalence.',
+                  'Automatic exposure flags are screening variables; ambiguous records require manual adjudication.',
+                  'OpenAlex counts are versioned metadata counts under the documented article+review/core definition.'
+              ]
+          }
+          for rel in [
+              'data/pilot/openalex_universe_counts.csv',
+              'data/pilot/openalex_universe_provenance.json',
+              'data/pilot/retraction_watch_snapshot_summary.json',
+          ]:
+              p = paper / rel
+              manifest['outputs'][rel] = {'exists': p.exists(), 'bytes': p.stat().st_size if p.exists() else None}
+          out = paper / 'data/pilot/pilot_a_manifest.json'
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          print(out.read_text())
+          PY
+
+      - name: Upload public-safe Pilot A artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c005-pilot-a
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/openalex_universe_counts.csv
+            ${{ env.PAPER_DIR }}/data/pilot/openalex_universe_provenance.json
+            ${{ env.PAPER_DIR }}/data/pilot/retraction_watch_snapshot_summary.json
+            ${{ env.PAPER_DIR }}/data/pilot/pilot_a_manifest.json
+          if-no-files-found: warn
+          retention-days: 30
