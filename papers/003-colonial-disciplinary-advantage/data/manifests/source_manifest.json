@@ -9,8 +9,24 @@
       "acquisition": "public anonymous S3 snapshot; Parquet Works prefix preferred; paid daily API not required",
       "redistribution": "do not commit raw snapshot; record release manifest/checksum"
     },
+    "coldat_years": {
+      "status": "official_download_script_ready",
+      "landing": "https://ourworldindata.org/grapher/years-colonized",
+      "csv": "https://ourworldindata.org/grapher/years-colonized.csv?v=1&csvType=full&useColumnShortNames=false",
+      "source": "Bastian Becker (COLDAT 3.0), processed by Our World in Data",
+      "license": "CC BY on OWID data page",
+      "role": "primary former-colony duration exposure"
+    },
+    "coldat_colonizer_year": {
+      "status": "official_download_script_ready",
+      "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers",
+      "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.csv?v=1&csvType=full&useColumnShortNames=false",
+      "source": "Bastian Becker (COLDAT 3.0), processed by Our World in Data",
+      "license": "CC BY on OWID data page",
+      "role": "colonizer identity and imperial-center intensity reconstruction"
+    },
     "icow": {
-      "status": "local_download_pending",
+      "status": "local_download_script_ready",
       "landing": "https://www.paulhensel.org/icowcol.html",
       "official_download": "https://www.paulhensel.org/Data/colhist.zip",
       "version": "1.1",
