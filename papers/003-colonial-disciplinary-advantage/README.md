@@ -1,108 +1,169 @@
 # ARIS4C003 · Colonial Legacies and the Global Geography of Disciplinary Advantage
 
-**Status:** research design / ARIS entry
+**Status:** pre-data research design / ARIS conditional GO
 
 **ARIS provenance:** v0.4.26 · `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research question
 
-> Do colonial and imperial histories predict persistent, discipline-specific advantages in contemporary science and scholarship, and if so are those legacies expressed through research capacity, citation impact, institutional prestige, or persistent international knowledge networks?
+> Do colonial and imperial histories predict persistent, discipline-specific advantages or specializations in contemporary science and scholarship, and if so are those legacies expressed through research capacity, citation impact, institutional prestige, or persistent international knowledge networks?
 
-## Why this is not a two-discipline ranking paper
+## Core idea
 
-The study does **not** reduce the question to Sociology + Anthropology or to a single university ranking. Anthropology and Sociology are theory-motivated anchor cases, but the main design is cross-disciplinary and multi-outcome.
+The study does **not** reduce the question to Sociology + Anthropology or to a single university ranking. Anthropology and Sociology are anchor cases inside a cross-disciplinary, multi-outcome design.
 
-The key theoretical object is **historical knowledge capital**: durable stocks of institutions, expertise, collections, administrative knowledge, language networks, field sites, learned societies, journals, university chairs, and prestige that may have accumulated through imperial/colonial systems and persisted after formal empire ended.
+The theoretical object is **historical knowledge capital**: durable stocks of institutions, expertise, collections, archives, field sites, language systems, professional societies, journals, training pipelines, and prestige that may have accumulated through imperial/colonial systems and persisted after formal empire ended.
 
-## Frozen design decisions before ARIS
+This is a hypothesis to test, not a claim that colonialism "improved" science.
 
-1. Separate **imperial/colonizer exposure** from **colonized/dependency exposure**; do not collapse them into one dummy.
-2. Treat colonial exposure intensity, duration, ruler identity, and dyadic former-colonial ties as distinct variables where data permit.
-3. Use a **country × discipline × year × outcome** framework rather than a single cross-sectional ranking.
-4. Estimate **relative disciplinary advantage/specialization**, not merely raw national research strength.
-5. Use multiple outcome families: scientific output, field-normalized impact, elite-paper share, collaboration/network structure, and prestige/ranking.
-6. Keep ranking products secondary/robustness evidence; they must not be the sole outcome.
-7. Separate a preregistered confirmatory discipline set from an exploratory all-discipline scan.
-8. Treat the direction of effects for formerly colonized states as theoretically ambiguous and heterogeneous rather than automatically positive.
-9. Explicitly test whether any apparent effect is merely GDP, population, language, university age, general science capacity, region, or English-language database coverage.
-10. No paid LLM API is required for this project. API-gated ARIS reviewer/research steps use the GPTPage handoff in `process/GPTPAGE_HANDOFF.md`.
+## Frozen design decisions
 
-## Primary theoretical predictions
+1. Separate **imperial/colonizer exposure** from **colonized/dependency exposure**; never collapse them into one dummy.
+2. Keep COLDAT-style European overseas-colonial duration measures conceptually separate from broader ICOW-style dependency histories.
+3. Treat the imperial-center analysis as **small-N**: repeated discipline observations do not turn a handful of empire states into a large independent treatment sample.
+4. Make former-colony/dependency and dyadic former-colonial analyses the main scalable inferential layers.
+5. Use a **country × discipline × year × outcome** structure for specialization and a **country-pair × discipline × year** structure for network persistence.
+6. Estimate **relative disciplinary advantage/specialization**, not merely raw national research strength.
+7. Use multiple outcome families: scientific output, field-normalized impact, elite-paper share, collaboration/network structure, and prestige/ranking.
+8. Keep ranking products secondary; they must not be the sole measure of "strength."
+9. Separate a preregistered confirmatory discipline set from an exploratory all-discipline scan.
+10. Treat effects among formerly colonized states as heterogeneous and not signed universally positive or negative.
+11. Scientist migration/war shocks (for example German scientists moving to the United States) are a related **historical knowledge capital** mechanism but are outside the primary colonial exposure definition for 003.
+12. No paid LLM API is required: API-gated ARIS reviewer/research stages use the GPTPage handoff in `process/GPTPAGE_HANDOFF.md`.
 
-- **H1 Imperial specialization:** stronger historical imperial exposure predicts greater contemporary relative advantage in disciplines historically entangled with imperial knowledge production.
-- **H2 Gradient:** the imperial-exposure association increases with a preregistered measure of colonial/imperial knowledge entanglement across disciplines.
-- **H3 Specificity:** the association is weaker or absent in comparison disciplines whose modern formation was less directly tied to colonial administration, territorial knowledge, extraction, or overseas field systems.
-- **H4 Colonized heterogeneity:** former-colonial exposure has heterogeneous effects that depend on ruler, duration, educational/institutional investment, independence period, language, and postcolonial development.
-- **H5 Network persistence:** former colonizer–colony dyads retain excess coauthorship/knowledge-network ties after standard geographic, linguistic, economic, and scientific-size controls.
-- **H6 Prestige persistence:** historical imperial exposure predicts a larger prestige signal than would be expected from contemporary bibliometric performance alone.
+## Inferential hierarchy
 
-## Candidate confirmatory discipline families
+### Tier 1A · Former-colony disciplinary profile
 
-The exact set must be frozen before outcome inspection.
+Main question:
 
-**High prior entanglement candidates:** Anthropology; Archaeology; Geography; Development Studies; Linguistics; Tropical Medicine / selected Public Health fields; Agriculture & Forestry; Geology / Earth-resource sciences.
+> Does historical colonial/dependency exposure predict the modern *shape* of disciplinary specialization as a function of independently coded imperial/colonial knowledge entanglement?
 
-**Medium candidates:** Sociology; Political Science / International Relations; Law; Economics; Public Administration / Social Policy; Education; History; Demography / Population Studies.
+The primary test is a cross-disciplinary gradient, not isolated significance in one or two fields.
 
-**Comparison candidates:** Mathematics; Physics; Chemistry; Computer Science; selected modern engineering/materials fields.
+### Tier 1B · Dyadic network persistence
 
-The project should prefer a **continuous, independently coded entanglement score** over a hand-picked high/low binary whenever feasible.
+Main question:
+
+> Are former colonizer–colony pairs disproportionately connected in modern scientific collaboration, especially in more historically entangled disciplines, after geographic/scientific-size controls?
+
+Common language is treated both as a possible persistence channel and as a robustness adjustment, not automatically as a nuisance variable.
+
+### Tier 2 · Imperial-center disciplinary profile
+
+Theory-critical but small-N.
+
+Historical imperial centers are compared across disciplines using effect sizes, profile similarity, leave-one-empire-out analysis, and exact/permutation-style inference where appropriate. Do not rely on naive large-N panel asymptotics.
+
+### Tier 3 · Prestige persistence
+
+Test whether ranking/reputation outcomes remain unusually high relative to contemporary bibliometric performance in historically entangled disciplines.
+
+## Confirmatory conceptual disciplines
+
+The conceptual set is now frozen before outcome inspection; database crosswalks are not yet frozen:
+
+1. Anthropology
+2. Archaeology
+3. Geography
+4. Development Studies
+5. Linguistics
+6. Tropical Medicine / colonial-health-related Public Health
+7. Agriculture & Forestry
+8. Geology / Earth-resource sciences
+9. Sociology
+10. Political Science / International Relations
+11. Law
+12. Economics
+13. Public Administration / Social Policy
+14. Education
+15. History
+16. Demography / Population Studies
+17. Mathematics
+18. Physics
+19. Chemistry
+20. Computer Science
+21. Materials / modern engineering comparator
+
+These fields will receive an outcome-blinded **Imperial/Colonial Knowledge Entanglement Score (IKES)** using the protocol in `process/ENTANGLEMENT_PROTOCOL.md`.
 
 ## Outcome families
 
-### 1. Knowledge production
+### Knowledge production
 - fractional publication count
 - national share of world output
-- revealed scientific comparative advantage / relative specialization
+- relative specialization / scientific RCA and alternative transforms
 
-### 2. Scientific impact
+### Scientific impact
 - field/year-normalized citation impact
 - top-10% and top-1% paper share
-- citation-based comparative advantage
+- citation-based specialization
 
-### 3. Knowledge networks
-- international coauthorship share
-- dyadic former-colonial tie excess
-- network centrality / brokerage where feasible
+### Knowledge networks
+- international collaboration share
+- normalized dyadic coauthorship intensity
+- selected network measures when stable
 
-### 4. Institutional/prestige layer
+### Institutional / prestige layer
 - QS subject indicators where legally/publicly obtainable
-- THE subject indicators
+- THE subject rankings
 - Shanghai GRAS
-- Leiden Open Edition as independent bibliometric robustness
+- Leiden Open Edition as independent/open bibliometric robustness
 
-Rankings are not interchangeable with research performance and should be modeled separately.
+Rankings are explicitly not interchangeable with bibliometric performance.
 
-## Main empirical idea
+## Main model logic
 
-A core specification is an interaction design in which country fixed effects absorb time-invariant national capacity and the quantity of interest is whether historically imperial countries show unusually high specialization in historically empire-entangled disciplines:
+For scalable former-colony analyses, the target is a cross-disciplinary interaction such as:
 
-`Outcome(c,d,t) ~ ImperialExposure(c) × Entanglement(d) + country FE + discipline FE + year FE + controls/interactions`
+`Y(c,d,t) ~ HistoricalExposure(c) × IKES(d) + country-year FE + discipline-year FE + error`
 
-Because time-invariant `ImperialExposure(c)` is absorbed by country fixed effects, inference focuses on its interaction with discipline-level entanglement.
+This asks whether historical exposure is associated with the **shape** of a country's contemporary research portfolio. It does not make historical exposure exogenous and should be interpreted as evidence of persistent path dependence, not automatic causal proof.
 
-A complementary dyadic design tests whether former colonial links predict present-day collaboration above and beyond distance, language, scientific size, GDP, and regional ties.
+A complementary dyadic model tests:
 
-## Non-negotiable falsification logic
+`Collaboration(i,j,d,t) ~ FormerColonialTie(i,j) × IKES(d) + gravity/network controls + FE`
 
-The preferred theory weakens substantially if:
+## Falsification logic
+
+The broad theory weakens if:
 
 - effects are similar across nearly all disciplines;
-- effects disappear after accounting for general research specialization/capacity;
-- only reputation-heavy rankings show an association and bibliometric/network outcomes do not (this would support a narrower prestige-persistence story instead);
-- results are driven only by Anglophone database coverage;
-- effects vanish under fractional counting, alternative field taxonomies, or leave-one-empire-out tests;
-- the apparent gradient is created by selecting disciplines after seeing outcomes.
+- the IKES gradient fails;
+- results are driven only by Anglophone/database coverage;
+- results vanish under fractional counting or reasonable specialization measures;
+- one empire/region drives the pattern;
+- field-taxonomy changes reverse the result;
+- only reputation-heavy rankings show an association.
 
-## Current next gate
+The last outcome would not make the project empty; it would narrow the conclusion to **prestige persistence** rather than scientific-capacity persistence.
 
-ARIS should now shrink and stress-test the design before data collection:
+## ARIS progress
 
-1. novelty review;
-2. causal/DAG review;
-3. construct and measurement review;
-4. freeze confirmatory discipline set and entanglement coding procedure;
-5. freeze primary outcomes and transformations;
-6. build a source/licensing-aware data acquisition plan;
-7. draft a preregistration-style analysis specification;
-8. only then begin large-scale data acquisition and modeling.
+Completed and stored under `process/`:
+
+- canonical idea report;
+- executable research plan;
+- first adversarial auto-review;
+- verified literature seed;
+- GPTPage fallback workflow;
+- first GPTPage novelty review;
+- causal/DAG review;
+- discipline-entanglement coding protocol;
+- colonial/imperial exposure protocol with small-N correction.
+
+## Remaining pre-data gate
+
+Before full contemporary outcomes are opened:
+
+- [ ] complete closest-prior-work search;
+- [ ] generate blinded historical evidence pack for IKES;
+- [ ] score/adjudicate IKES;
+- [ ] freeze OpenAlex/other field crosswalk;
+- [ ] freeze primary bibliometric window and minimum-volume rules;
+- [ ] freeze primary specialization transformation;
+- [ ] freeze clustering/inference rules;
+- [ ] verify source licenses/acquisition routes;
+- [ ] write preregistration-style specification.
+
+After those gates, data acquisition and modeling can begin.
