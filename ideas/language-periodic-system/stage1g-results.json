@@ -1,0 +1,212 @@
+{
+  "seed": 2032,
+  "n_features": 40,
+  "n_random_matched_per_block": 8,
+  "macroarea": {
+    "blocks": [
+      {
+        "block": "Africa",
+        "n_test": 102,
+        "observed_geo_correlation": 0.0825785792890021,
+        "random_matched_mean": 0.3365597827031225,
+        "random_matched_sd": 0.058079912474925555,
+        "geo_minus_random": -0.2539812034141204,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3559657826409062,
+          0.4008502298196596,
+          0.3643107514769451,
+          0.3163122381830079,
+          0.2527420410894224,
+          0.3784144134035779,
+          0.37492412503054934,
+          0.2489586799809114
+        ]
+      },
+      {
+        "block": "Australia",
+        "n_test": 65,
+        "observed_geo_correlation": 0.059821409141795914,
+        "random_matched_mean": 0.3629741114025903,
+        "random_matched_sd": 0.0,
+        "geo_minus_random": -0.3031527022607944,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3629741114025903
+        ]
+      },
+      {
+        "block": "Eurasia",
+        "n_test": 112,
+        "observed_geo_correlation": 0.10614705966321512,
+        "random_matched_mean": 0.3559676650947665,
+        "random_matched_sd": 0.017778825108122995,
+        "geo_minus_random": -0.24982060543155138,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3568848657419614,
+          0.3356488185947144,
+          0.37134269735057335,
+          0.338589680288643,
+          0.36476693466592763,
+          0.3713641921728604,
+          0.3328678265495438,
+          0.37627630539390816
+        ]
+      },
+      {
+        "block": "North America",
+        "n_test": 126,
+        "observed_geo_correlation": 0.09357560764558144,
+        "random_matched_mean": 0.36927616834246557,
+        "random_matched_sd": 0.045357270400334423,
+        "geo_minus_random": -0.27570056069688414,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3781367427467207,
+          0.34491966945620056,
+          0.37027898374664314,
+          0.43449544444578453,
+          0.4194189728079073,
+          0.3016221174972565,
+          0.38293154417272623,
+          0.3224058718664855
+        ]
+      },
+      {
+        "block": "South America",
+        "n_test": 161,
+        "observed_geo_correlation": 0.09976510270322762,
+        "random_matched_mean": 0.390776519047341,
+        "random_matched_sd": 0.02676070101339507,
+        "geo_minus_random": -0.29101141634411337,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3869886192382143,
+          0.3535713528918891,
+          0.4091041846153605,
+          0.3671128626738273,
+          0.4274017428468823,
+          0.4231939454450173,
+          0.3852614294276124,
+          0.3735780152399247
+        ]
+      }
+    ],
+    "summary": {
+      "n_blocks": 5,
+      "observed_geo_mean": 0.08837755168856444,
+      "random_matched_mean": 0.36311084931805715,
+      "mean_geo_minus_random": -0.2747332976294927,
+      "fraction_blocks_geo_below_random": 1.0
+    }
+  },
+  "spatial_cluster": {
+    "blocks": [
+      {
+        "block": "cluster_0",
+        "n_test": 102,
+        "observed_geo_correlation": 0.13267521968530405,
+        "random_matched_mean": 0.32167250959713234,
+        "random_matched_sd": 0.039224945622128526,
+        "geo_minus_random": -0.1889972899118283,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.323338388682723,
+          0.26005981579333265,
+          0.3123389263300887,
+          0.3829898614223042,
+          0.3456413447524546,
+          0.276402829798318,
+          0.3302917480046712,
+          0.34231716199316614
+        ]
+      },
+      {
+        "block": "cluster_1",
+        "n_test": 167,
+        "observed_geo_correlation": 0.1164000620164278,
+        "random_matched_mean": 0.39993329429394925,
+        "random_matched_sd": 0.024835997426635198,
+        "geo_minus_random": -0.2835332322775215,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3855732392970288,
+          0.41935208874277907,
+          0.44217902822568184,
+          0.3969190853027111,
+          0.35628774649834405,
+          0.3993879304785201,
+          0.3956727433480501,
+          0.4040944924584789
+        ]
+      },
+      {
+        "block": "cluster_2",
+        "n_test": 145,
+        "observed_geo_correlation": 0.13841655097687905,
+        "random_matched_mean": 0.37714805372175964,
+        "random_matched_sd": 0.04059841398957907,
+        "geo_minus_random": -0.23873150274488059,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.38167889143814904,
+          0.3054493231907648,
+          0.3819068740986898,
+          0.41259834881124763,
+          0.42383451153350093,
+          0.40412955716372023,
+          0.3772296675652592,
+          0.3303572559727456
+        ]
+      },
+      {
+        "block": "cluster_3",
+        "n_test": 121,
+        "observed_geo_correlation": 0.09181049314695011,
+        "random_matched_mean": 0.33648207775865246,
+        "random_matched_sd": 0.038626511453345114,
+        "geo_minus_random": -0.24467158461170235,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.3051916733315888,
+          0.38737133850524563,
+          0.365779900520741,
+          0.29765478502838866,
+          0.3706750658834711,
+          0.3164658528980974,
+          0.36072916091942925,
+          0.28798884498225785
+        ]
+      },
+      {
+        "block": "cluster_4",
+        "n_test": 109,
+        "observed_geo_correlation": 0.05036487348340857,
+        "random_matched_mean": 0.32222865491629554,
+        "random_matched_sd": 0.0601901485686445,
+        "geo_minus_random": -0.271863781432887,
+        "random_fraction_le_geo": 0.0,
+        "random_values": [
+          0.29963505817278724,
+          0.3169973832387996,
+          0.32208590031298057,
+          0.2582577539485183,
+          0.4000738071432914,
+          0.23669365298769435,
+          0.4066176434526327,
+          0.33746804007366005
+        ]
+      }
+    ],
+    "summary": {
+      "n_blocks": 5,
+      "observed_geo_mean": 0.1059334398617939,
+      "random_matched_mean": 0.35149291805755783,
+      "mean_geo_minus_random": -0.2455594781957639,
+      "fraction_blocks_geo_below_random": 1.0
+    }
+  },
+  "verdict": "GEOGRAPHIC_HETEROGENEITY_CONFIRMED",
+  "claim_boundary": "Matched-size random calibration isolates test-set size as a simple alternative explanation, but it does not itself identify causal areal transmission or separate geography from historically correlated population structure."
+}
