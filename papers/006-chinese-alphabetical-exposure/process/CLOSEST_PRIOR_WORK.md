@@ -23,6 +23,7 @@ This file records work that could make ARIS4C006 redundant. Novelty is judged by
 | Wohlrabe & Bornmann 2022, Scientometrics, `10.1007/s11192-022-04322-9` | >120k economics multi-author papers | alphabetized coauthorship | citations | large-scale evidence finds little general citation effect after controls | argues strongly against citation-only headline; motivates mechanism-first design |
 | Öz 2024, Scientometrics, `10.1007/s11192-024-05100-5` | 2,278 academics, 70,377 papers, 4 social-science fields | alphabetization + surname strategies | citation/behavior | recent multi-field strategic-response study | continuous journal/field/year exposure, China-scale longitudinal panel |
 | D'Angelo 2026, Journal of Informetrics, `10.1016/j.joi.2026.101841` | global top-2% scientists vs national expected surname distributions | surname rank + national expected distributions | c-score/top-scientist-list inclusion | **closest recent population-calibrated bibliometric predecessor** | directly measured institutional exposure and longitudinal mechanisms; elite lists only secondary |
+| Crabtree, Holbein & Tsutsui, active R&R at Journal of Informetrics, *The Tyranny of Alphabetical Ordering: The Uneven Distribution of Authorship Credits by Authors' Country of Origin* | century of leading economics/political-science/sociology publications + ~0.5B name profiles across >100 countries | country-level surname-initial distributions under alphabetized bylines | cross-national position/credit disadvantage | **directly occupies the tempting “China's later surname distribution creates international alphabetical disadvantage” pivot** | individual China-based longitudinal exposure, within-author changes, behavioral mechanisms, Chinese name/identity measurement |
 
 ## Most dangerous combined prior-art facts
 
@@ -37,7 +38,8 @@ No single element below is novel on its own:
 - many-field empirical alphabetization rates — occupied;
 - population/expected surname distribution calibration — occupied by 2026 work;
 - field heterogeneity — occupied;
-- international mobility of Chinese economists — occupied.
+- international mobility of Chinese economists — occupied;
+- **country-of-origin inequality caused by national surname distributions under alphabetical authorship — occupied by an active Journal of Informetrics R&R.**
 
 ## Candidate distinctive contribution after this sweep
 
@@ -62,7 +64,7 @@ A promising strengthening analysis is a **within-author exposure switch**:
 
 This is not automatically causal because context switching is endogenous, but it is materially stronger than comparing different people with different surnames.
 
-A domestic-vs-international framing should be retained only if exposure differences are empirically verified rather than assumed.
+A domestic-vs-international framing should be retained only if exposure differences are empirically verified rather than assumed. It must not be reframed as a generic cross-country surname-distribution inequality claim because the Crabtree–Holbein–Tsutsui R&R now directly covers that territory.
 
 ## Search implication from Chinese authorship literature
 
@@ -70,8 +72,10 @@ Liu & Fang (2014) reports that mainland Chinese authors generally did not prefer
 
 Li & Yi (2021) similarly relies on the fact that alphabetic name listing is unusual in Chinese settings outside international economics coauthorship. Again, ARIS4C006 should measure the convention rather than assign it categorically.
 
+The Crabtree–Holbein–Tsutsui R&R reports that surname distributions differ sharply across countries and that late-surname countries appear systematically later in alphabetized bylines, with East/Central Asia among disadvantaged regions. This makes a simple “Chinese surnames are later, therefore Chinese authors lose credit internationally” paper redundant before it is even run.
+
 ## Novelty status
 
 **NARROW / CONDITIONAL GO.**
 
-The paper survives the novelty gate only as a measured-exposure, longitudinal, mechanism-first study. If the actual analysis collapses to field dummies, raw surname rank, citations, or elite-list representation, it should be stopped or reframed as a replication rather than presented as a new primary contribution.
+The paper survives the novelty gate only as a measured-exposure, longitudinal, mechanism-first study inside the China-based scholarly system. If the actual analysis collapses to field dummies, raw surname rank, citations, elite-list representation, or country-of-origin comparisons, it should be stopped or reframed as a replication rather than presented as a new primary contribution.
