@@ -1,21 +1,57 @@
 {
   "slug": "language-periodic-system",
-  "status": "pilot",
-  "working_title": "Is There a Periodic System of Human Language? A Data-Driven Test Across the World’s Languages",
+  "status": "active-candidate",
+  "aris_stage": "stage1-model-competition",
+  "working_title": "Testing the Periodic-Table Hypothesis of Human Language",
+  "subtitle": "A Predictive Comparison of Periodic and Non-Periodic Models of Cross-Linguistic Structure",
   "paper_id": null,
-  "promotion_target": "next available paper ID",
-  "core_question": "Does cross-linguistic structural diversity exhibit reproducible recurrent organization that is better modeled by a periodic geometry than by ordinary factor, hierarchical, graph, manifold, or null models?",
+  "promotion_target": "next available paper ID after ARIS review gate",
+  "core_question": "Does cross-linguistic structural diversity exhibit reproducible recurrent organization that is better modeled by a periodic geometry than by ordinary factor, hierarchical, graph/manifold, or null models?",
+  "aris": {
+    "recommended_release": "v0.4.26",
+    "formal_secondary_review": "pending",
+    "canonical_brief": "RESEARCH_BRIEF.md",
+    "canonical_idea_report": "idea-stage/IDEA_REPORT.md",
+    "experiment_plan": "refine-logs/EXPERIMENT_PLAN.md"
+  },
   "stage0": {
     "dataset": "TLI-statistical densified small (Graff et al. 2025)",
+    "verdict": "MIXED_SIGNAL",
     "tests": [
       "compression beyond column-wise marginal-preserving shuffle null",
       "residual pairwise feature association beyond permutation null"
     ],
     "claim_limit": "Stage 0 tests prerequisites only; it cannot establish periodicity."
   },
+  "stage1": {
+    "state": "running",
+    "primary_test": "held-out feature-association prediction",
+    "split_regimes": [
+      "random language split",
+      "Glottolog top-level family-held-out split"
+    ],
+    "models": [
+      "null",
+      "lowrank2",
+      "euclidean2d",
+      "tree",
+      "graph",
+      "circular"
+    ]
+  },
+  "strongest_prior_art": [
+    "Baker 2001 - periodic table of languages",
+    "Port et al. 2018 - Persistent Topology of Syntax",
+    "Port, Karidi & Marcolli 2022 - Topological Analysis of Syntactic Structures",
+    "Grambank 2023 - global morphosyntactic latent structure",
+    "Graff et al. 2025 - independent structural-feature datasets",
+    "Verkerk et al. 2025/2026 - spatiophylogenetic tests of grammatical universals"
+  ],
   "promotion_requires": [
-    "non-trivial residual structure in Stage 0",
-    "explicit model-comparison plan with held-out evaluation",
-    "novelty check finds no existing equivalent periodic-vs-nonperiodic test"
+    "Stage 1 yields an interpretable GO or defensible REFRAME result",
+    "periodic model is operationalized without post-hoc capacity advantage",
+    "family/geography-aware evaluation is included in confirmatory work",
+    "formal ARIS secondary reviewer evidence exists",
+    "closest-prior-work check finds no equivalent periodic-vs-nonperiodic predictive comparison"
   ]
 }
