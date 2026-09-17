@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+"""Create IKES_FROZEN.csv only after blinded A/B coding and adjudication.
+
+Unflagged A/B cells are averaged. Every missing pair or absolute disagreement
+>= threshold must contain an explicit adjudicated_score in the adjudication
+file. The script writes a SHA-256 provenance record alongside the frozen score.
+It never reads contemporary research outcomes.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+import pandas as pd
+
+DIMS = [f"D{i}" for i in range(1, 12)]
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for block in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def main() -> None:
+    p = argparse.ArgumentParser()
+    p.add_argument("adjudication_csv", type=Path)
+    p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--provenance", type=Path)
+    p.add_argument("--threshold", type=float, default=2.0)
+    p.add_argument("--coder-a", type=Path, required=True)
+    p.add_argument("--coder-b", type=Path, required=True)
+    args = p.parse_args()
+
+    df = pd.read_csv(args.adjudication_csv)
+    required = {
+        "discipline", "dimension", "score_A", "score_B",
+        "abs_diff", "needs_adjudication", "adjudicated_score", "adjudication_note",
+    }
+    missing = required - set(df.columns)
+    if missing:
+        raise SystemExit(f"Adjudication file missing columns: {sorted(missing)}")
+
+    if len(df) != 21 * 11:
+        raise SystemExit(f"Expected 231 discipline×dimension rows, got {len(df)}")
+    if df.duplicated(["discipline", "dimension"]).any():
+        raise SystemExit("Duplicate discipline×dimension rows in adjudication file")
+
+    df["score_A"] = pd.to_numeric(df["score_A"], errors="coerce")
+    df["score_B"] = pd.to_numeric(df["score_B"], errors="coerce")
+    df["adjudicated_score"] = pd.to_numeric(df["adjudicated_score"], errors="coerce")
+
+    calculated_flag = (
+        df["score_A"].isna()
+        | df["score_B"].isna()
+        | ((df["score_A"] - df["score_B"]).abs() >= args.threshold)
+    )
+    unresolved = calculated_flag & df["adjudicated_score"].isna()
+    if unresolved.any():
+        cols = ["discipline", "dimension", "score_A", "score_B"]
+        raise SystemExit(
+            "Cannot freeze IKES: flagged cells still lack adjudicated_score:\n"
+            + df.loc[unresolved, cols].to_string(index=False)
+        )
+
+    has_adjudication = df["adjudicated_score"].notna()
+    bad_adj = df.loc[has_adjudication, "adjudicated_score"]
+    if (~bad_adj.between(0, 3)).any():
+        raise SystemExit("Adjudicated scores must be in [0,3]")
+    missing_notes = calculated_flag & (df["adjudication_note"].fillna("").str.strip() == "")
+    if missing_notes.any():
+        raise SystemExit("Every flagged adjudication requires a non-empty adjudication_note")
+
+    df["final_score"] = (df["score_A"] + df["score_B"]) / 2.0
+    df.loc[has_adjudication, "final_score"] = df.loc[has_adjudication, "adjudicated_score"]
+    if df["final_score"].isna().any():
+        raise SystemExit("Final score matrix still contains NA")
+
+    wide = df.pivot(index="discipline", columns="dimension", values="final_score")
+    missing_dims = set(DIMS) - set(wide.columns)
+    if missing_dims:
+        raise SystemExit(f"Missing dimensions after pivot: {sorted(missing_dims)}")
+    wide = wide[DIMS].reset_index()
+    wide["IKES"] = wide[DIMS].mean(axis=1)
+    wide["IKES_median"] = wide[DIMS].median(axis=1)
+
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    wide.to_csv(args.output, index=False, float_format="%.6f")
+
+    provenance = args.provenance or args.output.with_suffix(".provenance.json")
+    payload = {
+        "paper": "ARIS4C003",
+        "created_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "rule": "unflagged A/B mean; missing or abs-diff>=threshold requires explicit outcome-blind adjudication",
+        "threshold": args.threshold,
+        "coder_a": {"path": str(args.coder_a), "sha256": sha256(args.coder_a)},
+        "coder_b": {"path": str(args.coder_b), "sha256": sha256(args.coder_b)},
+        "adjudication": {"path": str(args.adjudication_csv), "sha256": sha256(args.adjudication_csv)},
+        "frozen": {"path": str(args.output), "sha256": sha256(args.output)},
+        "n_explicit_adjudications": int(has_adjudication.sum()),
+    }
+    provenance.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    print(f"IKES FROZEN: {args.output}")
+    print(f"sha256: {payload['frozen']['sha256']}")
+
+
+if __name__ == "__main__":
+    main()
