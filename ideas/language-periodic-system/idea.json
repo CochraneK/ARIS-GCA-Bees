@@ -1,21 +1,114 @@
 {
   "slug": "language-periodic-system",
-  "status": "pilot",
-  "working_title": "Is There a Periodic System of Human Language? A Data-Driven Test Across the World’s Languages",
+  "status": "active-candidate",
+  "aris_stage": "reframe-predictive-geometry",
+  "working_title": "Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space",
+  "historical_hypothesis_title": "Testing the Periodic-Table Hypothesis of Human Language",
+  "subtitle": "A Predictive Comparison of Periodic and Non-Periodic Models of Cross-Linguistic Structure",
   "paper_id": null,
-  "promotion_target": "next available paper ID",
-  "core_question": "Does cross-linguistic structural diversity exhibit reproducible recurrent organization that is better modeled by a periodic geometry than by ordinary factor, hierarchical, graph, manifold, or null models?",
-  "stage0": {
-    "dataset": "TLI-statistical densified small (Graff et al. 2025)",
-    "tests": [
-      "compression beyond column-wise marginal-preserving shuffle null",
-      "residual pairwise feature association beyond permutation null"
-    ],
-    "claim_limit": "Stage 0 tests prerequisites only; it cannot establish periodicity."
+  "promotion_target": "next available paper ID after robustness and ARIS review gates",
+  "core_question": "What geometry best predicts cross-linguistic structural relations out of sample, and does any global or pre-defined local periodic representation add reproducible value beyond non-periodic alternatives?",
+  "aris": {
+    "recommended_release": "v0.4.26",
+    "formal_secondary_review": "pending",
+    "canonical_brief": "RESEARCH_BRIEF.md",
+    "canonical_idea_report": "idea-stage/IDEA_REPORT.md",
+    "final_proposal": "refine-logs/FINAL_PROPOSAL.md",
+    "experiment_plan": "refine-logs/EXPERIMENT_PLAN.md",
+    "experiment_tracker": "refine-logs/EXPERIMENT_TRACKER.md",
+    "pipeline_summary": "refine-logs/PIPELINE_SUMMARY.md"
   },
+  "stage0": {
+    "state": "complete",
+    "verdict": "MIXED_SIGNAL",
+    "dataset": "TLI-statistical densified small (Graff et al. 2025)",
+    "twenty_component_variance": 0.510,
+    "twenty_component_null": 0.362,
+    "claim_limit": "Prerequisite structural signal only; no periodicity claim."
+  },
+  "stage1": {
+    "state": "complete",
+    "verdict": "REFRAME_NONPERIODIC_GEOMETRY",
+    "n_languages": 644,
+    "n_features": 60,
+    "family_heldout_spearman": {
+      "tree": 0.178,
+      "graph": 0.163,
+      "lowrank2": 0.150,
+      "euclidean2d": 0.150,
+      "circular": 0.109
+    },
+    "family_heldout_circular_stability": 0.542
+  },
+  "stage1b": {
+    "state": "complete",
+    "verdict": "MIXED_ROBUSTNESS",
+    "forty_features": {
+      "circular_optimized_spearman": 0.179,
+      "tree_spearman": 0.178,
+      "euclidean_spearman": 0.217,
+      "circular_stability": 0.419
+    },
+    "sixty_features": {
+      "circular_optimized_spearman": 0.105,
+      "tree_spearman": 0.147,
+      "lowrank2_spearman": 0.153,
+      "circular_stability": 0.628
+    }
+  },
+  "stage1c": {
+    "state": "complete",
+    "verdict": "NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE",
+    "family_heldout_valid_splits_per_domain": 4,
+    "domains": {
+      "Grammar_linear_order": {
+        "verdict": "NONPERIODIC_DOMAIN",
+        "circular_optimized_spearman": 0.401,
+        "tree_spearman": 0.494,
+        "circular_stability": 0.811
+      },
+      "Grammar_other": {
+        "verdict": "NONPERIODIC_DOMAIN",
+        "circular_optimized_spearman": 0.253,
+        "tree_spearman": 0.313,
+        "circular_stability": 0.274
+      },
+      "Grammatical_categories": {
+        "verdict": "AMBIGUOUS_DOMAIN",
+        "circular_optimized_spearman": 0.252,
+        "tree_spearman": 0.229,
+        "circular_stability": 0.373
+      },
+      "Lexical": {
+        "verdict": "NONPERIODIC_DOMAIN",
+        "circular_optimized_spearman": 0.142,
+        "tree_spearman": 0.269,
+        "circular_stability": 0.057
+      },
+      "Phonology": {
+        "verdict": "NONPERIODIC_DOMAIN",
+        "circular_optimized_spearman": 0.151,
+        "tree_spearman": 0.229,
+        "circular_stability": 0.550
+      }
+    }
+  },
+  "current_interpretation": "Evidence favors structured but non-periodic predictive geometry over a simple global or predefined local periodic system. Standard circular-seriation, geography, capacity, replication, and formal reviewer checks remain before manuscript-level claims.",
+  "strongest_prior_art": [
+    "Baker 2001 - periodic table of languages",
+    "Port et al. 2018 - Persistent Topology of Syntax",
+    "Port, Karidi & Marcolli 2022 - Topological Analysis of Syntactic Structures",
+    "Grambank 2023 - global morphosyntactic latent structure",
+    "Graff et al. 2025 - independent structural-feature datasets",
+    "Verkerk et al. 2025/2026 - spatiophylogenetic tests of grammatical universals",
+    "Armstrong, Guzman & Sing-Long 2021 - strict circular seriation / circular Robinson matrices"
+  ],
   "promotion_requires": [
-    "non-trivial residual structure in Stage 0",
-    "explicit model-comparison plan with held-out evaluation",
-    "novelty check finds no existing equivalent periodic-vs-nonperiodic test"
+    "standards-aligned circular-seriation sensitivity",
+    "geography-aware evaluation",
+    "model-capacity and uncertainty checks",
+    "second-dataset or domain replication",
+    "formal identity-bearing ARIS secondary reviewer evidence",
+    "closest-prior-work check still supports a distinct predictive geometry contribution"
   ]
 }
