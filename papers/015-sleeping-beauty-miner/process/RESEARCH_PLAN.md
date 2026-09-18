@@ -4,6 +4,47 @@
 
 Can an open-data, integrity-aware, temporally reconstructed evidence system identify still-dormant scientific papers that later show delayed recognition more effectively than simple citation-momentum baselines, while remaining auditable and calibrated?
 
+## Study architecture: three tracks
+
+ARIS4C015 separates three questions that require different sampling designs.
+
+### Track A — Retrospective identification
+
+Use large retrospective corpora to identify robust delayed-recognition cases from
+complete citation histories.
+
+A robust mechanism case should not be created merely because it is top-q inside
+a small random sample. Track A uses converging retrospective evidence such as:
+
+- Beauty Coefficient;
+- sleep depth / length / wake intensity;
+- source-calibrated B thresholds;
+- later-recognition floors;
+- sensitivity definitions.
+
+### Track M — Mechanism discovery
+
+Use a case-enriched dataset of robust Sleeping Beauties plus matched controls.
+
+Primary contrasts:
+
+- Sleeping Beauty vs Forgotten: both start low, only one later awakens;
+- Sleeping Beauty vs Immediate Hit: both end high, but recognition timing differs.
+
+Mechanism inference is blocked if the corpus contains zero robust SB cases.
+
+See process/MECHANISM_TRACK.md.
+
+### Track B — Prospective rediscovery
+
+Use reproducible random historical cohorts and freeze all predictors at cutoff T.
+
+Relative delayed-recognition outcomes such as top-q future B remain legitimate
+benchmark labels here, but they are not retrospective SB diagnoses.
+
+Population prevalence and predictive performance are estimated only from this
+random/time-safe track, not from the case-enriched mechanism dataset.
+
 ## Main hypothesis family
 
 ### H1 — Multi-evidence value
