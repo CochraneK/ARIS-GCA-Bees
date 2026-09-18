@@ -26,7 +26,7 @@ def get(url,retries=4):
 
 def sample(fid,year,target):
     want=min(100,max(target*3,target+40));seed=int(f"{year}{fid:02d}11")
-    p={"filter":",".join(["authorships.institutions.country_code:CN",f"topics.field.id:{fid}",f"from_publication_date:{year}-01-01",f"to_publication_date:{year}-12-31"]),"select":"id,doi,authorships","sample":want,"seed":seed,"per_page":want}
+    p={"filter":",".join(["authorships.institutions.country_code:CN",f"primary_topic.field.id:{fid}",f"from_publication_date:{year}-01-01",f"to_publication_date:{year}-12-31"]),"select":"id,doi,authorships","sample":want,"seed":seed,"per_page":want}
     if os.getenv("OPENALEX_API_KEY"):p["api_key"]=os.environ["OPENALEX_API_KEY"]
     d=get(OA+"?"+urllib.parse.urlencode(p))
     if not d:return []
