@@ -27,8 +27,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install minimal probe dependency
-        run: pip install "duckdb>=1.3"
+      - name: Install minimal probe dependencies
+        run: pip install "duckdb>=1.3" "numpy>=2.0" "pandas>=2.2"
 
       - name: Locate one official public Works Parquet object
         id: locate
