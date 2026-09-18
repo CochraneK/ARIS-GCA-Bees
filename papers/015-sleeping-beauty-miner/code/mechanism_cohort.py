@@ -166,14 +166,18 @@ def build_mechanism_cohort(
                 min_wake_rate=sb_min_wake_rate,
                 min_total_citations=sb_min_total_citations,
             )
+            early_count = int(early_values[paper.paper_id])
+            late_count = int(late_values[paper.paper_id])
             state = classify_mechanism_state(
                 early_percentile=early_p[paper.paper_id],
                 late_percentile=late_p[paper.paper_id],
                 robust_sb=robust.robust_sb,
+                early_count=early_count,
+                late_count=late_count,
+                zero_counts_are_low=True,
                 require_robust_sb_for_sleeping_beauty=True,
             )
 
-            early_count = int(early_values[paper.paper_id])
             record = {
                 **paper.as_dict(),
                 "stratum": {
@@ -184,7 +188,7 @@ def build_mechanism_cohort(
                 "early_years": early_years,
                 "late_years": late_years,
                 "early_citation_count": early_count,
-                "late_citation_count": int(late_values[paper.paper_id]),
+                "late_citation_count": late_count,
                 "mechanism_state": state.as_dict(),
                 "robust_sb_gate": robust.as_dict(),
                 "state": state.state,
