@@ -2,7 +2,7 @@
 
 **State:** research-design draft; confirmatory outcomes remain locked.
 
-Last updated: 2026-09-18
+Last updated: 2026-09-19
 
 ## 1. Working title
 
@@ -72,49 +72,68 @@ Convention exposure is estimated from the same primary work-type set.
 
 Frozen primary mapping version:
 
-`aris4c006-surname-map-v1`
+`aris4c006-surname-map-v2-ccnc`
+
+Pronunciation/order authority:
+- pinned CCNC Romanized Chinese Last Names Dictionary, commit `a14520b9cc8bd6b251aeb4a7453ab1a45f23aa15`.
+
+Population authority:
+- ChineseNames 2025.8 population counts.
 
 Allowed focal routes:
 
 ### Tier 1A — direct Han
 - validated Han surname;
-- exact ChineseNames dictionary match;
-- compound surnames matched before single surnames.
+- compound surnames matched before single surnames;
+- exact Han surname occurs in ChineseNames;
+- exact Han surname also occurs in the pinned CCNC surname lexicon;
+- CCNC supplies the surname-specific canonical Pinyin ordering key.
 
-### Tier 1B — Crossref structured family + exact canonical Hanyu Pinyin
+### Tier 1B — Crossref structured family + exact canonical surname Pinyin
 - DOI resolves to Crossref;
 - OpenAlex/Crossref author lists pass positional reconciliation;
 - structured `family` exists;
 - structured family agrees with OpenAlex name evidence;
-- normalized family exactly matches the frozen canonical Hanyu-Pinyin map;
+- normalized family exactly matches a frozen CCNC canonical surname form in the ChineseNames × CCNC intersection;
 - no conflicting ORCID/canonical-author evidence.
-
-Canonical map:
-- ChineseNames rows: 1,806;
-- accepted automated rows: 1,803;
-- population coverage: 99.9918%;
-- canonical Romanized forms after homophone aggregation: 413;
-- pypinyin: 0.55.0;
-- unresolved automated ChineseNames rows: 尉, 朝, 万俟.
 
 Unreviewed legacy/regional aliases are excluded from the primary sample.
 
 Tier-3 first-token/last-token heuristics are forbidden.
 
+Pilot 15:
+- ChineseNames rows: 1,806;
+- direct ChineseNames × CCNC Han intersection: 1,166 rows;
+- represented ChineseNames population: **99.9671%**;
+- 2024 all-field exact bibliographic mapping coverage: **96.05%**;
+- 31 surname-specific initial disagreements with legacy ChineseNames initials, representing **0.4383%** of population mass.
+
+Generic pypinyin is engineering QA only and is not confirmatory pronunciation authority.
+
 ## 8. Chinese population calibration
 
-Canonical population denominator:
-- ChineseNames 2025.8;
-- 1,806 surnames;
-- underlying 1930–2008 household-registration population baseline.
+Primary denominator:
+
+**ChineseNames population counts × pinned CCNC surname-specific pronunciation map**, restricted to their direct Han-surname intersection and renormalized over mapped population mass.
+
+Pilot 17:
+- mapped population: **1,181,331,391**
+- mapped share of ChineseNames population: **99.9671%**
+- excluded rare-name population mass: **0.0329%**
+- corrected population-weighted initial rank: **16.25491**
+- legacy rank on the same rows: **16.21065**
 
 Uniform `1/26` A–Z expectations are forbidden.
 
-For direct-Han records:
-- exact surname population frequency may be used.
+The corrected A–Z shares from `PILOT17_RESULTS.md` are the confirmatory population calibration, subject to final byte-for-byte/value reproduction from the pinned ChineseNames 2025.8 R package.
 
-For Romanized Hanyu-Pinyin records:
-- when multiple Han surnames share one Romanized form, population counts are summed over the compatible accepted surnames.
+For direct-Han records:
+- exact ChineseNames population frequency may be retained;
+- alphabetic initial/rank comes from pinned CCNC surname-specific Pinyin.
+
+For Romanized records:
+- when multiple Han surnames share one Romanized form, population counts are summed over all compatible ChineseNames × CCNC surnames;
+- a specific Han surname is not imputed unless independently observed.
 
 Population calibration is descriptive/contextual and does not make surname rank randomized.
 
