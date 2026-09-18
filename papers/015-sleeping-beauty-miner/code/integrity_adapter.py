@@ -17,7 +17,17 @@ from datetime import date, datetime
 from typing import Any, Iterable
 
 
-STRONG_CLASSES = {"E0", "E1", "E2", "E3"}
+# ARIS4C011 evidence semantics:
+# E0 metadata observation
+# E1 deterministic contradiction under satisfied assumptions
+# E2 externally verifiable provenance fact
+# E3 high-specificity forensic match
+# E4 model-derived anomaly
+# E5 weak/context-dependent heuristic
+#
+# 011's default HIGH review priority requires at least two independent
+# E1-E3 families. 015 mirrors that rule for QUARANTINE routing.
+STRONG_CLASSES = {"E1", "E2", "E3"}
 
 
 @dataclass(frozen=True)
@@ -159,7 +169,6 @@ def adapt_011_findings(
 
     strong_groups: set[str] = set()
     flag_ids: list[str] = []
-    deterministic_e0 = False
 
     for index, finding in flags:
         fid = _finding_id(finding, index)
@@ -167,16 +176,12 @@ def adapt_011_findings(
         evidence_class = str(finding.get("evidence_class", "")).upper()
         if evidence_class in STRONG_CLASSES:
             strong_groups.add(_dependency_group(finding, index))
-        if evidence_class == "E0" and str(
-            finding.get("reproducible", "")
-        ).lower() in {"yes", "true", "1"}:
-            deterministic_e0 = True
 
-    if deterministic_e0 or len(strong_groups) >= 2:
+    if len(strong_groups) >= 2:
         state = "QUARANTINE"
         reasons = (
-            "Unresolved cutoff-safe 011 flags warrant human review before "
-            "discovery promotion.",
+            "At least two independent cutoff-safe E1-E3 011 flag groups "
+            "warrant human review before discovery promotion.",
             "Quarantine is a routing decision, not a misconduct judgment.",
         )
     else:
