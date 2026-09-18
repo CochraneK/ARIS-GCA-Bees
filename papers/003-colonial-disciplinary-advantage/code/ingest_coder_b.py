@@ -167,6 +167,19 @@ def validate_blinding(text: str) -> None:
     if "BLINDING DECLARATION" not in text:
         raise SystemExit("Missing BLINDING DECLARATION section")
 
+    bundle_pass = len(re.findall(r"(?m)^BUNDLE_ACCESS_STATUS:\s*PASS\s*$", text))
+    bundle_fail = len(re.findall(r"(?m)^BUNDLE_ACCESS_STATUS:\s*FAIL\s*$", text))
+    if bundle_fail:
+        raise SystemExit(
+            "Coder B declared BUNDLE_ACCESS_STATUS: FAIL; this response cannot "
+            "serve as the confirmatory independent coding pass."
+        )
+    if bundle_pass != 1:
+        raise SystemExit(
+            "Expected exactly one line 'BUNDLE_ACCESS_STATUS: PASS' under "
+            "BLINDING DECLARATION."
+        )
+
     pass_count = len(re.findall(r"(?m)^INDEPENDENCE_STATUS:\s*PASS\s*$", text))
     fail_count = len(re.findall(r"(?m)^INDEPENDENCE_STATUS:\s*FAIL\s*$", text))
     if fail_count:
