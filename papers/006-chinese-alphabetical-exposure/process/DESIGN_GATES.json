@@ -101,6 +101,14 @@
       "status": "pass",
       "evidence": "process/PILOT16_RESULTS.md",
       "note": "All-26-field historical audit froze focal work window to 2011-2025."
+    },
+    "loao_implementation": {
+      "status": "pass",
+      "evidence": [
+        "code/19_validate_loao_synthetic.py",
+        ".github/workflows/aris4c006-loao-test.yml"
+      ],
+      "note": "Five synthetic/hand-computable checks passed: tie-aware chance, work contributions, exact LOAO subtraction with per-work author deduplication, D-threshold behavior, and non-contributor invariance."
     }
   },
   "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
