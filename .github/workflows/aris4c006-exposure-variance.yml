@@ -1,0 +1,42 @@
+name: ARIS4C006 exposure variance pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-exposure-variance.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/06_exposure_variance_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exposure-variance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run context exposure variance pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/06_exposure_variance_pilot.py \
+            --years 2020,2024 \
+            --per-cell 60 \
+            --min-source-n 4 \
+            --outdir data/pilot/exposure_variance
+      - name: Upload aggregate exposure artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-exposure-variance-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/exposure_variance/field_year_exposure.csv
+            ${{ env.PAPER_DIR }}/data/pilot/exposure_variance/source_field_year_exposure.csv
+            ${{ env.PAPER_DIR }}/data/pilot/exposure_variance/manifest.json
+          if-no-files-found: error
+          retention-days: 30
