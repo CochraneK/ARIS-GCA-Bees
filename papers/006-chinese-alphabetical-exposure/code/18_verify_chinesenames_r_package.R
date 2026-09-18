@@ -112,7 +112,9 @@ vals <- list(
   exact_integer_columns_match=integer_equal,
   max_abs_ppm_difference=ppm_diff,
   max_abs_uniqueness_difference=uni_diff,
-  all_key_values_match=all_equal,
+  mirror_derived_columns_match_official_after_rounding_to_3_decimals=derived_rounding_equal,
+  exact_population_counts_match=all(pkg2$n.1930_2008==mir2$n.1930_2008),
+  all_required_provenance_checks_pass=all_equal,
   source_package_population_total=sum(pkg2$n.1930_2008),
   mirror_population_total=sum(mir2$n.1930_2008),
   confirmatory_use_allowed=FALSE
@@ -122,4 +124,4 @@ writeLines(c("{",paste(parts,collapse=",\n"),"}"),file.path(outdir,"manifest.jso
 utils::write.csv(pkg2,file.path(outdir,"familyname_from_source_package.csv"),row.names=FALSE,fileEncoding="UTF-8")
 
 print(vals)
-if (!all_equal) stop("Official source-package familyname values differ from engineering mirror")
+if (!all_equal) stop("Official source-package core values or expected rounded derived values differ from engineering mirror")
