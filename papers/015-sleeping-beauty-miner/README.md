@@ -6,12 +6,13 @@
 
 ## Core objective
 
-Build an auditable agent that does two different jobs without conflating them:
+Build an auditable agent that does three different jobs without conflating them:
 
-1. **Retrospective identification** — identify papers whose later citation histories already show delayed recognition ("Sleeping Beauties").
-2. **Prospective mining** — rank still-dormant papers that may deserve renewed human attention **before** an awakening is visible.
+1. **Retrospective identification** — identify papers whose complete citation histories robustly support delayed recognition.
+2. **Mechanism discovery** — compare robust Sleeping Beauties with matched Forgotten / Immediate-Hit controls to study why recognition was delayed and what triggered awakening.
+3. **Prospective mining** — rank still-dormant papers that may deserve renewed human attention **before** an awakening is visible.
 
-The second task is the more useful and more difficult one. The agent must never present a high ranking as proof that a paper is important or will awaken.
+A random prospective cohort is not guaranteed to contain a genuine Sleeping Beauty. Cohort-relative top-q outcomes therefore remain benchmark labels only; they cannot be used to manufacture mechanism cases.
 
 ## Relationship to ARIS4C011
 
@@ -122,7 +123,7 @@ Only time-safe signals available at the prediction cutoff may be used, such as:
 
 These findings affect confidence and review routing. They do not establish misconduct.
 
-## Two benchmark tracks
+## Three research tracks
 
 ### Track A — Retrospective identification
 
@@ -135,6 +136,23 @@ Primary outputs:
 - Prince candidates.
 
 This track validates implementation; it is not the main scientific claim.
+
+### Track M — Mechanism discovery
+
+Goal: study delayed-recognition mechanisms using a case-enriched retrospective cohort.
+
+Primary design:
+- robust SB gate from converging retrospective definitions;
+- field/cohort-normalized SLEEPING_BEAUTY / FORGOTTEN / IMMEDIATE_HIT / FADING states;
+- SB vs Forgotten matched comparison;
+- SB vs Immediate-Hit matched comparison;
+- Prince / awakening-path analysis.
+
+Hard rule:
+- if zero robust SB cases exist, mechanism analysis is blocked;
+- relative top-q benchmark positives are not renamed as Sleeping Beauties.
+
+See process/MECHANISM_TRACK.md.
 
 ### Track B — Prospective discovery
 
@@ -209,57 +227,45 @@ Commercial or restricted sources may be used for external validation, but the ca
 
 ## Current state
 
-**PILOT 0 EMPIRICAL VALIDATION IN PROGRESS.**
+**PILOT 1 HISTORICAL BENCHMARK + MECHANISM TRACK IMPLEMENTATION.**
 
-The reusable agent surface, deterministic citation metrics, cutoff-safe adapters, ARIS4C011 routing, baseline evaluator, local corpus scanner, and CI are implemented.
+Current empirical state:
 
-### Initial empirical cross-source probe
+- 3 classic SB cross-source OpenAlex/WoS probes completed;
+- 10 random field/era/seed strata;
+- 200 prospective-benchmark target papers;
+- 7 delayed-recognition outcome definitions;
+- 5 citation baselines;
+- seed-sensitivity analysis completed;
+- recognition-floor sensitivity completed;
+- historical lexical-novelty ablation completed as a negative / insufficient feature-family result;
+- OpenAlex 429 retry/backoff and request-reduction hardening implemented.
 
-Three classic Sleeping Beauty reference cases from Ke et al. (2015) were reconstructed from the live OpenAlex citation graph using a fixed 2011 observation endpoint to match the publication window of the original WoS analysis as closely as possible.
+Citation-only baselines do not show a stable winner for the difficult awakening /
+delayed-recognition-consensus outcomes. The strongest result varies by stratum,
+which keeps the benchmark non-trivial.
 
-| Case | OpenAlex citations ≤2011 | B OpenAlex | B WoS | Awakening OpenAlex | Awakening WoS |
-|---|---:|---:|---:|---:|---:|
-| Hummers & Offeman (1958) | 1,811 | 12,679.33 | 10,769 | 2007 | 2007 |
-| Einstein–Podolsky–Rosen (1935) | 6,593 | 2,458.72 | 2,258 | 1991 | 1994 |
-| Washburn (1921) | 1,857 | 2,472.08 | 2,184 | 1995 | 1995 |
+Mechanism Track now adds:
 
-Across these three selected implementation probes:
-
-- mean absolute relative B difference is about 13.3%;
-- 2/3 awakening years reproduce exactly;
-- all 3 awakening years are within 3 years;
-- mean absolute awakening-year difference is 1 year.
-
-These cases are deliberately **not** treated as evidence that the system can prospectively predict future breakthroughs. They show that the trajectory reconstruction and delayed-recognition geometry survive a first cross-database stress test while also demonstrating that absolute B values depend on bibliographic coverage.
-
-Full persisted results are under `data/pilot0_openalex_*.json` and `data/pilot0_cross_source_summary.json`.
-
-### Completed engineering gates
-
-1. deterministic Beauty Coefficient and awakening-time implementation;
-2. complete zero-filled citation-history reconstruction;
-3. historical-cutoff leakage firewall for OpenAlex and local SciSciNet-style data;
-4. reusable `sleeping-beauty-miner` Skill + JSON orchestrator;
-5. Candidate Evidence Card schema;
-6. ARIS4C011 integrity adapter with E0–E5-compatible routing;
-7. transparent citation baselines;
-8. Precision@K / Recall@K / NDCG@K / Brier / calibration utilities;
-9. historical-cutoff baseline evaluator;
-10. cutoff-safe local corpus discovery scan;
-11. GitHub Actions CI and live OpenAlex Pilot 0 workflows;
-12. three non-synthetic cross-source validation cases.
+- robust retrospective SB gate;
+- source-calibrated B threshold support;
+- van-Raan-style sleep/depth/wake gate;
+- later-recognition floor;
+- four canonical trajectory states;
+- deterministic matched controls;
+- mechanism_ready hard gate that blocks inference when no robust SB exists.
 
 ### Immediate next gates
 
-1. process a non-hand-picked historical cohort rather than only famous reference cases;
-2. obtain/query a reproducible SciSciNet-v2 slice;
-3. compare against SciSciNet-v2's precomputed Sleeping Beauty metrics where compatible;
-4. construct field- and age-normalized future outcomes;
-5. add semantic novelty and atypical-combination features;
-6. add network bridge/community-diversity features;
-7. implement Prince-paper candidate extraction;
-8. run feature-family ablations and chronological/field/era holdouts;
-9. connect real ARIS4C011 findings on the same corpus;
-10. train prospective models only after the baseline and leakage gates pass.
+1. connect a reproducible SciSciNet-v2 / SciSciNet query or slice;
+2. use SB_B only as a cheap candidate prefilter, then reconstruct trajectories;
+3. build the first empirical robust-SB mechanism cohort;
+4. measure SB-vs-Forgotten and SB-vs-Immediate-Hit match yield / balance;
+5. add reference-combination and network mechanism features;
+6. run Prince / awakening-trigger analysis;
+7. return mechanism-derived, cutoff-safe features to the prospective benchmark;
+8. train learned models only after independent feature families show stable value.
 
-See `process/STATUS.md` for the canonical execution state.
+Canonical execution state: process/STATUS.md  
+Mechanism design: process/MECHANISM_TRACK.md  
+Pilot 1 citation results: process/PILOT1_RESULTS.md
