@@ -105,17 +105,18 @@ def main():
             for item in retests:
                 retest_exposure[protocol][item["pair_id"]]+=1
 
-            presented=[*main,*retests]
-            rng=random.Random(stable_seed(f"{protocol}:{base}:order"))
-            rng.shuffle(presented)
-
-            # Avoid an immediate duplicate where possible.
-            for i in range(1,len(presented)):
-                if presented[i]["pair_id"]==presented[i-1]["pair_id"]:
-                    swap=next((j for j in range(i+1,len(presented))
-                               if presented[j]["pair_id"]!=presented[i-1]["pair_id"]),None)
-                    if swap is not None:
-                        presented[i],presented[swap]=presented[swap],presented[i]
+            # Deterministically reshuffle until no retest is immediately adjacent
+            # to the matching main trial (or to another copy of the same pair).
+            presented=None
+            for attempt in range(1000):
+                candidate=[*main,*retests]
+                rng=random.Random(stable_seed(f"{protocol}:{base}:order:{attempt}"))
+                rng.shuffle(candidate)
+                if all(a["pair_id"]!=b["pair_id"] for a,b in zip(candidate,candidate[1:])):
+                    presented=candidate
+                    break
+            if presented is None:
+                raise RuntimeError(f"Could not construct non-adjacent order for {protocol} form {base+1}")
 
             forms.append({
                 "form_id":f"{protocol}-F{base+1:02d}",
