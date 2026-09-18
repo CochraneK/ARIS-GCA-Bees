@@ -1,6 +1,6 @@
 # When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion
 
-**Cunyi Kang**
+**Cochrane Kang**
 
 > **Draft status (2026-09-18):** theory and methods draft. Coder A feasibility results are descriptive only. Independent Coder B reliability and reproducible retrieval Gate R must pass before any confirmatory claim about the framework is made.
 
