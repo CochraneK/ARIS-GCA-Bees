@@ -16,6 +16,7 @@ This directory is the canonical registry of research projects produced with ARIS
 | 008 | formal research design | papers/008-human-intelligence-bootstrap/ |
 | 009 | formal research design | papers/009-phenomenology-preserving-computational-psychiatry/ |
 | 010 | formal research design / combinatorial Pilot 0 complete | papers/010-universal-concept-identification/ |
+| 011 | formal research design / benchmark specification locked | papers/011-research-forensics/ |
 
 Paper 002 passed independent cross-family ARIS secondary review and has been formally promoted.
 
