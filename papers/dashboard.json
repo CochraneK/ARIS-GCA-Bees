@@ -28,12 +28,12 @@
       "blocker": "Independent Coder B; prior attempt intentionally invalidated for contamination"
     },
     "004": {
-      "progress": 62,
-      "stage": "Pre-exposure 100-person scale-up",
-      "activity": "quiet",
-      "evidence": "Pilot30 identity/work/network feasibility passed; deterministic network100 scaffolding exists",
-      "next_gate": "Complete frozen 100-person identity/work/network frame",
-      "blocker": "Machine execution of scale-up before MH exposure coding"
+      "progress": 68,
+      "stage": "Identity100 frozen · network100 acquisition",
+      "activity": "active",
+      "evidence": "100-person MH-blind first review: 52 verified, 38 no-graph, 8 collision, 2 identity errors; 40-case blind second-review packet frozen",
+      "next_gate": "Complete network100 work corpus + independent second-review judgments/adjudication",
+      "blocker": "Independent identity second review remains required before mental-health exposure coding"
     },
     "005": {
       "progress": 68,
@@ -100,12 +100,12 @@
       "blocker": "Independent Coder B output missing"
     },
     "013": {
-      "progress": 48,
-      "stage": "Administrative Pilot 1 transfer gate",
-      "activity": "blocked",
-      "evidence": "2.95M Wikidata stress test + NUMIDENT parser + locked administrative design",
-      "next_gate": "Acquire BUNMD or public NUMIDENT bytes and run frozen Pilot 1",
-      "blocker": "External administrative-data access; no fabricated identity allowed"
+      "progress": 50,
+      "stage": "Public NUMIDENT transfer · Pilot 1 ready",
+      "activity": "gated",
+      "evidence": "Raw NUMIDENT parser/tests + locked 1988–1996 discovery + public OpenICPSR V3 death-file provenance manifest",
+      "next_gate": "Transfer two public-use NUMIDENT V3 death archives, verify layout/hashes, run frozen Pilot 1",
+      "blocker": "~1.88 GB file transfer into execution environment; no identity/permission blocker"
     },
     "014": {
       "progress": 69,
@@ -116,12 +116,12 @@
       "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
     },
     "015": {
-      "progress": 76,
-      "stage": "Mechanism Track · zero-yield random-cohort result",
+      "progress": 79,
+      "stage": "Track-A retrospective case discovery",
       "activity": "active",
-      "evidence": "Pilot1 benchmark + mechanism tooling + 5-stratum/500-paper real-data yield diagnostic (0 strict robust SB)",
-      "next_gate": "Build large retrospective Track-A case discovery corpus, then matched mechanism controls",
-      "blocker": "Random small cohorts yield no robust SB cases under strict gate; case discovery must scale"
+      "evidence": "Random 500-paper mechanism yield = 0 robust SB; outcome-enriched 300-paper partial run found 25 strict robust SB across 3 fields",
+      "next_gate": "Complete throttled reproducible Track-A run, freeze robust cases, build unselected matched-control reservoir",
+      "blocker": "OpenAlex public API rate limit requires bounded serial acquisition; enriched sample cannot estimate prevalence"
     },
     "016": {
       "progress": 55,
