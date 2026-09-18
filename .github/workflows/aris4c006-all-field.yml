@@ -1,0 +1,39 @@
+name: ARIS4C006 all-field primary-topic eligibility
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-all-field.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/13_all_field_primary_topic_eligibility.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  all-field:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run all-field primary-topic eligibility pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/13_all_field_primary_topic_eligibility.py \
+            --per-field-year 15 \
+            --outdir data/pilot/all_field_eligibility
+      - name: Upload aggregate all-field artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-all-field-eligibility
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/all_field_eligibility/all_field_eligibility.csv
+            ${{ env.PAPER_DIR }}/data/pilot/all_field_eligibility/manifest.json
+          if-no-files-found: error
+          retention-days: 30
