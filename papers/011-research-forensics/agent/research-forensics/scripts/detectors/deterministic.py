@@ -14,6 +14,7 @@ from __future__ import annotations
 from decimal import Decimal, ROUND_HALF_UP
 import math
 import re
+import unicodedata
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from orchestrator import Applicability, Finding, ForensicContext
@@ -850,6 +851,192 @@ class CrossSourceFieldConsistencyDetector:
         return findings
 
 
+def _normalize_category(value: Any) -> str:
+    """Minimal deterministic normalization for explicit categorical aliases."""
+    text = unicodedata.normalize("NFKD", str(value or ""))
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return re.sub(r"\s+", " ", text).strip().casefold()
+
+
+class CategoricalAggregateRecomputeDetector:
+    """Recompute a reported category count/proportion from deposited raw-data counts.
+
+    The adapter consumes a complete source-verified frequency table rather than
+    participant-level rows. Alias rules are explicit and deterministic.
+    """
+
+    detector_id = "categorical_aggregate_recompute"
+    detector_version = "pilot3b-0.1.0"
+    family = "table_consistency"
+
+    def applicability(self, context: ForensicContext) -> Applicability:
+        records = context.content.get("categorical_aggregate_checks") or []
+        if not records:
+            return Applicability(False, "No categorical aggregate recomputation records were supplied.")
+        return Applicability(True, "At least one source-verified categorical aggregate record is available.")
+
+    def run(self, context: ForensicContext) -> Sequence[Finding]:
+        findings: List[Finding] = []
+        for i, record in enumerate(context.content.get("categorical_aggregate_checks") or []):
+            locator = str(record.get("source_locator") or f"categorical_aggregate_checks[{i}]")
+            target_locator = str(record.get("target_source_locator") or locator)
+            data_locator = str(record.get("comparison_source_locator") or "")
+            raw_counts = record.get("raw_value_counts")
+            aliases = record.get("aliases")
+            missing = []
+
+            if not target_locator:
+                missing.append("target_source_locator")
+            if not data_locator:
+                missing.append("comparison_source_locator")
+            if not isinstance(raw_counts, dict) or not raw_counts:
+                missing.append("raw_value_counts")
+            if not isinstance(aliases, list) or not aliases:
+                missing.append("aliases")
+            if record.get("raw_value_counts_complete") is not True:
+                missing.append("raw_value_counts_complete=true")
+            if record.get("source_available_at_target_time") is not True:
+                missing.append("source_available_at_target_time=true")
+            if record.get("provenance_verified") is not True:
+                missing.append("provenance_verified=true")
+            if record.get("sample_size") is None:
+                missing.append("sample_size")
+            if record.get("reported_count") is None and record.get("reported_percent") is None:
+                missing.append("reported_count or reported_percent")
+            digest = str(record.get("data_sha256") or "").strip().lower()
+            if not re.fullmatch(r"[0-9a-f]{64}", digest):
+                missing.append("valid data_sha256")
+            if not str(record.get("data_created_at") or "").strip():
+                missing.append("data_created_at")
+
+            if missing:
+                findings.append(Finding(
+                    detector_id=self.detector_id,
+                    detector_version=self.detector_version,
+                    family=self.family,
+                    applicable=False,
+                    applicability_reason="Raw-data aggregate provenance or required inputs are incomplete.",
+                    status="ABSTAIN",
+                    evidence_class="E0",
+                    claim="Categorical aggregate recomputation was not executed.",
+                    source_locator=locator,
+                    evidence={"missing_requirements": missing},
+                    reproducible="yes",
+                    benign_explanations=[],
+                    dependency_group=f"rawdata:{digest or locator}",
+                    next_action="Verify the complete source frequency table, digest, dates, alias rule, and target table location.",
+                    misconduct_inference=False,
+                ))
+                continue
+
+            try:
+                n = int(record["sample_size"])
+                if n <= 0:
+                    raise ValueError("sample_size must be positive")
+
+                parsed_counts: Dict[str, int] = {}
+                for raw_value, raw_count in raw_counts.items():
+                    count = int(raw_count)
+                    if count < 0:
+                        raise ValueError("raw category counts cannot be negative")
+                    parsed_counts[str(raw_value)] = count
+
+                source_total = sum(parsed_counts.values())
+                if source_total != n:
+                    raise ValueError(
+                        f"complete raw_value_counts sum to {source_total}, expected sample_size {n}"
+                    )
+
+                alias_set = {_normalize_category(x) for x in aliases}
+                matched_variants = [
+                    {"value": raw_value, "count": count}
+                    for raw_value, count in sorted(parsed_counts.items())
+                    if _normalize_category(raw_value) in alias_set
+                ]
+                recomputed_count = sum(item["count"] for item in matched_variants)
+                recomputed_percent = (100.0 * recomputed_count) / n
+
+                checks: Dict[str, bool] = {}
+                if record.get("reported_count") is not None:
+                    checks["count"] = int(record["reported_count"]) == recomputed_count
+                if record.get("reported_percent") is not None:
+                    checks["percent"] = _rounded_equal(
+                        recomputed_percent, str(record["reported_percent"])
+                    )
+
+                ok = all(checks.values())
+                reported_percent = record.get("reported_percent")
+                rounded_percent = None
+                if reported_percent is not None:
+                    rounded_percent = str(
+                        _round_half_up(
+                            recomputed_percent,
+                            _decimal_places(str(reported_percent)),
+                        )
+                    )
+
+                findings.append(Finding(
+                    detector_id=self.detector_id,
+                    detector_version=self.detector_version,
+                    family=self.family,
+                    applicable=True,
+                    applicability_reason="Complete source frequency counts, explicit aliases, time-safe provenance, and target values were supplied.",
+                    status="PASS" if ok else "FLAG",
+                    evidence_class="E1",
+                    claim=(
+                        "Reported category aggregate is compatible with deterministic recomputation from the deposited source data."
+                        if ok else
+                        "Reported category aggregate is incompatible with deterministic recomputation from the deposited source data under the explicit alias rule."
+                    ),
+                    source_locator=target_locator,
+                    evidence={
+                        "category_label": record.get("category_label"),
+                        "aliases": list(aliases),
+                        "normalization": "NFKD strip-diacritics + whitespace-collapse + casefold",
+                        "sample_size": n,
+                        "source_total": source_total,
+                        "matched_variants": matched_variants,
+                        "recomputed_count": recomputed_count,
+                        "recomputed_percent": recomputed_percent,
+                        "recomputed_percent_rounded": rounded_percent,
+                        "reported_count": record.get("reported_count"),
+                        "reported_percent": reported_percent,
+                        "checks": checks,
+                        "data_sha256": digest,
+                        "data_created_at": record.get("data_created_at"),
+                        "comparison_source_locator": data_locator,
+                    },
+                    reproducible="yes",
+                    benign_explanations=[] if ok else [
+                        "The published table may have applied an undocumented recoding or exclusion rule.",
+                        "The deposited data may represent a different analysis snapshot or subset despite the recorded provenance.",
+                        "The target table or deposited source values may contain a transcription/reporting error.",
+                    ],
+                    dependency_group=f"rawdata:{digest}",
+                    next_action=None if ok else "Re-run the prespecified category normalization directly on the deposited data and compare with the historical table.",
+                    misconduct_inference=False,
+                ))
+            except (TypeError, ValueError, ArithmeticError) as exc:
+                findings.append(Finding(
+                    detector_id=self.detector_id,
+                    detector_version=self.detector_version,
+                    family=self.family,
+                    applicable=False,
+                    applicability_reason=f"Categorical aggregate inputs failed validation: {exc}",
+                    status="ABSTAIN",
+                    evidence_class="E0",
+                    claim="Categorical aggregate recomputation could not be validly completed.",
+                    source_locator=locator,
+                    evidence={"record": dict(record)},
+                    reproducible="yes",
+                    benign_explanations=[],
+                    dependency_group=f"rawdata:{digest or locator}",
+                    next_action="Repair the structured aggregate record and verify completeness against the deposited data.",
+                    misconduct_inference=False,
+                ))
+        return findings
+
+
 DEFAULT_DETERMINISTIC_DETECTORS = [
     NHSTConsistencyDetector(),
     GRIMItemMeanDetector(),
@@ -857,4 +1044,5 @@ DEFAULT_DETERMINISTIC_DETECTORS = [
     TableArithmeticDetector(),
     ReferenceMetadataDetector(),
     CrossSourceFieldConsistencyDetector(),
+    CategoricalAggregateRecomputeDetector(),
 ]

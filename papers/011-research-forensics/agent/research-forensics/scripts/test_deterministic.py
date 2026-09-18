@@ -2,6 +2,7 @@ import math
 
 from orchestrator import ForensicContext, run_forensics
 from detectors.deterministic import (
+    CategoricalAggregateRecomputeDetector,
     CrossSourceFieldConsistencyDetector,
     DebitStyleBinaryDetector,
     GRIMItemMeanDetector,
@@ -217,6 +218,82 @@ def test_cross_source_abstains_without_contemporaneous_source_proof():
         "fields_to_compare":["n"],
         "target_fields":{"n":10},
         "source_fields":{"n":10},
+    }])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "ABSTAIN"
+
+
+def test_categorical_aggregate_recompute_flags_count_and_percent():
+    d = CategoricalAggregateRecomputeDetector()
+    ctx = context(categorical_aggregate_checks=[{
+        "source_locator": "Table 1 Mexico",
+        "target_source_locator": "Table 1 Mexico",
+        "comparison_source_locator": "deposited survey country column",
+        "category_label": "Mexico",
+        "aliases": ["mexico"],
+        "raw_value_counts_complete": True,
+        "raw_value_counts": {
+            "Mexico": 11,
+            "México": 5,
+            "MÉXICO": 1,
+            "Other": 336,
+        },
+        "sample_size": 353,
+        "reported_count": 16,
+        "reported_percent": "4.5",
+        "data_sha256": "a" * 64,
+        "data_created_at": "2023-07-28T22:30:28Z",
+        "source_available_at_target_time": True,
+        "provenance_verified": True,
+    }])
+    out = run_forensics(ctx, [d])
+    f = out["findings"][0]
+    assert f["status"] == "FLAG"
+    assert f["evidence_class"] == "E1"
+    assert f["evidence"]["recomputed_count"] == 17
+    assert f["evidence"]["recomputed_percent_rounded"] == "4.8"
+    assert f["evidence"]["checks"] == {"count": False, "percent": False}
+    assert f["misconduct_inference"] is False
+
+
+def test_categorical_aggregate_recompute_passes_correct_values():
+    d = CategoricalAggregateRecomputeDetector()
+    ctx = context(categorical_aggregate_checks=[{
+        "source_locator": "Table 1 Mexico",
+        "target_source_locator": "Table 1 Mexico",
+        "comparison_source_locator": "deposited survey country column",
+        "category_label": "Mexico",
+        "aliases": ["MÉXICO"],
+        "raw_value_counts_complete": True,
+        "raw_value_counts": {"Mexico": 11, "México": 5, "MÉXICO": 1, "Other": 336},
+        "sample_size": 353,
+        "reported_count": 17,
+        "reported_percent": "4.8",
+        "data_sha256": "b" * 64,
+        "data_created_at": "2023-07-28T22:30:28Z",
+        "source_available_at_target_time": True,
+        "provenance_verified": True,
+    }])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "PASS"
+
+
+def test_categorical_aggregate_recompute_abstains_on_incomplete_counts():
+    d = CategoricalAggregateRecomputeDetector()
+    ctx = context(categorical_aggregate_checks=[{
+        "source_locator": "Table 1 Mexico",
+        "target_source_locator": "Table 1 Mexico",
+        "comparison_source_locator": "deposited survey country column",
+        "category_label": "Mexico",
+        "aliases": ["mexico"],
+        "raw_value_counts_complete": True,
+        "raw_value_counts": {"Mexico": 11, "México": 5, "MÉXICO": 1},
+        "sample_size": 353,
+        "reported_count": 16,
+        "data_sha256": "c" * 64,
+        "data_created_at": "2023-07-28T22:30:28Z",
+        "source_available_at_target_time": True,
+        "provenance_verified": True,
     }])
     out = run_forensics(ctx, [d])
     assert out["findings"][0]["status"] == "ABSTAIN"
