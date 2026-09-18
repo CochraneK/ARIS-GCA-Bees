@@ -1,0 +1,33 @@
+name: ARIS4C014 China CCGP Detail Pilot 0
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/014-public-integrity-forensics/code/china_ccgp_detail.py"
+      - "papers/014-public-integrity-forensics/code/live_china_ccgp_detail_smoke.py"
+      - "papers/014-public-integrity-forensics/code/test_china_ccgp_detail.py"
+      - ".github/workflows/aris4c014-china-ccgp-detail-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ccgp-detail:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run bounded CCGP detail smoke
+        working-directory: papers/014-public-integrity-forensics/code
+        run: python live_china_ccgp_detail_smoke.py
+      - name: Upload detail artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c014-china-ccgp-detail-pilot0
+          path: papers/014-public-integrity-forensics/code/ccgp_detail_pilot0.json
+          retention-days: 30
