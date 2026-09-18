@@ -8,24 +8,58 @@
     "last_complete_year": 2025
   },
   "sources_total": 25,
-  "sources_estimable": 19,
+  "sources_estimable": 23,
   "sources_not_estimable_by_reason": {
-    "INSUFFICIENT_COMPLETE_POST_RETRACTION_YEARS": 2,
-    "NO_PRE_RETRACTION_BASELINE": 4
+    "INSUFFICIENT_COMPLETE_POST_RETRACTION_YEARS": 2
   },
   "kaplan_meier": {
-    "n": 19,
-    "events": 19,
-    "censored": 0,
+    "n": 23,
+    "events": 20,
+    "censored": 3,
     "median_years": 1,
     "median_reached": true,
     "survival_curve": [
       {
         "time_years": 1,
-        "at_risk": 19,
-        "events": 19,
+        "at_risk": 23,
+        "events": 14,
         "censored": 0,
-        "survival": 0.0
+        "survival": 0.3913043478260869
+      },
+      {
+        "time_years": 2,
+        "at_risk": 9,
+        "events": 2,
+        "censored": 0,
+        "survival": 0.3043478260869565
+      },
+      {
+        "time_years": 3,
+        "at_risk": 7,
+        "events": 3,
+        "censored": 0,
+        "survival": 0.17391304347826084
+      },
+      {
+        "time_years": 4,
+        "at_risk": 4,
+        "events": 1,
+        "censored": 0,
+        "survival": 0.13043478260869562
+      },
+      {
+        "time_years": 8,
+        "at_risk": 3,
+        "events": 0,
+        "censored": 2,
+        "survival": 0.13043478260869562
+      },
+      {
+        "time_years": 9,
+        "at_risk": 1,
+        "events": 0,
+        "censored": 1,
+        "survival": 0.13043478260869562
       }
     ]
   },

@@ -1,6 +1,6 @@
 {
   "classification": "HIGH_PROPAGATION_CITATION_EXPOSURE_PILOT_NOT_CONTAMINATION_PREVALENCE",
-  "generated_at_utc": "2026-09-18T02:56:51.136119+00:00",
+  "generated_at_utc": "2026-09-18T02:58:45.547415+00:00",
   "source_selection": {
     "rw_screen": "e1s_narrow_auto==1 and RetractionNature==Retraction",
     "source_publication_years": [
@@ -17,9 +17,21 @@
     "sum_post_retraction_incoming_edges_across_sources": 1753,
     "post_retraction_fraction_of_live_exposure": 0.23552331049308076,
     "aggregate_post_retraction_exposure_by_publication_year": {
-      "2017": 66,
-      "2021": 57
+      "2014": 38,
+      "2015": 51,
+      "2016": 60,
+      "2017": 112,
+      "2018": 158,
+      "2019": 179,
+      "2020": 209,
+      "2021": 237,
+      "2022": 193,
+      "2023": 200,
+      "2024": 150,
+      "2025": 107,
+      "2026": 59
     },
+    "yearly_aggregation_note": "Annual post-retraction counts are queried with the exact from_publication_date equal to each source retraction date.",
     "sampled_post_retraction_edges_for_semantic_review": 486,
     "sample_per_source_target": 20
   },
