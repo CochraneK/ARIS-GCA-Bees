@@ -1,0 +1,40 @@
+name: ARIS4C006 ORCID identity pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-identity-orcid.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/07_identity_orcid_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identity-orcid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run ORCID/OpenAlex identity consistency pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/07_identity_orcid_pilot.py \
+            --years 2020,2024 \
+            --per-cell 25 \
+            --outdir data/pilot/identity_orcid
+      - name: Upload aggregate identity artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-identity-orcid-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/identity_orcid/identity_orcid_by_field_year_band.csv
+            ${{ env.PAPER_DIR }}/data/pilot/identity_orcid/manifest.json
+          if-no-files-found: error
+          retention-days: 30
