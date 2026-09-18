@@ -142,11 +142,20 @@ jobs:
             "$OUT/identity_decisions_100_draft.csv" \
             --candidate-frame "$OUT/science_candidates_frozen.csv"
 
+      - name: Summarize pre-exposure observability bias
+        run: |
+          python "$PAPER_DIR/code/analysis/summarize_observability.py" \
+            --candidates "$OUT/science_candidates_frozen.csv" \
+            --decisions "$OUT/identity_decisions_100_draft.csv" \
+            --output-csv "$OUT/observability_by_stratum.csv" \
+            --summary-json "$OUT/observability_summary.json"
+
       - name: Print identity100 summaries
         run: |
           cat "$OUT/openalex/identity_review_summary.json"
           cat "$OUT/identity_decisions_100_summary.json"
           cat "$OUT/identity_packet/wikidata_identity_summary.json"
+          cat "$OUT/observability_summary.json"
 
       - name: Upload identity100 artifact
         uses: actions/upload-artifact@v4
@@ -155,6 +164,8 @@ jobs:
           path: |
             ${{ env.OUT }}/identity_decisions_100_draft.csv
             ${{ env.OUT }}/identity_decisions_100_summary.json
+            ${{ env.OUT }}/observability_by_stratum.csv
+            ${{ env.OUT }}/observability_summary.json
             ${{ env.OUT }}/science_candidates_identifiers.csv
             ${{ env.OUT }}/openalex/openalex_acquisition_summary.json
             ${{ env.OUT }}/openalex/openalex_resolution_audit.jsonl
