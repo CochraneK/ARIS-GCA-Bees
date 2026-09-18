@@ -129,3 +129,47 @@ Do not generalize ORCID-only effect sizes to all scholars without qualification.
 The author-level career analysis is blocked if identity-risk indicators remain substantially associated with surname rank/frequency and no high-confidence subset demonstrates that the focal pattern is robust to those errors.
 
 In that case, ARIS4C006 can still narrow to work-level authorship-order mechanisms, which depend less on long-horizon person-level career reconstruction.
+
+
+## 11. Canonical author-ID rule after Pilot 9
+
+Pilot 7 found that a naive longitudinal join on the author ID embedded in work authorships is unsafe: 61/977 ORCID-verifiable authorships (6.24%) had a raw embedded OpenAlex author ID different from the OpenAlex author currently resolved from the same ORCID.
+
+Pilot 9 re-resolved every mismatched embedded author ID through the current OpenAlex author endpoint.
+
+Result:
+- resolved checks: 977;
+- raw mismatches: 61;
+- mismatches repaired by canonicalization: **61 / 61**;
+- unresolved conflicts: **0**;
+- author-ID lookup failures: **0**;
+- residual conflict rate after canonicalization: **0%** in this deterministic pilot sample.
+
+### Frozen engineering rule
+
+Before any author-level longitudinal join:
+
+1. take the author ID embedded in each OpenAlex authorship;
+2. resolve that ID through the current OpenAlex author entity endpoint;
+3. store/use the returned canonical author ID as the longitudinal join key;
+4. when ORCID is available, verify that the canonical OpenAlex author is consistent with that ORCID;
+5. preserve the original embedded ID for provenance/audit;
+6. do not silently stitch profiles using raw-name similarity alone.
+
+### Interpretation
+
+This substantially downgrades the immediate identity threat from a raw-ID engineering problem to a residual entity-resolution validity problem.
+
+It does **not** prove OpenAlex person resolution is perfect. False merges/splits lacking ORCID can still occur, especially for common Chinese names. Therefore the confirmatory sensitivity ladder in Section 6 remains mandatory.
+
+However, raw embedded OpenAlex author IDs are no longer treated as immutable person identifiers.
+
+## 12. Current gate status
+
+**Work-level identity requirements: PASS.**
+
+**Longitudinal identity engineering: PASS conditional on canonicalization.**
+
+**Residual person-resolution bias: managed by preregistered sensitivity analyses, not considered eliminated.**
+
+Distal career outcomes may enter research-design specification after the cohort/exposure rules are frozen, but should remain locked from confirmatory estimation until the final preregistration and identity-risk exclusion/sensitivity rules are frozen.
