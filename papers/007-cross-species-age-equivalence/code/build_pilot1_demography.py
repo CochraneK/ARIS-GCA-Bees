@@ -22,7 +22,6 @@ import statistics
 from collections import defaultdict
 from pathlib import Path
 
-from openpyxl import load_workbook
 
 from age_mappings import SpeciesTime, map_by_loglinear, map_by_relative_age
 from build_pilot0 import read_anage, species_time
@@ -228,12 +227,13 @@ def load_pilot0_species(
     return species, provenance
 
 
-def load_peron(path: Path) -> list[dict[str, object]]:
-    wb = load_workbook(path, read_only=True, data_only=True)
-    ws = wb[wb.sheetnames[0]]
-    rows = list(ws.iter_rows(values_only=True))
-    header = [str(x) for x in rows[0]]
-    return [dict(zip(header, row)) for row in rows[1:] if row[0]]
+def load_peron(path: Path) -> list[dict[str, str]]:
+    """Load the vendored published S5 parameter table."""
+    with path.open("r", encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    if len(rows) != 96:
+        raise RuntimeError(f"Expected 96 Péron S5 species rows, found {len(rows)}")
+    return rows
 
 
 def main() -> None:
@@ -242,7 +242,7 @@ def main() -> None:
     source.add_argument("--anage", type=Path)
     source.add_argument("--pilot0-grid", type=Path)
     ap.add_argument("--pilot0-coverage", type=Path)
-    ap.add_argument("--peron-s5", type=Path, required=True)
+    ap.add_argument("--peron-s5", type=Path, required=True, help="Vendored Péron 2019 S5 CSV")
     ap.add_argument("--out", type=Path, default=Path("data/pilot1_demography"))
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
