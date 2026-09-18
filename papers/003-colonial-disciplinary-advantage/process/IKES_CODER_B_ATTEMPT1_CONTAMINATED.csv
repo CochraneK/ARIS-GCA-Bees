@@ -1,0 +1,22 @@
+concept_id,discipline,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,IKES_B
+D01,Anthropology,3,1,3,3,1,1,1,2,3,3,3,2.272727
+D02,Archaeology,3,2,2,3,1,0,0,1,3,1,2,1.636364
+D03,Geography,3,3,2,2,2,1,2,1,1,1,3,1.909091
+D04,Development Studies,3,1,2,2,1,1,2,2,0,1,3,1.636364
+D05,Linguistics,2,1,3,2,0,0,0,2,1,3,2,1.454545
+D06,Tropical Medicine / colonial-health-related Public Health,3,1,2,3,1,3,1,2,1,2,3,2.000000
+D07,Agriculture & Forestry,3,2,1,3,2,1,3,2,2,1,3,2.090909
+D08,Geology / Earth-resource sciences,2,3,0,2,3,0,1,1,2,0,2,1.454545
+D09,Sociology,2,1,2,2,0,0,1,1,0,1,2,1.090909
+D10,Political Science / International Relations,2,0,0,1,0,0,0,2,0,0,3,0.727273
+D11,Law,3,0,1,0,0,0,1,3,0,1,3,1.090909
+D12,Economics,2,1,1,1,2,0,2,1,0,0,3,1.181818
+D13,Public Administration / Social Policy,3,0,1,0,0,1,0,3,0,1,3,1.090909
+D14,Education,3,0,1,1,0,1,1,3,0,3,3,1.454545
+D15,History,1,1,0,2,0,0,0,1,3,1,2,1.000000
+D16,Demography / Population Studies,2,0,3,1,0,1,0,1,0,1,3,1.090909
+D17,Mathematics,1,1,1,0,0,0,0,1,0,1,1,0.545455
+D18,Physics,1,1,0,1,0,0,0,1,0,0,1,0.454545
+D19,Chemistry,1,0,0,0,2,1,1,1,0,0,1,0.636364
+D20,Computer Science,0,0,0,0,0,0,0,1,0,0,1,0.181818
+D21,Materials Science,1,0,0,0,2,0,1,1,0,0,1,0.545455
