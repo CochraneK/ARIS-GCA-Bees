@@ -24,6 +24,9 @@
 - [x] Independent-panel fidelity metric specification drafted.
 - [x] Minimal relation ontology drafted.
 - [x] Synthetic engineering benchmark added with explicit non-empirical labeling.
+- [x] Independent query-bank template drafted with anti-redundancy rules.
+- [x] Simulation-based sample-size / precision sensitivity framework added.
+- [x] Portfolio Pipeline-link generator bug fixed and regenerated Page verified.
 
 ## Next ARIS gates
 
@@ -37,7 +40,7 @@ Pass condition: novelty claim is rewritten to the narrowest defensible form afte
 
 ### Gate B — fidelity metric preregistration
 
-**Status:** formal metric architecture complete; empirical calibration pending.
+**Status:** design specification complete; empirical calibration is now the blocker.
 
 Completed:
 
@@ -46,20 +49,32 @@ Completed:
 - source-uncertainty propagation;
 - rate- and burden-matched fairness analyses;
 - relation ontology;
-- provisional reliability gates.
+- provisional reliability gates;
+- independent query-bank template;
+- participant/episode/query/evaluator power-sensitivity simulation.
 
-Still required:
+Still required from actual pilot material:
 
-- pilot query bank on independent episodes;
-- inter-rater calibration;
-- frozen acceptable thresholds;
-- simulation-based sample-size target.
+- construct/adjudicate queries on independent episodes;
+- measure query redundancy and usable-query yield;
+- estimate inter-rater/evaluator variance;
+- freeze acceptable reliability thresholds after pilot calibration;
+- rerun sample-size/precision simulation using empirical variance components.
 
-Pass condition: metrics can be applied without knowing representation identity and without tuning on confirmatory cases.
+Pass condition: metrics can be applied without knowing representation identity, reliability is adequate, and no confirmatory choices are tuned on confirmatory cases.
 
 ### Gate C — pilot material
 
-Use de-identified or purpose-collected episodes to verify annotation feasibility, graph extraction, blinded reconstruction and burden measurement.
+**Status:** now the main execution gate.
+
+Use de-identified or purpose-collected episodes to verify:
+
+- source construction;
+- query adjudication;
+- graph extraction;
+- blinded reconstruction;
+- burden measurement;
+- participant-meaning checks where feasible.
 
 Synthetic examples may be used only for engineering and must be labeled synthetic.
 
@@ -83,8 +98,12 @@ Pass condition: effect estimates and uncertainty are reported; no universal repr
 
 These are intentionally deferred until the representation-loss measurement problem is solved.
 
-## Current main risk
+## Current main blocker
 
-The framework can become too broad.
+The project no longer needs more conceptual expansion before pilot execution.
 
-**Control:** Paper 009A remains a measurement / representation paper. Everything else is a programmatic extension.
+It needs **independent, ethically usable pilot episodes and trained/adjudicating raters** so the fidelity instrument can be calibrated on real material.
+
+## Scope control
+
+Paper 009A remains a measurement / representation paper. Everything else is a programmatic extension.
