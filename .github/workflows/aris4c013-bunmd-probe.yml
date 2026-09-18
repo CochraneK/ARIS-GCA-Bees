@@ -52,6 +52,25 @@ jobs:
             head -c 64 /tmp/aris4c013/access_body.bin | od -An -tx1 || true
           fi
 
+      - name: Fetch required guestbook 506 schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --retry 4 --retry-all-errors --connect-timeout 30 -fL \
+            'https://dataverse.harvard.edu/api/guestbooks/506' \
+            -o /tmp/aris4c013/guestbook506.json
+          echo "=== guestbook 506 ==="
+          cat /tmp/aris4c013/guestbook506.json
+          echo
+          echo "=== compact field summary ==="
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('/tmp/aris4c013/guestbook506.json')
+          obj=json.loads(p.read_text())
+          print(json.dumps(obj, indent=2, ensure_ascii=False))
+          PY
+
       - name: Upload metadata evidence
         uses: actions/upload-artifact@v4
         with:
@@ -61,4 +80,5 @@ jobs:
             /tmp/aris4c013/bunmd_files.json
             /tmp/aris4c013/access_headers.txt
             /tmp/aris4c013/access_body.bin
+            /tmp/aris4c013/guestbook506.json
           retention-days: 30
