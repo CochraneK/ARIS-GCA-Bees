@@ -10,7 +10,7 @@ quotes are not converted into currency amounts.
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from hashlib import sha256
 from html.parser import HTMLParser
 import json
@@ -56,6 +56,7 @@ class CCGPAwardLot:
     award_value_yuan: float | None
     award_value_raw: str | None
     pricing_basis: str
+    supplier_uscc: str | None = None
     result_status: str = "awarded"
     candidate_rank: int | None = None
     score: float | None = None
@@ -90,6 +91,140 @@ def html_to_text(html: str) -> str:
     p = _VisibleText()
     p.feed(html)
     return p.text()
+
+
+class _TableRows(HTMLParser):
+    """Minimal HTML table reader; it retains cells but never emits them directly."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.rows: list[list[str]] = []
+        self._row: list[str] | None = None
+        self._cell: list[str] | None = None
+
+    def handle_starttag(self, tag: str, attrs) -> None:
+        low = tag.lower()
+        if low == "tr":
+            self._row = []
+        elif low in {"td", "th"} and self._row is not None:
+            self._cell = []
+
+    def handle_data(self, data: str) -> None:
+        if self._cell is not None:
+            self._cell.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        low = tag.lower()
+        if low in {"td", "th"} and self._cell is not None and self._row is not None:
+            self._row.append(" ".join("".join(self._cell).split()))
+            self._cell = None
+        elif low == "tr" and self._row is not None:
+            if any(x for x in self._row):
+                self.rows.append(self._row)
+            self._row = None
+            self._cell = None
+
+
+_USCC_RE = re.compile(r"(?<![0-9A-Z])([0-9ABCDEFGHJKLMNPQRTUWXY]{18})(?![0-9A-Z])")
+
+
+def _extract_uscc(value: str | None) -> str | None:
+    """Return a structurally valid 18-character unified social credit code."""
+    if not value:
+        return None
+    m = _USCC_RE.search(value.upper().replace(" ", ""))
+    return m.group(1) if m else None
+
+
+def _table_award_lots(html: str) -> list[CCGPAwardLot]:
+    """Parse final-award table rows that expose a unified social credit code.
+
+    Requiring the USCC header intentionally avoids confusing later bid-ranking
+    tables with final-award tables. Address/phone columns are read only as
+    positional cells and are never retained in the returned objects.
+    """
+    p = _TableRows()
+    p.feed(html)
+
+    header: dict[str, int] | None = None
+    amount_header: str | None = None
+    out: list[CCGPAwardLot] = []
+    seen: set[tuple[str, str, str]] = set()
+
+    for row in p.rows:
+        if "供应商名称" in row:
+            if "统一社会信用代码" not in row:
+                header = None
+                amount_header = None
+                continue
+
+            amount_idx = next(
+                (
+                    i for i, x in enumerate(row)
+                    if "中标金额" in x or "成交金额" in x
+                ),
+                None,
+            )
+            if amount_idx is None:
+                header = None
+                amount_header = None
+                continue
+
+            header = {
+                "supplier": row.index("供应商名称"),
+                "uscc": row.index("统一社会信用代码"),
+                "amount": amount_idx,
+            }
+            score_idx = next(
+                (i for i, x in enumerate(row) if "评审得分" in x or "综合得分" in x),
+                None,
+            )
+            if score_idx is not None:
+                header["score"] = score_idx
+            amount_header = row[amount_idx]
+            continue
+
+        if header is None:
+            continue
+        required = max(header.values())
+        if len(row) <= required:
+            continue
+
+        supplier = row[header["supplier"]].strip()
+        uscc = _extract_uscc(row[header["uscc"]])
+        if not supplier or not uscc:
+            continue
+
+        raw_cell = row[header["amount"]].strip()
+        unit_m = re.search(r"[（(]\s*(万元|元|%|％)\s*[）)]", amount_header or "")
+        raw_value = f"{raw_cell}({unit_m.group(1)})" if unit_m else raw_cell
+        amount, basis = _parse_value(raw_value)
+
+        score = None
+        if "score" in header and row[header["score"]].strip():
+            m = re.search(r"-?\d+(?:\.\d+)?", row[header["score"]])
+            if m:
+                score = float(m.group(0))
+
+        key = (supplier, uscc, raw_value)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(
+            CCGPAwardLot(
+                lot_index=len(out) + 1,
+                package_name=None,
+                supplier_name=supplier,
+                award_value_yuan=amount,
+                award_value_raw=raw_value,
+                pricing_basis=basis,
+                supplier_uscc=uscc,
+                result_status="awarded",
+                score=score,
+            )
+        )
+
+    return out
 
 
 def _numbered_field(text: str, number: str, label: str) -> str | None:
@@ -281,6 +416,34 @@ def parse_ccgp_award_detail(
             )
         )
 
+    table_lots = _table_award_lots(html)
+    if table_lots:
+        enriched: list[CCGPAwardLot] = []
+        matched_table: set[int] = set()
+        for lot in lots:
+            if lot.result_status != "awarded" or lot.supplier_uscc:
+                enriched.append(lot)
+                continue
+            match_idx = next(
+                (
+                    i for i, table_lot in enumerate(table_lots)
+                    if i not in matched_table
+                    and table_lot.supplier_name == lot.supplier_name
+                ),
+                None,
+            )
+            if match_idx is None:
+                enriched.append(lot)
+            else:
+                matched_table.add(match_idx)
+                enriched.append(
+                    replace(lot, supplier_uscc=table_lots[match_idx].supplier_uscc)
+                )
+        lots = enriched
+        for i, table_lot in enumerate(table_lots):
+            if i not in matched_table:
+                lots.append(replace(table_lot, lot_index=len(lots) + 1))
+
     if not lots:
         warnings.append("no_supplier_lots_parsed")
     if not project_id:
@@ -327,6 +490,10 @@ def dump_detail_report(notices: Iterable[CCGPAwardNotice]) -> str:
                 ),
                 "currency_value_coverage": (
                     sum(x.award_value_yuan is not None for x in lots) / len(lots)
+                    if lots else 0.0
+                ),
+                "supplier_uscc_coverage": (
+                    sum(bool(x.supplier_uscc) for x in lots) / len(lots)
                     if lots else 0.0
                 ),
                 "percentage_pricing_lots": sum(
