@@ -48,13 +48,15 @@
       "Tier3_last_token_heuristic",
       "ambiguous_family_assignment"
     ],
-    "chinese_population_baseline": "ChineseNames 2025.8; confirmatory reproduction required from pinned package",
+    "chinese_population_baseline": "ChineseNames 2025.8 population counts × pinned CCNC surname-specific pronunciation map",
     "uniform_A_Z_null_forbidden": true,
     "canonical_map": "aris4c006-surname-map-v2-ccnc",
     "pronunciation_authority": "Pinned CCNC surname-specific Romanization lexicon",
     "population_authority": "ChineseNames 2025.8 population counts",
-    "primary_denominator": "ChineseNames × pinned CCNC direct Han-surname intersection, renormalized over mapped population mass",
-    "pypinyin_confirmatory_authority": false
+    "primary_denominator": "ChineseNames × pinned CCNC direct Han intersection; 1,181,331,391 represented population; 99.9671% coverage; renormalized shares",
+    "pypinyin_confirmatory_authority": false,
+    "corrected_population_weighted_initial_rank": 16.254906259407104,
+    "legacy_initial_column_confirmatory_authority": false
   },
   "identity": {
     "longitudinal_join_key": "current canonical OpenAlex author ID after re-resolving embedded work author ID",
