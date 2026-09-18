@@ -1,0 +1,41 @@
+name: ARIS4C011 Pilot 3 Table Object Scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/code/pilot3_find_music_table.py"
+      - ".github/workflows/aris4c011-pilot3-table-scan.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan exact historical PLOS table objects
+        working-directory: papers/011-research-forensics/code
+        run: python pilot3_find_music_table.py
+      - name: Validate fail-closed scan
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("papers/011-research-forensics/data/results/pilot3_music_table_object_scan.json").read_text())
+          assert r["tables_scanned"]==6
+          assert all(x.get("safe_exact_target") in {None,True,False} for x in r["rows"])
+          print({"matches":r["matching_table_ids"],"safe_exact_target_matches":r["safe_exact_target_matches"]})
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-pilot3-table-object-scan
+          path: papers/011-research-forensics/data/results/pilot3_music_table_object_scan.json
+          if-no-files-found: error
+          retention-days: 30
