@@ -293,6 +293,9 @@ def classify_mechanism_state(
     early_percentile: float,
     late_percentile: float,
     robust_sb: bool | None = None,
+    early_count: int | None = None,
+    late_count: int | None = None,
+    zero_counts_are_low: bool = True,
     early_low_threshold: float = 0.25,
     early_high_threshold: float = 0.75,
     late_low_threshold: float = 0.25,
@@ -318,9 +321,26 @@ def classify_mechanism_state(
             raise ValueError(f"{name} must be in [0,1]")
 
     early_low = early_percentile <= early_low_threshold
-    early_high = early_percentile >= early_high_threshold
     late_low = late_percentile <= late_low_threshold
+
+    # Exact zero attention is substantively low even when a large tied zero
+    # group receives an average percentile above the nominal low threshold.
+    # This avoids classifying never-cited / no-late-citation papers as
+    # middle-attention merely because of tie handling.
+    if zero_counts_are_low:
+        if early_count == 0:
+            early_low = True
+        if late_count == 0:
+            late_low = True
+
+    early_high = early_percentile >= early_high_threshold
     late_high = late_percentile >= late_high_threshold
+
+    # A zero-count period cannot simultaneously be treated as high attention.
+    if early_count == 0:
+        early_high = False
+    if late_count == 0:
+        late_high = False
 
     if early_low and late_high:
         if require_robust_sb_for_sleeping_beauty:
