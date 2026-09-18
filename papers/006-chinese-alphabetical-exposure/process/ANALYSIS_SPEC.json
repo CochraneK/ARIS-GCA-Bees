@@ -24,7 +24,17 @@
       "valid prior-3-year LOAO primary-field exposure"
     ],
     "regression_rows": "CN-affiliated ChineseNames-mappable focal authorships only",
-    "population_frame_doc": "process/POPULATION_FRAME.md"
+    "population_frame_doc": "process/POPULATION_FRAME.md",
+    "work_types": [
+      "article",
+      "conference-paper"
+    ],
+    "secondary_work_types": [
+      "review",
+      "data-paper",
+      "software-paper"
+    ],
+    "work_type_rule_doc": "process/WORK_TYPE_RULE.md"
   },
   "surname_measurement": {
     "allowed_tiers": [
@@ -88,12 +98,16 @@
     "work_fixed_effects": true,
     "exposure_main_effect_absorbed_by_work_FE": true,
     "inference": {
-      "status": "pending_gate",
-      "requirements": [
-        "author dependence must be accounted for",
-        "shared work dependence must be accounted for"
-      ]
-    }
+      "cluster": [
+        "canonical_author_id",
+        "work_id",
+        "primary_field_x_year"
+      ],
+      "alpha": 0.05,
+      "test": "two-sided",
+      "multiplicity": "single primary unadjusted; <=2 secondary confirmatory estimands Holm-adjusted"
+    },
+    "inference_rule_doc": "process/INFERENCE_RULE.md"
   },
   "mandatory_robustness": [
     "3+ author focal works",
