@@ -159,6 +159,26 @@ class CandidateCardTests(unittest.TestCase):
         self.assertEqual(card["disclaimer"], DISCLAIMER)
 
 
+    def test_mechanism_card_keeps_track_separate_from_candidate_state(self):
+        gate = adapt_011_findings([], cutoff_year=None)
+        card = build_candidate_card(
+            paper_id="sb1",
+            mode="MECHANISM",
+            analysis_cutoff=2020,
+            state="CONFIRMED_DELAYED_RECOGNITION",
+            evidence_families=[],
+            integrity_gate=gate,
+            provenance=["fixture"],
+            mechanism_state="SLEEPING_BEAUTY",
+            mechanism_ready=True,
+            mechanism_contrast_role="CASE",
+        )
+        self.assertEqual(card["mode"], "MECHANISM")
+        self.assertEqual(card["mechanism_state"], "SLEEPING_BEAUTY")
+        self.assertTrue(card["mechanism_ready"])
+        self.assertEqual(card["state"], "CONFIRMED_DELAYED_RECOGNITION")
+
+
 class SciSciNetAdapterTests(unittest.TestCase):
     def test_csv_slice_reconstructs_history(self):
         with tempfile.TemporaryDirectory() as tmp:
