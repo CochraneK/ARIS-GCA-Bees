@@ -71,6 +71,9 @@ jobs:
       - name: Print downstream-neighborhood summary
         run: cat "$PAPER_DIR/data/interim/openalex/downstream_network/downstream_overall.json"
 
+      - name: Print downstream person summary
+        run: cat "$PAPER_DIR/data/interim/openalex/downstream_network/downstream_person_summary.csv"
+
 
       - name: Upload clean-network artifact
         uses: actions/upload-artifact@v4
@@ -86,5 +89,12 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/internal_citation_edges.csv
             ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/citation_temporal_anomalies.csv
             ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/clean_network_overall.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_edges.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_works.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_anchor_summary.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_person_summary.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_temporal_anomalies.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_errors.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/downstream_network/downstream_overall.json
           if-no-files-found: error
           retention-days: 30
