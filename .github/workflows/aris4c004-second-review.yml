@@ -7,7 +7,6 @@ on:
     paths:
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
       - "papers/004-counterfactual-cost-of-exclusion/code/review/select_identity_second_review.py"
-      - ".github/workflows/aris4c004-second-review.yml"
 
 permissions:
   contents: write
