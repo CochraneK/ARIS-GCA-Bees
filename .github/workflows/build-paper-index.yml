@@ -13,26 +13,49 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: aris4c-paper-index-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Migrate stale ARIS4C branding and links
-        run: python tools/migrate_aris4c.py
-      - name: Build portfolio
-        run: python tools/build_papers_index.py
-      - name: Commit generated and migrated assets
+      - name: Regenerate portfolio from latest main
+        shell: bash
         run: |
-          if git diff --quiet; then
-            echo "No generated or migration changes"
-            exit 0
-          fi
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "docs: apply ARIS4C migration and regenerate index"
-          git push
+
+          for attempt in 1 2 3; do
+            echo "Generation attempt $attempt"
+            git fetch origin main
+            git reset --hard origin/main
+
+            python tools/migrate_aris4c.py
+            python tools/build_papers_index.py
+
+            if git diff --quiet; then
+              echo "No generated or migration changes"
+              exit 0
+            fi
+
+            git add -A
+            git commit -m "docs: apply ARIS4C migration and regenerate index"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Concurrent update detected; rebuilding from newest main."
+          done
+
+          echo "Failed to publish generated index after 3 attempts." >&2
+          exit 1
