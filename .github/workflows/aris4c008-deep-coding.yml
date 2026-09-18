@@ -1,0 +1,49 @@
+name: ARIS4C008 Deep Coding Queue
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/008-human-intelligence-bootstrap/code/build_deep_coding_cells.py"
+      - "papers/008-human-intelligence-bootstrap/data/module_evidence_state_tier1_v0.csv"
+      - "papers/008-human-intelligence-bootstrap/data/deep_coding_queue_v0.csv"
+      - ".github/workflows/aris4c008-deep-coding.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build cell-level A-F queue
+        run: python papers/008-human-intelligence-bootstrap/code/build_deep_coding_cells.py
+      - name: Validate queue
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          base=Path("papers/008-human-intelligence-bootstrap/data")
+          rows=list(csv.DictReader((base/"deep_coding_cells_v1.csv").open(encoding="utf-8")))
+          s=json.loads((base/"deep_coding_cells_v1_summary.json").read_text())
+          assert len(rows)==s["open_A_F_cells"]
+          assert all(r["module_id"] in "ABCDEF" for r in rows)
+          assert all("not_systematically_coded" in r["current_state"] or r["current_state"] for r in rows)
+          assert s["missingness_is_absence"] is False
+          print(json.dumps(s,indent=2))
+          PY
+      - name: Commit derived queue
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add papers/008-human-intelligence-bootstrap/data/deep_coding_cells_v1.csv papers/008-human-intelligence-bootstrap/data/deep_coding_cells_v1_summary.json
+          if ! git diff --cached --quiet; then
+            git commit -m "008: materialize cell-level A-F deep-coding queue"
+            git push
+          fi
