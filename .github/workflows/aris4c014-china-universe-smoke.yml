@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install verified HTTP client
+        run: python -m pip install --disable-pip-version-check requests certifi
       - name: Run official universe smoke
         working-directory: papers/014-public-integrity-forensics/code
         run: python live_china_universe_smoke.py
