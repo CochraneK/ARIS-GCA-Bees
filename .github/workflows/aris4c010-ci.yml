@@ -60,5 +60,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: aris4c010-calibration60
-          path: papers/010-universal-concept-identification/data/calibration60/oewn_source_pool.generated.json
+          path: |\n            papers/010-universal-concept-identification/data/calibration60/oewn_source_pool.generated.json\n            papers/010-universal-concept-identification/data/calibration60/full_matrix.generated.json\n            papers/010-universal-concept-identification/data/calibration60/calibration_subset.generated.json
           if-no-files-found: error
