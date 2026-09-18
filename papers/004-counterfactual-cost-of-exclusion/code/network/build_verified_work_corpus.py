@@ -4,16 +4,15 @@
 The identity decision table is already frozen before mental-health coding. This
 step reconstructs works only for VERIFIED_SINGLE / VERIFIED_CLUSTER rows.
 
-The script performs mechanical, auditable operations only:
+Mechanical operations only:
 - fetch works for accepted OpenAlex author IDs;
 - tag candidate-lifetime plausibility;
 - deduplicate repeated DOI or same normalized-title/year records across fragments;
-- preserve every source Author ID contributing to a deduplicated work;
+- preserve source Author/Work provenance;
+- retain citation, authorship, institution and topic metadata needed for network feasibility;
 - produce person-level coverage summaries and a manual work-review queue.
 
-It does NOT automatically release a previously held identity into confirmatory
-network analysis merely because >=5 works remain. Rows held for contamination or
-deduplication require explicit review after this corpus is inspected.
+This script never auto-promotes a held identity to network_observable=true.
 """
 
 from __future__ import annotations
@@ -96,6 +95,51 @@ def split_ids(value: str) -> list[str]:
     return [normalize_openalex_id(x) for x in (value or "").split(";") if x.strip()]
 
 
+def unique_strings(values: list[str]) -> list[str]:
+    return sorted({x for x in values if x})
+
+
+def extract_authorship_metadata(work: dict[str, Any]) -> dict[str, list[str]]:
+    author_ids: list[str] = []
+    author_names: list[str] = []
+    institution_ids: list[str] = []
+    institution_names: list[str] = []
+    for authorship in work.get("authorships") or []:
+        author = authorship.get("author") or {}
+        aid = normalize_openalex_id(str(author.get("id") or ""))
+        if aid:
+            author_ids.append(aid)
+        if author.get("display_name"):
+            author_names.append(str(author["display_name"]))
+        for inst in authorship.get("institutions") or []:
+            iid = normalize_openalex_id(str(inst.get("id") or ""))
+            if iid:
+                institution_ids.append(iid)
+            if inst.get("display_name"):
+                institution_names.append(str(inst["display_name"]))
+    return {
+        "authorship_author_ids": unique_strings(author_ids),
+        "authorship_author_names": unique_strings(author_names),
+        "institution_ids": unique_strings(institution_ids),
+        "institution_names": unique_strings(institution_names),
+    }
+
+
+def extract_topic_metadata(work: dict[str, Any]) -> dict[str, list[str]]:
+    topic_ids: list[str] = []
+    topic_names: list[str] = []
+    for topic in work.get("topics") or []:
+        tid = normalize_openalex_id(str(topic.get("id") or ""))
+        if tid:
+            topic_ids.append(tid)
+        if topic.get("display_name"):
+            topic_names.append(str(topic["display_name"]))
+    return {
+        "topic_ids": unique_strings(topic_ids),
+        "topic_names": unique_strings(topic_names),
+    }
+
+
 def needs_manual_work_review(row: dict[str, str]) -> bool:
     adjudication = (row.get("adjudication_status") or "").casefold()
     notes = (row.get("notes") or "").casefold()
@@ -119,8 +163,6 @@ def deduplicate_person_works(records: list[dict[str, Any]]) -> list[dict[str, An
 
     out: list[dict[str, Any]] = []
     for key, items in groups.items():
-        # Prefer the best-populated / highest-cited record as the canonical
-        # representation, but retain every contributing source author/work ID.
         best = max(
             items,
             key=lambda x: (
@@ -131,9 +173,23 @@ def deduplicate_person_works(records: list[dict[str, Any]]) -> list[dict[str, An
         )
         merged = dict(best)
         merged["dedup_key"] = key
-        merged["source_author_ids"] = sorted({x["source_author_id"] for x in items})
-        merged["source_work_ids"] = sorted({x["openalex_work_id"] for x in items if x.get("openalex_work_id")})
+        merged["source_author_ids"] = unique_strings([x["source_author_id"] for x in items])
+        merged["source_work_ids"] = unique_strings(
+            [x["openalex_work_id"] for x in items if x.get("openalex_work_id")]
+        )
         merged["duplicate_records_n"] = len(items)
+        for field in (
+            "referenced_work_ids",
+            "authorship_author_ids",
+            "authorship_author_names",
+            "institution_ids",
+            "institution_names",
+            "topic_ids",
+            "topic_names",
+        ):
+            merged[field] = unique_strings(
+                [value for item in items for value in (item.get(field) or [])]
+            )
         out.append(merged)
 
     return sorted(
@@ -189,6 +245,8 @@ def main() -> int:
                     max_works=args.max_works_per_id,
                 ):
                     year = parse_year(work.get("publication_year"))
+                    authorship = extract_authorship_metadata(work)
+                    topics = extract_topic_metadata(work)
                     raw.append(
                         {
                             "person_id": pid,
@@ -198,14 +256,25 @@ def main() -> int:
                             "doi": normalize_doi(str(work.get("doi") or "")),
                             "title": str(work.get("display_name") or ""),
                             "publication_year": year,
+                            "publication_date": str(work.get("publication_date") or ""),
+                            "work_type": str(work.get("type") or ""),
                             "temporal_status": temporal_status(year, lo, hi),
                             "cited_by_count": int(work.get("cited_by_count") or 0),
+                            "referenced_work_ids": unique_strings(
+                                [
+                                    normalize_openalex_id(str(x))
+                                    for x in (work.get("referenced_works") or [])
+                                    if x
+                                ]
+                            ),
                             "primary_topic_id": normalize_openalex_id(
                                 str((work.get("primary_topic") or {}).get("id") or "")
                             ),
                             "primary_topic_name": str(
                                 (work.get("primary_topic") or {}).get("display_name") or ""
                             ),
+                            **authorship,
+                            **topics,
                             "dedup_key": work_dedup_key(work),
                         }
                     )
@@ -330,6 +399,12 @@ def main() -> int:
         "manual_review_work_rows_n": len(review_queue),
         "fetch_errors_n": len(errors),
         "min_network_works": args.min_network_works,
+        "network_metadata_retained": {
+            "referenced_works": True,
+            "authorships": True,
+            "institutions": True,
+            "topics": True,
+        },
         "note": (
             "Mechanical cleaning never auto-promotes network_observable. "
             "Held identities require explicit work-level review."
