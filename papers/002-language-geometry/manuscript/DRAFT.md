@@ -62,7 +62,7 @@ Stage 1I used the CLDF WALS dataset as a separately processed sparse sanity repr
 
 #### Family and geographic metadata
 
-Top-level family assignments were mapped using Glottolog CLDF. Entries without a mapped family were treated as separate isolate groups rather than pooled into a single missing-family category. Geographic robustness used Glottolog macroareas and, separately, latitude/longitude clusters constructed without reference to linguistic outcomes.
+For TLI and GBI, language glottocodes were mapped to Glottolog CLDF `Family_ID`; entries without a mapped family were treated as separate isolate groups rather than pooled into a single missing-family category. Their macroarea and coordinate metadata were likewise taken from Glottolog for geographic robustness. The separately processed WALS analysis instead used the `Family` and `Macroarea` fields distributed in the WALS CLDF language table, again treating missing family assignments as separate isolate groups. Coordinate-based geographic clusters were constructed without reference to linguistic outcomes.
 
 ### 2.2 Pairwise structural target
 
