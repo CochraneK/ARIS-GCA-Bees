@@ -149,6 +149,16 @@ def main() -> None:
     if b_dyad <= 0:
         raise AssertionError(f"dyad planted-positive interaction recovered as {b_dyad}")
 
+    # Verify the frozen secondary temporal-profile model factory uses the same
+    # within-period estimator family without expanding the headline tests.
+    temporal_specs = r.single_period_specs("2007-2010")
+    temporal_fit = r.fit_ppml(temporal_specs[0], country)
+    assert_finite(
+        temporal_fit,
+        "exposure_x_ikes",
+        "secondary temporal output specification",
+    )
+
     # Verify median-IKES and one leave-one-field code path without running the
     # expensive 999-permutation final sensitivity in CI.
     median_country = r.with_country_interaction(country, "IKES_median")
