@@ -76,8 +76,15 @@ def fetch_entities(qids: list[str], languages: str = "en|de|fr|es|zh") -> dict[s
                 "languagefallback": "1",
             }
         )
-        for entity in payload.get("entities", []):
-            if entity.get("id"):
+        entity_payload = payload.get("entities", {})
+        if isinstance(entity_payload, dict):
+            entity_iter = entity_payload.values()
+        elif isinstance(entity_payload, list):
+            entity_iter = entity_payload
+        else:
+            entity_iter = []
+        for entity in entity_iter:
+            if isinstance(entity, dict) and entity.get("id"):
                 out[entity["id"]] = entity
         time.sleep(0.15)
     return out
