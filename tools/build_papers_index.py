@@ -113,14 +113,14 @@ def card(p: dict, dashboard: dict) -> str:
     fig_count = int(fig_meta.get("count", 0) or 0)
     tab_count = int(tab_meta.get("count", 0) or 0)
     output_items = [
-        ("EN", en_complete, "full"),
-        ("中文", zh_complete, "full"),
-        ("FIG", fig_count > 0, str(fig_count) if fig_count else "—"),
-        ("TAB", tab_count > 0, str(tab_count) if tab_count else "—"),
+        ("EN", "ok" if en_complete else ("partial" if links.get("paper_en") else "open"), "full" if en_complete else ("draft" if links.get("paper_en") else "—")),
+        ("中文", "ok" if zh_complete else ("partial" if links.get("paper_zh") else "open"), "full" if zh_complete else ("draft" if links.get("paper_zh") else "—")),
+        ("FIG", "ok" if fig_count > 0 else ("partial" if links.get("figures") else "open"), str(fig_count) if fig_count else ("present" if links.get("figures") else "—")),
+        ("TAB", "ok" if tab_count > 0 else ("partial" if links.get("tables") else "open"), str(tab_count) if tab_count else ("present" if links.get("tables") else "—")),
     ]
     output_badges = "".join(
-        f'<span class="output-badge {"ok" if ok else "open"}"><b>{esc(label)}</b>{esc(value if ok else "—")}</span>'
-        for label, ok, value in output_items
+        f'<span class="output-badge {state}"><b>{esc(label)}</b>{esc(value)}</span>'
+        for label, state, value in output_items
     )
     buttons = "".join([
         link(paper_display_link(p, links.get("paper_en", "")), "Paper", True),
