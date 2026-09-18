@@ -29,7 +29,7 @@ The full exploratory and robustness-screening history remains in `ideas/language
 - Direct circular-Robinson / closure diagnostics do not support a robust global cycle; 60-feature wrap-around closure ratio ≈0.037.
 - No predefined TLI structural domain met the joint predictive + stability threshold for local periodicity.
 - GBI replication: tree 0.122 vs circle 0.073.
-- WALS external sanity replication: tree 0.603 vs circle 0.410.
+- WALS separately processed sparse sanity check: tree 0.603 vs circle 0.410.
 - Geographic portability is representation-dependent and must not be promoted to a universal claim.
 
 ## Review-imposed manuscript requirements
