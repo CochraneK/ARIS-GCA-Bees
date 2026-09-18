@@ -146,4 +146,18 @@ Every modeled quantity gets uncertainty intervals and sensitivity analysis.
 
 See [`process/STATUS.md`](process/STATUS.md).
 
-The project is currently in **feasibility + pilot construction**, not at the stage where global latent-prevalence or opportunity-loss numbers can be presented as empirical estimates.
+### Completed empirical infrastructure
+
+- **Pilot A:** live OpenAlex 2000–2025 core article+review denominator and versioned Retraction Watch detected-correction snapshot.
+- **Pilot B real seed frame:** 2015–2020 OpenAlex core article+review universe = **38,451,124** works; **600** population-random works + **739** resolved Retraction Watch enrichment works = **1,339** unique sampled works with exact inclusion probabilities/design weights.
+- **DOI coverage warning:** **229/600** population-random works had no DOI, so DOI-only prevalence estimation is not allowed to define the global target universe.
+- **Blinded adjudication workflow:** reviewer-facing files hide enrichment/detector/weight metadata; manager linkage restores them only after review.
+- **Micro-pilot:** **60 works / 120 independent assignments**, balanced across the random component and five correction-signal strata, with all four broad OpenAlex domains represented.
+
+### Current gate
+
+The project is now **Pilot B adjudication-ready**, not merely in feasibility construction.
+
+A global latent-prevalence number remains forbidden until independent article-level adjudication calibrates detector sensitivity, specificity and missingness. The 60-work micro-pilot is a protocol stress-test, **not** a prevalence sample.
+
+In parallel, the downstream semantic-contamination module can proceed because citation dependence/propagation is a separate estimand that does not require pretending the Pilot B labels already exist.
