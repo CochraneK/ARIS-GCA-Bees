@@ -1,0 +1,239 @@
+scientific_name,pool_role,secondary_roles,current_panel,acdb,asnr,calibration_family,calibration_clade,calibration_body_mass_g,calibration_reference_median_mass_g,calibration_abs_log_mass_distance,source_names,notes
+Acris crepitans,data_rich_underrepresented_clade_calibration,,no,no,no,Hylidae,Amphibia,,,,Acris crepitans,AnimalTraits axes=2; body records=1; brain records=1; metabolic records=0.
+Agkistrodon contortrix,asnr_source_candidate,,no,no,yes,,,,,,Agkistrodon contortrix,
+Ailuroedus buccoides,database_unrepresented_family_mass_calibration,,no,no,no,Ptilonorhynchidae,birds,138.0,139.99,0.01431730632952899,Ailuroedus buccoides,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Aldabrachelys gigantea,theory_discriminating_candidate,,no,no,no,,,,,,Aldabrachelys gigantea,Theory contrast: extreme longevity without assumed cultural breadth
+Alouatta caraya,asnr_source_candidate,,no,no,yes,,,,,,Alouatta caraya,
+Alouatta guariba,asnr_source_candidate,,no,no,yes,,,,,,Alouatta guariba,
+Aphelocoma californica,theory_discriminating_candidate,,no,no,no,,,,,,Aphelocoma californica,Theory contrast: caching and future-oriented information-use comparator
+Apis mellifera,current_deep_panel,,yes,yes,no,,,,,,Apis mellifera,
+Aquarius remigis,asnr_source_candidate,,no,no,yes,,,,,,Aquarius remigis,
+Ardeotis nigriceps,database_unrepresented_family_mass_calibration,,no,no,no,Otididae,birds,7235.31,6759.92,0.06796215077042334,Ardeotis nigriceps,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Argya squamiceps,asnr_source_candidate,,no,no,yes,,,,,,Argya squamiceps,
+Astatotilapia burtoni,asnr_source_candidate,,no,no,yes,,,,,,Astatotilapia burtoni,
+Ateles geoffroyi,acdb_asnr_overlap,,no,yes,yes,,,,,,Ateles geoffroyi,
+Ateles hybridus,asnr_source_candidate,,no,no,yes,,,,,,Ateles hybridus,
+Ateles marginatus,database_unrepresented_family_mass_calibration,,no,no,no,Atelidae,mammals,5999.98,5862.46,0.02318682516776427,Ateles marginatus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Atta cephalotes,theory_discriminating_candidate,,no,no,no,,,,,,Atta cephalotes,Theory contrast: division of labour and persistent colony infrastructure
+Balaenoptera bonaerensis,database_unrepresented_family_mass_calibration,,no,no,no,Balaenopteridae,mammals,35089915.83,50000000.0,0.35410921452498556,Balaenoptera bonaerensis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Balaenoptera edeni,acdb_source_candidate,,no,yes,no,,,,,,Balaenoptera edeni,
+Balaenoptera musculus,acdb_source_candidate,,no,yes,no,,,,,,Balaenoptera musculus,
+Balaenoptera physalus,acdb_source_candidate,,no,yes,no,,,,,,Balaenoptera physalus,
+Berardius arnuxii,database_unrepresented_family_mass_calibration,,no,no,no,Ziphiidae,mammals,7000000.0,11380000.0,0.48594727964287365,Berardius arnuxii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Berardius bairdii,acdb_source_candidate,,no,yes,no,,,,,,Berardius bairdii,
+Birgus latro,data_rich_underrepresented_clade_calibration,,no,no,no,Coenobitidae,Malacostraca,,,,Birgus latro,AnimalTraits axes=1; body records=0; brain records=1; metabolic records=0.
+Bison bison,asnr_source_candidate,,no,no,yes,,,,,,Bison bison,
+Bolitotherus cornutus,asnr_source_candidate,,no,no,yes,,,,,,Bolitotherus cornutus,
+Bombus terrestris,current_deep_panel,,yes,no,no,,,,,,Bombus terrestris,
+Bos taurus,asnr_source_candidate,,no,no,yes,,,,,,Bos taurus,
+Brachyteles arachnoides,asnr_source_candidate,,no,no,yes,,,,,,Brachyteles arachnoides,
+Branta leucopsis,asnr_source_candidate,,no,no,yes,,,,,,Branta leucopsis,
+Cacatua goffiniana,current_deep_panel,,yes,no,no,,,,,,Cacatua goffiniana,
+Cacicus cela,acdb_source_candidate,,no,yes,no,,,,,,Cacicus cela vitellinus,
+Callimico goeldii,database_unrepresented_family_mass_calibration,,no,no,no,Cebidae,mammals,480.0,482.75,0.005712817406687165,Callimico goeldii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Callithrix jacchus,current_deep_panel,,yes,no,no,,,,,,Callithrix jacchus,
+Camponotus fellah,asnr_source_candidate,,no,no,yes,,,,,,Camponotus fellah,
+Camponotus pennsylvanicus,asnr_source_candidate,,no,no,yes,,,,,,Camponotus pennsylvanicus,
+Camponotus sericeiventris,data_rich_underrepresented_clade_calibration,,no,no,no,Formicidae,Insecta,,,,Camponotus sericeiventris,AnimalTraits axes=3; body records=2; brain records=1; metabolic records=1.
+Campylorhynchus nuchalis,acdb_source_candidate,,no,yes,no,,,,,,Campylorhynchus nuchalis,
+Canis familiaris,asnr_source_candidate,,no,no,yes,,,,,,Canis familiaris,
+Canis lupus,theory_discriminating_candidate,,no,no,no,,,,,,Canis lupus,Theory contrast: cooperation/sociality with low precision object manipulation
+Carpodacus erythrinus,database_unrepresented_family_mass_calibration,,no,no,no,Fringillidae,birds,23.97,23.81,0.006697387947521616,Carpodacus erythrinus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Castor canadensis,theory_discriminating_candidate,,no,no,no,,,,,,Castor canadensis,Theory contrast: high persistent environmental construction without assumed high individual generative cognition
+Cebus capucinus,acdb_source_candidate,,no,yes,no,,,,,,Cebus capucinus,
+Cebus imitator,acdb_source_candidate,,no,yes,no,,,,,,Cebus imitator,
+Cercopithecus campbelli,asnr_source_candidate,,no,no,yes,,,,,,Cercopithecus campbelli,
+Cervus canadensis,acdb_source_candidate,,no,yes,no,,,,,,Cervus canadensis,
+Chelydra serpentina,data_rich_underrepresented_clade_calibration,,no,no,no,Chelydridae,Reptilia,,,,Chelydra serpentina,AnimalTraits axes=3; body records=2; brain records=1; metabolic records=1.
+Chen rossii,database_unrepresented_family_mass_calibration,,no,no,no,Anatidae,birds,1635.99,1683.97,0.0289059752421732,Chen rossii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Chersophilus duponti,acdb_source_candidate,,no,yes,no,,,,,,Chersophilus duponti,
+Chlamydera maculata,acdb_source_candidate,,no,yes,no,,,,,,Chlamydera maculata,
+Cinnyris osea,acdb_source_candidate,,no,yes,no,,,,,,Cinnyris osea,
+Colobus guereza,asnr_source_candidate,,no,no,yes,,,,,,Colobus guereza,
+Columba livia,current_deep_panel,,yes,no,no,,,,,,Columba livia,
+Columba vitiensis,database_unrepresented_family_mass_calibration,,no,no,no,Columbidae,birds,353.0,354.2,0.003393668415436757,Columba vitiensis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Corvus brachyrhynchos,acdb_source_candidate,,no,yes,no,,,,,,Corvus brachyrhynchos,
+Corvus corax,current_deep_panel,,yes,yes,no,,,,,,Corvus corax,
+Corvus frugilegus,database_unrepresented_family_mass_calibration,,no,no,no,Corvidae,birds,452.1,448.76,0.00741517062379593,Corvus frugilegus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Corvus moneduloides,current_deep_panel,,yes,yes,no,,,,,,Corvus moneduloides,
+Crocuta crocuta,asnr_source_candidate,,no,no,yes,,,,,,Crocuta crocuta,
+Cryptoprocta ferox,asnr_source_candidate,,no,no,yes,,,,,,Cryptoprocta ferox,
+Ctenomys australis,database_unrepresented_family_mass_calibration,,no,no,no,Ctenomyidae,mammals,361.5,361.5,0.0,Ctenomys australis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Ctenomys opimus,asnr_source_candidate,,no,no,yes,,,,,,Ctenomys opimus,
+Ctenophorus nuchalis,data_rich_underrepresented_clade_calibration,,no,no,no,Agamidae,Reptilia,,,,Ctenophorus nuchalis,AnimalTraits axes=3; body records=2; brain records=1; metabolic records=1.
+Cyanistes caeruleus,acdb_source_candidate,,no,yes,no,,,,,,Cyanistes caeruleus,
+Dasyurus maculatus,database_unrepresented_family_mass_calibration,,no,no,no,Dasyuridae,mammals,5500.0,10000.0,0.5978370007556215,Dasyurus maculatus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Delichon dasypus,database_unrepresented_family_mass_calibration,,no,no,no,Hirundinidae,birds,18.0,17.91,0.005012541823544048,Delichon dasypus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Delphinapterus leucas,acdb_source_candidate,,no,yes,no,,,,,,Delphinapterus leucas,
+Dendrobates pumilio,asnr_source_candidate,,no,no,yes,,,,,,Dendrobates pumilio,
+Desmodillus auricularis,database_unrepresented_family_mass_calibration,,no,no,no,Muridae,mammals,53.3,53.3,0.0,Desmodillus auricularis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Desmodus rotundus,asnr_source_candidate,,no,no,yes,,,,,,Desmodus rotundus,
+Dipodomys ingens,database_unrepresented_family_mass_calibration,,no,no,no,Heteromyidae,mammals,133.85,135.88,0.015052373326021495,Dipodomys ingens,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Dipodomys spectabilis,asnr_source_candidate,,no,no,yes,,,,,,Dipodomys spectabilis,
+Elephas maximus,current_deep_panel,,yes,no,yes,,,,,,Elephas maximus,
+Emberiza fucata,database_unrepresented_family_mass_calibration,,no,no,no,Emberizidae,birds,19.8,19.735,0.0032882285856792315,Emberiza fucata,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Enhydra lutris,theory_discriminating_candidate,,no,no,no,,,,,,Enhydra lutris,Theory contrast: habitual tool use under non-primate marine-mammal embodiment
+Eothenomys proditor,database_unrepresented_family_mass_calibration,,no,no,no,Cricetidae,mammals,42.5,42.5,0.0,Eothenomys proditor,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Epidalea calamita,asnr_source_candidate,,no,no,yes,,,,,,Epidalea calamita,
+Equus grevyi,asnr_source_candidate,,no,no,yes,,,,,,Equus grevyi,
+Equus quagga,database_unrepresented_family_mass_calibration,,no,no,no,Equidae,mammals,400000.0,407999.85,0.0198022596490528,Equus quagga,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Eremophila bilopha,database_unrepresented_family_mass_calibration,,no,no,no,Alaudidae,birds,38.5,39.4,0.02310757501014926,Eremophila bilopha,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Erythrocebus patas,asnr_source_candidate,,no,no,yes,,,,,,Erythrocebus patas,
+Eschrichtius robustus,acdb_source_candidate,,no,yes,no,,,,,,Eschrichtius robustus,
+Eubalaena australis,acdb_source_candidate,,no,yes,no,,,,,,Eubalaena australis,
+Eubalaena glacialis,database_unrepresented_family_mass_calibration,,no,no,no,Balaenidae,mammals,23000000.0,23000000.0,0.0,Eubalaena glacialis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Eulacestoma nigropectus,database_unrepresented_family_mass_calibration,,no,no,no,Falcunculidae,birds,20.0,27.94,0.33432708027482505,Eulacestoma nigropectus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Eulemur fulvus,database_unrepresented_family_mass_calibration,,no,no,no,Lemuridae,mammals,3150.0,2900.0,0.08269171584511259,Eulemur fulvus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Eupleres goudotii,database_unrepresented_family_mass_calibration,,no,no,no,Eupleridae,mammals,3000.0,9500.0,1.1526795099383857,Eupleres goudotii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Falcunculus frontatus,acdb_source_candidate,,no,yes,no,,,,,,Falcunculus frontatus,
+Fringilla coelebs,acdb_source_candidate,,no,yes,no,,,,,,Fringilla coelebs,
+Galerella sanguinea,database_unrepresented_family_mass_calibration,,no,no,no,Herpestidae,mammals,550.0,512.75,0.07012988127402586,Galerella sanguinea,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Gallinago media,asnr_source_candidate,,no,no,yes,,,,,,Gallinago media,
+Gallinago nemoricola,database_unrepresented_family_mass_calibration,,no,no,no,Scolopacidae,birds,167.67,169.96,0.013565353296894678,Gallinago nemoricola,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Gallus domesticus,asnr_source_candidate,,no,no,yes,,,,,,Gallus domesticus,
+Gallus gallus,asnr_source_candidate,,no,no,yes,,,,,,Gallus gallus,
+Gasterosteus aculeatus,asnr_source_candidate,,no,no,yes,,,,,,Gasterosteus aculeatus,
+Gerygone fusca,acdb_source_candidate,,no,yes,no,,,,,,Gerygone fusca,
+Gopherus agassizii,asnr_source_candidate,,no,no,yes,,,,,,Gopherus agassizii,
+Gorilla beringei,current_deep_panel,,yes,yes,no,,,,,,Gorilla beringei; Gorilla beringei beringei,
+Gorilla gorilla,current_deep_panel,,yes,yes,no,,,,,,Gorilla gorilla; Gorilla gorilla gorilla,
+Gryllus campestris,asnr_source_candidate,,no,no,yes,,,,,,Gryllus campestris,
+Gyps fulvus,acdb_source_candidate,,no,yes,no,,,,,,Gyps fulvus,
+Gyps rueppellii,database_unrepresented_family_mass_calibration,,no,no,no,Accipitridae,birds,7399.99,7435.99,0.004853076191395189,Gyps rueppellii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Haemorhous mexicanus,asnr_source_candidate,,no,no,yes,,,,,,Haemorhous mexicanus,
+Helogale parvula,asnr_source_candidate,,no,no,yes,,,,,,Helogale parvula,
+Heterocephalus glaber,theory_discriminating_candidate,,no,no,no,,,,,,Heterocephalus glaber,Theory contrast: extreme sociality and longevity configuration
+Hipposideros larvatus,acdb_source_candidate,,no,yes,no,,,,,,Hipposideros larvatus,
+Hipposideros maggietaylorae,database_unrepresented_family_mass_calibration,,no,no,no,Hipposideridae,mammals,18.5,19.85,0.0704332750489205,Hipposideros maggietaylorae,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Hirundo rustica,asnr_source_candidate,,no,no,yes,,,,,,Hirundo rustica,
+Homo sapiens,current_deep_panel,,yes,no,no,,,,,,Homo sapiens,
+Hyaena brunnea,database_unrepresented_family_mass_calibration,,no,no,no,Hyaenidae,mammals,42977.93,66492.06,0.4363958139182422,Hyaena brunnea,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Hyla versicolor,data_rich_underrepresented_clade_calibration,,no,no,no,Hylidae,Amphibia,,,,Hyla versicolor,AnimalTraits axes=2; body records=1; brain records=1; metabolic records=0.
+Hypsugo savii,database_unrepresented_family_mass_calibration,,no,no,no,Vespertilionidae,mammals,6.3,6.300000000000001,2.220446049250313e-16,Hypsugo savii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Junco hyemalis,acdb_source_candidate,,no,yes,no,,,,,,Junco hyemalis,
+Kogia breviceps,database_unrepresented_family_mass_calibration,,no,no,no,Physeteridae,mammals,431500.0,14025000.0,3.4813292198674155,Kogia breviceps,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Labroides dimidiatus,theory_discriminating_candidate,,no,no,no,,,,,,Labroides dimidiatus,Theory contrast: social cognition under highly divergent neural/body constraints
+Lagenorhynchus albirostris,database_unrepresented_family_mass_calibration,,no,no,no,Delphinidae,mammals,180000.0,175000.0,0.028170876966695957,Lagenorhynchus albirostris,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Larus occidentalis,acdb_source_candidate,,no,yes,no,,,,,,Larus occidentalis,
+Larus thayeri,database_unrepresented_family_mass_calibration,,no,no,no,Laridae,birds,942.48,922.78,0.021123846041748884,Larus thayeri,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Laupala cerasina,asnr_source_candidate,,no,no,yes,,,,,,Laupala cerasina,
+Lemur catta,asnr_source_candidate,,no,no,yes,,,,,,Lemur catta,
+Leontopithecus rosalia,current_deep_panel,,yes,no,no,,,,,,Leontopithecus rosalia,
+Leptonychotes weddellii,database_unrepresented_family_mass_calibration,,no,no,no,Phocidae,mammals,400000.0,750000.0,0.6286086594223743,Leptonychotes weddellii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Lophostoma silvicolum,database_unrepresented_family_mass_calibration,,no,no,no,Phyllostomidae,mammals,32.29,31.21,0.03401902848749572,Lophostoma silvicolum,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Loxigilla noctis,acdb_source_candidate,,no,yes,no,,,,,,Loxigilla noctis,
+Loxodonta africana,current_deep_panel,,yes,yes,no,,,,,,Loxodonta africana,
+Loxodonta cyclotis,database_unrepresented_family_mass_calibration,,no,no,no,Elephantidae,mammals,4750000.01,3427537.1399999997,0.3263026518699732,Loxodonta cyclotis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Lycaon pictus,theory_discriminating_candidate,,no,no,no,,,,,,Lycaon pictus,Theory contrast: extreme cooperative hunting under low manipulatory technology
+Macaca arctoides,asnr_source_candidate,,no,no,yes,,,,,,Macaca arctoides,
+Macaca assamensis,asnr_source_candidate,,no,no,yes,,,,,,Macaca assamensis,
+Macaca fascicularis,asnr_source_candidate,,no,no,yes,,,,,,Macaca fascicularis,
+Macaca fuscata,current_deep_panel,,yes,yes,yes,,,,,,Macaca fuscata; Macaca fuscata fuscata,
+Macaca mulatta,asnr_source_candidate,,no,no,yes,,,,,,Macaca mulatta,
+Macaca radiata,asnr_source_candidate,,no,no,yes,,,,,,Macaca radiata,
+Macaca sylvanus,asnr_source_candidate,,no,no,yes,,,,,,Macaca sylvanus,
+Macaca tonkeana,asnr_source_candidate,,no,no,yes,,,,,,Macaca tonkeana,
+Macropus antilopinus,database_unrepresented_family_mass_calibration,,no,no,no,Macropodidae,mammals,27250.0,25875.0,0.051776269523719165,Macropus antilopinus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Macropus giganteus,asnr_source_candidate,,no,no,yes,,,,,,Macropus giganteus,
+Mandrillus sphinx,asnr_source_candidate,,no,no,yes,,,,,,Mandrillus sphinx,
+Megaptera novaeangliae,current_deep_panel,,yes,yes,no,,,,,,Megaptera novaeangliae,
+Melopsittacus undulatus,current_deep_panel,,yes,no,no,,,,,,Melopsittacus undulatus,
+Melospiza georgiana,acdb_source_candidate,,no,yes,no,,,,,,Melospiza georgiana,
+Melursus ursinus,database_unrepresented_family_mass_calibration,,no,no,no,Ursidae,mammals,93130.0,99949.36,0.07066729119074111,Melursus ursinus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Meriones unguiculatus,acdb_source_candidate,,no,yes,no,,,,,,Meriones unguiculatus,
+Metazygia rogenhoferi,data_rich_underrepresented_clade_calibration,,no,no,no,Araneidae,Arachnida,,,,Metazygia rogenhoferi,AnimalTraits axes=2; body records=10; brain records=0; metabolic records=10.
+Microtus agrestis,asnr_source_candidate,,no,no,yes,,,,,,Microtus agrestis,
+Mirounga angustirostris,asnr_source_candidate,,no,no,yes,,,,,,Mirounga angustirostris,
+Molothrus ater,acdb_asnr_overlap,,no,yes,yes,,,,,,Molothrus ater,
+Monodon monoceros,database_unrepresented_family_mass_calibration,,no,no,no,Monodontidae,mammals,900000.0,1360000.0,0.41284521540578645,Monodon monoceros,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Montifringilla nivalis,database_unrepresented_family_mass_calibration,,no,no,no,Passeridae,birds,36.9,34.435,0.06913806204982009,Montifringilla nivalis,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Mus musculus,asnr_source_candidate,,no,no,yes,,,,,,Mus musculus; Mus musculus domesticus,
+Myiomela albiventris,database_unrepresented_family_mass_calibration,,no,no,no,Muscicapidae,birds,38.46,38.46,0.0,Myiomela albiventris,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Myiomela major,acdb_source_candidate,,no,yes,no,,,,,,Myiomela major,
+Myiopsitta monachus,asnr_source_candidate,,no,no,yes,,,,,,Myiopsitta monachus,
+Myotis sodalis,asnr_source_candidate,,no,no,yes,,,,,,Myotis sodalis,
+Natrix natrix,data_rich_underrepresented_clade_calibration,,no,no,no,Colubridae,Reptilia,,,,Natrix natrix,AnimalTraits axes=3; body records=2; brain records=1; metabolic records=1.
+Nephila clavipes,data_rich_underrepresented_clade_calibration,,no,no,no,Araneidae,Arachnida,,,,Nephila clavipes,AnimalTraits axes=3; body records=3; brain records=3; metabolic records=1.
+Nestor notabilis,current_deep_panel,,yes,no,no,,,,,,Nestor notabilis,
+Octopus vulgaris,current_deep_panel,,yes,no,no,,,,,,Octopus vulgaris,
+Orcinus orca,current_deep_panel,,yes,yes,yes,,,,,,Orcinus orca,
+Otis tarda,acdb_source_candidate,,no,yes,no,,,,,,Otis tarda,
+Otospermophilus beecheyi,asnr_source_candidate,,no,no,yes,,,,,,Otospermophilus beecheyi,
+Ovis aries,asnr_source_candidate,,no,no,yes,,,,,,Ovis aries,
+Ovis canadensis,asnr_source_candidate,,no,no,yes,,,,,,Ovis canadensis,
+Pampa curvipennis,acdb_source_candidate,,no,yes,no,,,,,,Pampa curvipennis,
+Pan paniscus,current_deep_panel,,yes,yes,yes,,,,,,Pan paniscus,
+Pan troglodytes,current_deep_panel,,yes,yes,yes,,,,,,Pan troglodytes; Pan troglodytes schweinfurthii; Pan troglodytes troglodytes; Pan troglodytes verus,
+Panthera leo,asnr_source_candidate,,no,no,yes,,,,,,Panthera leo,
+Panthera tigris,database_unrepresented_family_mass_calibration,,no,no,no,Felidae,mammals,162564.0,161499.06,0.006572448174264167,Panthera tigris,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Papio anubis,asnr_source_candidate,,no,no,yes,,,,,,Papio anubis,
+Papio cynocephalus,asnr_source_candidate,,no,no,yes,,,,,,Papio cynocephalus,
+Papio papio,asnr_source_candidate,,no,no,yes,,,,,,Papio papio,
+Papio ursinus,asnr_source_candidate,,no,no,yes,,,,,,Papio ursinus,
+Paraponera clavata,data_rich_underrepresented_clade_calibration,,no,no,no,Formicidae,Insecta,,,,Paraponera clavata,AnimalTraits axes=3; body records=2; brain records=1; metabolic records=1.
+Parus leucomelas,database_unrepresented_family_mass_calibration,,no,no,no,Paridae,birds,16.1,16.25,0.00927363678532922,Parus leucomelas,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Parus major,acdb_source_candidate,,no,yes,no,,,,,,Parus major,
+Passerculus sandwichensis,acdb_source_candidate,,no,yes,no,,,,,,Passerculus sandwichensis,
+Passerina cyanea,acdb_source_candidate,,no,yes,no,,,,,,Passerina cyanea,
+Periplaneta americana,data_rich_underrepresented_clade_calibration,,no,no,no,Blattidae,Insecta,,,,Periplaneta americana,AnimalTraits axes=3; body records=3; brain records=1; metabolic records=2.
+Philesturnus rufusater,acdb_source_candidate,,no,yes,no,,,,,,Philesturnus rufusater,
+Philetairus socius,asnr_source_candidate,,no,no,yes,,,,,,Philetairus socius,
+Physeter macrocephalus,current_deep_panel,,yes,yes,no,,,,,,Physeter macrocephalus,
+Pipistrellus pipistrellus,acdb_source_candidate,,no,yes,no,,,,,,Pipistrellus pipistrellus,
+Platymantis vitiensis,data_rich_underrepresented_clade_calibration,,no,no,no,Ceratobatrachidae,Amphibia,,,,Platymantis vitiensis,AnimalTraits axes=2; body records=1; brain records=1; metabolic records=0.
+Plocepasser mahali,acdb_source_candidate,,no,yes,no,,,,,,Plocepasser mahali,
+Ploceus bicolor,acdb_source_candidate,,no,yes,no,,,,,,Ploceus bicolor stictifrons,
+Ploceus megarhynchus,database_unrepresented_family_mass_calibration,,no,no,no,Ploceidae,birds,34.31,34.54,0.006681215848173938,Ploceus megarhynchus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Poecile atricapillus,acdb_source_candidate,,no,yes,no,,,,,,Poecile atricapillus,
+Poecilia reticulata,asnr_source_candidate,,no,no,yes,,,,,,Poecilia reticulata,
+Poicephalus gulielmi,database_unrepresented_family_mass_calibration,,no,no,no,Psittacidae,birds,274.59,275.0,0.0014920216017744181,Poicephalus gulielmi,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Pongo abelii,current_deep_panel,,yes,yes,no,,,,,,Pongo abelii,
+Pongo pygmaeus,current_deep_panel,,yes,yes,no,,,,,,Pongo pygmaeus; Pongo pygmaeus wurmbii,
+Porcellio laevis,data_rich_underrepresented_clade_calibration,,no,no,no,Porcellionidae,Malacostraca,,,,Porcellio laevis,AnimalTraits axes=2; body records=2; brain records=0; metabolic records=2.
+Portia fimbriata,theory_discriminating_candidate,,no,no,no,,,,,,Portia fimbriata,Theory contrast: flexible predatory problem solving with tiny nervous system
+Procyon cancrivorus,database_unrepresented_family_mass_calibration,,no,no,no,Procyonidae,mammals,6949.92,5524.97,0.22945233119426334,Procyon cancrivorus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Procyon lotor,asnr_source_candidate,,no,no,yes,,,,,,Procyon lotor,
+Psittacus erithacus,current_deep_panel,,yes,no,no,,,,,,Psittacus erithacus,
+Ptilonorhynchus violaceus,theory_discriminating_candidate,,no,no,no,,,,,,Ptilonorhynchus violaceus,Theory contrast: persistent construction/display and social signaling
+Pygathrix nigripes,database_unrepresented_family_mass_calibration,,no,no,no,Cercopithecidae,mammals,10333.32,10400.0,0.006432180653703767,Pygathrix nigripes,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Quiscalus lugubris,database_unrepresented_family_mass_calibration,,no,no,no,Icteridae,birds,63.03,62.855000000000004,0.0027803171582245767,Quiscalus lugubris,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Rattus norvegicus,theory_discriminating_candidate,,no,no,no,,,,,,Rattus norvegicus,Theory contrast: general-learning and social-learning calibration
+Rattus rattus,acdb_source_candidate,,no,yes,no,,,,,,Rattus rattus,
+Rhinolophus monoceros,acdb_source_candidate,,no,yes,no,,,,,,Rhinolophus monoceros,
+Rhinolophus osgoodi,database_unrepresented_family_mass_calibration,,no,no,no,Rhinolophidae,mammals,10.62,10.62,0.0,Rhinolophus osgoodi,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Rhinolophus pumilus,acdb_source_candidate,,no,yes,no,,,,,,Rhinolophus pumilus,
+Rhizothera longirostris,database_unrepresented_family_mass_calibration,,no,no,no,Phasianidae,birds,746.72,751.72,0.006673631986894968,Rhizothera longirostris,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Rhynchophorus ferrugineus,asnr_source_candidate,,no,no,yes,,,,,,Rhynchophorus ferrugineus,
+Saccopteryx bilineata,theory_discriminating_candidate,,no,no,no,,,,,,Saccopteryx bilineata,Theory contrast: mammalian vocal-learning convergence under bat embodiment
+Saguinus fuscicollis,asnr_source_candidate,,no,no,yes,,,,,,Saguinus fuscicollis,
+Saguinus mystax,asnr_source_candidate,,no,no,yes,,,,,,Saguinus mystax,
+Saguinus oedipus,asnr_source_candidate,,no,no,yes,,,,,,Saguinus oedipus,
+Saimiri oerstedii,asnr_source_candidate,,no,no,yes,,,,,,Saimiri oerstedii,
+Sapajus apella,asnr_source_candidate,,no,no,yes,,,,,,Sapajus apella,
+Sapajus libidinosus,current_deep_panel,,yes,yes,no,,,,,,Sapajus libidinosus,
+Sarcophilus harrisii,asnr_source_candidate,,no,no,yes,,,,,,Sarcophilus harrisii,
+Sepia apama,asnr_source_candidate,,no,no,yes,,,,,,Sepia apama,
+Serracutisoma proximum,asnr_source_candidate,,no,no,yes,,,,,,Serracutisoma proximum,
+Smicrornis brevirostris,database_unrepresented_family_mass_calibration,,no,no,no,Acanthizidae,birds,5.3,5.4,0.01869213301215278,Smicrornis brevirostris,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Sotalia guianensis,acdb_source_candidate,,no,yes,no,,,,,,Sotalia guianensis,
+Sousa sahulensis,asnr_source_candidate,,no,no,yes,,,,,,Sousa sahulensis,
+Stegodyphus dumicola,asnr_source_candidate,,no,no,yes,,,,,,Stegodyphus dumicola,
+Suricata suricatta,current_deep_panel,,yes,no,no,,,,,,Suricata suricatta,
+Taeniopygia guttata,theory_discriminating_candidate,,no,no,no,,,,,,Taeniopygia guttata,Theory contrast: vocal learning with limited manipulatory technology
+Thamnophis butleri,asnr_source_candidate,,no,no,yes,,,,,,Thamnophis butleri,
+Thryothorus eisenmanni,database_unrepresented_family_mass_calibration,,no,no,no,Troglodytidae,birds,23.1,23.2,0.004319661144516651,Thryothorus eisenmanni,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Tiliqua rugosa,asnr_source_candidate,,no,no,yes,,,,,,Tiliqua rugosa,
+Trachypithecus johnii,asnr_source_candidate,,no,no,yes,,,,,,Trachypithecus johnii,
+Tragelaphus eurycerus,database_unrepresented_family_mass_calibration,,no,no,no,Bovidae,mammals,329003.11,326950.08,0.006259704915244413,Tragelaphus eurycerus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Trichoniscus pusillus,data_rich_underrepresented_clade_calibration,,no,no,no,Trichoniscidae,Malacostraca,,,,Trichoniscus pusillus,AnimalTraits axes=2; body records=26; brain records=0; metabolic records=26.
+Trichosurus cunninghami,asnr_source_candidate,,no,no,yes,,,,,,Trichosurus cunninghami,
+Trichosurus johnstonii,database_unrepresented_family_mass_calibration,,no,no,no,Phalangeridae,mammals,2293.08,2293.08,0.0,Trichosurus johnstonii,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Tursiops aduncus,current_deep_panel,,yes,yes,no,,,,,,Tursiops aduncus,
+Tursiops truncatus,current_deep_panel,,yes,yes,yes,,,,,,Tursiops truncatus; Tursiops truncatus subsp. gephyreus,
+Ursus americanus,asnr_source_candidate,,no,no,yes,,,,,,Ursus americanus,
+Zalophus californianus,asnr_source_candidate,,no,no,yes,,,,,,Zalophus californianus,
+Zalophus japonicus,database_unrepresented_family_mass_calibration,,no,no,no,Otariidae,mammals,80000.0,80000.0,0.0,Zalophus japonicus,Absence from ACDB/ASNR is not biological absence; selected only as same-family nearest-median-body-mass comparator.
+Zonotrichia atricapilla,asnr_source_candidate,,no,no,yes,,,,,,Zonotrichia atricapilla,
+Zonotrichia capensis,acdb_source_candidate,,no,yes,no,,,,,,Zonotrichia capensis,
+Zonotrichia leucophrys,acdb_source_candidate,,no,yes,no,,,,,,Zonotrichia leucophrys nuttalli,
+Zosis geniculata,data_rich_underrepresented_clade_calibration,,no,no,no,Uloboridae,Arachnida,,,,Zosis geniculata,AnimalTraits axes=2; body records=20; brain records=0; metabolic records=20.
