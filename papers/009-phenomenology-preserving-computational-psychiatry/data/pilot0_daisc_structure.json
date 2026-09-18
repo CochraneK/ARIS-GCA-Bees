@@ -1,0 +1,53 @@
+{
+  "dataset": "DAIS-C",
+  "generated_utc": "2026-09-18T23:38:53.741321+00:00",
+  "privacy_rule": "No transcript text or participant IDs emitted.",
+  "classification_counts": {
+    "interactional": 8,
+    "non_transcript_text": 30,
+    "speaker_only": 28,
+    "timestamped": 7
+  },
+  "extensions_by_class": {
+    "interactional": {
+      ".rtf": 8
+    },
+    "non_transcript_text": {
+      ".txt": 30
+    },
+    "speaker_only": {
+      ".txt": 28
+    },
+    "timestamped": {
+      ".rtf": 7
+    }
+  },
+  "participant_word_counts_by_class": {
+    "interactional": 27707,
+    "non_transcript_text": 0,
+    "speaker_only": 85667,
+    "timestamped": 2152
+  },
+  "interviewer_word_counts_by_class": {
+    "interactional": 10430,
+    "non_transcript_text": 0,
+    "speaker_only": 0,
+    "timestamped": 2146
+  },
+  "timestamp_markers_by_class": {
+    "interactional": 8,
+    "non_transcript_text": 0,
+    "speaker_only": 0,
+    "timestamped": 1364
+  },
+  "unique_participant_id_counts_by_class": {
+    "interactional": 8,
+    "speaker_only": 28,
+    "timestamped": 7
+  },
+  "published_reference": {
+    "paper_total_tokens": 97357,
+    "paper_audio_minutes": 1284.8,
+    "note": "Published token count is a validation reference, not an expected exact match because tokenization and file class differ."
+  }
+}
