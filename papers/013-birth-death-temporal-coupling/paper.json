@@ -1,0 +1,23 @@
+{
+  "id": "013",
+  "slug": "birth-death-temporal-coupling",
+  "title": "Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems",
+  "short_title": "Birth–Death Temporal Coupling",
+  "year": 2026,
+  "status": "research-design",
+  "domain": "epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience",
+  "summary": "A preregistration-first study testing whether birth timing predicts death timing or mortality beyond ordinary seasonality, early-life environment, birthday effects and cultural calendars, with traditional Chinese calendrical/Bazi features evaluated only as prespecified incremental predictors against matched pseudo-calendar controls and independent holdouts.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided design with live prior-art audit and falsification-first framing",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/013-birth-death-temporal-coupling"
+  },
+  "tags": ["ARIS", "ARIS4C", "mortality", "birthday effect", "birth season", "circular statistics", "Bazi", "replication"]
+}
