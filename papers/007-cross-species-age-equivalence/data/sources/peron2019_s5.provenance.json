@@ -1,0 +1,14 @@
+{
+  "source": "Péron et al. 2019, PLOS Biology, S5 Data",
+  "article_doi": "10.1371/journal.pbio.3000432",
+  "supplement_doi": "10.1371/journal.pbio.3000432.s005",
+  "published_s5_description": "Estimates and standard errors of the five parameters of the age-specific mortality curves for 96 species, with sample-size information.",
+  "retrieved_via_successful_github_actions_run": 35300310780,
+  "original_xlsx_sha256": "e7afac6d1b5cc65c1aff523380bc29116bd45d33ad4c303a76c4b338e4a96c30",
+  "derived_csv_sha256": "ec5bd10e21b22769acbb7acd6e930d07ccd64aff9fe048bd179f8c1a6cc4c5fa",
+  "rows_excluding_header": 96,
+  "columns": 11,
+  "conversion": "First XLSX worksheet read with openpyxl data_only=True; cell values preserved in UTF-8 CSV.",
+  "license": "PLOS article is distributed under the Creative Commons Attribution License, permitting unrestricted use, distribution and reproduction with attribution.",
+  "restricted_data_guardrail": "This vendored file is the published S5 parameter-estimate table. It is not the restricted Species360 individual-level longevity dataset."
+}
