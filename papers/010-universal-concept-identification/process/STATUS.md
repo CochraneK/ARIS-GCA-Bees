@@ -1,7 +1,7 @@
 # ARIS4C010 · STATUS
 
 **Updated:** 2026-09-18  
-**Stage:** design + prior-art audit + Pilot 0 + synthetic Semantic Pilot 1 complete  
+**Stage:** Benchmark v0 engineering-ready · design + prior-art audit + Pilot 0 + synthetic Semantic Pilot 1 complete  
 **Current claim strength:** provisional integration gap; not manuscript-frozen
 
 ## Completed
@@ -99,3 +99,16 @@ Pause or split the project if:
 - `process/PILOT0_COMBINATORIAL.md`
 - `data/ucid-target.schema.json`
 - `code/query_complexity.py`
+
+
+## Current readiness
+
+**Engineering:** ready for Benchmark v0 source ingestion.
+
+**Theory:** baseline propositions and failure-mode distinctions are frozen enough for implementation; they remain revisable if a closer prior is found.
+
+**Empirical evidence:** not yet publication-grade. Pilot 0 and Pilot 1 are synthetic/combinatorial validation only.
+
+**Next real evidence step:** import/version open lexical/entity resources, construct a provenance-complete ~320-target Benchmark v0, then run the human/P6 calibration subset before confirmatory representation comparisons.
+
+The project should not spend more time expanding ontology prose before that evidence step unless a literature collision forces redesign.
