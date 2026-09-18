@@ -4,45 +4,75 @@ Updated: 2026-09-18
 
 ## Current state
 
-The original "animal skill-point allocation" idea has been narrowed into a causal-comparative program on the evolution of open-ended cumulative intelligence.
+ARIS4C008 has moved from research-design scaffolding into **pilot evidence integration and design stress-testing**.
 
-Completed:
-- canonical research question frozen at design level;
-- human/nonhuman binary trap identified;
-- multidimensional outcome architecture specified;
-- candidate condition ontology created;
-- core comparison taxa selected;
-- open comparative data sources identified;
-- falsifiable competing model family specified;
-- initial literature seed assembled;
-- pilot evidence schema created.
+The original "animal skill-point allocation" intuition is now operationalized as a test of additive, threshold, weakest-link and feedback architectures for open-ended cumulative intelligence.
 
-## Key conceptual decision
+## Completed
 
-The project will not search for one "human gene", one brain-size threshold, or one magic cognitive trait. It will compare additive, interaction, bottleneck, threshold and feedback architectures.
+- [x] canonical research question frozen at design level;
+- [x] multidimensional O1–O7 outcome codebook;
+- [x] candidate-condition ontology;
+- [x] initial 25-taxon comparative scaffold;
+- [x] source-level evidence schema with explicit missingness states;
+- [x] Animal Culture Database v0.1 pilot extraction;
+- [x] 13 direct ACDB pilot-species matches, 32 groups and 42 cultural-behaviour records extracted;
+- [x] scope-aware literature evidence seed expanded to 24 source-traceable rows;
+- [x] exact-species versus genus/family/clade exemplar evidence separated;
+- [x] scope-aware coverage matrix;
+- [x] first 25-taxon pilot evidence matrix;
+- [x] toy model-recoverability simulation;
+- [x] model-discriminating panel-v2 sampling principle;
+- [x] AnimalTraits v1.0.7 ingestion code prepared.
 
-## Most important near-term gate
+## Pilot coverage
 
-Populate and validate a 20–40 species high-contrast pilot before scaling to hundreds or thousands of taxa.
+Current scope-aware seed coverage:
 
-Large comparative databases provide life history, morphology and some neural variables, but high-value behavioural variables are sparse, heterogeneous and strongly affected by research effort.
+- **14 / 25** taxa have exact-species literature seed evidence;
+- **5 / 25** additional taxa have exact-species ACDB coverage without a separate literature-seed row;
+- **5 / 25** currently rely on genus-level exemplar evidence;
+- **1 / 25** currently relies on family-level exemplar evidence.
 
-## Next actions
+Thus **19 / 25** pilot taxa currently have at least one exact-species evidence route suitable for expansion into the primary matrix. The remaining six require exact-species resolution or must remain sensitivity-analysis taxa.
 
-- [x] freeze pilot outcome codebook;
-- [x] freeze provisional condition ontology;
-- [x] create pilot taxon scaffold;
-- [x] create source-level evidence schema;
-- [ ] import ACDB behaviours and sources;
-- [ ] join taxonomic identifiers to AnimalTraits / PanTHERIA / AVONET / AnAge where possible;
-- [ ] populate cognition, tool-use, teaching, communication and manipulation evidence;
-- [ ] quantify research effort per taxon;
-- [ ] simulate additive vs bottleneck vs threshold recoverability under realistic missingness;
-- [ ] complete closest-prior-work map for explicit necessary/sufficient-configuration claims;
-- [ ] freeze exact ARIS release/commit when the formal full run begins.
+No missing database record is interpreted as absence of an ability.
+
+## Model-recoverability lesson
+
+A toy simulation with eight latent modules showed that small, famous-"intelligent"-animal panels can make additive, threshold and weakest-link mechanisms difficult to distinguish, especially with 20–40% missing behavioural data.
+
+At 25 taxa / 20% missingness, selecting taxa for disagreement among candidate models increased mean exact architecture recovery from about **0.45 to 0.59** in the toy setup. Gains were largest for threshold and weakest-link models.
+
+This is a **design diagnostic, not a biological power analysis**.
+
+## Key design change
+
+The first 25 taxa are now treated as a seed panel, not the final sample.
+
+Panel v2 will deliberately seek:
+- high-average / one-severe-bottleneck configurations;
+- balanced moderate configurations;
+- threshold-straddling configurations;
+- cognition-matched but embodiment-different pairs;
+- social-learning-matched but life-history/network-different pairs;
+- ordinary negative/calibration taxa.
+
+## In progress
+
+- [ ] resolve genus/family pilot labels to frozen species-level units where scientifically defensible;
+- [ ] run and validate AnimalTraits join for body mass, brain size and metabolism;
+- [ ] join life-history / longevity data (PanTHERIA, AnAge and/or compatible sources);
+- [ ] quantify research effort per taxon and module;
+- [ ] expand each core module beyond one or two flagship papers;
+- [ ] choose compatible phylogenetic trees and taxonomic reconciliation rules;
+- [ ] build hominin archaeological time-slice layer;
+- [ ] complete closest-prior-work novelty map for explicit necessary/sufficient-configuration claims;
+- [ ] simulate recoverability using the **observed** missingness structure rather than toy missingness;
+- [ ] freeze exact ARIS engine version/commit and begin formal full ARIS run.
 
 ## Current assessment
 
-**High scientific upside; medium-to-high execution risk.**
+**Scientific framing: strong. Data integration: underway. Confirmatory analysis: not yet ready.**
 
-The project is strongest as a falsification and configuration-testing study. It becomes substantially weaker if reduced to subjective intelligence scores or a "smartest animal" ranking.
+The project should not advance to a headline "minimal sufficient set" until the exact-species panel, research-effort correction and phylogenetic layer pass their gates.

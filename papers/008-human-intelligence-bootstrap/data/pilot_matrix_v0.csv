@@ -1,0 +1,26 @@
+taxon_id,scientific_name,common_name,major_clade,priority,contrast_role,coverage_state,acdb_behaviors,exact_literature_rows,exemplar_literature_rows,innovation_evidence_rows,social_transmission_evidence_rows,communication_evidence_rows,manipulation_evidence_rows,externalization_evidence_rows,social_architecture_evidence_rows,outcome_evidence_rows,life_history_status,energetics_status,research_effort_status,confirmatory_eligible
+HUM,Homo sapiens,human,Primates,core,target_reference,exact_seed,0,1,0,0,0,0,0,0,0,1,pending_database_join,pending_database_join,not_yet_quantified,yes
+PTR,Pan troglodytes,chimpanzee,Primates,core,near_human_dissociation,exact_seed,2,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+PPA,Pan paniscus,bonobo,Primates,core,near_human_social_tolerance,exact_acdb,4,0,0,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+PON,Pongo spp.,orangutans,Primates,core,ape_tool_culture_contrast,genus_exemplar_seed,3,0,1,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,no
+GOR,Gorilla spp.,gorillas,Primates,core,ape_phylogenetic_control,genus_exemplar_seed,0,0,1,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,no
+CAP,Sapajus spp.,capuchin_monkeys,Primates,core,independent_primate_tool_traditions,genus_exemplar_seed,3,0,1,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,no
+MAC,Macaca spp.,macaques,Primates,extended,social_learning_traditions,genus_exemplar_seed,1,0,1,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,no
+MAR,Callitrichidae,marmosets_and_tamarins,Primates,extended,cooperative_breeding_teaching,family_exemplar_seed,0,0,2,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,no
+CME,Corvus moneduloides,New_Caledonian_crow,Aves,core,convergent_tool_cognition,exact_seed,5,2,0,0,1,0,1,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+CRA,Corvus corax,common_raven,Aves,core,convergent_social_cognition,exact_acdb,2,0,0,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+KEA,Nestor notabilis,kea,Aves,core,parrot_innovation_play,exact_seed,0,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+CGO,Cacatua goffiniana,Goffins_cockatoo,Aves,core,parrot_tool_innovation,exact_seed,0,2,0,0,0,0,2,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+PER,Psittacus erithacus,African_grey_parrot,Aves,core,communication_cognition,exact_seed,0,1,0,0,0,1,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+MUN,Melopsittacus undulatus,budgerigar,Aves,extended,vocal_learning_neural_convergence,exact_seed,0,1,0,0,0,1,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+TTR,Tursiops truncatus,bottlenose_dolphin,Cetacea,core,culture_vocal_social_aquatic,genus_exemplar_seed,3,0,1,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,no
+OOR,Orcinus orca,killer_whale,Cetacea,core,cultural_repertoire_social_structure,exact_acdb,10,0,0,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+PMA,Physeter macrocephalus,sperm_whale,Cetacea,extended,clan_vocal_culture,exact_acdb,3,0,0,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+MNO,Megaptera novaeangliae,humpback_whale,Cetacea,extended,song_cultural_transmission,exact_acdb,3,0,0,0,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+LAF,Loxodonta africana,African_elephant,Proboscidea,core,long_life_social_memory,exact_seed,2,1,0,0,0,1,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+EMA,Elephas maximus,Asian_elephant,Proboscidea,extended,long_life_manipulation,exact_seed,0,1,0,1,0,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+OVU,Octopus vulgaris,common_octopus,Cephalopoda,core,cognition_manipulation_short_life,exact_seed,0,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+BTE,Bombus terrestris,buff_tailed_bumblebee,Hymenoptera,core,social_learning_small_brain,exact_seed,0,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+AME,Apis mellifera,honeybee,Hymenoptera,core,collective_information_external_structure,exact_seed,1,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+CLI,Columba livia,rock_pigeon,Aves,extended,cumulative_route_experiment,exact_seed,0,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes
+SSU,Suricata suricatta,meerkat,Carnivora,core,teaching_without_open_ended_culture,exact_seed,0,1,0,0,1,0,0,0,0,0,pending_database_join,pending_database_join,not_yet_quantified,yes

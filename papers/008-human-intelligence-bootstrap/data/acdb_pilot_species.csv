@@ -1,0 +1,14 @@
+species_id,canonical_name,common_name,gbif,primary_social_unit,n_groups,n_behaviors,n_domains,domains,n_vertical_yes,n_horizontal_yes,n_oblique_yes,n_unique_sources,iucn
+Orcinus_orca,Orcinus orca,killer whales,2440483,family,7,10,4,foraging; play; social; vocal communication,0,0,0,8,DD
+Corvus_moneduloides,Corvus moneduloides,New Caledonian crows,2482475,family,3,5,3,antipredation; foraging; vocal communication,3,0,0,3,LC
+Pan_paniscus,Pan paniscus,bonobos,5219533,group,1,4,2,architecture; foraging,0,0,0,1,EN
+Megaptera_novaeangliae,Megaptera novaeangliae,humpback whales,5220086,individual,3,3,3,foraging; mating; vocal communication,0,3,0,3,LC
+Physeter_macrocephalus,Physeter macrocephalus,sperm whales,8123917,family,3,3,3,foraging; social; vocal communication,0,0,0,2,VU
+Pongo_abelii,Pongo abelii,Sumatran orangutans,5707420,individual,1,3,2,architecture; foraging,0,0,0,2,CR
+Sapajus_libidinosus,Sapajus libidinosus,bearded capuchin,7785578,not searched,3,3,1,foraging,0,0,0,2,NT
+Tursiops_aduncus,Tursiops aduncus,Indo-Pacific bottlenose dolphin,2440455,not searched,3,3,1,foraging,1,0,1,3,NT
+Corvus_corax,Corvus corax,common ravens,2482492,not searched,2,2,3,foraging; social; vocal communication,0,0,0,1,LC
+Loxodonta_africana,Loxodonta africana,African savannah elephants,2435350,family,2,2,2,social; vocal communication,0,0,0,1,EN
+Pan_troglodytes,Pan troglodytes,chimpanzee,5219534,group,2,2,1,social,2,0,0,1,EN
+Apis_mellifera,Apis mellifera,honey bees,1341976,group,1,1,1,foraging,0,0,1,1,NA
+Macaca_fuscata,Macaca fuscata,Japanese macaques,2436608,group,1,1,1,foraging,1,1,1,1,LC
