@@ -30,6 +30,9 @@ jobs:
       - name: Install minimal probe dependencies
         run: pip install "duckdb>=1.3" "numpy>=2.0" "pandas>=2.2"
 
+      - name: Acquire official Works manifest
+        run: python code/acquire_sources.py openalex-manifest
+
       - name: Locate one official public Works Parquet object
         id: locate
         run: |
@@ -58,14 +61,34 @@ jobs:
           obj["snapshot_prefix"] = "s3://openalex/data/parquet/works/"
           obj["access_mode"] = "anonymous public S3 range read via DuckDB httpfs"
           obj["outcomes_materialized"] = False
+          manifest_path = Path("data/manifests/openalex_works_manifest.json")
+          import hashlib
+          h = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+          obj["official_works_manifest_path"] = str(manifest_path)
+          obj["official_works_manifest_sha256"] = h
           obj["integrity_note"] = (
               "Schema/binding only. No country-by-discipline aggregate or "
               "substantive confirmatory result was computed."
           )
           p.write_text(json.dumps(obj, indent=2)+"\n", encoding="utf-8")
+
+          source_manifest = Path("data/manifests/source_manifest.json")
+          ledger = json.loads(source_manifest.read_text())
+          entry = ledger.setdefault("sources", {}).setdefault("openalex", {})
+          entry["status"] = "manifest_and_schema_probe_pass"
+          entry["manifest_local_path"] = str(manifest_path)
+          entry["manifest_sha256"] = h
+          entry["schema_probe_path"] = str(p)
+          entry["schema_probe_safe_to_build_extractor"] = True
+          entry["outcomes_materialized_during_probe"] = False
+          source_manifest.write_text(
+              json.dumps(ledger, indent=2)+"\n", encoding="utf-8"
+          )
+
           print(json.dumps({
               "safe_to_build_extractor": obj["safe_to_build_extractor"],
               "source": obj["snapshot_root"],
+              "works_manifest_sha256": h,
           }, indent=2))
           PY
 
@@ -74,10 +97,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add process/OPENALEX_SCHEMA_PROBE.json
+          git add data/manifests/openalex_works_manifest.json
+          git add data/manifests/source_manifest.json
           if git diff --cached --quiet; then
             echo "OpenAlex schema probe already current."
           else
-            git commit -m "ARIS4C003 record outcome-blind OpenAlex schema probe"
-            git pull --rebase origin main
-            git push
+            git commit -m "ARIS4C003 record outcome-blind OpenAlex schema and manifest"
+            pushed=0
+            for attempt in 1 2 3 4 5 6; do
+              git pull --rebase origin main
+              if git push; then
+                pushed=1
+                break
+              fi
+              sleep $((attempt * 2))
+            done
+            test "$pushed" -eq 1
           fi
