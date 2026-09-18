@@ -181,6 +181,7 @@ a{color:inherit}
 .output-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border:1px solid var(--line);border-radius:999px;font-size:7.5px;color:var(--faint);background:var(--surface)}
 .output-badge b{font-size:7px;letter-spacing:.05em}
 .output-badge.ok{color:var(--green);border-color:color-mix(in srgb,var(--green) 26%,var(--line));background:color-mix(in srgb,var(--green) 6%,var(--surface))}
+.output-badge.partial{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 25%,var(--line));background:color-mix(in srgb,var(--amber) 5%,var(--surface))}
 .output-badge.open{color:var(--faint);border-style:dashed}
 .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;padding-top:12px;border-top:1px solid var(--line);color:var(--faint);font-size:7.5px}
 .tags{display:flex;gap:5px;flex-wrap:wrap;margin:11px 0}
