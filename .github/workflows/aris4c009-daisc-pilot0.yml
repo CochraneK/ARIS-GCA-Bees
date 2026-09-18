@@ -64,6 +64,8 @@ jobs:
 
           cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json "$RUNNER_TEMP/inventory.json"
           cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md "$RUNNER_TEMP/inventory.md"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json "$RUNNER_TEMP/structure.json"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md "$RUNNER_TEMP/structure.md"
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -73,8 +75,14 @@ jobs:
 
             cp "$RUNNER_TEMP/inventory.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json
             cp "$RUNNER_TEMP/inventory.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+            cp "$RUNNER_TEMP/structure.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json
+            cp "$RUNNER_TEMP/structure.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
 
-            git add               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json               papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+            git add \
+              papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
+              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md \
+              papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
+              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
 
             if git diff --cached --quiet; then
               echo "Inventory already current."
