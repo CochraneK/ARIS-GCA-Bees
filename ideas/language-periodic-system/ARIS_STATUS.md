@@ -1,7 +1,8 @@
 # ARIS Status · Language Periodic System
 
 **Candidate:** `language-periodic-system`  
-**Branch:** `research/language-geometry-confirmatory`  
+**Canonical branch:** `main`  
+**Merged confirmatory source:** `research/language-geometry-confirmatory` via PR #4  
 **ARIS lock:** v0.4.26  
 **Paper ID:** not assigned  
 **Overall state:** REVIEW-READY ACTIVE CANDIDATE — confirmatory screen complete; formal ARIS secondary review pending
