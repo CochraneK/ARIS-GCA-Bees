@@ -152,3 +152,32 @@ The manuscript should describe this as an **institutional exposure study**, not 
 **Verdict: CONDITIONAL GO.**
 
 Do not open confirmatory career outcomes until the remaining closest-prior-work sweep and the exposure/name-parsing feasibility pilot are completed.
+
+
+## 2025–2026 update sweep
+
+### Cai, Wong & Kwong (2025) — surname order × citation-system mechanism
+
+- **Article:** *Does your surname undermine your research impact?*
+- **Journal:** Psychonomic Bulletin & Review 32, 3116–3133.
+- **DOI:** `10.3758/s13423-025-02727-0`
+- **Design:** preregistered archival study of 446,755 articles plus an experiment with 307 doctorate-holding academics.
+- **Relevance:** provides recent evidence that surname-order citation bias is stronger under alphabetical citation systems than numerical systems and explicitly discusses the high frequency of late initials among Chinese surnames.
+- **006 implication:** citation frequency cannot be the novelty centerpiece; byline-order exposure and longitudinal local convention measurement must remain distinct from reference/citation-list ordering.
+
+### Donner & Korytkowski (2025) — mathematics alphabetical order and actual contribution
+
+- **Article:** *Alphabetical author order and co-author contributions in mathematics*
+- **Journal:** Scientometrics 130, 4141–4156.
+- **DOI:** `10.1007/s11192-025-05369-0`
+- **Design:** 901 coauthored mathematics papers tied to author-provided quantitative contribution statements; 92.6% were alphabetically ordered.
+- **Relevance:** validates Mathematics as a strong convention setting while showing alphabetical order often accompanies near-equal declared contributions.
+- **006 implication:** later position in a mathematical byline must not be interpreted automatically as lower intellectual contribution.
+
+### Yuret (2026 preprint) — strategic use of multiple surnames
+
+- **Preprint:** *Strategic Use of Acquired Surnames Among Female Academics*
+- **DOI:** `10.21203/rs.3.rs-8804379/v1`
+- **Design:** 4,199 female academics across Economics, Mathematics, and Psychology; long-run publication-order exposure and surname-use behavior.
+- **Relevance:** researcher-level alphabetization exposure and strategic surname response are already active prior art.
+- **006 implication:** the distinctive contribution must be time-varying context exposure in the China-based scholarly system, population calibration, and independently constructed longitudinal mechanism tests—not generic person-level exposure or strategic naming.
