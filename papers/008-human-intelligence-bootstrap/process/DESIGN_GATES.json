@@ -15,17 +15,17 @@
     {
       "id": "research_effort",
       "status": "in_progress",
-      "requirement": "ACDB/source counts are available as first research-effort proxies, but module-specific search effort and tested-negative evidence must still be quantified."
+      "requirement": "Source counts and database coverage are available, but module-specific search effort, tested-negative evidence, and publication-intensity correction remain required."
     },
     {
       "id": "phylogeny",
       "status": "open",
-      "requirement": "Choose compatible phylogenies and define handling of taxa absent from trees."
+      "requirement": "Species-level panel v2 removes genus/family terminals; next choose compatible phylogenies and define reconciliation for all 29 taxa plus later calibration taxa."
     },
     {
       "id": "pilot_matrix",
-      "status": "in_progress",
-      "requirement": "Pilot matrix v0 exists for 25 taxa; 19 have an exact-species evidence route and six still require exact-species resolution or sensitivity-only treatment."
+      "status": "provisional_pass",
+      "requirement": "Pilot matrix v1 integrates culture/cognition evidence with AnimalTraits and AnAge; a 29-species resolved panel v2 now exists. Rebuild downstream matrices on v2 before confirmatory analysis."
     },
     {
       "id": "model_recoverability",
