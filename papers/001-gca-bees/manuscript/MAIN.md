@@ -8,8 +8,8 @@ ARIS4C001 · Final manuscript · 18 September 2026
 **Target journal:** Frontiers in Psychology — Comparative Psychology  
 **Target article type:** Hypothesis and Theory  
 **Main-text word count (approx.):** 3001  
-**Figures:** 0  
-**Tables:** 1
+**Figures:** 3  
+**Tables:** 3
 
 ### Abstract
 
@@ -83,9 +83,24 @@ For each task pair, correlations were Fisher-z transformed and combined using we
 
 The pattern is asymmetric: initial discrimination performance is moderately related to both reversal and negative patterning, whereas reversal and negative patterning show a weaker relation. This matters for interpretation. A positive manifold exists, but it is not an exchangeable “all tasks correlate equally” pattern.
 
+![Figure 1. Published learning covariance](../figures/figure1_published_learning_covariance.svg)
+
+**Figure 1. Published learning covariance.** Descriptive Fisher-z synthesis across the visual and olfactory free-flying conditions. Points are pooled correlations and horizontal intervals are approximate 95% intervals. This is not a population meta-analysis.
+
 ### 3.3 Cross-modality factor congruence
 
 The visual loading vector reported by Peñaherrera-Aguirre et al. (2024) is ((0.944, 0.562, 0.445)), and the olfactory vector is ((0.997, 0.601, 0.461)). Their Tucker congruence coefficient is **0.99996**, indicating nearly identical relative loading structure across modalities. In both conditions, the initial discrimination/AL indicator anchors the factor most strongly, followed by reversal learning and then negative patterning.
+
+| Indicator | Visual loading | Olfactory loading |
+|---|---:|---:|
+| Initial discrimination / AL | 0.944 | 0.997 |
+| Reversal learning / RL | 0.562 | 0.601 |
+| Negative patterning / NP | 0.445 | 0.461 |
+| Variance accounted for | 46.8% | 52.3% |
+
+![Figure 2. Cross-modality factor loading structure](../figures/figure2_factor_loading_congruence.svg)
+
+**Figure 2. Cross-modality factor loading structure.** Published one-factor loadings reported by Peñaherrera-Aguirre et al. (2024). Statistical congruence does not establish a unitary biological mechanism.
 
 The one-factor loadings almost perfectly reproduce the three visual correlations. For the olfactory condition, the loading products reproduce AL–RL and AL–NP closely but imply an RL–NP correlation of about 0.277 compared with the observed 0.19; the off-diagonal root-mean-square residual is approximately 0.050. This discrepancy is not a rejection of the EFA solution. It simply illustrates that a compact factor can summarize covariance without uniquely explaining every pairwise relation or establishing a single underlying biological cause.
 
@@ -117,6 +132,14 @@ A useful theory must be able to lose. Five models are therefore treated as genui
 
 A predictive-precision or confidence-like latent variable remains exploratory. It receives no privileged status, no fixed optimum, no preregistered sign for its relation to learning performance, and no assumed neural location.
 
+| Model | Core assumption | Evidence that would favor it | Strong falsifier / challenge |
+|---|---|---|---|
+| M1 · single general factor | Learning and uncertainty-sensitive indicators share one latent factor | Positive cross-domain covariance and superior held-out prediction from one factor | Reliable uncertainty variation but near-zero coupling to learning/GCA |
+| M2 · two correlated factors | Learning factor G and uncertainty factor U are distinct but correlated | Stable non-zero rho(G,U) with better prediction than M1/M3 | rho(G,U) near zero or one-factor prediction is equally good |
+| M3 · two independent factors | Learning and uncertainty factors are separable | Reliable within-domain structure but little cross-domain covariance | Stable cross-domain covariance after nuisance control |
+| M4 · task-local associative | Opt-out follows learned stimulus/response values and reinforcement history | Associative model predicts trial-level opt-out and transfer as well as richer models | Generalization not predicted by value history/similarity |
+| M5 · hybrid | Stable individual differences coexist with associative trial-level choice | Individual factor and associative history both add held-out predictive value | One component adds no predictive information |
+
 ---
 
 ## 5. Model-recovery diagnostic
@@ -126,6 +149,10 @@ Before collecting a definitive dataset, it is useful to ask whether the proposed
 This diagnostic is **not evidence about bees**. Its sole purpose is experimental design.
 
 Under the chosen scenario, the one-factor model is rarely selected because the synthetic data are intentionally generated from two factors. The harder discrimination is between correlated and independent two-factor models. The correlated model is selected in roughly 49% of replications at N = 60, 59.5% at N = 90, 62.5% at N = 120, and 79.5% at N = 160. These values are not universal power estimates; they depend on the assumed loading, factor correlation, scoring, and model family. They show why samples of approximately 20–30 individuals, while sufficient to reveal some pairwise associations, are unlikely to settle a subtle latent-coupling question.
+
+![Figure 3. Synthetic model-recovery diagnostic](../figures/figure3_model_recovery.svg)
+
+**Figure 3. Synthetic model-recovery diagnostic.** BIC model-selection rates across 200 synthetic replications at each sample size under a two-correlated-factor data-generating model (loading = 0.65; latent-factor correlation = 0.35). This is an experimental-design diagnostic only and is **not empirical evidence about bees**.
 
 ---
 
