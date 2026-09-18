@@ -1,0 +1,73 @@
+name: Paper 002 manuscript CI
+
+on:
+  push:
+    branches:
+      - main
+      - manuscript/002-**
+    paths:
+      - 'papers/002-language-geometry/**'
+      - 'ideas/language-periodic-system/stage1*-results.json'
+      - '.github/workflows/paper002-manuscript.yml'
+  pull_request:
+    paths:
+      - 'papers/002-language-geometry/**'
+      - 'ideas/language-periodic-system/stage1*-results.json'
+      - '.github/workflows/paper002-manuscript.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manuscript-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install figure dependencies
+        run: python -m pip install --disable-pip-version-check numpy matplotlib
+      - name: Validate paper manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('papers/002-language-geometry/paper.json').read_text())
+          assert p['id'] == '002'
+          assert p['status'] in {'manuscript-draft-v1', 'manuscript-preparation'}
+          assert p['links']['paper_en']
+          print(p['title'])
+          PY
+      - name: Check required manuscript artifacts
+        run: |
+          test -s papers/002-language-geometry/manuscript/DRAFT.md
+          test -s papers/002-language-geometry/manuscript/TABLES.md
+          test -s papers/002-language-geometry/process/CLAIMS_EVIDENCE_MATRIX.md
+          test -s papers/002-language-geometry/process/DATA_PROVENANCE.md
+          test -s papers/002-language-geometry/process/LITERATURE_RESCAN_2026-09-18.md
+      - name: Regenerate manuscript figures in clean CI
+        run: python papers/002-language-geometry/code/make_manuscript_figures.py
+      - name: Verify regenerated figures
+        run: |
+          test -s papers/002-language-geometry/figures/figure1_cross_dataset.svg
+          test -s papers/002-language-geometry/figures/figure2_tli_paired_contrasts.svg
+          test -s papers/002-language-geometry/figures/figure3_circular_diagnostics.svg
+      - name: Claim-boundary smoke check
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('papers/002-language-geometry/manuscript/DRAFT.md').read_text().lower()
+          required = [
+              'split sensitivity',
+              'does not establish that language is universally',
+              'does not falsify all possible notions',
+              'wals',
+              'exploratory',
+              'kemp (2026)',
+          ]
+          missing = [x for x in required if x not in text]
+          assert not missing, f'Missing claim-boundary text: {missing}'
+          PY
