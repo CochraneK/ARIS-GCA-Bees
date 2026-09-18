@@ -71,7 +71,7 @@ class MechanismCohortTests(unittest.TestCase):
                     publication_year=1980,
                     field="physics",
                     annual_citation_counts=tuple(
-                        [10] * 10 + [20] * 10
+                        [30] * 10 + [30] * 10
                     ),
                     reference_count=20 + i,
                     author_count=2,
