@@ -1,0 +1,72 @@
+name: ARIS4C015 Pilot 1 Historical Cohort
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilot1-cohort.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  historical-cohort-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run reproducible 1980 Physics & Astronomy cohort
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilot0_openalex_cohort.py             --sample-size 20             --seed 15015             --filters "publication_year:1980,type:article,topics.field.id:31"             --cutoff-year 1995             --observation-end-year 2011             --positive-fraction 0.20             --review-budget-k 5             --output ../data/pilot1_openalex_1980_physics_seed15015.json
+
+      - name: Validate time split and benchmark output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilot1_openalex_1980_physics_seed15015.json"
+          )
+          result = json.loads(path.read_text(encoding="utf-8"))
+
+          assert result["benchmark_type"] == (
+              "non-hand-picked historical cohort smoke test"
+          )
+          assert result["sampling"]["seed"] == 15015
+          assert result["sampling"]["sample_size_analyzed"] >= 10
+          assert result["temporal_design"]["feature_cutoff_year"] == 1995
+          assert result["temporal_design"]["outcome_observation_end_year"] == 2011
+          assert result["outcome"]["universal_sleeping_beauty_definition"] is False
+
+          strategies = {x["strategy"] for x in result["baseline_results"]}
+          assert strategies == {
+              "current_citations",
+              "momentum_3y",
+              "acceleration_3y",
+              "partial_beauty",
+              "dormancy",
+          }
+
+          print(json.dumps({
+              "n": result["sampling"]["sample_size_analyzed"],
+              "n_positive": result["outcome"]["n_positive"],
+              "baseline_results": result["baseline_results"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilot1-openalex-1980-physics
+          path: papers/015-sleeping-beauty-miner/data/pilot1_openalex_1980_physics_seed15015.json
+          if-no-files-found: error
+          retention-days: 30
