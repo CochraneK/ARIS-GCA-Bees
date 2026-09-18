@@ -1,0 +1,21 @@
+{
+  "classification": "CITATION_EDGE_AI_PACKET_NO_ADJUDICATION_RESULTS",
+  "unique_edges": 486,
+  "adjudicators": [
+    "CIT_AI_A",
+    "CIT_AI_B"
+  ],
+  "assignments_total": 972,
+  "assignments_by_adjudicator": {
+    "CIT_AI_A": 486,
+    "CIT_AI_B": 486
+  },
+  "fulltext_signal_edges": 200,
+  "oa_signal_edges": 290,
+  "warnings": [
+    "This packet contains no semantic contamination labels.",
+    "Full-text/OA metadata are access signals, not evidence of dependence.",
+    "Two AI passes are repeatability measurements, not gold-standard truth.",
+    "Unavailable citation context must remain INDETERMINATE rather than clean."
+  ]
+}

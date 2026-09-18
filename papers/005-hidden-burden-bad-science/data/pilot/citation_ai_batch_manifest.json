@@ -1,0 +1,81 @@
+{
+  "classification": "CITATION_EDGE_AI_BATCH_MANIFEST_NO_LABELS",
+  "batch_size": 100,
+  "assignments_total": 972,
+  "adjudicators": {
+    "CIT_AI_A": 486,
+    "CIT_AI_B": 486
+  },
+  "batches": [
+    {
+      "adjudicator_id": "CIT_AI_A",
+      "batch_number": 1,
+      "filename": "CIT_AI_A_batch_001.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "6c3c6df5167d6dade6459e12930d941eb4deb408328f1e3d6212a57bf40459f1"
+    },
+    {
+      "adjudicator_id": "CIT_AI_A",
+      "batch_number": 2,
+      "filename": "CIT_AI_A_batch_002.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "3defe12a6e31b076efcf305344d1a1303562e4b3492fdb13507c828ec4928138"
+    },
+    {
+      "adjudicator_id": "CIT_AI_A",
+      "batch_number": 3,
+      "filename": "CIT_AI_A_batch_003.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "4b5b89b609a439219933b01e0b2c7159e07d4e53feb4df085cf511d0d484d084"
+    },
+    {
+      "adjudicator_id": "CIT_AI_A",
+      "batch_number": 4,
+      "filename": "CIT_AI_A_batch_004.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "209183aa4d1a8244c462e574639130e33cedbb62f75178192a7aa80b7102c372"
+    },
+    {
+      "adjudicator_id": "CIT_AI_A",
+      "batch_number": 5,
+      "filename": "CIT_AI_A_batch_005.csv",
+      "assignments": 86,
+      "assignment_checksum_sha256": "f4a7574fb89aba8e384c1ebccdb406c5ee9d312f3d483a18b4987049f1257acf"
+    },
+    {
+      "adjudicator_id": "CIT_AI_B",
+      "batch_number": 1,
+      "filename": "CIT_AI_B_batch_001.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "097866eaeb153f90f5c573b10e3a7a6794d4c55efcdd338f90750e295b5b1605"
+    },
+    {
+      "adjudicator_id": "CIT_AI_B",
+      "batch_number": 2,
+      "filename": "CIT_AI_B_batch_002.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "5d06a19d47aa2cd6d2c8452afeda1e7a0254105d5eb5b6f0cdbcf8aac4188fcb"
+    },
+    {
+      "adjudicator_id": "CIT_AI_B",
+      "batch_number": 3,
+      "filename": "CIT_AI_B_batch_003.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "0edd677a9f975c190461d08fe96b9ff71b5a659ffaaade031396bc86ddbc43b6"
+    },
+    {
+      "adjudicator_id": "CIT_AI_B",
+      "batch_number": 4,
+      "filename": "CIT_AI_B_batch_004.csv",
+      "assignments": 100,
+      "assignment_checksum_sha256": "f5e4eccdf726a2b06d2562a05a070825137235f0261ec0c41f294f64eb2b5ee1"
+    },
+    {
+      "adjudicator_id": "CIT_AI_B",
+      "batch_number": 5,
+      "filename": "CIT_AI_B_batch_005.csv",
+      "assignments": 86,
+      "assignment_checksum_sha256": "7f497cc3395d50f34ac7efc5633ef007576d8ae2876cd428647c6c4df31d7fb2"
+    }
+  ]
+}
