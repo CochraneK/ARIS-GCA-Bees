@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "paper_id": "006",
+  "updated_on": "2026-09-18",
+  "stage": "preoutcome_research_design",
+  "confirmatory_outcomes_unlocked": false,
+  "primary_frame": {
+    "unit": "authorship within eligible multi-author work",
+    "population": "authorships with at least one resolved mainland-China institution for the focal authorship; no nationality/ethnicity inference from name",
+    "time_window": {
+      "status": "pending_gate",
+      "gate": "annual_coverage_sweep"
+    }
+  },
+  "surname_measurement": {
+    "allowed_tiers": [
+      "Tier1A_direct_Han",
+      "Tier1B_Crossref_structured",
+      "Tier2_validated_corroborated"
+    ],
+    "forbidden": [
+      "Tier3_last_token_heuristic",
+      "ambiguous_family_assignment"
+    ],
+    "chinese_population_baseline": "ChineseNames 2025.8; confirmatory reproduction required from pinned package",
+    "uniform_A_Z_null_forbidden": true
+  },
+  "identity": {
+    "longitudinal_join_key": "current canonical OpenAlex author ID after re-resolving embedded work author ID",
+    "preserve_raw_embedded_id": true,
+    "orcid_consistency_check_when_available": true,
+    "raw_name_only_person_merge_forbidden": true
+  },
+  "primary_exposure": {
+    "name": "PriorFieldAlphabetizationExposure",
+    "context": "OpenAlex field",
+    "lag_window_years": 3,
+    "formula": "sum(I_alpha - p_chance) / sum(1 - p_chance)",
+    "p_chance": "prod(tie_group_factorials) / team_size_factorial",
+    "negative_values_allowed": true,
+    "focal_work_excluded_by_lag": true,
+    "primary_source_level_exposure_forbidden": true,
+    "mandatory_robustness": [
+      "re-estimate convention using 3+ author works only"
+    ]
+  },
+  "secondary_exposure": {
+    "source_field_lagged": {
+      "status": "secondary_or_exploratory_only",
+      "rule": "hierarchically shrink toward field × prior-3-year parent; raw source score may not replace primary based on effect strength"
+    }
+  },
+  "primary_predictor": {
+    "name": "RelAlphaRank",
+    "definition": "midrank-normalized family-name order within actual coauthor team",
+    "scale": "0 alphabetically earliest to 1 alphabetically latest",
+    "derived_without_using_actual_listed_position": true
+  },
+  "structural_secondary_predictor": {
+    "name": "SurnameInitialRank",
+    "scale": "A=1 ... Z=26",
+    "randomized_assumption": false
+  },
+  "primary_outcome": {
+    "name": "ListedPositionNorm",
+    "formula": "(listed_position - 1) / (team_size - 1)",
+    "scale": "0 first listed to 1 last listed"
+  },
+  "primary_model": {
+    "formula": "ListedPositionNorm_iw = WorkFE_w + beta1*RelAlphaRank_iw + beta2*(RelAlphaRank_iw*PriorFieldAlphabetizationExposure_ct-1) + error_iw",
+    "primary_estimand": "beta2",
+    "work_fixed_effects": true,
+    "exposure_main_effect_absorbed_by_work_FE": true,
+    "inference": {
+      "status": "pending_gate",
+      "requirements": [
+        "author dependence must be accounted for",
+        "shared work dependence must be accounted for"
+      ]
+    }
+  },
+  "mandatory_robustness": [
+    "3+ author focal works",
+    "3+ author convention-estimation sample",
+    "Tier 1 surname evidence only",
+    "Tier 1 + validated Tier 2",
+    "ORCID-linked subset where powered",
+    "uncommon-name / low-identity-risk subset",
+    "low-alphabetization contexts",
+    "future-exposure placebo",
+    "shuffled surname-rank placebo"
+  ],
+  "downstream_longitudinal": {
+    "status": "locked_pending_gates",
+    "cohort": "entry-based; late-year survivor seed forbidden",
+    "within_author_exposure_variation_gate": "running",
+    "distal_outcomes_max_confirmatory": 2
+  },
+  "prohibited_adaptive_choices": [
+    "choosing source-level exposure because it gives a larger surname interaction",
+    "using last-token surname parsing to increase sample size",
+    "changing the primary outcome to citations after seeing the position result",
+    "using a 2024-active survivor sample as the confirmatory career cohort",
+    "opening focal surname × career effects before preregistration freeze"
+  ]
+}
