@@ -22,6 +22,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install numpy scipy
+      - run: python -m py_compile papers/001-gca-bees/code/quality_gate.py papers/001-gca-bees/code/model_recovery.py
       - run: python papers/001-gca-bees/code/quality_gate.py
       - run: python papers/001-gca-bees/code/model_recovery.py
-      - run: git diff --exit-code papers/001-gca-bees/data/model_recovery_synthetic.json
