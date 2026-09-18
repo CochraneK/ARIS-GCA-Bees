@@ -6,6 +6,7 @@ from mechanism_labels import (
     early_late_percentiles,
     robust_sleeping_beauty_gate,
     van_raan_gate,
+    variable_van_raan_gate,
 )
 
 
@@ -37,6 +38,33 @@ class MechanismLabelTests(unittest.TestCase):
             result.calibration["source"],
             SCISCINET_V1_CALIBRATION.source,
         )
+
+    def test_variable_sleep_detects_long_delayed_wake(self):
+        counts = [0] * 25 + [6, 8, 10, 12] + [20, 25]
+        variable = variable_van_raan_gate(
+            counts,
+            min_sleep_years=5,
+            wake_years=4,
+        )
+        fixed = van_raan_gate(
+            counts,
+            sleep_years=10,
+            wake_years=4,
+        )
+        self.assertTrue(variable.passed)
+        self.assertGreaterEqual(variable.sleep_years, 20)
+        self.assertEqual(variable.mode, "VARIABLE_SLEEP")
+        self.assertFalse(fixed.passed)
+
+    def test_robust_gate_defaults_to_variable_sleep(self):
+        counts = [0] * 25 + [6, 8, 10, 12] + [20, 25, 30, 40]
+        result = robust_sleeping_beauty_gate(
+            counts,
+            min_total_citations=50,
+        )
+        self.assertEqual(result.van_raan.mode, "VARIABLE_SLEEP")
+        self.assertTrue(result.van_raan.passed)
+        self.assertTrue(result.robust_sb)
 
     def test_high_b_alone_is_not_enough(self):
         counts = [0] * 10 + [6, 6, 6, 6]
