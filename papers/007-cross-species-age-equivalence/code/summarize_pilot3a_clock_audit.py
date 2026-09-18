@@ -82,9 +82,11 @@ summary["decision"] = (
 )
 summary["interpretation"]=(
     "The MMC v3.0.0 reference implementation is the canonical implementation "
-    "for Pilot 3. The MammalMethylClock release may be used for coefficient "
-    "inventory only unless its released inverse transform is numerically "
-    "identical to the MMC reference on this audit."
+    "for Pilot 3. Coefficient and linear-predictor differences below 1e-6 are "
+    "treated as serialization/rounding parity. The MammalMethylClock release "
+    "may be used for coefficient inventory, but its released Clock 3 inverse "
+    "wrapper must not be used as the canonical inverse transform unless a "
+    "future upstream correction restores numerical parity."
 )
 args.out.write_text(json.dumps(summary, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
 print(json.dumps(summary, indent=2, ensure_ascii=False))
