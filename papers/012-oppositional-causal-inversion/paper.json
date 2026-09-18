@@ -1,12 +1,12 @@
 {
   "id": "012",
   "slug": "oppositional-causal-inversion",
-  "title": "When Opposites Become Causes: A Cross-Domain Science of Oppositional Causal Inversion",
-  "short_title": "Oppositional Causal Inversion",
+  "title": "When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion",
+  "short_title": "Indexed Oppositional Causal Inversion",
   "year": 2026,
-  "status": "pilot0a-feasibility-complete",
+  "status": "pilot0a-complete-retrieval-pass-coderb-gated",
   "domain": "metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems",
-  "summary": "A falsification-first cross-domain framework for testing when an increase in a construct causally produces a prespecified functional opposite after actor, level, time, construct, environment, feedback, or capacity indices change. A 30-record Coder A feasibility pass is complete; independent coding and reproducible retrieval remain hard gates. Orwell's triad is a stress test, not a conclusion.",
+  "summary": "A falsification-first indexed framework for a restricted class of opposite-producing causal effects. It requires a prespecified functional opposite and explicit actor, level, time, construct, environment, feedback, or capacity indices. Pilot 0A and reproducible dual-source retrieval are complete; independent Coder B construct validation remains the decisive hard gate.",
   "authors": [
     "Cunyi Kang"
   ],
