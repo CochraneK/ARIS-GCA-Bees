@@ -25,6 +25,7 @@ jobs:
         working-directory: papers/010-universal-concept-identification/code
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -56,9 +57,15 @@ jobs:
       - name: Validate calibration60
         run: python validate_calibration60.py
 
-      - name: Upload calibration60 source pool
+      - name: Build human annotation packets
+        run: python build_calibration_annotation_packet.py
+
+      - name: Upload calibration60 artifacts
         uses: actions/upload-artifact@v4
         with:
           name: aris4c010-calibration60
-          path: |\n            papers/010-universal-concept-identification/data/calibration60/oewn_source_pool.generated.json\n            papers/010-universal-concept-identification/data/calibration60/full_matrix.generated.json\n            papers/010-universal-concept-identification/data/calibration60/calibration_subset.generated.json
+          path: |
+            papers/010-universal-concept-identification/data/calibration60/oewn_source_pool.generated.json
+            papers/010-universal-concept-identification/data/calibration60/full_matrix.generated.json
+            papers/010-universal-concept-identification/data/calibration60/calibration_subset.generated.json
           if-no-files-found: error
