@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Probability-aware two-phase sampler for ARIS4C005 Pilot B.
+"""Probability-aware two-phase Poisson sampler for ARIS4C005 Pilot B.
 
-This sampler deliberately combines:
-1) a population-random phase, and
-2) detector-enriched sampling among papers not selected in phase 1.
+Design:
+1) population-random Bernoulli sampling with probability p_r;
+2) detector-enriched Bernoulli sampling with stratum-specific p_e.
 
-Every selected paper receives its total inclusion probability. This is required
-before any detector-enriched adjudication set may be used for population
-prevalence inference.
+The two draws are independent. Therefore each paper has exact first-order
+inclusion probability pi = 1 - (1 - p_r) * (1 - p_e).
+
+Target sample sizes are expectations, not fixed counts. This trades exact sample
+size for transparent inclusion probabilities and clean inverse-probability
+weighting.
 
 No detector score is treated as ground truth.
 """
@@ -60,14 +63,10 @@ def enrichment_stratum(
     return "no_applicable_detector"
 
 
-def choose_without_replacement(
-    rng: random.Random, indices: list[int], n: int
-) -> set[int]:
-    if n <= 0 or not indices:
-        return set()
-    if n >= len(indices):
-        return set(indices)
-    return set(rng.sample(indices, n))
+def probability_from_expected_target(target: int, stratum_size: int) -> float:
+    if stratum_size <= 0 or target <= 0:
+        return 0.0
+    return min(1.0, target / stratum_size)
 
 
 def sample_rows(
@@ -83,48 +82,50 @@ def sample_rows(
 
     rng = random.Random(seed)
     n_total = len(rows)
-    n_random_eff = min(max(n_random, 0), n_total)
-    p_random = n_random_eff / n_total
-    random_selected = choose_without_replacement(rng, list(range(n_total)), n_random_eff)
+    p_random = min(1.0, max(n_random, 0) / n_total)
 
-    strata: dict[str, list[int]] = {}
+    strata_by_index: dict[int, str] = {}
+    stratum_sizes: Counter[str] = Counter()
     for i, row in enumerate(rows):
-        if i in random_selected:
-            continue
         s = enrichment_stratum(row, detector_cols, high_specificity_cols)
-        strata.setdefault(s, []).append(i)
+        strata_by_index[i] = s
+        stratum_sizes[s] += 1
 
-    enrichment_selected: set[int] = set()
-    p_enrich_conditional: dict[int, float] = {}
-    for stratum, indices in strata.items():
-        requested = max(int(n_per_enrichment.get(stratum, 0)), 0)
-        n_eff = min(requested, len(indices))
-        p = n_eff / len(indices) if indices else 0.0
-        chosen = choose_without_replacement(rng, indices, n_eff)
-        enrichment_selected.update(chosen)
-        for i in indices:
-            p_enrich_conditional[i] = p
+    p_enrich_by_stratum = {
+        s: probability_from_expected_target(
+            int(n_per_enrichment.get(s, 0)), n
+        )
+        for s, n in stratum_sizes.items()
+    }
 
-    selected = random_selected | enrichment_selected
     output: list[dict[str, str]] = []
+    for i, source_row in enumerate(rows):
+        s = strata_by_index[i]
+        pe = p_enrich_by_stratum.get(s, 0.0)
 
-    for i in sorted(selected):
-        row = dict(rows[i])
-        s = enrichment_stratum(row, detector_cols, high_specificity_cols)
-        pe = p_enrich_conditional.get(i, 0.0)
-        # Phase 2 is applied only to units not selected in phase 1.
-        # Hence unconditional pi = p_r + (1-p_r)*p_e.
-        pi = p_random + (1.0 - p_random) * pe
-        if i in random_selected:
+        selected_random = rng.random() < p_random
+        selected_enrich = rng.random() < pe
+        if not (selected_random or selected_enrich):
+            continue
+
+        pi = 1.0 - (1.0 - p_random) * (1.0 - pe)
+        if pi <= 0:
+            raise AssertionError("Selected unit has zero inclusion probability")
+
+        if selected_random and selected_enrich:
+            selected_via = "population_random+enrichment"
+        elif selected_random:
             selected_via = "population_random"
         else:
             selected_via = f"enrichment:{s}"
+
+        row = dict(source_row)
         row.update(
             {
                 "aris_pilot_b_stratum": s,
                 "aris_selected_via": selected_via,
                 "aris_pi_random": f"{p_random:.12g}",
-                "aris_pi_enrich_conditional": f"{pe:.12g}",
+                "aris_pi_enrich": f"{pe:.12g}",
                 "aris_inclusion_probability": f"{pi:.12g}",
                 "aris_design_weight": f"{(1.0 / pi):.12g}",
                 "aris_sampling_seed": str(seed),
@@ -147,7 +148,7 @@ def write_csv(path: Path, rows: list[dict[str, str]], original_fields: list[str]
         "aris_pilot_b_stratum",
         "aris_selected_via",
         "aris_pi_random",
-        "aris_pi_enrich_conditional",
+        "aris_pi_enrich",
         "aris_inclusion_probability",
         "aris_design_weight",
         "aris_sampling_seed",
@@ -185,7 +186,10 @@ def main() -> int:
         raise SystemExit("At least one --detector column is required.")
     unknown_hs = set(args.high_specificity) - set(args.detectors)
     if unknown_hs:
-        raise SystemExit(f"High-specificity detectors must also be --detector columns: {sorted(unknown_hs)}")
+        raise SystemExit(
+            "High-specificity detectors must also be --detector columns: "
+            f"{sorted(unknown_hs)}"
+        )
 
     rows, fields = read_csv(args.input_csv)
     missing = [c for c in args.detectors if c not in fields]
@@ -214,9 +218,10 @@ def main() -> int:
     counts = Counter(r["aris_selected_via"] for r in sampled)
     print(f"Pilot B frame rows: {len(rows)}")
     print(f"Selected rows: {len(sampled)}")
+    print("Counts are stochastic; CLI targets are expected sample sizes.")
     for k, v in sorted(counts.items()):
         print(f"  {k}: {v}")
-    print("Every selected row has an explicit inclusion probability/design weight.")
+    print("Every selected row has an exact first-order inclusion probability/design weight.")
     print("Detector-enriched samples MUST NOT be analyzed as simple random samples.")
     return 0
 
