@@ -8,7 +8,10 @@ This file separates **access**, **reuse/redistribution**, and **analytic role**.
 
 **Role:** works, affiliations/countries, institutions, topics/fields, citations, normalized citation fields, coauthorship relations.
 
-**Preferred acquisition:** free public snapshot rather than paid API for full-scale analysis.
+**Preferred acquisition:** free public Parquet snapshot rather than paid API.
+The executable route supports either a local snapshot root or anonymous public-S3
+reads through DuckDB/httpfs. The 2007–2025 filters and required-column projection
+are placed at the first scan so Parquet pruning can reduce transferred data.
 
 Official documentation currently states:
 - the public snapshot is hosted in Amazon S3;
@@ -20,11 +23,21 @@ Official documentation currently states:
 
 **Repository policy:** derived analysis tables and scripts may be committed. Do not commit the enormous raw snapshot. Store source release/date/manifest/checksum and reconstruction instructions.
 
-**API policy:** no paid OpenAlex API is required for the reproducible primary route. The public snapshot is sufficient in principle.
+**API policy:** no paid OpenAlex API is required for the reproducible primary route.
+
+**Current audit status:** PASS. A real public-S3 Works Parquet object was bound
+outcome-blind on 2026-09-18. Required top-level fields and the frozen nested
+paths `primary_topic.subfield.id`, `primary_topic.field.id`,
+`authorships.countries`, and the Top-10% citation-percentile flag all bound
+successfully. See `OPENALEX_SCHEMA_PROBE.json`. No country×discipline outcomes
+were materialized during the probe.
 
 ## 2. Leiden Ranking Open Edition 2025 — institutional bibliometric robustness
 
-**Role:** open, independently constructed university-level bibliometric indicators and a validation layer for OpenAlex-derived calculations.
+**Role:** open university-level bibliometric indicators and an independent
+processing/indicator validation layer for project calculations. It is **not an
+independent bibliographic source**, because the Open Edition itself is based on
+OpenAlex.
 
 Official resources state:
 - results spreadsheets are openly downloadable;
@@ -46,7 +59,14 @@ Current CEPII Gravity page:
 - CSV/R/Stata downloads are available;
 - licence: **Etalab 2.0**.
 
-**Repository policy:** retain exact version and licence notice; prefer scripted acquisition and derived dyadic columns. Do not silently mix current and archived Gravity versions.
+**Repository policy:** retain exact version and licence notice; prefer scripted
+acquisition and derived dyadic columns. Do not silently mix current and archived
+Gravity versions.
+
+**Current audit status:** PASS for Gravity V202211. The official 206,707,748-byte
+archive was downloaded and checksum-recorded; the frozen 159-country universe
+collapses to the complete 12,561 unordered pairs, including 156 pairs with
+`col_dep_ever=1`. See `data/manifests/CEPII_GRAVITY_V202211.json`.
 
 ## 4. ICOW Colonial History v1.1 — broader formal dependency history
 
@@ -72,7 +92,10 @@ OWID's current processed page based on COLDAT 3.0 states:
 - OWID provides direct CSV/ZIP downloads and identifies the original Harvard Dataverse source;
 - OWID-authored data/visualization/code are CC BY, while third-party source data remain subject to the original provider's terms.
 
-**Repository policy:** use OWID's explicitly reusable processed series where it matches the estimand, cite both OWID and COLDAT, and do not assume the original COLDAT source carries the same licence without checking its Dataverse metadata.
+**Repository policy:** use OWID's processed series where it matches the
+estimand and cite both OWID and COLDAT. The original COLDAT 3.0 file used here
+was also checked at Harvard Dataverse and recorded as CC0 1.0 in the source
+manifest. Raw source files remain gitignored by project convention.
 
 **Scope warning:** COLDAT is not a complete global empire dataset. It excludes non-European and continental empire forms by construction.
 
@@ -80,19 +103,31 @@ OWID's current processed page based on COLDAT 3.0 states:
 
 **Role:** prestige/institutional outcome only; never the sole measure of disciplinary strength.
 
-**Acquisition policy:** use only publicly accessible/licensed values or manually/reproducibly recorded public indicators consistent with terms of use. Do not scrape or republish proprietary bulk tables without verified permission.
+**Acquisition policy:** use only publicly accessible/licensed values or
+manually/reproducibly recorded public indicators consistent with terms of use.
+The 2026 subject product covers 55 narrow subjects and exposes Excel-download
+controls on subject pages, but public visibility/download controls are not
+treated as blanket redistribution permission. Do not scrape or republish
+proprietary bulk tables without verified permission.
 
 **Repository policy:** prefer storing institution identifiers, source year, transformation code, and derived analytical summaries rather than copied ranking tables.
 
 ## 7. Times Higher Education Subject Rankings — secondary institutional composite
 
-**Role:** secondary institutional-performance triangulation. THE subject methodology combines multiple pillars and should not be interpreted as pure bibliometric output.
+**Role:** secondary institutional-performance triangulation. THE 2026 subject
+product uses 11 broad subject areas and 18 indicators across Teaching, Research
+Environment, Research Quality, International Outlook, and Industry. It is
+therefore a broad composite, not a narrow bibliometric outcome.
 
 **Acquisition policy:** same caution as QS. Public visibility does not imply bulk redistribution rights.
 
 ## 8. ShanghaiRanking GRAS — secondary research-oriented ranking layer
 
-**Role:** secondary ranking triangulation, with research-output/impact-oriented indicators and discipline-specific eligibility rules.
+**Role:** secondary ranking triangulation. GRAS 2026 covers 57 subjects and
+uses research/faculty/output/impact/collaboration indicators, with bibliometric
+components sourced from Web of Science/InCites. This makes it useful as an
+external-source contrast to OpenAlex-based measures, while still remaining a
+ranking product with eligibility thresholds.
 
 **Acquisition policy:** verify exact public download/reuse permissions for the chosen year before committing source values. If redistribution rights are unclear, store extraction/reconstruction instructions and derived model coefficients only.
 
@@ -148,5 +183,5 @@ Primary acquisition stack at this stage:
 1. COLDAT/OWID + ICOW → historical exposure crosswalk;
 2. CEPII → dyadic controls/ties;
 3. OpenAlex public snapshot → primary bibliometrics;
-4. Leiden Open Edition → independent open validation;
+4. Leiden Open Edition → open same-source processing/indicator validation;
 5. QS/THE/Shanghai → secondary prestige/institutional triangulation only after terms are checked.
