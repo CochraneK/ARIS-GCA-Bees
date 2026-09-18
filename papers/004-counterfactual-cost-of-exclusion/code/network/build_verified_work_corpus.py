@@ -140,7 +140,9 @@ def extract_topic_metadata(work: dict[str, Any]) -> dict[str, list[str]]:
     }
 
 
-def needs_manual_work_review(row: dict[str, str]) -> bool:
+def needs_manual_work_review(row: dict[str, str], review_all_held: bool = False) -> bool:
+    if review_all_held and not truthy(row.get("network_observable")):
+        return True
     adjudication = (row.get("adjudication_status") or "").casefold()
     notes = (row.get("notes") or "").casefold()
     return any(
@@ -211,6 +213,11 @@ def main() -> int:
     parser.add_argument("--max-works-per-id", type=int, default=500)
     parser.add_argument("--min-network-works", type=int, default=5)
     parser.add_argument("--sleep-rps", type=float, default=2.0)
+    parser.add_argument(
+        "--review-all-held",
+        action="store_true",
+        help="Send every VERIFIED person with network_observable=false to the work-review queue.",
+    )
     args = parser.parse_args()
 
     with args.decisions.open("r", encoding="utf-8-sig", newline="") as handle:
@@ -301,7 +308,7 @@ def main() -> int:
         outside = [x for x in deduped if x["temporal_status"].startswith("outside_")]
         undated = [x for x in deduped if x["temporal_status"] == "undated"]
         duplicate_records_removed = max(0, len(raw) - len(deduped))
-        manual_review = needs_manual_work_review(row)
+        manual_review = needs_manual_work_review(row, review_all_held=args.review_all_held)
         existing_release = truthy(row.get("network_observable"))
         mechanical_min_met = len(plausible) >= args.min_network_works
 
