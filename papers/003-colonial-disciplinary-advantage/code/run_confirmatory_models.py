@@ -41,7 +41,9 @@ PROCESS = PAPER / "process"
 DATA = PAPER / "data"
 
 PRIMARY_PERIOD = "2019-2022"
-CONFIRMATORY_PERIODS = {"2007-2010", "2011-2014", "2015-2018", "2019-2022"}
+PERSISTENCE_PERIODS = ("2007-2010", "2011-2014", "2015-2018", "2019-2022")
+CONFIRMATORY_PERIODS = set(PERSISTENCE_PERIODS)
+RECENT_OUTPUT_PERIOD = "2023-2025"
 PERMUTATION_REPS = 999
 PERMUTATION_SEED = 20260918
 EXPECTED_CONCEPTS = [f"D{i:02d}" for i in range(1, 22)]
@@ -362,6 +364,69 @@ def model_specs() -> dict[str, ModelSpec]:
     }
 
 
+def single_period_specs(period: str) -> tuple[ModelSpec, ModelSpec, ModelSpec]:
+    slug = period.replace("-", "_")
+    return (
+        ModelSpec(
+            name=f"A1_output_{slug}_temporal",
+            family="PPML",
+            outcome="fractional_output",
+            param="exposure_x_ikes",
+            formula="fractional_output ~ exposure_x_ikes | iso3c + concept_id",
+            cluster=COUNTRY_CLUSTER,
+        ),
+        ModelSpec(
+            name=f"A2_top10_{slug}_temporal",
+            family="PPML_rate",
+            outcome="fractional_top10",
+            param="exposure_x_ikes",
+            formula="fractional_top10 ~ exposure_x_ikes | iso3c + concept_id",
+            cluster=COUNTRY_CLUSTER,
+            offset="log_impact_denominator",
+        ),
+        ModelSpec(
+            name=f"B1_dyad_{slug}_temporal",
+            family="PPML",
+            outcome="fractional_collaboration_mass",
+            param="colonial_tie_x_ikes",
+            formula=(
+                "fractional_collaboration_mass ~ colonial_tie_x_ikes "
+                "| pair_fe + i_discipline_period_fe + j_discipline_period_fe"
+            ),
+            cluster=DYAD_CLUSTER,
+        ),
+    )
+
+
+def safe_secondary_fit(
+    spec: ModelSpec,
+    df: pd.DataFrame,
+    sample_label: str,
+) -> dict[str, object]:
+    try:
+        fit = fit_ppml(spec, df)
+        row = extract_result(fit, spec, df, sample_label)
+        row["status"] = "OK"
+        row["error"] = ""
+        return row
+    except Exception as exc:
+        return {
+            "model": spec.name,
+            "sample": sample_label,
+            "outcome": spec.outcome,
+            "parameter": spec.param,
+            "status": "FAILED_NO_REPAIR",
+            "error": f"{type(exc).__name__}: {exc}",
+            "input_rows": int(len(df)),
+            "disciplines": (
+                int(df["concept_id"].nunique()) if "concept_id" in df else None
+            ),
+            "formula": spec.formula,
+            "offset": spec.offset or "",
+            "cluster": next(iter(spec.cluster.values())),
+        }
+
+
 def main() -> None:
     import argparse
 
@@ -448,6 +513,42 @@ def main() -> None:
         index=False,
     )
 
+    # Secondary temporal profile: estimate the identical within-period gradient
+    # separately in each preregistered mature period. These rows do not expand
+    # the three-coefficient confirmatory family and are not used to choose the
+    # headline period/model. 2023-2025 is output-only by design.
+    temporal_rows: list[dict[str, object]] = []
+    for period in PERSISTENCE_PERIODS:
+        out_spec, impact_spec, dyad_spec = single_period_specs(period)
+        c_period = country[country["period"].eq(period)].copy()
+        i_period = c_period[c_period["impact_denominator"] > 0].copy()
+        d_period = dyad[dyad["period"].eq(period)].copy()
+        temporal_rows.append(
+            safe_secondary_fit(out_spec, c_period, f"{period} temporal output")
+        )
+        temporal_rows.append(
+            safe_secondary_fit(
+                impact_spec, i_period, f"{period} temporal Top10 impact"
+            )
+        )
+        temporal_rows.append(
+            safe_secondary_fit(dyad_spec, d_period, f"{period} temporal dyad")
+        )
+
+    recent = country[country["period"].eq(RECENT_OUTPUT_PERIOD)].copy()
+    recent_output_spec, _, _ = single_period_specs(RECENT_OUTPUT_PERIOD)
+    temporal_rows.append(
+        safe_secondary_fit(
+            recent_output_spec,
+            recent,
+            f"{RECENT_OUTPUT_PERIOD} recent output-only sensitivity",
+        )
+    )
+    pd.DataFrame(temporal_rows).to_csv(
+        args.output_dir / "TEMPORAL_PROFILE_MODELS.csv",
+        index=False,
+    )
+
     # Headline finite-field sensitivities: exactly three confirmatory coefficients.
     headline = [
         (specs["output_primary"], country_primary, "country"),
@@ -530,10 +631,15 @@ def main() -> None:
         "paper": "ARIS4C003",
         "created_utc": utc_now(),
         "primary_period": PRIMARY_PERIOD,
-        "confirmatory_periods": sorted(CONFIRMATORY_PERIODS),
+        "confirmatory_periods": list(PERSISTENCE_PERIODS),
+        "recent_output_only_period": RECENT_OUTPUT_PERIOD,
         "permutation_reps": PERMUTATION_REPS,
         "permutation_seed": PERMUTATION_SEED,
         "headline_models": [x[0].name for x in headline],
+        "temporal_profile_status": {
+            str(row.get("model")): str(row.get("status"))
+            for row in temporal_rows
+        },
         "pyfixest_version": getattr(pf, "__version__", "unknown"),
         "input_sha256": {
             str(p.relative_to(PAPER) if p.is_relative_to(PAPER) else p): sha256(p)
