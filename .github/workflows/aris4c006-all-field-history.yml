@@ -1,0 +1,42 @@
+name: ARIS4C006 all-field historical coverage
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-all-field-history.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/16_all_field_historical_coverage.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run all-field historical coverage gate
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/16_all_field_historical_coverage.py \
+            --start 2010 \
+            --end 2025 \
+            --per-field-year 8 \
+            --outdir data/pilot/all_field_historical_coverage
+      - name: Upload aggregate historical-coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-all-field-historical-coverage
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/all_field_historical_coverage/coverage_by_field_year.csv
+            ${{ env.PAPER_DIR }}/data/pilot/all_field_historical_coverage/coverage_by_year.csv
+            ${{ env.PAPER_DIR }}/data/pilot/all_field_historical_coverage/manifest.json
+          if-no-files-found: error
+          retention-days: 30
