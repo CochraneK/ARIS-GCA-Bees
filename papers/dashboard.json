@@ -124,12 +124,12 @@
       "blocker": "Reproducible SciSciNet-v2 slice/query and mechanism match yield"
     },
     "016": {
-      "progress": 35,
-      "stage": "Phase 0 measurement + genealogy audit",
+      "progress": 45,
+      "stage": "Working manuscript + Phase 0 validation gates",
       "activity": "active",
-      "evidence": "OSF reproduction audit + ontology/harmonization v0 + Glottolog mapping + repeated-language pilot",
-      "next_gate": "Run stratified dual-coder ontology reliability audit and formal repeated-item model",
-      "blocker": "Independent/native-speaker coding not yet executed for unresolved/local labels"
+      "evidence": "Empirical manuscript draft + measurement audit + ontology/harmonization + genealogy + item-FE model + phonology feasibility",
+      "next_gate": "Independent dual-coder ontology audit, then measurement-corrected semantic fingerprints",
+      "blocker": "Independent/native-speaker annotation is the main remaining Phase-0 evidence gate"
     }
   }
 }
