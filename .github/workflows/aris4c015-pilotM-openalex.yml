@@ -1,0 +1,79 @@
+name: ARIS4C015 Pilot M OpenAlex Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilotM-openalex.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  mechanism-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run 1980 Physics mechanism smoke
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilotM_openalex_smoke.py             --sample-size 100             --seed 15015             --filters "publication_year:1980,type:article,primary_topic.field.id:31"             --observation-end-year 2011             --output ../data/pilotM_openalex_1980_physics_seed15015.json
+
+      - name: Audit mechanism output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilotM_openalex_1980_physics_seed15015.json"
+          )
+          result = json.loads(path.read_text(encoding="utf-8"))
+
+          assert result["smoke_design"]["sample_size_analyzed"] >= 80
+          assert (
+              result["smoke_design"][
+                  "selection_on_future_citation_count"
+              ]
+              is False
+          )
+          assert "mechanism_ready" in result
+          assert "mechanism_analysis_ready" in result
+          assert "state_counts" in result
+          assert "SB_vs_FORGOTTEN" in result["contrasts"]
+
+          print(json.dumps({
+              "n": result["smoke_design"]["sample_size_analyzed"],
+              "robust_sb": result["n_robust_sleeping_beauties"],
+              "state_counts": result["state_counts"],
+              "mechanism_ready": result["mechanism_ready"],
+              "mechanism_analysis_ready": result[
+                  "mechanism_analysis_ready"
+              ],
+              "analysis_block_reasons": result[
+                  "mechanism_analysis_block_reasons"
+              ],
+              "sb_vs_forgotten_match_rate": result[
+                  "contrasts"
+              ]["SB_vs_FORGOTTEN"]["match_rate"],
+              "sb_vs_forgotten_balance": result[
+                  "contrasts"
+              ]["SB_vs_FORGOTTEN"]["balance"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-openalex-1980-physics
+          path: papers/015-sleeping-beauty-miner/data/pilotM_openalex_1980_physics_seed15015.json
+          if-no-files-found: error
+          retention-days: 30
