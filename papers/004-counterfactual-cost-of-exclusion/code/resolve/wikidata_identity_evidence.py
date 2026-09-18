@@ -15,6 +15,7 @@ import argparse
 import csv
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -43,12 +44,18 @@ STRING_PROPERTIES = {
 }
 
 
-def chunks(values: list[str], n: int = 50) -> Iterable[list[str]]:
+def chunks(values: list[str], n: int = 25) -> Iterable[list[str]]:
     for i in range(0, len(values), n):
         yield values[i : i + n]
 
 
-def request_json(params: dict[str, str], retries: int = 4) -> dict[str, Any]:
+def request_json(params: dict[str, str], retries: int = 7) -> dict[str, Any]:
+    """Request Wikidata with explicit 429/5xx backoff.
+
+    Identity review is batch work rather than latency-sensitive work, so obeying
+    Retry-After and backing off conservatively is preferable to silently losing
+    authority evidence after a transient rate limit.
+    """
     params = dict(params)
     params.update({"format": "json", "formatversion": "2"})
     url = API + "?" + urllib.parse.urlencode(params)
@@ -57,10 +64,22 @@ def request_json(params: dict[str, str], retries: int = 4) -> dict[str, Any]:
         try:
             with urllib.request.urlopen(req, timeout=60) as response:
                 return json.loads(response.read().decode("utf-8"))
-        except Exception:
+        except urllib.error.HTTPError as exc:
+            retryable = exc.code == 429 or 500 <= exc.code < 600
+            if not retryable or attempt >= retries:
+                raise
+            retry_after = exc.headers.get("Retry-After") if exc.headers else None
+            try:
+                delay = float(retry_after) if retry_after else 0.0
+            except ValueError:
+                delay = 0.0
+            if delay <= 0:
+                delay = min(2 ** (attempt + 1), 60)
+            time.sleep(delay)
+        except (urllib.error.URLError, TimeoutError):
             if attempt >= retries:
                 raise
-            time.sleep(min(2**attempt, 20))
+            time.sleep(min(2 ** (attempt + 1), 60))
     raise RuntimeError("unreachable retry loop")
 
 
@@ -86,7 +105,7 @@ def fetch_entities(qids: list[str], languages: str = "en|de|fr|es|zh") -> dict[s
         for entity in entity_iter:
             if isinstance(entity, dict) and entity.get("id"):
                 out[entity["id"]] = entity
-        time.sleep(0.15)
+        time.sleep(0.35)
     return out
 
 
