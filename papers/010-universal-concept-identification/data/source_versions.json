@@ -1,0 +1,31 @@
+{
+  "generated_on": "2026-09-18",
+  "note": "Versions are frozen for reproducibility. Live APIs may differ and must not silently replace pinned releases.",
+  "sources": {
+    "open_english_wordnet": {
+      "release": "2025",
+      "release_date": "2025-12-31",
+      "release_tag": "2025-edition",
+      "release_commit": "dc343f2",
+      "edition": "core",
+      "homepage": "https://en-word.net/",
+      "download_page": "https://en-word.net/downloads",
+      "repository": "https://github.com/globalwordnet/english-wordnet",
+      "license": "Princeton WordNet License + CC BY 4.0 for OEWN additions",
+      "attribution_required": true,
+      "pilot2_snapshot_note": "Pilot 2 uses OEWN source IDs/glosses observed through the live OEWN JSON interface on 2026-09-18 and cross-checks IDs against the 2025 naming scheme. It is source-derived exploratory data, not the final pinned release import."
+    },
+    "wikidata": {
+      "access_mode": "entity/lexeme API or dump",
+      "license": "CC0 for structured data in Main, Property, Lexeme and EntitySchema namespaces",
+      "homepage": "https://www.wikidata.org/",
+      "use_in_v0": "referent/entity bridge and multilingual IDs; not yet ingested in Pilot 2"
+    },
+    "things_plus": {
+      "version_label": "THINGSplus / 2024 paper release",
+      "concept_count": 1854,
+      "use_in_v0": "concrete-object bridge; concept/norm metadata only until exact file-level redistribution rights are checked",
+      "homepage": "https://things-initiative.org/"
+    }
+  }
+}
