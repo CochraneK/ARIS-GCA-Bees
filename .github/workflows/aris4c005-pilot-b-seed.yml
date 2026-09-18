@@ -10,6 +10,8 @@ on:
       - "papers/005-hidden-burden-bad-science/code/tests/test_pilot_b_seed.py"
       - "papers/005-hidden-burden-bad-science/code/make_adjudication_packet.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_adjudication_packet.py"
+      - "papers/005-hidden-burden-bad-science/code/make_micro_pilot.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_micro_pilot.py"
   workflow_dispatch:
 
 permissions:
@@ -115,6 +117,23 @@ jobs:
             --double-fraction 0.20 \
             --seed 20260918
 
+      - name: Build balanced 60-work adjudication micro-pilot
+        run: |
+          python "$PAPER_DIR/code/make_micro_pilot.py" \
+            "$RUNNER_TEMP/aris4c005_pilot_b_seed.csv" \
+            "$RUNNER_TEMP/aris4c005_micro_seed.csv" \
+            "$PAPER_DIR/data/pilot/pilot_b_micro_summary.json" \
+            --seed 20260918
+
+          python "$PAPER_DIR/code/make_adjudication_packet.py" \
+            "$RUNNER_TEMP/aris4c005_micro_seed.csv" \
+            "$RUNNER_TEMP/aris4c005_micro_reviewer_packet.csv" \
+            "$RUNNER_TEMP/aris4c005_micro_manager_linkage.csv" \
+            --reviewer R1 \
+            --reviewer R2 \
+            --double-fraction 1.0 \
+            --seed 20260918
+
       - name: Upload row-level adjudication seed packet
         uses: actions/upload-artifact@v4
         with:
@@ -123,6 +142,9 @@ jobs:
             ${{ runner.temp }}/aris4c005_pilot_b_seed.csv
             ${{ runner.temp }}/aris4c005_reviewer_packet.csv
             ${{ runner.temp }}/aris4c005_manager_linkage.csv
+            ${{ runner.temp }}/aris4c005_micro_seed.csv
+            ${{ runner.temp }}/aris4c005_micro_reviewer_packet.csv
+            ${{ runner.temp }}/aris4c005_micro_manager_linkage.csv
           retention-days: 30
           if-no-files-found: error
 
@@ -132,7 +154,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$PAPER_DIR/data/pilot/pilot_b_seed_summary.json"
+          git add "$PAPER_DIR/data/pilot/pilot_b_seed_summary.json" "$PAPER_DIR/data/pilot/pilot_b_micro_summary.json"
           if git diff --cached --quiet; then
             echo "No summary change."
             exit 0
