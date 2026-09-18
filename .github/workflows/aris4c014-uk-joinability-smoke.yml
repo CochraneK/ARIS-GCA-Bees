@@ -1,0 +1,35 @@
+name: ARIS4C014 UK Pilot 1 joinability smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/014-public-integrity-forensics/code/live_uk_fts_smoke.py"
+      - "papers/014-public-integrity-forensics/code/source_adapters.py"
+      - "papers/014-public-integrity-forensics/code/source_snapshot.py"
+      - ".github/workflows/aris4c014-uk-joinability-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  uk-fts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch recent UK Find a Tender awards and measure GB-COH joinability
+        working-directory: papers/014-public-integrity-forensics/code
+        run: python live_uk_fts_smoke.py --out uk_fts_smoke.json --days 7
+
+      - name: Upload joinability smoke output
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c014-uk-fts-joinability-smoke
+          path: papers/014-public-integrity-forensics/code/uk_fts_smoke.json
+          retention-days: 14
