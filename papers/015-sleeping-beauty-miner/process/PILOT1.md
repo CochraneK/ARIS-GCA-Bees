@@ -69,15 +69,27 @@ It is **exploratory only** for two reasons:
 Therefore the apparent strength of 3-year acceleration is not treated as a
 substantive result.
 
-## Pilot 1B primary-field multi-outcome benchmark
+## Pilot 1B primary-field multi-outcome benchmark — first stratum complete
 
-The next locked frame uses:
+The locked frame uses:
 
 - `primary_topic.field.id` rather than any-topic field;
 - reproducible OpenAlex `sample + seed`;
 - no sampling filter based on current citation count, awards, retractions,
   author fame, or later status;
-- multiple future outcome definitions.
+- multiple future outcome definitions;
+- later-uptake sensitivity kept separate from delayed-recognition definitions.
+
+The first primary-field stratum is:
+
+- 1980 Physics & Astronomy;
+- N = 20;
+- seed = 15015;
+- cutoff = 1995;
+- endpoint = 2011.
+
+This first stratum confirms that baseline ordering changes materially across
+outcome definitions, so no single baseline is declared best.
 
 ### Standard outcome bundle
 
@@ -108,15 +120,24 @@ first up-to-three-year post-cutoff citation rate.
 Evaluation:
 - NDCG@K.
 
-#### O4 — Awakening within horizon
+#### O4 — Future uptake percentile
+
+Graded percentile of total citations accumulated in the held-out post-cutoff
+window.
+
+This is an attention/uptake outcome, not a delayed-recognition definition on
+its own.
+
+#### O5 — Awakening within horizon
 
 Binary label:
 - retrospective awakening time occurs after cutoff;
 - awakening occurs within a prespecified H-year future horizon.
 
-Default H = 15 years.
+Default H = 15 years for the 1980 strata and 10 years for 1990 strata whose
+endpoint is 2011.
 
-#### O5 — Delayed-recognition consensus
+#### O6 — Delayed-recognition consensus
 
 Binary label requiring at least two of:
 
@@ -127,6 +148,22 @@ Binary label requiring at least two of:
 This exists to reduce dependence on any one arbitrary operational definition.
 
 It remains a benchmark definition rather than a claim of importance.
+
+#### O7 — Delayed-recognition consensus with uptake floor
+
+A sensitivity label:
+
+1. first satisfy O6 delayed-recognition consensus;
+2. also fall within a prespecified higher-uptake share of the cohort during the
+   held-out future window.
+
+Current exploratory default:
+- top 50% future uptake.
+
+This label exists because B can be high for sparse trajectories that remain
+little cited. It must be reported alongside, not substituted for, raw B and O6.
+
+**Do not silently redefine the Beauty Coefficient to add an impact threshold.**
 
 ## Citation-only baselines
 
@@ -140,27 +177,23 @@ Pilot 1 must evaluate all of these before any learned model:
 
 A later multi-evidence model is interesting only if it adds value over these.
 
-## Sampling strata
+## Multi-stratum expansion
 
-Pilot 1 will expand across:
+The first automated multi-stratum batch is locked to five strata:
 
-- multiple publication eras;
-- multiple primary fields;
-- multiple reproducible seeds.
+| Stratum | Year | Primary field | Field ID | Cutoff | Endpoint | Seed |
+|---|---:|---|---:|---:|---:|---:|
+| Physics 1980 | 1980 | Physics & Astronomy | 31 | 1995 | 2011 | 15015 |
+| Medicine 1980 | 1980 | Medicine | 27 | 1995 | 2011 | 27015 |
+| Social Sciences 1980 | 1980 | Social Sciences | 33 | 1995 | 2011 | 33015 |
+| Physics 1990 | 1990 | Physics & Astronomy | 31 | 2000 | 2011 | 31590 |
+| Computer Science 1990 | 1990 | Computer Science | 17 | 2000 | 2011 | 17015 |
 
-The first stratum is:
+Each stratum targets N = 20 and uses the same five citation baselines.
 
-- 1980;
-- Physics & Astronomy;
-- cutoff 1995;
-- endpoint 2011.
-
-Planned additional strata should include at least:
-
-- a life-science/medicine field;
-- a social-science field;
-- an engineering/computer-science field;
-- a later publication era.
+Aggregation is macro across strata rather than naïvely pooling all papers. This
+prevents a high-output/high-citation field from dominating the exploratory
+summary.
 
 ## Important temporality caveat
 
@@ -175,33 +208,39 @@ classification creates material selection bias. If necessary, replace it with
 historically reconstructible source/journal strata or a frozen external
 classification.
 
-## Recognition floor sensitivity
+## Recognition-floor sensitivity
 
 Beauty Coefficient can be high for sparse trajectories with very few eventual
 citations.
 
-Therefore later Pilot 1 analyses must add sensitivity checks such as:
+Implemented sensitivity outputs now include:
 
-- minimum total future citation count;
-- future field/cohort citation percentile;
-- Bcp / under-cited Sleeping Beauty alternatives;
-- outcome definitions that combine delayed recognition with later uptake.
+- future-uptake percentile;
+- delayed-recognition consensus + top-fraction future-uptake floor.
 
-Do not silently redefine B itself to solve this.
+Future extensions should also compare:
+
+- minimum absolute future citation counts;
+- field/cohort-normalized future citation percentiles;
+- Bcp / under-cited Sleeping Beauty alternatives.
+
+Recognition floors are outcome sensitivity analyses. They must never leak into
+prospective features.
 
 ## Success criteria for Pilot 1
 
 Pilot 1 is complete when:
 
 1. at least several non-hand-picked field/era/seed strata are processed;
-2. all five citation baselines are evaluated under all standard outcomes;
+2. all five citation baselines are evaluated under all seven standard outcomes;
 3. sample membership and seeds are reproducible;
 4. post-cutoff feature leakage tests pass;
 5. outcome sensitivity is reported;
 6. recognition-floor sensitivity is reported;
 7. results are aggregated with uncertainty, not only one tiny cohort;
 8. at least one semantic/network feature family is added as an ablation;
-9. failure cases are manually inspected.
+9. failure cases are manually inspected;
+10. conclusions survive at least one seed-sensitivity pass.
 
 ## Failure / redesign triggers
 
