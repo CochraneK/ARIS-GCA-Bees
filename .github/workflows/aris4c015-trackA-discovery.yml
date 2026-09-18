@@ -1,0 +1,134 @@
+name: ARIS4C015 Track A Retrospective Discovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/015-sleeping-beauty-miner/code/trackA_openalex_case_discovery.py"
+      - ".github/workflows/aris4c015-trackA-discovery.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - slug: physics_1980
+            year: 1980
+            field_id: 31
+            seed: 15150
+          - slug: medicine_1980
+            year: 1980
+            field_id: 27
+            seed: 27150
+          - slug: social_1980
+            year: 1980
+            field_id: 33
+            seed: 33150
+          - slug: computer_science_1990
+            year: 1990
+            field_id: 17
+            seed: 17150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover high-recognition retrospective candidates
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python trackA_openalex_case_discovery.py \
+            --filters "publication_year:${{ matrix.year }},type:article,primary_topic.field.id:${{ matrix.field_id }},cited_by_count:>50" \
+            --sample-size 100 \
+            --seed ${{ matrix.seed }} \
+            --end-year 2025 \
+            --output "../data/trackA_${{ matrix.slug }}.json"
+      - name: Validate claim boundary
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path("papers/015-sleeping-beauty-miner/data")/f"trackA_{os.environ['SLUG']}.json"
+          r=json.loads(p.read_text())
+          assert r["track"]=="A_RETROSPECTIVE_CASE_DISCOVERY"
+          assert r["selection_on_present_day_citation_count"] is True
+          assert r["prevalence_estimation_allowed"] is False
+          assert r["prospective_performance_allowed"] is False
+          assert r["sample_size_analyzed"]>=80
+          print(json.dumps({
+            "slug":os.environ["SLUG"],
+            "n":r["sample_size_analyzed"],
+            "robust_sb_n":r["robust_sb_n"],
+            "near_gate_n":r["near_gate_n"],
+          },indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-trackA-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/trackA_${{ matrix.slug }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: discover
+    if: ${{ always() && needs.discover.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-trackA-*
+          path: trackA
+          merge-multiple: true
+      - name: Aggregate discovery yield
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files=sorted(Path("trackA").glob("trackA_*.json"))
+          rows=[]
+          ids=set()
+          for p in files:
+            r=json.loads(p.read_text())
+            cases=r["robust_cases"]
+            for c in cases: ids.add(c["openalex_id"])
+            rows.append({
+              "file":p.name,
+              "n":r["sample_size_analyzed"],
+              "robust_sb_n":r["robust_sb_n"],
+              "near_gate_n":r["near_gate_n"],
+            })
+          s={
+            "track":"A_RETROSPECTIVE_CASE_DISCOVERY",
+            "n_strata":len(rows),
+            "papers_screened":sum(x["n"] for x in rows),
+            "robust_sb_rows":sum(x["robust_sb_n"] for x in rows),
+            "unique_robust_sb_ids":len(ids),
+            "prevalence_estimation_allowed":False,
+            "prospective_performance_allowed":False,
+            "strata":rows,
+          }
+          Path("trackA_summary.json").write_text(json.dumps(s,indent=2)+"\n")
+          assert s["n_strata"]==4
+          assert s["papers_screened"]>=320
+          print(json.dumps(s,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-trackA-summary
+          path: trackA_summary.json
+          if-no-files-found: error
+          retention-days: 30
