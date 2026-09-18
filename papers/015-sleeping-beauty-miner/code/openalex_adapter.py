@@ -11,7 +11,10 @@ OpenAlex semantics used here:
   `cites:<OPENALEX_WORK_ID>`;
 - yearly histories for long-lived papers should be reconstructed from the
   publication years of incoming citing works, not from a truncated
-  counts_by_year field.
+  counts_by_year field;
+- historical probes should push the cutoff into the API query with
+  `to_publication_date` whenever possible, rather than downloading future
+  citing works and discarding them locally.
 
 The module uses only Python's standard library so the deterministic core of
 ARIS4C015 remains lightweight.
@@ -109,17 +112,28 @@ def iter_citing_works(
     max_records: int | None = None,
     per_page: int = 200,
     polite_sleep_seconds: float = 0.0,
+    to_publication_year: int | None = None,
 ) -> Iterator[dict[str, Any]]:
     """Yield works that cite the target work using cursor pagination.
 
     The query selects only fields needed for trajectory reconstruction and
-    basic provenance. max_records should be set for bounded pilots.
+    basic provenance. For historical-cutoff work, to_publication_year adds the
+    OpenAlex `to_publication_date` filter at query time. max_records should be
+    set for bounded exploratory pilots, never for confirmatory complete
+    histories.
     """
     target = _short_id(work_id)
     if not target:
         raise ValueError("work_id is required")
     if per_page < 1 or per_page > 200:
         raise ValueError("per_page must be between 1 and 200")
+
+    filters = [f"cites:{target}"]
+    if to_publication_year is not None:
+        year = int(to_publication_year)
+        if year < 0:
+            raise ValueError("to_publication_year must be non-negative")
+        filters.append(f"to_publication_date:{year:04d}-12-31")
 
     cursor = "*"
     yielded = 0
@@ -128,7 +142,7 @@ def iter_citing_works(
         payload = _request_json(
             "/works",
             params={
-                "filter": f"cites:{target}",
+                "filter": ",".join(filters),
                 "per_page": per_page,
                 "cursor": cursor,
                 "select": "id,display_name,publication_year,doi",
@@ -159,9 +173,12 @@ def reconstruct_history_from_openalex(
 ) -> tuple[OpenAlexWork, CitationHistory]:
     """Fetch a target work and reconstruct a zero-filled citation history.
 
-    If max_records is not None and the work has more incoming citations than
-    the cap, the returned history is explicitly incomplete and should not be
-    used for confirmatory Sleeping Beauty metrics.
+    When end_year is provided, citing-work retrieval is restricted at the API
+    level to works published on or before that year.
+
+    If max_records is not None and the matching incoming citations exceed the
+    cap, the returned history is explicitly incomplete and should not be used
+    for confirmatory Sleeping Beauty metrics.
     """
     work = fetch_work(work_id, api_key=api_key)
     year = publication_year if publication_year is not None else work.publication_year
@@ -174,6 +191,7 @@ def reconstruct_history_from_openalex(
             work.openalex_id,
             api_key=api_key,
             max_records=max_records,
+            to_publication_year=end_year,
         )
         if row.get("publication_year") is not None
     ]
@@ -187,11 +205,12 @@ def reconstruct_history_from_openalex(
 
 
 def history_is_complete(work: OpenAlexWork, history: CitationHistory) -> bool | None:
-    """Best-effort completeness check against cited_by_count.
+    """Best-effort whole-lifetime completeness check against cited_by_count.
 
-    OpenAlex documents that filtered citation results and cited_by_count can
-    differ slightly because of update timing, so this is a diagnostic rather
-    than a hard integrity assertion.
+    Do not use this helper for a historical end_year because cited_by_count is
+    current and therefore includes later citing works. OpenAlex also documents
+    update-timing differences, so this remains a diagnostic rather than a hard
+    integrity assertion.
     """
     if work.cited_by_count is None:
         return None
