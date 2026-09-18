@@ -1,13 +1,19 @@
 # WorkBuddy Handoff · ARIS Secondary Review
 
+**Review slot:** `002`  
+**Important:** there is intentionally no formal `papers/002-*` directory yet.  
+**002 pointer:** `papers/002-REVIEW-CANDIDATE.md`  
 **Project:** ARIS4C  
 **Candidate:** `language-periodic-system`  
+**Canonical candidate path:** `ideas/language-periodic-system/`  
 **Canonical branch:** `main`  
 **Primary executor family:** OpenAI GPT / ChatGPT-side ARIS4C workflow  
 **Required reviewer:** a **different model family** from the primary executor  
-**Paper ID:** not assigned  
+**Formal Paper ID:** not assigned until review passes  
 **Current gate:** formal identity-bearing ARIS secondary novelty/research review  
 **Requested verdict:** `PASS` / `REVISE` / `STOP`
+
+> If you arrived here by searching for “002”, you are in the correct place. **002 is a reserved review slot, not yet a promoted paper.** Review the candidate under `ideas/language-periodic-system/`; do not report “002 missing”.
 
 ---
 
@@ -15,11 +21,11 @@
 
 You are the **independent secondary reviewer**, not a continuation of the primary executor.
 
-Your job is to try to falsify the current framing, identify prior-art collisions, detect model-comparison unfairness, and decide whether this candidate is mature enough to be promoted to a numbered ARIS4C paper.
+Your job is to try to falsify the current framing, identify prior-art collisions, detect model-comparison unfairness, and decide whether this candidate is mature enough to be promoted to formal Paper 002.
 
-Do **not** optimize for agreement with the primary executor.  
-Do **not** treat the existing summaries as authoritative.  
-Do **not** rewrite the scientific conclusion merely to make it more positive.  
+Do **not** optimize for agreement with the primary executor.
+Do **not** treat the existing summaries as authoritative.
+Do **not** rewrite the scientific conclusion merely to make it more positive.
 A negative or `STOP` verdict is valid if the evidence warrants it.
 
 ### Independence requirement
@@ -32,7 +38,7 @@ Before reviewing, record:
 - review timestamp;
 - fresh-thread / fresh-session identifier or trace ID if available.
 
-The reviewer family must be genuinely different from the primary executor family.  
+The reviewer family must be genuinely different from the primary executor family.
 If you are another OpenAI GPT/Codex-family reviewer, **do not certify this gate as independent**. You may provide an advisory review, but mark it `NON_INDEPENDENT_ADVISORY`, not `PASS`.
 
 ---
@@ -40,6 +46,12 @@ If you are another OpenAI GPT/Codex-family reviewer, **do not certify this gate 
 ## 1. Canonical source of truth
 
 Review **only the canonical `main` branch** unless a later handoff explicitly says otherwise.
+
+### 002 navigation
+
+- Review-slot pointer: `papers/002-REVIEW-CANDIDATE.md`
+- Candidate root: `ideas/language-periodic-system/`
+- This handoff: `ideas/language-periodic-system/refine-logs/WORKBUDDY_HANDOFF.md`
 
 Start here:
 
@@ -133,7 +145,7 @@ Tree / graph models can be more flexible than a single circle.
 
 Determine whether the current claim boundary handles this correctly.
 
-A tree win alone is **not** sufficient evidence that language is tree-shaped.  
+A tree win alone is **not** sufficient evidence that language is tree-shaped.
 Assess whether the direct circularity failures, low-rank comparisons, repeated split results, and cross-dataset replication make the narrower “simple circle not supported” conclusion defensible.
 
 ### C. Leakage and dependence
@@ -199,20 +211,13 @@ Use only if all are true:
 - the simple-global-circle test is judged sufficiently faithful;
 - the bounded negative/mixed claim is supported;
 - remaining weaknesses can be handled in normal manuscript limitations;
-- no additional analysis is mandatory before promotion to a numbered paper.
+- no additional analysis is mandatory before promotion to formal Paper 002.
 
 ### REVISE
 
-Use if the core contribution is still viable but one or more **mandatory** repairs are needed, such as:
+Use if the core contribution is still viable but one or more **mandatory** repairs are needed.
 
-- stronger phylogenetic modeling;
-- better uncertainty treatment;
-- an additional fair periodic baseline;
-- a capacity-control sensitivity;
-- claim narrowing;
-- missing prior-art integration.
-
-A `REVISE` verdict does **not** authorize creation of Paper 002 yet.
+A `REVISE` verdict does **not** authorize creation of formal `papers/002-*` yet.
 
 ### STOP
 
@@ -232,7 +237,7 @@ When review is complete, create:
 
 `ideas/language-periodic-system/refine-logs/SECONDARY_REVIEW_RECEIPT.md`
 
-Use this exact top-level structure:
+Use this top-level structure:
 
 ```markdown
 # ARIS Secondary Review Receipt
@@ -317,30 +322,9 @@ If convenient, also create:
 
 `ideas/language-periodic-system/refine-logs/SECONDARY_REVIEW_RECEIPT.json`
 
-Recommended schema:
+A template already exists at:
 
-```json
-{
-  "candidate": "language-periodic-system",
-  "reviewer": {
-    "provider": "",
-    "model": "",
-    "family": "",
-    "independent_from_primary": true,
-    "fresh_session": true,
-    "trace_id": "",
-    "timestamp": "",
-    "literature_search_cutoff": ""
-  },
-  "verdict": "PASS|REVISE|STOP|NON_INDEPENDENT_ADVISORY",
-  "promotion_authorized": false,
-  "mandatory_changes": [],
-  "optional_improvements": [],
-  "permitted_claim": "",
-  "prior_art_collisions": [],
-  "evidence_inspected": []
-}
-```
+`ideas/language-periodic-system/refine-logs/SECONDARY_REVIEW_RECEIPT.template.json`
 
 ---
 
@@ -348,7 +332,7 @@ Recommended schema:
 
 ### If PASS
 
-Do **not** silently create a paper yourself unless your WorkBuddy task explicitly includes promotion.
+Do **not** silently create the formal paper directory unless your WorkBuddy task explicitly includes promotion.
 
 Instead:
 
@@ -360,29 +344,20 @@ The integrator will:
 
 - verify reviewer independence;
 - update `ARIS_STATUS.md`;
-- assign the next available Paper ID;
+- convert reserved review slot **002** into the formal `papers/002-<slug>/`;
 - freeze the reviewed proposal;
 - begin manuscript-generation and reviewer loops.
 
 ### If REVISE
 
-1. write the receipt;
-2. make the mandatory changes unambiguous and testable;
-3. do not authorize promotion;
-4. hand control back to the integrator for implementation;
-5. expect a fresh or follow-up independent review after repairs.
+Keep slot 002 reserved but unpromoted, write the receipt, and make required repairs testable.
 
 ### If STOP
 
-1. write the receipt;
-2. state the fatal reason precisely;
-3. recommend `parked`, `rejected`, or a clearly distinct new hypothesis;
-4. do not assign a Paper ID.
+Release/close the reserved review slot according to the integrator's numbering policy; do not create a formal Paper 002 directory.
 
 ---
 
 ## 10. Short prompt for WorkBuddy
 
-If only one instruction can be pasted into WorkBuddy, use:
-
-> You are the independent ARIS secondary reviewer for `CochraneK/ARIS4C`, candidate `ideas/language-periodic-system`. Work only from canonical `main`. Read `refine-logs/WORKBUDDY_HANDOFF.md` first and follow it exactly. You must be from a different model family than the OpenAI GPT primary executor to certify the gate. Independently verify prior art, inspect the review packet, proposal, key stage reports/code, answer every required reviewer question, and return PASS/REVISE/STOP. Write the identity-bearing result to `refine-logs/SECONDARY_REVIEW_RECEIPT.md` (and JSON if convenient). Do not promote the candidate yourself unless explicitly instructed.
+> Review **ARIS4C review slot 002**. There is intentionally no formal `papers/002-*` directory yet. Start at `papers/002-REVIEW-CANDIDATE.md`, which points to `ideas/language-periodic-system/`. Then read `ideas/language-periodic-system/refine-logs/WORKBUDDY_HANDOFF.md` and follow it exactly. You are the independent secondary reviewer and must be from a different model family than the OpenAI GPT primary executor to certify the gate. Independently verify prior art and methods, return PASS/REVISE/STOP, and write `SECONDARY_REVIEW_RECEIPT.md`. Do not say “002 is missing”: 002 is currently a reserved review slot, not a promoted paper.
