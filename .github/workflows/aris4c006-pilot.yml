@@ -5,7 +5,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/aris4c006-pilot.yml"
-      - "papers/006-chinese-alphabetical-exposure/code/00b_build_initial_baseline.py"\n      - "papers/006-chinese-alphabetical-exposure/code/01_openalex_alphabetization_pilot.py"
+      - "papers/006-chinese-alphabetical-exposure/code/00b_build_initial_baseline.py"
+      - "papers/006-chinese-alphabetical-exposure/code/01_openalex_alphabetization_pilot.py"
   workflow_dispatch:
 
 permissions:
