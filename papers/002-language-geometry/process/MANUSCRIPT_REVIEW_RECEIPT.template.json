@@ -1,0 +1,22 @@
+{
+  "paper_id": "002",
+  "paper_path": "papers/002-language-geometry",
+  "review_type": "manuscript-stage",
+  "reviewer": {
+    "provider": "",
+    "model": "",
+    "family": "",
+    "independent_from_primary_manuscript_writer": null,
+    "fresh_session": null,
+    "trace_id": "",
+    "timestamp": "",
+    "literature_search_cutoff": ""
+  },
+  "verdict": "",
+  "submission_prep_authorized": false,
+  "blocking_scientific_changes": [],
+  "blocking_manuscript_changes": [],
+  "optional_improvements": [],
+  "maximum_permitted_claim": "",
+  "evidence_inspected": []
+}
