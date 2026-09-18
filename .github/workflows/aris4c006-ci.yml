@@ -56,6 +56,7 @@ jobs:
               "IDENTITY_RESOLUTION_AUDIT.md",
               "PREREGISTRATION_DRAFT.md",
               "EXPOSURE_ESTIMATOR.md",
+              "COHORT_PROTOCOL.md",
               "STATUS.md",
           ]
           missing = [x for x in required if not (root / "process" / x).exists()]
