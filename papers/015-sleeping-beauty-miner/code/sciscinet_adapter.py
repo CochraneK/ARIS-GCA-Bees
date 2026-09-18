@@ -11,6 +11,10 @@ or infers the minimal fields needed for a pilot:
 - citing paper identifier
 - cited paper identifier
 
+Historical reconstruction is cutoff-safe: when end_year is supplied, citation
+edges whose citing paper was published after that year are excluded before
+building the annual trajectory.
+
 Parquet support is optional and loaded lazily through pandas.
 """
 
@@ -19,7 +23,7 @@ from __future__ import annotations
 import csv
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Iterator, Mapping, Any
+from typing import Any, Iterable, Iterator, Mapping
 
 from citation_history import CitationHistory, citation_history_from_citing_years
 
@@ -120,6 +124,22 @@ def iter_citation_edges(
         yield str(citing), str(cited)
 
 
+def _visible_citing_year(
+    citing_id: str,
+    *,
+    paper_years: Mapping[str, int],
+    end_year: int | None,
+) -> int | None:
+    """Return citing year if known and visible at the historical cutoff."""
+    year = paper_years.get(citing_id)
+    if year is None:
+        return None
+    year = int(year)
+    if end_year is not None and year > int(end_year):
+        return None
+    return year
+
+
 def reconstruct_target_history(
     target_paper_id: str,
     *,
@@ -127,7 +147,12 @@ def reconstruct_target_history(
     citation_edges: Iterable[tuple[str, str]],
     end_year: int | None = None,
 ) -> CitationHistory:
-    """Reconstruct one target paper's annual citations from a local slice."""
+    """Reconstruct one target paper's annual citations from a local slice.
+
+    When end_year is supplied, future citing works are excluded before history
+    construction. Pre-publication edges remain visible to the generic history
+    validator so metadata anomalies are counted rather than silently erased.
+    """
     if target_paper_id not in paper_years:
         raise KeyError(f"Missing target publication year: {target_paper_id}")
 
@@ -135,9 +160,13 @@ def reconstruct_target_history(
     for citing_id, cited_id in citation_edges:
         if cited_id != target_paper_id:
             continue
-        year = paper_years.get(citing_id)
+        year = _visible_citing_year(
+            citing_id,
+            paper_years=paper_years,
+            end_year=end_year,
+        )
         if year is not None:
-            citing_years.append(int(year))
+            citing_years.append(year)
 
     return citation_history_from_citing_years(
         int(paper_years[target_paper_id]),
@@ -154,7 +183,10 @@ def cohort_histories(
     citation_edges: Iterable[tuple[str, str]],
     end_year: int | None = None,
 ) -> dict[str, CitationHistory]:
-    """Reconstruct histories for multiple targets in one pass over edges."""
+    """Reconstruct histories for multiple targets in one pass over edges.
+
+    The same historical cutoff is applied to all citing works in the cohort.
+    """
     targets = set(target_ids)
     missing_targets = sorted(targets.difference(paper_years))
     if missing_targets:
@@ -167,9 +199,13 @@ def cohort_histories(
     for citing_id, cited_id in citation_edges:
         if cited_id not in targets:
             continue
-        citing_year = paper_years.get(citing_id)
+        citing_year = _visible_citing_year(
+            citing_id,
+            paper_years=paper_years,
+            end_year=end_year,
+        )
         if citing_year is not None:
-            years_by_target[cited_id].append(int(citing_year))
+            years_by_target[cited_id].append(citing_year)
 
     return {
         target: citation_history_from_citing_years(
