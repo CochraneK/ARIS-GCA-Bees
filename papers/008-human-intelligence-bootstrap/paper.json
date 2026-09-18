@@ -7,11 +7,16 @@
   "status": "design",
   "domain": "comparative cognition / cultural evolution / human evolution / macroevolution",
   "summary": "A comparative, phylogenetically informed research program testing which combinations of cognition, social transmission, embodiment, life history, energy, communication, social networks, and externalized information are associated with transitions from animal social learning to open-ended cumulative intelligence, using extant taxa, dissociation cases, and hominin time slices.",
-  "authors": ["Cochrane Kang"],
+  "authors": [
+    "Cochrane Kang"
+  ],
   "aris": {
-    "provenance": "ARIS4C guided pre-run design; formal ARIS provenance to be frozen at full run",
+    "provenance": "ARIS4C pre-run design plus staged pilots; formal engine provenance frozen before full ARIS run",
     "version": "v0.4.26",
-    "commit": ""
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b",
+    "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+    "release_date": "2026-09-16",
+    "frozen_on": "2026-09-18"
   },
   "links": {
     "paper_en": "",
