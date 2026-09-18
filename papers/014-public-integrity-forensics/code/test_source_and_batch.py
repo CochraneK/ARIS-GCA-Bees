@@ -245,3 +245,108 @@ def test_usaspending_missing_uei_downgrades_identity_with_warning():
     assert supplier_id.startswith("USAspending-recipient:")
     assert "recipient_uei_missing" in result.warnings
     assert result.case.entities[supplier_id].stable_ids == ()
+
+
+def test_ocds_record_package_carries_tender_competition_into_award_case():
+    from source_adapters import normalize_ocds_record_package
+
+    package = {
+        "records": [
+            {
+                "ocid": "ocds-test-process-1",
+                "releases": [
+                    {
+                        "ocid": "ocds-test-process-1",
+                        "id": "tender-release",
+                        "date": "2026-01-01T10:00:00Z",
+                        "parties": [
+                            {
+                                "id": "buyer",
+                                "name": "Buyer",
+                                "identifier": {"scheme": "GB-PPON", "id": "AAAA-1111"},
+                            }
+                        ],
+                        "buyer": {"id": "buyer"},
+                        "tender": {
+                            "numberOfTenderers": 4,
+                            "procurementMethod": "open",
+                        },
+                    },
+                    {
+                        "ocid": "ocds-test-process-1",
+                        "id": "award-release",
+                        "date": "2026-02-01T10:00:00Z",
+                        "parties": [
+                            {
+                                "id": "supplier",
+                                "name": "Supplier Ltd",
+                                "identifier": {"scheme": "GB-COH", "id": "01234567"},
+                            }
+                        ],
+                        "awards": [
+                            {
+                                "id": "1",
+                                "date": "2026-01-30T00:00:00Z",
+                                "value": {"amount": 120000, "currency": "GBP"},
+                                "suppliers": [{"id": "supplier"}],
+                            }
+                        ],
+                    },
+                ],
+            }
+        ]
+    }
+
+    result = normalize_ocds_record_package(package, jurisdiction="GB")
+    assert result.record_count == 1
+    assert result.release_count == 2
+    assert len(result.cases) == 1
+    case = result.cases[0]
+    assert case.contract.bid_count == 4
+    assert case.contract.procurement_method == "open"
+    assert "procurement_competition" in case.source_coverage
+    assert case.contract.supplier_ids == ("GB-COH:01234567",)
+
+
+def test_ocds_record_package_never_carries_competition_across_ocids():
+    from source_adapters import normalize_ocds_record_package
+
+    package = {
+        "records": [
+            {
+                "ocid": "ocds-a",
+                "releases": [
+                    {
+                        "ocid": "ocds-a",
+                        "id": "t1",
+                        "date": "2026-01-01T00:00:00Z",
+                        "tender": {"numberOfTenderers": 9},
+                    }
+                ],
+            },
+            {
+                "ocid": "ocds-b",
+                "releases": [
+                    {
+                        "ocid": "ocds-b",
+                        "id": "a1",
+                        "date": "2026-01-02T00:00:00Z",
+                        "parties": [
+                            {
+                                "id": "s1",
+                                "identifier": {"scheme": "GB-COH", "id": "99999999"},
+                            }
+                        ],
+                        "awards": [
+                            {"id": "1", "suppliers": [{"id": "s1"}]}
+                        ],
+                    }
+                ],
+            },
+        ]
+    }
+    result = normalize_ocds_record_package(package)
+    case = result.cases[0]
+    assert case.contract.contract_id == "ocds-b:1"
+    assert case.contract.bid_count is None
+    assert "procurement_competition" not in case.source_coverage
