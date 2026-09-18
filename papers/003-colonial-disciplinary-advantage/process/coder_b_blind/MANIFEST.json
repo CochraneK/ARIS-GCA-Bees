@@ -29,13 +29,13 @@
     },
     {
       "path": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/WORKBUDDY_HANDOFF.md",
-      "git_blob_sha": "a808e0d50a69328915ea15c349e289b24d3e745b"
+      "git_blob_sha": "d72d2eb8804aef40ea214d085dcbdfda20dc2029"
     },
     {
       "path": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/OUTPUT_TEMPLATE.md",
-      "git_blob_sha": "2698cbdcca6e3bfa890ab51b42ecbb0016b1c127"
+      "git_blob_sha": "34864d5e030e8d2ee6b2b7cdf621f664705fe6bc"
     }
   ],
   "handoff_file": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/WORKBUDDY_HANDOFF.md",
-  "independence_rule": "If the Coder B context has seen prohibited material, it must declare INDEPENDENCE_STATUS: FAIL and cannot serve as confirmatory Coder B."
+  "independence_rule": "Confirmatory Coder B requires BOTH BUNDLE_ACCESS_STATUS: PASS and INDEPENDENCE_STATUS: PASS. Any parent-paper ARIS4C003 file access makes bundle access FAIL."
 }
