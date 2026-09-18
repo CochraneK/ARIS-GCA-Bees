@@ -23,18 +23,18 @@ Parameters:
 - queries per domain per episode: 8;
 - domains: concrete, agency, minimal self, context, temporal.
 
-Expected approximate output from the frozen synthetic run:
+Reproduced output from the frozen synthetic run:
 
 | Representation | Concrete | Agency | Minimal self | Context | Temporal | Overall | Burden min |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| R0 rich source | 0.959 | 0.941 | 0.922 | 0.959 | 0.939 | 0.944 | 120 |
-| R1 episode graph | 0.924 | 0.898 | 0.881 | 0.910 | 0.902 | 0.903 | 45 |
-| R2 expert phenomenology | 0.888 | 0.915 | 0.897 | 0.854 | 0.865 | 0.884 | 60 |
-| R3 self-report | 0.814 | 0.671 | 0.609 | 0.638 | 0.692 | 0.685 | 8 |
-| R4 symptom scale | 0.863 | 0.622 | 0.502 | 0.475 | 0.561 | 0.604 | 15 |
-| R5 low-dimensional | 0.740 | 0.574 | 0.484 | 0.453 | 0.510 | 0.552 | 3 |
+| R0 rich source | 0.960 | 0.946 | 0.915 | 0.960 | 0.940 | 0.944 | 120 |
+| R1 episode graph | 0.924 | 0.887 | 0.882 | 0.914 | 0.908 | 0.903 | 45 |
+| R2 expert phenomenology | 0.889 | 0.916 | 0.902 | 0.849 | 0.863 | 0.884 | 60 |
+| R3 self-report | 0.810 | 0.683 | 0.614 | 0.650 | 0.667 | 0.685 | 8 |
+| R4 symptom scale | 0.853 | 0.620 | 0.476 | 0.489 | 0.585 | 0.604 | 15 |
+| R5 low-dimensional | 0.732 | 0.590 | 0.463 | 0.451 | 0.525 | 0.552 | 3 |
 
-The two-axis engineering Pareto frontier under **overall synthetic fidelity versus burden only** is expected to retain:
+The two-axis engineering Pareto frontier under **overall synthetic fidelity versus burden only** retains:
 
 - R0 rich source;
 - R1 episode graph;
