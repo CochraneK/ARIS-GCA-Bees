@@ -88,18 +88,26 @@ def ccgp_notice_graph(notice: CCGPAwardNotice) -> dict[str, Any]:
         )
 
     for lot in notice.lots:
-        supplier_id = _local_id(
-            notice.source_url,
-            f"supplier:{lot.lot_index}",
-            lot.supplier_name,
-        )
+        if lot.supplier_uscc:
+            supplier_id = f"cn-uscc:{lot.supplier_uscc}"
+            identity_scope = "stable_id"
+            stable_ids = [f"CN-USCC:{lot.supplier_uscc}"]
+        else:
+            supplier_id = _local_id(
+                notice.source_url,
+                f"supplier:{lot.lot_index}",
+                lot.supplier_name,
+            )
+            identity_scope = "source_local_name"
+            stable_ids = []
+
         add_node(
             {
                 "id": supplier_id,
                 "type": "supplier",
                 "name": lot.supplier_name,
-                "identity_scope": "source_local_name",
-                "stable_ids": [],
+                "identity_scope": identity_scope,
+                "stable_ids": stable_ids,
             }
         )
 
