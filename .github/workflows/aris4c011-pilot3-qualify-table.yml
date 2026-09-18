@@ -1,0 +1,50 @@
+name: ARIS4C011 Pilot 3 Table Qualification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/code/pilot3_qualify_music_table.py"
+      - ".github/workflows/aris4c011-pilot3-qualify-table.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Qualify exact pre-correction Table 1
+        working-directory: papers/011-research-forensics/code
+        run: |
+          python pilot3_qualify_music_table.py \
+            --output ../data/results/pilot3_music_table_qualification.json
+      - name: Validate fail-closed output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("papers/011-research-forensics/data/results/pilot3_music_table_qualification.json").read_text())
+          assert r["required_role"]=="table"
+          assert r["qualification"] in {"SAFE_EXACT","BLOCKED"}
+          if r["qualification"]=="SAFE_EXACT":
+              assert r["track_a_eligible"] is True
+              assert r["identity_ok"] is True
+              assert all(r["content_markers"].values())
+              assert r["generic_artifact_qualification"]["status"]=="SAFE_EXACT"
+          else:
+              assert r["track_a_eligible"] is False
+          print(json.dumps(r,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-pilot3-music-table-qualification
+          path: papers/011-research-forensics/data/results/pilot3_music_table_qualification.json
+          if-no-files-found: error
+          retention-days: 30
