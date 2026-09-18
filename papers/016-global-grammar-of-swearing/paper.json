@@ -1,0 +1,41 @@
+{
+  "id": "016",
+  "slug": "global-grammar-of-swearing",
+  "title": "The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity",
+  "short_title": "Global Grammar of Swearing",
+  "year": 2026,
+  "status": "research-design-prior-art-audited",
+  "domain": "linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution",
+  "summary": "A falsification-first cross-linguistic program testing which semantic, pragmatic and phonological properties of taboo language are universal, which are language-family effects, and which covary with sociocultural structure. Phase 0 begins from the open 13-language/17-country Sulpizio et al. dataset before any broader atlas claims are made.",
+  "authors": ["Cochrane Kang"],
+  "dependencies": {
+    "011": "evidence provenance, applicability-aware review and abstention semantics"
+  },
+  "aris": {
+    "provenance": "ARIS4C guided design with live prior-art audit; confirmatory empirical run not yet frozen",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "status": "process/STATUS.md",
+    "prior_art": "process/PRIOR_ART_MATRIX.md",
+    "data_sources": "process/DATA_SOURCES.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/016-global-grammar-of-swearing"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "swearing",
+    "taboo language",
+    "profanity",
+    "cross-linguistic",
+    "linguistic typology",
+    "cultural evolution",
+    "sound symbolism",
+    "phylogenetic correction",
+    "sociolinguistics"
+  ]
+}
