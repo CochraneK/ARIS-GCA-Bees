@@ -137,6 +137,9 @@ def main() -> None:
         # Unflagged A/B agreements are immutable means. A manual override must
         # be rejected even when a note is supplied.
         illegal_adj = pd.read_csv(adj_dir / "IKES_DISAGREEMENTS.csv")
+        illegal_adj["adjudication_note"] = illegal_adj[
+            "adjudication_note"
+        ].astype("object")
         target = (
             illegal_adj["score_A"].notna()
             & illegal_adj["score_B"].notna()
