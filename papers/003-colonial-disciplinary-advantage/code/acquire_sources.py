@@ -59,6 +59,14 @@ SOURCES = {
         "license": "OWID page is CC BY; preserve underlying-provider citations and terms",
         "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests",
     },
+    "coldat_original": {
+        "landing": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/T9SDEW",
+        "download": "https://dataverse.harvard.edu/api/access/datafile/7416946?format=original",
+        "file": "COLDAT_colonies.tab",
+        "version": "COLDAT 3.0 source file as distributed by Harvard Dataverse",
+        "license": "CC0 1.0",
+        "redistribution": "CC0; raw remains gitignored by project convention; record checksum/provenance",
+    },
     "icow": {
         "landing": "https://www.paulhensel.org/icowcol.html",
         "download": "https://www.paulhensel.org/Data/colhist.zip",
