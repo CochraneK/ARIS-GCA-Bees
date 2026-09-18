@@ -1,22 +1,24 @@
 {
   "id": "009",
   "slug": "phenomenology-preserving-computational-psychiatry",
-  "title": "The Fidelity Frontier in Computational Psychiatry: Quantifying Psychopathology Without Collapsing Lived Experience",
+  "title": "The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology",
   "short_title": "Phenomenology-Preserving Computational Psychiatry",
   "year": 2026,
-  "status": "design",
-  "domain": "computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / digital mental health",
-  "summary": "A methodology program for quantifying psychopathology while explicitly measuring information lost when rich first-person experience is compressed into phenomenological codes, symptom scales, computational parameters, or diagnoses. It introduces a multi-axis fidelity frontier, preserves raw evidence as an immutable source layer, and separates phenomenological fidelity from construct validity, biological concordance, prediction, and acquisition burden.",
-  "authors": ["Cochrane Kang"],
+  "status": "pilot-gated",
+  "domain": "computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement",
+  "summary": "A measurement framework that separates how psychopathological experience is elicited from how a fixed evidential record is encoded. ARIS4C009 benchmarks same-source representations with blinded reconstruction tests, then treats phenomenological fidelity, reliability, intended-use validity, predictive utility, privacy and burden as distinct objectives on a use-conditioned Pareto frontier.",
+  "authors": [
+    "Cochrane Kang"
+  ],
   "aris": {
-    "provenance": "ARIS4C guided pre-run design; formal ARIS provenance to be frozen at full run",
+    "provenance": "ARIS4C guided research design; formal ARIS provenance to be frozen at full run",
     "version": "v0.4.26",
     "commit": ""
   },
   "links": {
     "paper_en": "",
     "paper_zh": "",
-    "pipeline": "process/RESEARCH_PLAN.md",
+    "pipeline": "process/STATUS.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/009-phenomenology-preserving-computational-psychiatry"
   },
   "tags": [
@@ -25,8 +27,8 @@
     "computational psychiatry",
     "phenomenology",
     "psychopathology",
-    "neurophenomenology",
-    "rate-distortion",
+    "measurement",
+    "representation fidelity",
     "idiographic modeling",
     "state-space models"
   ]
