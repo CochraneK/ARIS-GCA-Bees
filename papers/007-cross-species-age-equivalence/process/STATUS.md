@@ -1,7 +1,7 @@
 # STATUS — ARIS4C007
 
 **Last updated:** 2026-09-18  
-**State:** `NOVELTY_AUDITED / PRE-DATA_DESIGN`  
+**State:** `PILOT0_ENGINEERING_COMPLETE / OFFICIAL_DATA_ACQUISITION_PENDING`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
@@ -22,6 +22,11 @@ The project is no longer framed as merely inventing a better "animal years" calc
 - [x] Open/public data hierarchy drafted.
 - [x] Phylogenetic non-independence declared mandatory rather than optional.
 - [x] Animal-Age retained as prototype/interactive downstream asset rather than treated as evidence.
+- [x] Pilot 0 deterministic mapping engine implemented (relative-lifespan and Lu log-linear coordinates).
+- [x] Round-trip, identity and monotonicity QC tests added.
+- [x] Reproducible public-source downloader with SHA-256 provenance added.
+- [x] Engineering smoke test run on a stale public AnAge mirror: 1,329 mammal rows, 672 with gestation + maturity + maximum-longevity completeness.
+- [x] Smoke test confirmed species- and stage-dependent disagreement is technically measurable; no smoke-test number is treated as a scientific estimate.
 
 ## Primary novelty claim to test
 
@@ -66,9 +71,9 @@ Species are not independent observations. Phylogenetic block cross-validation an
 
 ## Next execution queue
 
-1. Build machine-readable bibliography + method ontology.
-2. Acquire/pin AnAge and Myhrvold life-history tables.
-3. Reproduce four low-cost deterministic mappings before any methylation work.
+1. Acquire and pin the current official AnAge build; rerun Pilot 0 and discard mirror-derived numerical outputs.
+2. Acquire/pin Myhrvold and the Péron et al. 2019 mortality-parameter supplement.
+3. Extend the deterministic benchmark from two to at least four low-cost mappings before any methylation work.
 4. Build a pilot species intersection with high-quality data across >=3 age axes.
 5. Reproduce published Translating Time / epigenetic mappings on a small reference set.
 6. Run a first disagreement atlas.
