@@ -121,3 +121,79 @@ def evaluate_strategies(
         )
         for strategy in strategies
     ]
+
+
+def evaluate_graded_baseline(
+    histories: Sequence[PaperHistory],
+    *,
+    cutoff_year: int,
+    strategy: str,
+    future_relevance: Mapping[str, float],
+    k: int,
+) -> dict[str, float | int | str]:
+    """Evaluate a baseline against graded relevance using NDCG@K only.
+
+    Precision@K / Recall@K require a binary relevance definition and are not
+    reported here merely by thresholding every positive percentile.
+    """
+    items = build_ranked_items(
+        histories,
+        cutoff_year=cutoff_year,
+        strategy=strategy,
+        future_relevance=future_relevance,
+    )
+    from ranking_metrics import ndcg_at_k
+
+    return {
+        "cutoff_year": cutoff_year,
+        "strategy": strategy,
+        "n": len(items),
+        "k": min(k, len(items)),
+        "ndcg_at_k": ndcg_at_k(items, k) if items else 0.0,
+        "relevance_type": "graded",
+    }
+
+
+def evaluate_outcome_matrix(
+    histories: Sequence[PaperHistory],
+    *,
+    cutoff_year: int,
+    strategies: Sequence[str],
+    outcomes: Mapping[str, tuple[str, Mapping[str, float]]],
+    k: int,
+) -> dict[str, list[dict[str, float | int | str]]]:
+    """Evaluate strategies against multiple prespecified future outcomes.
+
+    outcomes maps:
+        outcome_name -> ("binary" | "graded", relevance_mapping)
+
+    Future relevance is used only by the evaluator, never by baseline scoring.
+    """
+    result: dict[str, list[dict[str, float | int | str]]] = {}
+    for outcome_name, (kind, relevance) in outcomes.items():
+        if kind not in {"binary", "graded"}:
+            raise ValueError(
+                f"Unsupported outcome relevance type for {outcome_name}: {kind}"
+            )
+        rows = []
+        for strategy in strategies:
+            if kind == "binary":
+                row = evaluate_baseline(
+                    histories,
+                    cutoff_year=cutoff_year,
+                    strategy=strategy,
+                    future_relevance=relevance,
+                    k=k,
+                )
+                row["relevance_type"] = "binary"
+            else:
+                row = evaluate_graded_baseline(
+                    histories,
+                    cutoff_year=cutoff_year,
+                    strategy=strategy,
+                    future_relevance=relevance,
+                    k=k,
+                )
+            rows.append(row)
+        result[outcome_name] = rows
+    return result
