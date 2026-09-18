@@ -44,6 +44,7 @@ def main() -> None:
         ("SYNTHETIC_PPML_REPORT.md", "synthetic PPML report"),
         ("PREREGISTRATION_AMENDMENT_001.md", "implementation amendment 001"),
         ("PREREGISTRATION_AMENDMENT_002.md", "estimator amendment 002"),
+        ("PREREGISTRATION_AMENDMENT_003.md", "temporal-profile amendment 003"),
         ("MODEL_SPEC_LOCK.json", "machine-readable model specification lock"),
     ]:
         check_file(PROCESS / rel, label, design_problems)
@@ -67,6 +68,17 @@ def main() -> None:
             perm = lock.get("permutation", {})
             if perm.get("reps") != 999 or perm.get("seed") != 20260918:
                 design_problems.append("MODEL_SPEC_LOCK permutation settings differ from frozen 999/20260918")
+            temporal = lock.get("secondary_temporal_profile", {})
+            if temporal.get("mature_periods") != [
+                "2007-2010", "2011-2014", "2015-2018", "2019-2022"
+            ]:
+                design_problems.append(
+                    "MODEL_SPEC_LOCK temporal mature periods differ from frozen four windows"
+                )
+            if temporal.get("recent_output_only_period") != "2023-2025":
+                design_problems.append(
+                    "MODEL_SPEC_LOCK recent output-only period must be 2023-2025"
+                )
         except Exception as exc:
             design_problems.append(f"MODEL_SPEC_LOCK unreadable: {type(exc).__name__}")
 
