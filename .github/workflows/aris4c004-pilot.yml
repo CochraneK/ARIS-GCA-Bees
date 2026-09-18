@@ -17,7 +17,7 @@ permissions:
 jobs:
   science-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
     steps:
@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$PAPER_DIR/data/interim/openalex"
+          mkdir -p "$PAPER_DIR/data/interim/openalex/identity_packet"
           SOURCE="$PAPER_DIR/data/derived/science_candidates_frozen.csv"
           TARGET="$PAPER_DIR/data/interim/science_candidates_frozen.csv"
           test -s "$SOURCE"
@@ -108,6 +108,54 @@ jobs:
               --summary-json "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_guard_summary.json"
           fi
 
+      - name: Build accepted-record lifetime profiles
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          AUTHORS="$PAPER_DIR/data/interim/openalex/openalex_authors.jsonl"
+          WORKS="$PAPER_DIR/data/interim/openalex/openalex_works.jsonl"
+          if [ -s "$AUTHORS" ] && [ -s "$WORKS" ]; then
+            python "$PAPER_DIR/code/resolve/build_single_author_profiles.py" \
+              --candidates "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
+              --authors "$AUTHORS" \
+              --works "$WORKS" \
+              --output-jsonl "$PAPER_DIR/data/interim/openalex/identity_packet/accepted_author_profiles.jsonl"
+          fi
+
+      - name: Fetch mental-health-blind Wikidata authority evidence
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python "$PAPER_DIR/code/resolve/wikidata_identity_evidence.py" \
+            "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
+            --output-jsonl "$PAPER_DIR/data/interim/openalex/identity_packet/wikidata_identity_evidence.jsonl" \
+            --summary-json "$PAPER_DIR/data/interim/openalex/identity_packet/wikidata_identity_summary.json" \
+            --max-candidates 30
+
+      - name: Assemble unified person-level identity review packet
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          OUT="$PAPER_DIR/data/interim/openalex/identity_packet"
+          : > "$OUT/all_author_profiles.jsonl"
+          [ -s "$OUT/accepted_author_profiles.jsonl" ] && cat "$OUT/accepted_author_profiles.jsonl" >> "$OUT/all_author_profiles.jsonl"
+          [ -s "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_author_profiles.jsonl" ] && cat "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_author_profiles.jsonl" >> "$OUT/all_author_profiles.jsonl"
+          touch "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl"
+          touch "$OUT/wikidata_identity_evidence.jsonl"
+          python "$PAPER_DIR/code/resolve/build_identity_review_packet.py" \
+            --candidates "$PAPER_DIR/data/interim/science_candidates_frozen.csv" \
+            --queue "$PAPER_DIR/data/interim/openalex/identity_review_queue.csv" \
+            --profiles "$OUT/all_author_profiles.jsonl" \
+            --guarded-pairs "$PAPER_DIR/data/interim/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl" \
+            --authority "$OUT/wikidata_identity_evidence.jsonl" \
+            --output-jsonl "$OUT/identity_review_packet.jsonl" \
+            --output-md "$OUT/IDENTITY_REVIEW_PACKET.md" \
+            --summary-json "$OUT/identity_review_packet_summary.json" \
+            --max-candidates 30
+
       - name: Summarize candidate, network and identity-review coverage
         shell: bash
         run: |
@@ -142,6 +190,12 @@ jobs:
           guard = root / "openalex" / "cluster_evidence" / "cluster_guard_summary.json"
           if guard.exists():
               summary["cluster_evidence_guarded"] = json.loads(guard.read_text())
+          authority = root / "openalex" / "identity_packet" / "wikidata_identity_summary.json"
+          if authority.exists():
+              summary["authority_evidence"] = json.loads(authority.read_text())
+          packet = root / "openalex" / "identity_packet" / "identity_review_packet_summary.json"
+          if packet.exists():
+              summary["identity_packet"] = json.loads(packet.read_text())
           out = root / "pilot_summary.json"
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
@@ -167,5 +221,12 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_guard_summary.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_author_profiles.jsonl
             ${{ env.PAPER_DIR }}/data/interim/openalex/cluster_evidence/cluster_evidence_errors.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/accepted_author_profiles.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/all_author_profiles.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/wikidata_identity_evidence.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/wikidata_identity_summary.json
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/identity_review_packet.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/IDENTITY_REVIEW_PACKET.md
+            ${{ env.PAPER_DIR }}/data/interim/openalex/identity_packet/identity_review_packet_summary.json
           if-no-files-found: warn
           retention-days: 30
