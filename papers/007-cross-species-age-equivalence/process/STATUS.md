@@ -1,7 +1,7 @@
 # STATUS — ARIS4C007
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT1_DEMOGRAPHY_COMPLETE / PILOT2_TRANSLATING_TIME_ACQUISITION`  
+**State:** `PILOT2_EVENT_BENCHMARK_COMPLETE / PILOT3A_MOLECULAR_REPRODUCTION`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
@@ -31,7 +31,7 @@ The project is no longer framed as merely inventing a better "animal years" calc
 - [x] Official build: 4,645 species rows, 1,349 mammal rows, 786 mammals complete for gestation + maturity + maximum longevity (785 non-human mappings to human).
 - [x] 3,140 prespecified mapping rows generated across maturity and 25/50/75% maximum-lifespan positions.
 - [x] Official descriptive disagreement summary recorded in `process/PILOT0_OFFICIAL_RESULTS.md`.
-- [x] Reproducible summarizer added; artifact/source hashes recorded.\n- [x] Pilot 1 independent demography benchmark completed on 88 overlapping mammals.\n- [x] Péron et al. 2019 published S5 mortality parameters vendored with DOI and SHA-256 provenance.\n- [x] Pilot 1 now consumes the canonical successful Pilot 0 artifact rather than redownloading AnAge.\n- [x] Paired 10,000-resample bootstrap added for cross-method MAD differences.\n- [x] A10 significantly favors A1 concentration; juvenile-stage end modestly favors A3; senescence onset does not clearly separate A1/A3.\n- [x] Full Pilot 1 result frozen in `process/PILOT1_DEMOGRAPHY_RESULTS.md`.
+- [x] Reproducible summarizer added; artifact/source hashes recorded.\n- [x] Pilot 1 independent demography benchmark completed on 88 overlapping mammals.\n- [x] Péron et al. 2019 published S5 mortality parameters vendored with DOI and SHA-256 provenance.\n- [x] Pilot 1 now consumes the canonical successful Pilot 0 artifact rather than redownloading AnAge.\n- [x] Paired 10,000-resample bootstrap added for cross-method MAD differences.\n- [x] A10 significantly favors A1 concentration; juvenile-stage end modestly favors A3; senescence onset does not clearly separate A1/A3.\n- [x] Full Pilot 1 result frozen in `process/PILOT1_DEMOGRAPHY_RESULTS.md`.\n- [x] Januel et al. 2026 Table S1 (3,754 observations) and authors' Dataset 1 R code acquired from PMC AWS and vendored with hashes.\n- [x] Pilot 2 strict observed-event benchmark built: 945 held-out source→human event rows across 799 Timepoint clusters.\n- [x] Timepoint-cluster bootstrap and species-stratified bootstrap implemented.\n- [x] A4 Januel-style pairwise smooth spline evaluated by leave-one-Timepoint-out rather than training fit.\n- [x] Three-method benchmark completed: A1 median fold error 1.75×; A3 1.69×; A4-LOTO 1.22× overall.\n- [x] A4 does not universally dominate: chimpanzee A3≈A4; postnatal 0–2 years clearly favors A3.\n- [x] Full Pilot 2 result frozen in `process/PILOT2_EVENT_RESULTS.md`.\n- [x] Pilot 3 molecular-axis protocol frozen in `process/PILOT3_MOLECULAR_PLAN.md`.
 
 ## Primary novelty claim to test
 
@@ -76,13 +76,13 @@ Species are not independent observations. Phylogenetic block cross-validation an
 
 ## Next execution queue
 
-1. Acquire Januel et al. 2026 Translating Time Table S1 plus Dataset 1 authors' R script.
-2. Reproduce the human/cat/mouse/chimpanzee event-scale model from published supplementary data.
-3. Build held-out-event evaluation against A1/A3 without training on those events.
-4. Split event performance by developmental / adult / aging phases and data type.
-5. Expand event-scale coverage using earlier Translating Time mammal/primate datasets.
-6. Only after event-scale validation, add published molecular/epigenetic clocks.
-7. Add Myhrvold and phylogenetic tree integration before broad trait-level inference.
+1. Pin exact versions/commits of the Mammalian Methylation Consortium and MammalMethylClock resources.
+2. Inventory clock coefficients, target transformations, tissues and training species.
+3. Reproduce official universal-clock tutorial/example predictions on bounded public data.
+4. Freeze a minimal molecular validation sample before large GSE223748 acquisition.
+5. Add universal DNAm coordinates to the cross-method disagreement benchmark.
+6. Explicitly audit target-transform circularity for every dual-species clock.
+7. After molecular feasibility, add Myhrvold + mammalian phylogeny for broad trait-level inference.
 4. Build a pilot species intersection with high-quality data across >=3 age axes.
 5. Reproduce published Translating Time / epigenetic mappings on a small reference set.
 6. Run a first disagreement atlas.
