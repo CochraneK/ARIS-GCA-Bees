@@ -60,7 +60,7 @@ jobs:
 
       - name: Resolve all 100 candidates against OpenAlex
         run: |
-          python "$PAPER_DIR/code/acquire/openalex_pilot.py"             "$OUT/science_candidates_identifiers.csv"             --out-dir "$OUT/openalex"             --year-min 1800             --year-max 2026             --max-candidates 100             --max-works-per-author 50             --search-n 10             --sleep-rps 2
+          python "$PAPER_DIR/code/acquire/openalex_pilot.py"             "$OUT/science_candidates_identifiers.csv"             --out-dir "$OUT/openalex"             --year-min 1800             --year-max 2026             --max-candidates 100             --max-works-per-author 20             --search-n 10             --sleep-rps 2
 
       - name: Build 100-person fragment review queue
         run: |
@@ -69,7 +69,7 @@ jobs:
       - name: Collect bounded fragment evidence
         continue-on-error: true
         run: |
-          python "$PAPER_DIR/code/resolve/openalex_cluster_evidence.py"             "$OUT/openalex/identity_review_queue.csv"             --out-dir "$OUT/openalex/cluster_evidence"             --year-min 1800             --year-max 2026             --max-works-per-id 100             --sleep-rps 2
+          python "$PAPER_DIR/code/resolve/openalex_cluster_evidence.py"             "$OUT/openalex/identity_review_queue.csv"             --out-dir "$OUT/openalex/cluster_evidence"             --year-min 1800             --year-max 2026             --max-works-per-id 50             --sleep-rps 2
 
       - name: Guard fragment evidence
         run: |
