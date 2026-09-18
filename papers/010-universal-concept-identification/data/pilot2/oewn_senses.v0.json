@@ -1,0 +1,668 @@
+{
+  "dataset": "UCID Pilot 2 · OEWN lexical senses v0",
+  "evidence_class": "source_derived_exploratory",
+  "retrieved_on": "2026-09-18",
+  "source_release_target": "Open English WordNet 2025 core",
+  "warning": "Target identities and glosses are source-derived. UCID ontology mappings and later semantic-query responses are not human calibrated and are not adjudicated gold.",
+  "records": [
+    {
+      "target_id": "oewn-bank-flight-maneuver",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a flight maneuver in which an aircraft tips laterally about its longitudinal axis",
+      "ontology_kinds": [
+        "action"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "motor_embodied"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "00170126-n",
+        "oewn_sense": "bank%1:04:00::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.act",
+        "definition": "a flight maneuver in which an aircraft tips laterally about its longitudinal axis"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/00170126-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-building",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a building in which banking business is transacted",
+      "ontology_kinds": [
+        "artifact"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "02790795-n",
+        "oewn_sense": "bank%1:06:00::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.artifact",
+        "definition": "a building in which banking business is transacted"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/02790795-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-money-container",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a container, usually slotted, for keeping money at home",
+      "ontology_kinds": [
+        "artifact"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "04146942-n",
+        "oewn_sense": "bank%1:06:01::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.artifact",
+        "definition": "a container, usually slotted, for keeping money at home"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/04146942-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-financial-institution",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a financial institution that accepts deposits and channels money into lending",
+      "ontology_kinds": [
+        "social_institutional_normative"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "social_normative"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "08437235-n",
+        "oewn_sense": "bank%1:14:00::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.group",
+        "definition": "a financial institution that accepts deposits and channels money into lending"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/08437235-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-arrangement",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "an arrangement of similar objects in a row or in tiers",
+      "ontology_kinds": [
+        "other"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "08479077-n",
+        "oewn_sense": "bank%1:14:01::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.group",
+        "definition": "an arrangement of similar objects in a row or in tiers"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/08479077-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-ridge-pile",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a long ridge or pile",
+      "ontology_kinds": [
+        "other"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "09236341-n",
+        "oewn_sense": "bank%1:17:00::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.object",
+        "definition": "a long ridge or pile"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/09236341-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-river-slope",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "sloping land, especially beside a body of water",
+      "ontology_kinds": [
+        "part_boundary_region"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual",
+        "spatial"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "09236472-n",
+        "oewn_sense": "bank%1:17:01::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.object",
+        "definition": "sloping land, especially beside a body of water"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/09236472-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-gambling-funds",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "funds held by a gambling house or dealer in a gambling game",
+      "ontology_kinds": [
+        "other"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "social_normative"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "13377435-n",
+        "oewn_sense": "bank%1:21:01::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.possession",
+        "definition": "funds held by a gambling house or dealer in a gambling game"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/13377435-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-bank-reserve-stock",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a supply or stock held in reserve for future use",
+      "ontology_kinds": [
+        "other"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "13389491-n",
+        "oewn_sense": "bank%1:21:00::"
+      },
+      "source_assertions": {
+        "lemma": "bank",
+        "part_of_speech": "n",
+        "lexname": "noun.possession",
+        "definition": "a supply or stock held in reserve for future use"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/13389491-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-spring-leap",
+      "surface_forms": [
+        "spring"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a light self-propelled movement upwards or forwards",
+      "ontology_kinds": [
+        "action"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "motor_embodied"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "00121022-n",
+        "oewn_sense": "spring%1:04:00::"
+      },
+      "source_assertions": {
+        "lemma": "spring",
+        "part_of_speech": "n",
+        "lexname": "noun.act",
+        "definition": "a light self-propelled movement upwards or forwards"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/00121022-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-spring-elastic-device",
+      "surface_forms": [
+        "spring"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a metal elastic device that returns to its shape or position after deformation",
+      "ontology_kinds": [
+        "artifact"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "04295410-n",
+        "oewn_sense": "spring%1:06:00::"
+      },
+      "source_assertions": {
+        "lemma": "spring",
+        "part_of_speech": "n",
+        "lexname": "noun.artifact",
+        "definition": "a metal elastic device that returns to its shape or position after deformation"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/04295410-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-spring-elasticity",
+      "surface_forms": [
+        "spring"
+      ],
+      "target_level": "sense",
+      "canonical_description": "the elasticity of something that can be stretched and returns to its original length",
+      "ontology_kinds": [
+        "quality_or_property"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "05028317-n",
+        "oewn_sense": "spring%1:07:00::"
+      },
+      "source_assertions": {
+        "lemma": "spring",
+        "part_of_speech": "n",
+        "lexname": "noun.attribute",
+        "definition": "the elasticity of something that can be stretched and returns to its original length"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/05028317-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-spring-water-point",
+      "surface_forms": [
+        "spring"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a point at which water issues forth",
+      "ontology_kinds": [
+        "part_boundary_region"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "spatial",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "08525382-n",
+        "oewn_sense": "spring%1:15:00::"
+      },
+      "source_assertions": {
+        "lemma": "spring",
+        "part_of_speech": "n",
+        "lexname": "noun.location",
+        "definition": "a point at which water issues forth"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/08525382-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-spring-groundwater-flow",
+      "surface_forms": [
+        "spring"
+      ],
+      "target_level": "sense",
+      "canonical_description": "a natural flow of ground water",
+      "ontology_kinds": [
+        "process"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "09466357-n",
+        "oewn_sense": "spring%1:17:00::"
+      },
+      "source_assertions": {
+        "lemma": "spring",
+        "part_of_speech": "n",
+        "lexname": "noun.object",
+        "definition": "a natural flow of ground water"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/09466357-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    },
+    {
+      "target_id": "oewn-spring-season",
+      "surface_forms": [
+        "spring"
+      ],
+      "target_level": "sense",
+      "canonical_description": "the season of growth and the beginning of spring",
+      "ontology_kinds": [
+        "other"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "source_ids": {
+        "oewn_synset": "15261841-n",
+        "oewn_sense": "spring%1:28:00::"
+      },
+      "source_assertions": {
+        "lemma": "spring",
+        "part_of_speech": "n",
+        "lexname": "noun.time",
+        "definition": "the season of growth and the beginning of spring"
+      },
+      "provenance": {
+        "source_type": "lexical_resource",
+        "source": "https://en-word.net/view/synset/15261841-n",
+        "license": "Princeton WordNet License + CC BY 4.0 (Open English WordNet additions)",
+        "notes": "Observed through the OEWN interface on 2026-09-18. UCID mappings are exploratory and machine_mapped_unreviewed; see data/source_versions.json."
+      },
+      "annotation_status": "machine_mapped_unreviewed"
+    }
+  ]
+}
