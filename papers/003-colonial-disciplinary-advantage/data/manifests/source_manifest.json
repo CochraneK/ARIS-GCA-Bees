@@ -4,10 +4,13 @@
   "created_utc": "2026-09-18T00:00:00+00:00",
   "sources": {
     "openalex": {
-      "status": "manifest_pending",
+      "status": "schema_probe_pass_public_s3_available",
       "landing": "https://help.openalex.org/access/snapshot/",
-      "acquisition": "public anonymous S3 snapshot; Parquet Works prefix preferred; paid daily API not required",
-      "redistribution": "do not commit raw snapshot; record release manifest/checksum"
+      "acquisition": "anonymous public S3 Parquet or local snapshot; paid API not required",
+      "redistribution": "do not commit raw snapshot; record release manifest/checksum",
+      "schema_probe_path": "process/OPENALEX_SCHEMA_PROBE.json",
+      "schema_probe_safe_to_build_extractor": true,
+      "outcomes_materialized_during_probe": false
     },
     "coldat_years": {
       "source_metadata": {
@@ -68,10 +71,14 @@
       "redistribution": "official source explicitly requests no redistribution; raw archive must remain local"
     },
     "cepii_gravity": {
-      "status": "manual_official_download_pending",
+      "status": "acquired_and_derived_audit_pass",
       "landing": "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8",
       "version": "202211",
-      "license": "Etalab 2.0"
+      "license": "Etalab 2.0",
+      "derived_manifest_path": "data/manifests/CEPII_GRAVITY_V202211.json",
+      "derived_path": "data/derived/CEPII_DYADS.csv",
+      "derived_pairs": 12561,
+      "derived_colonial_ties": 156
     },
     "leiden_open_2025_results": {
       "status": "manual_official_download_pending",
@@ -101,5 +108,5 @@
       "sha256": "ebe3a1c4b16fd339e249da6ca7993ee312cfe41dfe2f5748eebb6dfa37a7c4dd"
     }
   },
-  "updated_utc": "2026-09-18T02:52:59+00:00"
+  "updated_utc": "2026-09-18T03:06:47+00:00"
 }
