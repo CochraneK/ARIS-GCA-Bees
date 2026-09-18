@@ -6,7 +6,7 @@ The v2 matrix rebuilds the project on **29 exact species terminals**. Joins are 
 
 - taxa: **29**
 - exact ACDB coverage: **13**
-- exact-species literature-seed rows present: **14**
+- exact-species literature-seed rows present: **15**
 - exact AnimalTraits species matches: **10**
 - exact AnAge species matches: **24**
 - exact neural-seed coverage: **11**
@@ -14,7 +14,7 @@ The v2 matrix rebuilds the project on **29 exact species terminals**. Joins are 
 - forebrain/brain neuron seed values: **10**
 - complete six-family OpenAlex effort proxy: **29**
 - OpenTree taxonomy IDs: **29**
-- at least one exact evidence route: **28 / 29**
+- at least one exact evidence route: **29 / 29**
 
 ## Important interpretation
 
