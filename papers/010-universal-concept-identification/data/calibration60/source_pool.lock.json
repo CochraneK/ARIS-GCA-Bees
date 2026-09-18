@@ -9,15 +9,33 @@
   },
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35405784262,
-    "run_number": 12,
-    "head_sha": "26d0bdf97671919b3014fbd67a1c1ff1ff370601",
+    "run_id": 35405940121,
+    "run_number": 26,
+    "head_sha": "2840417007771c6bbad34d9af43bfbb1e054807c",
     "conclusion": "success",
-    "artifact_id": 10572770866,
+    "artifact_id": 10572059026,
     "artifact_name": "aris4c010-calibration60",
-    "artifact_sha256": "1450c4b3a77b041b8aaa2a3003cdabc06835dbe69ca85d78f23521f09a5f48ff",
-    "generated_json_sha256": "c515b0a57f4853dc4972dfb2c9fbecf3677674022ff6a09a3a064216a45dafe6",
-    "generated_json_bytes": 45813
+    "artifact_sha256": "b18ad67604a575419da1837d4cbafe8e2c06ff7c425bba890224ac38da4d2f61",
+    "generated_files": {
+      "oewn_source_pool.generated.json": {
+        "sha256": "c515b0a57f4853dc4972dfb2c9fbecf3677674022ff6a09a3a064216a45dafe6",
+        "bytes": 45813,
+        "records": 60
+      },
+      "full_matrix.generated.json": {
+        "sha256": "57462abcc2647eb591a93cac09e0dd9165a1870576290515e6828c57e2fc0a68",
+        "bytes": 1010843,
+        "pairs": 1440
+      },
+      "calibration_subset.generated.json": {
+        "sha256": "acd65aeb91233d2dda6bc5951011edd7ae3ebe1010395181e0755d0cda128e70",
+        "bytes": 506258,
+        "pairs": 720,
+        "blank_responses": 720,
+        "query_exposure_min": 29,
+        "query_exposure_max": 31
+      }
+    }
   },
   "record_count": 60,
   "group_count": 10,
