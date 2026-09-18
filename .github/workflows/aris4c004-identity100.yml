@@ -263,6 +263,22 @@ jobs:
           cat "$OUT/identity_packet/wikidata_identity_summary.json"
           cat "$OUT/observability_summary.json"
 
+      - name: Write identity100 gate summary
+        shell: bash
+        run: |
+          {
+            echo "## ARIS4C004 identity100 first-review"
+            echo
+            echo '~~~json'
+            cat "$OUT/identity_decisions_100_first_review_summary.json"
+            echo '~~~'
+            echo
+            echo "### Observability"
+            echo '~~~json'
+            cat "$OUT/observability_summary.json"
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit canonical identity100 first-review freeze
         shell: bash
         run: |
