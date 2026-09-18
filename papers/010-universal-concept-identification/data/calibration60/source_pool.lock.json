@@ -9,13 +9,13 @@
   },
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35405940121,
-    "run_number": 26,
-    "head_sha": "2840417007771c6bbad34d9af43bfbb1e054807c",
+    "run_id": 35406060244,
+    "run_number": 30,
+    "head_sha": "f5ab0973ba588ce13de2e3f82a849797e589459c",
     "conclusion": "success",
-    "artifact_id": 10572059026,
+    "artifact_id": 10572531318,
     "artifact_name": "aris4c010-calibration60",
-    "artifact_sha256": "b18ad67604a575419da1837d4cbafe8e2c06ff7c425bba890224ac38da4d2f61",
+    "artifact_sha256": "bc8b7121832f4b36f40ac17c6d692f73964d6ca904e4ec2741290a327b2b9282",
     "generated_files": {
       "oewn_source_pool.generated.json": {
         "sha256": "c515b0a57f4853dc4972dfb2c9fbecf3677674022ff6a09a3a064216a45dafe6",
