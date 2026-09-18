@@ -64,6 +64,30 @@ Output:
 - classification as delayed-recognition pattern or not;
 - evidence card.
 
+### mode=MECHANISM
+
+Input:
+- a large retrospective corpus or prefiltered candidate set;
+- complete annual citation histories;
+- field/cohort strata;
+- optional source-calibrated Sleeping Beauty metrics.
+
+Output:
+- robust-SB gate results;
+- four-state trajectory classification:
+  SLEEPING_BEAUTY / FORGOTTEN / IMMEDIATE_HIT / FADING;
+- explicit AMBIGUOUS / LOW_EARLY_HIGH_LATE_UNCONFIRMED states;
+- matched SB-vs-Forgotten and SB-vs-Immediate-Hit contrasts;
+- candidate Prince / awakening-path evidence;
+- mechanism-ready boolean and block reason.
+
+Hard rule:
+- if zero robust SB cases are present, return mechanism_ready=false;
+- do not manufacture SB cases from cohort-relative top-q labels;
+- do not report prospective precision/recall from the case-enriched mechanism sample.
+
+See process/MECHANISM_TRACK.md.
+
 ### mode=PROSPECTIVE
 
 Input:
