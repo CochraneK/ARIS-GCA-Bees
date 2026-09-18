@@ -212,7 +212,8 @@ def main() -> None:
     out = Path(a.outdir)
     write_csv(out / "measurement_gate_by_field_year.csv", rows)
     manifest = {
-        "script": "04_measurement_gate_pilot.py",\n        "sampling": "OpenAlex reproducible random sample via sample+seed, then multi-author conditioning",
+        "script": "04_measurement_gate_pilot.py",
+        "sampling": "OpenAlex reproducible random sample via sample+seed, then multi-author conditioning",
         "years": years, "per_cell_requested": a.per_cell, "fields": FIELD_SET,
         "confirmatory_use_allowed": False,
         "purpose": "Gate DOI/Crossref surname coverage, positional author alignment, ORCID agreement, and lower-bound OpenAlex identity inconsistency.",
