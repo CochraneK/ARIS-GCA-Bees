@@ -1,6 +1,6 @@
 # ARIS4C010 · Beyond Twenty Questions
 
-**Status:** design + live literature audit complete; implementation/pilot next
+**Status:** Pilot 2 source-derived complete · calibration60 build configured
 
 ## Canonical question
 
@@ -124,3 +124,17 @@ Before strong novelty language is permitted:
 4. run a small exact/greedy decision-tree pilot;
 5. compare single-tree, multi-axis and unrestricted baselines;
 6. conduct human/LLM answer-consistency checks before treating any generated concept-question matrix as ground truth.
+
+
+## Current evidence ladder
+
+| Stage | Data | Result | Evidence status |
+|---|---|---|---|
+| Pilot 0 | 12 synthetic binary candidates | combinatorial core and exact/greedy solvers verified | code sanity |
+| Pilot 1 | 16 constructed heterogeneous semantic targets | taxonomy-only collisions disappear under multi-axis questions | synthetic design validation |
+| Pilot 2 | 15 real OEWN senses (`bank` + `spring`) | expected semantic overhead +0.3333 questions; worst-case +2 | source-derived exploratory |
+| Calibration60 | 10 lemmas × 6 OEWN noun senses | pinned `oewn:2025` build configured in CI | source-pool construction |
+
+Pilot 2 does **not** yet validate the semantic labels: the target identities/glosses are source-derived, while the added semantic query responses remain `machine_mapped_unreviewed`.
+
+The next scientific gate is human P2/P6 calibration, not further ontology prose.
