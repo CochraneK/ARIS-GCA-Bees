@@ -38,11 +38,17 @@ jobs:
         run: |
           python code/build_pilot0.py data/raw/anage_data.txt --out data/pilot0
 
+      - name: Summarize Pilot 0 disagreement
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/summarize_pilot0.py data/pilot0/life_history_mapping_grid.csv --out data/pilot0/pilot0_descriptive_summary.json
+
       - name: Show provenance and coverage
         working-directory: papers/007-cross-species-age-equivalence
         run: |
           cat data/raw/source_manifest.json
           cat data/pilot0/coverage_summary.json
+          cat data/pilot0/pilot0_descriptive_summary.json
 
       - name: Upload Pilot 0 artifact
         uses: actions/upload-artifact@v4
@@ -51,6 +57,7 @@ jobs:
           path: |
             papers/007-cross-species-age-equivalence/data/raw/source_manifest.json
             papers/007-cross-species-age-equivalence/data/pilot0/coverage_summary.json
+            papers/007-cross-species-age-equivalence/data/pilot0/pilot0_descriptive_summary.json
             papers/007-cross-species-age-equivalence/data/pilot0/life_history_mapping_grid.csv
           if-no-files-found: error
           retention-days: 30
