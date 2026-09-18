@@ -6,11 +6,9 @@ This is **not** the final registered power analysis. It documents how strongly s
 
 For a protocol-level contrast in retest consistency, the repository computes the usual two-proportion normal-approximation requirement and then applies the simple design effect:
 
-[
-DE = 1 + (m-1)\rho,
-]
+`DE = 1 + (m - 1) × ρ`
 
-where (m=8) repeated retest judgments and (ho) is a participant-level intra-class correlation sensitivity parameter.
+where `m = 8` repeated retest judgments and `ρ` is a participant-level intra-class correlation sensitivity parameter.
 
 This does not capture crossed item effects and therefore cannot replace the final hierarchical-model power analysis.
 
@@ -19,7 +17,7 @@ This does not capture crossed item effects and therefore cannot replace the fina
 If P2 retest consistency is 0.80 and the scientifically meaningful P6 level is 0.88:
 
 - ignoring clustering requires roughly 329 effective retest observations per arm;
-- with (ho=0.05), (DE=1.35);
+- with `ρ = 0.05`, `DE = 1.35`;
 - this corresponds to roughly 56 participants per arm when each participant contributes 8 retests.
 
 Therefore:
