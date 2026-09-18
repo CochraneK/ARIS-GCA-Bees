@@ -137,6 +137,14 @@ def main() -> None:
         assert f["concept_id"].tolist() == [f"D{i:02d}" for i in range(1, 22)]
         assert f["IKES"].notna().all()
         assert prov.exists() and prov.stat().st_size > 0
+        import json
+        prov_obj = json.loads(prov.read_text(encoding="utf-8"))
+        for key in (
+            "coder_a", "coder_b", "coder_b_notes",
+            "coder_b_raw", "adjudication", "frozen"
+        ):
+            assert key in prov_obj
+            assert len(prov_obj[key]["sha256"]) == 64
 
         # Unflagged A/B agreements are immutable means. A manual override must
         # be rejected even when a note is supplied.
