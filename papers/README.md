@@ -15,7 +15,7 @@ This directory is the canonical registry of research projects produced with ARIS
 | 007 | formal research design | papers/007-cross-species-age-equivalence/ |
 | 008 | formal research design | papers/008-human-intelligence-bootstrap/ |
 | 009 | formal research design | papers/009-phenomenology-preserving-computational-psychiatry/ |
-| 010 | formal research design | papers/010-universal-concept-identification/ |
+| 010 | formal research design / combinatorial Pilot 0 complete | papers/010-universal-concept-identification/ |
 
 Paper 002 passed independent cross-family ARIS secondary review and has been formally promoted.
 
