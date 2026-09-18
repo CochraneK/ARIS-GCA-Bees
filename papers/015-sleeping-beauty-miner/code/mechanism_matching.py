@@ -241,6 +241,149 @@ def nearest_controls(
     return matches, unmatched
 
 
+
+def standardized_mean_difference(
+    case_values: Sequence[int | float],
+    control_values: Sequence[int | float],
+) -> float | None:
+    """Absolute standardized mean difference for one numeric covariate.
+
+    Uses the pooled standard deviation sqrt((s1^2 + s0^2) / 2).
+    Returns None when fewer than two observations per group make variance
+    estimation non-diagnostic. If both groups have zero variance, returns 0
+    only when their means are identical; otherwise returns None.
+    """
+    if len(case_values) != len(control_values):
+        raise ValueError("case/control value counts must match")
+    if len(case_values) < 2:
+        return None
+
+    case = [float(x) for x in case_values]
+    control = [float(x) for x in control_values]
+    mean_case = sum(case) / len(case)
+    mean_control = sum(control) / len(control)
+
+    var_case = sum((x - mean_case) ** 2 for x in case) / (len(case) - 1)
+    var_control = (
+        sum((x - mean_control) ** 2 for x in control)
+        / (len(control) - 1)
+    )
+    pooled = math.sqrt((var_case + var_control) / 2.0)
+    if pooled == 0:
+        return 0.0 if mean_case == mean_control else None
+    return abs(mean_case - mean_control) / pooled
+
+
+def _matched_papers(
+    matches: Sequence[Match],
+    papers: Sequence[MechanismPaper],
+) -> tuple[list[MechanismPaper], list[MechanismPaper]]:
+    by_id = {paper.paper_id: paper for paper in papers}
+    cases = []
+    controls = []
+    for match in matches:
+        if match.case_id not in by_id or match.control_id not in by_id:
+            raise KeyError("match references a paper absent from the cohort")
+        cases.append(by_id[match.case_id])
+        controls.append(by_id[match.control_id])
+    return cases, controls
+
+
+def match_balance_diagnostics(
+    matches: Sequence[Match],
+    papers: Sequence[MechanismPaper],
+    *,
+    include_early_attention: bool,
+    max_abs_smd: float = 0.10,
+) -> dict:
+    """Audit matched-group balance on pre-outcome numeric covariates.
+
+    The 0.10 default is a commonly used diagnostic threshold, not a causal
+    guarantee. SB-vs-Immediate-Hit intentionally excludes early attention from
+    the balance requirement because recognition timing is the defining
+    contrast in that comparison.
+    """
+    if max_abs_smd <= 0:
+        raise ValueError("max_abs_smd must be positive")
+
+    cases, controls = _matched_papers(matches, papers)
+    covariates = {
+        "reference_count": (
+            [p.reference_count for p in cases],
+            [p.reference_count for p in controls],
+        ),
+        "author_count": (
+            [p.author_count for p in cases],
+            [p.author_count for p in controls],
+        ),
+    }
+    if include_early_attention:
+        covariates.update(
+            {
+                "early_citation_percentile": (
+                    [p.early_citation_percentile for p in cases],
+                    [p.early_citation_percentile for p in controls],
+                ),
+                "early_citation_count": (
+                    [p.early_citation_count for p in cases],
+                    [p.early_citation_count for p in controls],
+                ),
+            }
+        )
+
+    diagnostics = {}
+    assessed = []
+    for name, (left, right) in covariates.items():
+        paired = [
+            (a, b)
+            for a, b in zip(left, right)
+            if a is not None and b is not None
+        ]
+        if len(paired) < 2:
+            diagnostics[name] = {
+                "n_pairs": len(paired),
+                "abs_smd": None,
+                "balanced": None,
+                "reason": "fewer than two complete matched pairs",
+            }
+            continue
+        left_values = [float(a) for a, _ in paired]
+        right_values = [float(b) for _, b in paired]
+        smd = standardized_mean_difference(left_values, right_values)
+        diagnostics[name] = {
+            "n_pairs": len(paired),
+            "abs_smd": smd,
+            "balanced": (
+                None if smd is None else smd < max_abs_smd
+            ),
+            "reason": (
+                "zero pooled variance with unequal means"
+                if smd is None
+                else None
+            ),
+        }
+        if smd is not None:
+            assessed.append(smd)
+
+    return {
+        "n_matches": len(matches),
+        "max_abs_smd_threshold": max_abs_smd,
+        "covariates": diagnostics,
+        "n_assessed_covariates": len(assessed),
+        "max_observed_abs_smd": max(assessed) if assessed else None,
+        "balance_assessable": len(assessed) > 0,
+        "balance_pass": (
+            all(value < max_abs_smd for value in assessed)
+            if assessed
+            else None
+        ),
+        "note": (
+            "SMD balance is a diagnostic on observed covariates, not proof "
+            "that the matched contrast is unconfounded."
+        ),
+    }
+
+
 def build_priority_contrasts(
     papers: Iterable[MechanismPaper],
     *,
@@ -272,6 +415,17 @@ def build_priority_contrasts(
         early_percentile_caliper=1.0,
     )
 
+    forgotten_balance = match_balance_diagnostics(
+        forgotten_matches,
+        rows,
+        include_early_attention=True,
+    )
+    immediate_balance = match_balance_diagnostics(
+        immediate_matches,
+        rows,
+        include_early_attention=False,
+    )
+
     return {
         "SB_vs_FORGOTTEN": {
             "question": (
@@ -280,6 +434,11 @@ def build_priority_contrasts(
             ),
             "matches": [row.as_dict() for row in forgotten_matches],
             "unmatched_cases": forgotten_unmatched,
+            "match_rate": (
+                len({row.case_id for row in forgotten_matches}) / len(sb)
+                if sb else 0.0
+            ),
+            "balance": forgotten_balance,
         },
         "SB_vs_IMMEDIATE_HIT": {
             "question": (
@@ -288,6 +447,11 @@ def build_priority_contrasts(
             ),
             "matches": [row.as_dict() for row in immediate_matches],
             "unmatched_cases": immediate_unmatched,
+            "match_rate": (
+                len({row.case_id for row in immediate_matches}) / len(sb)
+                if sb else 0.0
+            ),
+            "balance": immediate_balance,
         },
         "matching_rule": {
             "post_outcome_variables_used": False,
