@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "paper_id": "006",
-  "updated_on": "2026-09-18",
+  "updated_on": "2026-09-19",
   "stage": "preoutcome-research-design-gates",
   "confirmatory_outcomes_unlocked": false,
   "gates": {
@@ -10,9 +10,9 @@
       "note": "Proceed only as China-based population-calibrated, time-varying measured byline-exposure design; raw surname-success, citation-only, country-level surname-distribution, and generic long-run exposure claims are occupied prior art."
     },
     "chinese_surname_population_baseline": {
-      "status": "pass",
+      "status": "recalibrating-with-ccnc",
       "evidence": "process/PILOT_RESULTS.md",
-      "note": "1806 surnames; non-uniform population baseline mandatory; confirmatory reproduction from pinned ChineseNames 2025.8 still required."
+      "note": "Original ChineseNames-initial baseline is superseded for pronunciation/order because 31 surname-specific initials disagree with CCNC. Corrected ChineseNames-population × CCNC-pronunciation baseline is running."
     },
     "crossref_structured_surname_route": {
       "status": "pass",
@@ -55,9 +55,12 @@
       "note": "Raw work-embedded OpenAlex author IDs showed 6.24% mismatch against ORCID-resolved authors, but 61/61 mismatches were repaired by resolving the embedded ID to its current canonical OpenAlex author. Longitudinal joins must canonicalize IDs first; residual non-ORCID split/merge risk remains a mandatory sensitivity-analysis issue."
     },
     "cohort_definition": {
-      "status": "protocol-defined-not-frozen",
-      "evidence": "process/COHORT_PROTOCOL.md",
-      "note": "Entry-based cohort required; exact index/lookback/follow-up years remain outcome-blind TBF."
+      "status": "frozen-preoutcome",
+      "evidence": [
+        "process/COHORT_PROTOCOL.md",
+        "process/COHORT_DEFINITION.json"
+      ],
+      "note": "Entry cohort frozen to 2014-2020 with 3-year clean lookback and 5-year follow-up; distal confirmatory endpoint is observed five-year publication persistence."
     },
     "exposure_estimator": {
       "status": "primary-granularity-and-within-author-variation-passed",
@@ -82,6 +85,19 @@
       "status": "pass",
       "evidence": "process/PILOT12_RESULTS.md",
       "note": "70/100 sampled authors had >=3 primary-field exposure-defined years; among those, 81.4% had within-author exposure range >=0.05 versus a prospectively frozen 50% threshold. Longitudinal extension remains eligible."
+    },
+    "surname_romanization": {
+      "status": "pass",
+      "evidence": [
+        "process/PILOT15_RESULTS.md",
+        "process/SURNAME_ROMANIZATION_RULE.md"
+      ],
+      "note": "ChineseNames supplies population weights; pinned CCNC surname-specific lexicon supplies canonical pronunciation/order. Generic pypinyin mapping is superseded."
+    },
+    "global_time_window": {
+      "status": "pass",
+      "evidence": "process/PILOT16_RESULTS.md",
+      "note": "All-26-field historical audit froze the primary focal-work window to 2011-2025 under the preregistered coverage rule."
     }
   },
   "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
