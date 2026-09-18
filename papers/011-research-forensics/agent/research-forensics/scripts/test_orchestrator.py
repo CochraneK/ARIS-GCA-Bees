@@ -91,3 +91,49 @@ def test_detector_cannot_emit_misconduct_inference():
     ctx = ForensicContext(artifact_id="x")
     out = run_forensics(ctx, [d])
     assert out["findings"][0]["status"] == "ERROR"
+
+
+def test_track_a_blocks_unverified_structured_extraction():
+    ctx = ForensicContext(
+        artifact_id="x",
+        mode="track_a",
+        artifact_safety={"time_safe": True, "document_safe": True, "title_safe": True},
+        content={
+            "nhst_tests": [
+                {
+                    "test_type": "t",
+                    "statistic": 2.0,
+                    "df": 20,
+                    "reported_p": ".05",
+                    "source_locator": "Results p. 3",
+                }
+            ]
+        },
+    )
+    out = run_forensics(ctx, [])
+    assert out["review_priority"] == "BLOCKED"
+    assert out["artifact_safety"]["extraction"]["safe"] is False
+    assert "provenance_verified" in out["artifact_safety"]["extraction"]["failures"][0]["reason"]
+
+
+def test_track_a_accepts_source_verified_structured_extraction():
+    ctx = ForensicContext(
+        artifact_id="x",
+        mode="track_a",
+        artifact_safety={"time_safe": True, "document_safe": True, "title_safe": True},
+        content={
+            "nhst_tests": [
+                {
+                    "test_type": "t",
+                    "statistic": 2.0,
+                    "df": 20,
+                    "reported_p": ".05",
+                    "source_locator": "Results p. 3",
+                    "provenance_verified": True,
+                }
+            ]
+        },
+    )
+    out = run_forensics(ctx, [])
+    assert out["review_priority"] == "NONE"
+    assert out["artifact_safety"]["extraction"]["safe"] is True
