@@ -4,11 +4,15 @@
   "title": "Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data",
   "short_title": "Public Integrity Forensics",
   "year": 2026,
-  "status": "initial-design-agent-skeleton",
+  "status": "pilot0-expanded-live-source-smoke-agent-skill",
   "domain": "anti-corruption / public procurement / beneficial ownership / entity resolution / graph analytics / public integrity / computational social science",
   "summary": "An auditable public-data agent that routes procurement, corporate, beneficial-ownership, public-office, sanctions, offshore and disclosure records to applicability-aware forensic checks, then fuses reproducible findings in an evidence graph for human review without equating anomalies with corruption.",
-  "authors": ["Cunyi Kang"],
-  "inherits_from": ["011-research-forensics"],
+  "authors": [
+    "Cunyi Kang"
+  ],
+  "inherits_from": [
+    "011-research-forensics"
+  ],
   "agent_name": "OpenIntegrity",
   "aris": {
     "provenance": "ARIS4C guided design; inherits the evidence semantics and detector-contract principles of ARIS4C011; live public-data source audit on 2026-09-18",
@@ -19,7 +23,9 @@
     "paper_en": "",
     "paper_zh": "",
     "pipeline": "process/RESEARCH_PLAN.md",
-    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/014-public-integrity-forensics"
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/014-public-integrity-forensics",
+    "skill": "agent/public-integrity-forensics/SKILL.md",
+    "live_smoke": ".github/workflows/aris4c014-live-source-smoke.yml"
   },
   "tags": [
     "ARIS",
