@@ -19,11 +19,13 @@ The BUNMD codebook explicitly notes surplus death-day counts on the **1st and 15
 
 Harvard Dataverse DOI: `10.7910/DVN/TTWNK8`.
 
-## Tier 2 — raw NARA NUMIDENT
+## Tier 2 — raw NARA NUMIDENT · current execution source
 
-NARA's Numerical Identification Files (1936–2007) are publicly released, and a modern OpenICPSR deposit provides the raw death/application/claim files. FamilySearch's current index description confirms records can include exact birth and death dates.
+NARA's Numerical Identification Files (1936–2007) are publicly released. The current OpenICPSR V3 deposit (`10.3886/E207202V3`) provides the raw death/application/claim files; the death folder contains `NUMDEATH01-10_PU.zip` (~938.4 MB) and `NUMDEATH11-20_PU.zip` (~938.1 MB). Replication documentation for research using these files states that the Public-Use NUMIDENT files have no access or use restrictions and directs users to the OpenICPSR deposit.
 
-**Use:** independent reconstruction / audit of BUNMD transformations and potentially a second administrative specification.
+**Use:** primary ARIS4C013 administrative execution route because it avoids inventing BUNMD guestbook identity fields; BUNMD remains a cleaned replication target.
+
+**Current blocker:** transfer ~1.88 GB of death archives into the execution environment and verify the fixed-width layout before Pilot 1. The parser is already implemented and synthetic-tested.
 
 **Cost:** very large raw files and more complex record harmonization.
 
