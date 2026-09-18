@@ -105,7 +105,16 @@ class _CCGPListParser(HTMLParser):
             if self._li_depth == 0:
                 text = " ".join("".join(self._li_text).split())
                 for href, title in self._anchors:
-                    if "/cggg/" in href and "/zbgg/" in href and title:
+                    # CCGP commonly uses directory-relative detail links such
+                    # as ./202609/t20260917_....htm, so the raw href may not
+                    # contain /cggg/ or /zbgg/. Restrict by award-result title
+                    # here, then validate the resolved path downstream.
+                    if (
+                        href
+                        and title
+                        and href.lower().endswith((".htm", ".html"))
+                        and any(k in title for k in ("中标", "成交", "结果公告"))
+                    ):
                         self.rows.append((href, title, text))
                         break
 
@@ -178,6 +187,10 @@ def parse_ccgp_award_list(
 
     for href, title, row_text in parser.rows:
         url = urljoin(source_url, href)
+        # After resolving relative links, require the official award-result
+        # directory. This prevents navigation/news links from entering Pilot 0.
+        if "/cggg/" not in url or "/zbgg/" not in url:
+            continue
         if url in seen:
             continue
         seen.add(url)
