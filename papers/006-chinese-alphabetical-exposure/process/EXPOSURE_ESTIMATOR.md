@@ -44,17 +44,17 @@ Negative estimates are not truncated in the primary construction.
 
 ## 5. Primary context architecture
 
-Candidate primary context:
+**Frozen primary context after Pilot 10:**
 
-**source × OpenAlex field × lagged rolling window**
+**OpenAlex field × prior 3 complete publication years**
 
-Candidate lag window: prior 3 publication years.
+For a 2024 focal work:
 
-For a 2024 focal work, for example:
+`Exposure(field, 2024) <- eligible convention works from 2021–2023`
 
-`Exposure(source, field, 2024) <- eligible convention works from 2021–2023`
+Pilot 10 rejected raw source-level exposure as the primary moderator because source-context split-half rank reliability was poor despite acceptable Pearson correlation. This narrowing decision was made before focal surname/career outcomes were inspected.
 
-The final window and fallback hierarchy remain measurement-only TBF until the context-coverage pilot is complete.
+A source × field × lag-window score may be retained only as a hierarchically shrunk secondary/exploratory exposure.
 
 ## 6. Anti-leakage rule
 
@@ -113,16 +113,19 @@ Before outcomes, inspect only:
 
 Do **not** inspect focal career-effect interactions while tuning the estimator.
 
-## 11. Candidate fallback hierarchy
+## 11. Frozen exposure hierarchy
 
-To be frozen after the exposure pilot:
+Primary confirmatory moderator:
 
-1. source × field × lag window;
-2. source × lag window;
-3. field × lag window;
-4. field-level long-run convention.
+1. **field × prior-3-year window**.
 
-Fallback is triggered only by predeclared information thresholds.
+Mandatory robustness / secondary:
+
+2. field × prior-3-year window using only 3+ author convention works;
+3. field-level longer-run convention as a stability sensitivity;
+4. source × field × prior-3-year exposure only after hierarchical shrinkage toward the field parent and only as secondary/exploratory.
+
+Raw source-level scores are not eligible to replace the primary exposure because Pilot 10 failed the prospectively frozen Spearman reliability threshold.
 
 ## 12. Negative controls
 
@@ -134,15 +137,16 @@ Fallback is triggered only by predeclared information thresholds.
 
 ## 13. Gate before confirmatory outcome analysis
 
-Require:
+Current status:
 
-- surname/Crossref measurement gate passed;
-- nontrivial between-context exposure variance;
-- a substantial repeated-author subset;
-- enough within-author exposure change for the proposed fixed-effect analysis;
-- frozen lag, shrinkage, sparse-cell, and cross-fitting rules.
+- surname/Crossref measurement gate: passed;
+- nontrivial between-field/year exposure variance: passed;
+- source-level granularity: narrowed to field-level primary after reliability failure;
+- repeated-author feasibility: passed;
+- within-author exposure-change gate: running;
+- final cross-fitting/sample-size rule: must be frozen before outcome unlock.
 
-If these fail, ARIS4C006 narrows to work-level authorship-order mechanisms rather than forcing a longitudinal career model.
+If within-author exposure variation fails, the paper remains viable as a work-level mechanism study and longitudinal fixed-effect claims are downgraded.
 
 
 ## 14. Prospective source-reliability decision rule
