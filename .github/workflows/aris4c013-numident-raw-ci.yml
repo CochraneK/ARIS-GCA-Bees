@@ -1,0 +1,32 @@
+name: ARIS4C013 raw NUMIDENT parser CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/pilot1_numident_raw.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_pilot1_numident_raw.py'
+      - '.github/workflows/aris4c013-numident-raw-ci.yml'
+  pull_request:
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/pilot1_numident_raw.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_pilot1_numident_raw.py'
+      - '.github/workflows/aris4c013-numident-raw-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install parser dependencies
+        run: python -m pip install --disable-pip-version-check pandas numpy
+      - name: Run raw NUMIDENT parser tests
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        run: python -m unittest -v test_pilot1_numident_raw.py
