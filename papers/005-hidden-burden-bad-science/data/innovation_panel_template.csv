@@ -1,0 +1,3 @@
+matched_set_id,unit_id,treated,event_year,year,event_time,field,topic_label,outcome_articles,outcome_new_authors,outcome_funding,outcome_citations,pre_shock_topic_size,source_exposure_family,source_id
+M001,T001,1,2020,2017,-3,,,,,,,,,
+M001,C001,0,2020,2017,-3,,,,,,,,,
