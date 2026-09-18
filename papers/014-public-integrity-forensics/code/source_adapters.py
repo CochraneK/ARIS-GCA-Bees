@@ -207,6 +207,10 @@ def normalize_ocds_release(
                 subject_id=contract_id,
                 contract=contract,
                 entities=dict(entities),
+                source_coverage={
+                    "procurement_award",
+                    *(["procurement_competition"] if "numberOfTenderers" in tender else []),
+                },
             )
         )
 
@@ -439,5 +443,6 @@ def normalize_usaspending_award(
             supplier.entity_id: supplier,
             authority.entity_id: authority,
         },
+        source_coverage={"procurement_award"},
     )
     return USASpendingImportResult(case=case, warnings=warnings)
