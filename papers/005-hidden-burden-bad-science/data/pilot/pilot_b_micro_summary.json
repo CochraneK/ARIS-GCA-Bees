@@ -1,0 +1,39 @@
+{
+  "classification": "BALANCED_ADJUDICATION_MICROPILOT_NOT_PREVALENCE_SAMPLE",
+  "seed": 20260918,
+  "works": 60,
+  "quotas": {
+    "population_random": 10,
+    "rw_e1s_narrow": 10,
+    "rw_paper_mill": 10,
+    "rw_major_error": 10,
+    "rw_expression_of_concern": 10,
+    "rw_process_integrity": 10
+  },
+  "realized_counts": {
+    "population_random": 10,
+    "rw_e1s_narrow": 10,
+    "rw_expression_of_concern": 10,
+    "rw_major_error": 10,
+    "rw_paper_mill": 10,
+    "rw_process_integrity": 10
+  },
+  "realized_domain_counts": {
+    "Social Sciences": 10,
+    "Physical Sciences": 21,
+    "Health Sciences": 14,
+    "Life Sciences": 15
+  },
+  "domain_coverage_rule": "Within each quota group, select one work from each available broad OpenAlex domain before random fill.",
+  "purpose": [
+    "test adjudication label usability",
+    "estimate disagreement/indeterminate rates",
+    "estimate review effort",
+    "identify evidence-access problems"
+  ],
+  "forbidden_use": [
+    "population prevalence estimation",
+    "country/journal/person ranking",
+    "detector PPV estimation without design correction"
+  ]
+}
