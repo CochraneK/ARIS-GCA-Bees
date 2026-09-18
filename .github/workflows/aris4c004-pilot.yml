@@ -185,6 +185,16 @@ jobs:
             --review-queue "$PAPER_DIR/data/interim/openalex/verified_work_corpus/work_review_queue.csv" \
             --require-complete-queue
 
+      - name: Build clean pre-exposure network frame
+        if: always()
+        shell: bash
+        run: |
+          python "$PAPER_DIR/code/network/build_clean_network_frame.py" \
+            --corpus "$PAPER_DIR/data/interim/openalex/verified_work_corpus/verified_work_corpus.jsonl" \
+            --identities "$PAPER_DIR/data/derived/identity_decisions_pilot30.csv" \
+            --work-decisions "$PAPER_DIR/data/derived/work_decisions_pilot30.csv" \
+            --out-dir "$PAPER_DIR/data/interim/openalex/clean_network"
+
       - name: Summarize candidate, network and identity-review coverage
         shell: bash
         run: |
@@ -228,6 +238,9 @@ jobs:
           works = root / "openalex" / "verified_work_corpus" / "verified_work_overall.json"
           if works.exists():
               summary["verified_work_corpus"] = json.loads(works.read_text())
+          clean = root / "openalex" / "clean_network" / "clean_network_overall.json"
+          if clean.exists():
+              summary["clean_network"] = json.loads(clean.read_text())
           out = root / "pilot_summary.json"
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
@@ -265,5 +278,10 @@ jobs:
             ${{ env.PAPER_DIR }}/data/interim/openalex/verified_work_corpus/work_review_queue.csv
             ${{ env.PAPER_DIR }}/data/interim/openalex/verified_work_corpus/verified_work_overall.json
             ${{ env.PAPER_DIR }}/data/interim/openalex/verified_work_corpus/verified_work_errors.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/clean_work_corpus.jsonl
+            ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/clean_person_network_summary.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/internal_citation_edges.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/citation_temporal_anomalies.csv
+            ${{ env.PAPER_DIR }}/data/interim/openalex/clean_network/clean_network_overall.json
           if-no-files-found: warn
           retention-days: 30
