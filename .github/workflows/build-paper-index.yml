@@ -6,6 +6,8 @@ on:
     paths:
       - 'papers/**/paper.json'
       - 'tools/build_papers_index.py'
+      - 'tools/audit_paper_outputs.py'
+      - 'ARIS4C_OUTPUT_STANDARD.md'
       - 'tools/migrate_aris4c.py'
       - '.github/workflows/build-paper-index.yml'
   workflow_dispatch:
@@ -40,6 +42,7 @@ jobs:
             git reset --hard origin/main
 
             python tools/migrate_aris4c.py
+            python tools/audit_paper_outputs.py
             python tools/build_papers_index.py
 
             if git diff --quiet; then
