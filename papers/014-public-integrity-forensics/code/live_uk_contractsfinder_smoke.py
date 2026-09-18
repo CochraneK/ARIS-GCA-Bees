@@ -26,6 +26,7 @@ from source_adapters import normalize_ocds_record_package, normalize_ocds_releas
 
 SEARCH = "https://www.contractsfinder.service.gov.uk/Published/Notices/OCDS/Search"
 RECORD = "https://www.contractsfinder.service.gov.uk/Published/OCDS/Record"
+RECORD_COMPAT = "https://www.contractsfinder.service.gov.uk/Published/Notice/records"
 
 
 def get_json(url: str, attempts: int = 3) -> dict:
@@ -47,6 +48,23 @@ def get_json(url: str, attempts: int = 3) -> dict:
             delay = float(retry) if retry else (10 if exc.code != 403 else 30)
             time.sleep(min(delay, 60))
     raise RuntimeError("unreachable")
+
+
+def get_record_package(ocid: str) -> tuple[str | None, dict | None, list[str]]:
+    errors: list[str] = []
+    candidates = [
+        RECORD + "/" + quote(ocid, safe=""),
+        RECORD_COMPAT + "/" + quote(ocid, safe="") + ".json",
+    ]
+    for url in candidates:
+        try:
+            return url, get_json(url), errors
+        except HTTPError as exc:
+            if exc.code == 404:
+                errors.append(f"404:{url}")
+                continue
+            raise
+    return None, None, errors
 
 
 def search_package(days: int, limit: int) -> tuple[str, dict]:
@@ -102,9 +120,24 @@ def run(days: int = 30, limit: int = 50, record_sample: int = 5) -> dict:
     lifecycle_rows = []
     lifecycle_cases = 0
     lifecycle_competition_cases = 0
+    record_fetch_error_count = 0
     for ocid in joinable_ocids[:record_sample]:
-        url = RECORD + "/" + quote(ocid, safe="")
-        record_package = get_json(url)
+        url, record_package, fetch_errors = get_record_package(ocid)
+        if record_package is None or url is None:
+            record_fetch_error_count += 1
+            lifecycle_rows.append(
+                {
+                    "ocid": ocid,
+                    "record_available": False,
+                    "fetch_errors": fetch_errors,
+                    "release_count": 0,
+                    "award_case_count": 0,
+                    "competition_case_count": 0,
+                    "warnings": ["record_package_not_available"],
+                }
+            )
+            continue
+
         imported = normalize_ocds_record_package(
             record_package,
             source_name="UK Contracts Finder OCDS record",
@@ -118,6 +151,9 @@ def run(days: int = 30, limit: int = 50, record_sample: int = 5) -> dict:
         lifecycle_rows.append(
             {
                 "ocid": ocid,
+                "record_available": True,
+                "record_url": url,
+                "fetch_errors": fetch_errors,
                 "release_count": imported.release_count,
                 "award_case_count": len(imported.cases),
                 "competition_case_count": sum(
@@ -133,6 +169,7 @@ def run(days: int = 30, limit: int = 50, record_sample: int = 5) -> dict:
         "source": "UK Contracts Finder",
         "search_endpoint": SEARCH,
         "record_endpoint": RECORD,
+        "record_compat_endpoint": RECORD_COMPAT,
         "release_count": len(releases),
         "award_case_count": len(release_cases),
         "gb_coh_joinable_case_count": joinable_case_count,
@@ -143,6 +180,7 @@ def run(days: int = 30, limit: int = 50, record_sample: int = 5) -> dict:
         "lifecycle_sample_ocid_count": len(lifecycle_rows),
         "lifecycle_award_case_count": lifecycle_cases,
         "lifecycle_competition_case_count": lifecycle_competition_cases,
+        "record_fetch_error_count": record_fetch_error_count,
         "lifecycle_rows": lifecycle_rows,
         "sample_release_cases": release_cases[:10],
         "corruption_inference": False,
