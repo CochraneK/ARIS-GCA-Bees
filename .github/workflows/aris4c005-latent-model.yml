@@ -6,12 +6,15 @@ on:
       - main
       - aris4c005-latent-model-20260918
       - aris4c005-latent-model-final-20260918
+      - aris4c005-correlated-ai-sensitivity-20260918
     paths:
       - ".github/workflows/aris4c005-latent-model.yml"
       - "papers/005-hidden-burden-bad-science/code/make_adjudication_packet.py"
       - "papers/005-hidden-burden-bad-science/code/prepare_dual_ai_latent_input.py"
       - "papers/005-hidden-burden-bad-science/code/latent_prevalence.py"
       - "papers/005-hidden-burden-bad-science/code/latent_recovery_demo.py"
+      - "papers/005-hidden-burden-bad-science/code/correlated_ai_sensitivity.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_correlated_ai_sensitivity.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_adjudication_packet.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_prepare_dual_ai_latent_input.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_latent_prevalence.py"
