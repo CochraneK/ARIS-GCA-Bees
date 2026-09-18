@@ -1,0 +1,42 @@
+name: ARIS4C006 targeted source context pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-source-context.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/08_source_context_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run targeted lagged source-context pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/08_source_context_pilot.py \
+            --target-years 2020,2024 \
+            --top-sources 2 \
+            --per-source 40 \
+            --min-window-output 20 \
+            --outdir data/pilot/source_context
+      - name: Upload aggregate source-context artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-source-context-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/source_context/source_context_exposure.csv
+            ${{ env.PAPER_DIR }}/data/pilot/source_context/manifest.json
+          if-no-files-found: error
+          retention-days: 30
