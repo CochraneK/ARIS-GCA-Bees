@@ -1,7 +1,7 @@
 # STATUS — ARIS4C007
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT0_OFFICIAL_COMPLETE / PILOT1_INDEPENDENT_AXIS_ACQUISITION`  
+**State:** `PILOT1_DEMOGRAPHY_COMPLETE / PILOT2_TRANSLATING_TIME_ACQUISITION`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
@@ -31,7 +31,7 @@ The project is no longer framed as merely inventing a better "animal years" calc
 - [x] Official build: 4,645 species rows, 1,349 mammal rows, 786 mammals complete for gestation + maturity + maximum longevity (785 non-human mappings to human).
 - [x] 3,140 prespecified mapping rows generated across maturity and 25/50/75% maximum-lifespan positions.
 - [x] Official descriptive disagreement summary recorded in `process/PILOT0_OFFICIAL_RESULTS.md`.
-- [x] Reproducible summarizer added; artifact/source hashes recorded.
+- [x] Reproducible summarizer added; artifact/source hashes recorded.\n- [x] Pilot 1 independent demography benchmark completed on 88 overlapping mammals.\n- [x] Péron et al. 2019 published S5 mortality parameters vendored with DOI and SHA-256 provenance.\n- [x] Pilot 1 now consumes the canonical successful Pilot 0 artifact rather than redownloading AnAge.\n- [x] Paired 10,000-resample bootstrap added for cross-method MAD differences.\n- [x] A10 significantly favors A1 concentration; juvenile-stage end modestly favors A3; senescence onset does not clearly separate A1/A3.\n- [x] Full Pilot 1 result frozen in `process/PILOT1_DEMOGRAPHY_RESULTS.md`.
 
 ## Primary novelty claim to test
 
@@ -76,11 +76,13 @@ Species are not independent observations. Phylogenetic block cross-validation an
 
 ## Next execution queue
 
-1. Acquire/pin Myhrvold and the Péron et al. 2019 mortality-parameter supplement.
-2. Add held-out milestones so candidate mappings are judged on information not used to construct them.
-3. Reproduce a Translating Time event-scale subset and add demographic survival/hazard mappings.
-4. Extend the deterministic benchmark beyond the current two life-history coordinates.
-5. Add published molecular clocks only after the independent event/demographic benchmark is stable.
+1. Acquire Januel et al. 2026 Translating Time Table S1 plus Dataset 1 authors' R script.
+2. Reproduce the human/cat/mouse/chimpanzee event-scale model from published supplementary data.
+3. Build held-out-event evaluation against A1/A3 without training on those events.
+4. Split event performance by developmental / adult / aging phases and data type.
+5. Expand event-scale coverage using earlier Translating Time mammal/primate datasets.
+6. Only after event-scale validation, add published molecular/epigenetic clocks.
+7. Add Myhrvold and phylogenetic tree integration before broad trait-level inference.
 4. Build a pilot species intersection with high-quality data across >=3 age axes.
 5. Reproduce published Translating Time / epigenetic mappings on a small reference set.
 6. Run a first disagreement atlas.
