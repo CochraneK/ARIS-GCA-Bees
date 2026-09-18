@@ -1,0 +1,71 @@
+name: ARIS4C012 reproducible retrieval
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c012-retrieval.yml"
+      - "papers/012-oppositional-causal-inversion/process/RETRIEVAL_SPEC.json"
+      - "papers/012-oppositional-causal-inversion/code/retrieve_pilot0.py"
+      - "papers/012-oppositional-causal-inversion/code/tests/test_retrieve_pilot0.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c012-retrieval
+  cancel-in-progress: true
+
+jobs:
+  retrieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/012-oppositional-causal-inversion
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test retrieval code
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_retrieve_pilot0.py' -v
+
+      - name: Run frozen OpenAlex + Crossref retrieval
+        run: |
+          rm -rf "$PAPER_DIR/data/retrieval_v0"
+          python "$PAPER_DIR/code/retrieve_pilot0.py"             --spec "$PAPER_DIR/process/RETRIEVAL_SPEC.json"             --out "$PAPER_DIR/data/retrieval_v0"             --sleep 0.4
+
+      - name: Validate retrieval gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("papers/012-oppositional-causal-inversion/data/retrieval_v0/retrieval_manifest.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+          assert data["classification"] == "RETRIEVAL_CANDIDATES_NOT_OCI_LABELS"
+          assert len(data["strata"]) == 6
+          assert len(data["requests"]) == 36
+          assert all(v["selected_unique"] >= 20 for v in data["strata"].values())
+          assert data["candidate_rows"] >= 120
+          print(json.dumps(data, indent=2)[:12000])
+          PY
+
+      - name: Persist immutable-at-commit retrieval snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/retrieval_v0"
+          if git diff --cached --quiet; then
+            echo "No retrieval change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C012 retrieval snapshot [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
