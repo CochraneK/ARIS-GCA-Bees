@@ -1,0 +1,156 @@
+name: ARIS4C015 Pilot M Multi-Stratum
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilotM-multistrata.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  mechanism-stratum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - slug: physics_1980
+            year: 1980
+            field_id: 31
+            seed: 15015
+          - slug: medicine_1980
+            year: 1980
+            field_id: 27
+            seed: 27015
+          - slug: social_1980
+            year: 1980
+            field_id: 33
+            seed: 33015
+          - slug: physics_1990
+            year: 1990
+            field_id: 31
+            seed: 31590
+          - slug: computer_science_1990
+            year: 1990
+            field_id: 17
+            seed: 17015
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run real-data mechanism stratum
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilotM_openalex_smoke.py \
+            --sample-size 100 \
+            --seed ${{ matrix.seed }} \
+            --filters "publication_year:${{ matrix.year }},type:article,primary_topic.field.id:${{ matrix.field_id }}" \
+            --observation-end-year 2011 \
+            --output "../data/pilotM_${{ matrix.slug }}.json"
+
+      - name: Validate no future-selection leakage
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = Path("papers/015-sleeping-beauty-miner/data") / f"pilotM_{os.environ['SLUG']}.json"
+          r = json.loads(p.read_text(encoding="utf-8"))
+          assert r["smoke_design"]["sample_size_analyzed"] >= 80
+          assert r["smoke_design"]["selection_on_future_citation_count"] is False
+          assert "n_robust_sleeping_beauties" in r
+          assert "mechanism_ready" in r
+          assert "mechanism_analysis_ready" in r
+          assert "state_counts" in r
+          assert "SB_vs_FORGOTTEN" in r["contrasts"]
+          print(json.dumps({
+              "slug": os.environ["SLUG"],
+              "n": r["smoke_design"]["sample_size_analyzed"],
+              "robust_sb": r["n_robust_sleeping_beauties"],
+              "state_counts": r["state_counts"],
+              "mechanism_ready": r["mechanism_ready"],
+              "mechanism_analysis_ready": r["mechanism_analysis_ready"],
+              "block_reasons": r["mechanism_analysis_block_reasons"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/pilotM_${{ matrix.slug }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: mechanism-stratum
+    if: ${{ always() && needs.mechanism-stratum.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-pilotM-*
+          path: papers/015-sleeping-beauty-miner/data/pilotM_multistrata
+          merge-multiple: true
+
+      - name: Aggregate mechanism yield
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("papers/015-sleeping-beauty-miner/data/pilotM_multistrata")
+          files = sorted(root.glob("pilotM_*.json"))
+          rows = []
+          for path in files:
+              r = json.loads(path.read_text(encoding="utf-8"))
+              rows.append({
+                  "file": path.name,
+                  "filters": r["smoke_design"]["filters"],
+                  "n": r["smoke_design"]["sample_size_analyzed"],
+                  "robust_sb": r["n_robust_sleeping_beauties"],
+                  "state_counts": r["state_counts"],
+                  "mechanism_ready": r["mechanism_ready"],
+                  "mechanism_analysis_ready": r["mechanism_analysis_ready"],
+                  "block_reasons": r["mechanism_analysis_block_reasons"],
+                  "sb_vs_forgotten_match_rate": r["contrasts"]["SB_vs_FORGOTTEN"]["match_rate"],
+              })
+          summary = {
+              "n_strata": len(rows),
+              "total_papers_analyzed": sum(x["n"] for x in rows),
+              "total_robust_sleeping_beauties": sum(x["robust_sb"] for x in rows),
+              "strata_mechanism_ready": sum(bool(x["mechanism_ready"]) for x in rows),
+              "strata_analysis_ready": sum(bool(x["mechanism_analysis_ready"]) for x in rows),
+              "selection_on_future_citation_count": False,
+              "interpretation": "Bounded real-data yield diagnostic only; not prevalence and not prospective performance.",
+              "strata": rows,
+          }
+          out = Path("papers/015-sleeping-beauty-miner/data/pilotM_multistrata_summary.json")
+          out.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+          assert summary["n_strata"] == 5
+          assert summary["total_papers_analyzed"] >= 400
+          print(json.dumps(summary, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-multistrata-summary
+          path: papers/015-sleeping-beauty-miner/data/pilotM_multistrata_summary.json
+          if-no-files-found: error
+          retention-days: 30
