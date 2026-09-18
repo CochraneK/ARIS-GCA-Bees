@@ -28,6 +28,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--snapshot-root", type=Path)
     parser.add_argument("--strict", action="store_true", help="exit non-zero unless OUTCOME_UNLOCKED")
+    parser.add_argument("--require-design-locked", action="store_true", help="exit non-zero unless DESIGN_LOCKED")
     args = parser.parse_args()
 
     design_problems: list[str] = []
@@ -114,6 +115,8 @@ def main() -> None:
     }
     print(json.dumps(result, indent=2))
 
+    if args.require_design_locked and design_status != "DESIGN_LOCKED":
+        raise SystemExit(3)
     if args.strict and outcome_status != "OUTCOME_UNLOCKED":
         raise SystemExit(2)
 
