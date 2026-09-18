@@ -1,0 +1,31 @@
+{
+  "lock_version": 1,
+  "dataset_id": "ucid-mixed-p6-stress-calibration-v0",
+  "verified_ci": {
+    "workflow": "ARIS4C010 CI",
+    "run_id": 35406060244,
+    "run_number": 30,
+    "head_sha": "f5ab0973ba588ce13de2e3f82a849797e589459c",
+    "conclusion": "success",
+    "artifact_id": 10572661164,
+    "artifact_name": "aris4c010-mixed-p6-calibration",
+    "artifact_sha256": "ec316c72192038b7a5dfe42fac4a33e37d25cba68a1ffd993f93e9e50856c552",
+    "generated_json": {
+      "file": "annotation_packet.generated.json",
+      "sha256": "7e2f66e3d84878ae76a275b31f4dcf5ad449cb7921d0c6bf9079191880ef4368",
+      "bytes": 182918,
+      "scenarios": 24,
+      "query_bank_size": 18,
+      "pairs": 216,
+      "blank_responses": 216,
+      "query_exposure_min": 12,
+      "query_exposure_max": 12
+    }
+  },
+  "invariants": [
+    "No response label is predeclared as gold.",
+    "Phenomenon tags document inclusion rationale, not expected responses.",
+    "All scenarios are constructed calibration cases.",
+    "The packet is for response-state reliability, not concept-frequency inference."
+  ]
+}
