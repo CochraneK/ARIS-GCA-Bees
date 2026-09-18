@@ -8,7 +8,7 @@ Date: 2026-09-18
 
 ## Current maturity estimate
 
-**~65%**
+**~67%**
 
 ## Completed foundations
 
@@ -32,11 +32,15 @@ Date: 2026-09-18
 - [x] implemented central/local CCGP award-detail parsing with source hashing and privacy-minimized output;
 - [x] separated final awards from ranked bid candidates so candidate records cannot silently become AWARDED_TO relations;
 - [x] normalized CCGP currency fields including unit-in-label local templates and preserved percentage pricing as non-currency;
-- [x] completed bounded live CCGP detail smoke: 12 notices -> 10 supplier-result records -> 7 final awards + 3 candidate records, with 4 parser-miss notices retained as coverage gaps;
+- [x] completed extended bounded live CCGP detail smoke: 12 notices -> 14 supplier-result records -> 11 final awards + 3 candidate records, with 2 parser-miss notices retained as coverage gaps;
 - [x] implemented official institution-universe seed adapters;
 - [x] normalized 106 CAS official research-unit seeds in the live universe pilot;
 - [x] isolated SASAC machine-access TLS failure as source_unavailable rather than inferring an empty SOE universe;
-- [x] froze China Pilot 0 results in process/CHINA_PILOT0_RESULTS.md.
+- [x] froze China Pilot 0 results in process/CHINA_PILOT0_RESULTS.md;
+- [x] extracted supplier unified social credit codes from structured CCGP award tables without retaining addresses/phones;
+- [x] completed a fixed official-page USCC regression: 4/4 final-award lots carried parsed stable supplier IDs;
+- [x] implemented a China procurement graph where final awards use AWARDED_TO, ranked candidates use HAS_RANKED_CANDIDATE, and name-only suppliers remain source-local;
+- [x] exact USCC suppliers can share a stable CN-USCC graph identity across notices; same-name-only suppliers cannot auto-merge.
 
 ## China-first source backbone
 
@@ -86,14 +90,19 @@ Workflow **35314852919**:
 
 ### CCGP detail normalization
 
-Workflow **35315473480**:
+Latest extended workflow **35315845079**:
 - 12 bounded live notices;
-- 10 normalized supplier-result records;
-- 7 final-award records;
+- 14 normalized supplier-result records;
+- 11 final-award records;
 - 3 ranked candidate records;
-- 4 notices retained as parser-miss coverage gaps;
+- 2 notices retained as parser-miss coverage gaps;
 - supplier/value coverage among parsed records: 100%;
-- normalized output excludes personal contacts, telephone numbers and street addresses for this pilot.
+- the moving sample happened to contain 0 USCC-bearing parsed lots.
+
+Dedicated stable-ID regression **35315934988**:
+- 4 final-award lots;
+- 4/4 supplier USCC parsed;
+- aggregate-only artifact; no supplier addresses, telephone numbers or contact persons.
 
 Candidate records are structurally distinct from final awards and must not create `AWARDED_TO` edges.
 
@@ -168,8 +177,8 @@ UK remains a portability/benchmark track, but China-first internet mining is now
 
 ## Immediate next work
 
-1. convert final CCGP supplier results into canonical procurement graph relations while mapping ranked candidates to a separate candidate edge;
-2. add authoritative China organization identity joins around unified social credit codes and source-specific official identifiers where lawfully/publicly available;
+1. extend the now-working CCGP procurement graph with cross-source organization resolution and source provenance;
+2. enrich exact CN-USCC supplier identities from lawful official/public corporate sources without falling back to name-only merging;
 3. implement the National Public Resource Trading Platform federation and selected provincial adapters;
 4. build official organization-universe adapters for hospitals, SOEs, universities/research institutes and social organizations/charities;
 5. build institution-domain crawler contracts for hospital/SOE/institute/university/NGO procurement pages and PDFs;
