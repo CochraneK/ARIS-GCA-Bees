@@ -1,0 +1,52 @@
+{
+  "paper_id": "002",
+  "paper_path": "papers/002-language-geometry",
+  "review_type": "manuscript-stage",
+  "reviewer": {
+    "provider": "WorkBuddy platform",
+    "model": "hy3",
+    "family": "non-OpenAI-GPT",
+    "independent_from_primary_manuscript_writer": true,
+    "fresh_session": true,
+    "trace_id": "ARIS4C-paper002-manuscript-review-workbuddy-hy3",
+    "timestamp": "2026-09-18T07:31:00Z",
+    "literature_search_cutoff": "2026-09-18"
+  },
+  "verdict": "PASS_SUBMISSION_PREP",
+  "submission_prep_authorized": true,
+  "executive_assessment": "Draft v1 faithfully implements all five mandatory boundaries from the idea-stage secondary review; numbers are internally consistent across DRAFT/TABLES and source reports; methods-to-code fidelity verified against stage1/stage1b/stage1c; independent WebSearch found no fatal novelty collision (Kemp 2026 is domain-specific and already distinguished). No blocking scientific or manuscript changes; only editorial/formatting remains.",
+  "novelty": "Kemp (2026, Nat Commun 17:358) tests domain-specific category symmetry (seasons/moon/cardinals), a different scientific level from the global single-circle over heterogeneous structural features tested here; no equivalent global-circle-vs-nonperiodic held-out predictive competitor found. Novelty wedge remains open.",
+  "methods_to_code_fidelity": "stage1.py: N=60, obs>=180, card<=15, pair>=60, coverage then lower-cardinality ranking, arithmetic NMI, cos+cos2 kernel, tree=average linkage+cophenet. stage1b.py: direct (n-1) angular optimization, feature 0 fixed at 0, L-BFGS-B, two harmonics. stage1c.py gate uses stability>=0.40 (line 228), matching manuscript. The 0.35 at stage1.py:414 is a separate preliminary global-screen internal check, not the Stage 1C gate; no result-level discrepancy.",
+  "results_to_source_fidelity": "TLI tree 0.182 vs circle 0.109, delta +0.073, CI [0.055,0.092], 20/20; GBI 0.122 vs 0.073, 12/12; WALS 0.603 vs 0.410, 8/8, macroarea transfer 0.634+/-0.075; 60-feature closure ratio 0.037. All match source reports and MANUSCRIPT_AUDIT.",
+  "statistical_adequacy": "Bootstrap correctly bounded as split-sensitivity not phylogenetic uncertainty (sec 2.9, 3.6, Table 1 note, Fig 2 caption). Stage 1-1I multiplicity disclosed (sec 1.2, 2.5, 5.1). Per-stage N/features/rules/effect sizes reported (Table 6).",
+  "claim_boundary_audit": "Permitted claim reproduced verbatim in sec 1.2 and 6. No escalation to 'language is a tree', 'all periodicity disproven', universal geography, or causal/universal claims. Title 'Favors Non-Circular Structure' is acceptable but flagged as optional tightening.",
+  "figures_tables_audit": "Fig 1/2/3 captions and Table 2/5 notes explicitly warn against cross-dataset magnitude comparison and phylogenetic interpretation of bootstrap. SVGs regenerated in CI; manifest/claim boundaries checked by GitHub Actions (CI SUCCESS).",
+  "blocking_scientific_changes": [],
+  "blocking_manuscript_changes": [],
+  "optional_improvements": [
+    "Tighten title to avoid any misreading as an ontological claim that language is non-circular (e.g., emphasize 'does not support a global circular organization').",
+    "Add a one-line code comment at stage1.py:414 clarifying the 0.35 internal screen differs from the Stage 1C 0.40 gate (code readability only, no result impact).",
+    "Note the 40-feature closure ratio 0.608+/-0.764 (SD>mean) as an unstable/non-informative estimate rather than a comparable number.",
+    "Optional (not required): 50-100 family-held-out splits or a phylogenetic sensitivity supplement."
+  ],
+  "maximum_permitted_claim": "The global-circle form of the language periodic-table hypothesis tested here is not supported by predictive and held-out circularity evidence; hierarchical/non-circular models provide stronger family-held-out benchmarks across TLI, GBI, and WALS, without establishing one universal tree geometry.",
+  "evidence_inspected": [
+    "papers/002-language-geometry/manuscript/DRAFT.md",
+    "papers/002-language-geometry/manuscript/TABLES.md",
+    "papers/002-language-geometry/manuscript/FIGURE_CAPTIONS.md",
+    "papers/002-language-geometry/process/CLAIMS_EVIDENCE_MATRIX.md",
+    "papers/002-language-geometry/process/REVIEW_REQUIREMENTS.md",
+    "papers/002-language-geometry/process/DATA_PROVENANCE.md",
+    "papers/002-language-geometry/process/MANUSCRIPT_AUDIT.md",
+    "papers/002-language-geometry/process/LITERATURE_RESCAN_2026-09-18.md",
+    "papers/002-language-geometry/process/STATUS.md",
+    "papers/002-language-geometry/process/WORKBUDDY_MANUSCRIPT_REVIEW.md",
+    "papers/002-language-geometry/process/SECONDARY_REVIEW_RECEIPT.md",
+    "ideas/language-periodic-system/stage1.py",
+    "ideas/language-periodic-system/stage1b.py",
+    "ideas/language-periodic-system/stage1c.py",
+    "ideas/language-periodic-system/stage1d.py",
+    "ideas/language-periodic-system/stage1i.py",
+    "independent WebSearch 2026-09-18 (periodic table of languages circular geometry predictive; language periodic hypothesis circular typology held-out prediction tree vs circle; Kemp 2026 symmetry categories)"
+  ]
+}
