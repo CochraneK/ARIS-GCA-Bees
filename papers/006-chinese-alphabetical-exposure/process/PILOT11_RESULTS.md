@@ -1,44 +1,37 @@
-# ARIS4C006 · Pilot 11 — annual primary-field coverage sweep
+# ARIS4C006 · Pilot 11 — anchor-field annual primary-field coverage sweep
 
 Last updated: 2026-09-18
 
 ## Verdict
 
-**Primary work-level focal window: 2011–2025.**
+**Six-anchor-field historical coverage: PASS. Candidate global window: 2011–2025.**
 
 GitHub Actions run: `35301293322`  
 Artifact: `aris4c006-annual-coverage`
 
-This is the corrected sweep using `primary_topic.field.id`.
+This corrected sweep uses `primary_topic.field.id`.
 
-## Prospective window rule
+## Prospective anchor-window rule
 
-Before reading annual results:
+Before reading annual results, the pilot selected the earliest start in 2010–2018 such that every subsequent year through 2025 satisfied:
 
-Choose the earliest start year in 2010–2018 such that **every subsequent year through 2025** satisfies:
-
-1. aggregate DOI coverage >= 0.90;
-2. Crossref retrieval conditional on DOI >= 0.90;
-3. strict positional support among same-count OpenAlex/Crossref records >= 0.95;
-4. at least 5 of 6 anchor fields have DOI coverage >=0.80.
+1. aggregate DOI coverage >=0.90;
+2. Crossref retrieval conditional on DOI >=0.90;
+3. strict positional support among same-count OpenAlex/Crossref records >=0.95;
+4. at least 5/6 anchor fields with DOI coverage >=0.80.
 
 ## Result
 
-2010 failed the aggregate DOI threshold:
+2010 failed aggregate DOI coverage:
+- **88.89%**
 
-- DOI coverage: **88.89%**
+2011 passed, and every year 2011–2025 continued to satisfy the anchor-field rule.
 
-2011 passed and **every year 2011–2025 remained above all prospective thresholds**.
-
-Therefore the rule-selected start is:
+Thus the six-field rule-selected candidate start is:
 
 **2011**
 
-and the primary focal work window is:
-
-**2011–2025**
-
-## Selected annual metrics
+Selected examples:
 
 | Year | DOI | Crossref given DOI | Strict position support |
 |---|---:|---:|---:|
@@ -48,37 +41,32 @@ and the primary focal work window is:
 | 2024 | 100% | 99.17% | 99.14% |
 | 2025 | 98.33% | 100% | 99.15% |
 
-All six anchor fields met the per-field DOI >=0.80 condition in every year from 2011 onward.
+## Critical scope correction
 
-## Interpretation
+The six fields were engineering/contrast anchors:
+- Economics
+- Mathematics
+- Business
+- Psychology
+- Medicine
+- Engineering
 
-The date window is selected from bibliographic measurement coverage only.
+Pilot 13 subsequently established that all **26 current OpenAlex primary-topic fields** are globally feasible.
 
-No surname × exposure or career outcome estimate was opened.
+Therefore this pilot **does not by itself freeze the final all-field 2011–2025 window**.
 
-## Lagged exposure
+The correct rule is:
 
-For focal year `t`, primary exposure uses `t-3...t-1`.
+- **2011–2025 = candidate global window**
+- final global start year requires an all-26-field historical coverage audit using the same primary-topic and primary-work-type rules.
 
-Field-year observations still require the frozen LOAO effective-information threshold `D^{-i}_{ct} >= 50`.
+No focal surname-effect or career outcome was inspected in making this correction.
 
-A field can therefore be absent in an early focal year if its historical convention window is too sparse, without changing the global 2011–2025 focal work window.
+## 2026 handling
 
-## Longitudinal cohort consequence
-
-To keep the entry cohort wholly inside the high-coverage focal era while allowing:
-
-- 3-year clean lookback; and
-- 5-year fixed follow-up through the last complete year 2025,
-
-the candidate longitudinal entry window becomes:
-
-**2014–2020**
-
-This entry window is frozen separately in the cohort protocol before distal outcomes are estimated.
+2026 is incomplete and is not a confirmatory outcome year.
 
 ## Gate consequence
 
-**Time-window coverage: PASS.**
-
-Primary work-level frame: **2011–2025**.
+**Historical coverage feasibility: PASS.**  
+**Final all-field start year: OPEN pending all-field historical audit.**
