@@ -13,7 +13,6 @@ from html.parser import HTMLParser
 import json
 import re
 
-from china_ccgp import fetch_text
 from china_scope import InstitutionType
 
 
@@ -200,10 +199,27 @@ def parse_cas_research_units(html: str, *, retrieved_at: str) -> UniverseSnapsho
     )
 
 
+def _fetch_verified(url: str, *, timeout: float = 20.0) -> str:
+    """Fetch with Requests/certifi in live workflows; TLS verification stays on."""
+    import requests
+
+    resp = requests.get(
+        url,
+        timeout=timeout,
+        headers={
+            "User-Agent": "OpenIntegrity-ARIS4C014/0.1 (+public-data feasibility research)"
+        },
+    )
+    resp.raise_for_status()
+    if not resp.encoding or resp.encoding.lower() == "iso-8859-1":
+        resp.encoding = resp.apparent_encoding or "utf-8"
+    return resp.text
+
+
 def fetch_live_universes() -> list[UniverseSnapshot]:
     now = datetime.now().astimezone().isoformat()
-    sasac_html = fetch_text(SASAC_CENTRAL_SOE_URL)
-    cas_html = fetch_text(CAS_RESEARCH_UNITS_URL)
+    sasac_html = _fetch_verified(SASAC_CENTRAL_SOE_URL)
+    cas_html = _fetch_verified(CAS_RESEARCH_UNITS_URL)
     return [
         parse_sasac_central_soe(sasac_html, retrieved_at=now),
         parse_cas_research_units(cas_html, retrieved_at=now),
