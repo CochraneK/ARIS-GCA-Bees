@@ -1,0 +1,69 @@
+name: ARIS4C004 network100 acquisition
+
+concurrency:
+  group: aris4c004-network100
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c004-network100.yml"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/code/network/build_verified_work_corpus.py"
+      - "papers/004-counterfactual-cost-of-exclusion/code/validate_identity.py"
+      - "papers/004-counterfactual-cost-of-exclusion/code/review/select_identity_second_review.py"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/science_candidates_frozen.csv"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
+      OUT: papers/004-counterfactual-cost-of-exclusion/data/interim/network100
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Require canonical frozen-100 identity decisions
+        shell: bash
+        run: |
+          test -s "$PAPER_DIR/data/derived/identity_decisions_100.csv"
+          python "$PAPER_DIR/code/validate_identity.py"             "$PAPER_DIR/data/derived/identity_decisions_100.csv"             --candidate-frame "$PAPER_DIR/data/derived/science_candidates_frozen.csv"
+
+      - name: Build deterministic identity second-review sample
+        run: |
+          mkdir -p "$OUT"
+          python "$PAPER_DIR/code/review/select_identity_second_review.py"             "$PAPER_DIR/data/derived/identity_decisions_100.csv"             --output "$OUT/identity_second_review_queue.csv"             --summary-json "$OUT/identity_second_review_summary.json"             --single-fraction 0.25             --seed aris4c004-identity-second-review-v1
+
+      - name: Build full verified-person work corpus
+        run: |
+          python "$PAPER_DIR/code/network/build_verified_work_corpus.py"             --decisions "$PAPER_DIR/data/derived/identity_decisions_100.csv"             --out-dir "$OUT/verified_work_corpus"             --fetch-year-min 1800             --fetch-year-max 2026             --max-works-per-id 500             --min-network-works 5             --sleep-rps 2
+
+      - name: Print P3 acquisition summaries
+        run: |
+          cat "$OUT/identity_second_review_summary.json"
+          cat "$OUT/verified_work_corpus/verified_work_overall.json"
+
+      - name: Upload network100 acquisition artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c004-network100-acquisition
+          path: |
+            ${{ env.OUT }}/identity_second_review_queue.csv
+            ${{ env.OUT }}/identity_second_review_summary.json
+            ${{ env.OUT }}/verified_work_corpus/verified_work_corpus.jsonl
+            ${{ env.OUT }}/verified_work_corpus/verified_work_summary.csv
+            ${{ env.OUT }}/verified_work_corpus/work_review_queue.csv
+            ${{ env.OUT }}/verified_work_corpus/verified_work_overall.json
+            ${{ env.OUT }}/verified_work_corpus/verified_work_errors.csv
+          if-no-files-found: error
+          retention-days: 30
