@@ -10,7 +10,7 @@ The principal result is negative but informative: the tested global circle captu
 
 The element of novelty is the explicit out-of-sample stress test of a global language-periodic-table hypothesis against non-periodic alternatives, together with direct held-out circularity diagnostics and cross-representation robustness checks. Prior work on linguistic topology, typological prediction, latent structure, and circular seriation is discussed and delimits rather than supplies this contribution.
 
-The manuscript is original, is not under consideration elsewhere, and has been prepared for double-anonymised review. All analysed data are from public third-party linguistic resources, and anonymised code/results are supplied as supplementary material for review.
+The manuscript has been prepared for double-anonymised review. [AUTHOR TO CONFIRM BEFORE SUBMISSION: This manuscript is original and is not under consideration elsewhere.] All analysed data are from public third-party linguistic resources, and anonymised code/results are supplied as supplementary material for review.
 
 Thank you for your consideration.
 
