@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import html
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,11 +15,24 @@ DASHBOARD = PAPERS / "dashboard.json"
 REPO_URL = "https://github.com/CochraneK/ARIS4C"
 
 
+def last_commit_iso(folder: Path) -> str:
+    """Return the last Git commit timestamp touching a paper folder."""
+    try:
+        proc = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", str(folder.relative_to(ROOT))],
+            cwd=ROOT, check=True, capture_output=True, text=True, timeout=10,
+        )
+        return proc.stdout.strip()
+    except (subprocess.SubprocessError, OSError, ValueError):
+        return ""
+
+
 def load_papers() -> list[dict]:
     items = []
     for manifest in sorted(PAPERS.glob("[0-9][0-9][0-9]-*/paper.json")):
         data = json.loads(manifest.read_text(encoding="utf-8"))
         data["_folder"] = manifest.parent.name
+        data["_last_commit"] = last_commit_iso(manifest.parent)
         items.append(data)
     return items
 
@@ -98,8 +112,9 @@ def card(p: dict, dashboard: dict) -> str:
         link(links.get("source", ""), "Source"),
     ])
     blocker_class = "blocker is-clear" if str(blocker).lower().startswith("none") else "blocker"
+    last_commit = p.get("_last_commit", "")
     return f"""
-    <article class="paper-card" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-search="{esc(search_blob)}">
+    <article class="paper-card" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-last-commit="{esc(last_commit)}" data-search="{esc(search_blob)}">
       <div class="paper-topline">
         <span class="paper-id">#{esc(p.get('id'))}</span>
         <span class="heartbeat"><i></i>{esc(activity_text)}</span>
@@ -114,7 +129,7 @@ def card(p: dict, dashboard: dict) -> str:
         <div class="evidence-cell"><span>Next gate</span><strong>{esc(next_gate)}</strong></div>
       </div>
       <div class="{blocker_class}"><span>Blocker</span>{esc(blocker)}</div>
-      <div class="meta"><span>{esc(p.get('year'))}</span><span>{esc(p.get('domain'))}</span><span>ARIS {esc(aris.get('version'))}</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="{esc(last_commit)}">Last commit · —</span><span>{esc(p.get('year'))}</span><span>{esc(p.get('domain'))}</span><span>ARIS {esc(aris.get('version'))}</span></div>
       <div class="tags">{tags}</div>
       <div class="actions">{buttons}</div>
     </article>"""
@@ -168,6 +183,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
       <div class="sidebar-meta">
         <span>Scientific metadata ≠ management estimates</span>
         <a href="{REPO_URL}" target="_blank" rel="noreferrer">Open ARIS4C source ↗</a>
+        <a href="https://cochranek.github.io/repo-auditor/" target="_blank" rel="noreferrer">Sibling · Audit Terminal ↗</a>
       </div>
     </aside>
 
@@ -198,7 +214,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <div class="control-bar">
           <div class="control-left"><span id="resultCount" class="result-count">{len(papers)} / {len(papers)} projects</span></div>
           <div class="control-right">
-            <select id="sortFilter" aria-label="Sort projects"><option value="id">ID order</option><option value="progress-desc">Maturity high → low</option><option value="progress-asc">Maturity low → high</option><option value="activity">Activity state</option></select>
+            <select id="sortFilter" aria-label="Sort projects"><option value="id">ID order</option><option value="progress-desc">Maturity high → low</option><option value="progress-asc">Maturity low → high</option><option value="activity">Activity state</option><option value="recent">Recent commit</option></select>
             <button id="clearFilters" class="filter-chip" type="button">Reset</button>
           </div>
         </div>
