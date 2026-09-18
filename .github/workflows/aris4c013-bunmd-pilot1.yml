@@ -1,0 +1,53 @@
+name: ARIS4C013 BUNMD Pilot 1 discovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/pilot1_bunmd_discovery.py'
+      - 'papers/013-birth-death-temporal-coupling/process/PILOT1_DISCOVERY_LOCK.md'
+      - '.github/workflows/aris4c013-bunmd-pilot1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check pandas numpy
+
+      - name: Download BUNMD v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/aris4c013
+          curl --retry 5 --retry-all-errors --connect-timeout 30 -fL             'https://dataverse.harvard.edu/api/access/datafile/7128124'             -o /tmp/aris4c013/bunmd_v2.zip
+          ls -lh /tmp/aris4c013/bunmd_v2.zip
+          unzip -t /tmp/aris4c013/bunmd_v2.zip >/dev/null
+          unzip -l /tmp/aris4c013/bunmd_v2.zip | tail -n 8
+
+      - name: Run locked 1988-1996 discovery
+        run: |
+          python papers/013-birth-death-temporal-coupling/code/pilot1_bunmd_discovery.py             --zip /tmp/aris4c013/bunmd_v2.zip             --json-out /tmp/aris4c013/pilot1_discovery.json             --md-out /tmp/aris4c013/PILOT1_DISCOVERY_RESULT.md
+
+      - name: Show report
+        run: cat /tmp/aris4c013/PILOT1_DISCOVERY_RESULT.md
+
+      - name: Upload discovery evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c013-bunmd-pilot1-discovery
+          path: |
+            /tmp/aris4c013/pilot1_discovery.json
+            /tmp/aris4c013/PILOT1_DISCOVERY_RESULT.md
+          retention-days: 30
