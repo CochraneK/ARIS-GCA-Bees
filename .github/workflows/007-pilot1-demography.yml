@@ -1,0 +1,40 @@
+name: ARIS4C007 Pilot 1 demography acquisition
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot1-demography.yml"
+      - "papers/007-cross-species-age-equivalence/code/download_public_sources.py"
+
+permissions:
+  contents: read
+
+jobs:
+  acquire-demography:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download Péron 2019 S5 mortality parameters
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/download_public_sources.py --out data/raw --source peron2019_s5
+          cat data/raw/source_manifest.json
+
+      - name: Upload mortality source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-peron2019-s5
+          path: |
+            papers/007-cross-species-age-equivalence/data/raw/source_manifest.json
+            papers/007-cross-species-age-equivalence/data/raw/peron2019_s5.xlsx
+          if-no-files-found: error
+          retention-days: 30
