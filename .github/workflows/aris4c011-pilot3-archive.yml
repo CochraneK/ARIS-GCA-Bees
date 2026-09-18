@@ -1,0 +1,47 @@
+name: ARIS4C011 Pilot 3 Archive Discovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/code/pilot3_archive_discovery.py"
+      - ".github/workflows/aris4c011-pilot3-archive.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover pre-correction objects for top priority cases
+        working-directory: papers/011-research-forensics/code
+        run: |
+          python pilot3_archive_discovery.py \
+            --queue ../data/results/pilot3_candidate_queue.csv \
+            --limit 2 \
+            --output ../data/results/pilot3_archive_discovery.json
+      - name: Validate discovery-only boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("papers/011-research-forensics/data/results/pilot3_archive_discovery.json").read_text())
+          assert r["candidate_n"]==2
+          assert r["query_n"]==6
+          assert r["safe_exact_claims"]==0
+          assert all(q["qualification_status"]=="DISCOVERY_ONLY" for q in r["queries"])
+          print(json.dumps({k:v for k,v in r.items() if k!="queries"},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-pilot3-archive-discovery
+          path: papers/011-research-forensics/data/results/pilot3_archive_discovery.json
+          if-no-files-found: error
+          retention-days: 30
