@@ -1,0 +1,70 @@
+{
+  "classification": "PILOT_B_SEED_SAMPLE_NOT_PREVALENCE_ESTIMATE",
+  "generated_at_utc": "2026-09-18T02:03:17.593198+00:00",
+  "openalex_target": {
+    "start": 2015,
+    "end": 2020,
+    "types": [
+      "article",
+      "review"
+    ],
+    "corpus": "core",
+    "denominator": 38451124,
+    "random_n_requested": 600,
+    "random_n_resolved_unique": 600,
+    "p_random": 1.5604225249696213e-05,
+    "seed": 20260918
+  },
+  "rw_enrichment": {
+    "raw_unique_candidate_dois": 8769,
+    "raw_stratum_sizes": {
+      "rw_e1s_narrow": 472,
+      "rw_expression_of_concern": 1103,
+      "rw_major_error": 2516,
+      "rw_paper_mill": 2682,
+      "rw_process_integrity": 1996
+    },
+    "selected_enrichment_dois_requested": 800,
+    "selected_enrichment_dois_resolved_to_target_universe": 739,
+    "targets": {
+      "rw_e1s_narrow": 200,
+      "rw_paper_mill": 200,
+      "rw_major_error": 150,
+      "rw_expression_of_concern": 100,
+      "rw_process_integrity": 150
+    },
+    "p_enrich_by_stratum": {
+      "rw_e1s_narrow": 0.423728813559322,
+      "rw_expression_of_concern": 0.09066183136899365,
+      "rw_major_error": 0.05961844197138315,
+      "rw_paper_mill": 0.07457121551081283,
+      "rw_process_integrity": 0.07515030060120241
+    },
+    "design_note": "p_enrich is defined on the frozen RW DOI stratum before OpenAlex resolution. This preserves exact first-order selection probability for target-universe works in that stratum."
+  },
+  "sample": {
+    "unique_selected_works": 1339,
+    "selected_via_counts": {
+      "population_random": 600,
+      "rw_enrichment": 739
+    },
+    "sample_stratum_counts": {
+      "none": 600,
+      "rw_e1s_narrow": 181,
+      "rw_major_error": 138,
+      "rw_paper_mill": 176,
+      "rw_process_integrity": 144,
+      "rw_expression_of_concern": 100
+    }
+  },
+  "warnings": [
+    "Retraction Watch/OpenAlex signals are screening variables, not adjudicated truth.",
+    "The population-random component is required for prevalence inference.",
+    "Enrichment probabilities are defined on the frozen RW DOI frame before OpenAlex resolution.",
+    "No nationality, institution, or language feature is used as a suspicion detector.",
+    "This seed sample cannot identify latent prevalence without manual adjudication and calibrated detector performance."
+  ],
+  "retraction_watch_git_commit": "e803893652ac07716c7de368c965065b93e8373f",
+  "source_repository": "https://gitlab.com/crossref/retraction-watch-data",
+  "row_level_release_policy": "Row-level seed frame is an Actions artifact only; canonical repository stores aggregate provenance/summary, not a public suspicion list."
+}
