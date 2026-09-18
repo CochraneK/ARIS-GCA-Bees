@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "paper_id": "006",
+  "updated_on": "2026-09-18",
+  "stage": "preoutcome-research-design-gates",
+  "confirmatory_outcomes_unlocked": false,
+  "gates": {
+    "novelty": {
+      "status": "conditional-pass",
+      "note": "Proceed only as China-based population-calibrated, time-varying measured byline-exposure design; raw surname-success, citation-only, country-level surname-distribution, and generic long-run exposure claims are occupied prior art."
+    },
+    "chinese_surname_population_baseline": {
+      "status": "pass",
+      "evidence": "process/PILOT_RESULTS.md",
+      "note": "1806 surnames; non-uniform population baseline mandatory; confirmatory reproduction from pinned ChineseNames 2025.8 still required."
+    },
+    "crossref_structured_surname_route": {
+      "status": "pass",
+      "evidence": [
+        "process/PILOT3_RESULTS.md",
+        "process/PILOT4_RESULTS.md"
+      ],
+      "note": "Tier 1B route accepted with DOI resolution, author-list reconciliation, structured family value, and non-conflicting identity evidence. Heuristic last-token parsing remains excluded."
+    },
+    "randomized_measurement_gate": {
+      "status": "pass",
+      "evidence": "process/PILOT4_RESULTS.md",
+      "note": "Random field/year samples show strong DOI/Crossref and positional support, with coverage heterogeneity reported."
+    },
+    "field_year_alphabetization_variance": {
+      "status": "pass",
+      "evidence": "process/PILOT6_RESULTS.md",
+      "note": "Measured excess alphabetization varies meaningfully across fields/years and persists in 3+ author analyses."
+    },
+    "source_context_reliability": {
+      "status": "running",
+      "evidence": ".github/workflows/aris4c006-source-context.yml",
+      "note": "Targeted high-volume source pilot required before source × field × lag-window can be primary."
+    },
+    "longitudinal_panel_feasibility": {
+      "status": "pass",
+      "evidence": "process/PILOT5_RESULTS.md",
+      "note": "Repeated author histories are retrievable; 2024 seed is feasibility-only and cannot define the confirmatory cohort."
+    },
+    "person_identity_resolution": {
+      "status": "running",
+      "evidence": [
+        "process/IDENTITY_RESOLUTION_AUDIT.md",
+        ".github/workflows/aris4c006-identity-orcid.yml"
+      ],
+      "note": "ORCID/OpenAlex direct-resolution audit running. Distal career outcomes remain blocked."
+    },
+    "cohort_definition": {
+      "status": "protocol-defined-not-frozen",
+      "evidence": "process/COHORT_PROTOCOL.md",
+      "note": "Entry-based cohort required; exact index/lookback/follow-up years remain outcome-blind TBF."
+    },
+    "exposure_estimator": {
+      "status": "protocol-defined-not-frozen",
+      "evidence": "process/EXPOSURE_ESTIMATOR.md",
+      "note": "Lag/cross-fit/chance correction specified; context granularity and shrinkage await source-context pilot."
+    },
+    "preregistration": {
+      "status": "draft",
+      "evidence": "process/PREREGISTRATION_DRAFT.md",
+      "note": "TBF fields remain; pre-outcome CI prevents advancement to preregistered/analysis while unresolved."
+    }
+  },
+  "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
+}
