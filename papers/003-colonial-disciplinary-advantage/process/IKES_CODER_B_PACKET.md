@@ -107,13 +107,22 @@ concept_id,discipline,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,IKES_B
 
 ### Artifact 2 — evidence notes
 
-For each `concept_id` provide:
+For each `concept_id` provide a separate markdown section whose heading is
+exactly `### D01 — <discipline>`, `### D02 — <discipline>`, through
+`### D21 — <discipline>`.
+
+Inside every section provide:
 
 - 2–5 sentence historical rationale;
-- strongest sources supporting scores ≥2;
+- strongest sources supporting scores ≥2 (or explicitly state that no
+  score ≥2 was assigned);
 - uncertainty / national heterogeneity;
 - any dimension coded `NA`;
-- a confidence label: high / medium / low.
+- one line exactly in the form `Confidence: high`, `Confidence: medium`,
+  or `Confidence: low`.
+
+The 21 evidence sections are mandatory. A score matrix without one evidence
+section for every frozen concept is not an admissible independent coding pass.
 
 At the end include a section titled `BLINDING DECLARATION`.
 
@@ -140,7 +149,9 @@ python code/ingest_coder_b.py \
   --output-notes process/IKES_CODER_B.md
 ```
 
-The ingestion script must reject missing/failed blinding declarations, malformed D01-D21 matrices, out-of-range scores, or an `IKES_B` inconsistent with the D1-D11 mean.
+The ingestion script must reject missing/failed blinding declarations,
+malformed D01-D21 matrices, out-of-range scores, an `IKES_B` inconsistent
+with the D1-D11 mean, or missing D01-D21 evidence sections/confidence labels.
 
 Manual fallback only if the parser cannot handle a faithfully formatted response:
 
