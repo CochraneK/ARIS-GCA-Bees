@@ -163,11 +163,11 @@ This diagnostic is **not** an exact strict circular-Robinson recognition algorit
 
 Because line-like Robinson order can also appear compatible with a cyclic ordering, we added a closure diagnostic:
 
-[
-	ext{closure ratio}=
-rac{	ext{similarity of wrap-around pair}}
-{	ext{median similarity of internal adjacent pairs}}.
-]
+$
+\text{closure ratio}=
+\frac{\text{similarity of wrap-around pair}}
+{\text{median similarity of internal adjacent pairs}}.
+$
 
 A ratio near 1 would indicate that the final-to-first edge is supported similarly to ordinary internal adjacencies. The closure ratio is interpreted for the circular order; values for tree/random orders are not evidence for or against cyclic closure.
 
