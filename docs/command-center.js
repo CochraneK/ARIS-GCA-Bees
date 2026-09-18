@@ -22,6 +22,29 @@
     return activity === currentFilter;
   }
 
+  function relativeAge(value){
+    if(!value) return "unknown";
+    const then = new Date(value).getTime();
+    if(!Number.isFinite(then)) return "unknown";
+    const ms = Math.max(0, Date.now() - then);
+    const min = Math.floor(ms / 60000);
+    if(min < 1) return "just now";
+    if(min < 60) return min + "m ago";
+    const hr = Math.floor(min / 60);
+    if(hr < 24) return hr + "h ago";
+    const day = Math.floor(hr / 24);
+    if(day < 30) return day + "d ago";
+    return Math.floor(day / 30) + "mo ago";
+  }
+
+  function refreshCommitHeartbeats(){
+    document.querySelectorAll(".commit-heartbeat").forEach(el=>{
+      const value=el.dataset.commitTime || "";
+      el.textContent="Last commit · "+relativeAge(value);
+      el.title=value || "No commit timestamp available";
+    });
+  }
+
   function apply(){
     const q = ($("searchInput")?.value || "").trim().toLowerCase();
     const sort = $("sortFilter")?.value || "id";
@@ -37,6 +60,7 @@
     const visible = cards.filter(c => !c.classList.contains("hidden"));
     if(sort === "progress-desc") cards.sort((a,b)=>Number(b.dataset.progress)-Number(a.dataset.progress));
     else if(sort === "progress-asc") cards.sort((a,b)=>Number(a.dataset.progress)-Number(b.dataset.progress));
+    else if(sort === "recent") cards.sort((a,b)=>new Date(b.dataset.lastCommit||0)-new Date(a.dataset.lastCommit||0));
     else if(sort === "activity"){
       const rank={active:0,gated:1,blocked:2,quiet:3};
       cards.sort((a,b)=>(rank[a.dataset.activity]??9)-(rank[b.dataset.activity]??9)||String(a.dataset.id).localeCompare(String(b.dataset.id)));
@@ -83,5 +107,7 @@
   initTheme();
   wire();
   counts();
+  refreshCommitHeartbeats();
   apply();
+  setInterval(refreshCommitHeartbeats, 60000);
 })();
