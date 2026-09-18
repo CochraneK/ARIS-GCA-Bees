@@ -1,3 +1,5 @@
+"""Verified TLS live universe smoke."""
+
 from pathlib import Path
 
 from china_universe import dump_universe_report, fetch_live_universes
