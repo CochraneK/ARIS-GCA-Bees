@@ -28,7 +28,9 @@ ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests wh
 - [x] amended coding schema **before first coding** to separate OCI candidacy from evidential support;
 - [x] completed 30-record Coder A feasibility pass across six prespecified strata;
 - [x] recorded Pilot 0A audit and failure conditions;
-- [x] registered Paper 012 in the canonical papers index and manifest-driven public hub.
+- [x] registered Paper 012 in the canonical papers index and manifest-driven public hub;
+- [x] generated a blind 30-record Coder B packet with all Coder A labels removed;
+- [x] added an explicit independent-coder handoff protocol.
 
 ## Pilot 0A result
 
@@ -106,12 +108,11 @@ Reconstruct Pilot 0 from frozen database/search queries rather than relying on a
 
 ## Next execution queue
 
-1. create independent Coder B packet with labels hidden;
-2. obtain independent Coder B output;
-3. calculate kappa/alpha and adjudicate disagreements;
-4. run database-exported Pilot 0 retrieval and compare with the feasibility packet;
-5. expand closest-prior-work matrix toward saturation;
-6. only after Gates B and R pass, freeze the full evidence-map protocol and scale screening.
+1. obtain a genuinely independent Coder B output using `data/pilot0_coderB_blind.csv`;
+2. calculate kappa/alpha and adjudicate disagreements;
+3. run database-exported Pilot 0 retrieval and compare with the feasibility packet;
+4. expand closest-prior-work matrix toward saturation;
+5. only after Gates B and R pass, freeze the full evidence-map protocol and scale screening.
 
 ## Handoff sentence
 
