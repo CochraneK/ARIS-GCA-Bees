@@ -6,27 +6,48 @@ sources, and detector findings. It never stores a guilt/corruption edge.
 
 from __future__ import annotations
 
-from dataclasses import asdict
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 from open_integrity_agent import Finding, IntegrityCase
 
 
 def build_evidence_graph(
     case: IntegrityCase,
-    findings: Iterable[Finding] = (),
+    findings: Iterable[Finding | Mapping[str, Any]] = (),
 ) -> dict[str, Any]:
     nodes: list[dict[str, Any]] = []
     edges: list[dict[str, Any]] = []
-    seen_nodes: set[str] = set()
+    node_index: dict[str, dict[str, Any]] = {}
 
     def add_node(node_id: str, node_type: str, **attrs: Any) -> None:
-        if not node_id or node_id in seen_nodes:
+        if not node_id:
             return
-        seen_nodes.add(node_id)
-        nodes.append({"id": node_id, "type": node_type, **attrs})
+        existing = node_index.get(node_id)
+        if existing is None:
+            node = {"id": node_id, "type": node_type, **attrs}
+            node_index[node_id] = node
+            nodes.append(node)
+            return
+        # Enrich a placeholder or earlier sparse node without silently
+        # replacing non-empty provenance already recorded.
+        if existing.get("type") in {"unresolved_entity", "supplier"} and node_type not in {
+            "unresolved_entity",
+            "supplier",
+        }:
+            existing["type"] = node_type
+        for key, value in attrs.items():
+            if value not in (None, "", [], ()) and existing.get(key) in (None, "", [], ()):
+                existing[key] = value
 
     c = case.contract
+    if case.subject_id != c.contract_id:
+        add_node(case.subject_id, "case_subject")
+        edges.append({
+            "source": case.subject_id,
+            "target": c.contract_id,
+            "type": "CONTAINS",
+        })
+
     add_node(
         c.contract_id,
         "contract",
@@ -37,7 +58,6 @@ def build_evidence_graph(
         jurisdiction=c.jurisdiction,
     )
     add_node(c.authority_id, "authority")
-
     edges.append({
         "source": c.authority_id,
         "target": c.contract_id,
@@ -79,8 +99,6 @@ def build_evidence_graph(
         )
 
     for i, rel in enumerate(case.relations):
-        # External relation endpoints can be present before a richer entity
-        # record is loaded. Preserve them as unresolved nodes rather than drop.
         add_node(rel.left_id, "unresolved_entity")
         add_node(rel.right_id, "unresolved_entity")
         edges.append({
@@ -114,16 +132,22 @@ def build_evidence_graph(
         })
 
     for finding in findings:
-        fid = finding.finding_id
+        if isinstance(finding, Finding):
+            payload = finding.to_dict()
+        else:
+            payload = dict(finding)
+        fid = str(payload.get("finding_id") or "")
+        if not fid:
+            continue
         add_node(
             fid,
             "detector_finding",
-            detector_id=finding.detector_id,
-            family=finding.family,
-            status=finding.status.value,
-            evidence_class=finding.evidence_class.value,
-            claim=finding.claim,
-            dependency_group=finding.dependency_group,
+            detector_id=payload.get("detector_id"),
+            family=payload.get("family"),
+            status=payload.get("status"),
+            evidence_class=payload.get("evidence_class"),
+            claim=payload.get("claim"),
+            dependency_group=payload.get("dependency_group"),
             corruption_inference=False,
         )
         edges.append({
