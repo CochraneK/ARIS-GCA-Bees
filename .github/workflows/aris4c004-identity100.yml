@@ -11,6 +11,7 @@ on:
       - ".github/workflows/aris4c004-identity100.yml"
       - "papers/004-counterfactual-cost-of-exclusion/code/acquire/openalex_pilot.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/wikidata_identifiers.py"
+      - "papers/004-counterfactual-cost-of-exclusion/code/resolve/merge_identity100_shards.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/openalex_cluster_review.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/openalex_cluster_evidence.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/cluster_evidence_guard.py"
@@ -18,6 +19,7 @@ on:
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/wikidata_identity_evidence.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/build_identity_review_packet.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/build_identity100_draft.py"
+      - "papers/004-counterfactual-cost-of-exclusion/code/resolve/rank_identity_review.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/validate_identity.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/analysis/summarize_observability.py"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/science_candidates_frozen.csv"
@@ -28,9 +30,83 @@ permissions:
   contents: read
 
 jobs:
-  identity100:
+  resolve-shards:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9]
+    env:
+      PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
+      SHARD: ${{ matrix.shard }}
+      OUT: papers/004-counterfactual-cost-of-exclusion/data/interim/identity100-shard-${{ matrix.shard }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build deterministic 10-person shard
+        shell: bash
+        run: |
+          mkdir -p "$OUT/openalex"
+          python "$PAPER_DIR/code/resolve/wikidata_identifiers.py" \
+            "$PAPER_DIR/data/derived/science_candidates_frozen.csv" \
+            --output "$OUT/all_identifiers.csv" || \
+            cp "$PAPER_DIR/data/derived/science_candidates_frozen.csv" "$OUT/all_identifiers.csv"
+
+          python - <<'PY'
+          import csv, os
+          from pathlib import Path
+          shard = int(os.environ["SHARD"])
+          out = Path(os.environ["OUT"])
+          src = out / "all_identifiers.csv"
+          dst = out / "candidates_shard.csv"
+          with src.open("r", encoding="utf-8-sig", newline="") as h:
+              rows = list(csv.DictReader(h))
+              fields = list(rows[0].keys())
+          part = rows[shard * 10:(shard + 1) * 10]
+          if len(part) != 10:
+              raise SystemExit(f"shard {shard} expected 10 rows, got {len(part)}")
+          with dst.open("w", encoding="utf-8", newline="") as h:
+              w = csv.DictWriter(h, fieldnames=fields)
+              w.writeheader()
+              w.writerows(part)
+          print({"shard": shard, "rows": len(part), "first": part[0]["person_id"], "last": part[-1]["person_id"]})
+          PY
+
+      - name: Resolve shard against OpenAlex
+        run: |
+          python "$PAPER_DIR/code/acquire/openalex_pilot.py" \
+            "$OUT/candidates_shard.csv" \
+            --out-dir "$OUT/openalex" \
+            --year-min 1800 \
+            --year-max 2026 \
+            --max-candidates 10 \
+            --max-works-per-author 10 \
+            --search-n 10 \
+            --sleep-rps 2
+
+      - name: Upload shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c004-identity100-shard-${{ matrix.shard }}
+          path: |
+            ${{ env.OUT }}/candidates_shard.csv
+            ${{ env.OUT }}/openalex/openalex_acquisition_summary.json
+            ${{ env.OUT }}/openalex/openalex_resolution_audit.jsonl
+            ${{ env.OUT }}/openalex/openalex_authors.jsonl
+            ${{ env.OUT }}/openalex/openalex_works.jsonl
+          if-no-files-found: error
+          retention-days: 30
+
+  assemble:
+    needs: resolve-shards
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
     env:
       PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
       OUT: papers/004-counterfactual-cost-of-exclusion/data/interim/identity100
@@ -41,52 +117,72 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Initialize frozen 100-person frame
+      - name: Download all resolver shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c004-identity100-shard-*
+          path: identity100-shards
+          merge-multiple: false
+
+      - name: Merge OpenAlex shard outputs
         run: |
           mkdir -p "$OUT/openalex/cluster_evidence" "$OUT/identity_packet"
           cp "$PAPER_DIR/data/derived/science_candidates_frozen.csv" "$OUT/science_candidates_frozen.csv"
-          test $(($(wc -l < "$OUT/science_candidates_frozen.csv") - 1)) -eq 100
-
-      - name: Add Wikidata identifier leads
-        continue-on-error: true
-        run: |
-          python "$PAPER_DIR/code/resolve/wikidata_identifiers.py"             "$OUT/science_candidates_frozen.csv"             --output "$OUT/science_candidates_identifiers.csv"
-
-      - name: Ensure identifier table exists
-        run: |
-          if [ ! -s "$OUT/science_candidates_identifiers.csv" ]; then
+          python "$PAPER_DIR/code/resolve/merge_identity100_shards.py" \
+            --shard-root identity100-shards \
+            --out-dir "$OUT/openalex" \
+            --expected-shards 10
+          python "$PAPER_DIR/code/resolve/wikidata_identifiers.py" \
+            "$OUT/science_candidates_frozen.csv" \
+            --output "$OUT/science_candidates_identifiers.csv" || \
             cp "$OUT/science_candidates_frozen.csv" "$OUT/science_candidates_identifiers.csv"
-          fi
-
-      - name: Resolve all 100 candidates against OpenAlex
-        run: |
-          python "$PAPER_DIR/code/acquire/openalex_pilot.py"             "$OUT/science_candidates_identifiers.csv"             --out-dir "$OUT/openalex"             --year-min 1800             --year-max 2026             --max-candidates 100             --max-works-per-author 20             --search-n 10             --sleep-rps 2
 
       - name: Build 100-person fragment review queue
         run: |
-          python "$PAPER_DIR/code/resolve/openalex_cluster_review.py"             "$OUT/openalex/openalex_resolution_audit.jsonl"             --output-csv "$OUT/openalex/identity_review_queue.csv"             --summary-json "$OUT/openalex/identity_review_summary.json"
+          python "$PAPER_DIR/code/resolve/openalex_cluster_review.py" \
+            "$OUT/openalex/openalex_resolution_audit.jsonl" \
+            --output-csv "$OUT/openalex/identity_review_queue.csv" \
+            --summary-json "$OUT/openalex/identity_review_summary.json"
 
       - name: Collect bounded fragment evidence
         continue-on-error: true
         run: |
-          python "$PAPER_DIR/code/resolve/openalex_cluster_evidence.py"             "$OUT/openalex/identity_review_queue.csv"             --out-dir "$OUT/openalex/cluster_evidence"             --year-min 1800             --year-max 2026             --max-works-per-id 50             --sleep-rps 2
+          python "$PAPER_DIR/code/resolve/openalex_cluster_evidence.py" \
+            "$OUT/openalex/identity_review_queue.csv" \
+            --out-dir "$OUT/openalex/cluster_evidence" \
+            --year-min 1800 \
+            --year-max 2026 \
+            --max-works-per-id 20 \
+            --sleep-rps 2
 
       - name: Guard fragment evidence
         run: |
           PAIRS="$OUT/openalex/cluster_evidence/cluster_pairwise_evidence.jsonl"
           if [ -s "$PAIRS" ]; then
-            python "$PAPER_DIR/code/resolve/cluster_evidence_guard.py"               "$PAIRS"               --output-jsonl "$OUT/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl"               --summary-json "$OUT/openalex/cluster_evidence/cluster_guard_summary.json"
+            python "$PAPER_DIR/code/resolve/cluster_evidence_guard.py" \
+              "$PAIRS" \
+              --output-jsonl "$OUT/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl" \
+              --summary-json "$OUT/openalex/cluster_evidence/cluster_guard_summary.json"
           else
             : > "$OUT/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl"
+            printf '{"pair_n":0,"mental_health_information_used":false}\n' > "$OUT/openalex/cluster_evidence/cluster_guard_summary.json"
           fi
 
       - name: Build accepted top-record profiles
         run: |
-          python "$PAPER_DIR/code/resolve/build_single_author_profiles.py"             --candidates "$OUT/science_candidates_frozen.csv"             --authors "$OUT/openalex/openalex_authors.jsonl"             --works "$OUT/openalex/openalex_works.jsonl"             --output-jsonl "$OUT/identity_packet/accepted_author_profiles.jsonl"
+          python "$PAPER_DIR/code/resolve/build_single_author_profiles.py" \
+            --candidates "$OUT/science_candidates_frozen.csv" \
+            --authors "$OUT/openalex/openalex_authors.jsonl" \
+            --works "$OUT/openalex/openalex_works.jsonl" \
+            --output-jsonl "$OUT/identity_packet/accepted_author_profiles.jsonl"
 
       - name: Fetch MH-blind authority evidence for all 100
         run: |
-          python "$PAPER_DIR/code/resolve/wikidata_identity_evidence.py"             "$OUT/science_candidates_frozen.csv"             --output-jsonl "$OUT/identity_packet/wikidata_identity_evidence.jsonl"             --summary-json "$OUT/identity_packet/wikidata_identity_summary.json"             --max-candidates 100
+          python "$PAPER_DIR/code/resolve/wikidata_identity_evidence.py" \
+            "$OUT/science_candidates_frozen.csv" \
+            --output-jsonl "$OUT/identity_packet/wikidata_identity_evidence.jsonl" \
+            --summary-json "$OUT/identity_packet/wikidata_identity_summary.json" \
+            --max-candidates 100
 
       - name: Assemble all profile evidence
         run: |
@@ -98,26 +194,51 @@ jobs:
 
       - name: Build 100-person review packet
         run: |
-          python "$PAPER_DIR/code/resolve/build_identity_review_packet.py"             --candidates "$OUT/science_candidates_frozen.csv"             --queue "$OUT/openalex/identity_review_queue.csv"             --profiles "$OUT/identity_packet/all_author_profiles.jsonl"             --guarded-pairs "$OUT/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl"             --authority "$OUT/identity_packet/wikidata_identity_evidence.jsonl"             --output-jsonl "$OUT/identity_packet/identity_review_packet.jsonl"             --output-md "$OUT/identity_packet/IDENTITY_REVIEW_PACKET.md"             --summary-json "$OUT/identity_packet/identity_review_packet_summary.json"             --max-candidates 100
+          python "$PAPER_DIR/code/resolve/build_identity_review_packet.py" \
+            --candidates "$OUT/science_candidates_frozen.csv" \
+            --queue "$OUT/openalex/identity_review_queue.csv" \
+            --profiles "$OUT/identity_packet/all_author_profiles.jsonl" \
+            --guarded-pairs "$OUT/openalex/cluster_evidence/cluster_pairwise_evidence_guarded.jsonl" \
+            --authority "$OUT/identity_packet/wikidata_identity_evidence.jsonl" \
+            --output-jsonl "$OUT/identity_packet/identity_review_packet.jsonl" \
+            --output-md "$OUT/identity_packet/IDENTITY_REVIEW_PACKET.md" \
+            --summary-json "$OUT/identity_packet/identity_review_packet_summary.json" \
+            --max-candidates 100
 
       - name: Rank unreviewed identity cases
         run: |
-          python "$PAPER_DIR/code/resolve/rank_identity_review.py"             "$OUT/identity_packet/identity_review_packet.jsonl"             --existing-reviewed "$PAPER_DIR/data/derived/identity_decisions_pilot30.csv"             --output-csv "$OUT/identity_review_priority.csv"             --summary-json "$OUT/identity_review_priority_summary.json"
+          python "$PAPER_DIR/code/resolve/rank_identity_review.py" \
+            "$OUT/identity_packet/identity_review_packet.jsonl" \
+            --existing-reviewed "$PAPER_DIR/data/derived/identity_decisions_pilot30.csv" \
+            --output-csv "$OUT/identity_review_priority.csv" \
+            --summary-json "$OUT/identity_review_priority_summary.json"
 
       - name: Create canonical 100-person decision draft
         run: |
-          python "$PAPER_DIR/code/resolve/build_identity100_draft.py"             --candidates "$OUT/science_candidates_frozen.csv"             --queue "$OUT/openalex/identity_review_queue.csv"             --existing-decisions "$PAPER_DIR/data/derived/identity_decisions_pilot30.csv"             --output "$OUT/identity_decisions_100_draft.csv"             --summary-json "$OUT/identity_decisions_100_summary.json"
+          python "$PAPER_DIR/code/resolve/build_identity100_draft.py" \
+            --candidates "$OUT/science_candidates_frozen.csv" \
+            --queue "$OUT/openalex/identity_review_queue.csv" \
+            --existing-decisions "$PAPER_DIR/data/derived/identity_decisions_pilot30.csv" \
+            --output "$OUT/identity_decisions_100_draft.csv" \
+            --summary-json "$OUT/identity_decisions_100_summary.json"
 
       - name: Validate 100-person decision draft against frozen frame
         run: |
-          python "$PAPER_DIR/code/validate_identity.py"             "$OUT/identity_decisions_100_draft.csv"             --candidate-frame "$OUT/science_candidates_frozen.csv"
+          python "$PAPER_DIR/code/validate_identity.py" \
+            "$OUT/identity_decisions_100_draft.csv" \
+            --candidate-frame "$OUT/science_candidates_frozen.csv"
 
       - name: Summarize pre-exposure observability bias
         run: |
-          python "$PAPER_DIR/code/analysis/summarize_observability.py"             --candidates "$OUT/science_candidates_frozen.csv"             --decisions "$OUT/identity_decisions_100_draft.csv"             --output-csv "$OUT/observability_by_stratum.csv"             --summary-json "$OUT/observability_summary.json"
+          python "$PAPER_DIR/code/analysis/summarize_observability.py" \
+            --candidates "$OUT/science_candidates_frozen.csv" \
+            --decisions "$OUT/identity_decisions_100_draft.csv" \
+            --output-csv "$OUT/observability_by_stratum.csv" \
+            --summary-json "$OUT/observability_summary.json"
 
       - name: Print identity100 summaries
         run: |
+          cat "$OUT/openalex/openalex_acquisition_summary.json"
           cat "$OUT/openalex/identity_review_summary.json"
           cat "$OUT/identity_review_priority_summary.json"
           cat "$OUT/identity_decisions_100_summary.json"
@@ -146,5 +267,5 @@ jobs:
             ${{ env.OUT }}/identity_packet/identity_review_packet.jsonl
             ${{ env.OUT }}/identity_packet/IDENTITY_REVIEW_PACKET.md
             ${{ env.OUT }}/identity_packet/identity_review_packet_summary.json
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 30
