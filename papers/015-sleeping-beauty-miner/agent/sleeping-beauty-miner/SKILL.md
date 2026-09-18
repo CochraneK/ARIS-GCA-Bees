@@ -15,12 +15,13 @@ metadata:
 
 Use this skill to identify delayed-recognition citation patterns and to construct auditable shortlists of still-dormant papers that may deserve renewed human attention.
 
-There are two distinct scientific tasks:
+There are three distinct scientific tasks:
 
 1. **Retrospective identification** — measure delayed recognition after enough citation history exists.
-2. **Prospective discovery** — at a historical cutoff T, rank papers using only evidence that existed by T, then evaluate against future outcomes hidden from the model.
+2. **Mechanism discovery** — build a case-enriched set of robust Sleeping Beauties and matched controls to study why recognition was delayed and what triggered awakening.
+3. **Prospective discovery** — at a historical cutoff T, rank papers using only evidence that existed by T, then evaluate against future outcomes hidden from the model.
 
-Do not conflate them. Retrospective Sleeping Beauty metrics are not proof that a prospective system could have found the paper earlier.
+Do not conflate them. A random prospective cohort may contain zero genuine Sleeping Beauties; relative top-q outcomes in that cohort are benchmark labels, not mechanism diagnoses.
 
 ## Core invariants
 
@@ -53,6 +54,25 @@ Compute:
 - candidate Prince papers and awakening-path evidence.
 
 This mode may say that a trajectory is consistent with delayed recognition only under a declared rule. Do not silently invent a threshold.
+
+### MECHANISM
+
+Use when asking why robust delayed-recognition cases slept and later awakened.
+
+Required workflow:
+- start from a large retrospective corpus, not a tiny random cohort;
+- apply a robust SB gate using converging retrospective evidence;
+- construct field/cohort-normalized SLEEPING_BEAUTY / FORGOTTEN / IMMEDIATE_HIT / FADING states;
+- match SBs to Forgotten controls on early-life observables;
+- separately compare SBs with Immediate Hits;
+- analyze reference/network/semantic/Prince mechanisms.
+
+Hard stop:
+- if no robust SB cases pass, set mechanism_ready=false;
+- do not force top-q benchmark papers to become SB cases;
+- do not estimate prospective precision/recall from the enriched mechanism cohort.
+
+See ../../process/MECHANISM_TRACK.md and ../../code/mechanism_cohort.py.
 
 ### PROSPECTIVE
 
@@ -300,3 +320,6 @@ Avoid:
 - ../../code/integrity_adapter.py — ARIS4C011 routing adapter.
 - ../../code/openalex_adapter.py — bounded OpenAlex ingestion.
 - ../../code/sciscinet_adapter.py — local SciSciNet-v2 slice adapter.
+- ../../code/mechanism_labels.py — robust SB and four-state mechanism labels.
+- ../../code/mechanism_matching.py — matched controls for mechanism contrasts.
+- ../../code/mechanism_cohort.py — case-enriched mechanism cohort builder.
