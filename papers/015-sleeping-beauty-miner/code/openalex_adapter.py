@@ -1,29 +1,24 @@
 """Bounded OpenAlex adapter for ARIS4C015.
 
-Purpose
--------
-This adapter is for small pilots, validation cases, and ID/metadata enrichment.
-It is not intended to crawl the complete OpenAlex graph.
+This adapter supports small pilots, historical-cutoff validation, and metadata
+enrichment. It is not intended to crawl the entire OpenAlex graph.
 
-OpenAlex semantics used here:
-- a target Work contains publication_year and referenced_works;
-- works that cite a target can be retrieved with the Works filter
-  `cites:<OPENALEX_WORK_ID>`;
-- yearly histories for long-lived papers should be reconstructed from the
-  publication years of incoming citing works, not from a truncated
-  counts_by_year field;
-- historical probes should push the cutoff into the API query with
-  `to_publication_date` whenever possible, rather than downloading future
-  citing works and discarding them locally.
+Important implementation rules:
+- reconstruct long citation histories from incoming citation edges + citing
+  publication years, not from truncated recent-year counters;
+- push historical cutoffs into the OpenAlex query;
+- reuse metadata already returned by a sampled Work instead of refetching it;
+- retry transient 429/5xx responses with bounded exponential backoff;
+- use an API key for sustained work when available.
 
-The module uses only Python's standard library so the deterministic core of
-ARIS4C015 remains lightweight.
+The module uses only Python's standard library.
 """
 
 from __future__ import annotations
 
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
@@ -67,35 +62,102 @@ def _short_id(value: str | None) -> str:
     return value.rstrip("/").split("/")[-1]
 
 
+def _retry_delay(
+    exc: urllib.error.HTTPError,
+    *,
+    attempt: int,
+    max_server_delay: float = 60.0,
+) -> float:
+    """Choose a bounded retry delay from headers or exponential backoff."""
+    retry_after = exc.headers.get("Retry-After") if exc.headers else None
+    if retry_after:
+        try:
+            delay = float(retry_after)
+            if 0 <= delay <= max_server_delay:
+                return delay
+        except ValueError:
+            pass
+    return min(float(2**attempt), max_server_delay)
+
+
+def _rate_limit_context(exc: urllib.error.HTTPError) -> str:
+    if not exc.headers:
+        return ""
+    bits = []
+    for header in (
+        "X-RateLimit-Limit",
+        "X-RateLimit-Remaining",
+        "X-RateLimit-Reset",
+        "X-RateLimit-Credits-Used",
+    ):
+        value = exc.headers.get(header)
+        if value is not None:
+            bits.append(f"{header}={value}")
+    return "; ".join(bits)
+
+
 def _request_json(
     path: str,
     *,
     params: dict[str, str | int] | None = None,
     api_key: str | None = None,
     timeout: int = 30,
+    max_retries: int = 5,
+    base_sleep_seconds: float = 0.0,
 ) -> dict[str, Any]:
+    """Issue an OpenAlex request with bounded retry for transient failures."""
     query = dict(params or {})
     if api_key:
         query["api_key"] = api_key
     url = BASE_URL + path
     if query:
         url += "?" + urllib.parse.urlencode(query, safe=":,|")
-    req = urllib.request.Request(
-        url,
-        headers={
-            "Accept": "application/json",
-            "User-Agent": "ARIS4C015-Sleeping-Beauty-Miner/0.1",
-        },
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as response:
-            if response.status != 200:
-                raise OpenAlexError(f"OpenAlex HTTP {response.status}")
-            return json.loads(response.read().decode("utf-8"))
-    except Exception as exc:
-        if isinstance(exc, OpenAlexError):
+
+    last_error: Exception | None = None
+    for attempt in range(max_retries + 1):
+        if base_sleep_seconds:
+            time.sleep(base_sleep_seconds)
+
+        req = urllib.request.Request(
+            url,
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "ARIS4C015-Sleeping-Beauty-Miner/0.2",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as response:
+                if response.status != 200:
+                    raise OpenAlexError(f"OpenAlex HTTP {response.status}")
+                return json.loads(response.read().decode("utf-8"))
+
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            transient = exc.code == 429 or 500 <= exc.code < 600
+            if transient and attempt < max_retries:
+                time.sleep(_retry_delay(exc, attempt=attempt))
+                continue
+
+            context = _rate_limit_context(exc)
+            detail = f"HTTP Error {exc.code}: {exc.reason}"
+            if context:
+                detail += f" ({context})"
+            raise OpenAlexError(detail) from exc
+
+        except (urllib.error.URLError, TimeoutError) as exc:
+            last_error = exc
+            if attempt < max_retries:
+                time.sleep(min(float(2**attempt), 30.0))
+                continue
+            raise OpenAlexError(str(exc)) from exc
+
+        except OpenAlexError:
             raise
-        raise OpenAlexError(str(exc)) from exc
+
+        except Exception as exc:
+            raise OpenAlexError(str(exc)) from exc
+
+    raise OpenAlexError(str(last_error or "OpenAlex request failed"))
 
 
 def fetch_work(identifier: str, *, api_key: str | None = None) -> OpenAlexWork:
@@ -111,16 +173,14 @@ def iter_citing_works(
     api_key: str | None = None,
     max_records: int | None = None,
     per_page: int = 100,
-    polite_sleep_seconds: float = 0.0,
+    polite_sleep_seconds: float = 0.05,
     to_publication_year: int | None = None,
 ) -> Iterator[dict[str, Any]]:
-    """Yield works that cite the target work using cursor pagination.
+    """Yield works that cite the target using cursor pagination.
 
-    The query selects only fields needed for trajectory reconstruction and
-    basic provenance. For historical-cutoff work, to_publication_year adds the
-    OpenAlex `to_publication_date` filter at query time. max_records should be
-    set for bounded exploratory pilots, never for confirmatory complete
-    histories.
+    For historical-cutoff work, to_publication_year adds the OpenAlex
+    to_publication_date filter at query time. The small default inter-page
+    delay reduces burst pressure in matrix CI runs.
     """
     target = _short_id(work_id)
     if not target:
@@ -163,25 +223,24 @@ def iter_citing_works(
             time.sleep(polite_sleep_seconds)
 
 
-def reconstruct_history_from_openalex(
-    work_id: str,
+def reconstruct_history_for_known_work(
+    work: OpenAlexWork,
     *,
     publication_year: int | None = None,
     end_year: int | None = None,
     api_key: str | None = None,
     max_records: int | None = None,
-) -> tuple[OpenAlexWork, CitationHistory]:
-    """Fetch a target work and reconstruct a zero-filled citation history.
+) -> CitationHistory:
+    """Reconstruct history when target metadata is already available.
 
-    When end_year is provided, citing-work retrieval is restricted at the API
-    level to works published on or before that year.
-
-    If max_records is not None and the matching incoming citations exceed the
-    cap, the returned history is explicitly incomplete and should not be used
-    for confirmatory Sleeping Beauty metrics.
+    This avoids one redundant Work lookup per sampled target, which materially
+    lowers request volume in historical cohort workflows.
     """
-    work = fetch_work(work_id, api_key=api_key)
-    year = publication_year if publication_year is not None else work.publication_year
+    year = (
+        publication_year
+        if publication_year is not None
+        else work.publication_year
+    )
     if year is None:
         raise OpenAlexError("Target work has no publication_year")
 
@@ -195,23 +254,39 @@ def reconstruct_history_from_openalex(
         )
         if row.get("publication_year") is not None
     ]
-    history = citation_history_from_citing_years(
+    return citation_history_from_citing_years(
         int(year),
         citing_years,
         end_year=end_year,
         strict=False,
     )
+
+
+def reconstruct_history_from_openalex(
+    work_id: str,
+    *,
+    publication_year: int | None = None,
+    end_year: int | None = None,
+    api_key: str | None = None,
+    max_records: int | None = None,
+) -> tuple[OpenAlexWork, CitationHistory]:
+    """Fetch target metadata and reconstruct a zero-filled citation history."""
+    work = fetch_work(work_id, api_key=api_key)
+    history = reconstruct_history_for_known_work(
+        work,
+        publication_year=publication_year,
+        end_year=end_year,
+        api_key=api_key,
+        max_records=max_records,
+    )
     return work, history
 
 
-def history_is_complete(work: OpenAlexWork, history: CitationHistory) -> bool | None:
-    """Best-effort whole-lifetime completeness check against cited_by_count.
-
-    Do not use this helper for a historical end_year because cited_by_count is
-    current and therefore includes later citing works. OpenAlex also documents
-    update-timing differences, so this remains a diagnostic rather than a hard
-    integrity assertion.
-    """
+def history_is_complete(
+    work: OpenAlexWork,
+    history: CitationHistory,
+) -> bool | None:
+    """Best-effort whole-lifetime completeness check against cited_by_count."""
     if work.cited_by_count is None:
         return None
     return history.valid_edges >= int(work.cited_by_count)
@@ -226,11 +301,8 @@ def sample_works(
 ) -> list[OpenAlexWork]:
     """Return a reproducible random sample of works.
 
-    OpenAlex supports `sample=N` with `seed` for reproducible sampling.
-    Keep the sampling frame defined only by cutoff-safe attributes (for
-    example publication year, document type, or field). Do not filter the
-    historical benchmark sample using present-day citation count or later
-    awards/status.
+    Sampling-frame filters should avoid outcome-bearing present-day variables
+    such as current citation counts, later awards, or post-publication status.
     """
     if sample_size < 1 or sample_size > 100:
         raise ValueError(
