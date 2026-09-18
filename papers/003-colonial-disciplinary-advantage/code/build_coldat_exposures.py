@@ -13,8 +13,8 @@ from pathlib import Path
 
 import pandas as pd
 
-ID_COLS = {"Entity", "Code", "Year"}
-
+ID_COLS = {"Entity", "Code", "Year", "World region according to OWID"}
+EMPIRE_ISO3 = {\n    "Belgium": "BEL",\n    "United Kingdom": "GBR",\n    "France": "FRA",\n    "Germany": "DEU",\n    "Netherlands": "NLD",\n    "Portugal": "PRT",\n    "Spain": "ESP",\n    "Italy": "ITA",\n}\n
 
 def measure_col(df: pd.DataFrame) -> str:
     candidates = [c for c in df.columns if c not in ID_COLS]
@@ -127,8 +127,7 @@ def build_empire_counts(path: Path) -> pd.DataFrame:
     m = measure_col(df)
     df[m] = pd.to_numeric(df[m], errors="coerce")
     df = df[df[m].notna()].copy()
-    out = (
-        df.groupby("Entity")
+    out = (\n        df[df["Entity"].isin(EMPIRE_ISO3)]\n        .groupby("Entity")
         .agg(
             cumulative_colony_years_ruled=(m, "sum"),
             peak_colonies=(m, "max"),
@@ -141,10 +140,7 @@ def build_empire_counts(path: Path) -> pd.DataFrame:
         .sort_values("cumulative_colony_years_ruled", ascending=False)
         .reset_index(drop=True)
     )
-    return out
-
-
-def main() -> None:
+    out["iso3c"] = out["colonizer"].map(EMPIRE_ISO3)\n    return out\n\n\ndef main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--years", type=Path, required=True)
     parser.add_argument("--colonizer-year", type=Path)
@@ -165,7 +161,7 @@ def main() -> None:
 
     if args.empire_counts:
         empire = build_empire_counts(args.empire_counts)
-        empire.to_csv(args.output_dir / "COLDAT_IMPERIAL_INTENSITY.csv", index=False)
+        empire.to_csv(args.output_dir / "COLDAT_IMPERIAL_INTENSITY_OWID_CHECK.csv", index=False)
         print(f"imperial-center rows: {len(empire)}")
 
 
