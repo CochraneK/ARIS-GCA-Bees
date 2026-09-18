@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - aris4c005-latent-model-20260918
+      - aris4c005-latent-model-final-20260918
     paths:
       - ".github/workflows/aris4c005-latent-model.yml"
       - "papers/005-hidden-burden-bad-science/code/make_adjudication_packet.py"
