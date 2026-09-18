@@ -173,3 +173,22 @@ python code/adjudicate_ikes.py \
 ```
 
 Any concept × dimension disagreement of **2 or more points**, and every missing A/B cell, must be reviewed against cited historical evidence before `IKES_FROZEN.csv` is created.
+
+
+After resolving only the automatically flagged adjudication cells, freeze with
+the complete evidence provenance chain:
+
+```bash
+python code/freeze_ikes.py \
+  process/ikes_adjudication/IKES_DISAGREEMENTS.csv \
+  --output process/IKES_FROZEN.csv \
+  --provenance process/IKES_FROZEN.provenance.json \
+  --coder-a process/IKES_CODER_A.csv \
+  --coder-b process/IKES_CODER_B.csv \
+  --coder-b-notes process/IKES_CODER_B.md \
+  --coder-b-raw process/gptpage/<date>_ikes-coder-b-raw.md
+```
+
+The freeze provenance hashes all six links: Coder A, Coder B scores, Coder B
+evidence notes, untouched raw GPTPage response, adjudication table, and final
+frozen IKES. Outcome unlock must fail if any recorded hash later changes.
