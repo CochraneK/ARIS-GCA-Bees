@@ -1,22 +1,26 @@
 {
   "slug": "language-periodic-system",
-  "status": "review-ready-active-candidate",
-  "aris_stage": "formal-secondary-review-pending",
+  "status": "promoted",
+  "aris_stage": "secondary-review-passed",
   "working_title": "Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure",
   "alternate_title": "Beyond the Periodic Table: Stress-Testing the Geometry of Cross-Linguistic Structural Space",
-  "paper_id": null,
-  "promotion_target": "formal Paper 002 after independent ARIS secondary review",
+  "paper_id": "002",
+  "promotion_target": null,
   "core_question": "Does an explicitly circular/periodic geometry provide reproducible out-of-sample organization of cross-linguistic structural relations beyond non-periodic alternatives?",
   "aris": {
     "recommended_release": "v0.4.26",
-    "formal_secondary_review": "pending",
-    "only_hard_gate_remaining": true,
+    "formal_secondary_review": "passed",
+    "only_hard_gate_remaining": false,
     "canonical_brief": "RESEARCH_BRIEF.md",
     "canonical_idea_report": "idea-stage/IDEA_REPORT.md",
     "final_proposal": "refine-logs/FINAL_PROPOSAL.md",
     "experiment_tracker": "refine-logs/EXPERIMENT_TRACKER.md",
     "review_packet": "refine-logs/SECONDARY_REVIEW_PACKET.md",
-    "capacity_note": "refine-logs/MODEL_CAPACITY_NOTE.md"
+    "capacity_note": "refine-logs/MODEL_CAPACITY_NOTE.md",
+    "secondary_review_receipt": "refine-logs/SECONDARY_REVIEW_RECEIPT.md",
+    "secondary_review_model": "Tencent Hy3 via WorkBuddy",
+    "secondary_review_verdict": "PASS",
+    "promotion_authorized": true
   },
   "evidence": {
     "stage0": {
@@ -97,6 +101,7 @@
     "reviewer acceptance or tractable revision of model-fairness and claim-boundary logic"
   ],
   "review_slot": "002",
-  "formal_paper_id": null,
-  "review_pointer": "papers/002-REVIEW-CANDIDATE.md"
+  "formal_paper_id": "002",
+  "review_pointer": null,
+  "formal_paper_path": "papers/002-language-geometry"
 }
