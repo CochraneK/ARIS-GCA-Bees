@@ -1,7 +1,7 @@
 # STATUS · ARIS4C013
 
 **Project:** Born to Die? Birth–Death Temporal Coupling  
-**Stage:** empirical feasibility / administrative-data transfer gate  
+**Stage:** public NUMIDENT transfer / administrative Pilot 1 gate  
 **Date:** 2026-09-18
 
 ## Completed
@@ -33,10 +33,10 @@ Scientifically suitable and unrestricted, but the Harvard Dataverse download is 
 ### Raw NUMIDENT
 The public-use death files are a viable fallback and independent audit source. The death record itself contains birth month/day/year and death month/day/year, plus proof-of-death, DOB-exception, death-source, and verified-EDR fields. The parser and synthetic fixed-width tests are ready.
 
-OpenICPSR hosts two death archives, approximately 938 MB each, but its download flow requires an authenticated browser/terms session rather than a stable anonymous file API.
+OpenICPSR V3 publicly lists two NUMIDENT death archives, `NUMDEATH01-10_PU.zip` (~938.4 MB) and `NUMDEATH11-20_PU.zip` (~938.1 MB), under DOI `10.3886/E207202V3`. External replication documentation states that the Public-Use NUMIDENT files have no access or use restrictions and explicitly directs replicators to this OpenICPSR deposit. The remaining blocker is file transfer into the execution environment, not scientific eligibility or a BUNMD identity form. Canonical provenance is frozen in `data/numident_source_manifest.json`.
 
 ## Open gates
-- **A — Administrative data transfer:** obtain either BUNMD through a truthful guestbook submission or the two raw NUMIDENT death archives through OpenICPSR's authenticated download flow.
+- **A — Administrative data transfer:** transfer the two public-use raw NUMIDENT V3 death archives into the execution environment and verify archive/file-layout hashes. BUNMD remains an optional cleaned replication route, not a prerequisite.
 - **B — Administrative Pilot 1:** run the locked 1988–1996 discovery immediately after either source is available.
 - **C — Precision audit:** quantify prespecified day 1/4/15 heaping and report exception/source fields before interpreting offset 0.
 - **D — Discovery freeze:** commit discovery results and freeze any justified sensitivity analyses without altering the locked primary specification.
@@ -50,4 +50,4 @@ OpenICPSR hosts two death archives, approximately 938 MB each, but its download 
 Current justified claim: apparent birth–death coupling can be extremely large when date precision is mishandled; the hypothesis is now operationalized for a population-scale administrative test, but the full administrative dataset bytes are not yet present in the execution environment.
 
 ## Immediate next action
-Acquire one of the two administrative sources without fabricating identity. Once the file bytes are available, run the already-locked Pilot 1 rather than changing the design.
+Acquire the two public-use NUMIDENT V3 death archives from OpenICPSR, verify the raw layout, and run the already-locked 1988–1996 Pilot 1. Do not change the design while waiting for file transfer. BUNMD can be added later as a cleaned-source replication.
