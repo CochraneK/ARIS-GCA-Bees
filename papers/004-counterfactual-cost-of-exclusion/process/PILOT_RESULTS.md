@@ -330,3 +330,129 @@ Mechanical cleanup is not allowed to automatically release a previously held per
 
 Only after this work-level gate is characterized should the project decide whether to scale identity resolution from the first 30 to all 100 frozen candidates. Mental-health exposure coding remains locked.
 
+## Pilot v6 — work-level adjudication and clean network release
+
+The verified-person corpus was rebuilt from all accepted OpenAlex Author IDs for the 18 verified pilot identities.
+
+Result:
+
+- verified people: **18**
+- unique person-level work records: **838**
+- work fetch errors: **0**
+- manual work-review rows generated: **200**
+
+The 200-row frozen work-decision table was then validated against a freshly regenerated 200-row review queue. The validation passed exactly; no work was silently added or omitted.
+
+Five previously held identities received explicit work-level adjudication:
+
+| Person | Plausible review rows | KEEP works | Result |
+|---|---:|---:|---|
+| Karl-Franz Busch | 8 | 3 | remains network-unobservable under >=5-work pilot rule |
+| Erika Greber | 34 | 28 | released |
+| Joel Olson | 48 | 18 | released |
+| Anton Moortgat | 29 | 13 | released |
+| Fritz Strassmann | 81 | 57 | released |
+
+The work codebook separated namesake contamination, book/container fragments, modern reprints, duplicate manifestations, and unresolved records before any mental-health exposure was examined.
+
+This increased the pilot network-observable set from 9 to **13/30 = 43.3%**.
+
+## Pilot v7 — clean focal network
+
+The 13 released identities were converted into a pre-exposure clean network frame.
+
+Result:
+
+- network-observable people: **13**
+- clean focal works: **693**
+- topic metadata coverage: **98.99%**
+- external-coauthor metadata coverage: **63.06%**
+- unique external coauthors: **395**
+- institution metadata coverage: **48.05%**
+- reference metadata coverage: **44.59%**
+- build errors: **0**
+
+The raw clean-work citation extraction identified 28 impossible time-reversed relations. These were quarantined and are no longer admitted to the temporal graph.
+
+After temporal filtering:
+
+- valid clean-work citation edges: **638**
+- within-person edges: **638**
+- cross-person focal edges: **0**
+- quarantined time-reversed edges: **28**
+
+Interpretation: the 13 focal people do not constitute one meaningful shared citation graph. This is not treated as failure. The analytic object was changed/frozen as a **person-specific temporal ego network**, documented in `NETWORK_MODEL.md`.
+
+## Pilot v8 — bounded downstream ego-network feasibility
+
+Run protocol:
+
+- maximum 6 anchors per person;
+- deterministic selection: earliest + temporal median + latest + highest-cited remaining;
+- incoming citation query: OpenAlex `cites:<work_id>`;
+- fixed downstream horizon: 20 years;
+- study end: 2026;
+- maximum 50 citing works per anchor;
+- acquisition order: earliest citing works first.
+
+Result:
+
+- people: **13**
+- anchors: **76**
+- anchors with >=1 downstream citer: **52/76 = 68.4%**
+- downstream citation edges: **897**
+- unique downstream person-work pairs: **817**
+- people with >=1 downstream work: **13/13**
+- people with >=10 downstream works: **8/13**
+- downstream time-order anomalies: **0**
+- API errors: **0**
+
+Person-level downstream unique-work counts:
+
+- Joel Olson: **211**
+- James S. Albus: **151**
+- Mary Alice McWhinnie: **130**
+- Fritz Strassmann: **97**
+- Dan Laksov: **88**
+- Hannah Gavron: **65**
+- Erika Greber: **32**
+- Willy Oelsen: **25**
+- Carl Föhl: **6**
+- Ottomar Rosenbach: **5**
+- Friedrich Hoeth: **3**
+- Anton Moortgat: **2**
+- Hilario Hernández Gurruchaga: **2**
+
+The threshold `>=10 downstream unique works` was already encoded in the feasibility summary before the person-level table was inspected.
+
+This creates two pre-exposure observability strata:
+
+- **citation-rich (8):** Albus, Olson, McWhinnie, Strassmann, Laksov, Gavron, Greber, Oelsen;
+- **citation-sparse (5):** Carl Föhl, Rosenbach, Hoeth, Moortgat, Hernández Gurruchaga.
+
+Citation-sparse is not an importance ranking. These cases remain in the frame because sparse OpenAlex citation coverage may reflect age, book-heavy publication practice, language, geography, or discipline-specific indexing. They are retained for multiplex/sensitivity analyses rather than dropped.
+
+## Network-feasibility conclusion
+
+**Science-first network feasibility passes.**
+
+The result supports MH-blind scale-up from the first 30 to all 100 frozen science candidates.
+
+What has been demonstrated:
+
+1. high-precision person-level identity review is possible, though labor-intensive;
+2. mixed/fragmented OpenAlex profiles can be decontaminated at the work level;
+3. clean focal works retain rich topic/coauthor metadata;
+4. every pilot network-observable person supports at least one downstream citation neighborhood under a common protocol;
+5. citation observability varies materially across historical people and therefore must be modeled/stratified rather than hidden.
+
+What has **not** been demonstrated:
+
+- final identity precision for all 100;
+- final exposed-case yield;
+- causal attribution to historical discrimination;
+- final CPE effect estimates;
+- suitability of the same citation layer for humanities/arts.
+
+The next stage is all-100 identity/network expansion under the same pre-exposure rules. Mental-health coding remains locked until that frame is frozen.
+
