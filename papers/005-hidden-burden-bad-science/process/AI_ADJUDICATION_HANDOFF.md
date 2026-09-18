@@ -18,19 +18,21 @@ Canonical instructions:
 
 Canonical scaled-audit artifact:
 
-- workflow run ID: `35301945169`
-- artifact ID: `10529404069`
+- workflow run ID: `35313753877`
+- artifact ID: `10534118414`
 - artifact name: `aris4c005-scaled-ai-audit`
-- artifact SHA-256 digest: `065230382d1f69f98ebb4ce189158c93a5b00f5e3ac2f46aa877bd51587af699`
+- artifact SHA-256 digest: `579ffeb1d0d67217914d3aa14923fee816360ec7f8e8f6ee3a4d9ebdffa397f1`
 
 The artifact contains:
 
 1. `aris4c005_scaled_random_audit.csv` — 10,000 sampled works with sampling metadata.
 2. `aris4c005_scaled_ai_reviewer_packet.csv` — 20,000 blinded assignments.
-3. `aris4c005_scaled_ai_manager_linkage.csv` — manager-only linkage/sampling metadata.
+3. `aris4c005_scaled_ai_manager_linkage.csv` — manager-only **lossless sampling linkage**, including audit stratum, stratum population N, stratum sample n, inclusion probability and design weight.
 4. `aris4c005_ai_batches/` — 80 deterministic model-input batches.
 
 Do not expose manager linkage to the adjudicating model.
+
+This artifact supersedes the earlier pre-fix scaled-audit artifact. The manager linkage was regenerated after fixing lossless preservation of all sampling-design columns; use only the artifact identifiers above for final prevalence analysis.
 
 ---
 
