@@ -22,8 +22,35 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /tmp/aris4c013
-          curl --retry 4 --retry-all-errors --connect-timeout 30 -fL             'https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/TTWNK8'             -o /tmp/aris4c013/bunmd_dataverse.json
-          python papers/013-birth-death-temporal-coupling/code/probe_bunmd_dataverse.py             /tmp/aris4c013/bunmd_dataverse.json             /tmp/aris4c013/bunmd_files.json
+          curl --retry 4 --retry-all-errors --connect-timeout 30 -fL \
+            'https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/TTWNK8' \
+            -o /tmp/aris4c013/bunmd_dataverse.json
+          python papers/013-birth-death-temporal-coupling/code/probe_bunmd_dataverse.py \
+            /tmp/aris4c013/bunmd_dataverse.json \
+            /tmp/aris4c013/bunmd_files.json
+
+      - name: Diagnose main archive access endpoint
+        shell: bash
+        run: |
+          set -u
+          url='https://dataverse.harvard.edu/api/access/datafile/7128124'
+          code=$(curl -sS -L --connect-timeout 30 --max-time 90 \
+            -r 0-1023 -D /tmp/aris4c013/access_headers.txt \
+            -o /tmp/aris4c013/access_body.bin \
+            -w '%{http_code}' "$url" || true)
+          echo "ACCESS_HTTP_CODE=$code"
+          echo "=== headers ==="
+          cat /tmp/aris4c013/access_headers.txt || true
+          echo "=== body if textual/small ==="
+          bytes=$(wc -c < /tmp/aris4c013/access_body.bin 2>/dev/null || echo 0)
+          echo "ACCESS_BODY_BYTES=$bytes"
+          if [ "$bytes" -le 8192 ]; then
+            cat /tmp/aris4c013/access_body.bin || true
+            echo
+          else
+            file /tmp/aris4c013/access_body.bin || true
+            head -c 64 /tmp/aris4c013/access_body.bin | od -An -tx1 || true
+          fi
 
       - name: Upload metadata evidence
         uses: actions/upload-artifact@v4
@@ -32,4 +59,6 @@ jobs:
           path: |
             /tmp/aris4c013/bunmd_dataverse.json
             /tmp/aris4c013/bunmd_files.json
+            /tmp/aris4c013/access_headers.txt
+            /tmp/aris4c013/access_body.bin
           retention-days: 30
