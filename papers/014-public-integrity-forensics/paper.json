@@ -4,9 +4,9 @@
   "title": "Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data",
   "short_title": "Public Integrity Forensics",
   "year": 2026,
-  "status": "pilot1a-uk-source-feasibility-frozen-ownership-enrichment-next",
-  "domain": "anti-corruption / public procurement / beneficial ownership / entity resolution / graph analytics / public integrity / computational social science",
-  "summary": "An auditable public-data agent that routes procurement, corporate, beneficial-ownership, public-office, sanctions, offshore and disclosure records to applicability-aware forensic checks, then fuses reproducible findings in an evidence graph for human review without equating anomalies with corruption.",
+  "status": "uk-pilot1a-frozen-china-first-multi-institution-expansion",
+  "domain": "public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics",
+  "summary": "An auditable multi-source public-integrity agent that mines structured and web-native public records across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations and suppliers, builds a time-aware evidence graph, and produces reproducible human-review leads without equating anomalies, public-office status, organizational identity or web allegations with corruption.",
   "authors": [
     "Cochrane Kang"
   ],
@@ -31,7 +31,11 @@
     "pilot1_config": "data/pilot1_uk_config.json",
     "pilot1_workflow": ".github/workflows/aris4c014-pilot1-uk.yml",
     "report_builder": "code/report_builder.py",
-    "evidence_graph": "code/evidence_graph.py"
+    "evidence_graph": "code/evidence_graph.py",
+    "china_scope": "process/CHINA_EXPANSION.md",
+    "china_sources": "data/CHINA_SOURCES.md",
+    "china_source_registry": "data/china_source_registry.json",
+    "china_web_leads": "code/china_web_leads.py"
   },
   "tags": [
     "ARIS",
@@ -45,6 +49,13 @@
     "entity resolution",
     "evidence graph",
     "human-in-the-loop",
-    "forensics"
+    "forensics",
+    "China internet mining",
+    "hospitals",
+    "SOEs",
+    "research institutes",
+    "universities",
+    "NGOs",
+    "web forensics"
   ]
 }
