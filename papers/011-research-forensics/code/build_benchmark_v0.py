@@ -1,26 +1,15 @@
-"""Build an ARIS4C011 Benchmark-v0 manifest from a normalized notice table.
+"""Build leakage-separated ARIS4C011 Benchmark-v0 manifests.
 
-This utility is intentionally conservative. It does not download private data,
-does not label all retractions as misconduct, and never exposes label-defining
-notice text to Track-A feature exports.
+Input is an adjudication table whose *target* work has already been resolved.
+The builder intentionally separates full provenance from the content-only
+Track-A manifest. It never converts a retraction into a misconduct label.
 
-Expected input CSV columns (minimum):
-    doi, title, year, journal, notice_type, notice_date, raw_reason, source_url
+Minimum input columns:
+    target_doi, target_title_safe, target_year, target_journal,
+    notice_type, notice_date, raw_reason, source_url
 
-Optional:
-    article_type, field, fulltext_available, ground_truth_tier,
-    known_cluster_id, text_cluster_id, image_cluster_id
-
-Usage:
-    python build_benchmark_v0.py notices.csv out_dir
-
-Outputs:
-    benchmark_full.csv      provenance/label table for adjudication
-    track_a_manifest.csv    content-only safe manifest (reason text removed)
-    track_b_manifest.csv    open-world manifest
-    benchmark_meta.json     hashes and schema version
-
-This is infrastructure, not a classifier.
+Optional provenance columns can include assertion/event IDs, notice DOI,
+Retraction Watch record ID, raw current title, and cluster IDs.
 """
 
 from __future__ import annotations
@@ -34,31 +23,78 @@ import sys
 from typing import Dict, Iterable, List, Set
 
 
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"
+
+REQUIRED = {
+    "target_doi", "target_title_safe", "target_year", "target_journal",
+    "notice_type", "notice_date", "raw_reason", "source_url",
+}
+
+# These fields are outcome/post-publication provenance and are categorically
+# excluded from Track A. A deny-list is still recorded for audit, while
+# Track-A rows are constructed from an explicit allow-list below.
+LABEL_PROVENANCE_FIELDS = {
+    "raw_reason",
+    "notice_type",
+    "notice_date",
+    "source_url",
+    "candidate_issue_codes",
+    "ground_truth_tier",
+    "event_key",
+    "assertion_key",
+    "notice_doi",
+    "crossref_source_work_doi",
+    "relation_type",
+    "relation_label",
+    "assertion_source",
+    "update_date",
+    "retraction_watch_record_id",
+    "target_title_raw_current",
+    "title_status_marker",
+    "current_metadata_contains_update_relations",
+}
+
+TRACK_A_MANIFEST_ALLOWLIST = [
+    "paper_id",
+    "target_title_safe",
+    "article_type",
+    "fulltext_ref",
+    "track_a_title_requires_historical_validation",
+    "track_a_document_safe",
+    "split",
+]
+
+# Only these fields may be passed directly as tabular/model features by the
+# benchmark loader. IDs, paths, split labels, venue/year and cluster IDs are
+# never model features in the primary content-only task.
+TRACK_A_FEATURE_ALLOWLIST = [
+    "target_title_safe",
+]
 
 ISSUE_RULES = {
     "image_integrity": [
-        r"image", r"figure", r"western blot", r"gel", r"duplica(?:te|tion).*panel",
-        r"manipulat.*(?:image|figure)",
+        r"image", r"figure", r"western blot", r"gel",
+        r"duplica(?:te|tion).*panel", r"manipulat.*(?:image|figure)",
     ],
     "plagiarism_text_duplication": [
         r"plagiarism", r"text overlap", r"duplicate publication", r"redundan(?:t|cy)",
     ],
     "statistical_reporting": [
-        r"statistic", r"analysis error", r"calculation error", r"incorrect p[- ]?value",
-        r"data analysis",
+        r"statistic", r"analysis error", r"calculation error",
+        r"incorrect p[- ]?value", r"data analysis",
     ],
     "data_fabrication_falsification": [
         r"fabricat", r"falsif", r"made[- ]?up data",
     ],
     "paper_mill": [
-        r"paper mill", r"systematic manipulation", r"compromised peer review",
+        r"paper mill", r"systematic manipulation",
+    ],
+    "authorship_peer_review": [
+        r"authorship", r"gift author", r"peer review", r"reviewer",
+        r"editorial process.*compromis", r"peer review process.*manipulat",
     ],
     "citation_reference": [
         r"citation", r"reference", r"bibliograph",
-    ],
-    "authorship_peer_review": [
-        r"authorship", r"peer review", r"reviewer",
     ],
     "registration_ethics_provenance": [
         r"ethic", r"consent", r"registration", r"protocol", r"approval",
@@ -73,8 +109,13 @@ def normalize_doi(value: str) -> str:
     return x.strip()
 
 
+def paper_id_for_doi(doi: str) -> str:
+    raw = ("paper:" + normalize_doi(doi)).encode("utf-8")
+    return "p_" + hashlib.sha256(raw).hexdigest()[:16]
+
+
 def issue_codes(reason: str) -> List[str]:
-    """Rule-based candidates for HUMAN adjudication; not final truth labels."""
+    """Rule-based candidates for HUMAN adjudication; never final truth labels."""
     text = (reason or "").lower()
     found: Set[str] = set()
     for code, patterns in ISSUE_RULES.items():
@@ -94,11 +135,8 @@ def sha256_file(path: Path) -> str:
 def read_rows(path: Path) -> List[Dict[str, str]]:
     with path.open(newline="", encoding="utf-8-sig") as f:
         rows = list(csv.DictReader(f))
-    required = {
-        "doi", "title", "year", "journal",
-        "notice_type", "notice_date", "raw_reason", "source_url",
-    }
-    missing = required - set(rows[0].keys() if rows else [])
+    fields = set(rows[0].keys() if rows else [])
+    missing = REQUIRED - fields
     if missing:
         raise ValueError(f"Missing required columns: {sorted(missing)}")
     return rows
@@ -109,9 +147,9 @@ def enrich(rows: Iterable[Dict[str, str]]) -> List[Dict[str, str]]:
     seen = set()
     for row in rows:
         r = dict(row)
-        r["doi"] = normalize_doi(r.get("doi", ""))
+        r["target_doi"] = normalize_doi(r.get("target_doi", ""))
         key = (
-            r["doi"],
+            r["target_doi"],
             (r.get("notice_type") or "").strip().lower(),
             (r.get("notice_date") or "").strip(),
         )
@@ -119,13 +157,24 @@ def enrich(rows: Iterable[Dict[str, str]]) -> List[Dict[str, str]]:
             continue
         seen.add(key)
 
-        # Candidate coding must be reviewed before GT-A/B/C confirmatory use.
+        r["paper_id"] = paper_id_for_doi(r["target_doi"])
         r["candidate_issue_codes"] = ";".join(issue_codes(r.get("raw_reason", "")))
         r.setdefault("ground_truth_tier", "")
         r.setdefault("known_cluster_id", "")
         r.setdefault("text_cluster_id", "")
         r.setdefault("image_cluster_id", "")
-        r["track_a_eligible"] = "1" if r["doi"] else "0"
+        r.setdefault("article_type", "")
+        r.setdefault("fulltext_ref", "")
+        r.setdefault("split", "")
+        r.setdefault("track_a_title_requires_historical_validation", "0")
+        r.setdefault("track_a_document_safe", "0")
+        r["track_a_eligible"] = (
+            "1"
+            if r["target_doi"]
+            and r.get("track_a_title_requires_historical_validation") == "0"
+            and r.get("track_a_document_safe") == "1"
+            else "0"
+        )
         r["track_b_eligible"] = "1"
         out.append(r)
     return out
@@ -138,9 +187,15 @@ def write_csv(path: Path, rows: List[Dict[str, str]], fields: List[str]) -> None
         w.writerows(rows)
 
 
+def track_a_rows(rows: List[Dict[str, str]]) -> tuple[List[Dict[str, str]], List[str]]:
+    fields = [f for f in TRACK_A_MANIFEST_ALLOWLIST if any(f in r for r in rows)]
+    projected = [{f: r.get(f, "") for f in fields} for r in rows]
+    return projected, fields
+
+
 def main(argv: List[str]) -> int:
     if len(argv) != 3:
-        print("Usage: python build_benchmark_v0.py notices.csv out_dir", file=sys.stderr)
+        print("Usage: python build_benchmark_v0.py adjudicated.csv out_dir", file=sys.stderr)
         return 2
 
     src = Path(argv[1])
@@ -155,16 +210,10 @@ def main(argv: List[str]) -> int:
     full_path = out_dir / "benchmark_full.csv"
     write_csv(full_path, rows, all_fields)
 
-    # Track A MUST remove outcome-defining/post-publication text/status fields.
-    forbidden_a = {
-        "raw_reason", "notice_type", "notice_date", "source_url",
-        "candidate_issue_codes", "ground_truth_tier",
-    }
-    track_a_fields = [f for f in all_fields if f not in forbidden_a]
+    projected, track_a_fields = track_a_rows(rows)
     track_a = out_dir / "track_a_manifest.csv"
-    write_csv(track_a, rows, track_a_fields)
+    write_csv(track_a, projected, track_a_fields)
 
-    # Track B may use public post-publication information.
     track_b = out_dir / "track_b_manifest.csv"
     write_csv(track_b, rows, all_fields)
 
@@ -176,10 +225,13 @@ def main(argv: List[str]) -> int:
         "full_sha256": sha256_file(full_path),
         "track_a_sha256": sha256_file(track_a),
         "track_b_sha256": sha256_file(track_b),
-        "track_a_forbidden_fields": sorted(forbidden_a),
+        "track_a_manifest_allowlist": TRACK_A_MANIFEST_ALLOWLIST,
+        "track_a_feature_allowlist": TRACK_A_FEATURE_ALLOWLIST,
+        "track_a_label_provenance_fields": sorted(LABEL_PROVENANCE_FIELDS),
         "warning": (
             "candidate_issue_codes are weak rule-based triage labels and require "
-            "human adjudication before confirmatory use."
+            "human adjudication. Track A also requires a clean pre-outcome document; "
+            "sanitizing a title alone is insufficient."
         ),
     }
     (out_dir / "benchmark_meta.json").write_text(
