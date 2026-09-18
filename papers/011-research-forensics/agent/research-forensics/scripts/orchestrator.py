@@ -18,6 +18,17 @@ STRONG_CLASSES = {"E1", "E2", "E3"}
 WEAK_CLASSES = {"E4", "E5"}
 VALID_STATUSES = {"FLAG", "PASS", "ABSTAIN", "ERROR"}
 
+# Structured inputs that can alter deterministic detector outputs. In Track A,
+# every supplied record must be anchored to a source locator and explicitly
+# verified against the time-safe artifact before execution.
+STRUCTURED_INPUT_KEYS = {
+    "nhst_tests",
+    "discrete_means",
+    "binary_summaries",
+    "table_checks",
+    "doi_resolutions",
+}
+
 
 @dataclass(frozen=True)
 class Applicability:
@@ -120,6 +131,60 @@ def _error(detector: Detector, reason: str) -> Finding:
     ).finalize()
 
 
+def structured_extraction_preflight(content: Dict[str, Any]) -> Dict[str, Any]:
+    """Fail closed on unverified structured detector inputs.
+
+    Extraction is a separate source of error from the detector. Track A may
+    only consume records that retain a source locator and have been explicitly
+    checked against the qualified artifact.
+    """
+    supplied = 0
+    failures: List[Dict[str, Any]] = []
+
+    for key in sorted(STRUCTURED_INPUT_KEYS):
+        records = content.get(key) or []
+        if not isinstance(records, list):
+            failures.append({
+                "input_key": key,
+                "record_index": None,
+                "reason": "Structured detector input must be a list.",
+            })
+            continue
+
+        for index, record in enumerate(records):
+            supplied += 1
+            if not isinstance(record, dict):
+                failures.append({
+                    "input_key": key,
+                    "record_index": index,
+                    "reason": "Structured detector record must be an object.",
+                })
+                continue
+            if not str(record.get("source_locator") or "").strip():
+                failures.append({
+                    "input_key": key,
+                    "record_index": index,
+                    "reason": "Missing source_locator.",
+                })
+            if record.get("provenance_verified") is not True:
+                failures.append({
+                    "input_key": key,
+                    "record_index": index,
+                    "reason": "provenance_verified is not true.",
+                })
+
+    return {
+        "safe": not failures,
+        "structured_record_count": supplied,
+        "failures": failures,
+        "reason": (
+            "All structured records are source-anchored and verified."
+            if not failures else
+            "One or more structured records failed extraction provenance checks."
+        ),
+    }
+
+
 def artifact_preflight(context: ForensicContext) -> Dict[str, Any]:
     if context.mode not in {"track_a", "track_b", "ad_hoc"}:
         return {"eligible": False, "reason": f"Unknown mode: {context.mode}"}
@@ -147,6 +212,15 @@ def artifact_preflight(context: ForensicContext) -> Dict[str, Any]:
                 **safety,
                 "eligible": False,
                 "reason": "Track A requires a historically validated status-free title.",
+            }
+
+        extraction = structured_extraction_preflight(context.content)
+        safety["extraction"] = extraction
+        if extraction["safe"] is not True:
+            return {
+                **safety,
+                "eligible": False,
+                "reason": "Track A requires source-verified structured extraction records.",
             }
 
     return {
