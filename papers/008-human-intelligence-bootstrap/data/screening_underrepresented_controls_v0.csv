@@ -1,0 +1,16 @@
+candidate_species,class,family,body_records,brain_records,metabolic_records,total_observation_rows,trait_axes_present,selection_rule
+Acris crepitans,Amphibia,Hylidae,1,1,0,1,2,data_rich_underrepresented_class_top3
+Hyla versicolor,Amphibia,Hylidae,1,1,0,1,2,data_rich_underrepresented_class_top3
+Platymantis vitiensis,Amphibia,Ceratobatrachidae,1,1,0,1,2,data_rich_underrepresented_class_top3
+Chelydra serpentina,Reptilia,Chelydridae,2,1,1,2,3,data_rich_underrepresented_class_top3
+Ctenophorus nuchalis,Reptilia,Agamidae,2,1,1,2,3,data_rich_underrepresented_class_top3
+Natrix natrix,Reptilia,Colubridae,2,1,1,2,3,data_rich_underrepresented_class_top3
+Periplaneta americana,Insecta,Blattidae,3,1,2,3,3,data_rich_underrepresented_class_top3
+Camponotus sericeiventris,Insecta,Formicidae,2,1,1,2,3,data_rich_underrepresented_class_top3
+Paraponera clavata,Insecta,Formicidae,2,1,1,2,3,data_rich_underrepresented_class_top3
+Nephila clavipes,Arachnida,Araneidae,3,3,1,4,3,data_rich_underrepresented_class_top3
+Zosis geniculata,Arachnida,Uloboridae,20,0,20,20,2,data_rich_underrepresented_class_top3
+Metazygia rogenhoferi,Arachnida,Araneidae,10,0,10,10,2,data_rich_underrepresented_class_top3
+Trichoniscus pusillus,Malacostraca,Trichoniscidae,26,0,26,26,2,data_rich_underrepresented_class_top3
+Porcellio laevis,Malacostraca,Porcellionidae,2,0,2,2,2,data_rich_underrepresented_class_top3
+Birgus latro,Malacostraca,Coenobitidae,0,1,0,1,1,data_rich_underrepresented_class_top3

@@ -70,15 +70,25 @@ This condition audit happens before any headline model.
 
 ### Competing architecture models
 
-Compare at least:
+Use a two-stage architecture strategy.
 
-1. additive / weighted-sum model;
-2. sparse interaction model;
-3. multiplicative / geometric-mean model;
-4. weakest-link / minimum-module model;
-5. threshold model with learned change points.
+**Primary static architecture gate** — compare equal-complexity, pre-specified signatures:
 
-The scientific question is whether advanced cultural outcomes behave more like total "skill points" or like a system that stalls when one critical module remains below threshold.
+1. additive / weighted-sum;
+2. weakest-link / minimum-module;
+3. threshold / conjunctive transition.
+
+The recoverability simulation must not allow one candidate to win simply because it is a higher-dimensional catch-all. Multiplicative / geometric-mean forms can enter sensitivity analyses after the primary gate.
+
+**Dynamic hypotheses** — model separately rather than as a generic static polynomial:
+
+4. network-memory dynamics;
+5. embodied externalization pathways;
+6. temporal / gene-culture feedback.
+
+Interaction/feedback claims require explicit network, longitudinal, transition-order or hominin temporal structure. A flexible cross-sectional interaction term is not treated as evidence for a feedback mechanism.
+
+The scientific question remains whether advanced cultural outcomes behave more like total "skill points", a bottleneck/conjunction, a threshold transition, or a dynamic self-reinforcing system.
 
 ### Phylogenetic transition analysis
 
@@ -165,10 +175,11 @@ The network-memory hypothesis is weakened if cultural breadth is unrelated to ac
 1. outcome codebook + condition ontology;
 2. closest-prior-work / novelty map;
 3. seed data integration;
-4. 20–40 species contrast-maximizing pilot matrix;
-5. missingness and research-bias audit;
-6. model-recoverability simulation;
-7. full literature expansion;
-8. preregistration;
-9. confirmatory comparative analysis;
-10. manuscript + public Animal Bootstrap Atlas.
+4. broad screening pool + configuration-diverse Tier-1 panel;
+5. missingness, taxonomy and research-bias audit;
+6. architecture-balanced model-recoverability simulation;
+7. Tier-1 A–F deep coding + O1–O7 outcome coding + tested-negative search;
+8. empirical configuration audit and recoverability rerun;
+9. preregistration;
+10. confirmatory comparative + dynamic/temporal analysis;
+11. manuscript + public Animal Bootstrap Atlas.
