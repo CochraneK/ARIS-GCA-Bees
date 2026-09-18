@@ -1,0 +1,8 @@
+scientific_name,source_species_label,task,n,mean_percent,sd_percent,source_file,source_scope,interpretation_guard
+Pan paniscus,Bonobo,A_not_B,4,100,0,MacLean_et_al_PNAS_2014_Self_Control_AnotB.csv,exact_species,"Standardized inhibitory-control proxy; not a direct generative-cognition score."
+Pan troglodytes,Chimpanzee,A_not_B,15,86.6666667,35.1865775,MacLean_et_al_PNAS_2014_Self_Control_AnotB.csv,exact_species,"Standardized inhibitory-control proxy; not a direct generative-cognition score."
+Elephas maximus,Elphas maximus,A_not_B,7,0,0,MacLean_et_al_PNAS_2014_Self_Control_AnotB.csv,exact_species_typo_in_source,"Zero task accuracy must not be interpreted as absence of self-control/cognition without task-accessibility and training audit."
+Columba livia,White Carnea Pigeon,A_not_B,11,54.5454545,52.2232968,MacLean_et_al_PNAS_2014_Self_Control_AnotB.csv,exact_species_breed_label,"White Carneau/Carnea pigeon is a domestic Columba livia breed; retain breed/context."
+Pan paniscus,Bonobo,Cylinder,6,95,12.2474487,MacLean_et_al_PNAS_2014_Self_Control_Cylinder.csv,exact_species,"Standardized inhibitory-control proxy; not a direct generative-cognition score."
+Pan troglodytes,Chimpanzee,Cylinder,5,100,0,MacLean_et_al_PNAS_2014_Self_Control_Cylinder.csv,exact_species,"Standardized inhibitory-control proxy; not a direct generative-cognition score."
+Columba livia,White Carneau Pigeon,Cylinder,12,32.5,26.3283463,MacLean_et_al_PNAS_2014_Self_Control_Cylinder.csv,exact_species_breed_label,"Domestic breed/context retained."
