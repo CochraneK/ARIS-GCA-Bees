@@ -124,12 +124,12 @@
       "blocker": "Reproducible SciSciNet-v2 slice/query and mechanism match yield"
     },
     "016": {
-      "progress": 30,
-      "stage": "Phase 0 measurement audit",
+      "progress": 35,
+      "stage": "Phase 0 measurement + genealogy audit",
       "activity": "active",
-      "evidence": "OSF data/schema audited + reproducible checksum-verified audit + ontology v0",
-      "next_gate": "Conservative label harmonization + stratified reliability audit",
-      "blocker": "Cross-lab annotation heterogeneity; native/context review needed for unresolved local labels"
+      "evidence": "OSF reproduction audit + ontology/harmonization v0 + Glottolog mapping + repeated-language pilot",
+      "next_gate": "Run stratified dual-coder ontology reliability audit and formal repeated-item model",
+      "blocker": "Independent/native-speaker coding not yet executed for unresolved/local labels"
     }
   }
 }
