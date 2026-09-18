@@ -75,7 +75,7 @@ def main() -> None:
     handoff = (BLIND / "WORKBUDDY_HANDOFF.md").read_text(encoding="utf-8")
     if "INDEPENDENCE_STATUS: PASS" not in handoff:
         fail("Handoff missing independence declaration contract")
-    ids = re.findall(r"(?m)^\\| (D\\d{2}) \\|", handoff)
+    ids = re.findall(r"(?m)^\| (D\d{2}) \|", handoff)
     if ids != EXPECTED_IDS:
         fail(f"Handoff frozen discipline table is not exactly D01-D21: {ids}")
     for d in range(1, 12):
@@ -94,7 +94,7 @@ def main() -> None:
         fail(f"Prohibited artifact copied into blind bundle: {actual & banned_filenames}")
 
     template = (BLIND / "OUTPUT_TEMPLATE.md").read_text(encoding="utf-8")
-    match = re.search(r"(?ims)```csv\\s*\\n(.*?)```", template)
+    match = re.search(r"(?ims)```csv\s*\n(.*?)```", template)
     if not match:
         fail("Output template missing CSV block")
     rows = list(csv.reader(io.StringIO(match.group(1).strip())))
