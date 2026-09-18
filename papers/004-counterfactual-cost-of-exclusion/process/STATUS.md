@@ -4,7 +4,7 @@ Last updated: 2026-09-18
 
 ## Current state
 
-**RUNNING — feasibility-pilot / identity-resolution gate**
+**RUNNING — feasibility-pilot / verified-work-corpus gate**
 
 The project has moved beyond concept-only design into a reproducible real-data science pilot. No mental-health exposure sample has yet been selected and no confirmatory CPE comparison has been run.
 
@@ -44,25 +44,49 @@ Among historically realized knowledge contributors, how does scientific/intellec
 
 ## Current real-data evidence
 
-Latest completed bounded pilot before explicit cluster review: GitHub Actions run `35273279428`.
+### Frozen pre-exposure frame
 
-For the first 30 frozen science candidates:
+- 108,626 eligible Discovery/Science source candidates;
+- 100-person fixed-seed frame (`20260918`) frozen before any mental-health search;
+- first 30 used for the intensive identity pilot.
 
-- automatic top-record acceptance: **19/30 = 63.3%**;
-- ambiguous: **1/30**;
-- unresolved: **10/30**;
-- accepted records with >=1 work in 1900–2000: **15/30 = 50.0%**;
-- OpenAlex works acquired: **311**;
-- resolver errors: **0**.
+### Pilot30 identity freeze v1
 
-These are feasibility numbers, **not validated identity accuracy**. Manual/external verification and author-cluster assembly remain mandatory before a person enters the final network analytic frame.
+Canonical decision table: `data/derived/identity_decisions_pilot30.csv`.
 
-The first pilot with explicit author-fragment classification is GitHub Actions run `35273825936`; append its final result to `PILOT_RESULTS.md` after completion.
+Final first-review identity states:
+
+- `VERIFIED_SINGLE`: **11**
+- `VERIFIED_CLUSTER`: **7**
+- `NO_GRAPH_RECORD`: **9**
+- `AMBIGUOUS_COLLISION`: **2**
+- `EXCLUDED_IDENTITY_ERROR`: **1**
+- `PROVISIONAL_*`: **0**
+
+Thus **18/30 = 60%** have an externally auditable verified OpenAlex person mapping after first review. This is identity-resolution yield, not a population-coverage estimate and not yet an independently double-reviewed precision estimate.
+
+Currently **9/30 = 30%** are released as `network_observable=true` under the pilot rules. A further 9 identities are verified but held back because of insufficient work count, posthumous/incorrect temporal metadata, duplicate fragments, or mixed-author work contamination.
+
+The identity workflow discovered and fixed several data-engineering failure modes before exposure coding:
+
+- 11/30 candidates required multi-Author-ID fragment review;
+- 17/44 audited fragment profiles had >50% temporal contamination;
+- weak shared coauthors/institutions produced false fragment support and are now guarded;
+- a manual QID transcription error in the first decision-table draft was caught, corrected, and converted into a canonical-frame join invariant;
+- unquoted commas in free-text CSV notes were caught, repaired, and converted into an extra-column validation invariant.
+
+No mental-health information was used in any of these decisions.
+
+See `IDENTITY_FREEZE_PILOT30.md` for the frozen milestone record.
 
 ## In progress
 
-- [ ] Complete author-fragment review on the first 30 candidates.
-- [ ] Define and test person ↔ OpenAlex author-cluster validation rules.
+- [x] Complete first-review author/fragment adjudication on the first 30 candidates with zero provisional states.
+- [x] Define and test person ↔ OpenAlex author-cluster validation rules.
+- [x] Freeze pilot30 identity decision table and canonical-frame validation.
+- [ ] Build and audit the verified-person work corpus (temporal flags + DOI/title deduplication + fragment provenance).
+- [ ] Decontaminate mixed/duplicate verified records before releasing additional network-observable people.
+- [ ] Run independent second-review audit of accepted identities / difficult clusters.
 - [ ] Measure network observability by cohort, visibility, geography, gender and science subdomain.
 - [ ] Decide whether candidate sampling needs explicit region/subdomain re-stratification.
 - [ ] Freeze the network-observable analytic frame **before** mental-health coding.
