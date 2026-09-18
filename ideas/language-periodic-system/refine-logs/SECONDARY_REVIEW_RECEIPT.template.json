@@ -1,0 +1,35 @@
+{
+  "candidate": "language-periodic-system",
+  "canonical_branch": "main",
+  "primary_executor_family": "OpenAI GPT",
+  "reviewer": {
+    "provider": "",
+    "model": "",
+    "family": "",
+    "independent_from_primary": null,
+    "fresh_session": null,
+    "trace_id": "",
+    "timestamp": "",
+    "literature_search_cutoff": ""
+  },
+  "verdict": "",
+  "promotion_authorized": false,
+  "executive_rationale": "",
+  "answers": {
+    "novelty_collision": "",
+    "faithfulness": "",
+    "capacity": "",
+    "validation": "",
+    "statistics": "",
+    "data_dependence": "",
+    "publication_value": "",
+    "claim_rewrite": ""
+  },
+  "mandatory_changes": [],
+  "optional_improvements": [],
+  "permitted_claim": "",
+  "unsupported_claims": [],
+  "prior_art_collisions": [],
+  "evidence_inspected": [],
+  "integrity_statement": "I independently reviewed the candidate rather than merely endorsing the primary executor's summary."
+}
