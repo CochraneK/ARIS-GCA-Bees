@@ -1,0 +1,40 @@
+name: ARIS4C010 CI
+
+on:
+  push:
+    paths:
+      - "papers/010-universal-concept-identification/**"
+      - ".github/workflows/aris4c010-ci.yml"
+  pull_request:
+    paths:
+      - "papers/010-universal-concept-identification/**"
+      - ".github/workflows/aris4c010-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-010:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/010-universal-concept-identification/code
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python -m unittest -v test_query_complexity.py
+      - name: Validate constructed seed
+        run: python validate_seed_data.py
+      - name: Check seed leakage splits
+        run: python check_seed_splits.py
+      - name: Run combinatorial Pilot 0
+        run: python query_complexity.py
+      - name: Run synthetic semantic Pilot 1
+        run: python pilot1_semantic_seed.py
+      - name: Run OEWN lexical Pilot 2
+        run: python pilot2_oewn_lexical.py
