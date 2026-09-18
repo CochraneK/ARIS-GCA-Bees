@@ -136,8 +136,9 @@ def build_empire_counts(path: Path) -> pd.DataFrame:
         raise SystemExit(f"{path} missing {sorted(required - set(df.columns))}")
     m = measure_col(df)
     df[m] = pd.to_numeric(df[m], errors="coerce")
-    df = df[df[m].notna()].copy()
-    out = (\n        df[df["Entity"].isin(EMPIRE_ISO3)]\n        .groupby("Entity")
+    df = df[df[m].notna() & df["Entity"].isin(EMPIRE_ISO3)].copy()
+    out = (
+        df.groupby("Entity")
         .agg(
             cumulative_colony_years_ruled=(m, "sum"),
             peak_colonies=(m, "max"),
@@ -150,7 +151,11 @@ def build_empire_counts(path: Path) -> pd.DataFrame:
         .sort_values("cumulative_colony_years_ruled", ascending=False)
         .reset_index(drop=True)
     )
-    out["iso3c"] = out["colonizer"].map(EMPIRE_ISO3)\n    return out\n\n\ndef main() -> None:
+    out["iso3c"] = out["colonizer"].map(EMPIRE_ISO3)
+    return out
+
+
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--years", type=Path, required=True)
     parser.add_argument("--colonizer-year", type=Path)
