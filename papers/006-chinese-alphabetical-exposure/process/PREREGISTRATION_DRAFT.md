@@ -272,3 +272,12 @@ Therefore the longitudinal join key is the **current canonical OpenAlex author I
 When ORCID is present, ORCID consistency is checked as additional validation. Raw embedded IDs remain preserved for provenance.
 
 This engineering fix does not eliminate residual split/merge error among non-ORCID authors; the preregistered identity-risk sensitivity ladder remains mandatory.
+
+
+## Primary-field assignment correction
+
+The confirmatory context uses OpenAlex `primary_topic.field.id`, not `topics.field.id`.
+
+Reason: a work may have multiple topics spanning multiple fields, whereas its primary field is uniquely defined by the field of `primary_topic`. Earlier six-field feasibility pilots that filtered on `topics.field.id` are retained only as engineering/anchor evidence and are superseded for confirmatory field assignment by primary-topic-field pilots.
+
+The six anchor fields are not the final scope. All current OpenAlex fields that pass the prospective all-field volume/coverage gate may enter the work-level primary frame.
