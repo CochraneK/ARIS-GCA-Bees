@@ -1,0 +1,336 @@
+"""Deterministic source adapters for OpenIntegrity.
+
+Adapters convert public records into the small canonical objects used by the
+network-free core. They do not decide whether a record is suspicious.
+
+Supported in this module:
+- OCDS 1.1.x release objects
+- UK Companies House company profile + PSC response fragments
+
+Network retrieval is deliberately outside this file so fixtures can be tested
+without credentials or internet access.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from datetime import date, datetime
+from typing import Any, Iterable, Optional
+
+from open_integrity_agent import (
+    ContractRecord,
+    EntityRecord,
+    IntegrityCase,
+    RelationRecord,
+    SourceRef,
+)
+
+
+def _date(value: Any) -> Optional[date]:
+    if not value or not isinstance(value, str):
+        return None
+    raw = value.strip()
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw.replace("Z", "+00:00")).date()
+    except ValueError:
+        try:
+            return date.fromisoformat(raw[:10])
+        except ValueError:
+            return None
+
+
+def _amount(value: Any) -> Optional[float]:
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value.replace(",", "").strip())
+        except ValueError:
+            return None
+    return None
+
+
+def _stable_party_id(party: dict[str, Any]) -> str:
+    ident = party.get("identifier") or {}
+    scheme = ident.get("scheme")
+    value = ident.get("id")
+    if scheme and value:
+        return f"{scheme}:{value}"
+    # OCDS party.id is only local to the release/process, but preserving it is
+    # still preferable to a name-generated identifier.
+    return str(party.get("id") or "").strip()
+
+
+def _party_record(
+    party: dict[str, Any],
+    *,
+    source_ref: SourceRef,
+    prefix: str,
+) -> Optional[EntityRecord]:
+    local_id = str(party.get("id") or "").strip()
+    stable = _stable_party_id(party)
+    if not local_id and not stable:
+        return None
+    identifier = party.get("identifier") or {}
+    legal_name = identifier.get("legalName")
+    name = str(legal_name or party.get("name") or local_id or stable)
+    entity_id = stable or f"{prefix}:{local_id}"
+    stable_ids: tuple[str, ...] = (stable,) if ":" in stable else ()
+    return EntityRecord(
+        entity_id=entity_id,
+        name=name,
+        entity_type="legal_entity",
+        stable_ids=stable_ids,
+        source_refs=(source_ref,),
+    )
+
+
+@dataclass
+class OCDSImportResult:
+    cases: list[IntegrityCase] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
+    ocid: str = ""
+    release_id: str = ""
+
+
+def normalize_ocds_release(
+    release: dict[str, Any],
+    *,
+    source_name: str = "OCDS",
+    source_url: str = "",
+    jurisdiction: Optional[str] = None,
+    retrieved_at: Optional[date] = None,
+) -> OCDSImportResult:
+    """Normalize an OCDS 1.1.x release into one IntegrityCase per award.
+
+    Award IDs are scoped by the OCID. Suppliers are resolved through party.id,
+    then replaced with organization identifiers when available.
+
+    The adapter intentionally does not invent legal thresholds or infer bidder
+    counts from document counts.
+    """
+    ocid = str(release.get("ocid") or "").strip()
+    release_id = str(release.get("id") or "").strip()
+    warnings: list[str] = []
+    if not ocid:
+        warnings.append("missing_ocid")
+    if not release_id:
+        warnings.append("missing_release_id")
+
+    published_at = _date(release.get("date"))
+    src = SourceRef(
+        source_name=source_name,
+        record_id=release_id or ocid or "unknown",
+        url=source_url,
+        published_at=published_at,
+        retrieved_at=retrieved_at,
+    )
+
+    parties = release.get("parties") or []
+    party_by_local: dict[str, EntityRecord] = {}
+    entities: dict[str, EntityRecord] = {}
+    for raw in parties:
+        if not isinstance(raw, dict):
+            continue
+        ent = _party_record(raw, source_ref=src, prefix=ocid or release_id or "ocds")
+        if ent is None:
+            continue
+        local = str(raw.get("id") or "").strip()
+        if local:
+            party_by_local[local] = ent
+        entities[ent.entity_id] = ent
+
+    tender = release.get("tender") or {}
+    buyer = release.get("buyer") or {}
+    procuring = tender.get("procuringEntity") or {}
+    authority_local = str(buyer.get("id") or procuring.get("id") or "").strip()
+    authority_ent = party_by_local.get(authority_local)
+    authority_id = (
+        authority_ent.entity_id
+        if authority_ent
+        else authority_local or f"unknown-authority:{ocid or release_id or 'record'}"
+    )
+
+    bid_count = tender.get("numberOfTenderers")
+    if isinstance(bid_count, bool) or not isinstance(bid_count, int):
+        bid_count = None
+
+    method = tender.get("procurementMethod")
+    if method is not None:
+        method = str(method)
+
+    awards = release.get("awards") or []
+    cases: list[IntegrityCase] = []
+    for raw_award in awards:
+        if not isinstance(raw_award, dict):
+            continue
+        award_id = str(raw_award.get("id") or "").strip()
+        if not award_id:
+            warnings.append("award_without_id")
+            continue
+
+        supplier_ids: list[str] = []
+        for ref in raw_award.get("suppliers") or []:
+            if not isinstance(ref, dict):
+                continue
+            local = str(ref.get("id") or "").strip()
+            ent = party_by_local.get(local)
+            supplier_id = ent.entity_id if ent else local
+            if supplier_id:
+                supplier_ids.append(supplier_id)
+
+        if not supplier_ids:
+            warnings.append(f"award_without_supplier:{award_id}")
+
+        value = raw_award.get("value") or {}
+        award_value = _amount(value.get("amount"))
+        award_date = _date(raw_award.get("date"))
+
+        contract_id = f"{ocid}:{award_id}" if ocid else award_id
+        contract = ContractRecord(
+            contract_id=contract_id,
+            authority_id=authority_id,
+            supplier_ids=tuple(dict.fromkeys(supplier_ids)),
+            award_date=award_date,
+            publication_date=published_at,
+            award_value=award_value,
+            legal_threshold=None,
+            bid_count=bid_count,
+            procurement_method=method,
+            jurisdiction=jurisdiction,
+            source_refs=(src,),
+        )
+        cases.append(
+            IntegrityCase(
+                subject_id=contract_id,
+                contract=contract,
+                entities=dict(entities),
+            )
+        )
+
+    return OCDSImportResult(
+        cases=cases,
+        warnings=warnings,
+        ocid=ocid,
+        release_id=release_id,
+    )
+
+
+@dataclass
+class CompaniesHouseImportResult:
+    company: EntityRecord
+    owner_entities: dict[str, EntityRecord]
+    relations: list[RelationRecord]
+    warnings: list[str] = field(default_factory=list)
+
+
+def _psc_record_id(item: dict[str, Any], index: int) -> str:
+    links = item.get("links") or {}
+    self_link = str(links.get("self") or "").rstrip("/")
+    if self_link:
+        return self_link.rsplit("/", 1)[-1]
+    return f"row-{index}"
+
+
+def normalize_companies_house(
+    company_profile: dict[str, Any],
+    psc_items: Iterable[dict[str, Any]],
+    *,
+    retrieved_at: Optional[date] = None,
+    base_url: str = "https://api.company-information.service.gov.uk",
+) -> CompaniesHouseImportResult:
+    """Normalize a Companies House company profile and PSC records.
+
+    Natural-person PSC IDs are intentionally scoped to the company record.
+    They are *not* treated as a universal person identifier. Cross-company or
+    PEP matching must go through the separate entity-resolution layer.
+    """
+    number = str(company_profile.get("company_number") or "").strip()
+    if not number:
+        raise ValueError("company_profile.company_number is required")
+    company_id = f"GB-COH:{number}"
+    company_src = SourceRef(
+        "Companies House",
+        number,
+        url=f"{base_url}/company/{number}",
+        retrieved_at=retrieved_at,
+    )
+    company = EntityRecord(
+        entity_id=company_id,
+        name=str(company_profile.get("company_name") or number),
+        entity_type="legal_entity",
+        incorporated_on=_date(company_profile.get("date_of_creation")),
+        stable_ids=(company_id,),
+        source_refs=(company_src,),
+    )
+
+    owners: dict[str, EntityRecord] = {}
+    relations: list[RelationRecord] = []
+    warnings: list[str] = []
+
+    for i, item in enumerate(psc_items):
+        if not isinstance(item, dict):
+            continue
+        rec_id = _psc_record_id(item, i)
+        kind = str(item.get("kind") or "unknown")
+        name = str(item.get("name") or "").strip()
+        if not name:
+            warnings.append(f"psc_without_name:{rec_id}")
+            name = rec_id
+
+        src = SourceRef(
+            "Companies House PSC",
+            f"{number}:{rec_id}",
+            url=f"{base_url}/company/{number}/persons-with-significant-control",
+            retrieved_at=retrieved_at,
+        )
+
+        identification = item.get("identification") or {}
+        registration_number = identification.get("registration_number")
+        country = identification.get("country_registered")
+        legal_authority = identification.get("legal_authority")
+
+        is_legal = "legal-person" in kind or "corporate-entity" in kind
+        if is_legal and registration_number:
+            qualifier = str(country or legal_authority or "PSC").strip()
+            owner_id = f"{qualifier}:{registration_number}"
+            strength = "official_cross_id"
+            stable_ids = (owner_id,)
+            entity_type = "legal_entity"
+        else:
+            # The PSC endpoint proves a relationship to this company, but the
+            # local record token does not prove that two same-named PSC records
+            # in different companies are the same natural person.
+            owner_id = f"GB-PSC:{number}:{rec_id}"
+            strength = "multi_attribute"
+            stable_ids = ()
+            entity_type = "person"
+
+        owner = EntityRecord(
+            entity_id=owner_id,
+            name=name,
+            entity_type=entity_type,
+            stable_ids=stable_ids,
+            source_refs=(src,),
+        )
+        owners[owner_id] = owner
+        relations.append(
+            RelationRecord(
+                left_id=owner_id,
+                relation="BENEFICIAL_OWNER_OF",
+                right_id=company_id,
+                source_ref=src,
+                valid_from=_date(item.get("notified_on")),
+                valid_to=_date(item.get("ceased_on")),
+                identity_strength=strength,
+            )
+        )
+
+    return CompaniesHouseImportResult(
+        company=company,
+        owner_entities=owners,
+        relations=relations,
+        warnings=warnings,
+    )
