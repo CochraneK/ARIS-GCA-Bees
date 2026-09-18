@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "paper": "ARIS4C003",
+  "purpose": "independent blinded IKES Coder B input bundle",
+  "created_date": "2026-09-18",
+  "outcome_seen_when_built": false,
+  "access_policy": {
+    "mode": "whitelist_only",
+    "allowed_files": [
+      "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/README.md",
+      "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/WORKBUDDY_HANDOFF.md",
+      "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/OUTPUT_TEMPLATE.md"
+    ],
+    "prohibited_examples": [
+      "papers/003-colonial-disciplinary-advantage/process/IKES_CODER_A.csv",
+      "papers/003-colonial-disciplinary-advantage/process/IKES_CODER_A.md",
+      "papers/003-colonial-disciplinary-advantage/process/AUTO_REVIEW.md",
+      "papers/003-colonial-disciplinary-advantage/STATUS.md",
+      "papers/003-colonial-disciplinary-advantage/process/GATE_CLOSURE_AUDIT.md",
+      "any contemporary OpenAlex country×discipline outcome",
+      "any QS/THE/Shanghai project result",
+      "any prior ARIS expectation about which disciplines should score high/low"
+    ]
+  },
+  "files": [
+    {
+      "path": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/README.md",
+      "git_blob_sha": "9a9f78419873f6d263c18a248cd5d20ad04e2eb7"
+    },
+    {
+      "path": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/WORKBUDDY_HANDOFF.md",
+      "git_blob_sha": "a808e0d50a69328915ea15c349e289b24d3e745b"
+    },
+    {
+      "path": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/OUTPUT_TEMPLATE.md",
+      "git_blob_sha": "2698cbdcca6e3bfa890ab51b42ecbb0016b1c127"
+    }
+  ],
+  "handoff_file": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/WORKBUDDY_HANDOFF.md",
+  "independence_rule": "If the Coder B context has seen prohibited material, it must declare INDEPENDENCE_STATUS: FAIL and cannot serve as confirmatory Coder B."
+}
