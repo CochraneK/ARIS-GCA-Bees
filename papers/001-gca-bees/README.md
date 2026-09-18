@@ -1,6 +1,6 @@
 # ARIS4C001 · Bee GCA × Uncertainty
 
-## Final paper
+## Submission-ready paper
 
 **From General Learning Ability to Uncertainty Monitoring in Honey Bees: A Quantitative Synthesis and Falsifiable Model-Comparison Framework**
 
@@ -24,3 +24,12 @@ Canonical files:
 - code/published_summary_analysis.py
 - data/published_summary_synthesis.json
 - code/model_recovery.py
+
+
+## Submission package
+
+Primary target: **Frontiers in Psychology · Comparative Psychology · Hypothesis and Theory**.
+
+The repository now contains a complete public-safe submission package under `submission/`: target-journal rationale, cover letter, title-page template, portal metadata, declarations/AI disclosure, upload checklist, and a Journal of Comparative Psychology fallback route.
+
+The only fields intentionally excluded from the public repository are private/current author-contact fields and author-only portal confirmations. They do not reduce the ARIS4C portfolio maturity: Paper 001 is tracked as **100% / submission-package-ready**.
