@@ -1,0 +1,72 @@
+{
+  "source": "Sulpizio et al. 2024 / OSF ecr32",
+  "osf_project": "https://osf.io/ecr32/",
+  "view_only": "60b964248cc64a8793a9013075132a1c",
+  "checked_on": "2026-09-18",
+  "files": [
+    {
+      "name": "taboo_study1.csv",
+      "guid": "8nyga",
+      "size": 727983,
+      "sha256": "c725a30913e604e8344f4990c8d63990dcf0271e3a65765ddc3fa591b8cb1387"
+    },
+    {
+      "name": "taboo_study2.csv",
+      "guid": "t8wj9",
+      "size": 1468924,
+      "sha256": "617306c5d762586e0426081b13f779d64b30937f2d35cfbe24fdb97ded1f7a5a"
+    },
+    {
+      "name": "number_participants_study1.csv",
+      "guid": "zsa2e",
+      "size": 226,
+      "sha256": "841a6b35f56fcf5e16e91a78a2293993f38ea308beb74f0d562ad285631cfa7b"
+    },
+    {
+      "name": "top10_labs.csv",
+      "guid": "7jx8h",
+      "size": 1494,
+      "sha256": "cbfddd838e9206f9dab5fc8727074b9e7ae2e158c74afaf8d52829bf3ddebf9a"
+    },
+    {
+      "name": "external_reliabilities.csv",
+      "guid": "thjb3",
+      "size": 34378,
+      "sha256": "d55d518ee2ad3321c48307c7a4547931f127349bd289751dda6ef2451d93dc79"
+    },
+    {
+      "name": "splithalf_gender.csv",
+      "guid": "8d9tp",
+      "size": 4310,
+      "sha256": "0c004ed908b341cdce900d8f2af6d530210615be8437a0d77b076b2149dfaf1a"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "analyze_ratings.R",
+      "guid": "wak9x",
+      "sha256": "0afe26cbe53370bae28df699c73d5c5ea13cda30d84eb853a52747cdebc24927"
+    },
+    {
+      "name": "shared_words.R",
+      "guid": "7k938",
+      "sha256": "16697b3ea946876e6b7665ccb4d3e1467a5faa8609344ae1220fd7fb65003d7a"
+    },
+    {
+      "name": "frequency_plot.R",
+      "guid": "z43gm",
+      "sha256": "b9d3642a432b514c98af64a491b375d81a82f9f6c98b4cdbe77b46ea8a89b63a"
+    },
+    {
+      "name": "correlation_table_graph.R",
+      "guid": "jmhc5",
+      "sha256": "99c4d6948f2b50925bb2d51298d98c603d05d812aa9cd72a8abc68017153c54b"
+    },
+    {
+      "name": "splithalf_reliabilities_gender.R",
+      "guid": "54fre",
+      "sha256": "4be5e729f6d6dc933b4f8235106983a5050e6cb876789242e29ff46ee281e408"
+    }
+  ],
+  "licensing_note": "OSF project page reports no project-level license. ARIS4C016 therefore records provenance/checksums and does not vendor the raw third-party files at this stage."
+}
