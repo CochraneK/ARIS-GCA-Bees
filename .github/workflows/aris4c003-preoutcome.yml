@@ -42,6 +42,9 @@ jobs:
       - name: Data-builder smoke tests
         run: python code/test_data_builders.py
 
+      - name: IKES pipeline smoke test
+        run: python code/test_ikes_pipeline.py
+
       - name: Legacy synthetic PPML sanity
         run: python code/simulate_ppml.py
 
