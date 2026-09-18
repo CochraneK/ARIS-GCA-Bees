@@ -18,13 +18,20 @@
     "epistemic_status",
     "pathology_labels",
     "expressibility_status",
-    "provenance"
+    "provenance",
+    "annotation_status"
   ],
   "properties": {
-    "target_id": {"type": "string", "minLength": 1},
+    "target_id": {
+      "type": "string",
+      "minLength": 1
+    },
     "surface_forms": {
       "type": "array",
-      "items": {"type": "string", "minLength": 1},
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
       "minItems": 1,
       "uniqueItems": true
     },
@@ -41,8 +48,16 @@
         "metalinguistic"
       ]
     },
-    "canonical_description": {"type": "string", "minLength": 1},
-    "frozen_context": {"type": ["object", "null"]},
+    "canonical_description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "frozen_context": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
     "ontology_kinds": {
       "type": "array",
       "items": {
@@ -201,20 +216,58 @@
       ]
     },
     "open_world_role": {
-      "enum": ["in_support", "held_out_oos", "expansion_candidate"]
+      "enum": [
+        "in_support",
+        "held_out_oos",
+        "expansion_candidate"
+      ]
     },
     "provenance": {
       "type": "object",
-      "required": ["source_type"],
+      "required": [
+        "source_type"
+      ],
       "properties": {
         "source_type": {
-          "enum": ["lexical_resource", "ontology", "literature", "constructed_stress_case", "human_annotation", "other"]
+          "enum": [
+            "lexical_resource",
+            "ontology",
+            "literature",
+            "constructed_stress_case",
+            "human_annotation",
+            "other"
+          ]
         },
-        "source": {"type": ["string", "null"]},
-        "license": {"type": ["string", "null"]},
-        "notes": {"type": ["string", "null"]}
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "license": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       },
       "additionalProperties": false
+    },
+    "annotation_status": {
+      "enum": [
+        "constructed_seed",
+        "machine_mapped_unreviewed",
+        "human_annotated",
+        "expert_reviewed",
+        "adjudicated_gold"
+      ],
+      "description": "Maturity of UCID-specific semantic labels. Imported source assertions alone do not imply gold status."
     }
   }
 }
