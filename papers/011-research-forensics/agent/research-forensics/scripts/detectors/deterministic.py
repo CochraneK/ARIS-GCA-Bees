@@ -693,10 +693,168 @@ class ReferenceMetadataDetector:
         return findings
 
 
+def _field_values_equal(left: Any, right: Any, field_type: str = "auto") -> bool:
+    """Compare source-verified fields without semantic inference."""
+    kind = str(field_type or "auto").strip().lower()
+    if kind in {"numeric", "auto"}:
+        try:
+            return Decimal(str(left).strip()) == Decimal(str(right).strip())
+        except Exception:
+            if kind == "numeric":
+                return False
+    norm = lambda v: re.sub(r"\s+", " ", str(v or "")).strip().casefold()
+    return norm(left) == norm(right)
+
+
+class CrossSourceFieldConsistencyDetector:
+    """Compare a target summary with a source available at target-publication time."""
+
+    detector_id = "cross_source_field_consistency"
+    detector_version = "pilot2b-0.1.0"
+    family = "citation_forensics"
+
+    def applicability(self, context: ForensicContext) -> Applicability:
+        records = context.content.get("cross_source_records") or []
+        if not records:
+            return Applicability(False, "No structured cross-source comparison records were supplied.")
+        return Applicability(True, "At least one source-anchored cross-source comparison record is available.")
+
+    def run(self, context: ForensicContext) -> Sequence[Finding]:
+        findings: List[Finding] = []
+        for i, record in enumerate(context.content.get("cross_source_records") or []):
+            locator = str(record.get("source_locator") or f"cross_source_records[{i}]")
+            target_locator = str(record.get("target_source_locator") or locator)
+            comparison_locator = str(record.get("comparison_source_locator") or "")
+            target_fields = record.get("target_fields")
+            source_fields = record.get("source_fields")
+            compare_fields = record.get("fields_to_compare")
+            field_types = record.get("field_types") or {}
+            source_doi = normalize_doi(record.get("source_doi", ""))
+
+            missing = []
+            if not target_locator:
+                missing.append("target_source_locator")
+            if not comparison_locator:
+                missing.append("comparison_source_locator")
+            if not isinstance(target_fields, dict):
+                missing.append("target_fields")
+            if not isinstance(source_fields, dict):
+                missing.append("source_fields")
+            if not isinstance(compare_fields, list) or not compare_fields:
+                missing.append("fields_to_compare")
+            if record.get("source_available_at_target_time") is not True:
+                missing.append("source_available_at_target_time=true")
+            if record.get("provenance_verified") is not True:
+                missing.append("provenance_verified=true")
+
+            if missing:
+                findings.append(Finding(
+                    detector_id=self.detector_id,
+                    detector_version=self.detector_version,
+                    family=self.family,
+                    applicable=False,
+                    applicability_reason="Cross-source provenance or comparison inputs are incomplete.",
+                    status="ABSTAIN",
+                    evidence_class="E0",
+                    claim="Cross-source comparison was not executed.",
+                    source_locator=locator,
+                    evidence={"missing_requirements": missing, "source_doi": source_doi},
+                    reproducible="yes",
+                    benign_explanations=[],
+                    dependency_group=f"cross-source:{source_doi or locator}",
+                    next_action="Verify both source locations and contemporaneous availability.",
+                    misconduct_inference=False,
+                ))
+                continue
+
+            mismatches = []
+            matches = []
+            absent_fields = []
+            for field_name in compare_fields:
+                if field_name not in target_fields or field_name not in source_fields:
+                    absent_fields.append(str(field_name))
+                    continue
+                kind = str(field_types.get(field_name, "auto"))
+                left, right = target_fields[field_name], source_fields[field_name]
+                if _field_values_equal(left, right, kind):
+                    matches.append(str(field_name))
+                else:
+                    mismatches.append({
+                        "field": str(field_name),
+                        "target_value": left,
+                        "source_value": right,
+                        "field_type": kind,
+                    })
+
+            if absent_fields:
+                findings.append(Finding(
+                    detector_id=self.detector_id,
+                    detector_version=self.detector_version,
+                    family=self.family,
+                    applicable=False,
+                    applicability_reason="One or more requested comparison fields are absent.",
+                    status="ABSTAIN",
+                    evidence_class="E0",
+                    claim="Cross-source comparison could not be completed for all prespecified fields.",
+                    source_locator=locator,
+                    evidence={
+                        "missing_fields": absent_fields,
+                        "matched_fields": matches,
+                        "mismatches_observed_before_abstention": mismatches,
+                        "target_source_locator": target_locator,
+                        "comparison_source_locator": comparison_locator,
+                        "source_doi": source_doi,
+                    },
+                    reproducible="yes",
+                    benign_explanations=[],
+                    dependency_group=f"cross-source:{source_doi or locator}",
+                    next_action="Re-extract and verify every prespecified field from both sources.",
+                    misconduct_inference=False,
+                ))
+                continue
+
+            ok = not mismatches
+            findings.append(Finding(
+                detector_id=self.detector_id,
+                detector_version=self.detector_version,
+                family=self.family,
+                applicable=True,
+                applicability_reason="Both source locations and all prespecified fields were verified and contemporaneously available.",
+                status="PASS" if ok else "FLAG",
+                evidence_class="E2",
+                claim=(
+                    "Target-paper summary agrees with the contemporaneously available cited source on all prespecified fields."
+                    if ok else
+                    "Target-paper summary disagrees with the contemporaneously available cited source on one or more prespecified fields."
+                ),
+                source_locator=target_locator,
+                evidence={
+                    "source_doi": source_doi,
+                    "target_source_locator": target_locator,
+                    "comparison_source_locator": comparison_locator,
+                    "matched_fields": matches,
+                    "mismatches": mismatches,
+                    "target_fields": target_fields,
+                    "source_fields": source_fields,
+                },
+                reproducible="yes",
+                benign_explanations=[] if ok else [
+                    "The target table may summarize a different analysis, subsample, or model than the cited source.",
+                    "The target table may contain a transcription or summarization error.",
+                    "One structured extraction may still require rechecking.",
+                ],
+                dependency_group=f"cross-source:{source_doi or locator}",
+                next_action=None if ok else "Open both source locations and adjudicate each mismatched field.",
+                misconduct_inference=False,
+            ))
+        return findings
+
+
 DEFAULT_DETERMINISTIC_DETECTORS = [
     NHSTConsistencyDetector(),
     GRIMItemMeanDetector(),
     DebitStyleBinaryDetector(),
     TableArithmeticDetector(),
     ReferenceMetadataDetector(),
+    CrossSourceFieldConsistencyDetector(),
 ]

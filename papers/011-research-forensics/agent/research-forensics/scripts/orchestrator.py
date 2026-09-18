@@ -27,6 +27,7 @@ STRUCTURED_INPUT_KEYS = {
     "binary_summaries",
     "table_checks",
     "doi_resolutions",
+    "cross_source_records",
 }
 
 
