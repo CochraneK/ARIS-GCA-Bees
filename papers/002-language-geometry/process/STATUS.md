@@ -1,7 +1,7 @@
 # Paper 002 Status
 
 **Paper:** `002-language-geometry`  
-**Stage:** manuscript Draft v1 complete · independent manuscript review pending  
+**Stage:** manuscript Draft v1 complete · independent manuscript review PASS_SUBMISSION_PREP  
 **Promotion gate:** PASSED  
 **Secondary reviewer:** WorkBuddy / Tencent Hy3  
 **Reviewer family:** Tencent Hunyuan (different from OpenAI GPT primary executor)  
@@ -57,7 +57,9 @@ Secondary review source:
 
 ## Next hard gate
 
-Obtain a fresh, different-family **manuscript-stage review** of Draft v1. This is a quality gate for wording/method reporting/submission readiness; Paper 002 itself is already formally promoted.
+~~Obtain a fresh, different-family **manuscript-stage review** of Draft v1. This is a quality gate for wording/method reporting/submission readiness; Paper 002 itself is already formally promoted.~~
+
+**COMPLETE (2026-09-18):** different-family manuscript-stage review returned `PASS_SUBMISSION_PREP`; `MANUSCRIPT_REVIEW_RECEIPT.md` + `.json` written. No blocking scientific or manuscript changes. Optional improvements only (title tightening; 0.35/0.40 code comment; 40-feature closure-ratio SD note; optional 50–100 splits / phylogenetic sensitivity).
 
 
 ## Independent manuscript-review handoff
@@ -66,7 +68,7 @@ Prepared:
 - `WORKBUDDY_MANUSCRIPT_REVIEW.md`
 - `MANUSCRIPT_REVIEW_RECEIPT.template.json`
 
-A fresh different-family reviewer should write `MANUSCRIPT_REVIEW_RECEIPT.md`. A `PASS_SUBMISSION_PREP` verdict authorizes target-journal formatting; `REOPEN_ANALYSIS` reopens scientific work.
+A fresh different-family reviewer wrote `MANUSCRIPT_REVIEW_RECEIPT.md`. Verdict `PASS_SUBMISSION_PREP` authorizes target-journal formatting; `REOPEN_ANALYSIS` would reopen scientific work (not required).
 
 
 ## Pre-review hardening · 2026-09-18
@@ -90,18 +92,12 @@ A fresh different-family reviewer should write `MANUSCRIPT_REVIEW_RECEIPT.md`. A
 
 ## Current hard gate
 
-**Different-family manuscript-stage review.**
+**Different-family manuscript-stage review: COMPLETE (PASS_SUBMISSION_PREP).**
 
-Use:
-`WORKBUDDY_MANUSCRIPT_REVIEW.md`
+- Reviewer: WorkBuddy / hy3 (non-OpenAI-GPT; different model family from the OpenAI GPT primary manuscript writer).
+- Receipt: `MANUSCRIPT_REVIEW_RECEIPT.md` (verdict `PASS_SUBMISSION_PREP`; `Submission-prep authorization: AUTHORIZED`).
+- No blocking scientific or manuscript changes. Optional improvements only (title tightening; `stage1.py:414` 0.35 vs Stage 1C 0.40 code comment; 40-feature closure-ratio SD note; optional 50–100 splits / phylogenetic sensitivity).
 
-Expected output:
-`MANUSCRIPT_REVIEW_RECEIPT.md`
+### Next step
 
-Possible verdicts:
-- `PASS_SUBMISSION_PREP`
-- `REVISE_MANUSCRIPT`
-- `REOPEN_ANALYSIS`
-- `STOP_MANUSCRIPT`
-
-No further primary-executor scientific expansion should be added merely to keep the project moving before this independent review. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
+**Target-journal formatting / submission preparation (editorial only).** The maximum permitted claim is frozen at the bounded wording in §Scientific freeze; it may be narrowed during formatting but not broadened without a new review cycle. No further primary-executor scientific expansion should be added merely to keep the project moving. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
