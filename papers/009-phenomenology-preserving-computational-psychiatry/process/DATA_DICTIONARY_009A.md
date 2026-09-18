@@ -1,6 +1,6 @@
-# ARIS4C009A · Episode-level data dictionary
+# ARIS4C009 · Episode-level data dictionary
 
-This schema is representation-agnostic. Evidence and provenance are recorded first; derived representations are stored separately.
+This schema separates **acquisition evidence** from **derived representation** so 009A1 and 009A2 cannot be silently conflated.
 
 ## Core identifiers
 
@@ -8,30 +8,58 @@ This schema is representation-agnostic. Evidence and provenance are recorded fir
 |---|---|---|
 | participant_id | string | Pseudonymous study identifier |
 | episode_id | string | Unique focal episode |
-| source_segment_id | string | Immutable provenance pointer to de-identified source |
-| site_id | string | Study-site code |
+| assessment_id | string | One acquisition event |
+| source_segment_id | string | Immutable provenance pointer |
+| site_id | string | Study site |
 | language_original | string | Original language |
-| assessment_time | datetime / interval | Source-assessment time |
+| assessment_time | datetime/interval | Acquisition time |
+
+## Acquisition table
+
+| Field | Type | Description |
+|---|---|---|
+| acquisition_method | categorical | phenomenological interview / structured interview / actual self-report / EMA / other |
+| acquisition_protocol_version | string | Frozen protocol/instrument version |
+| acquisition_position | integer/null | Order position in 009A2 crossover |
+| acquisition_sequence | categorical/null | Randomized method sequence |
+| acquisition_duration_minutes | numeric | Participant-facing acquisition time |
+| interviewer_id | string/null | Pseudonymous interviewer |
+| self_administered | boolean | Whether participant completed without interviewer |
+| probing_allowed | boolean | Whether open clarification/probing was permitted |
+| focal_time_window | structured | Exact episode/window targeted |
+| acquisition_reactivity_note | structured/text | Evidence assessment may have changed articulation/state |
 
 ## Source-evidence fields
 
 | Field | Type | Description |
 |---|---|---|
 | participant_text | protected text | De-identified participant wording |
-| interviewer_prompt | protected text | Prompt immediately relevant to the episode |
-| context_window | protected text / structured | Necessary conversational/situational context |
-| temporal_anchor | structured | Onset, duration, recurrence and ordering |
-| uncertainty_source | ordinal + text | Ambiguity already present in source |
-| literal_metaphoric_status | categorical/uncertain | Only when explicitly clarified |
+| interviewer_prompt | protected text/null | Relevant prompt |
+| context_window | protected text/structured | Necessary conversational/situational context |
+| temporal_anchor | structured | Onset, duration, recurrence, ordering |
+| uncertainty_source | ordinal + text | Ambiguity already present |
+| literal_metaphoric_status | categorical/uncertain | Only when clarified |
 | attribution | multi-label + uncertainty | self / other / environment / unknown / mixed |
 | affective_valence | multi-label + uncertainty | negative / neutral / positive / mixed / indeterminate |
-| participant_clarification | protected text | Follow-up clarification if collected |
-| contextual_factors | structured | Relevant sleep/medication/substance/event context if consented |
+| participant_clarification | protected text | Follow-up clarification |
+| contextual_factors | structured | Relevant contextual factors if consented |
 | source_rater_confidence | probability/ordinal | Confidence in source interpretation |
+
+## Physical/context-anchor table
+
+| Field | Type | Description |
+|---|---|---|
+| anchor_type | categorical | time / coarse location / activity / social context / sleep / medication / physiology / other |
+| anchor_value | protected structured | Minimally identifying value |
+| anchor_source | categorical | device / participant log / external record / other |
+| anchor_precision | structured | Temporal/spatial/measurement precision |
+| anchor_consent_scope | categorical | Permitted use |
+
+Physical anchors constrain physical/context claims only; they do not adjudicate subjective meaning.
 
 ## Phenomenological relation graph
 
-Every graph record retains a source pointer.
+Every node/edge retains provenance.
 
 | Field | Type | Description |
 |---|---|---|
@@ -42,47 +70,65 @@ Every graph record retains a source pointer.
 | edge_target | node_id | Relation target |
 | relation_type | controlled vocabulary | agency, ownership, causation, precedence, attribution, salience, boundary, etc. |
 | relation_confidence | probability/ordinal | Rater confidence |
-| provenance_span | source pointer | Evidence supporting node/edge |
+| provenance_span | source pointer | Supporting evidence |
 
 ## Representation table
 
 | Field | Type | Description |
 |---|---|---|
 | representation_id | string | Unique encoded representation |
-| episode_id | string | Parent episode |
-| representation_condition | categorical | R0–R5 / exploratory |
-| representation_payload | structured/text/vector | Encoded representation |
-| creator_type | categorical | trained rater / participant / algorithm / LLM |
+| assessment_id | string | Acquisition record being encoded |
+| episode_id | string | Parent focal episode |
+| representation_condition | categorical | R0 / R1 / R2 / R3P / R4P / R5 / exploratory |
+| is_projection | boolean | True for source-derived projections such as R3P/R4P |
+| projection_target | string/null | Questionnaire/symptom format being projected |
+| actual_native_measure | boolean | True only when generated by actual native acquisition |
+| representation_payload | structured/text/vector | Encoded content |
+| creator_type | categorical | trained rater / algorithm / LLM |
 | creator_id_or_version | string | Pseudonymous rater or frozen model/version |
-| creation_protocol_version | string | Frozen extraction/coding protocol |
+| encoding_protocol_version | string | Frozen encoding protocol |
 | representation_length | numeric | Tokens/items/dimensions |
-| creation_time_minutes | numeric | Human/participant time |
-| compute_cost | numeric | Frozen compute-cost unit |
-| provenance_complete | boolean | Whether every claim is source-traceable |
+| encoding_time_minutes | numeric | Human encoding time |
+| compute_cost | numeric | Preregistered compute-cost unit |
+| provenance_complete | boolean | Whether claims are source-traceable |
+
+### Critical rule
+
+R3P/R4P generated from an interview source must have:
+
+- `is_projection = true`;
+- `actual_native_measure = false`.
+
+An actual participant self-report collected in 009A2 must be stored as its own acquisition record and never relabeled R3P.
 
 ## Benchmark-query table
 
 | Field | Type | Description |
 |---|---|---|
 | query_id | string | Frozen benchmark item |
+| query_origin | categorical | phenomenology / conventional clinical / domain-general / participant-generated |
 | query_domain | categorical | semantic / relation / context / temporal / participant meaning |
-| query_text | text | Evaluator-facing question |
-| response_type | categorical | binary / categorical / ordinal / probabilistic |
-| adjudicated_answer | structured | Multi-anchor reference |
+| query_cluster | string/null | Redundancy cluster |
+| query_text | text | Evaluator question |
+| response_type | categorical | binary / categorical / ordinal / probabilistic / relation-set |
+| adjudicated_answer | structured | Source-grounded reference |
 | adjudication_uncertainty | probability/ordinal | Reference uncertainty |
+| criticality | ordinal | Frozen importance label |
 
 ## Evaluation table
 
 | Field | Type | Description |
 |---|---|---|
 | evaluator_id | string | Pseudonymous evaluator |
-| representation_id | string | Condition evaluated |
-| query_id | string | Query answered |
+| evaluator_background | categorical | phenomenology / conventional clinical / computational / non-specialist / other |
+| representation_id | string | Representation evaluated |
+| query_id | string | Question |
 | evaluator_answer | structured | Response |
 | evaluator_confidence | probability/ordinal | Confidence |
+| evaluator_abstained | boolean | Could not infer |
 | correct_strict | boolean/null | Strict scoring where defined |
 | partial_credit | numeric/null | Preregistered partial credit |
-| evaluation_time_seconds | numeric | Burden/time |
+| evaluation_time_seconds | numeric | Time burden |
 
 ## Participant-fidelity table
 
@@ -90,31 +136,33 @@ Every graph record retains a source pointer.
 |---|---|---|
 | participant_id | string | Participant |
 | representation_id | string | Reconstruction shown |
-| meaning_preserved | ordinal | Structured participant rating |
-| important_omission | boolean + text | Important information lost |
-| important_distortion | boolean + text | Meaning changed |
+| meaning_preserved | ordinal | Participant rating |
+| important_omission | boolean + protected text | Important content lost |
+| important_distortion | boolean + protected text | Meaning changed |
 | participant_comment | protected text | Optional explanation |
+| validation_interval | duration | Time since source episode/acquisition |
 
 ## Data-governance flags
 
 | Field | Type | Description |
 |---|---|---|
-| consent_scope | categorical | Allowed research uses |
-| public_release_allowed | boolean | Derived/raw release permission |
-| passive_sensing_consent | boolean | Separate permission if applicable |
-| recontact_allowed | boolean | Whether clarification is permitted |
+| consent_scope | categorical | Allowed use |
+| public_release_allowed | boolean | Release permission |
+| passive_sensing_consent | boolean | Separate permission |
+| recontact_allowed | boolean | Clarification/recontact permission |
 | retention_class | categorical | Retention policy |
 
 ## Missingness rule
 
-Never use one blank value to collapse:
+Never collapse into one blank:
 
 - not asked;
 - not applicable;
 - unknown;
 - participant uncertain;
 - rater uncertain;
+- evaluator abstained;
 - redacted for privacy;
 - technical failure.
 
-These states require distinct codes because uncertainty belongs to both the phenomenon and the measurement process.
+Uncertainty is part of both the phenomenon and measurement process.

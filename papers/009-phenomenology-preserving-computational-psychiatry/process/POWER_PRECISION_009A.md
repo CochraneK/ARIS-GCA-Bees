@@ -1,13 +1,11 @@
-# ARIS4C009A · Power and precision sensitivity analysis
+# ARIS4C009A1 · Power and precision sensitivity analysis
 
 **Status:** synthetic design engineering only.  
-**Not:** an empirical estimate of effect size or a frozen sample-size decision.
+**Not:** an empirical effect estimate or final sample-size decision.
 
-## Why a single conventional power calculation is inappropriate
+## Why conventional single-level power is inappropriate
 
-009A does not have one independent Bernoulli observation per participant.
-
-The data are crossed and nested across:
+009A1 observations are crossed/nested across:
 
 - participant;
 - episode;
@@ -15,9 +13,9 @@ The data are crossed and nested across:
 - representation;
 - evaluator.
 
-The confirmatory model is hierarchical. Before real pilot data exist, the honest question is therefore:
+The confirmatory analysis is hierarchical.
 
-> Under plausible ranges of representation differences and evaluator heterogeneity, how quickly does design precision improve as participants, episodes and benchmark queries increase?
+Before pilot variance estimates exist, the purpose of simulation is sensitivity analysis, not declaring N.
 
 ## Engineering proxy
 
@@ -25,46 +23,45 @@ The script:
 
 `code/power_precision_simulation.py`
 
-simulates two representations corresponding roughly to an expert phenomenological representation (R2) and a self-report abstraction (R3).
+simulates a contrast roughly corresponding to:
 
-It includes random heterogeneity at:
+- **R2:** specialist phenomenological representation;
+- **R3P:** questionnaire-format projection generated from the same source.
 
-- participant level;
-- episode level;
-- query level;
-- representation-specific evaluator level.
+R3P is **not participant self-report**.
 
-Because different evaluators may see different representations of the same episode, evaluator effects do **not** cancel perfectly.
+The simulation includes random heterogeneity at:
 
-The script then aggregates to a participant-level paired difference and uses a two-sided normal threshold as a transparent **proxy** for power.
+- participant;
+- episode;
+- query;
+- representation-specific evaluator.
 
-This is intentionally simpler than the final hierarchical logistic analysis and must be replaced/calibrated after a real pilot supplies variance components.
+A participant-level paired contrast is used only as a transparent engineering approximation.
 
-## Default sensitivity scenario
+## Default synthetic scenario
 
-The default engineering scenario uses:
-
-- 2 focal episodes per participant;
-- 15 adjudicable benchmark queries per episode;
-- baseline R3 accuracy = 0.68 before random heterogeneity;
+- 2 focal episodes/person;
+- 15 adjudicable queries/episode;
+- baseline R3P reconstruction accuracy = 0.68 before heterogeneity;
 - participant logit SD = 0.60;
 - episode logit SD = 0.50;
 - query logit SD = 0.70;
 - evaluator logit SD = 0.80;
 - seed = 20260918.
 
-Candidate target differences are varied rather than assumed true:
+Nominal input differences:
 
 - +0.03;
 - +0.05;
 - +0.075;
 - +0.10.
 
-Because logistic-normal mixing attenuates probability differences, the realized average contrast is smaller than the nominal input delta.
+Because logistic-normal mixing attenuates probability differences, realized mean contrasts are smaller.
 
-## One reproduced sensitivity slice
+## Reproduced sensitivity slice
 
-Using 250 Monte Carlo replicates, the following values are design-sensitivity outputs, not empirical findings.
+Using 250 Monte Carlo replicates:
 
 | Nominal delta | Participants | Proxy power | Mean realized difference |
 |---:|---:|---:|---:|
@@ -81,74 +78,72 @@ Using 250 Monte Carlo replicates, the following values are design-sensitivity ou
 | 0.10 | 60 | 0.976 | 0.0853 |
 | 0.10 | 80 | 0.984 | 0.0842 |
 
-The exact Monte Carlo estimates vary with replicate count and assumptions.
+These are synthetic engineering outputs.
 
 ## Design implication
 
-The simulation makes one point that should survive parameter changes:
+Participant count alone does not determine information.
 
-**participant count alone does not determine information.**
+Precision depends on:
 
-Precision also depends strongly on:
-
-- how many independent focal episodes are obtained per participant;
-- how many questions are genuinely adjudicable rather than redundant;
+- episodes/person;
+- genuinely independent adjudicable queries;
 - evaluator variance;
 - source ambiguity;
+- missing/indeterminate fraction;
+- query redundancy;
 - representation × domain interactions.
 
 Under the deliberately noisy default scenario:
 
-- a small ~5 percentage-point nominal difference is difficult to estimate precisely without a relatively large sample;
-- a ~7.5 percentage-point difference becomes detectable much earlier;
-- a ~10 percentage-point difference can be detected in considerably smaller samples.
+- ~5 percentage-point nominal contrasts require relatively large samples for stable detection;
+- ~7.5-point contrasts stabilize earlier;
+- ~10-point contrasts can be detected with substantially smaller samples.
 
-This should **not** be converted into “009 needs N = X” yet.
+Do not convert this into a final N.
 
-## What the real pilot must estimate
+## Pilot parameters required
 
-Before freezing confirmatory N, obtain empirical estimates of:
+Estimate empirically:
 
-1. participant-level variance;
-2. episode-level variance;
-3. query-level variance;
-4. evaluator-level variance;
-5. missing/indeterminate query rate;
-6. within-episode query correlation;
-7. representation × phenomenological-domain interaction;
-8. realized semantic-fidelity contrast.
+1. participant variance;
+2. episode variance;
+3. query variance;
+4. evaluator variance;
+5. query redundancy/effective query count;
+6. missing/indeterminate rate;
+7. domain interactions;
+8. realized R2–R3P contrast;
+9. representation-rate distribution.
 
-Then refit the simulation to those values.
+Then rerun the simulation.
 
 ## Precision-first rule
 
-The final sample size should be selected to achieve acceptable interval width for the primary R2-versus-R3 contrast and key domain interactions, not merely 80% rejection probability.
+Final N should target:
 
-The preregistration should report both:
+- acceptable interval width for primary contrasts;
+- adequate precision for key representation × domain interactions.
 
-- simulated rejection probability;
-- expected interval precision.
+Report both simulated rejection probability and expected interval precision.
 
-## Sensitivity grid required before registration
+## Required sensitivity grid
 
 At minimum vary:
 
 - participants: 30–200;
 - episodes/person: 1–4;
-- usable queries/episode: 8–30;
-- nominal primary contrast: 0.03–0.12;
+- usable nonredundant queries/episode: 8–30;
+- nominal contrast: 0.03–0.12;
 - evaluator logit SD: 0.3–1.2;
-- indeterminate/missing query fraction: 0–30%.
-
-No single scenario should be presented as the truth before pilot calibration.
+- missing/indeterminate fraction: 0–30%.
 
 ## Stop rule
 
-If pilot estimates imply that the required confirmatory sample is infeasible, do **not** weaken the fidelity metric to manufacture power.
+If pilot-calibrated requirements are infeasible:
 
-Instead, consider:
-
-- increasing repeated episodes or independent queries where scientifically justified;
-- narrowing the primary representation contrast;
-- improving evaluator calibration;
-- redesigning the study as an estimation-focused feasibility paper.
+- do not weaken fidelity definitions merely to gain power;
+- consider more independent episodes;
+- improve evaluator calibration;
+- narrow confirmatory contrasts;
+- redesign as an estimation/feasibility study.
