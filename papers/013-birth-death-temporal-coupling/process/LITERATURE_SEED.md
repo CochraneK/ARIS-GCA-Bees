@@ -19,3 +19,9 @@ This is a seed map, not yet a systematic review.
 
 ## Consequence for novelty
 Novelty cannot be “birth date correlates with death.” The contribution is a unified competition among ordinary seasonal, anniversary, cultural, and traditional-calendar explanations with preregistration, matched pseudo-calendar nulls, and independent holdout replication.
+
+## Expanded evidence map
+
+The structured study-by-study comparison is maintained in [PRIOR_ART_MATRIX.md](PRIOR_ART_MATRIX.md). It includes supportive, null, and conflicting evidence across birthday/anniversary mortality, season-of-birth mortality, Chinese Five-Elements claims and failed replication, multiple-testing demonstrations, and lunar/astronomical timing claims.
+
+The evidence map treats birthday mortality itself as a phenomenon to replicate rather than as an assumed fact. For the boundary between date-only cultural-calendar encodings and full Four Pillars/Bazi, see [TRADITIONAL_CALENDAR_SCOPE.md](TRADITIONAL_CALENDAR_SCOPE.md).
