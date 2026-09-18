@@ -1,0 +1,74 @@
+name: ARIS4C004 identity second-review packet
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/code/review/select_identity_second_review.py"
+      - ".github/workflows/aris4c004-second-review.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Select deterministic second-review set
+        run: |
+          python "$PAPER_DIR/code/review/select_identity_second_review.py"             "$PAPER_DIR/data/derived/identity_decisions_100.csv"             --single-fraction 0.25             --seed aris4c004-identity-second-review-v1             --output "$PAPER_DIR/data/derived/identity_second_review_selection.csv"             --summary-json "$PAPER_DIR/data/derived/identity_second_review_selection_summary.json"
+
+      - name: Build blinded assignment sheet
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          root=Path("papers/004-counterfactual-cost-of-exclusion/data/derived")
+          src=root/"identity_second_review_selection.csv"
+          dst=root/"identity_second_review_blind_assignment.csv"
+          rows=list(csv.DictReader(src.open(encoding="utf-8",newline="")))
+          fields=[
+            "person_id","canonical_name","birth_year","death_year",
+            "second_review_status","second_review_openalex_ids",
+            "second_reviewer","mh_blinded_at_second_review",
+            "second_review_date","notes",
+          ]
+          with dst.open("w",encoding="utf-8",newline="") as h:
+            w=csv.DictWriter(h,fieldnames=fields);w.writeheader()
+            for r in rows:
+              w.writerow({
+                "person_id":r["person_id"],
+                "canonical_name":r["canonical_name"],
+                "birth_year":r["birth_year"],
+                "death_year":r["death_year"],
+                "second_review_status":"",
+                "second_review_openalex_ids":"",
+                "second_reviewer":"",
+                "mh_blinded_at_second_review":"",
+                "second_review_date":"",
+                "notes":"",
+              })
+          assert all("first_review" not in f and "selection_reason" not in f for f in fields)
+          print({"blind_rows":len(rows)})
+          PY
+
+      - name: Commit deterministic review packet metadata
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add             "$PAPER_DIR/data/derived/identity_second_review_selection.csv"             "$PAPER_DIR/data/derived/identity_second_review_selection_summary.json"             "$PAPER_DIR/data/derived/identity_second_review_blind_assignment.csv"
+          if ! git diff --cached --quiet; then
+            git commit -m "004: materialize blinded identity second-review assignment"
+            git push
+          fi
