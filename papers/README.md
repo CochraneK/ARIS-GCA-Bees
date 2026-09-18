@@ -7,14 +7,14 @@ This directory is the canonical registry of research projects produced with ARIS
 | Slot | Status | Location |
 |---|---|---|
 | 001 | reconstructed research design | papers/001-gca-bees/ |
-| **002** | **RESERVED REVIEW CANDIDATE — not promoted** | papers/002-REVIEW-CANDIDATE.md |
+| **002** | **formal paper · manuscript preparation** | papers/002-language-geometry/ |
 | 003 | formal paper | papers/003-colonial-disciplinary-advantage/ |
 | 004 | formal paper | papers/004-counterfactual-cost-of-exclusion/ |
 | 005 | formal paper | papers/005-hidden-burden-bad-science/ |
 | 006 | formal paper | papers/006-chinese-alphabetical-exposure/ |
 | 007 | formal research design | papers/007-cross-species-age-equivalence/ |
 
-The 002 pointer is deliberately a file, not a promoted paper folder.
+Paper 002 passed independent cross-family ARIS secondary review and has been formally promoted.
 
 ## Stable paper layout
 
