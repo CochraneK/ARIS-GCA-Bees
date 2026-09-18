@@ -38,3 +38,5 @@ Each promoted paper owns one stable folder containing paper.json plus code, data
 5. Synthetic outputs must be labeled and must not be presented as empirical observations.
 6. Reconstructed papers may replace weak canonical claims when the replacement is explicit; Git history remains the archive.
 7. docs/index.html is the public portfolio, not the canonical data source.
+8. Final/submission-ready papers must satisfy `ARIS4C_OUTPUT_STANDARD.md`: English full paper + Chinese full paper + appropriate figures and tables, unless an explicit scientific exception is documented.
+9. Figure/table outputs must be evidence-traceable; conceptual or synthetic visuals must be labeled as such.
