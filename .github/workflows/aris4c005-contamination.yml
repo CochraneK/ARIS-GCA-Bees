@@ -9,6 +9,8 @@ on:
       - "papers/005-hidden-burden-bad-science/code/citation_dependence.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_contamination_exposure.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_citation_dependence.py"
+      - "papers/005-hidden-burden-bad-science/code/knowledge_ghost_half_life.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_knowledge_ghost_half_life.py"
       - "papers/005-hidden-burden-bad-science/code/classify_retractions.py"
   workflow_dispatch:
 
@@ -69,6 +71,15 @@ jobs:
             --edge-sample-per-source 20 \
             --seed 20260918
 
+      - name: Estimate descriptive citation ghost half-life
+        run: |
+          python "$PAPER_DIR/code/knowledge_ghost_half_life.py" \
+            "$RUNNER_TEMP/aris4c005_contamination_sources.csv" \
+            "$PAPER_DIR/data/pilot/citation_ghost_half_life_summary.json" \
+            --baseline-years 3 \
+            --confirm-years 2 \
+            --last-complete-year 2025
+
       - name: Append provenance and validate summary
         shell: bash
         run: |
@@ -113,7 +124,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$PAPER_DIR/data/pilot/contamination_exposure_summary.json"
+          git add "$PAPER_DIR/data/pilot/contamination_exposure_summary.json" "$PAPER_DIR/data/pilot/citation_ghost_half_life_summary.json"
           if git diff --cached --quiet; then
             echo "No summary change."
             exit 0
