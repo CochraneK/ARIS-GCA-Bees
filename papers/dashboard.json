@@ -4,12 +4,12 @@
   "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means final/submission-ready package.",
   "projects": {
     "001": {
-      "progress": 95,
-      "stage": "Final manuscript",
-      "activity": "active",
-      "evidence": "Synthesis + manuscript",
-      "next_gate": "Final editorial/submission package",
-      "blocker": "None material"
+      "progress": 100,
+      "stage": "Submission package ready",
+      "activity": "quiet",
+      "evidence": "Final manuscript + reproducible synthesis + journal package",
+      "next_gate": "Author portal submission",
+      "blocker": "None scientific; author-only contact/confirmation fields"
     },
     "002": {
       "progress": 90,
