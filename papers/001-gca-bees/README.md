@@ -15,7 +15,13 @@ Main published-summary results:
 
 These support structured learning covariance, not a proven common GCA–metacognition mechanism.
 
-Canonical files:
+Canonical outputs under the ARIS4C v1 final-output contract:
+- manuscript/MAIN.md — full English paper
+- manuscript/MAIN.zh-CN.md — full Chinese mirror
+- figures/ — 3 evidence-linked figures
+- tables/TABLES.md — 3 canonical tables
+
+Canonical scientific files:
 - manuscript/MAIN.md
 - process/STATUS.md
 - process/PUBLISHED_SUMMARY_REANALYSIS.md
@@ -33,3 +39,6 @@ Primary target: **Frontiers in Psychology · Comparative Psychology · Hypothesi
 The repository now contains a complete public-safe submission package under `submission/`: target-journal rationale, cover letter, title-page template, portal metadata, declarations/AI disclosure, upload checklist, and a Journal of Comparative Psychology fallback route.
 
 The only fields intentionally excluded from the public repository are private/current author-contact fields and author-only portal confirmations. They do not reduce the ARIS4C portfolio maturity: Paper 001 is tracked as **100% / submission-package-ready**.
+
+
+**Output gate:** PASS · EN full paper · ZH full paper · 3 figures · 3 tables.
