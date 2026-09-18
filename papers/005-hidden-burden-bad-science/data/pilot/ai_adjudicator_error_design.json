@@ -1,0 +1,1491 @@
+{
+  "classification": "AI_ADJUDICATOR_ERROR_DESIGN_SCENARIOS_NOT_EMPIRICAL_ACCURACY",
+  "single_model_scenarios": [
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.05150000000000004,
+      "ppv": 0.03106796116504852,
+      "npv": 0.9995782814971007,
+      "false_positive_share_among_positive": 0.9689320388349515
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02156000000000002,
+      "ppv": 0.07421150278293129,
+      "npv": 0.9995911859695025,
+      "false_positive_share_among_positive": 0.9257884972170687
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01158000000000001,
+      "ppv": 0.13816925734024169,
+      "npv": 0.9995953137330286,
+      "false_positive_share_among_positive": 0.8618307426597583
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.006590000000000005,
+      "ppv": 0.242792109256449,
+      "npv": 0.9995973465135242,
+      "false_positive_share_among_positive": 0.757207890743551
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.002598000000000001,
+      "ppv": 0.6158583525789066,
+      "npv": 0.9995989580931259,
+      "false_positive_share_among_positive": 0.38414164742109336
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.051700000000000045,
+      "ppv": 0.034816247582205,
+      "npv": 0.9997890962775493,
+      "false_positive_share_among_positive": 0.965183752417795
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02176000000000002,
+      "ppv": 0.08272058823529406,
+      "npv": 0.999795551193981,
+      "false_positive_share_among_positive": 0.917279411764706
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01178000000000001,
+      "ppv": 0.1528013582342953,
+      "npv": 0.9997976159154844,
+      "false_positive_share_among_positive": 0.8471986417657047
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.006790000000000005,
+      "ppv": 0.2650957290132546,
+      "npv": 0.9997986327161427,
+      "false_positive_share_among_positive": 0.7349042709867454
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.002798000000000001,
+      "ppv": 0.6433166547533951,
+      "npv": 0.9997994388298459,
+      "false_positive_share_among_positive": 0.35668334524660494
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.05180000000000004,
+      "ppv": 0.03667953667953665,
+      "npv": 0.9998945370175069,
+      "false_positive_share_among_positive": 0.9633204633204634
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02186000000000002,
+      "ppv": 0.08691674290942353,
+      "npv": 0.9998977651460936,
+      "false_positive_share_among_positive": 0.9130832570905765
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01188000000000001,
+      "ppv": 0.1599326599326598,
+      "npv": 0.9998987977168765,
+      "false_positive_share_among_positive": 0.8400673400673402
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.006890000000000005,
+      "ppv": 0.27576197387518125,
+      "npv": 0.9998993062198548,
+      "false_positive_share_among_positive": 0.7242380261248187
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.002898000000000001,
+      "ppv": 0.6556245686680467,
+      "npv": 0.9998997093577187,
+      "false_positive_share_among_positive": 0.34437543133195325
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.05375000000000005,
+      "ppv": 0.07441860465116272,
+      "npv": 0.9989431968295905,
+      "false_positive_share_among_positive": 0.9255813953488373
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02390000000000002,
+      "ppv": 0.16736401673640156,
+      "npv": 0.9989755148038111,
+      "false_positive_share_among_positive": 0.8326359832635984
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01395000000000001,
+      "ppv": 0.2867383512544801,
+      "npv": 0.9989858526443892,
+      "false_positive_share_among_positive": 0.7132616487455199
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.008975000000000004,
+      "ppv": 0.4456824512534817,
+      "npv": 0.998990943719886,
+      "false_positive_share_among_positive": 0.5543175487465183
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.004995000000000001,
+      "ppv": 0.8008008008008006,
+      "npv": 0.998994979924724,
+      "false_positive_share_among_positive": 0.19919919919919937
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.05425000000000005,
+      "ppv": 0.0829493087557603,
+      "npv": 0.999471319058948,
+      "false_positive_share_among_positive": 0.9170506912442397
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02440000000000002,
+      "ppv": 0.1844262295081966,
+      "npv": 0.9994874948749488,
+      "false_positive_share_among_positive": 0.8155737704918034
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01445000000000001,
+      "ppv": 0.3114186851211071,
+      "npv": 0.9994926690680331,
+      "false_positive_share_among_positive": 0.6885813148788928
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.009475000000000004,
+      "ppv": 0.47493403693931385,
+      "npv": 0.9994952171828072,
+      "false_positive_share_among_positive": 0.5250659630606862
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.005495000000000002,
+      "ppv": 0.8189262966333029,
+      "npv": 0.9994972373190684,
+      "false_positive_share_among_positive": 0.18107370336669715
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.05450000000000004,
+      "ppv": 0.08715596330275223,
+      "npv": 0.9997355896351138,
+      "false_positive_share_among_positive": 0.9128440366972478
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02465000000000002,
+      "ppv": 0.19269776876267733,
+      "npv": 0.9997436817552674,
+      "false_positive_share_among_positive": 0.8073022312373227
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.014700000000000008,
+      "ppv": 0.3231292517006801,
+      "npv": 0.9997462701715214,
+      "false_positive_share_among_positive": 0.6768707482993199
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.009725000000000004,
+      "ppv": 0.4884318766066836,
+      "npv": 0.9997475448738987,
+      "false_positive_share_among_positive": 0.5115681233933165
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.005745000000000001,
+      "ppv": 0.82680591818973,
+      "npv": 0.9997485554510664,
+      "false_positive_share_among_positive": 0.17319408181026996
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.057500000000000044,
+      "ppv": 0.1391304347826086,
+      "npv": 0.9978779840848806,
+      "false_positive_share_among_positive": 0.8608695652173914
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02780000000000002,
+      "ppv": 0.2877697841726617,
+      "npv": 0.9979428101213742,
+      "false_positive_share_among_positive": 0.7122302158273384
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01790000000000001,
+      "ppv": 0.44692737430167573,
+      "npv": 0.9979635475002545,
+      "false_positive_share_among_positive": 0.5530726256983243
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.012950000000000005,
+      "ppv": 0.6177606177606175,
+      "npv": 0.997973760194519,
+      "false_positive_share_among_positive": 0.3822393822393825
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.008990000000000001,
+      "ppv": 0.889877641824249,
+      "npv": 0.9979818568934723,
+      "false_positive_share_among_positive": 0.110122358175751
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.058500000000000045,
+      "ppv": 0.15384615384615374,
+      "npv": 0.9989378651088688,
+      "false_positive_share_among_positive": 0.8461538461538463
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02880000000000002,
+      "ppv": 0.31249999999999983,
+      "npv": 0.9989703459637562,
+      "false_positive_share_among_positive": 0.6875000000000002
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.01890000000000001,
+      "ppv": 0.476190476190476,
+      "npv": 0.998980735908674,
+      "false_positive_share_among_positive": 0.523809523809524
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.013950000000000006,
+      "ppv": 0.6451612903225804,
+      "npv": 0.9989858526443892,
+      "false_positive_share_among_positive": 0.3548387096774196
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.009990000000000002,
+      "ppv": 0.9009009009009008,
+      "npv": 0.9989899091928365,
+      "false_positive_share_among_positive": 0.0990990990990992
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.059000000000000045,
+      "ppv": 0.16101694915254225,
+      "npv": 0.9994686503719447,
+      "false_positive_share_among_positive": 0.8389830508474577
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.02930000000000002,
+      "ppv": 0.32423208191126257,
+      "npv": 0.999484907798496,
+      "false_positive_share_among_positive": 0.6757679180887375
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.019400000000000008,
+      "ppv": 0.48969072164948435,
+      "npv": 0.9994901080970835,
+      "false_positive_share_among_positive": 0.5103092783505156
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.014450000000000005,
+      "ppv": 0.6574394463667818,
+      "npv": 0.9994926690680331,
+      "false_positive_share_among_positive": 0.34256055363321825
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.010490000000000001,
+      "ppv": 0.9056244041944708,
+      "npv": 0.9994946993966711,
+      "false_positive_share_among_positive": 0.09437559580552923
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.8,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.06500000000000004,
+      "ppv": 0.246153846153846,
+      "npv": 0.9957219251336898,
+      "false_positive_share_among_positive": 0.753846153846154
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.8,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.03560000000000002,
+      "ppv": 0.4494382022471908,
+      "npv": 0.9958523434259643,
+      "false_positive_share_among_positive": 0.5505617977528092
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.02580000000000001,
+      "ppv": 0.6201550387596897,
+      "npv": 0.9958940669267091,
+      "false_positive_share_among_positive": 0.3798449612403103
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.020900000000000005,
+      "ppv": 0.7655502392344495,
+      "npv": 0.9959146154631805,
+      "false_positive_share_among_positive": 0.23444976076555046
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.016980000000000002,
+      "ppv": 0.9422850412249705,
+      "npv": 0.9959309067974202,
+      "false_positive_share_among_positive": 0.05771495877502952
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.06700000000000005,
+      "ppv": 0.2686567164179103,
+      "npv": 0.9978563772775991,
+      "false_positive_share_among_positive": 0.7313432835820897
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.03760000000000002,
+      "ppv": 0.4787234042553189,
+      "npv": 0.9979218620116376,
+      "false_positive_share_among_positive": 0.5212765957446811
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.027800000000000012,
+      "ppv": 0.647482014388489,
+      "npv": 0.9979428101213742,
+      "false_positive_share_among_positive": 0.35251798561151104
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.022900000000000007,
+      "ppv": 0.7860262008733623,
+      "npv": 0.9979531265991198,
+      "false_positive_share_among_positive": 0.21397379912663772
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.018980000000000004,
+      "ppv": 0.9483667017913593,
+      "npv": 0.9979613055799066,
+      "false_positive_share_among_positive": 0.05163329820864071
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.95,
+      "specificity": 0.95,
+      "observed_positive_rate": 0.06800000000000005,
+      "ppv": 0.27941176470588214,
+      "npv": 0.9989270386266095,
+      "false_positive_share_among_positive": 0.7205882352941179
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.95,
+      "specificity": 0.98,
+      "observed_positive_rate": 0.038600000000000016,
+      "ppv": 0.4922279792746112,
+      "npv": 0.9989598502184315,
+      "false_positive_share_among_positive": 0.5077720207253889
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "observed_positive_rate": 0.028800000000000006,
+      "ppv": 0.6597222222222221,
+      "npv": 0.9989703459637562,
+      "false_positive_share_among_positive": 0.3402777777777779
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "observed_positive_rate": 0.023900000000000005,
+      "ppv": 0.7949790794979078,
+      "npv": 0.9989755148038111,
+      "false_positive_share_among_positive": 0.2050209205020922
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "observed_positive_rate": 0.01998,
+      "ppv": 0.9509509509509508,
+      "npv": 0.9989796126609661,
+      "false_positive_share_among_positive": 0.049049049049049165
+    }
+  ],
+  "two_model_and_consensus_optimistic": [
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.003775000000000058,
+      "ppv": 0.3390728476821141,
+      "npv": 0.9992772717006699,
+      "false_positive_share_among_positive": 0.6609271523178859,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.0016791999999999562,
+      "ppv": 0.7622677465459943,
+      "npv": 0.999278788942392,
+      "false_positive_share_among_positive": 0.23773225345400573,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.0013797999999999894,
+      "ppv": 0.9276706769097044,
+      "npv": 0.9992790051713354,
+      "false_positive_share_among_positive": 0.0723293230902956,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.001304950000000053,
+      "ppv": 0.9808804935054587,
+      "npv": 0.9992790592083138,
+      "false_positive_share_among_positive": 0.019119506494541305,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.001280998000000029,
+      "ppv": 0.9992209199389627,
+      "npv": 0.9992790764984363,
+      "false_positive_share_among_positive": 0.0007790800610373294,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.81,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.004115000000000058,
+      "ppv": 0.3936816524908815,
+      "npv": 0.9996184298387866,
+      "false_positive_share_among_positive": 0.6063183475091185,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.81,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.0020191999999999563,
+      "ppv": 0.8022979397781473,
+      "npv": 0.9996192311515412,
+      "false_positive_share_among_positive": 0.19770206022185266,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.81,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.0017197999999999892,
+      "ppv": 0.9419699965112283,
+      "npv": 0.9996193453501331,
+      "false_positive_share_among_positive": 0.05803000348877174,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.81,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.0016449500000000528,
+      "ppv": 0.9848323657253705,
+      "npv": 0.9996193738890788,
+      "false_positive_share_among_positive": 0.015167634274629527,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.81,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.0016209980000000289,
+      "ppv": 0.999384329900451,
+      "npv": 0.9996193830206377,
+      "false_positive_share_among_positive": 0.0006156700995489928,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9025,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.004300000000000057,
+      "ppv": 0.4197674418604595,
+      "npv": 0.9998041578788792,
+      "false_positive_share_among_positive": 0.5802325581395404,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9025,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.002204199999999956,
+      "ppv": 0.8188912076944179,
+      "npv": 0.9998045692315001,
+      "false_positive_share_among_positive": 0.18110879230558208,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9025,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.001904799999999989,
+      "ppv": 0.9476060478790479,
+      "npv": 0.9998046278551386,
+      "false_positive_share_among_positive": 0.0523939521209521,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9025,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.0018299500000000526,
+      "ppv": 0.9863657476979961,
+      "npv": 0.9998046425055531,
+      "false_positive_share_among_positive": 0.01363425230200388,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9025,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.0018059980000000287,
+      "ppv": 0.9994473969516973,
+      "npv": 0.9998046471932217,
+      "false_positive_share_among_positive": 0.0005526030483027355,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.005687500000000058,
+      "ppv": 0.562637362637357,
+      "npv": 0.9981897039411654,
+      "false_positive_share_among_positive": 0.437362637362643,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.0035979999999999567,
+      "ppv": 0.8893829905503166,
+      "npv": 0.9981935002137691,
+      "false_positive_share_among_positive": 0.11061700944968345,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.0032994999999999895,
+      "ppv": 0.9698439157448131,
+      "npv": 0.9981940412390683,
+      "false_positive_share_among_positive": 0.0301560842551869,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.0032248750000000532,
+      "ppv": 0.9922865227334231,
+      "npv": 0.9981941764447623,
+      "false_positive_share_among_positive": 0.007713477266576896,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.0032009950000000294,
+      "ppv": 0.9996891591520671,
+      "npv": 0.9981942197063087,
+      "false_positive_share_among_positive": 0.0003108408479328695,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.81,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.006537500000000058,
+      "ppv": 0.6195028680688283,
+      "npv": 0.9990437485058571,
+      "false_positive_share_among_positive": 0.38049713193117174,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.81,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.004447999999999957,
+      "ppv": 0.9105215827338219,
+      "npv": 0.9990457555205554,
+      "false_positive_share_among_positive": 0.08947841726617811,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.81,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.00414949999999999,
+      "ppv": 0.9760212073743849,
+      "npv": 0.9990460415494092,
+      "false_positive_share_among_positive": 0.023978792625615086,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.81,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.004074875000000053,
+      "ppv": 0.9938955182674187,
+      "npv": 0.9990461130298325,
+      "false_positive_share_among_positive": 0.006104481732581268,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.81,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.004050995000000029,
+      "ppv": 0.9997543813309993,
+      "npv": 0.9990461359013055,
+      "false_positive_share_among_positive": 0.0002456186690007467,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9025,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.007000000000000057,
+      "ppv": 0.6446428571428519,
+      "npv": 0.9995090634441088,
+      "false_positive_share_among_positive": 0.35535714285714814,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9025,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.0049104999999999566,
+      "ppv": 0.9189491905101395,
+      "npv": 0.9995100943181493,
+      "false_positive_share_among_positive": 0.08105080948986054,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9025,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.004611999999999989,
+      "ppv": 0.9784258456201237,
+      "npv": 0.9995102412325646,
+      "false_positive_share_among_positive": 0.02157415437987631,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9025,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.004537375000000053,
+      "ppv": 0.9945177553100522,
+      "npv": 0.9995102779474017,
+      "false_positive_share_among_positive": 0.005482244689947846,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9025,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.004513495000000029,
+      "ppv": 0.9997795499939561,
+      "npv": 0.9995102896949869,
+      "false_positive_share_among_positive": 0.00022045000604387077,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.008875000000000058,
+      "ppv": 0.7211267605633757,
+      "npv": 0.9963677639046538,
+      "false_positive_share_among_positive": 0.27887323943662434,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.0067959999999999575,
+      "ppv": 0.9417304296645146,
+      "npv": 0.9963753669940918,
+      "false_positive_share_among_positive": 0.05826957033548541,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.00649899999999999,
+      "ppv": 0.9847668872134191,
+      "npv": 0.9963764505521383,
+      "false_positive_share_among_positive": 0.015233112786580905,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.006424750000000054,
+      "ppv": 0.9961477100276194,
+      "npv": 0.9963767213404319,
+      "false_positive_share_among_positive": 0.003852289972380629,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.00640099000000003,
+      "ppv": 0.9998453364245173,
+      "npv": 0.9963768079841383,
+      "false_positive_share_among_positive": 0.00015466357548266085,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.81,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.010575000000000058,
+      "ppv": 0.7659574468085065,
+      "npv": 0.9980796927508401,
+      "false_positive_share_among_positive": 0.23404255319149347,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.81,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.008495999999999958,
+      "ppv": 0.9533898305084794,
+      "npv": 0.9980837192789943,
+      "false_positive_share_among_positive": 0.04661016949152064,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.81,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.008198999999999991,
+      "ppv": 0.9879253567508245,
+      "npv": 0.998084293119285,
+      "false_positive_share_among_positive": 0.01207464324917551,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.81,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.008124750000000054,
+      "ppv": 0.996953752423145,
+      "npv": 0.9980844365256618,
+      "false_positive_share_among_positive": 0.00304624757685501,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.81,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.00810099000000003,
+      "ppv": 0.9998777927142203,
+      "npv": 0.998084482411168,
+      "false_positive_share_among_positive": 0.0001222072857797185,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9025,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.011500000000000057,
+      "ppv": 0.7847826086956483,
+      "npv": 0.9990136570561458,
+      "false_positive_share_among_positive": 0.2152173913043517,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9025,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.009420999999999957,
+      "ppv": 0.9579662456214882,
+      "npv": 0.9990157271656275,
+      "false_positive_share_among_positive": 0.042033754378511756,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9025,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.00912399999999999,
+      "ppv": 0.9891494958351611,
+      "npv": 0.999016022186429,
+      "false_positive_share_among_positive": 0.010850504164838903,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9025,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.009049750000000053,
+      "ppv": 0.9972651178209285,
+      "npv": 0.9990160959139978,
+      "false_positive_share_among_positive": 0.002734882179071474,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9025,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.009025990000000029,
+      "ppv": 0.9998903167408751,
+      "npv": 0.9990161195044863,
+      "false_positive_share_among_positive": 0.00010968325912485977,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.015250000000000059,
+      "ppv": 0.8393442622950789,
+      "npv": 0.9926884996191927,
+      "false_positive_share_among_positive": 0.16065573770492114,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.013191999999999959,
+      "ppv": 0.970285021224988,
+      "npv": 0.9927037478415254,
+      "false_positive_share_among_positive": 0.029714978775011947,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.012897999999999991,
+      "ppv": 0.9924019227787263,
+      "npv": 0.9927059209686537,
+      "false_positive_share_among_positive": 0.0075980772212737024,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.012824500000000055,
+      "ppv": 0.9980895941362196,
+      "npv": 0.992706464048186,
+      "false_positive_share_among_positive": 0.00191040586378044,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.6400000000000001,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.012800980000000031,
+      "ppv": 0.9999234433613654,
+      "npv": 0.992706637816557,
+      "false_positive_share_among_positive": 7.655663863459505e-05,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.8,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.81,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.01865000000000006,
+      "ppv": 0.8686327077747963,
+      "npv": 0.9961277831558567,
+      "false_positive_share_among_positive": 0.1313672922252037,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.81,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.01659199999999996,
+      "ppv": 0.9763741562198675,
+      "npv": 0.9961358866309812,
+      "false_positive_share_among_positive": 0.02362584378013255,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.81,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.016297999999999993,
+      "ppv": 0.9939869922689907,
+      "npv": 0.9961370415024062,
+      "false_positive_share_among_positive": 0.006013007731009323,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.81,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.016224500000000055,
+      "ppv": 0.9984899380566395,
+      "npv": 0.9961373301124088,
+      "false_positive_share_among_positive": 0.0015100619433604523,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.81,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.01620098000000003,
+      "ppv": 0.9999395098321194,
+      "npv": 0.9961374224585017,
+      "false_positive_share_among_positive": 6.0490167880566936e-05,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.9,
+      "single_model_specificity": 0.999
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9025,
+      "specificity": 0.9974999999999999,
+      "observed_positive_rate": 0.020500000000000056,
+      "ppv": 0.8804878048780463,
+      "npv": 0.9980091883614088,
+      "false_positive_share_among_positive": 0.11951219512195366,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.95
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9025,
+      "specificity": 0.9996,
+      "observed_positive_rate": 0.01844199999999996,
+      "ppv": 0.9787441709142197,
+      "npv": 0.9980133624299328,
+      "false_positive_share_among_positive": 0.021255829085780276,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.98
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9025,
+      "specificity": 0.9999,
+      "observed_positive_rate": 0.01814799999999999,
+      "ppv": 0.994599955918008,
+      "npv": 0.9980139572970265,
+      "false_positive_share_among_positive": 0.005400044081992017,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.99
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9025,
+      "specificity": 0.999975,
+      "observed_positive_rate": 0.018074500000000052,
+      "ppv": 0.998644499156267,
+      "npv": 0.9980141059581404,
+      "false_positive_share_among_positive": 0.0013555008437330374,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.995
+    },
+    {
+      "true_prevalence": 0.02,
+      "sensitivity": 0.9025,
+      "specificity": 0.999999,
+      "observed_positive_rate": 0.01805098000000003,
+      "ppv": 0.9999457093188276,
+      "npv": 0.9980141535249967,
+      "false_positive_share_among_positive": 5.429068117235314e-05,
+      "assumption": "CONDITIONAL_INDEPENDENCE_OPTIMISTIC",
+      "single_model_sensitivity": 0.95,
+      "single_model_specificity": 0.999
+    }
+  ],
+  "specificity_requirements": [
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9983967935871744
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9995991983967936
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9998218659541305
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9981963927855712
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9995490981963928
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9997995991983968
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9980961923847695
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9995240480961923
+    },
+    {
+      "true_prevalence": 0.002,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9997884658205299
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9959798994974874
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9989949748743718
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9995533221663875
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9954773869346734
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9988693467336683
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9994974874371859
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9952261306532664
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9988065326633165
+    },
+    {
+      "true_prevalence": 0.005,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9994695700725852
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9919191919191919
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.997979797979798
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9991021324354658
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.990909090909091
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9977272727272727
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.998989898989899
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9904040404040404
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9976010101010101
+    },
+    {
+      "true_prevalence": 0.01,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9989337822671156
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9836734693877551
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9959183673469387
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.8,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9981859410430839
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9816326530612245
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9954081632653061
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.9,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9979591836734694
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.5,
+      "minimum_specificity": 0.9806122448979592
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.8,
+      "minimum_specificity": 0.9951530612244898
+    },
+    {
+      "true_prevalence": 0.02,
+      "assumed_sensitivity": 0.95,
+      "target_ppv": 0.9,
+      "minimum_specificity": 0.9978458049886622
+    }
+  ],
+  "warnings": [
+    "Sensitivity and specificity are hypothetical design inputs, not measured model performance.",
+    "Two-model consensus calculations assume conditional independence and are optimistic when model errors correlate.",
+    "Rare prevalence makes specificity especially important because false positives can dominate observed positives.",
+    "Calibration anchors and disagreement/abstention rates must be estimated in the actual adjudication workflow."
+  ]
+}
