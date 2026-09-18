@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/010-universal-concept-identification/data/ucid-query.schema.json",
+  "title": "UCID query record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "query_id",
+    "text",
+    "query_kind",
+    "answer_protocols",
+    "direct_guess",
+    "context_requirements",
+    "provenance"
+  ],
+  "properties": {
+    "query_id": {"type": "string", "minLength": 1},
+    "text": {"type": "string", "minLength": 1},
+    "query_kind": {
+      "enum": [
+        "target_level",
+        "ontological_kind",
+        "taxonomic_membership",
+        "physical_property",
+        "functional_property",
+        "event_or_temporal",
+        "relation",
+        "logical_compositional",
+        "existence_or_modal",
+        "contextual",
+        "lexical_metalinguistic",
+        "grounding_perceptual",
+        "epistemic_computability",
+        "direct_identity_guess",
+        "other"
+      ]
+    },
+    "answer_protocols": {
+      "type": "array",
+      "items": {"enum": ["P2", "P6", "P6_CONTEXT"]},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "direct_guess": {"type": "boolean"},
+    "target_string_leakage": {"type": "boolean", "default": false},
+    "applicable_target_levels": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "string",
+          "word_token",
+          "lexeme",
+          "sense",
+          "concept",
+          "referent",
+          "proposition",
+          "rule_or_operation",
+          "metalinguistic"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "context_requirements": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "speaker",
+          "listener",
+          "time",
+          "location",
+          "comparison_class",
+          "discourse_referent",
+          "institution",
+          "possible_world",
+          "evaluator_perspective",
+          "none"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "base_cost": {"type": "number", "minimum": 0, "default": 1},
+    "notes": {"type": ["string", "null"]},
+    "provenance": {
+      "type": "object",
+      "required": ["source_type"],
+      "properties": {
+        "source_type": {
+          "enum": [
+            "human_authored",
+            "lexical_resource",
+            "literature",
+            "llm_generated_then_validated",
+            "constructed_stress_query",
+            "other"
+          ]
+        },
+        "source": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}
