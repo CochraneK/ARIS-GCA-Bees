@@ -158,14 +158,14 @@ def main() -> None:
             )
         if "INDEPENDENCE_STATUS: FAIL" in notes:
             outcome_problems.append("Coder B declared failed independence/blinding")
-        headings = re.findall(r"(?m)^###\s+(D\\d{2})\s+—\s+.+$", notes)
+        headings = re.findall(r"(?m)^###\s+(D\d{2})\s+—\s+.+$", notes)
         if headings != EXPECTED_IDS:
             outcome_problems.append(
                 "Coder B evidence headings must appear exactly once in D01-D21 order"
             )
         for cid in EXPECTED_IDS:
             match = re.search(
-                rf"(?ms)^###\s+{cid}\s+—\s+.+?$(.*?)(?=^###\s+D\\d{{2}}\s+—|^##\s+BLINDING DECLARATION|\Z)",
+                rf"(?ms)^###\s+{cid}\s+—\s+.+?$(.*?)(?=^###\s+D\d{{2}}\s+—|^##\s+BLINDING DECLARATION|\Z)",
                 notes,
             )
             if match is None or len(
