@@ -81,6 +81,7 @@ def main() -> None:
             + "\n\n## Evidence notes\n\n"
             + "\n".join(evidence)
             + "\n## BLINDING DECLARATION\n"
+            "BUNDLE_ACCESS_STATUS: PASS\n"
             "INDEPENDENCE_STATUS: PASS\n"
             "Synthetic test fixture; no real outcomes or Coder A evidence were consulted.\n"
         )
