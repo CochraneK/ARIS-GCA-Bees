@@ -157,6 +157,7 @@ def main() -> None:
         (DATA / "manifests" / "CEPII_GRAVITY_V202211.json", "CEPII source manifest"),
         (PROCESS / "HISTORICAL_DATA_AUDIT.json", "historical data audit"),
         (PROCESS / "OPENALEX_SCHEMA_PROBE.json", "OpenAlex schema-only probe"),
+        (DATA / "manifests" / "openalex_works_manifest.json", "official OpenAlex Works manifest"),
     ]:
         check_file(path, label, outcome_problems)
 
@@ -313,6 +314,11 @@ def main() -> None:
         except Exception as exc:
             outcome_problems.append(f"OPENALEX_SCHEMA_PROBE unreadable: {type(exc).__name__}")
 
+    openalex_manifest_file = DATA / "manifests" / "openalex_works_manifest.json"
+    openalex_manifest_digest = (
+        sha256(openalex_manifest_file) if openalex_manifest_file.exists() else None
+    )
+
     manifest = DATA / "manifests" / "source_manifest.json"
     check_file(manifest, "source manifest", outcome_problems)
     if manifest.exists():
@@ -322,6 +328,29 @@ def main() -> None:
             for key in ("openalex", "coldat_years"):
                 if key not in sources:
                     outcome_problems.append(f"source manifest missing {key}")
+            oa_entry = sources.get("openalex", {})
+            if oa_entry:
+                if oa_entry.get("status") != "manifest_and_schema_probe_pass":
+                    outcome_problems.append(
+                        "source manifest OpenAlex status is not manifest_and_schema_probe_pass"
+                    )
+                expected_digest = oa_entry.get("manifest_sha256") or oa_entry.get("sha256")
+                if openalex_manifest_digest is None:
+                    outcome_problems.append(
+                        "official OpenAlex Works manifest file is unavailable"
+                    )
+                elif expected_digest != openalex_manifest_digest:
+                    outcome_problems.append(
+                        "OpenAlex Works manifest SHA-256 differs from source ledger"
+                    )
+                if oa_entry.get("schema_probe_safe_to_build_extractor") is not True:
+                    outcome_problems.append(
+                        "source ledger does not record a passing OpenAlex schema probe"
+                    )
+                if oa_entry.get("outcomes_materialized_during_probe") is not False:
+                    outcome_problems.append(
+                        "source ledger OpenAlex probe is not marked outcome-free"
+                    )
         except Exception as exc:
             outcome_problems.append(f"source manifest unreadable: {type(exc).__name__}")
 
