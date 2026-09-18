@@ -147,17 +147,53 @@ def validate(path: Path) -> list[str]:
     return errors
 
 
+def validate_against_candidate_frame(decision_path: Path, candidate_path: Path) -> list[str]:
+    """Check that identity decisions refer to the canonical frozen candidate rows."""
+    errors: list[str] = []
+    with candidate_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        candidates = {row["person_id"]: row for row in csv.DictReader(handle)}
+
+    with decision_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        for lineno, row in enumerate(csv.DictReader(handle), start=2):
+            pid = (row.get("person_id") or "").strip()
+            candidate = candidates.get(pid)
+            prefix = f"line {lineno} ({pid or row.get('canonical_name') or '<unnamed>'})"
+            if candidate is None:
+                errors.append(f"{prefix}: person_id is not present in canonical candidate frame")
+                continue
+            checks = (
+                ("canonical_name", str(candidate.get("canonical_name") or "").strip(), str(row.get("canonical_name") or "").strip()),
+                ("birth_year", str(candidate.get("birth_year") or "").strip(), str(row.get("birth_year") or "").strip()),
+                ("death_year", str(candidate.get("death_year") or "").strip(), str(row.get("death_year") or "").strip()),
+            )
+            for field, expected, observed in checks:
+                if expected != observed:
+                    errors.append(
+                        f"{prefix}: {field} mismatch vs canonical candidate frame "
+                        f"(expected={expected!r}, observed={observed!r})"
+                    )
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("csv_path", type=Path)
+    parser.add_argument("--candidate-frame", type=Path)
     args = parser.parse_args()
     errors = validate(args.csv_path)
+    if args.candidate_frame:
+        errors.extend(validate_against_candidate_frame(args.csv_path, args.candidate_frame))
     if errors:
         print(f"FAIL: {len(errors)} identity validation error(s)", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
-    print(f"PASS: {args.csv_path} satisfies ARIS4C004 identity-decision invariants")
+    suffix = (
+        f" and matches canonical frame {args.candidate_frame}"
+        if args.candidate_frame
+        else ""
+    )
+    print(f"PASS: {args.csv_path} satisfies ARIS4C004 identity-decision invariants{suffix}")
     return 0
 
 
