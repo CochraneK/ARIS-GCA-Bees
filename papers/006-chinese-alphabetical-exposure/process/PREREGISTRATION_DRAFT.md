@@ -1,283 +1,402 @@
 # ARIS4C006 · Preregistration draft
 
-**State:** draft before data-feasibility gates are passed. Items marked `TBF` must be frozen before confirmatory outcomes are opened.
+**State:** research-design draft; confirmatory outcomes remain locked.
 
 Last updated: 2026-09-18
 
-## 1. Study title
+## 1. Working title
 
-**Alphabetical Exposure and Academic Careers in Chinese Science**
+**Alphabetical Exposure and Scholarly Credit in China's Research System**
 
 ## 2. Primary question
 
-Among scholars participating in the mainland-China scholarly system, is later Pinyin surname position associated with less favorable authorship visibility specifically under greater **independently measured exposure to alphabetical author-order conventions**?
+Within the mainland-China scholarly system, does an author's relative alphabetical family-name position become more predictive of their listed byline position when the publication environment has a stronger independently measured prior convention of alphabetical authorship?
 
-## 3. Primary hypothesis
+The study is about an institutional credit-allocation mechanism, not a psychological name-letter preference and not intrinsic ability.
 
-`H1` (primary mechanism): within the same multi-author work, an author's **relative alphabetical family-name rank within the actual coauthor team** more strongly predicts later normalized listed position when the publication context has higher independently measured prior alphabetization exposure.
+## 3. Population language
 
-Primary interaction: `RelAlphaRank_iw × PriorAlphabetizationExposure_c,t-1`.
+The study never infers nationality, ethnicity, citizenship, or birthplace from a name.
 
-The work fixed-effect design is primary because it compares authors inside the same paper and therefore absorbs all work-level topic, journal, year, and team-wide factors. The stable population-scale `SurnameInitialRank × Exposure` interaction is retained as a secondary structural-vulnerability specification, not the sole headline test.
+A focal primary row is a **CN-affiliated authorship with a high-confidence ChineseNames-mappable surname form**.
 
-## 4. Secondary hypotheses
+A work enters the primary within-work mechanism frame only when:
+1. it is an eligible primary work type;
+2. all listed authors have sufficiently reliable family-name ordering keys;
+3. at least 2 focal CN-affiliated ChineseNames-mappable authorships remain;
+4. the work has an eligible OpenAlex primary-topic field;
+5. the focal rows have valid frozen LOAO exposure.
 
-Subject to pilot feasibility, no more than three will remain confirmatory:
+Full rule: `POPULATION_FRAME.md`.
 
-- `H2`: the stable Chinese surname-initial rank × prior exposure interaction predicts normalized listed position in the same qualitative direction as the within-team mechanism model.
-- `H3`: higher accumulated structural/realized alphabetical burden predicts lower subsequent field/year-normalized citation impact, conditional on the final identity and cohort gates.
-- `H4`: higher accumulated alphabetical burden predicts one frozen distal career endpoint (`TBF`: observed 5-year publication persistence, institutional-stratum transition, or affiliation transition; choose from coverage/measurement diagnostics before focal effects are viewed).
+## 4. Time window
 
-Corresponding-author outcomes are confirmatory only if coverage is sufficient under a pre-specified missingness threshold (`TBF`).
+Primary focal work window:
 
-## 5. Population
+**2011–2025**
 
-Primary frame: OpenAlex authorships with at least one resolved mainland-China (`CN`) institutional affiliation.
+selected prospectively from the measurement-only annual coverage sweep.
 
-Author-year analyses require a frozen rule for classifying a scholar as China-based in year `t` (`TBF` after coverage pilot).
+2010 failed the predeclared DOI threshold; every year 2011–2025 passed the frozen annual rule.
 
-No nationality, ethnicity, citizenship, or birthplace is inferred from a name.
+The incomplete year 2026 is excluded from outcome analysis.
 
-## 6. Time window
+## 5. Disciplinary scope
 
-Candidate confirmatory window: 2010–2025.
+Field assignment:
 
-Final start/end years are `TBF` after inspecting **coverage only**, without inspecting surname-effect estimates or focal career outcomes. Reasons for changes must be documented.
+`primary_topic.field.id`
 
-## 7. Inclusion criteria
+not `topics.field.id`.
 
-A confirmatory authorship/work must:
+All **26 current OpenAlex fields** passed the prospectively frozen all-field feasibility gate and are globally eligible.
 
-1. meet the frozen publication-type rule (`TBF`);
-2. contain >=2 authors for author-order outcomes;
-3. contain sufficient surname evidence for all authors needed to classify alphabetization under the validated parser;
-4. have the focal China-affiliated authorship defined by resolved institution/country metadata;
-5. fall in the frozen time window;
-6. have a field/topic and source/context assignment sufficient for exposure construction.
+A particular focal observation still requires sufficient LOAO field-window information.
 
-Confirmatory author-year records must additionally satisfy the frozen identity-consistency and career-observation rules.
+## 6. Primary work types
 
-## 8. Exclusion criteria
+Primary:
+- `article`
+- `conference-paper`
 
-Exclude from confirmatory inference:
+Secondary sensitivity only:
+- `review`
+- `data-paper`
+- `software-paper`
 
-- Tier-3 heuristic-only surname parses;
-- ambiguous family-name assignments;
-- records with unresolved duplicate/merge/split red flags above the frozen threshold;
-- contexts lacking minimum data for stable convention estimates;
-- works whose author ordering cannot be reconstructed reliably;
-- records failing temporal ordering of exposure and outcome.
+All other OpenAlex work types are excluded from the primary frame.
 
-Exact thresholds are `TBF` from outcome-blinded feasibility diagnostics.
+Convention exposure is estimated from the same primary work-type set.
 
-## 9. Surname exposure
+## 7. Surname evidence
 
-Primary predictor:
+Frozen primary mapping version:
 
-`SurnameInitialRank = 1..26`
+`aris4c006-surname-map-v1`
 
-using the validated family name's Pinyin initial.
+Allowed focal routes:
 
-Population attributes from ChineseNames 2025.8:
-- initial/rank;
-- surname population count/ppm where exact surname identified;
-- surname uniqueness;
-- compound-surname flag.
+### Tier 1A — direct Han
+- validated Han surname;
+- exact ChineseNames dictionary match;
+- compound surnames matched before single surnames.
 
-Uniform `1/26` expected surname probabilities are prohibited.
+### Tier 1B — Crossref structured family + exact canonical Hanyu Pinyin
+- DOI resolves to Crossref;
+- OpenAlex/Crossref author lists pass positional reconciliation;
+- structured `family` exists;
+- structured family agrees with OpenAlex name evidence;
+- normalized family exactly matches the frozen canonical Hanyu-Pinyin map;
+- no conflicting ORCID/canonical-author evidence.
 
-## 10. Alphabetization convention exposure
+Canonical map:
+- ChineseNames rows: 1,806;
+- accepted automated rows: 1,803;
+- population coverage: 99.9918%;
+- canonical Romanized forms after homophone aggregation: 413;
+- pypinyin: 0.55.0;
+- unresolved automated ChineseNames rows: 尉, 朝, 万俟.
 
-For eligible multi-author works in context `c,t`, define:
+Unreviewed legacy/regional aliases are excluded from the primary sample.
 
-- `I_alpha = 1` if validated surname ordering is lexicographically non-decreasing;
-- `p_chance` = exact random-order probability given team size and surname ties.
+Tier-3 first-token/last-token heuristics are forbidden.
 
-Context-level raw excess:
+## 8. Chinese population calibration
 
-`ExcessAlpha_ct = (mean(I_alpha) - mean(p_chance)) / (1 - mean(p_chance))`
+Canonical population denominator:
+- ChineseNames 2025.8;
+- 1,806 surnames;
+- underlying 1930–2008 household-registration population baseline.
 
-Final exposure estimator may use hierarchical shrinkage or minimum cells (`TBF`), but must be frozen from convention data only.
+Uniform `1/26` A–Z expectations are forbidden.
 
-### Anti-leakage rule
+For direct-Han records:
+- exact surname population frequency may be used.
 
-A focal work/author cannot materially define its own exposure.
+For Romanized Hanyu-Pinyin records:
+- when multiple Han surnames share one Romanized form, population counts are summed over the compatible accepted surnames.
 
-Primary approach `TBF` from:
-- leave-one-author-out;
-- lagged context exposure;
-- K-fold cross-fitting by author/work.
+Population calibration is descriptive/contextual and does not make surname rank randomized.
 
-Whichever is selected becomes immutable for the confirmatory run.
+## 9. Work-level ordering variables
 
-## 11. Primary outcome
+For a work `w` with `n_w >= 2`:
 
-Primary mechanism outcome:
+### Listed position
 
-`ListedPositionNorm_iw = (listed_position_iw - 1) / (team_size_w - 1)`
+`ListedPositionNorm_iw = (listed_position_iw - 1)/(n_w - 1)`
 
-for collaborative works with `team_size >= 2`, so 0 = first listed and 1 = last listed.
+- 0 = first listed
+- 1 = last listed
 
-Primary work-specific predictor:
+### Relative alphabetical position
 
-`RelAlphaRank_iw`, the midrank-normalized family-name position among the actual coauthors, scaled 0 = alphabetically earliest and 1 = latest.
+`RelAlphaRank_iw`
 
-A binary first-listed outcome is secondary. The 3+ author subset is a mandatory robustness analysis.
+is the midrank-normalized ordering position of focal author's family name among the **entire actual author list**, including non-focal coauthors.
 
-## 12. Primary model
+- 0 = alphabetically earliest
+- 1 = alphabetically latest
 
-Primary work-level mechanism model:
+It is derived without using the actual listed position.
 
-`ListedPositionNorm_iw = WorkFE_w + β1 RelAlphaRank_iw + β2(RelAlphaRank_iw × PriorExposure_c,t-1) + ε_iw`
+## 10. Convention exposure
 
-Primary estimand: `β2`.
+For eligible convention work `w`:
 
-Because the focal context exposure is shared within a work, its main effect is absorbed by `WorkFE_w`. Work fixed effects also absorb work-level journal, topic, publication date, team size, and shared quality/context factors.
+- `I_alpha_w = 1` when validated family-name keys are lexicographically non-decreasing.
+- with team size `n` and surname tie groups `m_j`:
 
-Secondary structural-vulnerability model:
+`p_chance_w = prod_j(m_j!)/n!`
 
-`ListedPositionNorm_iw = β0 + β1 InitialRank_i + β2 PriorExposure_c,t-1 + β3(InitialRank_i × PriorExposure_c,t-1) + controls + FE + ε_iw`
+Field-window evidence:
 
-The structural model is not allowed to supersede the within-work mechanism model merely because its estimate is larger.
+`N_ct = sum_w(I_alpha_w - p_chance_w)`
 
-Inference must account for repeated authors and shared works. The exact multiway-clustering implementation remains `TBF` until the repeated-measure structure of the frozen frame is summarized, but author clustering is mandatory and work dependence cannot be ignored.
+`D_ct = sum_w(1 - p_chance_w)`
 
-## 13. Author-year downstream model
+Primary context:
 
-Generic:
+**OpenAlex primary-topic field × prior 3 complete publication years**
 
-`Y_it = β0 + β1 Rank_i + β2 PriorExposure_i,t-1 + β3 Rank_i×PriorExposure_i,t-1 + PriorY + FE + ε`
+Raw source/journal-level exposure is not primary because the prospectively frozen split-half rank-reliability gate failed.
 
-Primary distal interpretation is associational unless a separately defended quasi-experimental design is identified.
+## 11. Anti-leakage exposure
 
-## 14. Population calibration analysis
+Primary moderator uses exact leave-one-author-out exposure.
 
-Before focal models, report:
+For focal canonical author `i`:
 
-`ObservedInitialShare / ChineseNamesExpectedInitialShare`
+`LOAOExposure_ict = (N_ct - N_ict)/(D_ct - D_ict)`
 
-for A–Z initials with uncertainty intervals.
+where `N_ict,D_ict` are contributions from lag-window convention works containing author `i`.
 
-This serves as sample/data quality context. It is not a causal estimate of academic selection.
+Each work contributes at most once to an author's subtraction.
 
-Alternative empirical denominator for robustness: surname-initial distribution in preregistered low-alphabetization contexts within the same scholarly system, if sufficiently large and stable.
+Require:
 
-## 15. Confirmatory negative controls
+`D_ct - D_ict >= 50`
 
-At minimum:
+Otherwise the focal row is excluded from the primary model for that context/year.
 
-1. low-alphabetization contexts;
-2. single-authored work outcomes for which coauthor order cannot operate (where outcome definition permits);
-3. future exposure predicting prior outcomes;
-4. randomized/shuffled surname rank preserving empirical distribution;
-5. 3+ author teams separately from two-author teams.
+Full rule: `LOAO_EXPOSURE_RULE.md`.
 
-## 16. Identity/parser robustness
+Mandatory robustness:
+- convention exposure re-estimated using 3+ author works only.
 
-Mandatory analyses:
+## 12. Primary hypothesis and model
 
-- Tier 1 only;
-- Tier 1 + validated Tier 2;
-- ORCID-linked subset where large enough;
-- uncommon full-name subset;
-- surname-frequency strata;
-- exclude identity records with implausible career/publication patterns.
+### H1
 
-Parser error must be checked for monotonic association with surname rank in the blinded validation sample.
+Within the same work, later `RelAlphaRank` predicts later listed position more strongly as prior LOAO field alphabetization exposure increases.
 
-## 17. Multiplicity
+Model:
 
-The final confirmatory set will contain:
-- 1 primary interaction outcome/model;
-- <=3 secondary confirmatory outcomes.
+`ListedPositionNorm_iw = WorkFE_w + beta1 RelAlphaRank_iw + beta2(RelAlphaRank_iw × LOAOExposure_ict) + error_iw`
 
-`TBF`: Holm correction across the confirmatory family or a clearly ordered gatekeeping procedure. Exploratory outcomes will be labeled and not folded into a single confirmatory claim.
+Primary estimand:
 
-## 18. Missing data
+`beta2`
 
-- no surname imputation for ambiguous names;
-- no corresponding-author imputation when absent;
-- affiliation-country missingness reported by field/year;
-- missing field/context records excluded only under frozen rules;
-- complete-case vs missing-indicator strategies for non-focal controls specified before confirmatory run.
+The preregistered directional expectation is positive, but formal testing is two-sided.
 
-## 19. Stopping / pivot rules
+Work fixed effects absorb all work-shared factors, including journal/source, topic, date, team size, and shared work quality.
 
-Before confirmatory outcomes, stop or narrow if:
+## 13. Secondary confirmatory family
 
-1. included surname initial precision fails the frozen threshold;
-2. parser error is materially differential by surname rank and cannot be bounded;
-3. author disambiguation risk remains strongly rank/frequency dependent;
-4. convention exposure lacks meaningful stable variation;
-5. closest-prior-work search identifies a study already implementing the same core exposure architecture in China;
-6. OpenAlex coverage is insufficient for the frozen outcome hierarchy.
+Exactly two secondary confirmatory estimands are retained.
 
-Narrowing to Chinese-character-only records is preferred over lowering parser quality.
+### Secondary 1 — first-listed authorship
+
+`FirstListed_iw = 1` if focal author is listed first.
+
+Use a linear-probability work-FE model with the same:
+- `RelAlphaRank`;
+- LOAO exposure;
+- interaction;
+- primary work frame;
+- clustering structure.
+
+The interaction is the secondary-1 estimand.
+
+### Secondary 2 — observed five-year publication persistence
+
+Longitudinal cohort:
+- entry years 2014–2020;
+- 3-year clean lookback;
+- 5-year fixed follow-up;
+- entry is first observed eligible article/conference-paper and includes >=1 CN-affiliated authorship in entry year.
+
+Endpoint:
+
+`Persistence5_i = 1`
+
+when the canonical author has >=1 eligible article/conference-paper in `e+4` or `e+5`.
+
+It measures observed bibliographic persistence, not true employment retention or academic exit.
+
+Early exposure:
+- mean LOAO primary-field exposure across eligible works in `e ... e+2`;
+- require >=2 exposure-defined early works.
+
+Stable surname vulnerability:
+
+`InitialRankNorm_i = (InitialRank_i - 1)/25`
+
+Model:
+
+`logit(Persistence5_i) = alpha + beta1 InitialRankNorm_i + beta2 MeanEarlyExposure_i + beta3(InitialRankNorm_i × MeanEarlyExposure_i) + EntryYearFE + EntryPrimaryFieldFE + f(EntryWorkCount_i)`
+
+Secondary-2 estimand:
+- `beta3`.
+
+This is interpreted associationally/mechanistically.
+
+## 14. Structural supportive model
+
+A work-level model using stable Chinese surname initial rank × exposure is supportive, not confirmatory:
+
+`ListedPositionNorm ~ InitialRankNorm × LOAOExposure + prespecified FE/controls`
+
+It cannot replace H1 merely because it produces a stronger result.
+
+## 15. Inference
+
+Primary standard errors use three-way cluster-robust covariance:
+
+1. canonical OpenAlex author ID;
+2. OpenAlex work ID;
+3. primary-topic field × focal publication year.
+
+Primary:
+- two-sided alpha = 0.05;
+- 95% CI;
+- exactly one primary estimand;
+- no multiplicity correction for the single primary test.
+
+Secondary confirmatory family:
+- exactly two estimands;
+- Holm familywise correction at alpha 0.05.
+
+Full rule: `INFERENCE_RULE.md`.
+
+## 16. Identity resolution
+
+Before author-level joins:
+1. preserve raw embedded OpenAlex author ID;
+2. resolve it through the current OpenAlex author endpoint;
+3. use returned canonical OpenAlex author ID for longitudinal joins;
+4. when ORCID exists, require consistency;
+5. raw-name-only person merges are forbidden.
+
+Pilot:
+- 61/977 raw ID mismatches;
+- 61/61 repaired by canonicalization;
+- 0 unresolved conflicts in the deterministic validation sample.
+
+Residual non-ORCID split/merge risk is handled through mandatory sensitivity subsets, not declared eliminated.
+
+## 17. Longitudinal cohort identity and survivor rules
+
+The 2024 feasibility seed is never a confirmatory cohort.
+
+Entry cohort is constructed prospectively from first observed eligible publication.
+
+Primary longitudinal analysis excludes:
+- canonicalization failures;
+- known ORCID conflicts;
+- unresolved surname-form mapping;
+- authors lacking >=2 early exposure-defined works.
+
+Mandatory sensitivity:
+- ORCID-linked subset;
+- uncommon-name / low-collision-risk subset;
+- direct-Han subset;
+- removal of implausible publication/affiliation histories;
+- surname-frequency strata.
+
+## 18. Confirmatory robustness and falsification
+
+Mandatory for H1:
+- 3+ total-author focal works;
+- 3+ author convention-estimation exposure;
+- Tier 1 surname evidence only;
+- low-identity-risk subset;
+- low-alphabetization field-years;
+- future-exposure placebo;
+- shuffled/permuted surname ordering key preserving team structure.
+
+Where sufficiently powered:
+- works with >=3 focal CN-affiliated ChineseNames-mappable authorships.
+
+The institutional mechanism is weakened if:
+- interaction persists equally in low-exposure contexts;
+- future exposure predicts earlier position;
+- permutation produces comparable estimates;
+- result exists only under two-author convention evidence.
+
+## 19. Missingness
+
+Primary H1/H2:
+- no imputation of family name, focal surname map, author order, field, or exposure;
+- primary model is complete-case under the frozen structural eligibility rules;
+- work FE means there are no optional work-level nuisance controls to impute.
+
+Longitudinal H3:
+- no surname, exposure, author-ID, entry-year, or primary-field imputation;
+- excluded counts reported by entry year and field;
+- optional descriptive variables do not determine confirmatory inclusion.
 
 ## 20. Confirmatory vs exploratory boundary
 
 Confirmatory:
-- frozen sample/window;
-- frozen parser version;
-- primary exposure interaction;
-- <=4 total outcomes;
-- frozen negative controls and robustness suite.
+1. H1 normalized listed position;
+2. Secondary 1 first-listed probability;
+3. Secondary 2 observed five-year publication persistence.
 
 Exploratory:
-- alternative field taxonomies;
-- individual surnames;
-- nonlinear alphabet rank;
-- domestic-vs-international subgrouping not preregistered;
+- citations and normalized citation impact;
+- h-index/cumulative metrics;
+- corresponding-author status;
+- prestige transitions;
+- mobility/affiliation transitions;
 - elite lists;
-- given-name variables;
-- gender/name-valence/name-uniqueness extensions;
-- alternative career endpoints not frozen above.
+- raw source/journal-level exposure;
+- nonlinear surname rank;
+- individual surnames;
+- domestic/international subgrouping beyond frozen robustness;
+- variant-expanded surname dictionary;
+- given-name features;
+- gender/name-valence/name-uniqueness analyses.
 
-## 21. Interpretation rule
+Exploratory results cannot replace a failed H1.
 
-A significant `Rank × Exposure` interaction consistent across mechanism outcomes and exposure-gradient/negative-control tests is evidence **consistent with an institutional author-order mechanism**.
+## 21. Interpretation boundary
 
-It is not by itself evidence that surname letters cause ability, intelligence, personality, or general life outcomes.
+Evidence consistent with the proposed institutional mechanism requires:
+- H1 in the preregistered direction;
+- stronger surname-position coupling under higher measured prior alphabetization exposure;
+- falsification checks behaving appropriately.
 
-## 22. Items that must be frozen after feasibility but before outcomes
+The study does not establish:
+- surname letters cause ability, intelligence, or personality;
+- surname rank is randomized in China;
+- CN affiliation means Chinese nationality or ethnicity;
+- bibliographic non-persistence equals true academic exit;
+- a distal career association is causal without additional assumptions.
 
-- [ ] final date window;
-- [ ] publication types;
-- [ ] China-based author-year definition;
-- [ ] parser acceptance threshold/version;
-- [ ] disambiguation-risk exclusion threshold;
-- [ ] context definition and minimum cell size;
-- [ ] shrinkage/cross-fitting exposure estimator;
-- [ ] primary position normalization;
-- [ ] one distal career endpoint;
-- [ ] FE/cluster structure;
-- [ ] multiplicity method;
-- [ ] missing-control handling.
+## 22. Remaining pre-registration execution gates
 
-Until these boxes are frozen, the study remains pre-confirmatory.
+No focal surname × outcome estimate may be opened until all are complete:
 
+- [ ] reproduce the ChineseNames baseline from the pinned 2025.8 R package, not only the engineering mirror;
+- [ ] materialize the final primary-field convention/exposure build under article+conference-paper types;
+- [ ] validate the LOAO implementation against hand/synthetic checks;
+- [ ] run a synthetic-only model smoke test for work FE + interaction + frozen multiway clustering;
+- [ ] materialize the primary work frame and report sample/cluster counts **without calculating H1/H2 coefficients**;
+- [ ] finalize deterministic identity-risk QA flags for the longitudinal secondary and report only their prevalence;
+- [ ] generate a preregistration lock/hash and switch the gate only after those outcome-blind checks pass.
 
-## 23. Identity canonicalization rule
+Until then:
 
-Before constructing any author-level history, every OpenAlex author ID embedded in a work authorship must be re-resolved through the current OpenAlex author endpoint.
-
-Pilot evidence:
-- 977 ORCID-verifiable authorships;
-- 61 raw embedded-ID mismatches (6.24%);
-- all 61/61 mismatches reconciled after canonical author resolution;
-- 0 unresolved conflicts and 0 lookup failures in the deterministic pilot sample.
-
-Therefore the longitudinal join key is the **current canonical OpenAlex author ID**, not the raw ID embedded in a historical work record.
-
-When ORCID is present, ORCID consistency is checked as additional validation. Raw embedded IDs remain preserved for provenance.
-
-This engineering fix does not eliminate residual split/merge error among non-ORCID authors; the preregistered identity-risk sensitivity ladder remains mandatory.
-
-
-## Primary-field assignment correction
-
-The confirmatory context uses OpenAlex `primary_topic.field.id`, not `topics.field.id`.
-
-Reason: a work may have multiple topics spanning multiple fields, whereas its primary field is uniquely defined by the field of `primary_topic`. Earlier six-field feasibility pilots that filtered on `topics.field.id` are retained only as engineering/anchor evidence and are superseded for confirmatory field assignment by primary-topic-field pilots.
-
-The six anchor fields are not the final scope. All current OpenAlex fields that pass the prospective all-field volume/coverage gate may enter the work-level primary frame.
+`confirmatory_outcomes_unlocked = false`.
