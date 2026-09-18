@@ -231,7 +231,7 @@ def main():
 
     def dist(a,b):
         pairs=[(x,y) for x,y in zip(a["_vec"],b["_vec"]) if x is not None and y is not None]
-        if len(pairs)<2:return 0.0
+        if len(pairs)<2:return None
         d=(sum((x-y)**2 for x,y in pairs)/len(pairs))**0.5
         return d*min(1.0,len(pairs)/5)
 
@@ -241,10 +241,14 @@ def main():
         cands=[x for x in cands if x not in selected]
         for _ in range(min(n,len(cands))):
             best=None;bestscore=-1
-            anchors=current+selected
+            # Sparse mandatory candidates are important design strata but should not
+            # collapse geometric novelty to zero. Use only anchors with a
+            # comparable biological-proxy geometry.
+            anchors=[a for a in current+selected if a.get("geometry_dimensions",0)>=2]
             for x in cands:
                 if x in selected:continue
-                novelty=min((dist(x,a) for a in anchors),default=0)
+                dd=[d for a in anchors if (d:=dist(x,a)) is not None]
+                novelty=min(dd) if dd else 0.0
                 feas=min(1.0,x["source_feasibility"]/5)
                 score=novelty*(0.75+0.25*feas)
                 # if geometry is sparse, feasibility still allows a documented but lower score
