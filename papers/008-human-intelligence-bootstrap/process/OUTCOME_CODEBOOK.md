@@ -46,7 +46,7 @@ Number and diversity of independently evidenced socially transmitted behavioural
 - observation duration;
 - ecological opportunity.
 
-Use domain breadth rather than raw behaviour counts as the main variable.
+Use domain breadth rather than raw behaviour counts as the main variable. **Raw ACDB row counts are prohibited as the primary O4 outcome**: Pilot 4 showed that the current ACDB release is a curated case database rather than an exhaustive species repertoire census. ACDB can support presence, domain and transmission coding, but repertoire breadth requires a dedicated systematic coding protocol.
 
 ## O5 · Recombination, specialization and distributed knowledge
 
