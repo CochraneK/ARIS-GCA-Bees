@@ -11,7 +11,6 @@
       "content_type": "binary/octet-stream",
       "bytes": 182233,
       "sha256": "1bfd115f786fa4c1e911197eadae3451b97b6ace848eaaec61394d76258a1738",
-      "acquisition": "PMC AWS Cloud Service",
       "description": "Timepoints and observations in cats, humans, mice and chimpanzees used to translate ages across species.",
       "derived_text_files": [
         {
@@ -29,7 +28,6 @@
       "content_type": "binary/octet-stream",
       "bytes": 6628,
       "sha256": "f21951fdea1308de1557d9864adc9909aedcd29749904b01028a259170259724",
-      "acquisition": "PMC AWS Cloud Service",
       "description": "Authors' script bundle used with Table S1 to translate ages across species.",
       "extracted_files": [
         {
@@ -41,11 +39,25 @@
       ]
     }
   },
-  "pmc_oa_package": {
-    "service": "PMC AWS Cloud Service",
-    "base_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13382973.1/",
-    "article_version": "PMC13382973.1"
-  },
-  "link_discovery_attempts": [],
+  "pmc_oa_package": null,
+  "link_discovery_attempts": [
+    {
+      "source": "PMC AWS Cloud Service",
+      "success": false,
+      "error": "RuntimeError: All supplementary download attempts failed:\ns3://pmc-oa-opendata/PMC13382973.1/biolopen-15-062604-TableS1.xlsx?md5=4b826c1f1e32e014ed1f5ba0fdeb545e: URLError: <urlopen error unknown url type: s3>"
+    },
+    {
+      "source": "PMC Open Access package",
+      "success": false,
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "requested_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13382973/",
+      "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13382973/",
+      "bytes": 246975,
+      "content_type": "text/html; charset=utf-8",
+      "success": true
+    }
+  ],
   "guardrail": "These are source supplementary materials. ARIS4C007 will preserve the authors' model as a benchmark and separately evaluate held-out events to avoid treating training fit as independent validation."
 }
