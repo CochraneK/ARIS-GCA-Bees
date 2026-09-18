@@ -1,0 +1,35 @@
+name: ARIS4C013 BUNMD metadata probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/probe_bunmd_dataverse.py'
+      - '.github/workflows/aris4c013-bunmd-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Harvard Dataverse metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/aris4c013
+          curl --retry 4 --retry-all-errors --connect-timeout 30 -fL             'https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/TTWNK8'             -o /tmp/aris4c013/bunmd_dataverse.json
+          python papers/013-birth-death-temporal-coupling/code/probe_bunmd_dataverse.py             /tmp/aris4c013/bunmd_dataverse.json             /tmp/aris4c013/bunmd_files.json
+
+      - name: Upload metadata evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c013-bunmd-metadata
+          path: |
+            /tmp/aris4c013/bunmd_dataverse.json
+            /tmp/aris4c013/bunmd_files.json
+          retention-days: 30
