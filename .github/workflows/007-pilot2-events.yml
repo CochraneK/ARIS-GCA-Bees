@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/007-pilot2-events.yml"
       - "papers/007-cross-species-age-equivalence/code/build_pilot2_events.py"
+      - "papers/007-cross-species-age-equivalence/code/summarize_pilot2_cluster.py"
       - "papers/007-cross-species-age-equivalence/code/build_pilot1_demography.py"
       - "papers/007-cross-species-age-equivalence/code/age_mappings.py"
       - "papers/007-cross-species-age-equivalence/data/sources/translating_time_2026/TableS1__Sheet1.csv"
@@ -77,6 +78,7 @@ jobs:
           cp data/upstream/pilot0_run.json             data/pilot2_events/upstream_pilot0_run.json
           cp data/sources/translating_time_2026/provenance.json             data/pilot2_events/translating_time_2026.provenance.json
           cat data/pilot2_events/observed_event_summary.json
+          cat data/pilot2_events/cluster_robust_summary.json
 
       - name: Upload Pilot 2 event artifact
         uses: actions/upload-artifact@v4
@@ -85,6 +87,7 @@ jobs:
           path: |
             papers/007-cross-species-age-equivalence/data/pilot2_events/observed_event_summary.json
             papers/007-cross-species-age-equivalence/data/pilot2_events/observed_event_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot2_events/cluster_robust_summary.json
             papers/007-cross-species-age-equivalence/data/pilot2_events/upstream_pilot0_run.json
             papers/007-cross-species-age-equivalence/data/pilot2_events/translating_time_2026.provenance.json
           if-no-files-found: error
