@@ -4,7 +4,7 @@
   "title": "The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity",
   "short_title": "Global Grammar of Swearing",
   "year": 2026,
-  "status": "phase0-measurement-audit",
+  "status": "working-manuscript-phase0",
   "domain": "linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution",
   "summary": "A falsification-first cross-linguistic program testing which properties of taboo language are stable across communities, genealogically structured, or context-sensitive. Phase 0 now audits the open 18-community/13-language Sulpizio et al. dataset, exposes substantial cross-lab annotation heterogeneity, introduces an orthogonal multi-axis ontology, links samples to Glottolog, and builds reproducible harmonization and reliability gates before any cultural-prevalence claim.",
   "authors": [
@@ -19,7 +19,7 @@
     "commit": "951654847b015585385b2448c5667dcd04e7b56b"
   },
   "links": {
-    "paper_en": "",
+    "paper_en": "manuscript/DRAFT.md",
     "paper_zh": "",
     "pipeline": "process/RESEARCH_PLAN.md",
     "status": "process/STATUS.md",
@@ -31,7 +31,11 @@
     "harmonization": "process/HARMONIZATION_V0.md",
     "genealogy": "process/GENEALOGY_PLAN.md",
     "reliability": "process/RELIABILITY_PROTOCOL.md",
-    "community_pilot": "process/COMMUNITY_VARIATION_PILOT.md"
+    "community_pilot": "process/COMMUNITY_VARIATION_PILOT.md",
+    "phonology": "process/PHONOLOGY_PLAN.md",
+    "semantic_fingerprint_pilot": "process/SEMANTIC_FINGERPRINT_PILOT.md",
+    "paper_architecture": "process/PAPER_ARCHITECTURE.md",
+    "repeated_item_model": "process/REPEATED_ITEM_MODEL.md"
   },
   "tags": [
     "ARIS",
