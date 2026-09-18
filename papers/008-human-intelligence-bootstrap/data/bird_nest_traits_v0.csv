@@ -1,0 +1,8 @@
+scientific_name,common_name,Str-None,Str-Scrape,Str-Clearing,Str-Ring,Str-Excavation,Str-CavityMod,Str-ExWNest,Str-Mound,Str-Platform,Str-Cup,Str-Dome,Str-DomeAndTube,Loc-Artificial,Loc-EarthHole,Loc-Ground,Loc-Rocks,Loc-TreeHole,Loc-Veg,Loc-Water,externalization_state,externalization_basis
+Cacatua goffiniana,Tanimbar Corella,u,0,0,0,0,u,0,0,0,0,0,0,0,0,0,0,1,0,0,ambiguous,"No confirmed constructed nest-structure category in S2; cavity modification/none uncertain."
+Columba livia,Rock Dove,NA,NA,NA,NA,NA,NA,NA,NA,u,NA,NA,NA,1,0,1,1,1,0,0,ambiguous,"Platform structure is uncertain in S2; nesting locations are known but location alone is not persistent construction."
+Corvus corax,Common Raven,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,positive,"Cup nest structure explicitly scored 1."
+Corvus moneduloides,New Caledonian Crow,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,positive,"Cup nest structure explicitly scored 1."
+Melopsittacus undulatus,Budgerigar,u,0,0,0,u,u,0,0,0,0,0,0,1,0,0,0,1,0,0,ambiguous,"Excavation/cavity modification/none uncertain; no confirmed constructed structure category."
+Nestor notabilis,Kea,u,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,u,1,0,1,0,0,ambiguous,"Structure itself unresolved in S2; location information does not establish construction."
+Psittacus erithacus,Grey Parrot,u,0,0,0,u,u,0,0,0,0,0,0,1,0,0,0,1,0,0,ambiguous,"Excavation/cavity modification/none uncertain; no confirmed constructed structure category."
