@@ -1,56 +1,85 @@
 # ARIS4C006 STATUS
 
-Last updated: 2026-09-18
+Last updated: 2026-09-19
 
 ## Current state
 
-**RUNNING — novelty, data-feasibility, and identification stage**
+**RESEARCH-DESIGN — preregistration execution QA**
 
-The question is sufficiently defined to enter ARIS, but the project is not yet preregistration-ready and no confirmatory career-outcome analysis should begin.
+The scientific design has passed feasibility/identification gates and `paper.json` is now `research-design`.
+
+**Confirmatory outcomes remain locked.** No focal surname × outcome coefficient may be inspected until the remaining outcome-blind implementation gates pass and the preregistration lock/hash is created.
 
 ## Canonical question
 
-Among Chinese scholars, does surname alphabetical position predict academic visibility or career outcomes specifically under greater exposure to empirically measured alphabetical author-ordering regimes, after calibrating against the non-uniform Chinese population surname distribution?
+Within China's research system, does an author's relative alphabetical surname position become more predictive of listed byline position specifically when the field has a stronger independently measured prior convention of alphabetical authorship?
 
-## Completed
+## Frozen design
 
-- [x] Stable paper ID `006` and canonical folder created.
-- [x] ARIS v0.4.26 provenance pinned to commit `951654847b015585385b2448c5667dcd04e7b56b`.
-- [x] Scope narrowed to Chinese names / Chinese scholars.
-- [x] ChineseNames 2025.8 identified as the primary surname-population baseline; underlying population data remain 1930–2008.
-- [x] Raw A–Z equal-frequency comparison prohibited.
-- [x] Main mechanism reframed as `surname rank × actual alphabetization exposure`, not a mystical/psychological letter effect.
-- [x] Li & Yi (2021) identified as a direct Chinese predecessor.
-- [x] D'Angelo (2026) identified as a direct recent bibliometric predecessor using expected national surname distributions.
-- [x] Cross-field author-order intensity identified as the main source of mechanism heterogeneity.
-- [x] Elicit API route tested and found unavailable under the connected plan; Consensus search quota also exhausted. Public-web / GPTPage fallback is therefore active and must be recorded in provenance.
+- Primary mechanism unit: focal authorships within the same eligible multi-author work.
+- Primary population language: CN-affiliated authorships with validated ChineseNames × CCNC focal surname forms; no nationality/ethnicity inference.
+- Work types: `article` + `conference-paper`.
+- Time window: **2011–2025**.
+- Field assignment: OpenAlex `primary_topic.field.id`.
+- Scope: all **26 current OpenAlex fields** globally eligible.
+- Primary exposure: primary-topic field × prior 3 complete years.
+- Exposure estimator: exact chance correction + exact leave-one-author-out; require `D^{-i}_{ct} >= 50`.
+- Raw source/journal exposure: not primary; secondary/exploratory only after shrinkage.
+- Primary predictor: within-team `RelAlphaRank`.
+- Primary outcome: normalized listed byline position.
+- Primary model: work fixed effects with `RelAlphaRank × LOAOExposure`.
+- Inference: three-way clustering by canonical author, work, and primary-field × year.
+- Surname population weights: ChineseNames 2025.8.
+- Surname pronunciation/order authority: pinned CCNC surname lexicon.
+- Primary surname map: `aris4c006-surname-map-v2-ccnc`.
+- Corrected mapped population denominator: **1,181,331,391 (99.9671%)**.
+- Corrected population-weighted initial rank: **16.25491**.
+- Longitudinal entry cohort: **2014–2020**, 3-year clean lookback, 5-year follow-up.
+- Distal confirmatory endpoint: observed five-year publication persistence.
+- Within-author exposure variation gate: passed.
 
-## In progress
+## Major passed gates
 
-- [ ] Closest-prior-work / novelty map beyond the first anchor papers.
-- [ ] Executable ChineseNames extraction and validation pipeline.
-- [ ] OpenAlex sampling and author-order pilot.
-- [ ] Operational definition of “Chinese scholar.”
-- [ ] Surname parsing / Pinyin normalization protocol.
-- [ ] Empirical alphabetization-intensity estimator.
-- [ ] Causal/DAG audit and confounding-control hierarchy.
-- [ ] Author-disambiguation error audit for common Chinese names.
-- [ ] Pre-analysis specification / preregistration draft.
-- [ ] GPTPage adversarial reviewer packet.
+- [x] novelty narrowed against Einav & Yariv, Li & Yi, D'Angelo, Crabtree/Holbein/Tsutsui and 2025–2026 adjacent work;
+- [x] 1,806-surname population baseline established;
+- [x] Crossref structured-family route validated;
+- [x] randomized surname measurement gate passed;
+- [x] OpenAlex author-ID canonicalization rule validated;
+- [x] all-field alphabetization heterogeneity exists;
+- [x] raw source-level primary exposure rejected by prospective reliability rule;
+- [x] field × prior-3-year exposure frozen as primary;
+- [x] all 26 fields passed primary-topic eligibility;
+- [x] all-field historical coverage froze 2011–2025;
+- [x] within-author exposure variation passed;
+- [x] CCNC surname-specific Romanization gate passed;
+- [x] corrected CCNC-based population baseline materialized;
+- [x] survivor-selected 2024 pilot forbidden as confirmatory cohort;
+- [x] entry-based longitudinal cohort/persistence endpoint frozen;
+- [x] primary work types, multiplicity and cluster structure frozen;
+- [x] machine-readable design/outcome locks exist.
 
-## Hard gates before confirmatory outcome analysis
+## Remaining outcome-blind execution gates
 
-1. `Chinese scholar` cannot be inferred solely from a Chinese-looking name.
-2. Equal-frequency A–Z expectations are forbidden; population calibration is mandatory.
-3. Surname initial cannot be treated as randomized without sensitivity to geography/ancestry and surname-frequency structure.
-4. Alphabetization exposure must be measured from observed publication-order behavior, preferably at journal × field × year or similarly granular levels.
-5. Chance alphabetization must be corrected for team size; a two-author paper being alphabetical is not strong evidence of a convention by itself.
-6. Primary exposure construction must not use the focal career outcome.
-7. Common-name author disambiguation error must be stress-tested before any surname-frequency or surname-rank effect is interpreted.
-8. Li & Yi (2021) and D'Angelo (2026) must be treated as prior art that narrows novelty claims.
-9. Single-authored works and low-alphabetization fields must be retained as negative-control contexts where applicable.
-10. Elite-list outcomes are secondary validation, not the sole definition of scientific success.
+1. [ ] reproduce ChineseNames baseline from the pinned **2025.8 R package**, not only the public engineering mirror;
+2. [ ] materialize final 26-field primary convention/exposure build under article+conference-paper types;
+3. [ ] validate LOAO implementation against synthetic/hand-computed cases;
+4. [ ] run a synthetic-only work-FE + interaction + frozen multiway-cluster smoke test;
+5. [ ] materialize the primary work frame and report only sample/cluster/exclusion counts, **without estimating H1/H2**;
+6. [ ] finalize deterministic longitudinal identity-risk QA flags and report prevalence only;
+7. [ ] finish preregistration consistency audit, generate lock/hash, then explicitly unlock confirmatory outcomes.
 
-## Next machine-readable checkpoint
+## Hard rules
 
-When `RESEARCH_PLAN.md`, `DATA_SOURCES.md`, `LITERATURE_SEED.md`, `AUTO_REVIEW.md`, the surname-baseline extraction code, and the OpenAlex pilot specification exist with critical blockers explicitly resolved or downgraded, change `paper.json` status from `feasibility` to `research-design`.
+- Do not use uniform A–Z as a Chinese surname null.
+- Do not use legacy ChineseNames `initial` as surname-pronunciation truth.
+- Do not use generic pypinyin as confirmatory surname pronunciation.
+- Do not use unreviewed Lee/Chan/Wong/etc. aliases in the primary sample.
+- Do not use raw embedded OpenAlex author IDs for longitudinal joins; canonicalize first.
+- Do not use `topics.field.id` as primary field assignment.
+- Do not promote raw source-level exposure because it yields a stronger result.
+- Do not use last-token surname heuristics to increase sample size.
+- Do not inspect focal surname × outcome coefficients before the preregistration lock is complete.
+
+## Next checkpoint
+
+When all remaining execution gates pass, create a deterministic preregistration lock/hash, update `DESIGN_GATES.json` and `ANALYSIS_SPEC.json`, then promote the project to `preregistered` and only then allow confirmatory H1/H2/H3 execution.
