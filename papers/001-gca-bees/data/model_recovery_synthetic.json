@@ -1,0 +1,44 @@
+{
+  "seed": 20260918,
+  "repetitions": 200,
+  "data_generating_model": {
+    "two_factors": true,
+    "factor_correlation": 0.35,
+    "loading": 0.65
+  },
+  "note": "Synthetic model-recovery only; not empirical evidence about bees.",
+  "sample_sizes": {
+    "60": {
+      "selection_rate": {
+        "one_factor": 0.02,
+        "two_factor_correlated": 0.49,
+        "two_factor_independent": 0.49
+      },
+      "median_BIC_one_minus_two_correlated": 14.392810436142412
+    },
+    "90": {
+      "selection_rate": {
+        "one_factor": 0.0,
+        "two_factor_correlated": 0.595,
+        "two_factor_independent": 0.405
+      },
+      "median_BIC_one_minus_two_correlated": 23.472764307847626
+    },
+    "120": {
+      "selection_rate": {
+        "one_factor": 0.0,
+        "two_factor_correlated": 0.625,
+        "two_factor_independent": 0.375
+      },
+      "median_BIC_one_minus_two_correlated": 35.10196879661328
+    },
+    "160": {
+      "selection_rate": {
+        "one_factor": 0.0,
+        "two_factor_correlated": 0.795,
+        "two_factor_independent": 0.205
+      },
+      "median_BIC_one_minus_two_correlated": 50.604074228841284
+    }
+  }
+}

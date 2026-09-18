@@ -1,24 +1,23 @@
 {
   "id": "001",
   "slug": "gca-bees",
-  "title": "A Unified Predictive Coding Account of Functional Self-Awareness in Bees",
-  "short_title": "GCA × Bees",
+  "title": "Uncertainty Monitoring and Cross-Task Cognitive Covariation in Honey Bees",
+  "short_title": "Bee Uncertainty × Cognitive Covariation",
   "year": 2026,
-  "status": "working-paper",
-  "domain": "computational neuroethology",
-  "summary": "A theory-and-simulation project exploring whether a shared precision parameter can organize four modeled behavioral domains in bees.",
+  "status": "research-design",
+  "domain": "comparative cognition / computational neuroethology / psychometrics",
+  "summary": "A falsifiable model-comparison project asking whether uncertainty-sensitive choice and cross-task learning covariation in honey bees are best explained by one general factor, separable but correlated factors, or task-local associative mechanisms. Earlier precision/self-awareness simulation claims have been retired from the canonical paper.",
   "authors": ["Cunyi Kang"],
   "aris": {
-    "provenance": "legacy ARIS run",
-    "version": "unknown-legacy",
-    "upgrade_note": "Preserve this paper's historical provenance; use the ARIS4C repository-level ARIS lock for new work."
+    "provenance": "ARIS4C full reconstruction replacing the legacy Paper 001 run",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
   },
   "links": {
     "paper_en": "paper/en/main.html",
     "paper_zh": "paper/zh/main.html",
-    "landing_zh": "zh.html",
-    "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/process/RESEARCH_PIPELINE_REPORT.md",
-    "source": "https://github.com/CochraneK/ARIS4C"
+    "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/process/STATUS.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees"
   },
-  "tags": ["ARIS", "ARIS4C", "predictive coding", "bees", "self-awareness", "simulation"]
+  "tags": ["ARIS", "ARIS4C", "honey bees", "uncertainty monitoring", "metacognition", "general cognitive ability", "model comparison"]
 }

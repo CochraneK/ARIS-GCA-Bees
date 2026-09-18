@@ -17,85 +17,46 @@
 
 **ARIS4C = ARIS for Cochrane.** It is the long-lived research repository for papers developed with the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) methodology.
 
-The repository began with the GCA × Bees theory-and-simulation project and now serves as a reusable home for future papers.
-
-The separation is deliberate:
-
-- **ARIS is the research engine** and can keep updating independently.
-- **ARIS4C is the research archive and portfolio** for Cochrane's ARIS-assisted research.
-- **Each paper records the exact ARIS version/commit used**, so upgrading ARIS does not rewrite the history of older work.
-- **The public HTML hub is generated from paper manifests**, rather than maintained by hand.
+ARIS is the research engine; ARIS4C is the paper registry, evidence trail and public portfolio. Each promoted paper owns its manuscript, code, data notes and process records under one numbered folder and records the exact ARIS version used.
 
 ## Repository model
 
-```text
-ARIS4C/
-├── papers/
-│   ├── 001-gca-bees/
-│   │   └── paper.json           # manifest for the original paper
-│   └── 002-next-paper/
-│       ├── paper.json
-│       ├── code/
-│       ├── data/
-│       ├── figures/
-│       ├── manuscript/
-│       └── process/
-├── docs/
-│   └── index.html               # generated public paper hub
-├── tools/
-│   ├── new_paper.py             # scaffold the next numbered paper
-│   ├── build_papers_index.py    # regenerate the HTML hub
-│   └── sync_aris.ps1            # update the external ARIS engine on Windows
-├── aris.lock.json               # repository-level ARIS update policy
-├── code/                        # legacy Paper 001 research code
-├── process/                     # legacy Paper 001 ARIS process records
-└── simulation_results*.json     # legacy Paper 001 outputs
-```
+    ARIS4C/
+    ├── papers/
+    │   ├── 001-gca-bees/
+    │   │   ├── paper.json
+    │   │   ├── README.md
+    │   │   ├── code/
+    │   │   ├── data/
+    │   │   ├── manuscript/
+    │   │   └── process/
+    │   ├── 003-...
+    │   └── ...
+    ├── docs/
+    │   └── index.html
+    ├── tools/
+    │   ├── new_paper.py
+    │   ├── build_papers_index.py
+    │   └── sync_aris.ps1
+    └── aris.lock.json
 
-The original Paper 001 files remain in their current locations for link compatibility. New papers should use the numbered `papers/` layout from the start.
+## Paper 001 · reconstructed
 
-## Start a new paper
+**Uncertainty Monitoring and Cross-Task Cognitive Covariation in Honey Bees**
 
-```bash
-python tools/new_paper.py "Your paper title" --slug short-name
-```
+Paper 001 was fully reconstructed on 2026-09-18 with ARIS v0.4.26. The earlier single-precision/self-awareness simulation is no longer canonical. The new project compares domain-general, two-factor, associative and hybrid explanations and requires same-individual empirical evidence before making mechanistic claims.
 
-This creates the next stable paper ID and its standard research folders. Before starting the ARIS run, record the exact ARIS tag and commit in that paper's `paper.json`.
+- [English research-design page](docs/paper/en/main.html)
+- [中文研究设计页](docs/paper/zh/main.html)
+- [Canonical Paper 001 folder](papers/001-gca-bees/)
+- [Status and gates](papers/001-gca-bees/process/STATUS.md)
 
 ## Keep ARIS current
 
-ARIS itself is **not vendored into ARIS4C**. On Windows, update a separate local ARIS clone with:
-
-```powershell
-./tools/sync_aris.ps1
-```
-
-The helper clones or pulls the upstream ARIS repository, records the local tag/commit, and uses the upstream smart-update path when Bash is available. Local engine state is gitignored.
-
-The repository currently recommends **ARIS v0.4.26** in `aris.lock.json`; historical papers retain their original provenance instead of being relabeled after upgrades.
-
-## Rebuild the public paper hub
-
-```bash
-python tools/build_papers_index.py
-```
-
-A GitHub Action also regenerates `docs/index.html` automatically when paper manifests change on `main`.
-
-## Paper 001 · GCA × Bees
-
-**A Unified Predictive Coding Account of Functional Self-Awareness in Bees: Analytically Derived Precision Trade-offs Across Four Behavioral Domains**
-
-This remains a theory + simulation working paper. Its modeled relationships are hypotheses and predictions, not empirical evidence that bees possess a particular form of self-awareness or that the proposed neural mechanism has been demonstrated in vivo.
-
-- [English manuscript](docs/paper/en/main.html)
-- [中文论文](docs/paper/zh/main.html)
-- [Research pipeline report](process/RESEARCH_PIPELINE_REPORT.md)
-- [Idea report](process/IDEA_REPORT.md)
-- [Auto review](process/AUTO_REVIEW.md)
+The repository currently recommends **ARIS v0.4.26** in aris.lock.json. New work records the exact tag/commit used; prior research history remains available through Git.
 
 ## Principle
 
-> Upgrade the research engine; preserve the research record.
+> Upgrade the research engine, and allow stronger methods to replace weaker canonical claims when a paper is explicitly reconstructed.
 
 Maintainer: **Cunyi Kang**

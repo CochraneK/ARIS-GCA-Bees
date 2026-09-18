@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "locked_on": "2026-09-18",
+  "paper": "ARIS4C001",
+  "confirmatory_models": {
+    "M1": "one latent factor across learning and uncertainty indicators",
+    "M2": "two correlated latent factors: learning/GCA and uncertainty/control",
+    "M3": "two independent latent factors",
+    "M4": "trial-local associative opt-out model using difficulty, reinforcement history and learned values",
+    "M5": "hybrid individual-factor plus associative trial process"
+  },
+  "exploratory_only": [
+    "single predictive-precision mechanism",
+    "central-complex implementation",
+    "self-awareness interpretation",
+    "fixed sign of GCA-metacognition association",
+    "circadian sign-flip hypothesis"
+  ],
+  "forbidden_as_empirical_evidence": [
+    "synthetic model recovery",
+    "variables generated from the same latent parameter",
+    "hand-picked parameter distributions",
+    "post-hoc threshold tuning"
+  ],
+  "primary_decision_rule": "prefer predictive model comparison and calibration on held-out empirical data; do not declare a mechanism from variance explained alone"
+}

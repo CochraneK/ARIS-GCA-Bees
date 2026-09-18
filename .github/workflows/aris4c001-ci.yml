@@ -1,0 +1,27 @@
+name: ARIS4C001 quality gate
+
+on:
+  push:
+    paths:
+      - 'papers/001-gca-bees/**'
+      - 'docs/paper/en/main.html'
+      - 'docs/paper/zh/main.html'
+      - '.github/workflows/aris4c001-ci.yml'
+  pull_request:
+    paths:
+      - 'papers/001-gca-bees/**'
+      - 'docs/paper/en/main.html'
+      - 'docs/paper/zh/main.html'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy
+      - run: python papers/001-gca-bees/code/quality_gate.py
+      - run: python papers/001-gca-bees/code/model_recovery.py
+      - run: git diff --exit-code papers/001-gca-bees/data/model_recovery_synthetic.json
