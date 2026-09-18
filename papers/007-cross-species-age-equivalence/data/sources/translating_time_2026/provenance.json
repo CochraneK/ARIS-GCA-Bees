@@ -1,0 +1,51 @@
+{
+  "study": "Januel et al. 2026, Biology Open",
+  "title": "Cat brains age like humans: translating time shows pet cats live to be natural models for human aging",
+  "article_doi": "10.1242/bio.062604",
+  "pmcid": "PMC13382973",
+  "license": "CC BY 4.0",
+  "supplementary_targets": {
+    "TableS1": {
+      "requested_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13382973.1/biolopen-15-062604-TableS1.xlsx",
+      "final_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13382973.1/biolopen-15-062604-TableS1.xlsx",
+      "content_type": "binary/octet-stream",
+      "bytes": 182233,
+      "sha256": "1bfd115f786fa4c1e911197eadae3451b97b6ace848eaaec61394d76258a1738",
+      "acquisition": "PMC AWS Cloud Service",
+      "description": "Timepoints and observations in cats, humans, mice and chimpanzees used to translate ages across species.",
+      "derived_text_files": [
+        {
+          "sheet": "Sheet1",
+          "file": "TableS1__Sheet1.csv",
+          "rows_including_header": 3755,
+          "max_columns": 7,
+          "sha256": "3f8e30f127d483a433550ca7c56fa3c70366be930cd98d8908a7e176f458905b"
+        }
+      ]
+    },
+    "Dataset1": {
+      "requested_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13382973.1/biolopen-15-062604-Dataset1.zip",
+      "final_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13382973.1/biolopen-15-062604-Dataset1.zip",
+      "content_type": "binary/octet-stream",
+      "bytes": 6628,
+      "sha256": "f21951fdea1308de1557d9864adc9909aedcd29749904b01028a259170259724",
+      "acquisition": "PMC AWS Cloud Service",
+      "description": "Authors' script bundle used with Table S1 to translate ages across species.",
+      "extracted_files": [
+        {
+          "source_member": "Supplemenrary_material 1.R",
+          "file": "Dataset1/Supplemenrary_material_1.R",
+          "bytes": 25800,
+          "sha256": "383a5b5265df533d411608ba89abc68ab910bcb15824cc5919aa6c5d89cfb8e2"
+        }
+      ]
+    }
+  },
+  "pmc_oa_package": {
+    "service": "PMC AWS Cloud Service",
+    "base_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13382973.1/",
+    "article_version": "PMC13382973.1"
+  },
+  "link_discovery_attempts": [],
+  "guardrail": "These are source supplementary materials. ARIS4C007 will preserve the authors' model as a benchmark and separately evaluate held-out events to avoid treating training fit as independent validation."
+}
