@@ -316,6 +316,16 @@ Two of the six target papers had at least one verified SAFE_EXACT historical obj
 
 This small, deliberately heterogeneous seed is not used to estimate population archival availability. Its methodological result is that paper-level historical availability and issue-level benchmark readiness are different quantities. Detector recall is not calculated for an issue until all prespecified required artifact roles pass time-safe qualification.
 
+### 7.6 First pre-outcome true-positive case
+
+To test whether the complete Track A pipeline could recover a real error rather than only establish acquisition constraints, we added a seventh documented correction case. The 2021 PLOS ONE article with DOI 10.1371/journal.pone.0258910 summarized a cited psychometric study by Harper and Rhodes (2021) in Table 1. An exact publisher PDF captured by the Wayback Machine on 14 January 2022, before the 2024 correction, preserves the historical row. The archived row reports N=322, RMSEA=0.080, CFI=0.77, and a five-factor best-fitting model.
+
+The cited Harper and Rhodes article (DOI 10.1111/bjso.12452) was first published on 17 February 2021, before the target PLOS article. Its Study 2 confirmatory factor analysis reports N=322 and an improved three-factor model with CFI=.87 and RMSEA=.07. We therefore implemented a deterministic cross-source field-consistency detector that compares only prespecified, source-verified fields when the comparison source was already publicly available at the target publication time.
+
+Under Track A, N matched, whereas RMSEA, CFI, and the best-fitting-model field disagreed, producing an E2 FLAG and MODERATE review priority. The PLOS correction published on 9 May 2024 later stated that the Table 1 best-fitting model should be three factors rather than five and that CFI and RMSEA should be .87 and .07, respectively. The correction was used only as ground truth and was not exposed to the detector.
+
+This n=1 result is not interpreted as a performance estimate. It demonstrates that the provenance-constrained pipeline can generate a genuine pre-outcome true positive using only an exact historical target artifact and evidence that was contemporaneously available.
+
 ## 8. Detector versioning and defect governance
 
 An integrated system inherits the failure modes of its components. Detector version and known defects are therefore part of evidence provenance.
