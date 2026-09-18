@@ -104,3 +104,16 @@ Do not publish a point count without uncertainty and calibration diagnostics.
 ## Provenance
 
 Persist database, retrieval date, query, citation-count method, corpus mode, and code version for every citation-history batch.
+
+
+## OpenAlex historical-citation rule
+
+Do **not** use the nested Work `counts_by_year` field to reconstruct mature historical citation trajectories: current OpenAlex documentation states that Work-level `counts_by_year` contains only roughly the last ten years and omits older citation years.
+
+For SB0 historical Beauty Coefficient estimation, reconstruct annual incoming-citation counts using a live Works query for each source:
+
+`filter=cites:<WORK_ID>&group_by=publication_year`
+
+Then fill unreturned calendar years inside the frozen observation window as zero only after the live query establishes the grouped history.
+
+The live-citation query, retrieval date, and final complete observation year must be stored because citation matching and OpenAlex graph coverage can change over time.
