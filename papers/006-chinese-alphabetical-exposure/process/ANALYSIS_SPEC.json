@@ -6,7 +6,7 @@
   "confirmatory_outcomes_unlocked": false,
   "primary_frame": {
     "unit": "authorship within eligible multi-author work",
-    "population": "authorships with at least one resolved mainland-China institution for the focal authorship; no nationality/ethnicity inference from name",
+    "population": "CN-affiliated authorships with high-confidence ChineseNames-mappable surnames; no nationality/ethnicity inference",
     "time_window": {
       "status": "pending_gate",
       "gate": "annual_coverage_sweep"
@@ -14,7 +14,16 @@
     "field_scope": {
       "status": "pending_all_field_gate",
       "rule": "All current OpenAlex fields passing prospective primary-field data-volume and structured-order coverage thresholds; six anchor fields are feasibility anchors only."
-    }
+    },
+    "work_eligibility": [
+      ">=2 total authors",
+      "eligible primary_topic.field.id",
+      "validated family-name evidence for all listed authors needed for whole-team RelAlphaRank",
+      ">=2 CN-affiliated ChineseNames-mappable focal authorships after exclusions",
+      "valid prior-3-year LOAO primary-field exposure"
+    ],
+    "regression_rows": "CN-affiliated ChineseNames-mappable focal authorships only",
+    "population_frame_doc": "process/POPULATION_FRAME.md"
   },
   "surname_measurement": {
     "allowed_tiers": [
@@ -59,7 +68,8 @@
     "name": "RelAlphaRank",
     "definition": "midrank-normalized family-name order within actual coauthor team",
     "scale": "0 alphabetically earliest to 1 alphabetically latest",
-    "derived_without_using_actual_listed_position": true
+    "derived_without_using_actual_listed_position": true,
+    "rank_reference": "entire actual author list, including non-focal coauthors"
   },
   "structural_secondary_predictor": {
     "name": "SurnameInitialRank",
