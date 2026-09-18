@@ -11,9 +11,25 @@ permissions:
   contents: read
 
 jobs:
-  hummers-cross-source-replication:
+  cross-source-replication:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - slug: hummers
+            case_id: ke2015_02
+            doi: 10.1021/ja01539a017
+            publication_year: 1958
+            published_b: 10769
+            awakening_year: 2007
+          - slug: epr
+            case_id: ke2015_06
+            doi: 10.1103/PhysRev.47.777
+            publication_year: 1935
+            published_b: 2258
+            awakening_year: 1994
 
     steps:
       - uses: actions/checkout@v4
@@ -22,34 +38,43 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Reconstruct Hummers 1958 citation trajectory through 2011
+      - name: Reconstruct citation trajectory through 2011
         working-directory: papers/015-sleeping-beauty-miner/code
         run: |
           python pilot0_openalex_case.py \
-            --doi 10.1021/ja01539a017 \
-            --case-id ke2015_02 \
-            --publication-year 1958 \
-            --published-b 10769 \
-            --published-awakening-year 2007 \
+            --doi "${{ matrix.doi }}" \
+            --case-id "${{ matrix.case_id }}" \
+            --publication-year ${{ matrix.publication_year }} \
+            --published-b ${{ matrix.published_b }} \
+            --published-awakening-year ${{ matrix.awakening_year }} \
             --observation-end-year 2011 \
-            --output ../data/pilot0_openalex_hummers.json
+            --output "../data/pilot0_openalex_${{ matrix.slug }}.json"
 
       - name: Sanity-check empirical output
+        env:
+          SLUG: ${{ matrix.slug }}
+          CASE_ID: ${{ matrix.case_id }}
+          PUBLICATION_YEAR: ${{ matrix.publication_year }}
         run: |
           python - <<'PY'
           import json
+          import os
           from pathlib import Path
 
-          path = Path("papers/015-sleeping-beauty-miner/data/pilot0_openalex_hummers.json")
+          slug = os.environ["SLUG"]
+          path = Path(
+              f"papers/015-sleeping-beauty-miner/data/pilot0_openalex_{slug}.json"
+          )
           result = json.loads(path.read_text(encoding="utf-8"))
 
-          assert result["case_id"] == "ke2015_02"
+          assert result["case_id"] == os.environ["CASE_ID"]
           assert result["target"]["openalex_id"].startswith("W")
           assert result["trajectory"]["total_citations"] > 0
-          assert result["trajectory"]["publication_year"] == 1958
+          assert result["trajectory"]["publication_year"] == int(os.environ["PUBLICATION_YEAR"])
           assert result["trajectory"]["end_year"] == 2011
           assert result["reconstructed"]["awakening_year"] <= 2011
           print(json.dumps({
+              "case_id": result["case_id"],
               "openalex_id": result["target"]["openalex_id"],
               "total_citations_through_2011": result["trajectory"]["total_citations"],
               "reconstructed_B": result["reconstructed"]["beauty_coefficient"],
@@ -61,7 +86,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilot0-openalex-hummers
-          path: papers/015-sleeping-beauty-miner/data/pilot0_openalex_hummers.json
+          name: aris4c015-pilot0-openalex-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/pilot0_openalex_${{ matrix.slug }}.json
           if-no-files-found: error
           retention-days: 30
