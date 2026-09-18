@@ -1,0 +1,101 @@
+person_id,canonical_name,source_level3_occupation,ford_broad_field,ford_second_level_proxy,mapping_basis,mental_health_information_used
+cv_Q41981653,Ianthe Blyden,nurse,3 Medical and health sciences,3.3 Health sciences,direct,false
+cv_Q5540597,George Higoumenakis,dermatologist,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q109734,Philipp Schaeffer,sinologist,6 Humanities and the arts,6.2 Languages and literature,broad,false
+cv_Q400678,Ahmad Kasravi,linguist,6 Humanities and the arts,6.2 Languages and literature,direct,false
+cv_Q41907808,Hilda Bowen,nurse,3 Medical and health sciences,3.3 Health sciences,direct,false
+cv_Q1729753,Karl-Franz Busch,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q6240621,John I. Yellott,engineer,2 Engineering and technology,2.x Engineering and technologies,direct,false
+cv_Q510562,Mary Alice McWhinnie,biologist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q24287044,Hilario Hernández Gurruchaga,profesor,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q47504806,Hannah Gavron,sociologist,5 Social sciences,5.4 Sociology,direct,false
+cv_Q5932286,Dan Laksov,mathematician,1 Natural sciences,1.1 Mathematics,direct,false
+cv_Q3076441,James S. Albus,engineer,2 Engineering and technology,2.x Engineering and technologies,direct,false
+cv_Q53844925,José Luis Juárez Villarín,teacher,5 Social sciences,5.3 Education,occupation-proxy,false
+cv_Q1354374,Erika Greber,professor,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q6213800,Joel Olson,political_scientist,5 Social sciences,5.6 Political science,direct,false
+cv_Q7329866,Richard Webster (British author),historian,6 Humanities and the arts,6.1 History and archaeology,direct,false
+cv_Q14666387,John Wishart (surgeon),surgeon,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q1795953,Otto Siebert,theologian,6 Humanities and the arts,"6.3 Philosophy, ethics and religion",direct,false
+cv_Q7659879,Sydney Copeman,physician,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q72927,Ottomar Rosenbach,physician,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q20031320,Fred Casey,education,5 Social sciences,5.3 Education,direct,false
+cv_Q19287605,Karl Erich Hupka,physicist,1 Natural sciences,1.3 Physical sciences,direct,false
+cv_Q124897,Anton Moortgat,anthropologist,5 Social sciences,5.9 Other social sciences,broad,false
+cv_Q338095,Carl Emil Pettersson,sailor,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q20242849,Willy Oelsen,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q1038195,Carl Föhl,economist,5 Social sciences,5.2 Economics and business,direct,false
+cv_Q108514,Menachem Pinkhof,teacher,5 Social sciences,5.3 Education,occupation-proxy,false
+cv_Q60859,Fritz Strassmann,chemist,1 Natural sciences,1.4 Chemical sciences,direct,false
+cv_Q40700285,Paul J. Torpey,engineer,2 Engineering and technology,2.x Engineering and technologies,direct,false
+cv_Q1459755,Friedrich Hoeth,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q1621300,Konrad Oberhuber,art_historian,6 Humanities and the arts,6.4 Arts/history of arts,direct,false
+cv_Q722933,Petro Balabuyev,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q43568051,Michael J. Wargo,scientist,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q15488589,Ulrike Toellner-Bauer,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q7804355,Tim Stryker,engineer,2 Engineering and technology,2.x Engineering and technologies,direct,false
+cv_Q1839062,Torkel Franzén,mathematician,1 Natural sciences,1.1 Mathematics,direct,false
+cv_Q39143467,Emily Jean Crimson Thatcher,teacher,5 Social sciences,5.3 Education,occupation-proxy,false
+cv_Q1580139,Hans Held (Mediziner),physician,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q15314881,Charles Georges-Picot,economist,5 Social sciences,5.2 Economics and business,direct,false
+cv_Q313061,Aurel Stein,archaeologist,6 Humanities and the arts,6.1 History and archaeology,direct,false
+cv_Q15994329,Cecil Joslin Brooks,botanist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q7035840,Nikolai Kuehner,orientalist,6 Humanities and the arts,6.2 Languages and literature,broad,false
+cv_Q23063217,Friedrich Maria Illert,sociologue,5 Social sciences,5.4 Sociology,direct,false
+cv_Q14592888,Carmelo Flores Laura,research,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q30612687,James Alexander MacDonald (botanist),botanist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q7261837,Pushpa Ratna Sagar,lexicographer,6 Humanities and the arts,6.2 Languages and literature,direct,false
+cv_Q4937482,Bogdan Zakrzewski,historian,6 Humanities and the arts,6.1 History and archaeology,direct,false
+cv_Q3596077,Francisco Tamayo,botanist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q19964177,Friedrich Lorenz (Pädagoge),academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q1577507,Hans-Joachim Weimann,scientist,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q2545268,Walter L. Bühl,sociologist,5 Social sciences,5.4 Sociology,direct,false
+cv_Q1737527,Kazimierz Urbanik,mathematician,1 Natural sciences,1.1 Mathematics,direct,false
+cv_Q57447297,Thomas Aisu,physician,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q9696997,Carlos Delmonte Printes,physician,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q6947701,Itzhak Ilan,physics,1 Natural sciences,1.3 Physical sciences,direct,false
+cv_Q23059458,Minoo Lenarz,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q19959189,Emanuel Christa (Geologe),geologist,1 Natural sciences,1.5 Earth and related environmental sciences,direct,false
+cv_Q3052265,Émile Haumant,philologist,6 Humanities and the arts,6.2 Languages and literature,direct,false
+cv_Q19850025,Oskar Simony,mathematician,1 Natural sciences,1.1 Mathematics,direct,false
+cv_Q1632448,Fusakichi Omori,seismologist,1 Natural sciences,1.5 Earth and related environmental sciences,direct,false
+cv_Q47490806,Alfons Maria Borst,teacher,5 Social sciences,5.3 Education,occupation-proxy,false
+cv_Q6225153,John Carl Parish,historian,6 Humanities and the arts,6.1 History and archaeology,direct,false
+cv_Q16439379,Nikolaus Hein,altphilologe,6 Humanities and the arts,6.2 Languages and literature,direct,false
+cv_Q7926394,Victor Thébault,mathematician,1 Natural sciences,1.1 Mathematics,direct,false
+cv_Q6057164,Padre Joseph Alexander MacDonald,professor,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q3385700,Pierre L. G. Benoit,zoologist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q2641681,Alexander Aigner,professor,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q4160442,Robert A. Johnson (psychotherapist),psychologist,5 Social sciences,5.1 Psychology and cognitive sciences,direct,false
+cv_Q1611638,Hermann Jaeger (Geologe),palaeontologist,1 Natural sciences,1.5 Earth and related environmental sciences,direct,false
+cv_Q18822352,Vikram Marwah,surgeon,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q7416679,Sandra Leiblum,psychologist,5 Social sciences,5.1 Psychology and cognitive sciences,direct,false
+cv_Q104271,Michael Theunissen,philosopher,6 Humanities and the arts,"6.3 Philosophy, ethics and religion",direct,false
+cv_Q56329881,Armin Buschauer,pharmacist,3 Medical and health sciences,3.x Medical/health sciences,broad,false
+cv_Q47216729,Alfonso W. Quiroz,historian,6 Humanities and the arts,6.1 History and archaeology,direct,false
+cv_Q18620047,Christian Scholz (Wirtschaftswissenschaftler) – ,economist,5 Social sciences,5.2 Economics and business,direct,false
+cv_Q1700166,John Gardner (legal philosopher),philosopher,6 Humanities and the arts,"6.3 Philosophy, ethics and religion",direct,false
+cv_Q5712976,Folke Engström,astronomer,1 Natural sciences,1.3 Physical sciences,direct,false
+cv_Q1912572,Max Gerlach,chemist,1 Natural sciences,1.4 Chemical sciences,direct,false
+cv_Q1679356,Jakob Sket,education,5 Social sciences,5.3 Education,direct,false
+cv_Q108651,Valentin Haecker,zoologist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q5668111,Alfredo Zimmermann Resta,engineer,2 Engineering and technology,2.x Engineering and technologies,direct,false
+cv_Q16945536,Algot Werin,historian,6 Humanities and the arts,6.1 History and archaeology,direct,false
+cv_Q4798468,Arthur Disbrowe Cotton,botanist,1 Natural sciences,1.6 Biological sciences,direct,false
+cv_Q15459244,Miller Reese Hutchison,inventor,2 Engineering and technology,2.x Engineering and technologies,broad-applied,false
+cv_Q3611354,Alfredo Boni,geologist,1 Natural sciences,1.5 Earth and related environmental sciences,direct,false
+cv_Q594723,Anton Tautscher,economist,5 Social sciences,5.2 Economics and business,direct,false
+cv_Q118326,Ernst Rexer,physicist,1 Natural sciences,1.3 Physical sciences,direct,false
+cv_Q12256675,Elbira Zipitria,education,5 Social sciences,5.3 Education,direct,false
+cv_Q5294283,Donald E. Graves,intelligence,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q693932,Arnim Bechmann,economist,5 Social sciences,5.2 Economics and business,direct,false
+cv_Q1717446,Jürgen Manthey,academic,unclassified,unclassified,generic_or_ambiguous_source_occupation,false
+cv_Q1393663,Peter Rice,engineer,2 Engineering and technology,2.x Engineering and technologies,direct,false
+cv_Q18738873,Robert R. Squires,chemist,1 Natural sciences,1.4 Chemical sciences,direct,false
+cv_Q15067213,Marco Zamperini,computer_scientist,1 Natural sciences,1.2 Computer and information sciences,direct,false
+cv_Q12304083,Allan Steen Kristensen,chemist,1 Natural sciences,1.4 Chemical sciences,direct,false
+cv_Q5081954,Charles Read (mathematician),mathematician,1 Natural sciences,1.1 Mathematics,direct,false
+cv_Q25917613,Hugo Seemann (Ökonom),economist,5 Social sciences,5.2 Economics and business,direct,false
+cv_Q15440160,Hans Arnsperger,internist,3 Medical and health sciences,3.2 Clinical medicine,direct,false
+cv_Q5553312,Gertrude Elles,geologist,1 Natural sciences,1.5 Earth and related environmental sciences,direct,false
+cv_Q95927,Robert Gaupp,psychiatrist,3 Medical and health sciences,3.2 Clinical medicine,direct,false
