@@ -1,0 +1,31 @@
+{
+  "pilot": "ARIS4C015 Pilot 0B cross-source replication",
+  "status": "partial-empirical-validation",
+  "n_cases": 3,
+  "observation_end_year": 2011,
+  "reference_source": "Ke et al. 2015 / Web of Science",
+  "replication_source": "OpenAlex live API",
+  "summary": {
+    "mean_relative_B_difference": 0.1327307017820504,
+    "mean_absolute_relative_B_difference": 0.1327307017820504,
+    "median_absolute_relative_B_difference": 0.13190659306250324,
+    "mean_awakening_year_difference": -1.0,
+    "mean_absolute_awakening_year_difference": 1.0,
+    "max_absolute_awakening_year_difference": 3,
+    "awakening_exact_matches": 2,
+    "awakening_within_3_years": 3
+  },
+  "interpretation": [
+    "All three literature reference cases retain a high delayed-recognition geometry in the OpenAlex reconstruction.",
+    "Absolute Beauty Coefficient values are systematically higher in these three OpenAlex reconstructions than the published WoS values, with mean relative difference about +13.3%.",
+    "Awakening timing is more stable in this small pilot: two of three cases match exactly and all three are within three years.",
+    "The sample is too small and selected to support a general cross-database conclusion. The result justifies expanding source-robustness testing."
+  ],
+  "workflow_runs": [
+    35305251666,
+    35305355087,
+    35305459966
+  ],
+  "retrieved_at": "2026-09-18",
+  "reference_doi": "10.1073/pnas.1424329112"
+}
