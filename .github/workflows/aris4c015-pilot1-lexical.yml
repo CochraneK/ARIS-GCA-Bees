@@ -1,0 +1,224 @@
+name: ARIS4C015 Pilot 1 Lexical Ablation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilot1-lexical.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  lexical-stratum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - slug: physics_1980_s1
+            field_id: 31
+            target_year: 1980
+            prior_from: 1970
+            prior_to: 1979
+            prior_seed: 311979
+          - slug: physics_1980_s2
+            field_id: 31
+            target_year: 1980
+            prior_from: 1970
+            prior_to: 1979
+            prior_seed: 311979
+          - slug: medicine_1980_s1
+            field_id: 27
+            target_year: 1980
+            prior_from: 1970
+            prior_to: 1979
+            prior_seed: 271979
+          - slug: medicine_1980_s2
+            field_id: 27
+            target_year: 1980
+            prior_from: 1970
+            prior_to: 1979
+            prior_seed: 271979
+          - slug: social_1980_s1
+            field_id: 33
+            target_year: 1980
+            prior_from: 1970
+            prior_to: 1979
+            prior_seed: 331979
+          - slug: social_1980_s2
+            field_id: 33
+            target_year: 1980
+            prior_from: 1970
+            prior_to: 1979
+            prior_seed: 331979
+          - slug: physics_1990_s1
+            field_id: 31
+            target_year: 1990
+            prior_from: 1980
+            prior_to: 1989
+            prior_seed: 311989
+          - slug: physics_1990_s2
+            field_id: 31
+            target_year: 1990
+            prior_from: 1980
+            prior_to: 1989
+            prior_seed: 311989
+          - slug: computer_science_1990_s1
+            field_id: 17
+            target_year: 1990
+            prior_from: 1980
+            prior_to: 1989
+            prior_seed: 171989
+          - slug: computer_science_1990_s2
+            field_id: 17
+            target_year: 1990
+            prior_from: 1980
+            prior_to: 1989
+            prior_seed: 171989
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download nine original cohort snapshots
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 35315308268
+          pattern: aris4c015-pilot1-stratum-*
+          path: papers/015-sleeping-beauty-miner/data/frozen-cohorts
+          merge-multiple: true
+
+      - name: Download repaired Physics 1990 seed 31590 cohort
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 35315672839
+          pattern: aris4c015-pilot1-repair-physics_1990_s1
+          path: papers/015-sleeping-beauty-miner/data/frozen-cohorts
+          merge-multiple: true
+
+      - name: Run lexical novelty ablation
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilot1_lexical_ablation.py \
+            --cohort "../data/frozen-cohorts/pilot1_${{ matrix.slug }}.json" \
+            --prior-filters "from_publication_date:${{ matrix.prior_from }}-01-01,to_publication_date:${{ matrix.prior_to }}-12-31,type:article,primary_topic.field.id:${{ matrix.field_id }}" \
+            --prior-sample-size 100 \
+            --prior-seed ${{ matrix.prior_seed }} \
+            --output "../data/lexical_${{ matrix.slug }}.json"
+
+      - name: Validate lexical artifact
+        env:
+          SLUG: ${{ matrix.slug }}
+          PRIOR_SEED: ${{ matrix.prior_seed }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              Path(
+                  "papers/015-sleeping-beauty-miner/data/"
+                  f"lexical_{os.environ['SLUG']}.json"
+              ).read_text(encoding="utf-8")
+          )
+          assert result["target_cohort"]["n"] >= 15
+          assert result["prior_corpus"]["n_titles"] >= 80
+          assert (
+              result["prior_corpus"]["provenance"]["seed"]
+              == int(os.environ["PRIOR_SEED"])
+          )
+          assert len(result["feature_outcome_matrix"]) == 7
+          assert set(result["feature_direction"]) == {
+              "lexical_nearest1_distance",
+              "lexical_nearest3_distance",
+              "lexical_oov_share",
+          }
+          print(json.dumps({
+              "slug": os.environ["SLUG"],
+              "coverage": result["coverage"],
+              "consensus": result["feature_outcome_matrix"][
+                  "delayed_recognition_consensus"
+              ],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-lexical-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/lexical_${{ matrix.slug }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: lexical-stratum
+    if: ${{ always() && needs.lexical-stratum.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-lexical-*
+          path: papers/015-sleeping-beauty-miner/data/lexical-results
+          merge-multiple: true
+
+      - name: Aggregate lexical ablation
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python aggregate_feature_ablation.py \
+            ../data/lexical-results/lexical_*.json \
+            --output ../data/pilot1_lexical_aggregate.json
+
+      - name: Validate aggregate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path(
+                  "papers/015-sleeping-beauty-miner/data/"
+                  "pilot1_lexical_aggregate.json"
+              ).read_text(encoding="utf-8")
+          )
+          assert result["n_strata"] == 10
+          assert result["feature_family"] == (
+              "historical title lexical novelty"
+          )
+          assert "delayed_recognition_consensus" in result["metrics"]
+          print(json.dumps({
+              "n_strata": result["n_strata"],
+              "consensus_metrics": result["metrics"][
+                  "delayed_recognition_consensus"
+              ],
+              "winner_counts": result["ndcg_winner_counts"][
+                  "delayed_recognition_consensus"
+              ],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilot1-lexical-aggregate
+          path: papers/015-sleeping-beauty-miner/data/pilot1_lexical_aggregate.json
+          if-no-files-found: error
+          retention-days: 30
