@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-18",
+  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means final/submission-ready package.",
+  "projects": {
+    "001": {
+      "progress": 95,
+      "stage": "Final manuscript",
+      "activity": "active",
+      "evidence": "Synthesis + manuscript",
+      "next_gate": "Final editorial/submission package",
+      "blocker": "None material"
+    },
+    "002": {
+      "progress": 90,
+      "stage": "Manuscript review",
+      "activity": "gated",
+      "evidence": "Multi-dataset empirical manuscript",
+      "next_gate": "Final polish and submission-ready freeze",
+      "blocker": "Final editorial packaging"
+    },
+    "003": {
+      "progress": 55,
+      "stage": "Preregistration + data assembly",
+      "activity": "active",
+      "evidence": "Historical/dyadic sources + locked model",
+      "next_gate": "Run primary country × discipline and dyad analyses",
+      "blocker": "Full contemporary outcome matrix"
+    },
+    "004": {
+      "progress": 60,
+      "stage": "Pre-exposure scale-up",
+      "activity": "active",
+      "evidence": "Real identity/work/network pilot",
+      "next_gate": "Freeze 100-person analytic frame",
+      "blocker": "Identity/network scale-up before exposure coding"
+    },
+    "005": {
+      "progress": 65,
+      "stage": "Confirmatory adjudication",
+      "activity": "active",
+      "evidence": "10k random audit + citation pilot",
+      "next_gate": "Dual-AI adjudication, arbitration and calibration",
+      "blocker": "Adjudication execution/calibration"
+    },
+    "006": {
+      "progress": 45,
+      "stage": "Identification + feasibility",
+      "activity": "active",
+      "evidence": "Surname pilot + locked inference rules",
+      "next_gate": "OpenAlex author-order and disambiguation pilot",
+      "blocker": "Validated exposure + author identity pipeline"
+    },
+    "007": {
+      "progress": 58,
+      "stage": "Pilot 1 independent axes",
+      "activity": "gated",
+      "evidence": "Official 785-species Pilot 0",
+      "next_gate": "Add event, demographic and molecular validation",
+      "blocker": "Independent-axis data acquisition"
+    },
+    "008": {
+      "progress": 32,
+      "stage": "Comparative design",
+      "activity": "quiet",
+      "evidence": "Ontology + species panel + source map",
+      "next_gate": "Build comparative trait matrix and phylogenetic pilot",
+      "blocker": "Empirical matrix not yet materialised"
+    },
+    "009": {
+      "progress": 48,
+      "stage": "009A benchmark design",
+      "activity": "gated",
+      "evidence": "Prereg-ready design + synthetic pilot",
+      "next_gate": "Run real representation-fidelity benchmark",
+      "blocker": "Real benchmark corpus"
+    },
+    "010": {
+      "progress": 50,
+      "stage": "Benchmark v0 build",
+      "activity": "gated",
+      "evidence": "Formal model + combinatorial Pilot 0",
+      "next_gate": "Populate mixed semantic benchmark and human calibration",
+      "blocker": "Licensed benchmark corpus + calibration"
+    },
+    "011": {
+      "progress": 55,
+      "stage": "Methods + benchmark seed",
+      "activity": "active",
+      "evidence": "Agent skill + real seed + historical artifact gate",
+      "next_gate": "Scale time-safe benchmark and detector evaluation",
+      "blocker": "Historical-equivalent manuscript artifacts"
+    },
+    "012": {
+      "progress": 60,
+      "stage": "Pilot 0A validation",
+      "activity": "gated",
+      "evidence": "Retrieval pass + methods draft",
+      "next_gate": "Independent Coder B reliability gate",
+      "blocker": "Independent coding"
+    },
+    "013": {
+      "progress": 45,
+      "stage": "Administrative Pilot 1 discovery",
+      "activity": "active",
+      "evidence": "Wikidata stress-test + BUNMD route",
+      "next_gate": "Acquire/audit BUNMD and run clean-date Pilot 1",
+      "blocker": "Administrative-data precision and access"
+    },
+    "014": {
+      "progress": 45,
+      "stage": "Pilot 1 assembly",
+      "activity": "active",
+      "evidence": "Executable OpenIntegrity skill + live smoke",
+      "next_gate": "Assemble first real multi-source jurisdiction",
+      "blocker": "Historical cross-source coverage/identifiers"
+    },
+    "015": {
+      "progress": 50,
+      "stage": "Agent implementation v0.1",
+      "activity": "active",
+      "evidence": "Skill + orchestrator + CI + validation cases",
+      "next_gate": "Run real delayed-recognition benchmark",
+      "blocker": "Time-safe benchmark corpus and prospective validation"
+    }
+  }
+}
