@@ -1,6 +1,6 @@
 # ARIS4C010 · Beyond Twenty Questions
 
-**Status:** Pilot 2 source-derived complete · calibration60 build configured
+**Status:** human-calibration-ready · source/calibration/forms pipeline CI-verified
 
 ## Canonical question
 
@@ -138,3 +138,24 @@ Before strong novelty language is permitted:
 Pilot 2 does **not** yet validate the semantic labels: the target identities/glosses are source-derived, while the added semantic query responses remain `machine_mapped_unreviewed`.
 
 The next scientific gate is human P2/P6 calibration, not further ontology prose.
+
+
+## Human calibration readiness
+
+The current engineering chain is CI-verified through ARIS4C010 CI run **#43**.
+
+Ready artifacts:
+
+- 60 pinned OEWN 2025 lexical targets;
+- 1,440-pair full lexical matrix;
+- 720-pair answer-blind lexical calibration subset;
+- 24 mixed semantic stress scenarios;
+- 216-pair blank P6 stress calibration packet;
+- 72 balanced participant forms: 36 P2 + 36 P6;
+- 84 unique main trials + 8 covert retests per form;
+- 72 platform-neutral form CSV files + index;
+- descriptive analysis, retest, and adjudication-triage code;
+- English and Chinese pre-results manuscript scaffolds;
+- figure/table plan.
+
+The next empirical gate requires real human responses. No synthetic/model-generated response is permitted to fill that role.
