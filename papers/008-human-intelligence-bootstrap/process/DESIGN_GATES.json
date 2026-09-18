@@ -1,0 +1,51 @@
+{
+  "paper_id": "008",
+  "updated": "2026-09-18",
+  "gates": [
+    {
+      "id": "outcome_codebook",
+      "status": "provisional_pass",
+      "requirement": "Explicit non-anthropocentric coding rules exist for innovation, traditions, cumulative improvement, repertoire breadth, distributed knowledge, externalization and open-endedness; pilot-driven changes must be logged."
+    },
+    {
+      "id": "condition_ontology",
+      "status": "provisional_pass",
+      "requirement": "Predictor families are frozen before confirmatory modeling; later additions require a logged rationale."
+    },
+    {
+      "id": "research_effort",
+      "status": "open",
+      "requirement": "Every literature-derived behavioural trait must include research-effort and missingness metadata."
+    },
+    {
+      "id": "phylogeny",
+      "status": "open",
+      "requirement": "Choose compatible phylogenies and define handling of taxa absent from trees."
+    },
+    {
+      "id": "pilot_matrix",
+      "status": "in_progress",
+      "requirement": "Complete a 20–40 taxon high-contrast pilot before full scaling."
+    },
+    {
+      "id": "model_recoverability",
+      "status": "open",
+      "requirement": "Simulation must show that additive, bottleneck and threshold architectures are distinguishable under realistic missingness and measurement error."
+    },
+    {
+      "id": "hominin_layer",
+      "status": "open",
+      "requirement": "Define archaeological proxies, dating uncertainty and attribution rules separately from extant-species data."
+    },
+    {
+      "id": "novelty",
+      "status": "open",
+      "requirement": "Demonstrate that the contribution is not another list of human-uniqueness traits but an explicit cross-taxon test of causal configurations and bottlenecks."
+    },
+    {
+      "id": "aris_provenance",
+      "status": "open",
+      "requirement": "Freeze exact ARIS release and commit before formal full run."
+    }
+  ]
+}
