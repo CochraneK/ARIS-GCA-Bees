@@ -1,0 +1,52 @@
+name: ARIS4C013 NVSS 1988 field audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/audit_nvss_1988_layout.py'
+      - '.github/workflows/aris4c013-nvss-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Acquire NBER layout files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/nvss1988
+          success=0
+          for base in mort1988 m1988; do
+            dct="https://data.nber.org/mortality/1988/${base}.dct"
+            dof="https://data.nber.org/mortality/1988/${base}.do"
+            if curl --retry 3 --connect-timeout 20 -fsSL "$dct" -o /tmp/nvss1988/mort1988.dct; then
+              curl --retry 3 --connect-timeout 20 -fsSL "$dof" -o /tmp/nvss1988/mort1988.do || true
+              echo "Resolved layout base: $base"
+              success=1
+              break
+            fi
+          done
+          test "$success" -eq 1
+          echo "DCT bytes: $(wc -c </tmp/nvss1988/mort1988.dct)"
+          echo "DO bytes: $(wc -c </tmp/nvss1988/mort1988.do 2>/dev/null || echo 0)"
+
+      - name: Audit exact-date fields
+        run: |
+          python papers/013-birth-death-temporal-coupling/code/audit_nvss_1988_layout.py             --dct /tmp/nvss1988/mort1988.dct             --do /tmp/nvss1988/mort1988.do             --json-out /tmp/nvss1988/audit.json
+
+      - name: Upload audit evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c013-nvss1988-field-audit
+          path: |
+            /tmp/nvss1988/mort1988.dct
+            /tmp/nvss1988/mort1988.do
+            /tmp/nvss1988/audit.json
+          retention-days: 30
