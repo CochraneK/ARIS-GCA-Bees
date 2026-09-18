@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "paper": "ARIS4C001",
+  "package_status": "submission-package-ready",
+  "prepared_on": "2026-09-18",
+  "primary_target": {
+    "journal": "Frontiers in Psychology",
+    "section": "Comparative Psychology",
+    "article_type": "Hypothesis and Theory",
+    "apc_chf_if_accepted": 3150
+  },
+  "manuscript": {
+    "source": "../manuscript/MAIN.md",
+    "approximate_main_text_words": 3001,
+    "abstract_words": 250,
+    "figures": 0,
+    "tables": 1,
+    "keywords": 8
+  },
+  "author_only_fields_pending": [
+    "current affiliation",
+    "corresponding email",
+    "optional ORCID linking",
+    "funding confirmation",
+    "conflict-of-interest confirmation",
+    "simultaneous-submission/originality confirmation"
+  ],
+  "scientific_blockers": [],
+  "editorial_blockers": []
+}
