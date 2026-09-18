@@ -19,7 +19,9 @@ import html
 import json
 import re
 import shutil
+import tarfile
 import urllib.parse
+import xml.etree.ElementTree as ET
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -64,6 +66,71 @@ def get(url: str) -> tuple[bytes, str, str]:
             response.geturl(),
             response.headers.get("Content-Type", ""),
         )
+
+
+def acquire_from_pmc_oa_package(tmp: Path) -> tuple[dict[str, Path], dict[str, object]]:
+    """Acquire supplement bytes from the official PMC Open Access package."""
+    oa_url = f"https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={PMCID}"
+    body, final_url, content_type = get(oa_url)
+    root = ET.fromstring(body)
+
+    tgz_href = None
+    for link in root.findall(".//link"):
+        if link.attrib.get("format") == "tgz":
+            tgz_href = link.attrib.get("href")
+            break
+    if not tgz_href:
+        raise RuntimeError(
+            "PMC OA API returned no tgz package link: "
+            + body.decode("utf-8", errors="replace")[:500]
+        )
+
+    if tgz_href.startswith("ftp://ftp.ncbi.nlm.nih.gov/"):
+        tgz_url = "https://ftp.ncbi.nlm.nih.gov/" + tgz_href.split(
+            "ftp://ftp.ncbi.nlm.nih.gov/", 1
+        )[1]
+    else:
+        tgz_url = tgz_href
+
+    archive_bytes, archive_final_url, archive_type = get(tgz_url)
+    tgz_path = tmp / f"{PMCID}.tar.gz"
+    tgz_path.write_bytes(archive_bytes)
+
+    found: dict[str, Path] = {}
+    members_seen = []
+    with tarfile.open(tgz_path, "r:gz") as tf:
+        for member in tf.getmembers():
+            if not member.isfile():
+                continue
+            basename = Path(member.name).name
+            members_seen.append(member.name)
+            for key, filename in TARGETS.items():
+                if basename == filename:
+                    extracted = tf.extractfile(member)
+                    if extracted is None:
+                        continue
+                    dest = tmp / filename
+                    dest.write_bytes(extracted.read())
+                    found[key] = dest
+
+    missing = [key for key in TARGETS if key not in found]
+    if missing:
+        raise RuntimeError(
+            f"PMC OA package missing targets {missing}; "
+            f"sample members={members_seen[:40]}"
+        )
+
+    meta = {
+        "oa_api_url": oa_url,
+        "oa_api_final_url": final_url,
+        "oa_api_content_type": content_type,
+        "oa_package_url": tgz_url,
+        "oa_package_final_url": archive_final_url,
+        "oa_package_content_type": archive_type,
+        "oa_package_bytes": len(archive_bytes),
+        "oa_package_sha256": sha256(tgz_path),
+    }
+    return found, meta
 
 
 def discover_links() -> tuple[dict[str, str], list[dict[str, object]]]:
@@ -227,33 +294,67 @@ def main() -> None:
     shutil.rmtree(tmp, ignore_errors=True)
     tmp.mkdir(parents=True)
 
-    links, discovery_attempts = discover_links()
+    discovery_attempts = []
+    oa_package_meta = None
 
-    table_path = tmp / TARGETS["table_s1"]
-    dataset_path = tmp / TARGETS["dataset1"]
+    try:
+        oa_files, oa_package_meta = acquire_from_pmc_oa_package(tmp)
+        table_path = oa_files["table_s1"]
+        dataset_path = oa_files["dataset1"]
 
-    # If a discovered URL fails, also try both canonical PMC path shapes.
-    table_urls = [
-        links["table_s1"],
-        f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/bin/{TARGETS['table_s1']}",
-        f"https://pmc.ncbi.nlm.nih.gov/articles/instance/{PMCID.replace('PMC','')}/bin/{TARGETS['table_s1']}",
-    ]
-    dataset_urls = [
-        links["dataset1"],
-        f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/bin/{TARGETS['dataset1']}",
-        f"https://pmc.ncbi.nlm.nih.gov/articles/instance/{PMCID.replace('PMC','')}/bin/{TARGETS['dataset1']}",
-    ]
+        if not zipfile.is_zipfile(table_path):
+            raise RuntimeError("PMC OA Table S1 is not a valid XLSX container")
+        if not zipfile.is_zipfile(dataset_path):
+            raise RuntimeError("PMC OA Dataset 1 is not a valid ZIP container")
 
-    table_meta = download_validated(
-        list(dict.fromkeys(table_urls)),
-        table_path,
-        "xlsx",
-    )
-    dataset_meta = download_validated(
-        list(dict.fromkeys(dataset_urls)),
-        dataset_path,
-        "zip",
-    )
+        table_meta = {
+            "acquisition": "PMC Open Access package",
+            "file": table_path.name,
+            "bytes": table_path.stat().st_size,
+            "sha256": sha256(table_path),
+        }
+        dataset_meta = {
+            "acquisition": "PMC Open Access package",
+            "file": dataset_path.name,
+            "bytes": dataset_path.stat().st_size,
+            "sha256": sha256(dataset_path),
+        }
+    except Exception as oa_exc:
+        discovery_attempts.append(
+            {
+                "source": "PMC Open Access package",
+                "success": False,
+                "error": f"{type(oa_exc).__name__}: {oa_exc}",
+            }
+        )
+
+        links, html_attempts = discover_links()
+        discovery_attempts.extend(html_attempts)
+
+        table_path = tmp / TARGETS["table_s1"]
+        dataset_path = tmp / TARGETS["dataset1"]
+
+        table_urls = [
+            links["table_s1"],
+            f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/bin/{TARGETS['table_s1']}",
+            f"https://pmc.ncbi.nlm.nih.gov/articles/instance/{PMCID.replace('PMC','')}/bin/{TARGETS['table_s1']}",
+        ]
+        dataset_urls = [
+            links["dataset1"],
+            f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/bin/{TARGETS['dataset1']}",
+            f"https://pmc.ncbi.nlm.nih.gov/articles/instance/{PMCID.replace('PMC','')}/bin/{TARGETS['dataset1']}",
+        ]
+
+        table_meta = download_validated(
+            list(dict.fromkeys(table_urls)),
+            table_path,
+            "xlsx",
+        )
+        dataset_meta = download_validated(
+            list(dict.fromkeys(dataset_urls)),
+            dataset_path,
+            "zip",
+        )
 
     table_outputs = convert_table_s1(table_path, args.out)
     dataset_outputs = extract_dataset1(dataset_path, args.out)
@@ -285,6 +386,7 @@ def main() -> None:
                 "extracted_files": dataset_outputs,
             },
         },
+        "pmc_oa_package": oa_package_meta,
         "link_discovery_attempts": discovery_attempts,
         "guardrail": (
             "These are source supplementary materials. ARIS4C007 will preserve "
