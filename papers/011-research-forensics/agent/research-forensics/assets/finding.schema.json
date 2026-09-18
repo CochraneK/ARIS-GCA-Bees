@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/011-research-forensics/agent/research-forensics/assets/finding.schema.json",
+  "title": "Research Forensics Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "finding_id",
+    "detector_id",
+    "detector_version",
+    "family",
+    "applicable",
+    "applicability_reason",
+    "status",
+    "evidence_class",
+    "claim",
+    "source_locator",
+    "evidence",
+    "reproducible",
+    "benign_explanations",
+    "misconduct_inference"
+  ],
+  "properties": {
+    "finding_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "detector_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "detector_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "enum": [
+        "statistical_inference",
+        "numerical_forensics",
+        "table_consistency",
+        "image_forensics",
+        "citation_forensics",
+        "text_papermill",
+        "genai_provenance",
+        "semantic_coherence",
+        "registration_provenance",
+        "corpus_network"
+      ]
+    },
+    "applicable": {
+      "type": "boolean"
+    },
+    "applicability_reason": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "FLAG",
+        "PASS",
+        "ABSTAIN",
+        "ERROR"
+      ]
+    },
+    "evidence_class": {
+      "type": "string",
+      "enum": [
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ]
+    },
+    "claim": {
+      "type": "string"
+    },
+    "source_locator": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "reproducible": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unknown"
+      ]
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "calibration_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "benign_explanations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependency_group": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "misconduct_inference": {
+      "const": false
+    }
+  }
+}
