@@ -35,6 +35,8 @@ def main() -> None:
     p.add_argument("--threshold", type=float, default=2.0)
     p.add_argument("--coder-a", type=Path, required=True)
     p.add_argument("--coder-b", type=Path, required=True)
+    p.add_argument("--coder-b-notes", type=Path, required=True)
+    p.add_argument("--coder-b-raw", type=Path, required=True)
     args = p.parse_args()
 
     df = pd.read_csv(args.adjudication_csv)
@@ -128,6 +130,14 @@ def main() -> None:
         "threshold": args.threshold,
         "coder_a": {"path": str(args.coder_a), "sha256": sha256(args.coder_a)},
         "coder_b": {"path": str(args.coder_b), "sha256": sha256(args.coder_b)},
+        "coder_b_notes": {
+            "path": str(args.coder_b_notes),
+            "sha256": sha256(args.coder_b_notes),
+        },
+        "coder_b_raw": {
+            "path": str(args.coder_b_raw),
+            "sha256": sha256(args.coder_b_raw),
+        },
         "adjudication": {"path": str(args.adjudication_csv), "sha256": sha256(args.adjudication_csv)},
         "frozen": {"path": str(args.output), "sha256": sha256(args.output)},
         "n_explicit_adjudications": int(has_adjudication.sum()),
