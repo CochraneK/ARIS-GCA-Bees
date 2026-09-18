@@ -1,0 +1,34 @@
+{
+  "id": "007",
+  "slug": "cross-species-age-equivalence",
+  "title": "Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals",
+  "short_title": "Cross-Species Age Equivalence",
+  "year": 2026,
+  "status": "research-design",
+  "domain": "comparative biology / geroscience / life-history evolution / computational biology",
+  "summary": "A multi-axis benchmark of cross-species age-equivalence definitions that asks whether developmental, life-history, demographic and molecular clocks yield a coherent common biological-age scale across mammals, and quantifies where and why they disagree.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided run with live literature/novelty audit and public-web fallback for literature stages",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/007-cross-species-age-equivalence",
+    "prototype": "https://github.com/CochraneK/Animal-Age"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "comparative aging",
+    "biological age",
+    "cross-species translation",
+    "epigenetic clocks",
+    "life history",
+    "senescence",
+    "Animal-Age"
+  ]
+}
