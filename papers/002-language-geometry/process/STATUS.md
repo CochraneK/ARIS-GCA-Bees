@@ -58,3 +58,12 @@ Secondary review source:
 ## Next hard gate
 
 Obtain a fresh, different-family **manuscript-stage review** of Draft v1. This is a quality gate for wording/method reporting/submission readiness; Paper 002 itself is already formally promoted.
+
+
+## Independent manuscript-review handoff
+
+Prepared:
+- `WORKBUDDY_MANUSCRIPT_REVIEW.md`
+- `MANUSCRIPT_REVIEW_RECEIPT.template.json`
+
+A fresh different-family reviewer should write `MANUSCRIPT_REVIEW_RECEIPT.md`. A `PASS_SUBMISSION_PREP` verdict authorizes target-journal formatting; `REOPEN_ANALYSIS` reopens scientific work.
