@@ -2,7 +2,7 @@
 
 **Methods and benchmark manuscript draft — ARIS4C011**  
 **Status:** Methods frozen in principle; confirmatory benchmark results pending  
-**Author:** Cunyi Kang
+**Author:** Cochrane Kang
 
 ## Abstract
 
