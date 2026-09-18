@@ -1,7 +1,7 @@
 # Paper 002 Status
 
 **Paper:** `002-language-geometry`  
-**Stage:** manuscript preparation  
+**Stage:** manuscript Draft v1 complete · independent manuscript review pending  
 **Promotion gate:** PASSED  
 **Secondary reviewer:** WorkBuddy / Tencent Hy3  
 **Reviewer family:** Tencent Hunyuan (different from OpenAI GPT primary executor)  
@@ -18,12 +18,12 @@ This wording may be narrowed during manuscript review but must not be broadened 
 
 ## Mandatory manuscript tasks
 
-- [ ] Clarify bootstrap = split-sensitivity uncertainty, not phylogenetic uncertainty.
-- [ ] Explicitly retain residual genealogical/contact dependence as a limitation.
-- [ ] Label Stage 1–1I exploratory/screening and discuss multiplicity.
-- [ ] Preserve WALS vs TLI/GBI geographic-transfer contradiction.
-- [ ] Scope the hypothesis to the simple global-circle form.
-- [ ] Report N, feature selection, effect sizes and CIs stage by stage.
+- [x] Clarify bootstrap = split-sensitivity uncertainty, not phylogenetic uncertainty.
+- [x] Explicitly retain residual genealogical/contact dependence as a limitation.
+- [x] Label Stage 1–1I exploratory/screening and discuss multiplicity.
+- [x] Preserve WALS vs TLI/GBI geographic-transfer contradiction.
+- [x] Scope the hypothesis to the simple global-circle form.
+- [x] Report N, feature selection, effect sizes and CIs stage by stage.
 
 ## Optional robustness
 
@@ -41,3 +41,20 @@ Full pre-promotion evidence/code remains under:
 Secondary review source:
 
 `../../ideas/language-periodic-system/refine-logs/SECONDARY_REVIEW_RECEIPT.md`
+
+
+## Draft v1 artifacts
+
+- `../manuscript/DRAFT.md`
+- `../manuscript/TABLES.md`
+- `../manuscript/FIGURE_CAPTIONS.md`
+- `../figures/figure1_cross_dataset.svg`
+- `../figures/figure2_tli_paired_contrasts.svg`
+- `../figures/figure3_circular_diagnostics.svg`
+- `DATA_PROVENANCE.md`
+- `CLAIMS_EVIDENCE_MATRIX.md`
+- `MANUSCRIPT_AUDIT.md`
+
+## Next hard gate
+
+Obtain a fresh, different-family **manuscript-stage review** of Draft v1. This is a quality gate for wording/method reporting/submission readiness; Paper 002 itself is already formally promoted.
