@@ -142,3 +142,58 @@ def test_ranked_bid_candidates_are_not_final_awards():
     assert n.lots[1].supplier_name == "长春一汽建设监理有限责任公司"
     assert n.lots[1].result_status == "candidate"
     assert n.lots[1].candidate_rank == 2
+
+
+def test_structured_table_extracts_uscc_without_contact_fields():
+    html = """
+    <table><tr><td>采购单位</td><td>天津科技大学</td></tr></table>
+    <p>一、项目编号：SHGP-2026-A409</p>
+    <p>二、项目名称：全自动细胞荧光处理系统等设备采购项目</p>
+    <p>三、中标信息</p>
+    <table>
+      <tr>
+        <th>供应商名称</th><th>供应商地址</th><th>统一社会信用代码</th>
+        <th>企业办公电话</th><th>中标金额(万元)</th><th>评审得分</th>
+      </tr>
+      <tr>
+        <td>全视未来（北京）科技有限公司</td><td>北京市某地址</td>
+        <td>91110108MA01KRJX1U</td><td>010-00000000</td><td>49.9</td><td>89.00</td>
+      </tr>
+    </table>
+    <p>四、主要标的信息</p>
+    """
+    n = parse_ccgp_award_detail(
+        html,
+        source_url="https://www.ccgp.gov.cn/uscc-example.htm",
+        retrieved_at="2026-09-18T00:00:00Z",
+    )
+    assert len(n.lots) == 1
+    assert n.lots[0].supplier_name == "全视未来（北京）科技有限公司"
+    assert n.lots[0].supplier_uscc == "91110108MA01KRJX1U"
+    assert n.lots[0].award_value_yuan == 499000.0
+    assert n.lots[0].score == 89.0
+    payload = str(n.as_json())
+    assert "北京市某地址" not in payload
+    assert "010-00000000" not in payload
+
+
+def test_bid_ranking_table_without_uscc_is_not_promoted_to_final_award():
+    html = """
+    <table><tr><td>采购单位</td><td>天津科技大学</td></tr></table>
+    <p>一、项目编号：P-3</p>
+    <p>二、项目名称：设备采购</p>
+    <p>三、中标信息</p>
+    <table>
+      <tr><th>排序</th><th>供应商名称</th><th>评审报价（万元）</th><th>评审得分</th></tr>
+      <tr><td>1</td><td>甲公司</td><td>10</td><td>90</td></tr>
+      <tr><td>2</td><td>乙公司</td><td>11</td><td>80</td></tr>
+    </table>
+    <p>四、主要标的信息</p>
+    """
+    n = parse_ccgp_award_detail(
+        html,
+        source_url="https://www.ccgp.gov.cn/rank-only.htm",
+        retrieved_at="2026-09-18T00:00:00Z",
+    )
+    assert n.lots == ()
+    assert "no_supplier_lots_parsed" in n.warnings
