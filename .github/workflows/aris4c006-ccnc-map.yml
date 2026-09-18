@@ -1,0 +1,53 @@
+name: ARIS4C006 CCNC surname Romanization audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-ccnc-map.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/15_ccnc_surname_romanization_audit.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ccnc-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download public surname dictionaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv"             -o "$PAPER_DIR/data/raw/familyname.csv"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/jaaack-wang/ccnc/a14520b9cc8bd6b251aeb4a7453ab1a45f23aa15/Ch-Last-Names-Dict/ChineseLastNamesNoTones.json"             -o "$PAPER_DIR/data/raw/ccnc_lastnames.json"
+          test "$(($(wc -l < "$PAPER_DIR/data/raw/familyname.csv") - 1))" -eq 1806
+      - name: Run CCNC surname-specific Romanization audit
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/15_ccnc_surname_romanization_audit.py             data/raw/familyname.csv             data/raw/ccnc_lastnames.json             --year 2024             --per-field 10             --outdir data/pilot/ccnc_romanization
+      - name: Remove downloaded raw dictionaries
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        run: rm -rf data/raw
+      - name: Upload public-safe audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-ccnc-romanization-audit
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/ccnc_romanization/han_to_ccnc_pinyin.csv
+            ${{ env.PAPER_DIR }}/data/pilot/ccnc_romanization/romanized_population_map.csv
+            ${{ env.PAPER_DIR }}/data/pilot/ccnc_romanization/missing_chinesenames_surnames.csv
+            ${{ env.PAPER_DIR }}/data/pilot/ccnc_romanization/initial_discrepancies.csv
+            ${{ env.PAPER_DIR }}/data/pilot/ccnc_romanization/field_mapping_coverage.csv
+            ${{ env.PAPER_DIR }}/data/pilot/ccnc_romanization/manifest.json
+          if-no-files-found: error
+          retention-days: 30
