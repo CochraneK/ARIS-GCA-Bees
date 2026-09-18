@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/aris4c003-cepii.yml"
       - "papers/003-colonial-disciplinary-advantage/data/derived/COUNTRY_CROSSWALK.csv"
       - "papers/003-colonial-disciplinary-advantage/code/build_cepii_dyads.py"
 
