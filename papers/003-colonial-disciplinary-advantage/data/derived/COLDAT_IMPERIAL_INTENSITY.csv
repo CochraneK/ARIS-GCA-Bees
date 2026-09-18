@@ -1,0 +1,9 @@
+colonizer_key,colonizer,iso3c,cumulative_colony_years_ruled,distinct_colonies,complete_interval_colonies,incomplete_interval_colonies,ruler_start_year,ruler_end_year,active_ruler_years,peak_simultaneous_colonies,date_aggregation
+britain,United Kingdom,GBR,6929,68,68,0,1607,1984,378,57,COLDAT *_max columns; inclusive year intervals
+spain,Spain,ESP,6756,26,26,0,1495,1975,481,23,COLDAT *_max columns; inclusive year intervals
+portugal,Portugal,PRT,2834,12,12,0,1462,1975,514,8,COLDAT *_max columns; inclusive year intervals
+france,France,FRA,2523,33,33,0,1608,1980,340,26,COLDAT *_max columns; inclusive year intervals
+netherlands,Netherlands,NLD,1039,4,4,0,1580,1974,395,4,COLDAT *_max columns; inclusive year intervals
+germany,Germany,DEU,333,12,12,0,1884,1922,39,12,COLDAT *_max columns; inclusive year intervals
+belgium,Belgium,BEL,157,3,3,0,1885,1962,78,3,COLDAT *_max columns; inclusive year intervals
+italy,Italy,ITA,115,3,3,0,1890,1942,53,3,COLDAT *_max columns; inclusive year intervals

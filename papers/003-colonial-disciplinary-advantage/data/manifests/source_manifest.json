@@ -10,28 +10,55 @@
       "redistribution": "do not commit raw snapshot; record release manifest/checksum"
     },
     "coldat_years": {
-      "status": "official_download_script_ready",
-      "landing": "https://ourworldindata.org/grapher/years-colonized",
-      "csv": "https://ourworldindata.org/grapher/years-colonized.csv?v=1&csvType=full&useColumnShortNames=false",
-      "source": "Bastian Becker (COLDAT 3.0), processed by Our World in Data",
-      "license": "CC BY on OWID data page",
-      "role": "primary former-colony duration exposure"
+      "source_metadata": {
+        "landing": "https://ourworldindata.org/grapher/years-colonized",
+        "csv": "https://ourworldindata.org/grapher/years-colonized.csv?v=1&csvType=full&useColumnShortNames=false",
+        "metadata": "https://ourworldindata.org/grapher/years-colonized.metadata.json?v=1&csvType=full&useColumnShortNames=false",
+        "source": "Bastian Becker, Colonial Dates Dataset (COLDAT) 3.0, processed by Our World in Data",
+        "license": "OWID chart data marked CC BY; preserve original-source and OWID citations",
+        "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests"
+      },
+      "recorded_utc": "2026-09-18T02:52:56+00:00",
+      "status": "acquired_local",
+      "metadata_local_path": "data/raw/coldat/years-colonized.metadata.json",
+      "metadata_sha256": "a10c6ed6b3a8706975c493f3df423863b242cf0ba2bd7258c2709dce263cf489",
+      "local_path": "data/raw/coldat/years-colonized.csv",
+      "bytes": 2588475,
+      "sha256": "386d891b986a887c9d4413b5dfc332e4d14dd8ac976fd34569322ac3c978dafa"
     },
     "coldat_colonizer_year": {
-      "status": "official_download_script_ready",
-      "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers",
-      "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.csv?v=1&csvType=full&useColumnShortNames=false",
-      "source": "Bastian Becker (COLDAT 3.0), processed by Our World in Data",
-      "license": "CC BY on OWID data page",
-      "role": "colonizer identity and former-colony history summary"
+      "source_metadata": {
+        "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers",
+        "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.csv?v=1&csvType=full&useColumnShortNames=false",
+        "metadata": "https://ourworldindata.org/grapher/european-overseas-colonies-and-their-colonizers.metadata.json?v=1&csvType=full&useColumnShortNames=false",
+        "source": "Bastian Becker, Colonial Dates Dataset (COLDAT) 3.0, processed by Our World in Data",
+        "license": "OWID chart data marked CC BY; preserve original-source and OWID citations",
+        "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests"
+      },
+      "recorded_utc": "2026-09-18T02:52:57+00:00",
+      "status": "acquired_local",
+      "metadata_local_path": "data/raw/coldat/colonizer-by-country-year.metadata.json",
+      "metadata_sha256": "9b56840b606d4fdb98b8cc4aa5c338ebd7119219efbd0434019ca12e81400f8b",
+      "local_path": "data/raw/coldat/colonizer-by-country-year.csv",
+      "bytes": 3216068,
+      "sha256": "f83bf307dcb3d3d1a7cce961f71cc45af35e7c1c35d93131757a2f61cfb7d308"
     },
     "coldat_empire_counts": {
-      "status": "official_download_script_ready",
-      "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer",
-      "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer.csv?v=1&csvType=full&useColumnShortNames=false",
-      "source": "Bastian Becker (COLDAT 3.0) plus Gapminder Population v7, processed by Our World in Data",
-      "license": "CC BY on OWID page; preserve underlying provider citations/terms",
-      "role": "imperial-center cumulative colony-years, duration, and peak-colony profiles"
+      "source_metadata": {
+        "landing": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer",
+        "csv": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer.csv?v=1&csvType=full&useColumnShortNames=false",
+        "metadata": "https://ourworldindata.org/grapher/european-overseas-colonies-by-colonizer.metadata.json?v=1&csvType=full&useColumnShortNames=false",
+        "source": "Bastian Becker COLDAT 3.0 plus Gapminder Population v7, processed by Our World in Data",
+        "license": "OWID page is CC BY; preserve underlying-provider citations and terms",
+        "redistribution": "raw local copy may be reconstructed from official URL; commit only compact derived tables/manifests"
+      },
+      "recorded_utc": "2026-09-18T02:52:58+00:00",
+      "status": "acquired_local",
+      "metadata_local_path": "data/raw/coldat/colonies-by-colonizer.metadata.json",
+      "metadata_sha256": "4562b123160c9ca92d89bf5baf0826e07eb51822a61b63c68c3ec9f0dc0da82b",
+      "local_path": "data/raw/coldat/colonies-by-colonizer.csv",
+      "bytes": 102605,
+      "sha256": "77354d68023119b28b7ce2814b02396ddbe87cf2c73071019fc4e96dd8a4f165"
     },
     "icow": {
       "status": "local_download_script_ready",
@@ -57,6 +84,22 @@
       "landing": "https://open.leidenranking.com/resources",
       "doi": "https://doi.org/10.5281/zenodo.17471989",
       "license": "CC0"
+    },
+    "coldat_original": {
+      "source_metadata": {
+        "landing": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/T9SDEW",
+        "download": "https://dataverse.harvard.edu/api/access/datafile/7416946?format=original",
+        "file": "COLDAT_colonies.tab",
+        "version": "COLDAT 3.0 source file as distributed by Harvard Dataverse",
+        "license": "CC0 1.0",
+        "redistribution": "CC0; raw remains gitignored by project convention; record checksum/provenance"
+      },
+      "recorded_utc": "2026-09-18T02:52:59+00:00",
+      "status": "registered_local_file",
+      "local_path": "data/raw/coldat/COLDAT_colonies.tab",
+      "bytes": 26410,
+      "sha256": "ebe3a1c4b16fd339e249da6ca7993ee312cfe41dfe2f5748eebb6dfa37a7c4dd"
     }
-  }
+  },
+  "updated_utc": "2026-09-18T02:52:59+00:00"
 }

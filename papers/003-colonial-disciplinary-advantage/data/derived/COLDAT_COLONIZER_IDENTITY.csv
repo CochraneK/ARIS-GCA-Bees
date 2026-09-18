@@ -1,0 +1,160 @@
+country,iso3c,first_colonized_year,last_colonized_year,observed_colonial_year_rows,primary_single_colonizer_mode,last_recorded_colonizer_category,has_multiple_colonizer_year,single_colonizers_observed
+Afghanistan,AFG,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Angola,AGO,1462,2022,561,Portugal,zzzz. No longer colonized,0,Portugal|zzz. Not colonized|zzzz. No longer colonized
+United Arab Emirates,ARE,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Argentina,ARG,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Armenia,ARM,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Antigua and Barbuda,ATG,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Australia,AUS,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Azerbaijan,AZE,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Burundi,BDI,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Belgium|Germany|zzz. Not colonized|zzzz. No longer colonized
+Belgium,BEL,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Benin,BEN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Burkina Faso,BFA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Bangladesh,BGD,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Bahrain,BHR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Bahamas,BHS,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Belize,BLZ,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Bolivia,BOL,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Brazil,BRA,1462,2022,561,Portugal,zzzz. No longer colonized,0,Portugal|zzz. Not colonized|zzzz. No longer colonized
+Barbados,BRB,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Brunei,BRN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Bhutan,BTN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Botswana,BWA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Central African Republic,CAF,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Canada,CAN,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,France|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Chile,CHL,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+China,CHN,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Cote d'Ivoire,CIV,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Cameroon,CMR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|Germany|zzz. Not colonized|zzzz. No longer colonized
+Democratic Republic of Congo,COD,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Belgium|zzz. Not colonized|zzzz. No longer colonized
+Congo,COG,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Colombia,COL,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Comoros,COM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Cape Verde,CPV,1462,2022,561,Portugal,zzzz. No longer colonized,0,Portugal|zzzz. No longer colonized
+Costa Rica,CRI,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Cuba,CUB,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Cyprus,CYP,1914,2022,109,zzzz. No longer colonized,zzzz. No longer colonized,0,United Kingdom|zzzz. No longer colonized
+Germany,DEU,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Djibouti,DJI,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Dominica,DMA,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,France|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Dominican Republic,DOM,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Algeria,DZA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Ecuador,ECU,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Egypt,EGY,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Eritrea,ERI,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Italy|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Spain,ESP,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Ethiopia,ETH,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Fiji,FJI,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+France,FRA,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Micronesia (country),FSM,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Gabon,GAB,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+United Kingdom,GBR,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Georgia,GEO,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Ghana,GHA,1462,2022,561,Portugal,zzzz. No longer colonized,0,Portugal|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Guinea,GIN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Gambia,GMB,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Guinea-Bissau,GNB,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Portugal|zzz. Not colonized|zzzz. No longer colonized
+Equatorial Guinea,GNQ,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Portugal|Spain|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Grenada,GRD,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,France|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Guatemala,GTM,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Guyana,GUY,1462,2022,561,Netherlands,zzzz. No longer colonized,0,Netherlands|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Honduras,HND,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Haiti,HTI,1462,2022,561,zzzz. No longer colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Indonesia,IDN,1462,2022,561,Netherlands,zzzz. No longer colonized,0,Netherlands|zzz. Not colonized|zzzz. No longer colonized
+India,IND,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Iran,IRN,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Iraq,IRQ,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Israel,ISR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Italy,ITA,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Jamaica,JAM,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,Spain|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Jordan,JOR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Japan,JPN,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Kazakhstan,KAZ,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Kenya,KEN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Kyrgyzstan,KGZ,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Cambodia,KHM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Kiribati,KIR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Saint Kitts and Nevis,KNA,1462,2022,561,United Kingdom,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+South Korea,KOR,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Kuwait,KWT,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Laos,LAO,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Lebanon,LBN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Liberia,LBR,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Libya,LBY,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Italy|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Saint Lucia,LCA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Sri Lanka,LKA,1462,2022,561,zzzz. No longer colonized,zzzz. No longer colonized,0,Portugal|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Lesotho,LSO,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Morocco,MAR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Spain|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Madagascar,MDG,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Maldives,MDV,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Mexico,MEX,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Marshall Islands,MHL,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|zzz. Not colonized|zzzz. No longer colonized
+Mali,MLI,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Myanmar,MMR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Mongolia,MNG,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Mozambique,MOZ,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Portugal|zzz. Not colonized|zzzz. No longer colonized
+Mauritania,MRT,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Mauritius,MUS,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Malawi,MWI,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Malaysia,MYS,1462,2022,561,zzzz. No longer colonized,zzzz. No longer colonized,0,Portugal|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Namibia,NAM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Niger,NER,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Nigeria,NGA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Nicaragua,NIC,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Netherlands,NLD,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Nepal,NPL,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Nauru,NRU,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+New Zealand,NZL,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Oman,OMN,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Pakistan,PAK,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Panama,PAN,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Peru,PER,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Philippines,PHL,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Palau,PLW,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Papua New Guinea,PNG,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+North Korea,PRK,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Portugal,PRT,1462,2022,561,zz. Colonizer,zz. Colonizer,0,zz. Colonizer
+Paraguay,PRY,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Qatar,QAT,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Rwanda,RWA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Belgium|Germany|zzz. Not colonized|zzzz. No longer colonized
+Saudi Arabia,SAU,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Sudan,SDN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Senegal,SEN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Singapore,SGP,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Solomon Islands,SLB,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Sierra Leone,SLE,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+El Salvador,SLV,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Somalia,SOM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+South Sudan,SSD,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Sao Tome and Principe,STP,1462,2022,561,Portugal,zzzz. No longer colonized,0,Portugal|zzz. Not colonized|zzzz. No longer colonized
+Suriname,SUR,1462,2022,561,Netherlands,zzzz. No longer colonized,0,Netherlands|zzz. Not colonized|zzzz. No longer colonized
+Eswatini,SWZ,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Seychelles,SYC,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Syria,SYR,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Chad,TCD,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Togo,TGO,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|Germany|zzz. Not colonized|zzzz. No longer colonized
+Thailand,THA,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Tajikistan,TJK,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Turkmenistan,TKM,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+East Timor,TLS,1462,2022,561,Portugal,zzzz. No longer colonized,0,Portugal|zzz. Not colonized|zzzz. No longer colonized
+Tonga,TON,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Trinidad and Tobago,TTO,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Tunisia,TUN,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Turkey,TUR,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Tuvalu,TUV,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Taiwan,TWN,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Tanzania,TZA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Uganda,UGA,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Uruguay,URY,1462,2022,561,zzzz. No longer colonized,zzzz. No longer colonized,0,Spain|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+United States,USA,1462,2022,561,zzzz. No longer colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Uzbekistan,UZB,1462,2022,561,zzz. Not colonized,zzz. Not colonized,0,zzz. Not colonized
+Saint Vincent and the Grenadines,VCT,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Venezuela,VEN,1462,2022,561,Spain,zzzz. No longer colonized,0,Spain|zzz. Not colonized|zzzz. No longer colonized
+Vietnam,VNM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|zzz. Not colonized|zzzz. No longer colonized
+Vanuatu,VUT,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,France|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Samoa,WSM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Germany|United Kingdom|z. Multiple colonizers|zzz. Not colonized|zzzz. No longer colonized
+Yemen,YEM,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+South Africa,ZAF,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,Netherlands|United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Zambia,ZMB,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized
+Zimbabwe,ZWE,1462,2022,561,zzz. Not colonized,zzzz. No longer colonized,0,United Kingdom|zzz. Not colonized|zzzz. No longer colonized

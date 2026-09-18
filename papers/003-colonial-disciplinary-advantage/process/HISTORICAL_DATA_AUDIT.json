@@ -1,0 +1,115 @@
+{
+  "exposure_rows": 159,
+  "ever_colonized": 127,
+  "country_crosswalk_rows": 159,
+  "imperial_centers": [
+    {
+      "iso3c": "GBR",
+      "cumulative_colony_years_ruled": 6929,
+      "distinct_colonies": 68,
+      "peak_simultaneous_colonies": 57
+    },
+    {
+      "iso3c": "ESP",
+      "cumulative_colony_years_ruled": 6756,
+      "distinct_colonies": 26,
+      "peak_simultaneous_colonies": 23
+    },
+    {
+      "iso3c": "PRT",
+      "cumulative_colony_years_ruled": 2834,
+      "distinct_colonies": 12,
+      "peak_simultaneous_colonies": 8
+    },
+    {
+      "iso3c": "FRA",
+      "cumulative_colony_years_ruled": 2523,
+      "distinct_colonies": 33,
+      "peak_simultaneous_colonies": 26
+    },
+    {
+      "iso3c": "NLD",
+      "cumulative_colony_years_ruled": 1039,
+      "distinct_colonies": 4,
+      "peak_simultaneous_colonies": 4
+    },
+    {
+      "iso3c": "DEU",
+      "cumulative_colony_years_ruled": 333,
+      "distinct_colonies": 12,
+      "peak_simultaneous_colonies": 12
+    },
+    {
+      "iso3c": "BEL",
+      "cumulative_colony_years_ruled": 157,
+      "distinct_colonies": 3,
+      "peak_simultaneous_colonies": 3
+    },
+    {
+      "iso3c": "ITA",
+      "cumulative_colony_years_ruled": 115,
+      "distinct_colonies": 3,
+      "peak_simultaneous_colonies": 3
+    }
+  ],
+  "imperial_intensity_crosscheck_max_relative_difference": 0.0,
+  "imperial_intensity_crosscheck": [
+    {
+      "iso3c": "GBR",
+      "cumulative_colony_years_ruled_original": 6929,
+      "cumulative_colony_years_ruled_owid": 6929,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "ESP",
+      "cumulative_colony_years_ruled_original": 6756,
+      "cumulative_colony_years_ruled_owid": 6756,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "PRT",
+      "cumulative_colony_years_ruled_original": 2834,
+      "cumulative_colony_years_ruled_owid": 2834,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "FRA",
+      "cumulative_colony_years_ruled_original": 2523,
+      "cumulative_colony_years_ruled_owid": 2523,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "NLD",
+      "cumulative_colony_years_ruled_original": 1039,
+      "cumulative_colony_years_ruled_owid": 1039,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "DEU",
+      "cumulative_colony_years_ruled_original": 333,
+      "cumulative_colony_years_ruled_owid": 333,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "BEL",
+      "cumulative_colony_years_ruled_original": 157,
+      "cumulative_colony_years_ruled_owid": 157,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    },
+    {
+      "iso3c": "ITA",
+      "cumulative_colony_years_ruled_original": 115,
+      "cumulative_colony_years_ruled_owid": 115,
+      "abs_diff": 0,
+      "rel_diff": 0.0
+    }
+  ],
+  "status": "PASS"
+}

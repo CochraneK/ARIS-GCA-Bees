@@ -1,0 +1,13 @@
+colonizer,unique_colony_year_rows,distinct_current_states,first_observed_year,last_observed_year,profile_is_lower_bound
+zzz. Not colonized,52561,149,1462,2022,True
+zzzz. No longer colonized,11457,127,1642,2022,True
+United Kingdom,6686,67,1607,1984,True
+Spain,6487,25,1495,1975,True
+zz. Colonizer,4488,8,1462,2022,True
+Portugal,2691,11,1462,1975,True
+France,2399,32,1608,1977,True
+Netherlands,1037,4,1580,1974,True
+z. Multiple colonizers,445,19,1655,1980,True
+Germany,257,11,1884,1922,True
+Belgium,157,3,1885,1962,True
+Italy,82,2,1890,1942,True

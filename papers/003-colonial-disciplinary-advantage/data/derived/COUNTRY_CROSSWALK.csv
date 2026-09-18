@@ -1,0 +1,160 @@
+country,iso3c,openalex_iso2,status,mapping_method
+Afghanistan,AFG,AF,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Angola,AGO,AO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+United Arab Emirates,ARE,AE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Argentina,ARG,AR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Armenia,ARM,AM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Antigua and Barbuda,ATG,AG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Australia,AUS,AU,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Azerbaijan,AZE,AZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Burundi,BDI,BI,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Belgium,BEL,BE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Benin,BEN,BJ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Burkina Faso,BFA,BF,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Bangladesh,BGD,BD,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Bahrain,BHR,BH,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Bahamas,BHS,BS,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Belize,BLZ,BZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Bolivia,BOL,BO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Brazil,BRA,BR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Barbados,BRB,BB,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Brunei,BRN,BN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Bhutan,BTN,BT,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Botswana,BWA,BW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Central African Republic,CAF,CF,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Canada,CAN,CA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Chile,CHL,CL,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+China,CHN,CN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Cote d'Ivoire,CIV,CI,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Cameroon,CMR,CM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Democratic Republic of Congo,COD,CD,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Congo,COG,CG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Colombia,COL,CO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Comoros,COM,KM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Cape Verde,CPV,CV,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Costa Rica,CRI,CR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Cuba,CUB,CU,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Cyprus,CYP,CY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Germany,DEU,DE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Djibouti,DJI,DJ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Dominica,DMA,DM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Dominican Republic,DOM,DO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Algeria,DZA,DZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Ecuador,ECU,EC,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Egypt,EGY,EG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Eritrea,ERI,ER,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Spain,ESP,ES,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Ethiopia,ETH,ET,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Fiji,FJI,FJ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+France,FRA,FR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Micronesia (country),FSM,FM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Gabon,GAB,GA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+United Kingdom,GBR,GB,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Georgia,GEO,GE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Ghana,GHA,GH,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Guinea,GIN,GN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Gambia,GMB,GM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Guinea-Bissau,GNB,GW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Equatorial Guinea,GNQ,GQ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Grenada,GRD,GD,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Guatemala,GTM,GT,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Guyana,GUY,GY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Honduras,HND,HN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Haiti,HTI,HT,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Indonesia,IDN,ID,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+India,IND,IN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Iran,IRN,IR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Iraq,IRQ,IQ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Israel,ISR,IL,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Italy,ITA,IT,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Jamaica,JAM,JM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Jordan,JOR,JO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Japan,JPN,JP,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Kazakhstan,KAZ,KZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Kenya,KEN,KE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Kyrgyzstan,KGZ,KG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Cambodia,KHM,KH,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Kiribati,KIR,KI,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Saint Kitts and Nevis,KNA,KN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+South Korea,KOR,KR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Kuwait,KWT,KW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Laos,LAO,LA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Lebanon,LBN,LB,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Liberia,LBR,LR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Libya,LBY,LY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Saint Lucia,LCA,LC,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Sri Lanka,LKA,LK,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Lesotho,LSO,LS,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Morocco,MAR,MA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Madagascar,MDG,MG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Maldives,MDV,MV,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Mexico,MEX,MX,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Marshall Islands,MHL,MH,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Mali,MLI,ML,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Myanmar,MMR,MM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Mongolia,MNG,MN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Mozambique,MOZ,MZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Mauritania,MRT,MR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Mauritius,MUS,MU,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Malawi,MWI,MW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Malaysia,MYS,MY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Namibia,NAM,NA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Niger,NER,NE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Nigeria,NGA,NG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Nicaragua,NIC,NI,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Netherlands,NLD,NL,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Nepal,NPL,NP,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Nauru,NRU,NR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+New Zealand,NZL,NZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Oman,OMN,OM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Pakistan,PAK,PK,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Panama,PAN,PA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Peru,PER,PE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Philippines,PHL,PH,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Palau,PLW,PW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Papua New Guinea,PNG,PG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+North Korea,PRK,KP,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Portugal,PRT,PT,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Paraguay,PRY,PY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Qatar,QAT,QA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Rwanda,RWA,RW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Saudi Arabia,SAU,SA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Sudan,SDN,SD,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Senegal,SEN,SN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Singapore,SGP,SG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Solomon Islands,SLB,SB,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Sierra Leone,SLE,SL,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+El Salvador,SLV,SV,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Somalia,SOM,SO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+South Sudan,SSD,SS,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Sao Tome and Principe,STP,ST,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Suriname,SUR,SR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Eswatini,SWZ,SZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Seychelles,SYC,SC,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Syria,SYR,SY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Chad,TCD,TD,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Togo,TGO,TG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Thailand,THA,TH,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Tajikistan,TJK,TJ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Turkmenistan,TKM,TM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+East Timor,TLS,TL,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Tonga,TON,TO,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Trinidad and Tobago,TTO,TT,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Tunisia,TUN,TN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Turkey,TUR,TR,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Tuvalu,TUV,TV,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Taiwan,TWN,TW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Tanzania,TZA,TZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Uganda,UGA,UG,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Uruguay,URY,UY,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+United States,USA,US,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Uzbekistan,UZB,UZ,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Saint Vincent and the Grenadines,VCT,VC,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Venezuela,VEN,VE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Vietnam,VNM,VN,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Vanuatu,VUT,VU,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Samoa,WSM,WS,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Yemen,YEM,YE,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+South Africa,ZAF,ZA,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Zambia,ZMB,ZM,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
+Zimbabwe,ZWE,ZW,RESOLVED,countrycode iso3c->iso2c; universe anchored to COLDAT current states
