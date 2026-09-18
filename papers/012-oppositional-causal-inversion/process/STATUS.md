@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**PILOT 0A FEASIBILITY COMPLETE · CODER B / REPRODUCIBLE-RETRIEVAL GATE OPEN**
+**PILOT 0A FEASIBILITY COMPLETE · REPRODUCIBLE PILOT RETRIEVAL PASSED · CODER B GATE OPEN**
 
 ## Canonical identity
 
@@ -30,7 +30,12 @@ ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests wh
 - [x] recorded Pilot 0A audit and failure conditions;
 - [x] registered Paper 012 in the canonical papers index and manifest-driven public hub;
 - [x] generated a blind 30-record Coder B packet with all Coder A labels removed;
-- [x] added an explicit independent-coder handoff protocol.
+- [x] added an explicit independent-coder handoff protocol;
+- [x] executed retrieval v0.1 and preserved its semantic-contamination failure as provenance;
+- [x] prospectively amended retrieval to v0.2 with type/title topical gates;
+- [x] executed retrieval v0.2 successfully: 1,800 raw hits, 1,375 transparent rejections, 165 selected Pilot candidates;
+- [x] passed Pilot retrieval reproducibility/gross-relevance Gate R; full systematic-review saturation remains open;
+- [x] drafted the theory/methods manuscript in `manuscript/DRAFT.md`.
 
 ## Pilot 0A result
 
@@ -104,15 +109,20 @@ Required outputs:
 If opposition-validity or primary-mechanism agreement is below 0.70, revise definitions and repeat on a fresh sample before full screening.
 
 ### Gate R — reproducible retrieval
-Reconstruct Pilot 0 from frozen database/search queries rather than relying on a hand-seeded literature packet. Preserve query, timestamp, raw result identifiers, deduplication, and selection order.
+**R1 executable/provenance-safe retrieval: PASS.**  
+**R2 gross topical relevance for Pilot retrieval: PASS.**  
+**R3 systematic-review saturation/recall: OPEN.**
+
+Retrieval v0.1 is retained as a failed-but-informative snapshot. Retrieval v0.2 is the current Pilot frame: 165 selected records from 1,800 raw OpenAlex/Crossref hits, with 1,375 rejected records and reasons preserved.
 
 ## Next execution queue
 
 1. obtain a genuinely independent Coder B output using `data/pilot0_coderB_blind.csv`;
 2. calculate kappa/alpha and adjudicate disagreements;
-3. run database-exported Pilot 0 retrieval and compare with the feasibility packet;
-4. expand closest-prior-work matrix toward saturation;
-5. only after Gates B and R pass, freeze the full evidence-map protocol and scale screening.
+3. compare the independently coded Pilot with the reproducible v0.2 retrieval frame;
+4. expand closest-prior-work and citation-chasing toward review saturation;
+5. after Gate B passes, freeze the full evidence-map screening protocol and scale screening;
+6. update `manuscript/DRAFT.md` with independently validated reliability and evidence-map results.
 
 ## Handoff sentence
 
