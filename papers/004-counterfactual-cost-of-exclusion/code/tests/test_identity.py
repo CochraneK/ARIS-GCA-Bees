@@ -121,5 +121,19 @@ class IdentityValidatorTests(unittest.TestCase):
             path.unlink(missing_ok=True)
 
 
+    def test_unquoted_extra_csv_fields_fail(self) -> None:
+        temp = tempfile.NamedTemporaryFile("w", encoding="utf-8", newline="", suffix=".csv", delete=False)
+        path = Path(temp.name)
+        try:
+            with temp:
+                temp.write(",".join(FIELDS) + "\n")
+                values = [self.base().get(field, "") for field in FIELDS]
+                temp.write(",".join(values) + ",unexpected_extra_field\n")
+            errors = validate(path)
+            self.assertTrue(any("unexpected extra field" in error for error in errors))
+        finally:
+            path.unlink(missing_ok=True)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
