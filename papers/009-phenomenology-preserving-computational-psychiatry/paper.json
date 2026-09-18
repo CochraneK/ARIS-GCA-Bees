@@ -1,0 +1,33 @@
+{
+  "id": "009",
+  "slug": "phenomenology-preserving-computational-psychiatry",
+  "title": "The Fidelity Frontier in Computational Psychiatry: Quantifying Psychopathology Without Collapsing Lived Experience",
+  "short_title": "Phenomenology-Preserving Computational Psychiatry",
+  "year": 2026,
+  "status": "design",
+  "domain": "computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / digital mental health",
+  "summary": "A methodology program for quantifying psychopathology while explicitly measuring information lost when rich first-person experience is compressed into phenomenological codes, symptom scales, computational parameters, or diagnoses. It introduces a multi-axis fidelity frontier, preserves raw evidence as an immutable source layer, and separates phenomenological fidelity from construct validity, biological concordance, prediction, and acquisition burden.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided pre-run design; formal ARIS provenance to be frozen at full run",
+    "version": "v0.4.26",
+    "commit": ""
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/009-phenomenology-preserving-computational-psychiatry"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "computational psychiatry",
+    "phenomenology",
+    "psychopathology",
+    "neurophenomenology",
+    "rate-distortion",
+    "idiographic modeling",
+    "state-space models"
+  ]
+}
