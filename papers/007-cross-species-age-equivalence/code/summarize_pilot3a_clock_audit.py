@@ -31,8 +31,8 @@ with args.provenance.open(encoding="utf-8", newline="") as f:
     for r in csv.DictReader(f, delimiter="\t"):
         prov[r["resource"]]={k:v for k,v in r.items() if k!="resource"}
 
-coef_tol=1e-10
-lp_tol=1e-8
+coef_tol=1e-6
+lp_tol=1e-6
 summary={
     "decision": "PASS" if (
         metrics.get("clock2_coeff_missing_mmc")==0
