@@ -1,0 +1,123 @@
+name: ARIS4C005 contamination exposure pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c005-contamination.yml"
+      - "papers/005-hidden-burden-bad-science/code/build_contamination_exposure.py"
+      - "papers/005-hidden-burden-bad-science/code/citation_dependence.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_contamination_exposure.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_citation_dependence.py"
+      - "papers/005-hidden-burden-bad-science/code/classify_retractions.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c005-contamination
+  cancel-in-progress: true
+
+jobs:
+  exposure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Acquire Retraction Watch snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/rw"
+          git clone --depth 1 https://gitlab.com/crossref/retraction-watch-data.git "$RUNNER_TEMP/rw/repo"
+          cd "$RUNNER_TEMP/rw/repo"
+          git rev-parse HEAD > "$RUNNER_TEMP/rw/git_commit.txt"
+          CSV="$(find . -type f -iname '*.csv' -printf '%s %p\n' | sort -nr | head -1 | cut -d' ' -f2-)"
+          test -n "$CSV"
+          cp "$CSV" "$RUNNER_TEMP/rw/retraction_watch.csv"
+
+      - name: Classify source signals
+        run: |
+          python "$PAPER_DIR/code/classify_retractions.py" \
+            "$RUNNER_TEMP/rw/retraction_watch.csv" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv"
+
+      - name: Build high-propagation exposure pilot
+        run: |
+          python "$PAPER_DIR/code/build_contamination_exposure.py" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv" \
+            "$PAPER_DIR/data/pilot/contamination_exposure_summary.json" \
+            "$RUNNER_TEMP/aris4c005_contamination_sources.csv" \
+            "$RUNNER_TEMP/aris4c005_contamination_edges.csv" \
+            --start 2010 \
+            --end 2020 \
+            --source-n 25 \
+            --edge-sample-per-source 20 \
+            --seed 20260918
+
+      - name: Append provenance and validate summary
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          paper = Path(os.environ["PAPER_DIR"])
+          p = paper / "data/pilot/contamination_exposure_summary.json"
+          data = json.loads(p.read_text(encoding="utf-8"))
+          data["retraction_watch_git_commit"] = Path(
+              os.environ["RUNNER_TEMP"] + "/rw/git_commit.txt"
+          ).read_text().strip()
+          data["source_repository"] = "https://gitlab.com/crossref/retraction-watch-data"
+          data["row_level_release_policy"] = (
+              "Source identities and sampled edges remain workflow artifacts; "
+              "the public repository stores only aggregate exposure results."
+          )
+          assert data["classification"] == (
+              "HIGH_PROPAGATION_CITATION_EXPOSURE_PILOT_NOT_CONTAMINATION_PREVALENCE"
+          )
+          assert data["source_selection"]["selected_sources"] > 0
+          assert data["citation_exposure"]["sum_live_incoming_citation_edges_across_sources"] >= 0
+          assert data["citation_exposure"]["sampled_post_retraction_edges_for_semantic_review"] >= 0
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print(json.dumps(data, indent=2)[:12000])
+          PY
+
+      - name: Upload private row-level exposure packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c005-contamination-exposure
+          path: |
+            ${{ runner.temp }}/aris4c005_contamination_sources.csv
+            ${{ runner.temp }}/aris4c005_contamination_edges.csv
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Persist public-safe aggregate summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/pilot/contamination_exposure_summary.json"
+          if git diff --cached --quiet; then
+            echo "No summary change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C005 contamination exposure summary [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
