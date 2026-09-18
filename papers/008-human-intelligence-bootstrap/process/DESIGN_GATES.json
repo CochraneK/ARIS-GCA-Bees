@@ -39,8 +39,8 @@
     },
     {
       "id": "novelty",
-      "status": "open",
-      "requirement": "Demonstrate that the contribution is not another list of human-uniqueness traits but an explicit cross-taxon test of causal configurations and bottlenecks."
+      "status": "provisional_pass",
+      "requirement": "Closest-prior-work map completed and novelty narrowed to cross-clade configuration-model competition with falsification of causal necessity/sufficiency, bias controls, and temporal triangulation. Broader citation chaining remains required before manuscript submission."
     },
     {
       "id": "aris_provenance",
