@@ -43,12 +43,13 @@
       "note": "Repeated author histories are retrievable; 2024 seed is feasibility-only and cannot define the confirmatory cohort."
     },
     "person_identity_resolution": {
-      "status": "running",
+      "status": "pass-with-canonicalization-and-sensitivity",
       "evidence": [
-        "process/IDENTITY_RESOLUTION_AUDIT.md",
-        ".github/workflows/aris4c006-identity-orcid.yml"
+        "process/PILOT7_RESULTS.md",
+        "process/PILOT9_RESULTS.md",
+        "process/IDENTITY_RESOLUTION_AUDIT.md"
       ],
-      "note": "ORCID/OpenAlex direct-resolution audit running. Distal career outcomes remain blocked."
+      "note": "Raw work-embedded OpenAlex author IDs showed 6.24% mismatch against ORCID-resolved authors, but 61/61 mismatches were repaired by resolving the embedded ID to its current canonical OpenAlex author. Longitudinal joins must canonicalize IDs first; residual non-ORCID split/merge risk remains a mandatory sensitivity-analysis issue."
     },
     "cohort_definition": {
       "status": "protocol-defined-not-frozen",
@@ -58,7 +59,7 @@
     "exposure_estimator": {
       "status": "protocol-defined-not-frozen",
       "evidence": "process/EXPOSURE_ESTIMATOR.md",
-      "note": "Lag/cross-fit/chance correction specified; context granularity and shrinkage await source-context pilot."
+      "note": "Lag/cross-fit/chance correction specified; source-context feasibility passed; prospective split-half reliability decision rule frozen before reading reliability results."
     },
     "preregistration": {
       "status": "draft",
