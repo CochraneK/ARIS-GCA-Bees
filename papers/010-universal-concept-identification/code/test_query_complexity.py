@@ -8,6 +8,9 @@ import unittest
 
 from query_complexity import (
     collision_groups,
+    expected_greedy_cost,
+    greedy_information_gain_query,
+    greedy_path_costs,
     max_targets,
     minimum_static_separating_set,
     optimal_tree_cost,
@@ -48,6 +51,48 @@ class QueryComplexityTests(unittest.TestCase):
         self.assertEqual(
             collision_groups(demo_matrix(), [0, 1, 2]),
             [[0, 8], [1, 9], [2, 10], [3, 11]],
+        )
+
+
+    def test_greedy_binary_demo_matches_optimal_expected_cost(self):
+        matrix = demo_matrix()
+        self.assertAlmostEqual(expected_greedy_cost(matrix), 11 / 3)
+        self.assertEqual(max(greedy_path_costs(matrix)), 4.0)
+
+    def test_greedy_supports_multivalued_answers(self):
+        matrix = [
+            ["YES", "A"],
+            ["NO", "A"],
+            ["UNKNOWN", "B"],
+            ["UNDEFINED", "B"],
+        ]
+        first = greedy_information_gain_query(
+            matrix,
+            candidates=[0, 1, 2, 3],
+            query_indices=[0, 1],
+        )
+        self.assertEqual(first, 0)
+        self.assertEqual(greedy_path_costs(matrix), [1.0, 1.0, 1.0, 1.0])
+
+    def test_cost_sensitive_greedy_can_change_first_query(self):
+        matrix = [
+            [0, 0],
+            [0, 1],
+            [1, 0],
+            [1, 1],
+        ]
+        self.assertEqual(
+            greedy_information_gain_query(matrix, [0, 1, 2, 3], [0, 1]),
+            0,
+        )
+        self.assertEqual(
+            greedy_information_gain_query(
+                matrix,
+                [0, 1, 2, 3],
+                [0, 1],
+                query_costs=[10.0, 1.0],
+            ),
+            1,
         )
 
 
