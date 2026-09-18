@@ -10,9 +10,12 @@
       "note": "Proceed only as China-based population-calibrated, time-varying measured byline-exposure design; raw surname-success, citation-only, country-level surname-distribution, and generic long-run exposure claims are occupied prior art."
     },
     "chinese_surname_population_baseline": {
-      "status": "recalibrating-with-ccnc",
-      "evidence": "process/PILOT_RESULTS.md",
-      "note": "Original ChineseNames-initial baseline is superseded for pronunciation/order because 31 surname-specific initials disagree with CCNC. Corrected ChineseNames-population × CCNC-pronunciation baseline is running."
+      "status": "pass-corrected-awaiting-pinned-R-reproduction",
+      "evidence": [
+        "process/PILOT15_RESULTS.md",
+        "process/PILOT17_RESULTS.md"
+      ],
+      "note": "ChineseNames supplies population weights and pinned CCNC supplies surname-specific pronunciation/order. Corrected mapped denominator covers 99.9671% of population; weighted initial rank 16.25491. Final execution gate is reproduction from the pinned ChineseNames 2025.8 R package."
     },
     "crossref_structured_surname_route": {
       "status": "pass",
@@ -92,12 +95,12 @@
         "process/PILOT15_RESULTS.md",
         "process/SURNAME_ROMANIZATION_RULE.md"
       ],
-      "note": "ChineseNames supplies population weights; pinned CCNC surname-specific lexicon supplies canonical pronunciation/order. Generic pypinyin mapping is superseded."
+      "note": "Pinned CCNC surname-specific Romanization replaces generic pypinyin/legacy ChineseNames initials as pronunciation/order authority."
     },
     "global_time_window": {
       "status": "pass",
       "evidence": "process/PILOT16_RESULTS.md",
-      "note": "All-26-field historical audit froze the primary focal-work window to 2011-2025 under the preregistered coverage rule."
+      "note": "All-26-field historical audit froze focal work window to 2011-2025."
     }
   },
   "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
