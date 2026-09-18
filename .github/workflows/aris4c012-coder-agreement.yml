@@ -1,0 +1,73 @@
+name: ARIS4C012 independent-coder gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c012-coder-agreement.yml"
+      - "papers/012-oppositional-causal-inversion/code/score_coder_agreement.py"
+      - "papers/012-oppositional-causal-inversion/code/tests/test_score_coder_agreement.py"
+      - "papers/012-oppositional-causal-inversion/data/pilot0_coderA_feasibility.csv"
+      - "papers/012-oppositional-causal-inversion/data/pilot0_coderB_blind.csv"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c012-coder-agreement
+  cancel-in-progress: true
+
+jobs:
+  agreement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/012-oppositional-causal-inversion
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test agreement code
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_score_coder_agreement.py' -v
+
+      - name: Score current independent-coder state
+        run: |
+          mkdir -p "$PAPER_DIR/data/reliability"
+          python "$PAPER_DIR/code/score_coder_agreement.py"             --coder-a "$PAPER_DIR/data/pilot0_coderA_feasibility.csv"             --coder-b "$PAPER_DIR/data/pilot0_coderB_blind.csv"             --summary "$PAPER_DIR/data/reliability/pilot0_reliability_summary.json"             --disagreements "$PAPER_DIR/data/reliability/pilot0_disagreements.csv"
+
+      - name: Validate scientific gate semantics
+        run: |
+          python - <<'PY'
+          import json
+          p="papers/012-oppositional-causal-inversion/data/reliability/pilot0_reliability_summary.json"
+          d=json.load(open(p,encoding="utf-8"))
+          assert d["status"] in {"BLOCKED_INCOMPLETE_CODER_B","READY_FOR_ADJUDICATION"}
+          if d["status"] == "READY_FOR_ADJUDICATION":
+              assert d["completeness"]["complete"] is True
+              for k in ("opposition_valid","oci_candidate","primary_mechanism"):
+                  assert d["fields"][k]["n_pairwise_complete"] > 0
+          else:
+              assert d["completeness"]["complete"] is False
+          print(json.dumps(d,indent=2)[:12000])
+          PY
+
+      - name: Persist reliability state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/reliability"
+          if git diff --cached --quiet; then
+            echo "No reliability-state change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C012 independent-coder gate [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
