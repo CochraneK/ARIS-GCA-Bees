@@ -216,14 +216,44 @@ def _fetch_verified(url: str, *, timeout: float = 20.0) -> str:
     return resp.text
 
 
+def _unavailable_snapshot(url: str, *, retrieved_at: str, reason: str) -> UniverseSnapshot:
+    # Source access failure is missing coverage, not evidence of an empty universe.
+    safe_reason = reason.splitlines()[0][:180]
+    return UniverseSnapshot(
+        source_url=url,
+        retrieved_at=retrieved_at,
+        html_sha256="",
+        seeds=(),
+        warnings=(f"source_unavailable:{safe_reason}",),
+    )
+
+
 def fetch_live_universes() -> list[UniverseSnapshot]:
+    """Fetch each official universe independently.
+
+    One source failing TLS/HTTP/parsing must not suppress other official sources.
+    A failed source produces an explicit unavailable snapshot rather than an
+    empty-universe inference.
+    """
     now = datetime.now().astimezone().isoformat()
-    sasac_html = _fetch_verified(SASAC_CENTRAL_SOE_URL)
-    cas_html = _fetch_verified(CAS_RESEARCH_UNITS_URL)
-    return [
-        parse_sasac_central_soe(sasac_html, retrieved_at=now),
-        parse_cas_research_units(cas_html, retrieved_at=now),
-    ]
+    out: list[UniverseSnapshot] = []
+
+    for url, parser in (
+        (SASAC_CENTRAL_SOE_URL, parse_sasac_central_soe),
+        (CAS_RESEARCH_UNITS_URL, parse_cas_research_units),
+    ):
+        try:
+            html = _fetch_verified(url)
+            out.append(parser(html, retrieved_at=now))
+        except Exception as exc:  # live-source boundary: preserve coverage gap
+            out.append(
+                _unavailable_snapshot(
+                    url,
+                    retrieved_at=now,
+                    reason=f"{type(exc).__name__}:{exc}",
+                )
+            )
+    return out
 
 
 def dump_universe_report(snapshots: list[UniverseSnapshot]) -> str:
@@ -233,6 +263,14 @@ def dump_universe_report(snapshots: list[UniverseSnapshot]) -> str:
             "aggregate": {
                 "sources": len(snapshots),
                 "organization_seeds": sum(len(x.seeds) for x in snapshots),
+                "available_sources": sum(
+                    1 for x in snapshots
+                    if not any(w.startswith("source_unavailable:") for w in x.warnings)
+                ),
+                "unavailable_sources": sum(
+                    1 for x in snapshots
+                    if any(w.startswith("source_unavailable:") for w in x.warnings)
+                ),
                 "by_type": {
                     kind: sum(
                         1
