@@ -33,9 +33,12 @@
       "note": "Measured excess alphabetization varies meaningfully across fields/years and persists in 3+ author analyses."
     },
     "source_context_reliability": {
-      "status": "running",
-      "evidence": ".github/workflows/aris4c006-source-context.yml",
-      "note": "Targeted high-volume source pilot required before source × field × lag-window can be primary."
+      "status": "pass-by-narrowing",
+      "evidence": [
+        "process/PILOT8_RESULTS.md",
+        "process/PILOT10_RESULTS.md"
+      ],
+      "note": "Targeted source contexts were feasible, but split-half Spearman reliability was poor (0.156; 3+ authors 0.083). Prospectively frozen rule therefore rejects raw source-level exposure as primary. Primary moderator is field × prior-3-year window; source × field × window is secondary/exploratory after shrinkage."
     },
     "longitudinal_panel_feasibility": {
       "status": "pass",
@@ -57,9 +60,13 @@
       "note": "Entry-based cohort required; exact index/lookback/follow-up years remain outcome-blind TBF."
     },
     "exposure_estimator": {
-      "status": "protocol-defined-not-frozen",
-      "evidence": "process/EXPOSURE_ESTIMATOR.md",
-      "note": "Lag/cross-fit/chance correction specified; source-context feasibility passed; prospective split-half reliability decision rule frozen before reading reliability results."
+      "status": "primary-granularity-frozen-awaiting-within-author-variation",
+      "evidence": [
+        "process/EXPOSURE_ESTIMATOR.md",
+        "process/PILOT6_RESULTS.md",
+        "process/PILOT10_RESULTS.md"
+      ],
+      "note": "Primary exposure frozen as field × prior-3-year chance-corrected lagged exposure. 3+ author robustness mandatory. Within-author exposure-change gate still running; final cross-fitting/sample-size rules remain to freeze."
     },
     "preregistration": {
       "status": "draft",
