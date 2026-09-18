@@ -143,3 +143,45 @@ Require:
 - frozen lag, shrinkage, sparse-cell, and cross-fitting rules.
 
 If these fail, ARIS4C006 narrows to work-level authorship-order mechanisms rather than forcing a longitudinal career model.
+
+
+## 14. Prospective source-reliability decision rule
+
+This rule is frozen **before inspecting the split-half reliability artifact**.
+
+The targeted source-context pilot established adequate sample size in high-volume source × field × lag-window cells. The remaining question is whether independently split convention samples rank contexts consistently enough to justify source-level exposure.
+
+Using the deterministic work-ID split defined in `code/10_source_reliability_pilot.py`:
+
+### Source-level primary exposure is allowed when all hold
+
+1. at least 16 source-contexts satisfy the preregistered minimum split support;
+2. split-half Pearson correlation of `ExcessAlpha` is >= **0.60**;
+3. split-half Spearman rank correlation is >= **0.60**;
+4. median absolute difference between half-sample `ExcessAlpha` scores is <= **0.15**;
+5. 3+ author split-half estimates have the same broad ordering and do not show a clear collapse inconsistent with the all-team estimate.
+
+If passed, the primary high-resolution moderator becomes:
+
+**shrunk source × field × prior-3-year window exposure**
+
+with field × prior-3-year exposure as its parent/fallback.
+
+### Borderline zone
+
+If either Pearson or Spearman lies in **0.40–0.59**, or median absolute difference is **0.15–0.20**, source-level estimates may be retained only as a shrunk secondary/exploratory moderator. The primary confirmatory moderator becomes:
+
+**field × prior-3-year window exposure**.
+
+### Source-level rejection
+
+If:
+- both reliability correlations are <0.40; or
+- median absolute difference exceeds 0.20; or
+- 3+ author results qualitatively collapse,
+
+then source-level exposure is not used confirmatorily.
+
+### Rationale
+
+These thresholds are engineering reliability criteria, not significance thresholds and not tuned to any surname/career-effect result. They intentionally favor the coarser field-level exposure if source-level measurement is unstable.
