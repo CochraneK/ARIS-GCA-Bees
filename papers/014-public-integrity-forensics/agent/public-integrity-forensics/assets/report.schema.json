@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/014-public-integrity-forensics/agent/public-integrity-forensics/assets/report.schema.json",
+  "title": "Public Integrity Forensics Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_version",
+    "subject_id",
+    "mode",
+    "time_safety",
+    "source_coverage",
+    "findings",
+    "review_priority",
+    "corruption_inference",
+    "interpretation",
+    "limitations"
+  ],
+  "properties": {
+    "report_version": {"type": "string"},
+    "subject_id": {"type": "string"},
+    "mode": {"type": "string", "enum": ["track_a", "track_b", "ad_hoc"]},
+    "time_safety": {
+      "type": "object",
+      "required": ["eligible", "reason"],
+      "properties": {
+        "eligible": {"type": "boolean"},
+        "reason": {"type": "string"},
+        "cutoff": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "source_coverage": {
+      "type": "object",
+      "required": ["covered", "missing"],
+      "properties": {
+        "covered": {"type": "array", "items": {"type": "string"}},
+        "missing": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "finding.schema.json"}
+    },
+    "evidence_graph": {"type": "object"},
+    "review_priority": {
+      "type": "string",
+      "enum": [
+        "NO_FLAG",
+        "VERY_LOW",
+        "LOW",
+        "MODERATE",
+        "HIGH",
+        "ABSTAIN_OR_INCOMPLETE",
+        "BLOCKED"
+      ]
+    },
+    "corruption_inference": {"const": false},
+    "interpretation": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}
