@@ -1,0 +1,23 @@
+{
+  "lock_version": 1,
+  "artifact": "aris4c010-standalone-ui",
+  "verified_ci": {
+    "workflow": "ARIS4C010 CI",
+    "run_id": 35406666313,
+    "run_number": 47,
+    "head_sha": "e2bca72c61c61bd3ba4a7c5d5948ec7535fcb7cc",
+    "conclusion": "success",
+    "artifact_id": 10573100444,
+    "artifact_sha256": "28e521205e2b8e0f9885a1307a2a7c23bad496a7866cb698fb3335fdf3a89647",
+    "participant_pages": 72,
+    "network_submission_code": "none"
+  },
+  "properties": [
+    "One standalone HTML page per participant form.",
+    "No external JavaScript library required.",
+    "No fetch/XMLHttpRequest response submission.",
+    "Researcher phenomenon tags are not embedded.",
+    "Explicit is_retest flags are stripped from participant-visible embedded data.",
+    "Responses are downloaded locally as JSON."
+  ]
+}
