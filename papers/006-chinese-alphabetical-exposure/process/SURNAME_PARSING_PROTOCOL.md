@@ -184,3 +184,59 @@ Post-outcome rule changes cannot silently replace preregistered confirmatory par
 ## 12. Stop rule
 
 If high-confidence parsing cannot achieve adequate precision and broad-enough coverage without differential error by surname rank, ARIS4C006 should narrow to a direct-Chinese-character subset or stop rather than substitute a convenient last-token heuristic.
+
+
+## 13. Crossref structured-family rule after Pilot 3
+
+Pilot 3 (`process/PILOT3_RESULTS.md`) establishes Crossref contributor metadata as the preferred structured family-name evidence for DOI-bearing works, subject to positional reconciliation.
+
+### Tier 1B operational rule
+
+A work-level Crossref family name is Tier 1B only when all applicable checks pass:
+
+1. OpenAlex DOI resolves to a Crossref work record.
+2. OpenAlex and Crossref contributor counts agree.
+3. Crossref supplies a non-empty `family` value for the focal list position.
+4. The normalized Crossref family token is compatible with the OpenAlex raw/display-name evidence at that same position.
+5. If both sources provide ORCID, the identifiers must agree.
+6. Compound-surname / alternative-Romanization logic does not leave two plausible family-name assignments.
+
+Failure of any item does not imply a different surname; it downgrades the observation to a lower evidence tier or exclusion.
+
+### Pilot 3 empirical evidence
+
+In 180 DOI-selected 2024 multi-author works across six fields:
+
+- Crossref record retrieval: 180/180;
+- same author count: 172/180 = 95.56%;
+- all Crossref family values present: 99.44% of found works;
+- aligned CN-affiliated author rows: 787;
+- structured Crossref family matched an OpenAlex name token: 99.87%;
+- structured family matched the last OpenAlex token: 99.87%.
+
+The last figure is **not** permission to promote the final-token heuristic. The pilot preselected DOI-bearing modern records and therefore does not quantify error in older/no-DOI/format-anomalous records.
+
+### Freeze rule
+
+Confirmatory code must preserve the distinction between:
+
+- `surname_source = crossref_structured`
+- `surname_source = direct_han`
+- `surname_source = repeated_corroborated`
+- `surname_source = heuristic`
+
+The last category remains excluded from confirmatory inference.
+
+## 14. Measurement-gate thresholds to freeze before outcome analysis
+
+The final thresholds will be frozen from measurement-only Pilot 4, before focal surname-by-exposure outcome estimates are opened.
+
+Candidate minimums:
+
+- >=98% surname-initial precision among included Tier 1/2 validation records;
+- >=95% strict positional support for Crossref/OpenAlex same-count work matches;
+- ORCID disagreement sufficiently rare that it does not indicate positional misalignment;
+- no material monotonic parser-error gradient by surname rank;
+- field/year DOI coverage documented, with no silent complete-case interpretation if coverage is strongly selected.
+
+If the Crossref-backed path is precise but selectively incomplete, the primary analysis may use the high-confidence subset while population generalization is explicitly bounded and no-DOI records enter only through independently validated Tier 1A/2 evidence.
