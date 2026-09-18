@@ -1,0 +1,37 @@
+name: ARIS4C014 UK Pilot 1A frozen collection
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/014-public-integrity-forensics/data/pilot1_uk_config.json"
+      - "papers/014-public-integrity-forensics/code/collect_pilot1_uk.py"
+      - "papers/014-public-integrity-forensics/code/source_adapters.py"
+      - "papers/014-public-integrity-forensics/code/source_snapshot.py"
+      - ".github/workflows/aris4c014-pilot1-uk.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect frozen UK Pilot 1A source window
+        working-directory: papers/014-public-integrity-forensics
+        run: |
+          python code/collect_pilot1_uk.py             --config data/pilot1_uk_config.json             --out-dir pilot1_artifact
+
+      - name: Upload raw source packages and manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c014-pilot1-uk-p1a-v0
+          path: papers/014-public-integrity-forensics/pilot1_artifact
+          retention-days: 90
