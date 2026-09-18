@@ -11,6 +11,9 @@ country pairs. Thus each pair receives 2/[n(n-1)].
 The output contains positive observed dyadic mass only. The confirmatory model
 must complete the eligible pair×discipline×period grid with genuine zeros using
 the frozen CEPII country-pair universe before PPML estimation.
+
+The OpenAlex Works source may be either a local Parquet snapshot root or an
+anonymous public-S3 Parquet glob.
 """
 
 from __future__ import annotations
@@ -29,34 +32,72 @@ DATA = PAPER / "data"
 WORK_TYPES = ("article", "review", "conference-paper", "book", "book-chapter")
 
 
-def q(path: Path) -> str:
-    return str(path).replace("'", "''")
+def q(value: object) -> str:
+    return str(value).replace("'", "''")
+
+
+def prepare_source(source_arg: str) -> tuple[str, list[str]]:
+    if source_arg.startswith("s3://"):
+        return source_arg, [
+            sys.executable,
+            str(CODE / "preoutcome_gate.py"),
+            "--strict",
+        ]
+
+    root = Path(source_arg).expanduser().resolve()
+    return str(root / "**" / "*.parquet"), [
+        sys.executable,
+        str(CODE / "preoutcome_gate.py"),
+        "--snapshot-root",
+        str(root),
+        "--strict",
+    ]
 
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("snapshot_root", type=Path)
-    p.add_argument("--output", type=Path, default=DATA / "derived" / "openalex" / "DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet")
+    p.add_argument(
+        "snapshot_root",
+        help=(
+            "local Works Parquet root or public S3 parquet glob, e.g. "
+            "s3://openalex/data/parquet/works/**/*.parquet"
+        ),
+    )
+    p.add_argument(
+        "--output",
+        type=Path,
+        default=(
+            DATA
+            / "derived"
+            / "openalex"
+            / "DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet"
+        ),
+    )
     args = p.parse_args()
 
-    root = args.snapshot_root.expanduser().resolve()
-    subprocess.run(
-        [sys.executable, str(CODE / "preoutcome_gate.py"), "--snapshot-root", str(root), "--strict"],
-        check=True,
-    )
+    source_arg = str(args.snapshot_root)
+    parquet_source, gate_cmd = prepare_source(source_arg)
+    subprocess.run(gate_cmd, check=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    glob = root / "**" / "*.parquet"
     crosswalk = PROCESS / "DISCIPLINE_CROSSWALK.csv"
     countries = DATA / "derived" / "COUNTRY_CROSSWALK.csv"
-    types_sql = ",".join("'" + x + "'" for x in WORK_TYPES)
+    types_sql = ",".join("'" + x.replace("'", "''") + "'" for x in WORK_TYPES)
 
     con = duckdb.connect(database=":memory:")
     con.execute("SET preserve_insertion_order=false")
+    if source_arg.startswith("s3://"):
+        con.execute("INSTALL httpfs")
+        con.execute("LOAD httpfs")
+
     con.execute(
         f"""
         CREATE TEMP TABLE concept_map AS
-        SELECT concept_id, conceptual_discipline, selector_level, trim(oa_id) AS oa_id
+        SELECT
+            concept_id,
+            conceptual_discipline,
+            selector_level,
+            trim(oa_id) AS oa_id
         FROM read_csv_auto('{q(crosswalk)}'),
              UNNEST(string_split(openalex_ids, ';')) AS u(oa_id);
         """
@@ -70,7 +111,10 @@ def main() -> None:
         """
     )
 
-    source = f"read_parquet('{q(glob)}', union_by_name=true)"
+    source = (
+        f"read_parquet('{q(parquet_source)}', "
+        "union_by_name=true, hive_partitioning=true)"
+    )
     sql = f"""
     COPY (
         WITH eligible AS (
@@ -100,10 +144,18 @@ def main() -> None:
             JOIN concept_map m
               ON (
                   starts_with(m.selector_level, 'subfield')
-                  AND regexp_extract(CAST(e.primary_topic.subfield.id AS VARCHAR), '([0-9]+)$', 1) = m.oa_id
+                  AND regexp_extract(
+                      CAST(e.primary_topic.subfield.id AS VARCHAR),
+                      '([0-9]+)$',
+                      1
+                  ) = m.oa_id
               ) OR (
                   m.selector_level = 'field'
-                  AND regexp_extract(CAST(e.primary_topic.field.id AS VARCHAR), '([0-9]+)$', 1) = m.oa_id
+                  AND regexp_extract(
+                      CAST(e.primary_topic.field.id AS VARCHAR),
+                      '([0-9]+)$',
+                      1
+                  ) = m.oa_id
               )
         ),
         work_country AS (
@@ -113,14 +165,16 @@ def main() -> None:
                 c.concept_id,
                 c.conceptual_discipline,
                 cm.iso3c
-            FROM classified c,
-                 UNNEST(c.authorships) AS au(a),
-                 UNNEST(a.countries) AS cc(country_code)
+            FROM classified c
+            CROSS JOIN UNNEST(c.authorships) AS au(a)
+            CROSS JOIN UNNEST(a.countries) AS cc(country_code)
             JOIN country_map cm ON upper(country_code) = cm.iso2
             WHERE country_code IS NOT NULL
         ),
         sized AS (
-            SELECT *, COUNT(*) OVER (PARTITION BY work_id) AS n_countries
+            SELECT
+                *,
+                COUNT(*) OVER (PARTITION BY work_id) AS n_countries
             FROM work_country
         ),
         pairs AS (
@@ -148,12 +202,20 @@ def main() -> None:
             SUM(pair_weight) AS fractional_collaboration_mass,
             COUNT(DISTINCT work_id) AS raw_coauthored_works
         FROM pairs
-        GROUP BY iso3_i, iso3_j, concept_id, conceptual_discipline, period
+        GROUP BY
+            iso3_i,
+            iso3_j,
+            concept_id,
+            conceptual_discipline,
+            period
     ) TO '{q(args.output)}' (FORMAT PARQUET, COMPRESSION ZSTD);
     """
     con.execute(sql)
     print(args.output)
-    print("Pair weighting frozen at total dyadic mass = 1 per multilateral work.")
+    print(
+        "Pair weighting frozen at total dyadic mass = 1 per multilateral work. "
+        f"source={parquet_source}"
+    )
 
 
 if __name__ == "__main__":
