@@ -59,7 +59,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          text = Path('papers/002-language-geometry/manuscript/DRAFT.md').read_text().lower()
+          text = Path('papers/002-language-geometry/manuscript/DRAFT.md').read_text().lower().replace('*', '')
           required = [
               'split sensitivity',
               'does not establish that language is universally',
