@@ -1,0 +1,61 @@
+name: ARIS4C007 Pilot 3B GEO metadata
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot3b-geo-metadata.yml"
+      - "papers/007-cross-species-age-equivalence/code/acquire_gse223748_metadata.py"
+      - "papers/007-cross-species-age-equivalence/data/sources/peron2019_s5.csv"
+      - "papers/007-cross-species-age-equivalence/data/sources/translating_time_2026/TableS1__Sheet1.csv"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve canonical successful Pilot 0 artifact
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot0
+          RUNS_JSON="$(gh run list             --workflow 007-pilot0.yml             --status success             --limit 1             --json databaseId,headSha,createdAt,url,conclusion)"
+          RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.[0].databaseId // empty')"
+          test -n "$RUN_ID"
+          gh run view "$RUN_ID"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot0_run.json
+          gh run download "$RUN_ID"             --name aris4c007-pilot0             --dir data/upstream/pilot0
+          test -s data/upstream/pilot0/pilot0/life_history_mapping_grid.csv
+
+      - name: Acquire metadata only and build overlap inventory
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          rm -rf data/pilot3b_geo_metadata
+          python code/acquire_gse223748_metadata.py             --out data/pilot3b_geo_metadata             --pilot0-grid data/upstream/pilot0/pilot0/life_history_mapping_grid.csv             --peron data/sources/peron2019_s5.csv             --translating-time data/sources/translating_time_2026/TableS1__Sheet1.csv
+          cp data/upstream/pilot0_run.json             data/pilot3b_geo_metadata/upstream_pilot0_run.json
+          cat data/pilot3b_geo_metadata/summary.json
+
+      - name: Upload metadata-first artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot3b-geo-metadata
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/summary.json
+            papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/sample_metadata.csv
+            papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/characteristic_field_inventory.csv
+            papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/bounded_pilot2_overlap_sample.csv
+            papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/upstream_pilot0_run.json
+          if-no-files-found: error
+          retention-days: 30
