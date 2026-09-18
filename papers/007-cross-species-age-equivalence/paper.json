@@ -8,7 +8,7 @@
   "domain": "comparative biology / geroscience / life-history evolution / computational biology",
   "summary": "A multi-axis benchmark of cross-species age-equivalence definitions. Official AnAge Pilot 0 now compares two published life-history coordinates across 785 non-human mammals and shows large species- and stage-dependent disagreement, motivating independent event, demographic and molecular validation.",
   "authors": [
-    "Cunyi Kang"
+    "Cochrane Kang"
   ],
   "aris": {
     "provenance": "ARIS4C guided run with live literature/novelty audit and public-web fallback for literature stages",
