@@ -1,7 +1,7 @@
 # ARIS4C010 · STATUS
 
-**Updated:** 2026-09-18  
-**Stage:** Benchmark v0 engineering-ready · design + prior-art audit + Pilot 0 + synthetic Semantic Pilot 1 complete  
+**Updated:** 2026-09-19  
+**Stage:** source-derived Pilot 2 complete · pinned 60-target OEWN calibration build configured  
 **Current claim strength:** provisional integration gap; not manuscript-frozen
 
 ## Completed
@@ -24,6 +24,15 @@
 - [x] Pilot 0 executed and recorded
 - [x] Pilot 1 synthetic semantic seed executed and recorded (taxonomy collisions → multi-axis separation; synthetic only)
 - [x] machine-readable UCID target schema v0
+- [x] calibration60 builder + validator + artifact upload configured
+- [x] pinned dependency/resource path: wn==1.1.1 + oewn:2025
+- [x] calibration60 sampling frozen: 10 polysemous lemmas × 6 noun senses
+- [x] raw OEWN source-record layer separated from UCID semantic annotation layer
+- [x] first CI run completed successfully
+- [x] persistent GitHub Actions CI for unit tests + Pilots 0–2
+- [x] unrestricted expected-cost baseline upgraded from entropy-only to exact Huffman prefix-code optimum
+- [x] Pilot 2 exact semantic-query overhead: expected +0.3333 questions; worst-case +2 (exploratory, uncalibrated)
+- [x] source-derived OEWN Pilot 2: 15 real senses (bank + spring)
 
 ## Main correction made during audit
 
@@ -103,12 +112,58 @@ Pause or split the project if:
 
 ## Current readiness
 
-**Engineering:** ready for Benchmark v0 source ingestion.
+**Engineering:** pinned lexical source ingestion implemented; calibration60 CI build is the current hard gate.
 
 **Theory:** baseline propositions and failure-mode distinctions are frozen enough for implementation; they remain revisable if a closer prior is found.
 
-**Empirical evidence:** not yet publication-grade. Pilot 0 and Pilot 1 are synthetic/combinatorial validation only.
+**Empirical evidence:** Pilot 2 is source-derived but still exploratory because semantic responses are not human calibrated. Pilots 0–1 remain synthetic/combinatorial.
 
-**Next real evidence step:** import/version open lexical/entity resources, construct a provenance-complete ~320-target Benchmark v0, then run the human/P6 calibration subset before confirmatory representation comparisons.
+**Next real evidence step:** freeze the generated 60-target OEWN source pool, create its P2/P6 human annotation packet, and calibrate semantic responses before expanding toward the ~320-target mixed Benchmark v0.
 
 The project should not spend more time expanding ontology prose before that evidence step unless a literature collision forces redesign.
+
+
+## Pilot 2 result
+
+Pilot 2 uses 15 source-derived OEWN senses: 9 noun senses of `bank` and 6 noun senses of `spring`.
+
+Source-native `lexname` alone leaves 5 collision groups, with pairwise separation coverage 0.9143. An exploratory 18-query semantic bank gives unique signatures for all 15 targets; the exact minimum static separating subset contains 12 questions.
+
+Under a uniform prior and unit question cost:
+
+- unrestricted Huffman-optimal expected binary cost: **3.9333**;
+- semantic exact-optimal expected cost: **4.2667**;
+- expected Semantic Query Overhead: **+0.3333 questions**;
+- unrestricted worst-case lower bound: **4**;
+- semantic exact-optimal worst case: **6**;
+- worst-case overhead: **+2 questions**.
+
+These are **exploratory engineering results** because the semantic response matrix is `machine_mapped_unreviewed`.
+
+## Calibration60
+
+The next lexical calibration set is generated from pinned `oewn:2025` through `wn==1.1.1`.
+
+Design:
+
+- 10 polysemous lemmas;
+- 6 noun senses per lemma;
+- 60 total source-derived targets;
+- grouped by lemma to prevent surface-form leakage;
+- source layer stores only OEWN-supported sense/synset/lexname/gloss/example data;
+- UCID semantic labels are added only after mapping/calibration.
+
+The builder intentionally fails if any selected lemma has fewer than six noun senses; it never silently replaces the sampling plan.
+
+## CI
+
+`.github/workflows/aris4c010-ci.yml` now runs:
+
+- query-complexity unit tests;
+- seed validation;
+- leakage split checks;
+- Pilots 0–2;
+- pinned OEWN calibration60 build/validation;
+- calibration60 artifact upload.
+
+The first pre-calibration60 CI run completed successfully. The new pinned-resource build is being validated by the updated workflow.
