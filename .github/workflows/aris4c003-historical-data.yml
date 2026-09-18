@@ -5,6 +5,10 @@ on:
   push:
     paths:
       - ".github/workflows/aris4c003-historical-data.yml"
+      - "papers/003-colonial-disciplinary-advantage/code/acquire_sources.py"
+      - "papers/003-colonial-disciplinary-advantage/code/build_coldat_exposures.py"
+      - "papers/003-colonial-disciplinary-advantage/code/build_coldat_imperial_intensity.py"
+      - "papers/003-colonial-disciplinary-advantage/code/build_primary_country_crosswalk.py"
 
 permissions:
   contents: write
@@ -52,6 +56,7 @@ jobs:
           python code/build_coldat_exposures.py \
             --years data/raw/coldat/years-colonized.csv \
             --colonizer-year data/raw/coldat/colonizer-by-country-year.csv \
+            --empire-counts data/raw/coldat/colonies-by-colonizer.csv \
             --output-dir data/derived
           python code/build_coldat_imperial_intensity.py \
             data/raw/coldat/COLDAT_colonies.tab \
@@ -74,6 +79,7 @@ jobs:
           d = Path("data/derived")
           exposure = pd.read_csv(d / "COLDAT_FORMER_COLONY_EXPOSURE.csv")
           intensity = pd.read_csv(d / "COLDAT_IMPERIAL_INTENSITY.csv")
+          intensity_owid = pd.read_csv(d / "COLDAT_IMPERIAL_INTENSITY_OWID_CHECK.csv")
           cross = pd.read_csv(d / "COUNTRY_CROSSWALK.csv")
           unresolved = pd.read_csv(d / "COUNTRY_CROSSWALK_UNRESOLVED.csv")
 
@@ -81,6 +87,23 @@ jobs:
           assert powers.issubset(set(exposure["iso3c"])), powers-set(exposure["iso3c"])
           assert set(intensity["iso3c"]) == powers
           assert intensity["cumulative_colony_years_ruled"].gt(0).all()
+          assert set(intensity_owid["iso3c"]) == powers
+          cmp = intensity[
+              ["iso3c","cumulative_colony_years_ruled"]
+          ].merge(
+              intensity_owid[["iso3c","cumulative_colony_years_ruled"]],
+              on="iso3c",
+              suffixes=("_original","_owid"),
+              validate="one_to_one",
+          )
+          cmp["abs_diff"] = (
+              cmp["cumulative_colony_years_ruled_original"]
+              - cmp["cumulative_colony_years_ruled_owid"]
+          ).abs()
+          cmp["rel_diff"] = cmp["abs_diff"] / cmp[
+              "cumulative_colony_years_ruled_owid"
+          ].clip(lower=1)
+          assert cmp["rel_diff"].max() <= 0.03, cmp.to_dict("records")
           assert cross["status"].eq("RESOLVED").all()
           assert len(unresolved) == 0
           assert exposure["iso3c"].is_unique
@@ -93,6 +116,8 @@ jobs:
               "imperial_centers": intensity[
                   ["iso3c","cumulative_colony_years_ruled","distinct_colonies","peak_simultaneous_colonies"]
               ].to_dict("records"),
+              "imperial_intensity_crosscheck_max_relative_difference": float(cmp["rel_diff"].max()),
+              "imperial_intensity_crosscheck": cmp.to_dict("records"),
               "status": "PASS",
           }
           Path("process/HISTORICAL_DATA_AUDIT.json").write_text(
@@ -110,6 +135,7 @@ jobs:
           git add data/derived/COLDAT_COLONIZER_IDENTITY.csv
           git add data/derived/COLDAT_RULER_PROFILE_LOWER_BOUND.csv
           git add data/derived/COLDAT_IMPERIAL_INTENSITY.csv
+          git add data/derived/COLDAT_IMPERIAL_INTENSITY_OWID_CHECK.csv
           git add data/derived/COUNTRY_CROSSWALK.csv
           git add data/derived/COUNTRY_CROSSWALK_UNRESOLVED.csv
           git add process/HISTORICAL_DATA_AUDIT.json
