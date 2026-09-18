@@ -18,7 +18,7 @@ These tables are manuscript-facing summaries. Source-of-truth numerical outputs 
 | Representation | Languages | Features | Tree Spearman | Circular Spearman | Difference | Tree win fraction |
 |---|---:|---:|---:|---:|---:|---:|
 | TLI | 644 | 60 | **0.182** | 0.109 | +0.073 | 1.00 (20/20) |
-| GBI | 1,140 | 60 | **0.122** | 0.073 | +0.049 | 1.00 |
+| GBI | 1,140 | 60 | **0.122** | 0.073 | +0.049 | 1.00 (12/12) |
 | WALS | 2,659 | 30 | **0.603** | 0.410 | +0.193 | 1.00 (8/8) |
 
 **Do not compare absolute effect magnitudes directly across rows.** Coverage, missingness, feature definitions and curation differ.
@@ -56,3 +56,22 @@ Local-periodic candidate gate: circle Spearman ≥ 0.15, within 0.03 of best non
 | WALS macroarea mean | **0.634 ± 0.075** |
 
 The WALS result prevents a universal claim that cross-linguistic association geometry necessarily collapses across regions.
+
+
+## Table 6. Stage inventory and feature-selection rules
+
+| Stage | Representation | Languages | Feature scope | Selection / evaluation rule |
+|---|---|---:|---|---|
+| 0 compression | TLI | 644 | first 120 usable features | mode imputation → one-hot encoding → TruncatedSVD; column-wise shuffle null |
+| 0 association | TLI | 644 | first 80 usable features | jointly observed pairs; within-pair permutation null |
+| 1 | TLI | 644 | 60 | ≥180 observations, 2–15 states; rank by coverage then lower cardinality |
+| 1B | TLI | 644 | 40 and 60 | same eligible pool; direct circular-angle optimization |
+| 1C | TLI | 644 | predefined domains (14–40) | TLI published grouping metadata; no post-hoc domain selection |
+| 1D | TLI | 644 | 40 and 60 | family-held-out circularity/closure sensitivity |
+| 1E | TLI | 644 | 60 | macroarea / coordinate-cluster blocks, including geography+family variants |
+| 1F | TLI | 644 | 60 | 20 valid top-level-family-held-out splits |
+| 1G | TLI | 644 | 60 | geographic blocks vs matched-size random test sets |
+| 1H | GBI | 1,140 | 60 | ≥180 observations, 2–15 states; coverage/lower-cardinality ranking; 12 valid family splits |
+| 1I | WALS | 2,659 | 30 | ≥250 observations, 2–20 states; best-covered parameters; 8 valid family splits |
+
+The table summarizes manuscript-facing rules. Exact seeds, support thresholds and implementation details remain in the archived stage scripts and JSON outputs.
