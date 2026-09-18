@@ -56,6 +56,7 @@ jobs:
             papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/sample_metadata.csv
             papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/characteristic_field_inventory.csv
             papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/bounded_pilot2_overlap_sample.csv
+            papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/bounded_independent_panclock_holdout.csv
             papers/007-cross-species-age-equivalence/data/pilot3b_geo_metadata/upstream_pilot0_run.json
           if-no-files-found: error
           retention-days: 30
