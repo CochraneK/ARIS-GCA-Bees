@@ -303,17 +303,17 @@ def main() -> int:
         if stratum:
             raw_strata[stratum].append(doi)
 
-    candidate_dois = sorted({doi for values in raw_strata.values() for doi in values})
-    resolved = bulk_lookup_dois(candidate_dois, args.start, args.end, args.corpus)
-
-    resolved_strata: dict[str, list[str]] = defaultdict(list)
-    for stratum, dois in raw_strata.items():
-        resolved_strata[stratum] = sorted({doi for doi in dois if doi in resolved})
-
+    # Sample directly from the frozen RW DOI frame. Resolving every candidate
+    # into OpenAlex is unnecessary: for a target paper in stratum s, p_enrich
+    # is exactly n_s / N_s. Only selected enrichment DOIs need lookup.
     rng = random.Random(args.seed)
     p_enrich_by_stratum: dict[str, float] = {}
     enrichment_selected: dict[str, str] = {}
-    for stratum, population in sorted(resolved_strata.items()):
+    raw_population_by_stratum: dict[str, list[str]] = {}
+
+    for stratum, dois in sorted(raw_strata.items()):
+        population = sorted(set(dois))
+        raw_population_by_stratum[stratum] = population
         target_n = min(max(targets.get(stratum, 0), 0), len(population))
         p_enrich_by_stratum[stratum] = (
             target_n / len(population) if population else 0.0
@@ -325,6 +325,10 @@ def main() -> int:
         )
         for doi in chosen:
             enrichment_selected[doi] = stratum
+
+    resolved = bulk_lookup_dois(
+        sorted(enrichment_selected), args.start, args.end, args.corpus
+    )
 
     random_works = random_openalex_sample(
         args.start, args.end, args.corpus, args.random_n, args.seed
@@ -341,7 +345,9 @@ def main() -> int:
             }
 
     for doi, stratum in enrichment_selected.items():
-        work = resolved[doi]
+        work = resolved.get(doi)
+        if work is None:
+            continue
         work_id = str(work["id"])
         record = selected.setdefault(
             work_id,
@@ -351,7 +357,7 @@ def main() -> int:
         record["enrichment_stratum"] = stratum
 
     doi_to_stratum: dict[str, str] = {}
-    for stratum, dois in resolved_strata.items():
+    for stratum, dois in raw_population_by_stratum.items():
         for doi in dois:
             doi_to_stratum[doi] = stratum
 
@@ -437,16 +443,26 @@ def main() -> int:
             "seed": args.seed,
         },
         "rw_enrichment": {
-            "raw_unique_candidate_dois": len(candidate_dois),
-            "resolved_target_universe_dois": len(resolved),
+            "raw_unique_candidate_dois": len(
+                {
+                    doi
+                    for values in raw_population_by_stratum.values()
+                    for doi in values
+                }
+            ),
             "raw_stratum_sizes": {
-                key: len(set(values)) for key, values in raw_strata.items()
+                key: len(values)
+                for key, values in raw_population_by_stratum.items()
             },
-            "resolved_stratum_sizes": {
-                key: len(values) for key, values in resolved_strata.items()
-            },
+            "selected_enrichment_dois_requested": len(enrichment_selected),
+            "selected_enrichment_dois_resolved_to_target_universe": len(resolved),
             "targets": targets,
             "p_enrich_by_stratum": p_enrich_by_stratum,
+            "design_note": (
+                "p_enrich is defined on the frozen RW DOI stratum before "
+                "OpenAlex resolution. This preserves exact first-order selection "
+                "probability for target-universe works in that stratum."
+            ),
         },
         "sample": {
             "unique_selected_works": len(rows),
@@ -460,6 +476,7 @@ def main() -> int:
         "warnings": [
             "Retraction Watch/OpenAlex signals are screening variables, not adjudicated truth.",
             "The population-random component is required for prevalence inference.",
+            "Enrichment probabilities are defined on the frozen RW DOI frame before OpenAlex resolution.",
             "No nationality, institution, or language feature is used as a suspicion detector.",
             "This seed sample cannot identify latent prevalence without manual adjudication and calibrated detector performance.",
         ],
