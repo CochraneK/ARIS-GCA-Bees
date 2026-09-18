@@ -175,6 +175,18 @@ Frozen collection:
 
 UK remains a portability/benchmark track, but China-first internet mining is now the primary expansion direction.
 
+## Cross-source identity layer
+
+A stable-ID-only cross-source entity resolver is now implemented and covered by CI.
+
+Policy:
+- exact shared CN-USCC → deterministic `SAME_ORG` auto-merge;
+- exact normalized organization name without a shared stable ID → `REVIEW_CANDIDATE` only;
+- name similarity, organization type, geography, mission, nationality or other contextual resemblance never auto-merges entities;
+- every resolution object carries `corruption_inference=false`.
+
+This advances the China procurement graph beyond source-local nodes without turning ambiguous name matching into asserted relationships.
+
 ## Immediate next work
 
 1. extend the now-working CCGP procurement graph with cross-source organization resolution and source provenance;
