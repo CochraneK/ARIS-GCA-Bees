@@ -4,7 +4,7 @@
   "title": "Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data",
   "short_title": "Public Integrity Forensics",
   "year": 2026,
-  "status": "china-pilot0-live-feasibility-frozen-cross-source-entity-graph-next",
+  "status": "china-pilot0-stable-id-proven-cross-source-enrichment-next",
   "domain": "public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics",
   "summary": "An auditable multi-source public-integrity agent that mines structured and web-native public records across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations and suppliers, builds a time-aware evidence graph, and produces reproducible human-review leads without equating anomalies, public-office status, organizational identity or web allegations with corruption.",
   "authors": [
@@ -42,7 +42,9 @@
     "china_universe_workflow": ".github/workflows/aris4c014-china-universe-smoke.yml",
     "china_ccgp_adapter": "code/china_ccgp.py",
     "china_ccgp_detail_adapter": "code/china_ccgp_detail.py",
-    "china_universe_adapter": "code/china_universe.py"
+    "china_universe_adapter": "code/china_universe.py",
+    "china_procurement_graph": "code/china_procurement_graph.py",
+    "china_ccgp_uscc_workflow": ".github/workflows/aris4c014-china-ccgp-uscc-smoke.yml"
   },
   "tags": [
     "ARIS",
