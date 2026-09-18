@@ -14,36 +14,39 @@ permissions:
 jobs:
   verify-r-package:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 15
     env:
       PAPER_DIR: papers/006-chinese-alphabetical-exposure
     steps:
       - uses: actions/checkout@v4
-
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: "4.5.1"
 
-      - name: Install ChineseNames from R-universe
+      - name: Download official ChineseNames 2025.8 source package
         shell: bash
         run: |
-          Rscript -e 'options(repos=c(psychbruce="https://psychbruce.r-universe.dev", CRAN="https://cloud.r-project.org")); install.packages("ChineseNames", dependencies=NA)'
-          Rscript -e 'v <- as.character(packageVersion("ChineseNames")); cat("ChineseNames version:",v,"\n"); stopifnot(v=="2025.8")'
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw/pkg"
+          curl -L --fail --retry 5 --retry-delay 2             "https://psychbruce.r-universe.dev/src/contrib/ChineseNames_2025.8.tar.gz"             -o "$PAPER_DIR/data/raw/ChineseNames_2025.8.tar.gz"
+          sha256sum "$PAPER_DIR/data/raw/ChineseNames_2025.8.tar.gz" | tee "$PAPER_DIR/data/raw/source_tarball.sha256"
+          tar -xzf "$PAPER_DIR/data/raw/ChineseNames_2025.8.tar.gz" -C "$PAPER_DIR/data/raw/pkg"
+          test -f "$PAPER_DIR/data/raw/pkg/ChineseNames/DESCRIPTION"
 
       - name: Download engineering mirror
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$PAPER_DIR/data/raw"
           curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv"             -o "$PAPER_DIR/data/raw/familyname.csv"
           test "$(($(wc -l < "$PAPER_DIR/data/raw/familyname.csv") - 1))" -eq 1806
 
-      - name: Verify package familyname against mirror
+      - name: Verify official source package against mirror
         working-directory: ${{ env.PAPER_DIR }}
         run: |
-          Rscript code/18_verify_chinesenames_r_package.R             data/raw/familyname.csv             data/pilot/chinesenames_r_verify
+          Rscript code/18_verify_chinesenames_r_package.R             data/raw/pkg/ChineseNames             data/raw/familyname.csv             data/pilot/chinesenames_r_verify
+          cp data/raw/source_tarball.sha256 data/pilot/chinesenames_r_verify/source_tarball.sha256
 
-      - name: Remove downloaded mirror
+      - name: Remove downloaded package/mirror
         if: always()
         working-directory: ${{ env.PAPER_DIR }}
         run: rm -rf data/raw
@@ -54,6 +57,7 @@ jobs:
           name: aris4c006-chinesenames-r-verify
           path: |
             ${{ env.PAPER_DIR }}/data/pilot/chinesenames_r_verify/manifest.json
-            ${{ env.PAPER_DIR }}/data/pilot/chinesenames_r_verify/familyname_from_package.csv
+            ${{ env.PAPER_DIR }}/data/pilot/chinesenames_r_verify/familyname_from_source_package.csv
+            ${{ env.PAPER_DIR }}/data/pilot/chinesenames_r_verify/source_tarball.sha256
           if-no-files-found: error
           retention-days: 30
