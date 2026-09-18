@@ -23,7 +23,7 @@ from pathlib import Path
 
 from baselines import baseline_score, cutoff_features
 from historical_backtest import PaperHistory, evaluate_outcome_matrix
-from openalex_adapter import reconstruct_history_from_openalex, sample_works
+from openalex_adapter import reconstruct_history_for_known_work, sample_works
 from outcome_labels import build_outcome_record, outcome_bundle
 
 
@@ -88,8 +88,10 @@ def run_cohort(
         if work.publication_year is None:
             continue
 
-        _, history = reconstruct_history_from_openalex(
-            work.openalex_id,
+        # The target Work metadata came from sample_works already. Reusing it
+        # avoids one redundant API lookup per paper.
+        history = reconstruct_history_for_known_work(
+            work,
             publication_year=int(work.publication_year),
             end_year=observation_end_year,
             api_key=api_key,
