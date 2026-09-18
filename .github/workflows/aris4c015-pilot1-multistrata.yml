@@ -1,0 +1,184 @@
+name: ARIS4C015 Pilot 1 Multi-Stratum
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilot1-multistrata.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  stratum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - slug: physics_1980
+            year: 1980
+            field_id: 31
+            field_name: Physics and Astronomy
+            seed: 15015
+            cutoff: 1995
+            horizon: 15
+          - slug: medicine_1980
+            year: 1980
+            field_id: 27
+            field_name: Medicine
+            seed: 27015
+            cutoff: 1995
+            horizon: 15
+          - slug: social_1980
+            year: 1980
+            field_id: 33
+            field_name: Social Sciences
+            seed: 33015
+            cutoff: 1995
+            horizon: 15
+          - slug: physics_1990
+            year: 1990
+            field_id: 31
+            field_name: Physics and Astronomy
+            seed: 31590
+            cutoff: 2000
+            horizon: 10
+          - slug: computer_science_1990
+            year: 1990
+            field_id: 17
+            field_name: Computer Science
+            seed: 17015
+            cutoff: 2000
+            horizon: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Pilot 1 stratum
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilot1_openalex_cohort.py \
+            --sample-size 20 \
+            --seed ${{ matrix.seed }} \
+            --filters "publication_year:${{ matrix.year }},type:article,primary_topic.field.id:${{ matrix.field_id }}" \
+            --cutoff-year ${{ matrix.cutoff }} \
+            --observation-end-year 2011 \
+            --beauty-fraction 0.20 \
+            --acceleration-fraction 0.20 \
+            --uptake-fraction 0.50 \
+            --awakening-horizon-years ${{ matrix.horizon }} \
+            --review-budget-k 5 \
+            --output "../data/pilot1_${{ matrix.slug }}.json"
+
+      - name: Validate stratum
+        env:
+          SLUG: ${{ matrix.slug }}
+          FIELD_ID: ${{ matrix.field_id }}
+          YEAR: ${{ matrix.year }}
+          CUTOFF: ${{ matrix.cutoff }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          slug = os.environ["SLUG"]
+          result = json.loads(
+              Path(
+                  "papers/015-sleeping-beauty-miner/data/"
+                  f"pilot1_{slug}.json"
+              ).read_text(encoding="utf-8")
+          )
+
+          assert result["sampling"]["sample_size_analyzed"] >= 15
+          expected_filter = (
+              f"publication_year:{os.environ['YEAR']},"
+              "type:article,"
+              f"primary_topic.field.id:{os.environ['FIELD_ID']}"
+          )
+          assert result["sampling"]["filters"] == expected_filter
+          assert (
+              result["temporal_design"]["feature_cutoff_year"]
+              == int(os.environ["CUTOFF"])
+          )
+          assert len(result["outcome_baseline_matrix"]) == 7
+          print(json.dumps({
+              "slug": slug,
+              "n": result["sampling"]["sample_size_analyzed"],
+              "outcome_summary": result["outcome_summary"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilot1-stratum-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/pilot1_${{ matrix.slug }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: stratum
+    if: ${{ always() && needs.stratum.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-pilot1-stratum-*
+          path: papers/015-sleeping-beauty-miner/data/multistrata
+          merge-multiple: true
+
+      - name: Aggregate macro results
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python aggregate_pilot1.py \
+            ../data/multistrata/pilot1_*.json \
+            --output ../data/pilot1_multistrata_aggregate.json
+
+      - name: Validate aggregate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path(
+                  "papers/015-sleeping-beauty-miner/data/"
+                  "pilot1_multistrata_aggregate.json"
+              ).read_text(encoding="utf-8")
+          )
+          assert result["n_strata"] == 5
+          assert result["total_papers_analyzed"] >= 75
+          assert "delayed_recognition_consensus" in result["metrics"]
+          assert (
+              "delayed_recognition_with_uptake_floor"
+              in result["metrics"]
+          )
+          print(json.dumps({
+              "n_strata": result["n_strata"],
+              "total_papers_analyzed": result["total_papers_analyzed"],
+              "ndcg_winner_counts": result["ndcg_winner_counts"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilot1-multistrata-aggregate
+          path: papers/015-sleeping-beauty-miner/data/pilot1_multistrata_aggregate.json
+          if-no-files-found: error
+          retention-days: 30
