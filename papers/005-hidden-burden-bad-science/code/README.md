@@ -1,75 +1,68 @@
 # Code — ARIS4C005
 
-## Current executable modules
+## Executable pipeline
 
-### `build_universe.py`
+### Denominator / detected lower bound
 
-Queries the OpenAlex Works API and writes annual target-universe counts plus query provenance.
+- `build_universe.py` — OpenAlex annual target-universe counts + query provenance.
+- `classify_retractions.py` — conservative Retraction Watch screening flags; never an adjudicated truth label.
+- `summarize_retractions.py` — event-row vs unique-work public-safe correction snapshot.
 
-Primary frozen definition:
+Primary Pilot A denominator:
 
 `OpenAlex core + article|review + publication years 2000–2025`.
 
-This constructs a denominator only; it does not estimate misconduct.
+### Pilot B sampling / adjudication
 
-### `classify_retractions.py`
+- `build_pilot_b_seed.py` — real OpenAlex population-random sample + stratified Retraction Watch enrichment with exact first-order inclusion probabilities/design weights.
+- `pilot_b_sample.py` — generic two-phase probability-aware sampling utility.
+- `make_adjudication_packet.py` — blinded reviewer packet + manager-only detector/sampling linkage.
+- `make_micro_pilot.py` — 60-work balanced cross-domain protocol stress-test; explicitly not a prevalence sample.
+- `merge_adjudications.py` — fail-closed vocabulary QA, reviewer/linkage merge and disagreement reporting.
+- `calibrate_detectors.py` — design-weighted calibration diagnostics: sensitivity/specificity/PPV/NPV, missingness and Kish effective sample size.
 
-Maps raw Retraction Watch multi-label reasons to conservative screening variables:
+Current real Pilot B seed:
 
-- narrow E1-S;
-- strong E1-M;
-- strong E1-P;
-- paper-mill signal;
-- major-error signal;
-- manual scientific/process review.
+- target years: 2015–2020;
+- target denominator: **38,451,124** core article/review works;
+- population-random sample: **600**;
+- resolved Retraction Watch enrichment: **739**;
+- unique seed: **1,339**;
+- micro-pilot: **60 works / 120 double-coded assignments**.
 
-Automatic flags are screening variables, not adjudicated truth.
+These are sampling-infrastructure counts, **not severe-failure prevalence**.
 
-### `summarize_retractions.py`
+### Scenario / later burden modules
 
-Produces a public-safe aggregate snapshot:
+- `scenario_model.py` — transparent Monte Carlo/Fermi scenarios tagged `SCENARIO_NOT_EMPIRICAL_ESTIMATE`.
 
-- event rows;
-- unique original-paper DOI counts;
-- row-level and unique-work flag counts;
-- real parsed date range;
-- reason frequencies;
-- provenance/checksum.
+Next empirical modules:
 
-Raw Retraction Watch input is not committed.
+```text
+citation_dependence.py
+contamination_graph.py
+knowledge_ghost_half_life.py
+latent_prevalence.py
+rly_cost.py
+innovation_delay.py
+sleeping_beauty.py
+```
 
-### `pilot_b_sample.py`
+Semantic contamination may progress while human Pilot B adjudication is pending; latent prevalence may not.
 
-Creates the two-phase Pilot B adjudication sample using independent Bernoulli/Poisson components:
+---
 
-1. population-random probability `p_r`;
-2. detector-enrichment probability `p_e`.
+## Core sampling formula
 
-Exact first-order inclusion probability:
+For a work reachable through independent population-random and enrichment mechanisms:
 
-`pi = 1 - (1 - p_r)(1 - p_e)`
+`pi_i = 1 - (1 - p_random)(1 - p_enrich,s)`
 
-Every selected paper stores `pi` and `1/pi` design weight. CLI sample-size targets are expected counts.
+Primary design weight:
 
-### `calibrate_detectors.py`
+`w_i = 1 / pi_i`
 
-Computes design-weighted calibration diagnostics against resolved manual adjudications:
-
-- severe-failure prevalence point estimate;
-- detector sensitivity/specificity/PPV/NPV;
-- detector missingness;
-- Kish effective sample size;
-- engineering identification gate.
-
-This is **not** the final Bayesian latent prevalence model.
-
-### `scenario_model.py`
-
-Runs transparent Monte Carlo/Fermi scenarios from external parameter JSON. Every output is tagged:
-
-`SCENARIO_NOT_EMPIRICAL_ESTIMATE`.
-
-Scenario output cannot enter the evidence ledger as a finding without empirical calibration.
+Enrichment-only raw sample proportions must never be interpreted as population prevalence.
 
 ---
 
@@ -77,41 +70,30 @@ Scenario output cannot enter the evidence ledger as a finding without empirical 
 
 GitHub Actions compiles all Python sources and runs invariant unit tests.
 
-Current protected invariants include:
+Protected invariants include:
 
 - plagiarism is not automatically false science;
 - honest major error is not misconduct;
 - investigation alone is not misconduct;
 - paper-mill signal is not automatically E1-S;
-- Pilot B inclusion probabilities follow the frozen two-phase design;
-- unresolved adjudications are not silently recoded negative;
+- unresolved/indeterminate adjudications are not silently recoded as negatives;
+- enrichment samples retain explicit inclusion probabilities/design weights;
+- reviewer packets hide detector/sampling metadata;
+- invalid adjudication vocabularies fail closed;
+- the micro-pilot spans available broad domains within signal groups;
 - scenario outputs remain labelled non-empirical.
 
 ---
 
-## Pilot B data governance
+## Data governance
 
 See:
 
 - `../process/ADJUDICATION_PROTOCOL.md`
 - `../process/PILOT_B_DATA_CONTRACT.md`
+- `../process/PILOT_B_SEED_RESULTS.md`
 - `../data/adjudication_template.csv`
 
-No public unretracted-author fraud-score list is allowed.
+The canonical public repository stores aggregate provenance/results. Row-level adjudication seed artifacts stay outside the public tree to avoid publishing an unretracted-author suspicion list.
 
----
-
-## Next modules
-
-```text
-build_pilot_b_frame.py
-latent_prevalence.py
-citation_dependence.py
-contamination_graph.py
-knowledge_ghost_half_life.py
-rly_cost.py
-innovation_delay.py
-sleeping_beauty.py
-```
-
-Implementation order follows empirical gates rather than story order.
+No nationality, institution, language, journal reputation or coauthor network may function as a primary suspicion prior.
