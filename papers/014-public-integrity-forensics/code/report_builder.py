@@ -7,14 +7,10 @@ defined by the Agent Skill JSON schemas.
 from __future__ import annotations
 
 from datetime import date
-from typing import Any, Iterable, Optional
+from typing import Any, Optional
 
 from evidence_graph import build_evidence_graph
-from open_integrity_agent import (
-    Finding,
-    IntegrityCase,
-    OpenIntegrityAgent,
-)
+from open_integrity_agent import IntegrityCase, OpenIntegrityAgent
 
 
 ALL_SOURCE_FAMILIES = {
@@ -46,16 +42,6 @@ def build_report(
     engine = agent or OpenIntegrityAgent()
     raw = engine.run(case)
 
-    # Re-run via detector objects to preserve Finding instances for graph nodes.
-    finding_objs: list[Finding] = []
-    for detector in engine.detectors:
-        try:
-            finding_objs.append(detector.run(case))
-        except Exception:
-            # The engine report already captures detector errors. Graph omission
-            # of an exception finding is safer than inventing a second error ID.
-            continue
-
     covered = sorted(case.source_coverage)
     missing = sorted(ALL_SOURCE_FAMILIES - set(case.source_coverage))
 
@@ -67,8 +53,8 @@ def build_report(
             time_reason = "track_a_requires_cutoff"
         else:
             # Case-level conservative gate: every direct contract source with a
-            # known publication date must be <= cutoff, and unknown publication
-            # dates make the case incomplete for historical evaluation.
+            # known publication date must be <= cutoff; an unknown publication
+            # time is not silently replaced with retrieval time.
             dates = [x.published_at for x in case.contract.source_refs]
             if not dates or any(x is None for x in dates):
                 time_eligible = False
@@ -111,7 +97,7 @@ def build_report(
             "missing": missing,
         },
         "findings": raw["findings"],
-        "evidence_graph": build_evidence_graph(case, finding_objs),
+        "evidence_graph": build_evidence_graph(case, raw["findings"]),
         "review_priority": priority,
         "corruption_inference": False,
         "interpretation": (
