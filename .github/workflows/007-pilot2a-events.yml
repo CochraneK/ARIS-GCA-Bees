@@ -1,0 +1,63 @@
+name: ARIS4C007 Pilot 2A held-out events
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot2a-events.yml"
+      - "papers/007-cross-species-age-equivalence/code/build_pilot2a_events.py"
+      - "papers/007-cross-species-age-equivalence/code/age_mappings.py"
+      - "papers/007-cross-species-age-equivalence/code/build_pilot1_demography.py"
+      - "papers/007-cross-species-age-equivalence/data/sources/translating_time_2026/**"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  heldout-events:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve canonical successful Pilot 0 artifact
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot0
+          RUNS_JSON="$(gh run list             --workflow 007-pilot0.yml             --status success             --limit 1             --json databaseId,headSha,createdAt,url,conclusion)"
+          PILOT0_RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.[0].databaseId // empty')"
+          test -n "$PILOT0_RUN_ID"
+
+          gh run view "$PILOT0_RUN_ID"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot0_run.json
+
+          gh run download "$PILOT0_RUN_ID"             --name aris4c007-pilot0             --dir data/upstream/pilot0
+
+          test -s data/upstream/pilot0/pilot0/coverage_summary.json
+          test -s data/upstream/pilot0/pilot0/life_history_mapping_grid.csv
+
+      - name: Run held-out observed-event benchmark
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/build_pilot2a_events.py             --pilot0-grid data/upstream/pilot0/pilot0/life_history_mapping_grid.csv             --pilot0-coverage data/upstream/pilot0/pilot0/coverage_summary.json             --table-s1 data/sources/translating_time_2026/TableS1__Sheet1.csv             --out data/pilot2a_events
+          cp data/upstream/pilot0_run.json             data/pilot2a_events/upstream_pilot0_run.json
+          cat data/pilot2a_events/summary.json
+
+      - name: Upload Pilot 2A artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot2a-events
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot2a_events/summary.json
+            papers/007-cross-species-age-equivalence/data/pilot2a_events/heldout_event_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot2a_events/upstream_pilot0_run.json
+          if-no-files-found: error
+          retention-days: 30
