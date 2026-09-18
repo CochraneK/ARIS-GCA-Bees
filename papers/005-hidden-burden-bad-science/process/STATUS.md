@@ -1,14 +1,14 @@
 # STATUS — ARIS4C005
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT_B_REAL_FRAME_COMPLETE / MICRO_ADJUDICATION_READY`  
+**State:** `PILOT_B_COMPLETE / AI_ADJUDICATION_READY / CONTAMINATION_PILOT_LIVE`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
 
 **The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures**
 
-Scope remains frozen. Pilot A and the real probability-traceable Pilot B seed frame are complete; the next prevalence-critical dependency is independent human adjudication.
+Scope remains frozen. Pilot A and Pilot B engineering are complete. The prevalence-critical dependency is now calibrated AI adjudication rather than human-only review; semantic contamination and design-simulation modules are active in parallel.
 
 ---
 
@@ -66,6 +66,33 @@ Scope remains frozen. Pilot A and the real probability-traceable Pilot B seed fr
 
 ---
 
+
+## Pilot D — citation exposure / ghost pilot
+
+- [x] Semantic citation-edge ontology frozen.
+- [x] Raw citation exposure pilot executed on 25 high-propagation narrow E1-S sources.
+- [x] 914 candidate sources resolved; top 25 selected as a deliberate stress-test.
+- [x] 7,443 observed incoming citation exposures across selected sources.
+- [x] 1,753 exposures occurred after the source retraction date (**23.55%** of observed exposure in this non-representative stress-test).
+- [x] 486 post-retraction citation edges sampled for semantic adjudication.
+- [x] Citation Ghost Half-Life estimator implemented with right censoring.
+- [x] Corrected yearly-series bug; current descriptive pilot: 23 estimable sources, 20 half-life events, 3 right-censored, Kaplan–Meier median 1 year.
+- [ ] Dependence Ghost Half-Life pending semantic citation-context adjudication.
+
+**Interpretation:** raw citation exposure decays faster than cumulative exposure disappears. The 1-year median is descriptive for deliberately high-citation sources and is not a global contamination half-life.
+
+## AI adjudication / confirmatory design
+
+- [x] AI adjudication protocol frozen.
+- [x] Locked prompt v1 frozen.
+- [x] Dual-AI consensus/arbitration merger implemented.
+- [x] AI error design scenarios executed.
+- [x] Random-audit design simulation executed.
+- [x] Confirmatory random sample decision: **5,000 minimum / 10,000 preferred**.
+- [ ] Execute scaled full-period random audit packet.
+- [ ] Run dual-AI adjudication + arbitration.
+- [ ] Calibrate AI error using high-confidence anchors and sensitivity analysis.
+
 # Live Pilot A anchors
 
 Primary target denominator:
@@ -116,7 +143,7 @@ Completed real 2015–2020 seed frame:
 
 See `process/PILOT_B_SEED_RESULTS.md` and `data/pilot/pilot_b_seed_summary.json`.
 
-## GATE B2 — manual adjudication — PENDING
+## GATE B2 — calibrated adjudication — READY FOR AI EXECUTION
 
 A balanced cross-domain **60-work / 120-assignment** double-coded micro-pilot is ready.
 
@@ -133,7 +160,7 @@ Broad domains represented: Social, Physical, Health and Life Sciences.
 
 The micro-pilot is strictly for ontology usability, disagreement, access and review-effort diagnostics. It is **not** a prevalence sample.
 
-A real article-level prevalence estimate still requires independent human adjudication. Engineering calibration threshold remains:
+A real article-level prevalence estimate still requires independent, calibrated adjudication; AI may supply most labels, but model error must be estimated or sensitivity-tested. Engineering calibration threshold remains:
 
 - >=100 resolved population-random adjudications;
 - >=1 detector with estimable sensitivity and specificity.
@@ -165,13 +192,14 @@ Innovation Delay requires valid matched topic controls and pre-trends. Permanent
 
 # Next execution queue
 
-1. **Human independently adjudicate the 60-work micro-pilot** (120 assignments).
-2. Run `merge_adjudications.py` to quantify disagreement, indeterminate/access failures and ontology friction.
-3. Revise/freeze the adjudication manual only if the micro-pilot reveals systematic ambiguity.
-4. Scale adjudication to the publication-sized probability sample and run `calibrate_detectors.py`.
-5. Only after real calibration, fit the latent prevalence model.
-6. **In parallel**, execute the semantic contamination pilot: citation-edge dependence taxonomy → validated manual/LLM-assisted screening → SCF/KGH graph.
-7. Keep RLY/cost, Innovation Delay and Sleeping Beauty behind their existing empirical gates.
+1. Build the **scaled 2000–2025 population-random audit** (5,000 minimum; 10,000 preferred) with explicit inclusion probabilities.
+2. Batch it into model-ready blinded packets with locked prompt/version metadata.
+3. Run two independent AI adjudicators plus arbitration; preserve abstentions and disagreements.
+4. Calibrate AI error using formal/high-confidence anchors and sensitivity scenarios.
+5. Fit the latent prevalence model only after adjudicator calibration is available.
+6. Run AI semantic adjudication on the 486 sampled post-retraction citation edges.
+7. Upgrade Citation Ghost Half-Life to **Dependence Ghost Half-Life** from semantic edges.
+8. Continue RLY/cost, Innovation Delay and Sleeping Beauty behind their empirical gates.
 
 ---
 
