@@ -52,7 +52,8 @@ Key prior work includes:
 - Du & Wu (2018), *Scientometrics*, DOI: 10.1007/s11192-018-2780-0 — Bcp for under-cited Sleeping Beauties.
 - Miura et al. (2021), *Applied Network Science*, DOI: 10.1007/s41109-021-00389-0 — large-scale Sleeping Beauty / Prince extraction.
 - *Early identification of breakthrough research from sleeping beauties using machine learning* (2024), *Journal of Informetrics* 18(2):101517 — prospective ML framing.
-- SciSciNet (2023), *Scientific Data*, DOI: 10.1038/s41597-023-02198-9 — open science-of-science data including precomputed Sleeping Beauty coefficients.
+- SciSciNet (2023), *Scientific Data*, DOI: 10.1038/s41597-023-02198-9 — large science-of-science benchmark data and precomputed Sleeping Beauty metrics.
+- **SciSciNet-v2** — refreshed OpenAlex-based release with substantially larger publication, citation and patent-linkage coverage.
 
 015 targets the integration gap: **open/reproducible data, time-safe prospective backtesting, multi-signal evidence fusion, integrity-aware quarantine, explainable candidate dossiers, and explicit Prince / awakening-path analysis.**
 
@@ -188,12 +189,21 @@ Benchmark against:
 
 Preferred sources, subject to current licensing and coverage:
 
-- **OpenAlex** — works, citation graph, topics, authorship metadata and yearly citation information where available.
-- **SciSciNet** — large-scale science-of-science tables and precomputed Sleeping Beauty coefficient for implementation cross-checks.
+- **SciSciNet-v2 (preferred large-scale backbone)** — refreshed OpenAlex-based science-of-science data with citation and patent linkages.
+- **SciSciNet v1** — useful for reproducing published Sleeping Beauty metrics and cross-checking the B implementation.
+- **OpenAlex** — canonical IDs, works, references, citations, topics and authorship metadata.
 - **Crossref** — DOI metadata and update / relation metadata.
 - **OpenCitations** — open citation edges for cross-validation where useful.
 - **PubMed / Europe PMC** — biomedical metadata and full-text-linked signals where available.
-- patent / NPL sources only where reproducible access and licensing permit.
+
+### Important OpenAlex caveat
+
+The `counts_by_year` field on a Work exposes only roughly the most recent ten years of yearly citation counts and omits zero-citation years. It therefore cannot by itself reconstruct a decades-long Sleeping Beauty trajectory.
+
+For historical SB work, 015 must either:
+
+1. reconstruct yearly citations from citation edges joined to citing-paper publication years; or
+2. use a dataset such as SciSciNet / SciSciNet-v2 that contains the necessary graph structure or precomputed metrics.
 
 Commercial or restricted sources may be used for external validation, but the canonical benchmark should remain reproducible from open data if feasible.
 
@@ -201,12 +211,18 @@ Commercial or restricted sources may be used for external validation, but the ca
 
 **PROJECT INITIALIZED / AGENT SPECIFICATION v0.1.**
 
-Immediate next steps:
+Completed:
+1. deterministic Beauty Coefficient B implementation;
+2. deterministic awakening-time implementation;
+3. synthetic unit tests;
+4. agent contract;
+5. historical-cutoff benchmark design;
+6. 011 integration contract.
 
-1. build a deterministic retrospective metric module (B + awakening time);
-2. create a tiny known-case implementation test;
-3. design a historical-cutoff benchmark schema;
-4. implement OpenAlex / SciSciNet ingestion;
-5. run Pilot 0 on a bounded field/cohort before scaling;
-6. connect 011 integrity evidence as a quarantine / uncertainty layer;
-7. only then train prospective ranking models.
+Immediate next steps:
+1. implement SciSciNet-v2 / citation-edge ingestion;
+2. reconstruct full yearly citation trajectories;
+3. cross-check B and awakening time against published / SciSciNet values;
+4. run Pilot 0 on a bounded field/cohort;
+5. add the 011 integrity adapter;
+6. only then train prospective ranking models.
