@@ -18,6 +18,8 @@ country×discipline contemporary results are not.
 - [x] Fresh-context Coder B packet frozen.
 - [x] Coder-B raw-response ingestion validates matrix, D01–D21 evidence
       sections, confidence labels, and independence declaration.
+- [x] IKES freeze provenance hashes Coder A/B, Coder B raw response/evidence
+      notes, adjudication, and final frozen matrix; hard gate re-verifies hashes.
 - [x] Unflagged IKES cells are immutable A/B means; only missing or
       abs-difference >=2 cells may be adjudicated.
 - [x] COLDAT historical exposure pipeline audited.
@@ -81,7 +83,9 @@ python code/freeze_ikes.py \
   --output process/IKES_FROZEN.csv \
   --provenance process/IKES_FROZEN.provenance.json \
   --coder-a process/IKES_CODER_A.csv \
-  --coder-b process/IKES_CODER_B.csv
+  --coder-b process/IKES_CODER_B.csv \
+  --coder-b-notes process/IKES_CODER_B.md \
+  --coder-b-raw process/gptpage/<date>_ikes-coder-b-raw.md
 ```
 
 ## Unlock sequence after Coder B
