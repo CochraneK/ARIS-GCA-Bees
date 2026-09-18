@@ -14,7 +14,17 @@ from pathlib import Path
 import pandas as pd
 
 ID_COLS = {"Entity", "Code", "Year", "World region according to OWID"}
-EMPIRE_ISO3 = {\n    "Belgium": "BEL",\n    "United Kingdom": "GBR",\n    "France": "FRA",\n    "Germany": "DEU",\n    "Netherlands": "NLD",\n    "Portugal": "PRT",\n    "Spain": "ESP",\n    "Italy": "ITA",\n}\n
+EMPIRE_ISO3 = {
+    "Belgium": "BEL",
+    "United Kingdom": "GBR",
+    "France": "FRA",
+    "Germany": "DEU",
+    "Netherlands": "NLD",
+    "Portugal": "PRT",
+    "Spain": "ESP",
+    "Italy": "ITA",
+}
+
 
 def measure_col(df: pd.DataFrame) -> str:
     candidates = [c for c in df.columns if c not in ID_COLS]
