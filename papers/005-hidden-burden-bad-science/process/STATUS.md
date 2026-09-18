@@ -1,14 +1,14 @@
 # STATUS — ARIS4C005
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT_A_COMPLETE / PILOT_B_ENGINEERING_READY`  
+**State:** `PILOT_B_REAL_FRAME_COMPLETE / MICRO_ADJUDICATION_READY`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
 
 **The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures**
 
-Scope remains frozen. The project has moved from design-only work into live public-data execution.
+Scope remains frozen. Pilot A and the real probability-traceable Pilot B seed frame are complete; the next prevalence-critical dependency is independent human adjudication.
 
 ---
 
@@ -102,20 +102,38 @@ See `data/pilot/retraction_watch_snapshot_summary.json`.
 
 # Current blockers / gates
 
-## GATE B1 — real Pilot B feature frame
+## GATE B1 — real Pilot B feature frame — PASS
 
-Need a reproducible row-level frame combining:
+Completed real 2015–2020 seed frame:
 
-- a population-random OpenAlex component;
-- formal correction/retraction/EOC signals;
-- at least one additional independent detector stream if legally/reproducibly available;
-- explicit detector applicability/missingness.
+- OpenAlex core article+review target denominator: **38,451,124**;
+- population-random works: **600**;
+- Retraction Watch enrichment works resolved into the target universe: **739**;
+- unique selected works: **1,339**;
+- exact inclusion probabilities/design weights retained;
+- OpenAlex ID remains first-class because **229/600** population-random works lacked a DOI;
+- no region/nationality/institution/language feature is used as a suspicion feature.
 
-The frame must not use region/nationality as a suspicion feature.
+See `process/PILOT_B_SEED_RESULTS.md` and `data/pilot/pilot_b_seed_summary.json`.
 
-## GATE B2 — manual adjudication capacity
+## GATE B2 — manual adjudication — PENDING
 
-A real article-level prevalence estimate requires human adjudication. Engineering dry-run threshold:
+A balanced cross-domain **60-work / 120-assignment** double-coded micro-pilot is ready.
+
+Composition:
+
+- 10 population-random works;
+- 10 narrow E1-S;
+- 10 paper-mill;
+- 10 major-error;
+- 10 expression-of-concern;
+- 10 process-integrity.
+
+Broad domains represented: Social, Physical, Health and Life Sciences.
+
+The micro-pilot is strictly for ontology usability, disagreement, access and review-effort diagnostics. It is **not** a prevalence sample.
+
+A real article-level prevalence estimate still requires independent human adjudication. Engineering calibration threshold remains:
 
 - >=100 resolved population-random adjudications;
 - >=1 detector with estimable sensitivity and specificity.
@@ -147,14 +165,13 @@ Innovation Delay requires valid matched topic controls and pre-trends. Permanent
 
 # Next execution queue
 
-1. Build a **real Pilot B seed frame**: OpenAlex random works + formal correction-signal enrichment with public-safe provenance.
-2. Run the probability-aware sampler on that frame.
-3. Produce an adjudication packet with blinded sampling metadata separated from reviewer-facing fields.
-4. Add at least one independent detector family only if its validation/applicability can be documented.
-5. Run a small adjudication micro-pilot to test label usability and disagreement rate.
-6. Freeze Pilot B calibration outputs.
-7. Only then implement/fill the Bayesian latent prevalence model.
-8. In parallel, begin the evidence-synthesis contamination module because VITALITY/Tang-Cai provide a strong validated pathway.
+1. **Human independently adjudicate the 60-work micro-pilot** (120 assignments).
+2. Run `merge_adjudications.py` to quantify disagreement, indeterminate/access failures and ontology friction.
+3. Revise/freeze the adjudication manual only if the micro-pilot reveals systematic ambiguity.
+4. Scale adjudication to the publication-sized probability sample and run `calibrate_detectors.py`.
+5. Only after real calibration, fit the latent prevalence model.
+6. **In parallel**, execute the semantic contamination pilot: citation-edge dependence taxonomy → validated manual/LLM-assisted screening → SCF/KGH graph.
+7. Keep RLY/cost, Innovation Delay and Sleeping Beauty behind their existing empirical gates.
 
 ---
 
@@ -173,4 +190,4 @@ Innovation Delay requires valid matched topic controls and pre-trends. Permanent
 
 # Handoff sentence
 
-If this chat is lost, resume from this file. **Pilot A is complete. Pilot B engineering is ready. The next valid task is a real, probability-traceable Pilot B seed frame plus a small adjudication micro-pilot; do not reopen broad idea generation.**
+If this chat is lost, resume from this file. **Pilot A is complete; the real 1,339-work Pilot B probability sample and blinded packets are complete; a 60-work/120-assignment double-coded micro-pilot is ready. Human adjudication is now the prevalence-critical blocker. Continue the semantic contamination module in parallel; do not reopen broad idea generation and do not estimate global latent prevalence yet.**
