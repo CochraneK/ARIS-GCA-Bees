@@ -19,39 +19,74 @@ jobs:
       max-parallel: 2
       matrix:
         include:
-          - slug: physics_1980
+          - slug: physics_1980_s1
             year: 1980
             field_id: 31
             field_name: Physics and Astronomy
             seed: 15015
             cutoff: 1995
             horizon: 15
-          - slug: medicine_1980
+          - slug: physics_1980_s2
+            year: 1980
+            field_id: 31
+            field_name: Physics and Astronomy
+            seed: 15016
+            cutoff: 1995
+            horizon: 15
+          - slug: medicine_1980_s1
             year: 1980
             field_id: 27
             field_name: Medicine
             seed: 27015
             cutoff: 1995
             horizon: 15
-          - slug: social_1980
+          - slug: medicine_1980_s2
+            year: 1980
+            field_id: 27
+            field_name: Medicine
+            seed: 27016
+            cutoff: 1995
+            horizon: 15
+          - slug: social_1980_s1
             year: 1980
             field_id: 33
             field_name: Social Sciences
             seed: 33015
             cutoff: 1995
             horizon: 15
-          - slug: physics_1990
+          - slug: social_1980_s2
+            year: 1980
+            field_id: 33
+            field_name: Social Sciences
+            seed: 33016
+            cutoff: 1995
+            horizon: 15
+          - slug: physics_1990_s1
             year: 1990
             field_id: 31
             field_name: Physics and Astronomy
             seed: 31590
             cutoff: 2000
             horizon: 10
-          - slug: computer_science_1990
+          - slug: physics_1990_s2
+            year: 1990
+            field_id: 31
+            field_name: Physics and Astronomy
+            seed: 31591
+            cutoff: 2000
+            horizon: 10
+          - slug: computer_science_1990_s1
             year: 1990
             field_id: 17
             field_name: Computer Science
             seed: 17015
+            cutoff: 2000
+            horizon: 10
+          - slug: computer_science_1990_s2
+            year: 1990
+            field_id: 17
+            field_name: Computer Science
+            seed: 17016
             cutoff: 2000
             horizon: 10
 
@@ -84,6 +119,7 @@ jobs:
           FIELD_ID: ${{ matrix.field_id }}
           YEAR: ${{ matrix.year }}
           CUTOFF: ${{ matrix.cutoff }}
+          SEED: ${{ matrix.seed }}
         run: |
           python - <<'PY'
           import json
@@ -105,14 +141,22 @@ jobs:
               f"primary_topic.field.id:{os.environ['FIELD_ID']}"
           )
           assert result["sampling"]["filters"] == expected_filter
+          assert result["sampling"]["seed"] == int(os.environ["SEED"])
+          assert len(result["sampling"]["sample_id_sha256"]) == 64
           assert (
               result["temporal_design"]["feature_cutoff_year"]
               == int(os.environ["CUTOFF"])
           )
           assert len(result["outcome_baseline_matrix"]) == 7
+          assert all("baseline_scores" in case for case in result["cases"])
+          assert all(
+              "annual_citation_counts" in case
+              for case in result["cases"]
+          )
           print(json.dumps({
               "slug": slug,
               "n": result["sampling"]["sample_size_analyzed"],
+              "sample_id_sha256": result["sampling"]["sample_id_sha256"],
               "outcome_summary": result["outcome_summary"],
           }, indent=2))
           PY
@@ -162,8 +206,8 @@ jobs:
                   "pilot1_multistrata_aggregate.json"
               ).read_text(encoding="utf-8")
           )
-          assert result["n_strata"] == 5
-          assert result["total_papers_analyzed"] >= 75
+          assert result["n_strata"] == 10
+          assert result["total_papers_analyzed"] >= 150
           assert "delayed_recognition_consensus" in result["metrics"]
           assert (
               "delayed_recognition_with_uptake_floor"
