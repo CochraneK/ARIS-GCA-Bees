@@ -1,219 +1,204 @@
-# ARIS4C009A · Fidelity metric specification
+# ARIS4C009A1 · Fidelity metric specification
 
 ## Purpose
 
-This document operationalizes "phenomenological fidelity" without making any psychiatric representation judge itself.
+009A1 operationalizes **source-grounded representation fidelity** while keeping acquisition fixed.
 
 The central rule is:
 
-> **Representations are evaluated by reconstruction tasks generated independently from the representations.**
+> Representations are evaluated by reconstruction tasks generated independently from the representations.
 
-A longer interview is allowed to preserve more information, but the study must also ask whether that gain survives comparison at equal information and acquisition budgets.
+A long source record may preserve more information, but the experiment must also ask whether its advantage survives rate and burden matching.
 
-## 1. Three-panel architecture
+## 1. Scope
+
+009A1 compares representations generated from the **same fixed source evidence**.
+
+Primary labels:
+
+- R0 rich source;
+- R1 structured episode graph;
+- R2 phenomenological code;
+- R3P questionnaire-format projection;
+- R4P conventional symptom-code projection;
+- R5 compact quantitative representation;
+- R6 exploratory frozen LLM representation.
+
+R3P is not participant self-report.  
+R4P is not an independently administered clinical interview.
+
+Actual acquisition-method differences belong to 009A2.
+
+## 2. Three-panel architecture
 
 ### Panel A · Query constructors
 
-Panel A sees the de-identified source episode but **never** the compressed representations.
+Sees source evidence only.
 
-They construct candidate questions that test semantic, relational, contextual and temporal information.
+Constructs candidate semantic, relational, contextual and temporal questions.
 
 ### Panel B · Source adjudicators
 
-Panel B sees the source episode and candidate questions.
+Sees source evidence and candidate questions.
 
-They establish:
+Establishes:
 
-- admissible answer set;
-- reference answer or probability distribution;
-- source ambiguity;
-- importance/criticality;
-- whether the source actually supports answering the question.
+- answerability;
+- reference answer/admissible answer set;
+- uncertainty;
+- criticality;
+- provenance.
 
 ### Panel C · Representation evaluators
 
-Panel C sees exactly one representation of an episode and answers the frozen questions.
+Sees one representation of an episode.
 
-Panel C does not see the source episode, other representations, or the hypothesized representation ordering.
+Does not see:
 
-This separation prevents EASE-like, symptom-like or computational representations from writing their own exam.
+- source;
+- competing representations;
+- hypothesized ordering.
 
-## 2. Query admissibility
+## 3. Query admissibility
 
-A query enters the confirmatory bank only if:
+A confirmatory query must:
 
-1. the answer is supported by the source record;
-2. at least two adjudicators agree it is answerable or explicitly uncertain;
-3. it does not require information absent from the source;
-4. it is not phrased using terminology unique to one representation condition unless all evaluators receive a definition;
-5. its scoring rule can be frozen before representation evaluation.
+1. be supported by source evidence;
+2. be adjudicable or explicitly uncertain;
+3. avoid representation-specific vocabulary unless definitions are common;
+4. have frozen scoring;
+5. survive redundancy screening.
 
-Queries that fail are retained only for exploratory analysis.
-
-## 3. Fidelity components
-
-Report a vector rather than a single total:
+## 4. Fidelity vector
 
 [
 F(R)=(F_{sem},F_{rel},F_{ctx},F_{temp},F_{pers})
 ]
 
-### 3.1 Semantic fidelity
+### Semantic fidelity
 
-For categorical answers with a single adjudicated category:
+For point categorical references:
 
 [
 F_{sem}^{strict}=rac{1}{Q}sum_q I(hat y_q=y_q)
 ]
 
-For uncertain source adjudication, the preferred representation is a probability distribution (p_q) over admissible categories.
+For uncertain source references, use admissible sets or probability distributions and proper scoring rules.
 
-If evaluators also provide probabilities (hat p_q), use a proper scoring rule.
+### Relational fidelity
 
-Multiclass Brier loss:
-
-[
-L_{Brier,q}=sum_c(hat p_{qc}-p_{qc})^2
-]
-
-A normalized fidelity score may be reported relative to a preregistered null predictor, but raw Brier loss is retained.
-
-### 3.2 Relational fidelity
-
-Source adjudicators create a relation set:
-
-[
-E_X={(source,relation,target,modifiers)}
-]
-
-Representation evaluators reconstruct the relation set.
-
-Primary relation outcomes:
+Primary:
 
 - edge precision;
 - edge recall;
 - edge F1;
-- relation-type confusion matrix.
+- relation confusion matrix.
 
-Graph edit distance is secondary because its cost weights are less directly interpretable.
+Graph-edit distance is secondary.
 
-### 3.3 Context fidelity
+### Context fidelity
 
-For questions whose answer depends on context, compare reconstruction with and without the relevant contextual qualifier.
-
-For a proper loss (L):
+For context-ablation variants:
 
 [
-D_{ctx}=L(hat y_{without context},y)-L(hat y_{with context},y)
+D_{ctx}=L(hat y_{without},y)-L(hat y_{with},y)
 ]
 
-Positive (D_{ctx}) means context removal harmed interpretation.
+### Temporal fidelity
 
-This can be tested by deliberate context-ablation variants of the same representation.
+Report separately:
 
-### 3.4 Temporal fidelity
-
-Separate:
-
-- pairwise event-order concordance;
-- onset/duration error;
+- order concordance;
+- duration error;
 - recurrence classification;
 - transition preservation.
 
-For ordered event pairs:
+### Participant-endorsed fidelity
 
-[
-F_{order}=rac{correctly ordered pairs}{adjudicable ordered pairs}
-]
-
-Temporal fidelity is not inferred from a static symptom total unless temporal information is explicitly encoded.
-
-### 3.5 Participant-endorsed fidelity
-
-When feasible, participants evaluate blinded reconstructions for:
+Where feasible:
 
 - meaning preserved;
 - important omission;
 - important distortion;
 - unacceptable reinterpretation.
 
-Participant endorsement is indispensable but not infallible. It is analyzed alongside source adjudication, not used as a sole ground truth.
-
-## 4. Criticality weighting
-
-Not all lost details have equal scientific or clinical importance.
-
-Before representation evaluation, Panel B labels each query:
-
-- low criticality;
-- medium criticality;
-- high criticality;
-
-or assigns a preregistered weight.
-
-Both **unweighted** and **criticality-weighted** results are reported. The unweighted result remains necessary so weights cannot manufacture the desired conclusion.
+Participant endorsement is a constraint, not infallible truth.
 
 ## 5. Source uncertainty
 
-Source ambiguity must propagate forward.
+Reference state may be:
 
-Reference answers can therefore be:
-
-- point category;
-- set of admissible categories;
+- point answer;
+- admissible set;
 - probability distribution;
-- unresolved.
+- unresolved;
+- not answerable.
 
-Representations are **not penalized for preserving uncertainty**.
-
-A confident but incorrect compression can be worse than an explicitly uncertain representation.
+Preserving uncertainty is not an error.
 
 ## 6. Reliability gate
 
-Reliability is measured separately from fidelity.
+Reliability is not fidelity.
 
-Pilot targets are engineering gates, not universal laws:
+Report:
 
-- categorical adjudication: report percent agreement and Gwet's AC1/AC2; aim for AC1/AC2 >= 0.70 for core domains before confirmatory use;
-- continuous/ordinal ratings: report ICC with interval estimates; aim for ICC >= 0.75 for primary continuous components;
-- relation annotation: report edge-level F1 between raters and relation-specific disagreement.
+- percent agreement;
+- Gwet AC1/AC2 for categorical adjudication;
+- ICC for continuous/ordinal components;
+- relation-level rater F1;
+- probabilistic calibration.
 
-If a core domain fails the gate, revise definitions and repeat pilot calibration before confirmatory data are scored.
+Pilot thresholds are engineering gates and are frozen only after pilot calibration.
 
-Cohen's kappa is reported only when its prevalence sensitivity is acceptable; it is not the sole reliability criterion.
+## 7. Criticality weighting
 
-## 7. Preventing the "more text always wins" artifact
+Before representation evaluation, source adjudicators may label questions low/medium/high criticality.
 
-### 7.1 Raw frontier
+Report both:
 
-First report real-world fidelity and real-world burden exactly as observed.
+- unweighted fidelity;
+- preregistered criticality-weighted fidelity.
 
-### 7.2 Equal-description-rate analysis
+Weighted results never replace unweighted results.
 
-Serialize each representation under a common measurement protocol and estimate representation rate using:
+## 8. Fairness to representation bandwidth
 
-- token/character count;
-- number of structured fields;
-- entropy/compressed description length when defensible.
+### 8.1 Raw frontier
 
-Then fit fidelity as a function of representation rate.
+Report observed fidelity and costs.
 
-Compare representations at overlapping rates rather than assuming raw length is irrelevant.
+### 8.2 Equal-description-rate analysis
 
-### 7.3 Equal-acquisition-burden analysis
+Estimate representation rate using defensible common measures such as:
 
-Compare fidelity at matched or modeled acquisition burden:
+- tokens/characters;
+- structured-field count;
+- dimensionality;
+- compressed description length where justified.
 
-- participant minutes;
-- specialist minutes;
-- total staff minutes;
-- monetary cost where available.
+Compare representations over overlapping rates.
 
-### 7.4 Controlled budget curves
+### 8.3 Encoding-burden analysis
 
-Where methodologically possible, generate **predefined budget variants** of a representation using a frozen compression protocol.
+Since the acquisition source is fixed in 009A1, compare:
 
-Do not hand-edit a representation after seeing which details matter.
+- coder/expert time;
+- compute time/cost;
+- storage/representation complexity.
+
+### 8.4 Real-world total-burden analysis
+
+For intended deployment, report:
+
+[
+C_{total}=C_{acquisition}+C_{encoding}
+]
+
+but label this a deployment comparison, not the manipulated factor in A1.
+
+### 8.5 Controlled budget curves
+
+Where possible, generate frozen budget variants before evaluation.
 
 Estimate:
 
@@ -221,118 +206,91 @@ Estimate:
 F_R(b)
 ]
 
-where (b) is a representation budget.
+where (b) is representation budget.
 
-The area under this fidelity-rate curve is exploratory unless its budget grid and compression rule are preregistered.
+## 9. Ontology-favoritism controls
 
-## 8. Avoiding ontology favoritism
+Query bank combines:
 
-The benchmark query bank combines:
+1. phenomenology-informed questions;
+2. conventional clinical questions;
+3. domain-general factual/relational questions;
+4. participant-generated preservation questions.
 
-1. phenomenology-informed queries;
-2. clinically conventional queries;
-3. domain-general factual/relational queries;
-4. participant-generated "what must not be lost" questions.
+Report performance by query origin.
 
-Results are stratified by query origin.
-
-A representation should not be declared globally superior because it performs well only on questions written in its own theoretical vocabulary.
-
-## 9. Avoiding evaluator-theory leakage
+## 10. Evaluator-background controls
 
 Record evaluator background:
 
 - phenomenological psychopathology;
-- conventional clinical psychiatry;
+- conventional psychiatry;
 - computational psychiatry;
 - psychology/neuroscience;
 - trained non-specialist.
 
-Test representation × evaluator-background interactions.
+Test:
 
-Primary fidelity estimates pool across a deliberately mixed evaluator panel unless the preregistration specifies otherwise.
+[
+representation 	imes evaluator_background
+]
 
-## 10. Calibration and confidence
+## 11. Confidence, calibration and abstention
 
-Evaluators provide confidence or probabilities when feasible.
+Allow:
+
+> cannot infer from this representation.
 
 Report:
 
-- accuracy/fidelity;
-- Brier score;
-- calibration curves;
-- overconfidence.
-
-This distinguishes a representation that correctly signals uncertainty from one that gives confident but distorted reconstructions.
-
-## 11. Missingness and abstention
-
-"Cannot infer from this representation" is an allowed response.
-
-Abstention is scored separately from wrong inference.
-
-Primary analyses report at least:
-
 - coverage;
 - accuracy conditional on answer;
-- overall proper scoring loss.
+- Brier/proper score;
+- calibration;
+- overconfidence.
 
-This prevents forced guessing from making a sparse representation look falsely informative.
+Sparse representations are not forced to guess.
 
-## 12. Hierarchical analysis
-
-For binary query correctness, a candidate primary model is:
+## 12. Primary hierarchical model
 
 [
 logit(P(Y=1))=
-\beta_0+
-\beta_R+
-\beta_D+
-\beta_{R\times D}+
-u_{participant}+
-u_{episode}+
-u_{query}+
-u_{evaluator}
+eta_0+eta_R+eta_D+eta_{R	imes D}
++u_{participant}+u_{episode}+u_{query}+u_{evaluator}
 ]
 
-where (R) is representation and (D) is phenomenological domain.
+Include query origin and evaluator background if preregistered.
 
-If query origin matters, include it as a preregistered factor.
+## 13. Intended-use validity is separate
 
-## 13. Pareto frontier
+A representation may have low source fidelity but strong performance for a defined use.
 
-Keep distinct:
+For use (u):
 
-- fidelity vector (F);
-- independent validity vector (V);
-- predictive utility (U);
-- burden vector (C).
+[
+V_{use}(R,u),quad U(R,u)
+]
 
-A representation (A) dominates (B) only if it is no worse in every selected comparison dimension and strictly better in at least one.
+Fidelity is never silently redefined as clinical usefulness.
 
-The frontier is reported separately for different use cases when their constraints differ.
+## 14. Minimum confirmatory output set
 
-## 14. Minimum confirmatory metric set
-
-009A can remain tractable with five confirmatory outputs:
-
-1. semantic reconstruction accuracy/proper score;
+1. semantic reconstruction score;
 2. relation F1;
 3. context-ablation loss;
 4. temporal-order concordance;
-5. acquisition burden.
+5. encoding burden/rate.
 
-Participant-endorsed fidelity is a key secondary endpoint when recontact is feasible.
+Participant-endorsed fidelity is key secondary output where recontact is feasible.
 
 ## 15. Metric falsification
 
-The measurement framework itself fails or needs revision if:
+Revise the metric architecture if:
 
-- independently generated queries systematically favor one theoretical vocabulary;
-- reliability remains poor after calibration;
-- fidelity differences vanish under all rate-matched comparisons;
-- participant meaning checks conflict strongly with source-derived scoring;
-- results change radically when reasonable scoring rules change;
-- evaluator background fully determines the representation ordering.
-
-These are substantive failures, not inconveniences to be hidden.
+- question origin determines results;
+- reliability remains poor;
+- representation differences vanish under rate matching;
+- participant meaning checks systematically disagree;
+- reasonable scoring rules reverse results;
+- evaluator background determines ordering;
+- query redundancy inflates apparent precision.
