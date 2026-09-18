@@ -2,7 +2,7 @@
 
 ## A quantitative synthesis and falsifiable model-comparison framework
 
-**Cunyi Kang**  
+**Cochrane Kang**  
 ARIS4C001 · Final manuscript · 18 September 2026
 
 ### Abstract
