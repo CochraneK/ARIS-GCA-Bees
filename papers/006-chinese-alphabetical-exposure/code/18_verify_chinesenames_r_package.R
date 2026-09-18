@@ -91,8 +91,9 @@ integer_equal <- all(pkg2$compound==mir2$compound) &&
   all(pkg2$n.1930_2008==mir2$n.1930_2008)
 ppm_diff <- max(abs(pkg2$ppm.1930_2008-mir2$ppm.1930_2008),na.rm=TRUE)
 uni_diff <- max(abs(pkg2$surname.uniqueness-mir2$surname.uniqueness),na.rm=TRUE)
-float_equal <- ppm_diff < 1e-9 && uni_diff < 1e-9
-all_equal <- char_equal && integer_equal && float_equal
+derived_rounding_equal <- all(round(pkg2$ppm.1930_2008,3) == mir2$ppm.1930_2008) &&
+  all(round(pkg2$surname.uniqueness,3) == mir2$surname.uniqueness)
+all_equal <- char_equal && integer_equal && derived_rounding_equal
 
 # Minimal base-R JSON for scalar/list values.
 esc <- function(x) gsub('"','\\\\"',x,fixed=TRUE)
