@@ -12,8 +12,9 @@
       "gate": "annual_coverage_sweep"
     },
     "field_scope": {
-      "status": "pending_all_field_gate",
-      "rule": "All current OpenAlex fields passing prospective primary-field data-volume and structured-order coverage thresholds; six anchor fields are feasibility anchors only."
+      "status": "frozen",
+      "rule": "All 26 current OpenAlex primary_topic fields are globally eligible; focal author-year/work observations still require LOAO field-window D>=50.",
+      "evidence": "process/PILOT13_RESULTS.md"
     },
     "work_eligibility": [
       ">=2 total authors",
