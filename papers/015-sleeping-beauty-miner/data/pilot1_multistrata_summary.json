@@ -1,0 +1,106 @@
+{
+  "pilot": "ARIS4C015 Pilot 1 multi-stratum baseline benchmark",
+  "status": "exploratory-multistratum-complete",
+  "workflow_run_id": 35315016757,
+  "retrieved_at": "2026-09-18",
+  "n_strata": 5,
+  "total_papers_analyzed": 100,
+  "strata": [
+    {"name":"Physics 1980","field_id":31,"year":1980,"seed":15015,"cutoff":1995,"endpoint":2011,"consensus_positive_rate":0.20},
+    {"name":"Medicine 1980","field_id":27,"year":1980,"seed":27015,"cutoff":1995,"endpoint":2011,"consensus_positive_rate":0.15},
+    {"name":"Social Sciences 1980","field_id":33,"year":1980,"seed":33015,"cutoff":1995,"endpoint":2011,"consensus_positive_rate":0.05},
+    {"name":"Physics 1990","field_id":31,"year":1990,"seed":31590,"cutoff":2000,"endpoint":2011,"consensus_positive_rate":0.05},
+    {"name":"Computer Science 1990","field_id":17,"year":1990,"seed":17015,"cutoff":2000,"endpoint":2011,"consensus_positive_rate":0.20}
+  ],
+  "macro_mean_ndcg_at_5": {
+    "beauty_percentile": {
+      "current_citations": 0.622,
+      "momentum_3y": 0.723,
+      "acceleration_3y": 0.777,
+      "partial_beauty": 0.922,
+      "dormancy": 0.345
+    },
+    "beauty_top_fraction": {
+      "current_citations": 0.326,
+      "momentum_3y": 0.504,
+      "acceleration_3y": 0.614,
+      "partial_beauty": 0.823,
+      "dormancy": 0.039
+    },
+    "future_acceleration_percentile": {
+      "current_citations": 0.494,
+      "momentum_3y": 0.365,
+      "acceleration_3y": 0.454,
+      "partial_beauty": 0.477,
+      "dormancy": 0.666
+    },
+    "future_uptake_percentile": {
+      "current_citations": 0.872,
+      "momentum_3y": 0.844,
+      "acceleration_3y": 0.698,
+      "partial_beauty": 0.679,
+      "dormancy": 0.360
+    },
+    "awakening_within_horizon": {
+      "current_citations": 0.183,
+      "momentum_3y": 0.187,
+      "acceleration_3y": 0.361,
+      "partial_beauty": 0.282,
+      "dormancy": 0.100
+    },
+    "delayed_recognition_consensus": {
+      "current_citations": 0.191,
+      "momentum_3y": 0.200,
+      "acceleration_3y": 0.364,
+      "partial_beauty": 0.360,
+      "dormancy": 0.100
+    },
+    "delayed_recognition_with_uptake_floor": {
+      "current_citations": 0.191,
+      "momentum_3y": 0.200,
+      "acceleration_3y": 0.364,
+      "partial_beauty": 0.360,
+      "dormancy": 0.100
+    }
+  },
+  "macro_mean_precision_at_5": {
+    "beauty_top_fraction": {
+      "current_citations": 0.36,
+      "momentum_3y": 0.48,
+      "acceleration_3y": 0.48,
+      "partial_beauty": 0.60,
+      "dormancy": 0.04
+    },
+    "awakening_within_horizon": {
+      "current_citations": 0.12,
+      "momentum_3y": 0.12,
+      "acceleration_3y": 0.24,
+      "partial_beauty": 0.16,
+      "dormancy": 0.04
+    },
+    "delayed_recognition_consensus": {
+      "current_citations": 0.16,
+      "momentum_3y": 0.16,
+      "acceleration_3y": 0.28,
+      "partial_beauty": 0.24,
+      "dormancy": 0.04
+    }
+  },
+  "ndcg_winner_counts": {
+    "beauty_percentile": {"partial_beauty":4,"momentum_3y":1},
+    "beauty_top_fraction": {"partial_beauty":5,"acceleration_3y":1},
+    "future_acceleration_percentile": {"dormancy":2,"current_citations":1,"partial_beauty":1,"momentum_3y":1},
+    "future_uptake_percentile": {"momentum_3y":3,"current_citations":2},
+    "awakening_within_horizon": {"acceleration_3y":2,"partial_beauty":2,"current_citations":1,"momentum_3y":1,"dormancy":1},
+    "delayed_recognition_consensus": {"partial_beauty":2,"acceleration_3y":1,"momentum_3y":1,"dormancy":1}
+  },
+  "interpretation": [
+    "Outcome prevalence varies materially by field and era in this small exploratory benchmark.",
+    "Partial Beauty Coefficient strongly predicts later Beauty-based outcomes, which is expected because the predictor and outcome share geometry.",
+    "Current citations and recent momentum strongly predict later citation uptake, which is also an expected baseline relationship.",
+    "No citation-only baseline consistently dominates the delayed-recognition consensus or awakening outcomes across strata.",
+    "The top-50-percent future-uptake floor did not alter consensus labels in these five strata, so stricter uptake sensitivity should be tested.",
+    "These results motivate seed replication and independent non-citation feature ablations rather than immediate learned-model training."
+  ],
+  "claim_boundary": "Exploratory 5-stratum, one-seed-per-stratum result. Not prospective validation and not evidence of breakthrough prediction."
+}
