@@ -41,7 +41,7 @@ def main() -> None:
     if paper_dir.exists():
         raise SystemExit(f"Already exists: {paper_dir}")
 
-    for rel in ("code", "data", "figures", "manuscript", "process"):
+    for rel in ("code", "data", "figures", "tables", "manuscript", "paper/en", "paper/zh", "process"):
         target = paper_dir / rel
         target.mkdir(parents=True, exist_ok=True)
         (target / ".gitkeep").write_text("", encoding="utf-8")
@@ -64,8 +64,17 @@ def main() -> None:
         "links": {
             "paper_en": "",
             "paper_zh": "",
+            "figures": "",
+            "tables": "",
             "pipeline": "",
             "source": "https://github.com/CochraneK/ARIS4C"
+        },
+        "outputs": {
+            "paper_en": "not-started",
+            "paper_zh": "not-started",
+            "figures": {"status": "not-started", "count": 0},
+            "tables": {"status": "not-started", "count": 0},
+            "exception": ""
         },
         "tags": ["ARIS", "ARIS4C"]
     }
