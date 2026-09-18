@@ -226,6 +226,19 @@
         "external precedent for title/abstract screening"
       ],
       "limitations": "Cancer research only; training labels derive from known/retracted paper-mill cases; textual similarity is not proof of fraud; authors note potential geographic/language-pattern bias and incomplete representation of paper mills."
+    },
+    {
+      "id": "SRC_ACZEL_2021",
+      "tier": "T1",
+      "type": "peer_review_labor_estimation",
+      "title": "A billion-dollar donation: estimating the cost of researchers’ time spent on peer review",
+      "doi": "10.1186/s41073-021-00118-2",
+      "year": 2021,
+      "use": [
+        "global peer-review labor denominator",
+        "integrity-maintenance labor context"
+      ],
+      "limitations": "Estimates overall peer-review labor, not the fraction attributable to flawed/problematic science. Authors describe the estimate as conservative and incomplete."
     }
   ],
   "optional_tool_layers": {
