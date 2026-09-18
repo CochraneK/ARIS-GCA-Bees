@@ -77,3 +77,35 @@ def test_same_supplier_name_across_notices_is_not_auto_merged():
     s1 = next(x["id"] for x in g1["nodes"] if x["type"] == "supplier")
     s2 = next(x["id"] for x in g2["nodes"] if x["type"] == "supplier")
     assert s1 != s2
+
+
+def test_same_uscc_across_notices_can_share_stable_graph_identity():
+    def make(url, project):
+        html = f"""
+        <table><tr><td>采购单位</td><td>某大学</td></tr></table>
+        <p>一、项目编号：{project}</p>
+        <p>二、项目名称：设备采购</p>
+        <p>三、中标信息</p>
+        <table>
+          <tr>
+            <th>供应商名称</th><th>供应商地址</th><th>统一社会信用代码</th>
+            <th>企业办公电话</th><th>中标金额(万元)</th><th>评审得分</th>
+          </tr>
+          <tr>
+            <td>同一供应商有限公司</td><td>地址A</td><td>91110108MA01KRJX1U</td>
+            <td>010-00000000</td><td>10</td><td>90</td>
+          </tr>
+        </table>
+        <p>四、主要标的信息</p>
+        """
+        return parse_ccgp_award_detail(
+            html, source_url=url, retrieved_at="2026-09-18T00:00:00Z"
+        )
+
+    g1 = ccgp_notice_graph(make("https://www.ccgp.gov.cn/uscc-a.htm", "UA"))
+    g2 = ccgp_notice_graph(make("https://www.ccgp.gov.cn/uscc-b.htm", "UB"))
+    s1 = next(x for x in g1["nodes"] if x["type"] == "supplier")
+    s2 = next(x for x in g2["nodes"] if x["type"] == "supplier")
+    assert s1["id"] == s2["id"] == "cn-uscc:91110108MA01KRJX1U"
+    assert s1["identity_scope"] == "stable_id"
+    assert s1["stable_ids"] == ["CN-USCC:91110108MA01KRJX1U"]
