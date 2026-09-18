@@ -58,12 +58,21 @@ Panel v2 will deliberately seek:
 - social-learning-matched but life-history/network-different pairs;
 - ordinary negative/calibration taxa.
 
+## Pilot 2 additions
+
+- [x] parsed frozen AnimalTraits v1.0.7 and generated pilot body/brain/metabolic summaries;
+- [x] parsed AnAge bulk life-history data and generated a normalized pilot extract;
+- [x] joined culture/cognition evidence with energetic and life-history coverage in `pilot_matrix_v1.csv`;
+- [x] resolved the seed panel to 29 species-level taxa in `pilot_taxa_v2.csv`;
+- [x] added reproducible ingestion scripts for AnimalTraits and AnAge;
+
+Current integrated coverage in the 25-label v1 matrix includes longevity for 22 labels, AnimalTraits brain-size records for 10, and at least one metabolic-rate source for 6. Scope flags distinguish exact species from exemplars.
+
 ## In progress
 
-- [ ] resolve genus/family pilot labels to frozen species-level units where scientifically defensible;
-- [ ] run and validate AnimalTraits join for body mass, brain size and metabolism;
-- [ ] join life-history / longevity data (PanTHERIA, AnAge and/or compatible sources);
+- [ ] rebuild all downstream matrices on the 29-taxon species-level v2 panel;
 - [ ] quantify research effort per taxon and module;
+- [ ] harmonize neural measures beyond raw brain mass (relative brain measures, neuron counts where comparable);
 - [ ] expand each core module beyond one or two flagship papers;
 - [ ] choose compatible phylogenetic trees and taxonomic reconciliation rules;
 - [ ] build hominin archaeological time-slice layer;
