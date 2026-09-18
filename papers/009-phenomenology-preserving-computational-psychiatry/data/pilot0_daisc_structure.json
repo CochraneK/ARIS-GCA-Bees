@@ -1,53 +1,77 @@
 {
   "dataset": "DAIS-C",
-  "generated_utc": "2026-09-18T23:38:53.741321+00:00",
+  "generated_utc": "2026-09-18T23:41:02.071313+00:00",
   "privacy_rule": "No transcript text or participant IDs emitted.",
+  "readable_files_by_extension": {
+    ".docx": 41,
+    ".rtf": 15,
+    ".txt": 58
+  },
   "classification_counts": {
-    "interactional": 8,
+    "interactional": 28,
     "non_transcript_text": 30,
-    "speaker_only": 28,
-    "timestamped": 7
+    "speaker_only_xml": 28,
+    "timestamped": 28
   },
   "extensions_by_class": {
     "interactional": {
+      ".docx": 20,
       ".rtf": 8
     },
     "non_transcript_text": {
       ".txt": 30
     },
-    "speaker_only": {
+    "speaker_only_xml": {
       ".txt": 28
     },
     "timestamped": {
+      ".docx": 21,
       ".rtf": 7
     }
   },
   "participant_word_counts_by_class": {
-    "interactional": 27707,
+    "interactional": 86014,
     "non_transcript_text": 0,
-    "speaker_only": 85667,
-    "timestamped": 2152
+    "speaker_only_xml": 85667,
+    "timestamped": 5854
   },
   "interviewer_word_counts_by_class": {
-    "interactional": 10430,
+    "interactional": 33068,
     "non_transcript_text": 0,
-    "speaker_only": 0,
-    "timestamped": 2146
+    "speaker_only_xml": 0,
+    "timestamped": 5909
   },
   "timestamp_markers_by_class": {
-    "interactional": 8,
+    "interactional": 9,
     "non_transcript_text": 0,
-    "speaker_only": 0,
-    "timestamped": 1364
+    "speaker_only_xml": 0,
+    "timestamped": 3845
   },
   "unique_participant_id_counts_by_class": {
-    "interactional": 8,
-    "speaker_only": 28,
-    "timestamped": 7
+    "interactional": 28,
+    "non_transcript_text": 0,
+    "speaker_only_xml": 28,
+    "timestamped": 27
+  },
+  "sanitized_path_pattern_counts": {
+    "interactional: DAIS-C-Annotated - Upload/DAI-C-CL/Interactional/Full tagged pass/<PID>-FULL.docx": 7,
+    "interactional: DAIS-C-Annotated - Upload/DAI-C-CL/Interactional/Full tagged pass/<PID>-FULL.rtf": 8,
+    "interactional: DAIS-C-Annotated - Upload/DAI-C-CO/Interactional/Full tagged pass/<PID>-FULL.docx": 13,
+    "non_transcript_text: DAIS-C-Annotated - Upload/DAI-C-CL/Speaker Only_Raw/<PID>_Raw.txt": 15,
+    "non_transcript_text: DAIS-C-Annotated - Upload/DAI-C-CL/Speaker Only_Raw/WMatrix-full-clinical-raw.txt": 1,
+    "non_transcript_text: DAIS-C-Annotated - Upload/DAI-C-CO/Speaker Only_Raw/<PID>_Raw.txt": 13,
+    "non_transcript_text: DAIS-C-Annotated - Upload/Readme.txt": 1,
+    "speaker_only_xml: DAIS-C-Annotated - Upload/DAI-C-CL/Interactional/Full tagged pass/Speaker_only_for_analysis/<PID>_speaker.txt": 15,
+    "speaker_only_xml: DAIS-C-Annotated - Upload/DAI-C-CO/Interactional/Full tagged pass/Speaker_only_for_analysis/<PID>_speaker.txt": 13,
+    "timestamped: DAIS-C-Annotated - Upload/DAI-C-CL/Timestamped/21UNI11-TS.docx": 1,
+    "timestamped: DAIS-C-Annotated - Upload/DAI-C-CL/Timestamped/<PID>-TS.docx": 7,
+    "timestamped: DAIS-C-Annotated - Upload/DAI-C-CL/Timestamped/<PID>-TS.rtf": 7,
+    "timestamped: DAIS-C-Annotated - Upload/DAI-C-CO/Timestamped/<PID>-TS.docx": 13
   },
   "published_reference": {
     "paper_total_tokens": 97357,
-    "paper_audio_minutes": 1284.8,
-    "note": "Published token count is a validation reference, not an expected exact match because tokenization and file class differ."
+    "paper_clinical_tokens": 58444,
+    "paper_comparison_tokens": 33025,
+    "paper_audio_minutes": 1284.8
   }
 }
