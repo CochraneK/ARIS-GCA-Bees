@@ -1,13 +1,15 @@
 {
   "id": "006",
   "slug": "chinese-alphabetical-exposure",
-  "title": "Alphabetical Exposure and Academic Careers in Chinese Science",
+  "title": "Alphabetical Exposure and Scholarly Credit in China's Research System",
   "short_title": "Chinese Surnames × Alphabetical Exposure",
   "year": 2026,
-  "status": "feasibility",
+  "status": "research-design",
   "domain": "science of science / scientometrics / sociology of science / names research",
-  "summary": "A population-calibrated, cross-disciplinary study testing whether Chinese surname alphabetical position interacts with empirically measured alphabetical-authorship regimes to shape visibility, collaboration, citation, mobility, and career outcomes among Chinese scholars.",
-  "authors": ["Cochrane Kang"],
+  "summary": "A population-calibrated, all-field study of whether validated Chinese surname position is translated into listed authorship position specifically under independently measured alphabetical-authorship regimes, with a preregistered longitudinal persistence extension.",
+  "authors": [
+    "Cochrane Kang"
+  ],
   "aris": {
     "provenance": "ARIS4C guided run; public-web/GPTPage fallback for API-gated reviewer and literature-search stages",
     "version": "v0.4.26",
