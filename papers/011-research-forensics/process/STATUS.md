@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**FIRST PRE-OUTCOME REAL TRUE-POSITIVE · PILOT 2B EXPANDED**
+**PILOT 3 CANDIDATE EXPANSION AUTOMATED · FIRST CONTROL ARTIFACT VERIFIED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -56,6 +56,9 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - New F5 cross_source_field_consistency adapter compares source-verified target fields with a contemporaneously available cited source.
 - First real Track A true-positive: N matched, while RMSEA, CFI and best-fitting-model fields disagreed with Harper & Rhodes (2021); the later 2024 correction independently confirms these same errors.
 - The first true-positive is a pipeline demonstration only, not a performance estimate.
+- Pilot 3 candidate prioritisation is now code-driven rather than manual, with PRIORITY / SECONDARY / CONTROL / DEFER / COMPLETE states.
+- Seven documented PLOS correction candidates have been triaged plus the completed Pilot 2B case.
+- Exact pre-correction PLOS PDF recovered for 10.1371/journal.pone.0263337 (Wayback 2022-02-09, digest JH73D3J2WEFFQC75H7OUERJ74OJMJZKP); retained as a formatting/honest-error CONTROL rather than a scientific true-positive.
 
 ## Critical design findings already established
 
@@ -111,8 +114,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Expand beyond the six-case seed with a small stratified Pilot 2 sample.
-2. Prioritise issue types whose required roles are realistically recoverable: tables/statistics/references before image-only cases.
-3. Promote cases to SAFE_EXACT_READY only after issue-specific artifact-role qualification; first expanded case is now complete.
-4. Run deterministic adapters on the first issue-ready real cases and produce descriptive alert-yield / false-alert results.
-5. Add image/text/semantic modules only after the deterministic real-manuscript pipeline has non-trivial denominators.
+1. Work the Pilot 3 queue in rank order: music-country Table 1, then Toxoplasma Table 1B.
+2. Recover exact pre-correction table/PDF objects; never promote HTML-only evidence to table readiness.
+3. Use the construction decimal-separator case as a low-risk escalation-control test.
+4. Seek at least two additional SAFE_EXACT_READY substantive cases before reporting descriptive detector yield.
+5. Keep Pilot 3 explicitly separate from the later frozen confirmatory cohort.
