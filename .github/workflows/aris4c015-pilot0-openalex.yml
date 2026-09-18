@@ -1,0 +1,67 @@
+name: ARIS4C015 Pilot 0 OpenAlex
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilot0-openalex.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  hummers-cross-source-replication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reconstruct Hummers 1958 citation trajectory through 2011
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilot0_openalex_case.py \
+            --doi 10.1021/ja01539a017 \
+            --case-id ke2015_02 \
+            --publication-year 1958 \
+            --published-b 10769 \
+            --published-awakening-year 2007 \
+            --observation-end-year 2011 \
+            --output ../data/pilot0_openalex_hummers.json
+
+      - name: Sanity-check empirical output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("papers/015-sleeping-beauty-miner/data/pilot0_openalex_hummers.json")
+          result = json.loads(path.read_text(encoding="utf-8"))
+
+          assert result["case_id"] == "ke2015_02"
+          assert result["target"]["openalex_id"].startswith("W")
+          assert result["trajectory"]["total_citations"] > 0
+          assert result["trajectory"]["publication_year"] == 1958
+          assert result["trajectory"]["end_year"] == 2011
+          assert result["reconstructed"]["awakening_year"] <= 2011
+          print(json.dumps({
+              "openalex_id": result["target"]["openalex_id"],
+              "total_citations_through_2011": result["trajectory"]["total_citations"],
+              "reconstructed_B": result["reconstructed"]["beauty_coefficient"],
+              "reconstructed_awakening_year": result["reconstructed"]["awakening_year"],
+              "reference_B_WoS": result["reference_ke2015"]["beauty_coefficient"],
+              "reference_awakening_year_WoS": result["reference_ke2015"]["awakening_year"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilot0-openalex-hummers
+          path: papers/015-sleeping-beauty-miner/data/pilot0_openalex_hummers.json
+          if-no-files-found: error
+          retention-days: 30
