@@ -22,7 +22,12 @@ except ImportError as exc:  # pragma: no cover
 
 def convert(iso3: str) -> str | None:
     try:
-        value = countrycode(iso3, origin="iso3c", destination="iso2c", warn=False)
+        value = countrycode([iso3], origin="iso3c", destination="iso2c", warn=False)
+        if isinstance(value, (list, tuple)):
+            value = value[0] if value else None
+        elif hasattr(value, "to_list"):
+            vals = value.to_list()
+            value = vals[0] if vals else None
     except Exception:
         return None
     if value is None:
