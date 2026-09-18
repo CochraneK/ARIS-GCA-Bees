@@ -10,7 +10,7 @@
 
 The idea that human languages might admit an organization analogous to a periodic table is scientifically attractive because it suggests that apparently diverse grammars could be generated from a recurrent, compact structural system. Yet a periodic-table metaphor is not itself a statistical model, and modern typological datasets make it possible to ask a sharper question: does a simple global periodic geometry predict structural relations among linguistic features better than non-periodic alternatives?
 
-We operationalized one strong, deliberately bounded form of periodicity as a single circular geometry over structural features. Models were trained on feature–feature normalized mutual information (NMI) estimated from one set of languages and evaluated against independently estimated NMI in held-out languages. We compared circular models with low-rank, Euclidean, hierarchical-tree, graph and null representations, progressively adding top-level-family hold-outs, predefined structural domains, direct circular-Robinson-style diagnostics, geographic blocks, repeated split uncertainty, an alternative GBI curation, and a sparse external WALS replication.
+We operationalized one strong, deliberately bounded form of periodicity as a single circular geometry over structural features. Models were trained on feature–feature normalized mutual information (NMI) estimated from one set of languages and evaluated against independently estimated NMI in held-out languages. We compared circular models with low-rank, Euclidean, hierarchical-tree, graph and null representations, progressively adding top-level-family hold-outs, predefined structural domains, direct circular-Robinson-style diagnostics, geographic blocks, repeated split uncertainty, an alternative GBI curation, and a separately processed sparse WALS sanity representation.
 
 Across 20 TLI family-held-out splits, the hierarchical-tree benchmark achieved mean Spearman correlation 0.182 versus 0.109 for the optimized circular model; the paired difference was 0.073 (split-bootstrap 95% CI 0.055–0.092), with the tree higher in all 20 splits. The same qualitative ordering appeared in GBI (0.122 vs 0.073) and WALS (0.603 vs 0.410). Direct circularity diagnostics also failed to show robust wrap-around closure: at 60 TLI features, the circular closure/internal-adjacency ratio was 0.037. No predefined TLI domain met the joint predictive-competitiveness and circular-stability criterion for local periodicity.
 
@@ -58,7 +58,7 @@ Stage 1H used the statistically curated GBI representation from Graff et al. (20
 
 #### WALS
 
-Stage 1I used the CLDF WALS dataset as an external sparse sanity replication. The pivot contained 2,659 languages; the 30 best-covered categorical parameters meeting coverage/cardinality rules were selected. WALS is substantially sparser and is not dependency-curated in the same way as TLI/GBI, so WALS effect magnitudes are not interpreted as directly comparable to TLI/GBI. Its role is qualitative: to test whether the family-held-out tree-versus-circle ordering reverses under a distinct representation.
+Stage 1I used the CLDF WALS dataset as a separately processed sparse sanity representation. The pivot contained 2,659 languages; the 30 best-covered categorical parameters meeting coverage/cardinality rules were selected. WALS is substantially sparser and is not dependency-curated in the same way as TLI/GBI, so WALS effect magnitudes are not interpreted as directly comparable to TLI/GBI. Importantly, WALS is also one of the source resources contributing to TLI; it is therefore **not an independent data source relative to TLI**. Its role is qualitative: to test whether the family-held-out tree-versus-circle ordering reverses when WALS is analyzed separately under a distinct sparse representation.
 
 #### Family and geographic metadata
 
@@ -132,7 +132,7 @@ The analyses evolved iteratively. They should be read as a robustness ladder rat
 - **Stage 1F:** repeat family hold-out 20 times and bootstrap the paired split-level performance differences.
 - **Stage 1G:** compare geographic blocks with matched-size random test samples to test whether geographic transfer loss is a trivial sample-size artifact.
 - **Stage 1H:** replicate the family-held-out ranking in GBI.
-- **Stage 1I:** perform an external sparse WALS sanity replication.
+- **Stage 1I:** perform a separately processed sparse WALS sanity check.
 
 Because this sequence was adaptive, no family-wise confirmatory error rate is claimed across Stage 1–1I.
 
@@ -231,7 +231,7 @@ When complete TLI macroareas were held out, all models performed weakly. Under t
 
 Matched-size calibration showed that the weak TLI geographic transfer was not simply caused by the smaller number of test languages. Across macroareas, the train–test association correlation averaged 0.088 for geographic blocks versus 0.363 for matched random test sets. Across coordinate clusters, the corresponding means were 0.106 versus 0.351. All ten geographic blocks had lower transfer than their matched random controls.
 
-However, the external WALS replication later showed much stronger cross-macroarea transfer, so geographic collapse is **not** treated as a universal property of cross-linguistic structure.
+However, the separately processed WALS analysis later showed much stronger cross-macroarea transfer, so geographic collapse is **not** treated as a universal property of cross-linguistic structure.
 
 ### 3.8 Tree-over-circle ordering replicated under GBI curation
 
@@ -239,9 +239,9 @@ In GBI, using 1,140 languages and 60 selected features, family-held-out mean Spe
 
 Mean cross-macroarea association transfer was 0.144 ± 0.043, qualitatively similar to the weak geographic transfer observed in TLI. Because GBI and TLI are alternative curations rather than fully independent sources, this result is interpreted as robustness to representation/curation rather than a fully independent replication.
 
-### 3.9 WALS reproduced the model ranking but contradicted the geography pattern
+### 3.9 Separately processed WALS preserved the model ranking but contradicted the geography pattern
 
-The WALS sanity replication used 2,659 languages and 30 best-covered parameters. Across eight valid family-held-out splits, mean Spearman was 0.603 ± 0.026 for the tree, 0.468 ± 0.034 for rank-2 low-rank, and 0.410 ± 0.050 for the optimized circle. The tree-minus-circle mean difference was +0.193, and the tree was higher in all eight splits.
+The WALS sanity analysis used 2,659 languages and 30 best-covered parameters. Across eight valid family-held-out splits, mean Spearman was 0.603 ± 0.026 for the tree, 0.468 ± 0.034 for rank-2 low-rank, and 0.410 ± 0.050 for the optimized circle. The tree-minus-circle mean difference was +0.193, and the tree was higher in all eight splits.
 
 Unlike TLI/GBI, WALS exhibited high cross-macroarea association transfer: **0.634 ± 0.075** across six macroareas. This contradiction narrows the robust cross-source conclusion. The stable finding is the family-held-out advantage of non-circular/tree-like benchmarks over the tested circle; the apparent geographic portability of the full association geometry is dataset-dependent.
 
@@ -268,7 +268,7 @@ The result is not merely "a tree fits better than a circle." That comparison is 
 3. no predefined TLI domain passed the joint local-periodicity rule;
 4. direct held-out circular-Robinson-style diagnostics did not favor the circular order over a tree leaf order;
 5. wrap-around closure was especially weak in the 60-feature TLI analysis;
-6. the family-held-out tree-over-circle ranking replicated qualitatively in GBI and WALS.
+6. the family-held-out tree-over-circle ranking reappeared under the GBI curation and separately processed WALS representation.
 
 Together, these results make a simple global cycle a weak summary of the observed association geometry.
 
