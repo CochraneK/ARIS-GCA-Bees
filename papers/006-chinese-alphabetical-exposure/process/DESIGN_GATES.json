@@ -60,13 +60,13 @@
       "note": "Entry-based cohort required; exact index/lookback/follow-up years remain outcome-blind TBF."
     },
     "exposure_estimator": {
-      "status": "primary-granularity-frozen-awaiting-within-author-variation",
+      "status": "primary-granularity-and-within-author-variation-passed",
       "evidence": [
         "process/EXPOSURE_ESTIMATOR.md",
         "process/PILOT6_RESULTS.md",
         "process/PILOT10_RESULTS.md"
       ],
-      "note": "Primary exposure frozen as field × prior-3-year chance-corrected lagged exposure. 3+ author robustness mandatory. Within-author exposure-change gate still running; final cross-fitting/sample-size rules remain to freeze."
+      "note": "Primary context is primary_topic field × prior-3-year window; source-level raw exposure rejected as primary; within-author exposure variation passed; exact LOAO rule frozen in process/LOAO_EXPOSURE_RULE.md."
     },
     "preregistration": {
       "status": "draft",
@@ -77,6 +77,11 @@
       "status": "pass",
       "evidence": "process/PILOT13_RESULTS.md",
       "note": "All 26 current OpenAlex primary-topic fields passed the prospective output-volume and structured-order feasibility gate. Six anchor fields are validation anchors only."
+    },
+    "within_author_exposure_variation": {
+      "status": "pass",
+      "evidence": "process/PILOT12_RESULTS.md",
+      "note": "70/100 sampled authors had >=3 primary-field exposure-defined years; among those, 81.4% had within-author exposure range >=0.05 versus a prospectively frozen 50% threshold. Longitudinal extension remains eligible."
     }
   },
   "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
