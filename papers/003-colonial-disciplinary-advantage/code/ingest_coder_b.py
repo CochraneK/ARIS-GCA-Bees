@@ -124,6 +124,45 @@ def validate_matrix(csv_text: str) -> pd.DataFrame:
     return out
 
 
+def validate_evidence_sections(text_without_csv: str) -> None:
+    heading_re = re.compile(
+        r"(?m)^###\s+(D\\d{2})\s+—\s+.+$"
+    )
+    matches = list(heading_re.finditer(text_without_csv))
+    ids = [m.group(1) for m in matches]
+    if ids != EXPECTED_IDS:
+        missing = [cid for cid in EXPECTED_IDS if cid not in ids]
+        extras = [cid for cid in ids if cid not in EXPECTED_IDS]
+        raise SystemExit(
+            "Coder B evidence headings must appear exactly once and in D01-D21 "
+            f"order. Missing={missing}; extras={extras}; observed={ids}"
+        )
+
+    blinding_pos = text_without_csv.find("BLINDING DECLARATION")
+    for idx, match in enumerate(matches):
+        cid = match.group(1)
+        end = (
+            matches[idx + 1].start()
+            if idx + 1 < len(matches)
+            else (blinding_pos if blinding_pos >= 0 else len(text_without_csv))
+        )
+        section = text_without_csv[match.end() : end]
+        confidence = re.findall(
+            r"(?mi)^Confidence:\s*(high|medium|low)\s*$",
+            section,
+        )
+        if len(confidence) != 1:
+            raise SystemExit(
+                f"{cid}: expected exactly one Confidence: high/medium/low line"
+            )
+        prose = re.sub(r"(?mi)^Confidence:.*$", "", section).strip()
+        if len(prose) < 80:
+            raise SystemExit(
+                f"{cid}: evidence section is too short to satisfy the frozen "
+                "historical-rationale requirement"
+            )
+
+
 def validate_blinding(text: str) -> None:
     if "BLINDING DECLARATION" not in text:
         raise SystemExit("Missing BLINDING DECLARATION section")
@@ -153,13 +192,15 @@ def main() -> None:
     validate_blinding(text)
     csv_text, span = extract_csv_block(text)
     df = validate_matrix(csv_text)
+    non_csv_text = text[: span[0]] + text[span[1] :]
+    validate_evidence_sections(non_csv_text)
 
     # Preserve the complete non-CSV evidence narrative, including the blinding
     # declaration, and record the raw-response path without rewriting claims.
     notes = (
         "# IKES CODER B — EVIDENCE NOTES\n\n"
         f"Raw GPTPage response: `{args.raw_response}`\n\n"
-        + (text[: span[0]] + text[span[1] :]).strip()
+        + non_csv_text.strip()
         + "\n"
     )
 
