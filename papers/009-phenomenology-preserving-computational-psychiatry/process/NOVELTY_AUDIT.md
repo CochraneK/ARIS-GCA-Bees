@@ -1,119 +1,112 @@
 # ARIS4C009 · Novelty and failure-mode audit
 
-## Proposed novelty
+## Current novelty boundary
 
-The broad idea of combining phenomenology and computation is **not novel**.
+The broad program is **not novel**.
 
-Existing work already includes:
+Prior work already establishes:
 
-- computational phenomenology;
+- computational phenomenology and generative passages;
 - neurophenomenology;
-- spatiotemporal psychopathology;
-- EASE/EAWE/STEP quantification;
-- computational psychiatry;
-- digital phenotyping;
-- idiographic dynamical modeling.
+- phenomenological fidelity as a methodological concern;
+- EASE/EAWE/STEP-style quantification;
+- interview-versus-self-report divergence;
+- patient narrative distortion;
+- clinical-interview summarization;
+- ecological-validity/reliability problems in computational psychiatry;
+- intended-use validity theory.
 
-ARIS4C009 should therefore **not** claim to invent the bridge.
+The surviving candidate contribution is narrower:
 
-The candidate novelty is narrower and testable:
+> **Decompose psychopathological information loss into acquisition and encoding stages, then benchmark multiple same-source representations with an independently generated reconstruction test and compare them on separate fidelity, reliability, use-validity, predictive-utility, and burden axes.**
 
-> Treat representational compression itself as an empirical variable and benchmark psychiatric representations by how much source-grounded phenomenological structure they destroy under a given burden, while keeping fidelity separate from prediction, biological concordance and reliability.
+See `GATE_A_NOVELTY_REVIEW_2026-09-19.md` for the expanded prior-art audit.
 
-A literature search found uses of rate-distortion theory in cognition and some older theoretical psychiatry, but no clear mature framework matching this exact source-to-representation benchmark. This remains a provisional novelty claim until a formal systematic novelty search is completed.
+## Novelty conditions
 
-## Why this is stronger than “digital twin” language
+A strong originality claim survives only if prior work does **not** already combine most of:
 
-A digital-twin framing can overclaim that the latent model is the patient.
+1. explicit (H \rightarrow A_m \rightarrow X^{(m)} \rightarrow E_k \rightarrow Z^{(m,k)}) decomposition;
+2. same-source multi-representation psychiatric benchmark;
+3. representation-blind query construction and evaluation;
+4. semantic + relational + context + temporal reconstruction loss;
+5. acquisition loss analyzed separately from encoding loss;
+6. reliability and intended-use validity kept distinct from fidelity;
+7. equal-rate/equal-burden comparisons;
+8. use-conditioned Pareto analysis.
 
-The fidelity-frontier framing instead asks:
+If a prior framework with this architecture is found, 009 becomes a replication/extension and the novelty claim must be rewritten.
 
-- what was observed?
+## Why "digital twin" remains deferred
+
+A digital-twin framing risks treating a model as the patient.
+
+009 instead asks:
+
+- what was elicited?
+- by which acquisition process?
+- how was it encoded?
 - what was retained?
-- what was discarded?
-- how uncertain is the translation?
-- what additional predictions does the compressed form enable?
-- can every inference be traced back to source evidence?
+- what was omitted or transformed?
+- for which intended use is the representation valid?
+- what did the representation cost?
 
-This is scientifically narrower and easier to falsify.
+This is narrower and falsifiable.
 
-## Major failure modes
+## Major failure modes retained
 
-### FM1 · Mistaking the richest record for reality
+### FM1 · Source evidence is mistaken for lived reality
 
-The interview archive is not the experience itself.
+Mitigation: (H \neq X); source material is a fixed evidential reference only.
 
-Mitigation: call it the source evidence layer, never ground truth mental state.
+### FM2 · Acquisition and encoding are confounded
 
-### FM2 · Circular fidelity metric
+Mitigation: 009A1 fixes the source; 009A2 studies actual acquisition-method divergence separately.
 
-If the same ontology generates both the representation and the fidelity questions, the richer representation wins by construction.
+### FM3 · The benchmark is a strawman against brief tools
 
-Mitigation:
+Mitigation: source fidelity is not universal validity. Evaluate intended use separately.
 
-- preregister query banks independently;
-- include participant-generated queries;
-- use multiple ontologies / raters;
-- include domain-general factual and relational questions;
-- run adversarial audits for ontology favoritism.
+### FM4 · Question-bank ontology favoritism
 
-### FM3 · “More text is always better”
+Mitigation: source-only question construction, mixed query origins, participant questions, evaluator-background interactions.
 
-A long transcript may win merely because it contains everything.
+### FM5 · More text always wins
 
-Mitigation: explicitly model burden and representation rate; compare Pareto efficiency rather than raw fidelity alone.
+Mitigation: rate matching, burden matching, controlled budget curves, Pareto analysis.
 
-### FM4 · Rater leakage
+### FM6 · Query multiplication fakes sample size
 
-Experts who know EASE may ask EASE-shaped questions and favor EASE.
+Mitigation: redundancy clustering, query random effects, pilot effective-query estimates.
 
-Mitigation: blinded evaluator panels, mixed theoretical backgrounds, participant validation, and independent query construction.
+### FM7 · LLM circularity
 
-### FM5 · LLM semantic circularity
+Mitigation: human primary endpoint, frozen pipelines, source attribution, independent generation/evaluation.
 
-If an LLM creates the representation and another similar LLM grades it, apparent fidelity may reflect shared model biases.
+### FM8 · Biological reductionism
 
-Mitigation: human primary endpoint; model-family separation; repeated stochastic runs; source-grounded adjudication.
+Mitigation: biological evidence constrains models but does not adjudicate subjective meaning.
 
-### FM6 · Reification of computational parameters
+### FM9 · Cross-cultural translation loss
 
-“Prior precision” can become a new label rather than an explanation.
+Mitigation: original language and translation provenance preserved; cross-language sensitivity analyses.
 
-Mitigation: require discriminating predictions and model comparison; parameter recovery; no one-to-one mapping from a symptom to a parameter by assumption.
+### FM10 · Reification of computational parameters
 
-### FM7 · Biological reductionism
+Mitigation: competing models, parameter recovery, out-of-sample prediction and perturbation evidence.
 
-Neural correspondence may be treated as proof that one phenomenological interpretation is true.
+### FM11 · Ethics of total capture
 
-Mitigation: neural data are an independent constraint, not semantic adjudicator.
+Mitigation: privacy and participant burden enter the cost vector; "more data" is not automatically preferred.
 
-### FM8 · Cross-cultural collapse
+## Competing explanations that are allowed to win
 
-Translations may erase experiential distinctions.
+1. **Brief-tool sufficiency:** coarse same-source projections preserve nearly all information needed for their intended use.
+2. **Narrative redundancy:** rich interviews mainly add stylistic detail.
+3. **Acquisition dominance:** most observed divergence comes from elicitation method rather than encoding.
+4. **Evaluator dependence:** representation rankings change by evaluator expertise.
+5. **Temporal-density account:** repeated observations matter more than phenomenological coding.
+6. **Low-dimensional sufficiency:** a compact representation preserves most scientifically important variance.
+7. **Use-specific reversal:** a lower-fidelity representation outperforms richer ones for a specified screening/prediction task.
 
-Mitigation: preserve original language, translation provenance and uncertainty; test site/language interactions.
-
-### FM9 · Ethics of total capture
-
-The ideal of “maximum reality” can encourage invasive surveillance.
-
-Mitigation: fidelity is optimized subject to privacy and burden constraints. More data is not automatically better.
-
-### FM10 · Unfalsifiable grand theory
-
-A framework spanning phenomenology, computation, biology and environment can explain everything after the fact.
-
-Mitigation: Paper 009A has a narrow benchmark with explicit primary outcomes and failure thresholds before mechanistic expansion.
-
-## Strong competing explanations
-
-The study should be designed so these can win:
-
-1. **Simple-scale sufficiency:** conventional scales preserve nearly all clinically useful information.
-2. **Prediction-first sufficiency:** lost phenomenological detail does not improve any external or future outcome.
-3. **Narrative redundancy:** richer interviews mainly add stylistic or verbal redundancy.
-4. **Expert artifact:** apparent phenomenological structure depends on specialist interviewing culture rather than reproducible patient-level phenomena.
-5. **Dynamic-only account:** temporal density, not phenomenological ontology, explains the added value.
-6. **General latent-factor account:** a small number of dimensions preserve nearly all meaningful variance once measurement error is handled correctly.
-
-ARIS4C009 becomes scientifically valuable even if one of these alternatives wins, because the benchmark quantifies where detail is and is not necessary.
+Any of these outcomes would refine rather than invalidate the value of the benchmark.
