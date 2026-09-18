@@ -260,3 +260,24 @@ No general-theory claim, prevalence estimate, or cross-domain predictive claim i
 ## 11. Provisional conclusion
 
 The scientifically productive question is not whether “war is peace,” “freedom is slavery,” or “ignorance is strength” are true. Their literal forms conflate variables and suppress indices. The stronger question is whether apparently opposite-producing phenomena across disciplines share an indexed causal architecture that can be defined before outcomes, applied reliably by independent coders, and used to predict where reversal occurs. ARIS4C012 is designed so that this proposition can fail.
+
+
+## 12. Post-Pilot ontology refinement hypothesis
+
+A design review conducted without access to Coder B labels identified a potential structural weakness in the original taxonomy: it treats actor-, level-, time-, and construct-switches as if they were the same ontological kind as feedback, overload, filtering, and power-asymmetry mechanisms.
+
+A post-Gate-B Schema v2 has therefore been proposed but is explicitly **not** used to score the frozen Pilot 0B. The v2 representation separates:
+
+1. functional-opposition type;
+2. an index-switch vector for actor, level, time, construct, and environment;
+3. a multi-label generative-mechanism vector;
+4. evidence mode;
+5. result direction.
+
+This redesign will be adopted only if the independent v1 Pilot shows the predicted failure pattern: relatively acceptable agreement on opposition validity but substantially poorer agreement on the forced single `primary_mechanism` category, with disagreements consisting of labels that can simultaneously be true.
+
+If that pattern occurs, the project will freeze v2 and run a fresh independent pilot rather than retroactively recoding Pilot 0 into apparent success.
+
+## Working references
+
+The maintained bibliography is stored in `manuscript/REFERENCES.md`. Final reference formatting and completeness will be frozen only after the evidence-map protocol and target journal are locked.
