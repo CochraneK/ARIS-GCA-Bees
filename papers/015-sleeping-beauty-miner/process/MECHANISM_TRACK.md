@@ -145,14 +145,14 @@ early/late attention.
 
 ### 1. SLEEPING_BEAUTY
 
-- early attention <= 25th percentile;
+- early attention <= 25th percentile, with exact zero attention always treated as low;
 - late attention >= 75th percentile;
 - robust retrospective SB gate passes.
 
 ### 2. FORGOTTEN
 
-- early attention <= 25th percentile;
-- late attention <= 25th percentile.
+- early attention <= 25th percentile, with exact zero attention always treated as low;
+- late attention <= 25th percentile, with exact zero attention always treated as low.
 
 ### 3. IMMEDIATE_HIT
 
