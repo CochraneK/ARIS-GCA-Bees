@@ -8,7 +8,7 @@ Updated: 2026-09-18
 
 ## Canonical identity
 
-**When Opposites Become Causes: A Cross-Domain Science of Oppositional Causal Inversion**
+**When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion**
 
 ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests whether superficially contradictory claims share a reusable indexed causal representation after actor, level, time, construct, environment, capacity, and feedback distinctions are restored.
 
@@ -35,7 +35,9 @@ ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests wh
 - [x] prospectively amended retrieval to v0.2 with type/title topical gates;
 - [x] executed retrieval v0.2 successfully: 1,800 raw hits, 1,375 transparent rejections, 165 selected Pilot candidates;
 - [x] passed Pilot retrieval reproducibility/gross-relevance Gate R; full systematic-review saturation remains open;
-- [x] drafted the theory/methods manuscript in `manuscript/DRAFT.md`.
+- [x] drafted the theory/methods manuscript in `manuscript/DRAFT.md`;
+- [x] completed umbrella-theory novelty audit and rejected the original broad novelty claim;
+- [x] narrowed the canonical title from “a science of” to an indexed cross-domain framework.
 
 ## Pilot 0A result
 
@@ -60,7 +62,9 @@ Most heterogeneous. The strongest scientific mappings concern selective filterin
 
 ## Novelty status
 
-**PROVISIONAL ONLY.**
+**BROAD CLAIM FAILED · NARROW INDEXED-REPRESENTATION CLAIM PROVISIONAL.**
+
+A dedicated umbrella-theory audit found that Merton/Boudon-style unintended consequences, paradox theory, rebound typologies, and 2026 complex-systems work already cover much of the original broad idea. OCI therefore cannot claim a new general science of backfire. See `process/NOVELTY_AUDIT.md`.
 
 Major neighboring frameworks include:
 - paradox theory;
