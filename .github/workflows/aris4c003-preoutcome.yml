@@ -39,6 +39,9 @@ jobs:
       - name: Compile all paper code
         run: python -m compileall -q code
 
+      - name: Validate Coder B blind bundle
+        run: python code/validate_coder_b_blind_bundle.py
+
       - name: Data-builder smoke tests
         run: python code/test_data_builders.py
 
