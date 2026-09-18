@@ -1,0 +1,783 @@
+{
+  "seed": 2027,
+  "dataset": "https://raw.githubusercontent.com/annagraff/crossling-curated/main/curated_data/TLI/statisticalTLI/full/statisticalTLI_full_densified_small.csv",
+  "glottolog": "https://raw.githubusercontent.com/glottolog/glottolog-cldf/master/cldf/languages.csv",
+  "feature_counts": {
+    "40": {
+      "n_features": 40,
+      "n_runs": 5,
+      "runs": [
+        {
+          "split": 0,
+          "n_train": 449,
+          "n_test": 195,
+          "n_eval_pairs": 780,
+          "affinity_floor": 2.8392224465134622e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 780,
+              "pearson": 0.3715958502748936,
+              "spearman": 0.1717651170065148,
+              "rmse": 0.031244555768759164,
+              "mae": 0.016876707563591817
+            },
+            "lowrank2": {
+              "n_pairs": 780,
+              "pearson": 0.34251408134828387,
+              "spearman": 0.16463242177365647,
+              "rmse": 0.045457874964396745,
+              "mae": 0.027673523086683104
+            },
+            "euclidean_connected": {
+              "n_pairs": 780,
+              "pearson": 0.18554589101324284,
+              "spearman": 0.17266928346743932,
+              "rmse": 0.03073346450721843,
+              "mae": 0.01811660402592632
+            },
+            "circular_connected": {
+              "n_pairs": 780,
+              "pearson": 0.18944593277147587,
+              "spearman": 0.16164272272964583,
+              "rmse": 0.030808896066912245,
+              "mae": 0.018254934840331034
+            },
+            "circular_optimized": {
+              "n_pairs": 780,
+              "pearson": 0.23868785036670095,
+              "spearman": 0.14463661215016158,
+              "rmse": 0.030633288402177824,
+              "mae": 0.018424350185014877
+            }
+          },
+          "optimized_circle_stability": 0.537048321148558,
+          "connected_circle_vs_optimized_stability": 0.7784951095479219,
+          "optimizer_success": true,
+          "optimizer_nit": 6
+        },
+        {
+          "split": 1,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 780,
+          "affinity_floor": 5.334593254971711e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 780,
+              "pearson": 0.16392505057142648,
+              "spearman": 0.17195825785968522,
+              "rmse": 0.07155209839780578,
+              "mae": 0.023017007606849483
+            },
+            "lowrank2": {
+              "n_pairs": 780,
+              "pearson": 0.18107677761174862,
+              "spearman": 0.22836199372309463,
+              "rmse": 0.07725269131059322,
+              "mae": 0.03290538116439676
+            },
+            "euclidean_connected": {
+              "n_pairs": 780,
+              "pearson": 0.04959238629191648,
+              "spearman": 0.3202412454000614,
+              "rmse": 0.07122926213763733,
+              "mae": 0.02308230799867966
+            },
+            "circular_connected": {
+              "n_pairs": 780,
+              "pearson": 0.060184818104231916,
+              "spearman": 0.15498134001069097,
+              "rmse": 0.07115887889567561,
+              "mae": 0.023686673188722272
+            },
+            "circular_optimized": {
+              "n_pairs": 780,
+              "pearson": 0.10854521421900278,
+              "spearman": 0.170838321642561,
+              "rmse": 0.07093259392735356,
+              "mae": 0.02395639315272925
+            }
+          },
+          "optimized_circle_stability": 0.5408692954155718,
+          "connected_circle_vs_optimized_stability": 0.6159243168735296,
+          "optimizer_success": true,
+          "optimizer_nit": 8
+        },
+        {
+          "split": 2,
+          "n_train": 449,
+          "n_test": 195,
+          "n_eval_pairs": 780,
+          "affinity_floor": 5.220648231747693e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 780,
+              "pearson": 0.5363845379845373,
+              "spearman": 0.18249247093387314,
+              "rmse": 0.033216075440270755,
+              "mae": 0.01763968773429405
+            },
+            "lowrank2": {
+              "n_pairs": 780,
+              "pearson": 0.3693428599291936,
+              "spearman": 0.24105743247789188,
+              "rmse": 0.04727264207564986,
+              "mae": 0.027400424072116382
+            },
+            "euclidean_connected": {
+              "n_pairs": 780,
+              "pearson": 0.16806085882163552,
+              "spearman": 0.17532407212900306,
+              "rmse": 0.03844405581616428,
+              "mae": 0.019468251633450857
+            },
+            "circular_connected": {
+              "n_pairs": 780,
+              "pearson": 0.244256585818989,
+              "spearman": 0.18204586266110082,
+              "rmse": 0.03785717601400526,
+              "mae": 0.01952188893196815
+            },
+            "circular_optimized": {
+              "n_pairs": 780,
+              "pearson": 0.29754648354490376,
+              "spearman": 0.1898844219514464,
+              "rmse": 0.03728937470124134,
+              "mae": 0.019574157952971596
+            }
+          },
+          "optimized_circle_stability": 0.30088915586393394,
+          "connected_circle_vs_optimized_stability": 0.7255501229140239,
+          "optimizer_success": true,
+          "optimizer_nit": 5
+        },
+        {
+          "split": 3,
+          "n_train": 448,
+          "n_test": 196,
+          "n_eval_pairs": 780,
+          "affinity_floor": 3.250329772225589e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 780,
+              "pearson": 0.4295980087027268,
+              "spearman": 0.18863487258575565,
+              "rmse": 0.03117230662290063,
+              "mae": 0.017831551383302748
+            },
+            "lowrank2": {
+              "n_pairs": 780,
+              "pearson": 0.33738554351113886,
+              "spearman": 0.2700511844856933,
+              "rmse": 0.04559317189556952,
+              "mae": 0.025444917178209736
+            },
+            "euclidean_connected": {
+              "n_pairs": 780,
+              "pearson": 0.2207153806732658,
+              "spearman": 0.2596965346780357,
+              "rmse": 0.03226151128821997,
+              "mae": 0.018957306478827683
+            },
+            "circular_connected": {
+              "n_pairs": 780,
+              "pearson": 0.21387706488519256,
+              "spearman": 0.2570066830263815,
+              "rmse": 0.03232156247011341,
+              "mae": 0.018954860751168083
+            },
+            "circular_optimized": {
+              "n_pairs": 780,
+              "pearson": 0.22747160010843748,
+              "spearman": 0.21269636587090557,
+              "rmse": 0.03224953446665436,
+              "mae": 0.01913508194363551
+            }
+          },
+          "optimized_circle_stability": 0.3633632887931465,
+          "connected_circle_vs_optimized_stability": 0.8975604698687741,
+          "optimizer_success": true,
+          "optimizer_nit": 3
+        },
+        {
+          "split": 4,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 780,
+          "affinity_floor": 4.1938837098026805e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 780,
+              "pearson": 0.2411368383870232,
+              "spearman": 0.17277584796466208,
+              "rmse": 0.037675432194781734,
+              "mae": 0.018804122754017494
+            },
+            "lowrank2": {
+              "n_pairs": 780,
+              "pearson": 0.2869060664607775,
+              "spearman": 0.2106132983938143,
+              "rmse": 0.047979345054245726,
+              "mae": 0.028123395765361946
+            },
+            "euclidean_connected": {
+              "n_pairs": 780,
+              "pearson": 0.16137251854620313,
+              "spearman": 0.15904698452752256,
+              "rmse": 0.03463480187569232,
+              "mae": 0.019465881306351455
+            },
+            "circular_connected": {
+              "n_pairs": 780,
+              "pearson": 0.18359331034443968,
+              "spearman": 0.15727505754269822,
+              "rmse": 0.034486687419205936,
+              "mae": 0.01946066494043839
+            },
+            "circular_optimized": {
+              "n_pairs": 780,
+              "pearson": 0.20678031917995005,
+              "spearman": 0.17678762590000147,
+              "rmse": 0.034489601141208956,
+              "mae": 0.01965477382119105
+            }
+          },
+          "optimized_circle_stability": 0.3541498513058296,
+          "connected_circle_vs_optimized_stability": 0.8383995978347711,
+          "optimizer_success": true,
+          "optimizer_nit": 6
+        }
+      ],
+      "summary": {
+        "tree": {
+          "spearman": {
+            "mean": 0.17752531327009818,
+            "sd": 0.007661989804712271,
+            "min": 0.1717651170065148,
+            "max": 0.18863487258575565
+          },
+          "pearson": {
+            "mean": 0.3485280571841215,
+            "sd": 0.14832874082691935,
+            "min": 0.16392505057142648,
+            "max": 0.5363845379845373
+          },
+          "rmse": {
+            "mean": 0.04097209368490361,
+            "sd": 0.017297552605811596,
+            "min": 0.03117230662290063,
+            "max": 0.07155209839780578
+          },
+          "mae": {
+            "mean": 0.018833815408411118,
+            "sd": 0.0024372486443309626,
+            "min": 0.016876707563591817,
+            "max": 0.023017007606849483
+          }
+        },
+        "lowrank2": {
+          "spearman": {
+            "mean": 0.2229432661708301,
+            "sd": 0.03914340390455023,
+            "min": 0.16463242177365647,
+            "max": 0.2700511844856933
+          },
+          "pearson": {
+            "mean": 0.30344506577222846,
+            "sd": 0.07461300109151837,
+            "min": 0.18107677761174862,
+            "max": 0.3693428599291936
+          },
+          "rmse": {
+            "mean": 0.052711145060091016,
+            "sd": 0.013761633328066226,
+            "min": 0.045457874964396745,
+            "max": 0.07725269131059322
+          },
+          "mae": {
+            "mean": 0.02830952825335358,
+            "sd": 0.0027655686069613817,
+            "min": 0.025444917178209736,
+            "max": 0.03290538116439676
+          }
+        },
+        "euclidean_connected": {
+          "spearman": {
+            "mean": 0.2173956240404124,
+            "sd": 0.06989566085944399,
+            "min": 0.15904698452752256,
+            "max": 0.3202412454000614
+          },
+          "pearson": {
+            "mean": 0.15705740706925275,
+            "sd": 0.06432798409128612,
+            "min": 0.04959238629191648,
+            "max": 0.2207153806732658
+          },
+          "rmse": {
+            "mean": 0.04146061912498646,
+            "sd": 0.016893482273627764,
+            "min": 0.03073346450721843,
+            "max": 0.07122926213763733
+          },
+          "mae": {
+            "mean": 0.019818070288647193,
+            "sd": 0.00190640760186825,
+            "min": 0.01811660402592632,
+            "max": 0.02308230799867966
+          }
+        },
+        "circular_connected": {
+          "spearman": {
+            "mean": 0.18259033319410348,
+            "sd": 0.042953497065432,
+            "min": 0.15498134001069097,
+            "max": 0.2570066830263815
+          },
+          "pearson": {
+            "mean": 0.1782715423848658,
+            "sd": 0.07021296506981949,
+            "min": 0.060184818104231916,
+            "max": 0.244256585818989
+          },
+          "rmse": {
+            "mean": 0.041326640173182494,
+            "sd": 0.016885637150752995,
+            "min": 0.030808896066912245,
+            "max": 0.07115887889567561
+          },
+          "mae": {
+            "mean": 0.01997580453052559,
+            "sd": 0.002135747706162558,
+            "min": 0.018254934840331034,
+            "max": 0.023686673188722272
+          }
+        },
+        "circular_optimized": {
+          "spearman": {
+            "mean": 0.17896866950301518,
+            "sd": 0.025031284542597423,
+            "min": 0.14463661215016158,
+            "max": 0.21269636587090557
+          },
+          "pearson": {
+            "mean": 0.21580629348379904,
+            "sd": 0.06878864556095084,
+            "min": 0.10854521421900278,
+            "max": 0.29754648354490376
+          },
+          "rmse": {
+            "mean": 0.04111887852772721,
+            "sd": 0.016852914499494564,
+            "min": 0.030633288402177824,
+            "max": 0.07093259392735356
+          },
+          "mae": {
+            "mean": 0.020148951411108458,
+            "sd": 0.0021836547524647313,
+            "min": 0.018424350185014877,
+            "max": 0.02395639315272925
+          }
+        }
+      },
+      "optimized_circle_stability": {
+        "mean": 0.4192639825054079,
+        "sd": 0.11184625583738837
+      }
+    },
+    "60": {
+      "n_features": 60,
+      "n_runs": 5,
+      "runs": [
+        {
+          "split": 0,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 1738,
+          "affinity_floor": 7.656298778750551e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 1738,
+              "pearson": 0.29886849674469024,
+              "spearman": 0.09439988793250934,
+              "rmse": 0.0429184842658152,
+              "mae": 0.02111504060780627
+            },
+            "lowrank2": {
+              "n_pairs": 1738,
+              "pearson": 0.19750912694636852,
+              "spearman": 0.10169077679158169,
+              "rmse": 0.05069428348824342,
+              "mae": 0.02718235796205109
+            },
+            "euclidean_connected": {
+              "n_pairs": 1738,
+              "pearson": 0.08924701640037908,
+              "spearman": 0.12229123167557754,
+              "rmse": 0.04089783031823438,
+              "mae": 0.02054393814385521
+            },
+            "circular_connected": {
+              "n_pairs": 1738,
+              "pearson": 0.14357862997623602,
+              "spearman": 0.07762175345045813,
+              "rmse": 0.04066855838245122,
+              "mae": 0.021050162747096167
+            },
+            "circular_optimized": {
+              "n_pairs": 1738,
+              "pearson": 0.12788904636199436,
+              "spearman": 0.07356829252866989,
+              "rmse": 0.04107848544335411,
+              "mae": 0.021565410109323422
+            }
+          },
+          "optimized_circle_stability": 0.4992063721540279,
+          "connected_circle_vs_optimized_stability": 0.8375128562492786,
+          "optimizer_success": true,
+          "optimizer_nit": 5
+        },
+        {
+          "split": 1,
+          "n_train": 448,
+          "n_test": 196,
+          "n_eval_pairs": 1680,
+          "affinity_floor": 5.836417641552441e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 1680,
+              "pearson": 0.47493614516202853,
+              "spearman": 0.16461586185634755,
+              "rmse": 0.036159844090975626,
+              "mae": 0.020436809722572415
+            },
+            "lowrank2": {
+              "n_pairs": 1680,
+              "pearson": 0.30357132207048204,
+              "spearman": 0.1404065250756458,
+              "rmse": 0.04322489381204086,
+              "mae": 0.027072212429184193
+            },
+            "euclidean_connected": {
+              "n_pairs": 1680,
+              "pearson": 0.1153800054454791,
+              "spearman": 0.05764609173569328,
+              "rmse": 0.0396028340718648,
+              "mae": 0.021900457842562525
+            },
+            "circular_connected": {
+              "n_pairs": 1680,
+              "pearson": 0.17642359710878247,
+              "spearman": 0.1255709032297043,
+              "rmse": 0.03926674370489484,
+              "mae": 0.021762522232436153
+            },
+            "circular_optimized": {
+              "n_pairs": 1680,
+              "pearson": 0.17642359710878247,
+              "spearman": 0.1255709032297043,
+              "rmse": 0.03926674370489484,
+              "mae": 0.021762522232436153
+            }
+          },
+          "optimized_circle_stability": 0.6387457805184081,
+          "connected_circle_vs_optimized_stability": 1.0,
+          "optimizer_success": true,
+          "optimizer_nit": 0
+        },
+        {
+          "split": 2,
+          "n_train": 451,
+          "n_test": 193,
+          "n_eval_pairs": 1664,
+          "affinity_floor": 5.08963742702628e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 1664,
+              "pearson": 0.5174295164062509,
+              "spearman": 0.1919924976659793,
+              "rmse": 0.03851813834434772,
+              "mae": 0.020461414587020815
+            },
+            "lowrank2": {
+              "n_pairs": 1664,
+              "pearson": 0.38908132667792045,
+              "spearman": 0.19579201487749523,
+              "rmse": 0.043734181612245474,
+              "mae": 0.02628584883237574
+            },
+            "euclidean_connected": {
+              "n_pairs": 1664,
+              "pearson": 0.10668780981205842,
+              "spearman": 0.06182974929893501,
+              "rmse": 0.04443872020419606,
+              "mae": 0.02287624999589853
+            },
+            "circular_connected": {
+              "n_pairs": 1664,
+              "pearson": 0.18756893793910073,
+              "spearman": 0.12183167189705461,
+              "rmse": 0.043850346267049034,
+              "mae": 0.022516228421882764
+            },
+            "circular_optimized": {
+              "n_pairs": 1664,
+              "pearson": 0.18756893793910073,
+              "spearman": 0.12183167189705461,
+              "rmse": 0.043850346267049034,
+              "mae": 0.022516228421882764
+            }
+          },
+          "optimized_circle_stability": 0.7165006576207066,
+          "connected_circle_vs_optimized_stability": 1.0,
+          "optimizer_success": true,
+          "optimizer_nit": 0
+        },
+        {
+          "split": 3,
+          "n_train": 449,
+          "n_test": 195,
+          "n_eval_pairs": 1711,
+          "affinity_floor": 7.0531983677418105e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 1711,
+              "pearson": 0.47798850350661576,
+              "spearman": 0.14952929701029832,
+              "rmse": 0.03985846267774219,
+              "mae": 0.02080974506767357
+            },
+            "lowrank2": {
+              "n_pairs": 1711,
+              "pearson": 0.3650444928741081,
+              "spearman": 0.15328186767953003,
+              "rmse": 0.04620091084917675,
+              "mae": 0.026685445134516775
+            },
+            "euclidean_connected": {
+              "n_pairs": 1711,
+              "pearson": 0.11377505714116234,
+              "spearman": 0.09357222968332375,
+              "rmse": 0.044674522467200106,
+              "mae": 0.02178798827832472
+            },
+            "circular_connected": {
+              "n_pairs": 1711,
+              "pearson": 0.15779742131299646,
+              "spearman": 0.109007924876442,
+              "rmse": 0.04442307363127889,
+              "mae": 0.021756712911605084
+            },
+            "circular_optimized": {
+              "n_pairs": 1711,
+              "pearson": 0.15779742131299646,
+              "spearman": 0.109007924876442,
+              "rmse": 0.04442307363127889,
+              "mae": 0.021756712911605088
+            }
+          },
+          "optimized_circle_stability": 0.6157277465008802,
+          "connected_circle_vs_optimized_stability": 1.0,
+          "optimizer_success": true,
+          "optimizer_nit": 0
+        },
+        {
+          "split": 4,
+          "n_train": 450,
+          "n_test": 194,
+          "n_eval_pairs": 1742,
+          "affinity_floor": 5.093543163576525e-06,
+          "scores": {
+            "tree": {
+              "n_pairs": 1742,
+              "pearson": 0.4617527914139242,
+              "spearman": 0.1363787881773098,
+              "rmse": 0.03767430970481288,
+              "mae": 0.02146839407301269
+            },
+            "lowrank2": {
+              "n_pairs": 1742,
+              "pearson": 0.3766660161220853,
+              "spearman": 0.172693182804377,
+              "rmse": 0.04247346479373639,
+              "mae": 0.026562085935089862
+            },
+            "euclidean_connected": {
+              "n_pairs": 1742,
+              "pearson": 0.20137419213864435,
+              "spearman": 0.1760352417920993,
+              "rmse": 0.04039023037037185,
+              "mae": 0.022220923347126106
+            },
+            "circular_connected": {
+              "n_pairs": 1742,
+              "pearson": 0.18553598677318942,
+              "spearman": 0.09633522317940435,
+              "rmse": 0.040554362848662574,
+              "mae": 0.022867769017070532
+            },
+            "circular_optimized": {
+              "n_pairs": 1742,
+              "pearson": 0.18553598677318936,
+              "spearman": 0.09633522317940435,
+              "rmse": 0.040554362848662574,
+              "mae": 0.022867769017070536
+            }
+          },
+          "optimized_circle_stability": 0.6697164946616906,
+          "connected_circle_vs_optimized_stability": 1.0,
+          "optimizer_success": true,
+          "optimizer_nit": 0
+        }
+      ],
+      "summary": {
+        "tree": {
+          "spearman": {
+            "mean": 0.14738326652848888,
+            "sd": 0.03612439702772598,
+            "min": 0.09439988793250934,
+            "max": 0.1919924976659793
+          },
+          "pearson": {
+            "mean": 0.44619509064670193,
+            "sd": 0.0849387721437585,
+            "min": 0.29886849674469024,
+            "max": 0.5174295164062509
+          },
+          "rmse": {
+            "mean": 0.03902584781673872,
+            "sd": 0.0025565732711910565,
+            "min": 0.036159844090975626,
+            "max": 0.0429184842658152
+          },
+          "mae": {
+            "mean": 0.020858280811617152,
+            "sd": 0.0004403578607893364,
+            "min": 0.020436809722572415,
+            "max": 0.02146839407301269
+          }
+        },
+        "lowrank2": {
+          "spearman": {
+            "mean": 0.15277287344572596,
+            "sd": 0.03539078799700035,
+            "min": 0.10169077679158169,
+            "max": 0.19579201487749523
+          },
+          "pearson": {
+            "mean": 0.3263744569381929,
+            "sd": 0.07918809940686146,
+            "min": 0.19750912694636852,
+            "max": 0.38908132667792045
+          },
+          "rmse": {
+            "mean": 0.045265546911088576,
+            "sd": 0.003341075942716897,
+            "min": 0.04247346479373639,
+            "max": 0.05069428348824342
+          },
+          "mae": {
+            "mean": 0.026757590058643532,
+            "sd": 0.00036924976126406046,
+            "min": 0.02628584883237574,
+            "max": 0.02718235796205109
+          }
+        },
+        "euclidean_connected": {
+          "spearman": {
+            "mean": 0.10227490883712578,
+            "sd": 0.04884802649032639,
+            "min": 0.05764609173569328,
+            "max": 0.1760352417920993
+          },
+          "pearson": {
+            "mean": 0.12529281618754468,
+            "sd": 0.04377426270481153,
+            "min": 0.08924701640037908,
+            "max": 0.20137419213864435
+          },
+          "rmse": {
+            "mean": 0.04200082748637344,
+            "sd": 0.002379756499787976,
+            "min": 0.0396028340718648,
+            "max": 0.044674522467200106
+          },
+          "mae": {
+            "mean": 0.02186591152155342,
+            "sd": 0.0008517183103162418,
+            "min": 0.02054393814385521,
+            "max": 0.02287624999589853
+          }
+        },
+        "circular_connected": {
+          "spearman": {
+            "mean": 0.10607349532661267,
+            "sd": 0.019630432246566146,
+            "min": 0.07762175345045813,
+            "max": 0.1255709032297043
+          },
+          "pearson": {
+            "mean": 0.17018091462206103,
+            "sd": 0.018961310181415718,
+            "min": 0.14357862997623602,
+            "max": 0.18756893793910073
+          },
+          "rmse": {
+            "mean": 0.041752616966867315,
+            "sd": 0.0022540169051147125,
+            "min": 0.03926674370489484,
+            "max": 0.04442307363127889
+          },
+          "mae": {
+            "mean": 0.02199067906601814,
+            "sd": 0.0007135922428050805,
+            "min": 0.021050162747096167,
+            "max": 0.022867769017070532
+          }
+        },
+        "circular_optimized": {
+          "spearman": {
+            "mean": 0.10526280314225503,
+            "sd": 0.02112590805626627,
+            "min": 0.07356829252866989,
+            "max": 0.1255709032297043
+          },
+          "pearson": {
+            "mean": 0.16704299789921268,
+            "sd": 0.024848607108523796,
+            "min": 0.12788904636199436,
+            "max": 0.18756893793910073
+          },
+          "rmse": {
+            "mean": 0.04183460237904789,
+            "sd": 0.0022117883653091416,
+            "min": 0.03926674370489484,
+            "max": 0.04442307363127889
+          },
+          "mae": {
+            "mean": 0.022093728538463593,
+            "sd": 0.0005656947777909014,
+            "min": 0.021565410109323422,
+            "max": 0.022867769017070536
+          }
+        }
+      },
+      "optimized_circle_stability": {
+        "mean": 0.6279794102911427,
+        "sd": 0.0812811613861094
+      }
+    }
+  },
+  "verdict": "MIXED_ROBUSTNESS",
+  "verdict_reasons": [
+    "40 features: optimized circular Spearman=0.179, tree=0.178, connected Euclidean=0.217, circular stability=0.419.",
+    "60 features: optimized circular Spearman=0.105, tree=0.147, connected Euclidean=0.102, circular stability=0.628."
+  ],
+  "limitations": [
+    "Only five family-held-out splits per feature-count setting are used in this robustness screen.",
+    "Direct angular optimization is non-convex and uses two starts.",
+    "Model capacities are still not formally matched by information criteria.",
+    "Geographic blocking and full phylogenetic covariance are not included.",
+    "The target remains pairwise feature NMI rather than individual-language feature prediction."
+  ]
+}
