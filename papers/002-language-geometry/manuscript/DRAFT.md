@@ -90,7 +90,7 @@ A two-dimensional spectral embedding was estimated from the training affinity ma
 
 #### Hierarchical-tree benchmark
 
-Training dissimilarity was defined as $1-\mathrm{NMI}$. Average-linkage hierarchical clustering produced a dendrogram, and cophenetic distances between features were converted to predicted association using a quadratic training-set calibration. This model is a predictive benchmark, not an assertion that linguistic structure is literally a phylogenetic tree.
+Training dissimilarity was defined as 1 − NMI. Average-linkage hierarchical clustering produced a dendrogram, and cophenetic distances between features were converted to predicted association using a quadratic training-set calibration. This model is a predictive benchmark, not an assertion that linguistic structure is literally a phylogenetic tree.
 
 #### Graph benchmark
 
@@ -102,11 +102,9 @@ The initial circular model projected a two-dimensional spectral embedding to ang
 
 The stronger Stage 1B model directly optimized one angular coordinate per feature, fixing one feature at angle zero to remove rotational non-identifiability. At each optimization step the association prediction was fit as
 
-$
-\hat{s}_{ij}=\beta_0+\beta_1\cos(\Delta_{ij})+\beta_2\cos(2\Delta_{ij}),
-$
+ŝ(i,j) = β₀ + β₁ cos(Δᵢⱼ) + β₂ cos(2Δᵢⱼ).
 
-where $\Delta_{ij}$ is circular angular distance. The $n-1$ free angular coordinates were optimized by L-BFGS-B to minimize mean squared error in the training association matrix, with multiple starting points. This reduces the concern that a negative circular result is merely caused by inheriting poor spectral angles.
+where Δᵢⱼ is circular angular distance. The n − 1 free angular coordinates were optimized by L-BFGS-B to minimize mean squared error in the training association matrix, with multiple starting points. This reduces the concern that a negative circular result is merely caused by inheriting poor spectral angles.
 
 ### 2.4 Train/test evaluation
 
