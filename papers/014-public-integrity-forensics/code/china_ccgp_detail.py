@@ -293,3 +293,30 @@ def dump_detail_report(notices: Iterable[CCGPAwardNotice]) -> str:
         ensure_ascii=False,
         indent=2,
     ) + "\n"
+
+
+def safe_structural_debug_lines(html: str, *, limit: int = 80) -> list[str]:
+    """Return procurement-structure lines only, excluding contact/address material."""
+    text = html_to_text(html)
+    keep_tokens = (
+        "项目编号", "采购计划备案号", "项目名称", "中标（成交）信息",
+        "中标信息", "成交信息", "包名称", "供应商名称", "中标（成交）金额",
+        "中标金额", "成交金额", "采购单位", "代理机构名称",
+    )
+    drop_tokens = (
+        "地址", "联系方式", "联系电话", "联系人", "评审专家", "评审小组",
+        "电 话", "电话",
+    )
+    out: list[str] = []
+    for line in text.splitlines():
+        if not any(k in line for k in keep_tokens):
+            continue
+        if any(k in line for k in drop_tokens):
+            continue
+        # Strip long digit runs as an additional privacy guard. Project IDs with
+        # mixed letters/punctuation remain structurally useful.
+        line = re.sub(r"(?<![A-Za-z])\\d{7,}(?![A-Za-z])", "[REDACTED_NUM]", line)
+        out.append(line[:300])
+        if len(out) >= limit:
+            break
+    return out
