@@ -17,35 +17,40 @@
 - [x] Seed literature matrix created.
 - [x] Novelty and failure-mode audit created.
 - [x] Initial falsification criteria defined.
+- [x] Targeted novelty search completed and logged.
+- [x] 009A preregistration-ready protocol skeleton drafted.
+- [x] Episode-level data dictionary drafted.
+- [x] Reference Pareto-frontier code added.
 
 ## Next ARIS gates
 
 ### Gate A — systematic novelty search
 
-Determine whether any prior work already benchmarks explicit representational loss from phenomenological interview → scale → computational representation.
+**Status:** targeted audit complete; formal multi-database systematic novelty review remains.
 
-Pass condition: novelty claim rewritten to the narrowest defensible form.
+Determine whether prior work already benchmarks explicit representational loss from phenomenological interview → scale → computational representation.
+
+Pass condition: novelty claim is rewritten to the narrowest defensible form after database and citation-chain screening.
 
 ### Gate B — fidelity metric preregistration
 
-Create:
+**Status:** protocol skeleton complete; operational calibration pending.
+
+Finalize:
 
 - source-grounded query bank;
 - relation ontology;
 - context-loss rubric;
 - participant-confirmation protocol;
-- inter-rater calibration procedure.
+- inter-rater calibration procedure;
+- acceptable reliability threshold;
+- simulation-based sample-size target.
 
-Pass condition: metrics can be applied without knowing representation identity.
+Pass condition: metrics can be applied without knowing representation identity and without tuning on confirmatory cases.
 
 ### Gate C — pilot material
 
-Use de-identified or purpose-collected episodes to verify:
-
-- annotation feasibility;
-- graph extraction;
-- blinded reconstruction;
-- burden measurement.
+Use de-identified or purpose-collected episodes to verify annotation feasibility, graph extraction, blinded reconstruction and burden measurement.
 
 Synthetic examples may be used only for engineering and must be labeled synthetic.
 
@@ -55,13 +60,7 @@ Pass condition: key fidelity components achieve prespecified acceptable rater ag
 
 ### Gate E — representation benchmark
 
-Compare at minimum:
-
-- full context;
-- structured graph;
-- expert phenomenological code;
-- self-report abstraction;
-- conventional symptom abstraction.
+Compare at minimum full context, structured graph, expert phenomenological code, self-report abstraction and conventional symptom abstraction.
 
 Pass condition: effect estimates and uncertainty are reported; no universal representation winner is forced.
 
@@ -79,4 +78,4 @@ These are intentionally deferred until the representation-loss measurement probl
 
 The framework can become too broad.
 
-**Control:** Paper 009A must remain a measurement / representation paper. Everything else is a programmatic extension.
+**Control:** Paper 009A remains a measurement / representation paper. Everything else is a programmatic extension.
