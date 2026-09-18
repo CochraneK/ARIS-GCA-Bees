@@ -411,6 +411,9 @@ def verdict(random_summary: dict, family_summary: dict) -> tuple[str, list[str]]
         f"Mean circular-order stability under family-held-out resampling={stability_f:.3f}.",
     ]
 
+    # This 0.35 stability threshold belongs only to the original Stage-1 global
+    # screening verdict. Stage 1C later uses a separate, stricter predeclared
+    # local-domain criterion with stability >= 0.40; the two gates are not interchangeable.
     if circ_f >= 0.15 and circ_f >= best_comp_f - 0.03 and stability_f >= 0.35:
         return "GO_PERIODIC_SCREEN", reasons
     if best_comp_f >= max(0.15, circ_f + 0.05):
