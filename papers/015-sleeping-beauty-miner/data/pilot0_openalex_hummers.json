@@ -1,0 +1,50 @@
+{
+  "case_id": "ke2015_02",
+  "target": {
+    "doi": "10.1021/ja01539a017",
+    "openalex_id": "W4233194460",
+    "title": "Preparation of Graphitic Oxide",
+    "publication_year": 1958,
+    "primary_topic": "Graphite, nuclear technology, radiation studies"
+  },
+  "source": {
+    "name": "OpenAlex live API",
+    "observation_end_year": 2011,
+    "query_semantics": "incoming works citing target with to_publication_date:2011-12-31",
+    "workflow_run_id": 35305251666,
+    "retrieved_at": "2026-09-18"
+  },
+  "trajectory": {
+    "publication_year": 1958,
+    "end_year": 2011,
+    "counts": [
+      0, 1, 0, 0, 1, 1, 1, 2, 2, 1, 1, 1, 1, 0, 1, 3, 2, 3,
+      0, 1, 2, 1, 1, 0, 1, 3, 4, 0, 0, 1, 3, 0, 3, 2, 3, 2,
+      2, 1, 3, 1, 4, 1, 2, 3, 3, 5, 11, 5, 11, 15, 61, 175, 480, 980
+    ],
+    "valid_edges": 1811,
+    "invalid_prepublication_edges": 0,
+    "total_citations": 1811
+  },
+  "reconstructed": {
+    "beauty_coefficient": 12679.32561276233,
+    "peak_time": 53,
+    "awakening_time": 49,
+    "sleep_length": 49,
+    "peak_citations": 980.0,
+    "citations_at_publication_age_0": 0.0,
+    "awakening_year": 2007
+  },
+  "reference_ke2015": {
+    "beauty_coefficient": 10769.0,
+    "awakening_year": 2007,
+    "source_dataset": "Web of Science",
+    "reference_doi": "10.1073/pnas.1424329112"
+  },
+  "cross_source_difference": {
+    "beauty_coefficient_absolute": 1910.32561276233,
+    "beauty_coefficient_relative": 0.17739117956749278,
+    "awakening_year": 0
+  },
+  "interpretation": "Differences from Ke et al. are expected because OpenAlex and Web of Science have different citation coverage. The awakening year reproduces exactly in this cross-source probe; the Beauty Coefficient is 17.7% higher in the OpenAlex reconstruction. This is a cross-source robustness result, not an exact WoS replication."
+}
