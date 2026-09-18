@@ -309,6 +309,48 @@ class OpenAlexClient:
             reason="below_acceptance_threshold_or_close_tie",
         )
 
+    def iter_citing_works(
+        self,
+        work_id: str,
+        year_min: int,
+        year_max: int,
+        max_works: int | None = None,
+    ) -> Iterable[dict[str, Any]]:
+        """Yield works that cite one focal work inside a bounded date window.
+
+        OpenAlex documents the `cites:W...` Works filter as incoming citations
+        to the focal work. Results are sorted earliest-first so a bounded pilot
+        preserves early diffusion rather than only highly cited late descendants.
+        """
+        work_id = normalize_openalex_id(work_id)
+        cursor = "*"
+        yielded = 0
+        while cursor:
+            data = self._request(
+                "/works",
+                {
+                    "filter": (
+                        f"cites:{work_id},"
+                        f"from_publication_date:{year_min}-01-01,"
+                        f"to_publication_date:{year_max}-12-31"
+                    ),
+                    "per_page": "100",
+                    "cursor": cursor,
+                    "sort": "publication_date:asc",
+                    "select": (
+                        "id,doi,display_name,publication_year,publication_date,type,"
+                        "authorships,referenced_works,cited_by_count,"
+                        "citation_normalized_percentile,primary_topic,topics"
+                    ),
+                },
+            )
+            for work in data.get("results", []):
+                yield work
+                yielded += 1
+                if max_works is not None and yielded >= max_works:
+                    return
+            cursor = data.get("meta", {}).get("next_cursor")
+
     def iter_author_works(
         self,
         author_id: str,
