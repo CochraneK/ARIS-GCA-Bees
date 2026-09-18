@@ -1,0 +1,77 @@
+name: ARIS4C005 latent prevalence model
+
+on:
+  push:
+    branches:
+      - main
+      - aris4c005-latent-model-20260918
+    paths:
+      - ".github/workflows/aris4c005-latent-model.yml"
+      - "papers/005-hidden-burden-bad-science/code/make_adjudication_packet.py"
+      - "papers/005-hidden-burden-bad-science/code/prepare_dual_ai_latent_input.py"
+      - "papers/005-hidden-burden-bad-science/code/latent_prevalence.py"
+      - "papers/005-hidden-burden-bad-science/code/latent_recovery_demo.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_adjudication_packet.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_prepare_dual_ai_latent_input.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_latent_prevalence.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c005-latent-model-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and run all 005 tests
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Six-stratum synthetic recovery
+        run: |
+          python "$PAPER_DIR/code/latent_recovery_demo.py" \
+            "$PAPER_DIR/data/pilot/scaled_random_audit_summary.json" \
+            "$PAPER_DIR/data/pilot/latent_model_synthetic_recovery.json" \
+            --seed 20260918
+
+      - name: Validate recovery classification
+        run: |
+          python - <<'PY'
+          import json
+          p = 'papers/005-hidden-burden-bad-science/data/pilot/latent_model_synthetic_recovery.json'
+          d = json.load(open(p, encoding='utf-8'))
+          assert d["classification"] == "SYNTHETIC_LATENT_MODEL_RECOVERY_NOT_EMPIRICAL_PREVALENCE"
+          assert d["true_value_inside_95_interval"] is True
+          print(json.dumps(d, indent=2))
+          PY
+
+      - name: Persist synthetic recovery summary
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/pilot/latent_model_synthetic_recovery.json"
+          if git diff --cached --quiet; then
+            echo "No recovery summary change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C005 latent model synthetic recovery [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
