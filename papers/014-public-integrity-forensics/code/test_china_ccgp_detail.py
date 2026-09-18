@@ -64,3 +64,32 @@ def test_percentage_quote_never_becomes_currency():
     assert n.lots[0].award_value_yuan is None
     assert n.lots[0].pricing_basis == "percentage"
     assert n.corruption_inference is False
+
+
+def test_central_notice_three_section_schema():
+    html = """
+    <p>2026年09月18日 14:18 来源：</p>
+    <table>
+      <tr><td>采购单位</td><td>中国中医科学院广安门医院</td></tr>
+      <tr><td>代理机构名称</td><td>中国仪器进出口集团有限公司</td></tr>
+    </table>
+    <p>一、项目编号：26CNIC381070-044（招标文件编号：26CNIC381070-044）</p>
+    <p>二、项目名称：中国中医科学院广安门医院移动推车工作站采购</p>
+    <p>三、中标（成交）信息</p>
+    <p>供应商名称：北京医惠科技有限公司</p>
+    <p>供应商地址：不公开进规范化结果</p>
+    <p>中标（成交）金额：84.6000000（万元）</p>
+    <p>四、主要标的信息</p>
+    """
+    n = parse_ccgp_award_detail(
+        html,
+        source_url="https://www.ccgp.gov.cn/central-example.htm",
+        retrieved_at="2026-09-18T00:00:00Z",
+    )
+    assert n.project_id == "26CNIC381070-044"
+    assert n.procurement_plan_id is None
+    assert n.project_name == "中国中医科学院广安门医院移动推车工作站采购"
+    assert len(n.lots) == 1
+    assert n.lots[0].supplier_name == "北京医惠科技有限公司"
+    assert n.lots[0].award_value_yuan == 846000.0
+    assert n.lots[0].pricing_basis == "currency"
