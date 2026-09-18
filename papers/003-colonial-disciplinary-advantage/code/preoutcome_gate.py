@@ -23,6 +23,12 @@ DIMS = [f"D{i}" for i in range(1, 12)]
 EXPECTED_IDS = [f"D{i:02d}" for i in range(1, 22)]
 
 
+def git_blob_sha(path: Path) -> str:
+    data = path.read_bytes()
+    header = f"blob {len(data)}\\0".encode("ascii")
+    return hashlib.sha1(header + data).hexdigest()
+
+
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
@@ -63,6 +69,10 @@ def main() -> None:
         ("PREREGISTRATION_AMENDMENT_002.md", "estimator amendment 002"),
         ("PREREGISTRATION_AMENDMENT_003.md", "temporal-profile amendment 003"),
         ("MODEL_SPEC_LOCK.json", "machine-readable model specification lock"),
+        ("coder_b_blind/README.md", "Coder B blind bundle README"),
+        ("coder_b_blind/WORKBUDDY_HANDOFF.md", "WorkBuddy blinded handoff"),
+        ("coder_b_blind/OUTPUT_TEMPLATE.md", "Coder B blank output template"),
+        ("coder_b_blind/MANIFEST.json", "Coder B blind bundle manifest"),
     ]:
         check_file(PROCESS / rel, label, design_problems)
 
@@ -73,6 +83,42 @@ def main() -> None:
             design_problems.append(f"discipline crosswalk should have 21 rows, found {len(x)}")
         if "status" not in x.columns or not x["status"].astype(str).str.startswith("FROZEN").all():
             design_problems.append("not every discipline crosswalk row is FROZEN")
+
+    blind_manifest = PROCESS / "coder_b_blind" / "MANIFEST.json"
+    if blind_manifest.exists():
+        try:
+            bm = json.loads(blind_manifest.read_text(encoding="utf-8"))
+            if bm.get("outcome_seen_when_built") is not False:
+                design_problems.append(
+                    "Coder B blind manifest must state outcome_seen_when_built=false"
+                )
+            policy = bm.get("access_policy", {})
+            if policy.get("mode") != "whitelist_only":
+                design_problems.append(
+                    "Coder B blind manifest access policy must be whitelist_only"
+                )
+            files = bm.get("files", [])
+            if len(files) != 3:
+                design_problems.append(
+                    f"Coder B blind manifest should pin 3 input files, found {len(files)}"
+                )
+            for entry in files:
+                rel = str(entry.get("path", ""))
+                digest = str(entry.get("git_blob_sha", ""))
+                root = PAPER.parents[1]
+                artifact = root / rel
+                if not artifact.exists():
+                    design_problems.append(
+                        f"Coder B blind manifest artifact missing: {rel}"
+                    )
+                elif git_blob_sha(artifact) != digest:
+                    design_problems.append(
+                        f"Coder B blind input drift/hash mismatch: {rel}"
+                    )
+        except Exception as exc:
+            design_problems.append(
+                f"Coder B blind manifest unreadable: {type(exc).__name__}"
+            )
 
     model_lock = PROCESS / "MODEL_SPEC_LOCK.json"
     if model_lock.exists():
