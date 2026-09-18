@@ -7,7 +7,7 @@
   "status": "design",
   "domain": "comparative cognition / cultural evolution / human evolution / macroevolution",
   "summary": "A comparative, phylogenetically informed research program testing which combinations of cognition, social transmission, embodiment, life history, energy, communication, social networks, and externalized information are associated with transitions from animal social learning to open-ended cumulative intelligence, using extant taxa, dissociation cases, and hominin time slices.",
-  "authors": ["Cunyi Kang"],
+  "authors": ["Cochrane Kang"],
   "aris": {
     "provenance": "ARIS4C guided pre-run design; formal ARIS provenance to be frozen at full run",
     "version": "v0.4.26",
