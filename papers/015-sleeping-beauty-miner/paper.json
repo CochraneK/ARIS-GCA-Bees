@@ -4,9 +4,9 @@
   "title": "Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work",
   "short_title": "Sleeping Beauty Miner",
   "year": 2026,
-  "status": "agent-specification-v0.1",
+  "status": "agent-implementation-v0.1-ci",
   "domain": "metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity",
-  "summary": "An open-data-first, auditable agent that retrospectively identifies delayed-recognition papers and prospectively ranks still-dormant candidates using citation trajectories, semantic novelty, network structure, Prince signals and optional technological transfer, while reusing ARIS4C011 as an integrity/provenance quarantine layer and enforcing strict historical-cutoff evaluation.",
+  "summary": "An open-data-first, auditable agent that retrospectively identifies delayed-recognition patterns and supports time-safe prospective rediscovery ranking using citation trajectories, semantic and network evidence, Prince signals, optional technological transfer, and ARIS4C011 integrity/provenance gating.",
   "authors": ["Cunyi Kang"],
   "dependencies": {
     "011": "research-forensics evidence safety, provenance, citation verification, applicability and ABSTAIN semantics",
@@ -22,6 +22,9 @@
     "paper_zh": "",
     "pipeline": "process/RESEARCH_PLAN.md",
     "agent_spec": "process/AGENT_SPEC.md",
+    "skill": "agent/sleeping-beauty-miner/SKILL.md",
+    "agent_readme": "agent/sleeping-beauty-miner/README.md",
+    "candidate_schema": "agent/sleeping-beauty-miner/assets/candidate-card.schema.json",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/015-sleeping-beauty-miner"
   },
   "tags": [
@@ -39,6 +42,7 @@
     "research integrity",
     "evidence graph",
     "time-safe benchmark",
-    "human-in-the-loop"
+    "human-in-the-loop",
+    "agent skill"
   ]
 }
