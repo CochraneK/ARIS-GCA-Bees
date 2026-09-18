@@ -404,9 +404,11 @@
   },
   "safe_to_build_extractor": true,
   "note": "Schema-only probe; no country-by-discipline outcome aggregation performed.",
-  "checked_utc": "2026-09-18T02:16:00+00:00",
+  "checked_utc": "2026-09-18T03:49:15+00:00",
   "snapshot_prefix": "s3://openalex/data/parquet/works/",
   "access_mode": "anonymous public S3 range read via DuckDB httpfs",
   "outcomes_materialized": false,
+  "official_works_manifest_path": "data/manifests/openalex_works_manifest.json",
+  "official_works_manifest_sha256": "4b5142cb47f22fb5f6e91fc330ed800e355e8bb9421b10d812394780b9a1443d",
   "integrity_note": "Schema/binding only. No country-by-discipline aggregate or substantive confirmatory result was computed."
 }

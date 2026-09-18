@@ -4,10 +4,24 @@
   "created_utc": "2026-09-18T00:00:00+00:00",
   "sources": {
     "openalex": {
-      "status": "schema_probe_pass_public_s3_available",
-      "landing": "https://help.openalex.org/access/snapshot/",
-      "acquisition": "anonymous public S3 Parquet or local snapshot; paid API not required",
-      "redistribution": "do not commit raw snapshot; record release manifest/checksum",
+      "source_metadata": {
+        "landing": "https://help.openalex.org/access/snapshot/",
+        "works_manifest": "https://openalex.s3.amazonaws.com/data/parquet/works/manifest.json",
+        "s3_prefix": "s3://openalex/data/parquet/works",
+        "license": "CC0/public OpenAlex metadata; verify bundled LICENSE.txt for the downloaded release",
+        "redistribution": "record manifest/checksums; do not commit the hundreds-of-GB snapshot"
+      },
+      "recorded_utc": "2026-09-18T03:49:09+00:00",
+      "status": "manifest_and_schema_probe_pass",
+      "openalex_manifest_meta": {
+        "content_length": 724970323127,
+        "record_count": 510372821
+      },
+      "local_path": "data/manifests/openalex_works_manifest.json",
+      "bytes": 477208,
+      "sha256": "4b5142cb47f22fb5f6e91fc330ed800e355e8bb9421b10d812394780b9a1443d",
+      "manifest_local_path": "data/manifests/openalex_works_manifest.json",
+      "manifest_sha256": "4b5142cb47f22fb5f6e91fc330ed800e355e8bb9421b10d812394780b9a1443d",
       "schema_probe_path": "process/OPENALEX_SCHEMA_PROBE.json",
       "schema_probe_safe_to_build_extractor": true,
       "outcomes_materialized_during_probe": false
@@ -108,5 +122,5 @@
       "sha256": "ebe3a1c4b16fd339e249da6ca7993ee312cfe41dfe2f5748eebb6dfa37a7c4dd"
     }
   },
-  "updated_utc": "2026-09-18T03:06:47+00:00"
+  "updated_utc": "2026-09-18T03:49:09+00:00"
 }
