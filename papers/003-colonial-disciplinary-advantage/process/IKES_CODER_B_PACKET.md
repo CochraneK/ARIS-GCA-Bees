@@ -1,5 +1,20 @@
 # IKES CODER B — BLINDED GPTPAGE PACKET
 
+## Preferred WorkBuddy isolation route
+
+For WorkBuddy, do not provide this whole paper directory. Use the pinned
+whitelist bundle:
+
+`process/coder_b_blind/WORKBUDDY_HANDOFF.md`
+
+with the file whitelist in:
+
+`process/coder_b_blind/MANIFEST.json`
+
+The blind bundle contains the complete task/rubric needed for Coder B while
+excluding Coder A and modern outcome material. Its exact inputs are pinned and
+checked by `code/validate_coder_b_blind_bundle.py`.
+
 ## Independence requirement
 
 Run this packet in a **fresh GPTPage / fresh model session** that has not seen:
