@@ -4,8 +4,8 @@
 **Canonical branch:** `main`  
 **Merged confirmatory source:** `research/language-geometry-confirmatory` via PR #4  
 **ARIS lock:** v0.4.26  
-**Paper ID:** not assigned  
-**Overall state:** REVIEW-READY ACTIVE CANDIDATE — confirmatory screen complete; formal ARIS secondary review pending
+**Paper ID:** `002`  
+**Overall state:** PROMOTED — formal Paper 002 · manuscript preparation
 
 ## Pipeline alignment
 
@@ -18,14 +18,23 @@ ARIS idea-discovery order:
 | Research brief | DONE | `RESEARCH_BRIEF.md` |
 | research-lit | DONE (primary pass + stronger prior-art pass) | `idea-stage/IDEA_REPORT.md` |
 | idea-creator | DONE | `idea-stage/IDEA_REPORT.md#ranked-ideas` |
-| novelty-check | PRIMARY PASS COMPLETE; FORMAL REVIEW RECEIPT PENDING | `idea-stage/IDEA_REPORT.md#novelty-verification` |
-| research-review | **PENDING identity-bearing secondary ARIS reviewer** | `refine-logs/REVIEW_SUMMARY.md`, `refine-logs/SECONDARY_REVIEW_PACKET.md` |
+| novelty-check | PASS — independent reviewer accepted novelty wedge | `idea-stage/IDEA_REPORT.md#novelty-verification` |
+| research-review | **PASS — WorkBuddy / Tencent Hy3 receipt** | `refine-logs/REVIEW_SUMMARY.md`, `refine-logs/SECONDARY_REVIEW_PACKET.md` |
 | research-refine | CONFIRMATORY REFRAME COMPLETE | `refine-logs/FINAL_PROPOSAL.md` |
 | experiment-plan | CONFIRMATORY SCREEN COMPLETE | `refine-logs/EXPERIMENT_TRACKER.md` |
 
 ## Formal ARIS gate
 
-ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases. No identity-bearing independent ARIS reviewer trace has been produced in this ChatGPT-side run, so that gate remains **PENDING**. It is not self-certified.
+**PASSED.** WorkBuddy reviewed the candidate in a fresh session using Tencent **Hy3 / Hunyuan**, a different model family from the OpenAI GPT primary executor. The reviewer returned `PASS` and `Promotion authorization: AUTHORIZED`.
+
+Receipt:
+- `refine-logs/SECONDARY_REVIEW_RECEIPT.md`
+- `refine-logs/SECONDARY_REVIEW_RECEIPT.json`
+
+Formal paper:
+- `../../papers/002-language-geometry/`
+
+Reviewer-imposed manuscript requirements remain binding after promotion.
 
 ## Scientific state
 
@@ -113,17 +122,13 @@ See `refine-logs/MODEL_CAPACITY_NOTE.md`.
 
 Tree/graph models are not exactly capacity-matched to a single circle, so tree superiority alone cannot prove a universal tree geometry. The negative periodic conclusion is supported additionally by direct optimization, predefined-domain tests, circular-Robinson/closure diagnostics, low-rank comparisons, repeated split uncertainty, and cross-representation replication.
 
-## Remaining decisive gate
+## Post-promotion stage
 
-**WorkBuddy / cross-family handoff:** `refine-logs/WORKBUDDY_HANDOFF.md`  
-**Receipt template:** `refine-logs/SECONDARY_REVIEW_RECEIPT.template.json`
+The idea-stage promotion gate is complete. Remaining work belongs to **Paper 002 manuscript preparation**, not candidate screening.
 
-1. **Identity-bearing ARIS secondary novelty/research review.**
-2. Reviewer checks for a missed prior-art collision equivalent to the full periodic-vs-nonperiodic predictive stress test.
-3. Reviewer checks that manuscript claims remain at “simple global circle not supported,” not “all periodicity disproven” or “language proven tree-shaped.”
+Mandatory reviewer requirements are mirrored in:
+`../../papers/002-language-geometry/process/REVIEW_REQUIREMENTS.md`
 
-## Promotion rule
+## Promotion record
 
-Do not create `papers/002-*` yet.
-
-If formal ARIS secondary review returns PASS or a tractable REVISE verdict without a fatal prior-art/design collision, promote this candidate to the next available Paper ID and begin manuscript-generation/reviewer loops using `refine-logs/FINAL_PROPOSAL.md` as the frozen scientific brief.
+Promoted to **Paper 002 · `papers/002-language-geometry/`** after independent WorkBuddy / Tencent Hy3 `PASS`.
