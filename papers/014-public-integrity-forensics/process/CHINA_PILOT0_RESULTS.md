@@ -82,23 +82,26 @@ Interpretation:
 
 ## Pilot 0C — CCGP award-detail normalization
 
-Final workflow run: **35315473480**  
-Head commit: `5f3f7544bdb15d14a6c4067e885785932f7eb382`  
+Latest extended workflow run: **35315845079**  
+Head commit: `d3721925bf640390d40ff8185153dbfe970cc94b`  
 Artifact: `aris4c014-china-ccgp-detail-pilot0`  
-Artifact ID: **10535155682**  
+Artifact ID: **10535041457**  
 Artifact digest:  
-`sha256:5a80d860c8c669ea430f992c0b05cb05945438e4aa444bdcc84a0ab58948aee4`
+`sha256:e699d06f5ceeb3897b5ed137c3c1cdd31af4d5195338ef9a0a707e01b072ff99`
 
 Bounded live sample:
 
 - notices requested: **12**;
-- normalized supplier-result records: **10**;
-- final-award records: **7**;
+- normalized supplier-result records: **14**;
+- final-award records: **11**;
 - ranked candidate records: **3**;
-- notices with no supplier-result parsed under current templates: **4**;
+- notices with no supplier-result parsed under current templates: **2**;
 - supplier-name coverage among parsed result records: **100%**;
 - currency-value coverage among parsed result records: **100%**;
+- supplier-USCC coverage in this particular moving 12-notice sample: **0%**;
 - percentage-pricing records in this particular bounded sample: **0**.
+
+The 0% USCC rate in this moving sample is a property of the sampled page templates, not evidence that CCGP does not expose supplier stable IDs. A dedicated official-page regression below verifies the stable-ID path.
 
 Because one notice can produce multiple supplier/candidate records, the record count and notice count are not expected to match.
 
@@ -159,6 +162,30 @@ OpenIntegrity now records:
 
 A candidate record must **not** generate an `AWARDED_TO` graph edge unless a separate final-award record establishes that outcome.
 
+## Pilot 0D — stable supplier identity regression
+
+Workflow run: **35315934988**  
+Artifact: `aris4c014-china-ccgp-uscc-regression`  
+Artifact ID: **10535420478**  
+Artifact digest:  
+`sha256:caa94f9505fbef9759e493e969471e0a8ff6d21827d62d442d92b0a4d3ecb773`
+
+A fixed public CCGP award page known to expose supplier unified social credit codes was used as a regression target.
+
+Aggregate-only result:
+
+- project ID: `SHGP-2026-A409`;
+- final-award lots: **4**;
+- final-award lots with parsed USCC: **4**;
+- stable-ID coverage in this regression page: **100%**;
+- parser warnings: **0**.
+
+The regression artifact intentionally does not emit supplier names, addresses, phone numbers or contact persons.
+
+OpenIntegrity treats a normalized USCC as a stable organization identifier. Supplier nodes with an exact USCC can therefore use a stable graph identity such as `CN-USCC:<code>`; supplier-name-only records remain source-local until separately resolved.
+
+This does not make an award or supplier suspicious. It only improves identity resolution.
+
 ## Privacy behavior
 
 Pilot 0 public normalized artifacts intentionally exclude:
@@ -176,8 +203,8 @@ This is data minimization, not a claim that those fields are never useful. Addre
 Pilot 0 establishes that:
 
 1. current CCGP public award-list discovery can generate reproducible notice leads;
-2. a bounded set of award details can be normalized into buyer/project/supplier/result/value structures;
-3. final award and ranked candidate roles can be distinguished;
+2. a bounded set of award details can be normalized into buyer/project/supplier/result/value structures, including stable supplier USCC where the official page exposes it;
+3. final award and ranked candidate roles can be distinguished and projected into different graph edges;
 4. official Chinese institution-universe pages can be used as organization seeds where machine access succeeds;
 5. source failures and parser misses can be represented as explicit coverage gaps rather than false negative evidence.
 
