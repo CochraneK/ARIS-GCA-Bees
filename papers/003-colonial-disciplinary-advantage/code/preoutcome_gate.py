@@ -9,7 +9,9 @@ exposures and country mappings exist locally, and source provenance is recorded.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -17,6 +19,21 @@ import pandas as pd
 PAPER = Path(__file__).resolve().parents[1]
 PROCESS = PAPER / "process"
 DATA = PAPER / "data"
+DIMS = [f"D{i}" for i in range(1, 12)]
+EXPECTED_IDS = [f"D{i:02d}" for i in range(1, 22)]
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for block in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def resolve_recorded_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else PAPER / path
 
 
 def check_file(path: Path, label: str, problems: list[str]) -> None:
@@ -97,6 +114,39 @@ def main() -> None:
     ]:
         check_file(path, label, outcome_problems)
 
+    coder_b_csv = PROCESS / "IKES_CODER_B.csv"
+    if coder_b_csv.exists():
+        try:
+            b = pd.read_csv(coder_b_csv, dtype=str, keep_default_na=False)
+            if b["concept_id"].tolist() != EXPECTED_IDS:
+                outcome_problems.append(
+                    "IKES_CODER_B concept_id order must be exactly D01-D21"
+                )
+            numeric = pd.DataFrame(index=b.index)
+            for dim in DIMS:
+                if dim not in b.columns:
+                    outcome_problems.append(f"IKES_CODER_B missing {dim}")
+                    continue
+                s = b[dim].replace({"": pd.NA, "NA": pd.NA})
+                vals = pd.to_numeric(s, errors="coerce")
+                invalid_text = s.notna() & vals.isna()
+                invalid_range = vals.notna() & ~vals.between(0, 3)
+                invalid_integer = vals.notna() & ((vals - vals.round()).abs() > 1e-12)
+                if invalid_text.any() or invalid_range.any() or invalid_integer.any():
+                    outcome_problems.append(
+                        f"IKES_CODER_B invalid 0-3/NA values in {dim}"
+                    )
+                numeric[dim] = vals
+            if set(DIMS).issubset(numeric.columns):
+                provided = pd.to_numeric(b.get("IKES_B"), errors="coerce")
+                recomputed = numeric[DIMS].mean(axis=1, skipna=True)
+                if provided.isna().any() or ((provided - recomputed).abs() > 0.011).any():
+                    outcome_problems.append(
+                        "IKES_CODER_B IKES_B does not match D1-D11 mean"
+                    )
+        except Exception as exc:
+            outcome_problems.append(f"IKES_CODER_B unreadable: {type(exc).__name__}")
+
     coder_b_notes = PROCESS / "IKES_CODER_B.md"
     if coder_b_notes.exists():
         notes = coder_b_notes.read_text(encoding="utf-8", errors="replace")
@@ -108,6 +158,25 @@ def main() -> None:
             )
         if "INDEPENDENCE_STATUS: FAIL" in notes:
             outcome_problems.append("Coder B declared failed independence/blinding")
+        headings = re.findall(r"(?m)^###\s+(D\\d{2})\s+—\s+.+$", notes)
+        if headings != EXPECTED_IDS:
+            outcome_problems.append(
+                "Coder B evidence headings must appear exactly once in D01-D21 order"
+            )
+        for cid in EXPECTED_IDS:
+            match = re.search(
+                rf"(?ms)^###\s+{cid}\s+—\s+.+?$(.*?)(?=^###\s+D\\d{{2}}\s+—|^##\s+BLINDING DECLARATION|\Z)",
+                notes,
+            )
+            if match is None or len(
+                re.findall(
+                    r"(?mi)^Confidence:\s*(high|medium|low)\s*$",
+                    match.group(1) if match else "",
+                )
+            ) != 1:
+                outcome_problems.append(
+                    f"Coder B evidence section {cid} missing exactly one confidence label"
+                )
 
     frozen = PROCESS / "IKES_FROZEN.csv"
     if frozen.exists():
@@ -120,6 +189,52 @@ def main() -> None:
                 outcome_problems.append("IKES_FROZEN missing complete IKES values")
         except Exception as exc:
             outcome_problems.append(f"IKES_FROZEN unreadable: {type(exc).__name__}")
+
+    freeze_provenance = PROCESS / "IKES_FROZEN.provenance.json"
+    if freeze_provenance.exists():
+        try:
+            prov = json.loads(freeze_provenance.read_text(encoding="utf-8"))
+            for key in (
+                "coder_a",
+                "coder_b",
+                "coder_b_notes",
+                "coder_b_raw",
+                "adjudication",
+                "frozen",
+            ):
+                entry = prov.get(key)
+                if not isinstance(entry, dict):
+                    outcome_problems.append(
+                        f"IKES freeze provenance missing {key}"
+                    )
+                    continue
+                path_value = entry.get("path")
+                digest = entry.get("sha256")
+                if not path_value or not digest:
+                    outcome_problems.append(
+                        f"IKES freeze provenance incomplete for {key}"
+                    )
+                    continue
+                artifact = resolve_recorded_path(str(path_value))
+                if not artifact.exists():
+                    outcome_problems.append(
+                        f"IKES freeze provenance artifact missing: {key} -> {artifact}"
+                    )
+                    continue
+                if sha256(artifact) != digest:
+                    outcome_problems.append(
+                        f"IKES freeze provenance hash mismatch: {key}"
+                    )
+                if key == "coder_b_raw":
+                    raw_root = (PROCESS / "gptpage").resolve()
+                    if not artifact.resolve().is_relative_to(raw_root):
+                        outcome_problems.append(
+                            "Coder B raw response must be preserved under process/gptpage"
+                        )
+        except Exception as exc:
+            outcome_problems.append(
+                f"IKES_FROZEN provenance unreadable: {type(exc).__name__}"
+            )
 
     country_crosswalk = DATA / "derived" / "COUNTRY_CROSSWALK.csv"
     if country_crosswalk.exists():
