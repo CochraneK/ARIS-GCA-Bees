@@ -1,0 +1,47 @@
+{
+  "classification": "RLY_PARAMETER_TEMPLATE_NOT_EMPIRICAL_INPUT",
+  "hours_per_research_year": {
+    "value": {
+      "low": null,
+      "central": null,
+      "high": null
+    },
+    "calibration_status": "NOT_IDENTIFIED",
+    "evidence_id": "",
+    "note": "Must be explicitly calibrated before an empirical RLY total is allowed."
+  },
+  "components": [
+    {
+      "component_id": "RLY-P-001",
+      "rly_component": "RLY-P",
+      "calibration_status": "NOT_IDENTIFIED",
+      "overlap_group": "production_labor",
+      "evidence_id": "",
+      "reason_not_identified": "Global innocent-worker hours per severe-failure paper not yet calibrated."
+    },
+    {
+      "component_id": "RLY-D-001",
+      "rly_component": "RLY-D",
+      "calibration_status": "NOT_IDENTIFIED",
+      "overlap_group": "downstream_followup_labor",
+      "evidence_id": "",
+      "reason_not_identified": "Hours per material-dependence edge not yet calibrated."
+    },
+    {
+      "component_id": "RLY-C-001",
+      "rly_component": "RLY-C",
+      "calibration_status": "NOT_IDENTIFIED",
+      "overlap_group": "correction_labor",
+      "evidence_id": "",
+      "reason_not_identified": "Investigation/correction hours not yet calibrated globally."
+    },
+    {
+      "component_id": "RLY-I-001",
+      "rly_component": "RLY-I",
+      "calibration_status": "NOT_IDENTIFIED",
+      "overlap_group": "review_integrity_labor",
+      "evidence_id": "SRC_ACZEL_2021",
+      "reason_not_identified": "Global review-labor denominator exists, but attributable fraction to problematic science is not identified."
+    }
+  ]
+}
