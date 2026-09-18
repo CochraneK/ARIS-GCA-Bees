@@ -124,12 +124,12 @@
       "blocker": "Reproducible SciSciNet-v2 slice/query and mechanism match yield"
     },
     "016": {
-      "progress": 20,
-      "stage": "Research design + prior-art audit",
+      "progress": 30,
+      "stage": "Phase 0 measurement audit",
       "activity": "active",
-      "evidence": "Open 13-language/17-country dataset identified + falsification-first design",
-      "next_gate": "Materialize and reproduce the Sulpizio et al. Phase-0 dataset",
-      "blocker": "Phase-0 data not yet materialized; ontology/reliability audit pending"
+      "evidence": "OSF data/schema audited + reproducible checksum-verified audit + ontology v0",
+      "next_gate": "Conservative label harmonization + stratified reliability audit",
+      "blocker": "Cross-lab annotation heterogeneity; native/context review needed for unresolved local labels"
     }
   }
 }
