@@ -98,3 +98,16 @@ The project should not advance to a headline "minimal sufficient set" until the 
 - The global OpenTree tree is treated as topology only; it is **not** being misrepresented as a dated chronogram.
 
 The phylogeny gate is therefore provisionally passed for taxonomy/topology, while calibrated branch lengths remain an open confirmatory requirement.
+
+
+## Pilot 4 research-effort update
+
+A module-specific OpenAlex literature-exposure proxy was built for all 29 species-level v2 taxa using 174 exact-scientific-name Boolean searches over 1990–2026.
+
+- all 174 cells were recovered after rate-limit-aware retries;
+- broad behavioural-literature exposure spans roughly 618-fold across the current panel;
+- this proxy is explicitly a nuisance/bias covariate, not an ability score.
+
+A direct diagnostic against the 13 exact ACDB-matched species found that ACDB behaviour-row counts do **not** behave like an exhaustive repertoire census: Spearman correlation with behavioural research exposure was about −0.44. The interpretation is measurement/curation structure, not a negative biological effect of research.
+
+Design consequence: raw ACDB behaviour counts are now prohibited as the primary O4 cultural-repertoire outcome. ACDB remains a source-traceable presence/transmission/domain evidence layer.
