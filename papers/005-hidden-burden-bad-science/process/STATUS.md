@@ -1,14 +1,14 @@
 # STATUS — ARIS4C005
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT_B_COMPLETE / AI_ADJUDICATION_READY / CONTAMINATION_PILOT_LIVE`  
+**State:** `SCALED_AUDIT_COMPLETE / AI_BATCHES_READY / CITATION_AI_READY`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
 
 **The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures**
 
-Scope remains frozen. Pilot A and Pilot B engineering are complete. The prevalence-critical dependency is now calibrated AI adjudication rather than human-only review; semantic contamination and design-simulation modules are active in parallel.
+Scope remains frozen. The 10,000-work confirmatory random audit and dual-AI input batches are complete. The prevalence-critical dependency is execution/calibration of AI adjudication, not sampling or ontology design. Citation-edge AI adjudication is also packaged for execution.
 
 ---
 
@@ -89,8 +89,13 @@ Scope remains frozen. Pilot A and Pilot B engineering are complete. The prevalen
 - [x] AI error design scenarios executed.
 - [x] Random-audit design simulation executed.
 - [x] Confirmatory random sample decision: **5,000 minimum / 10,000 preferred**.
-- [ ] Execute scaled full-period random audit packet.
-- [ ] Run dual-AI adjudication + arbitration.
+- [x] Scaled full-period random audit executed: **10,000 works** over 2000–2025.
+- [x] Dual-AI blinded inputs generated: **20,000 assignments / 80 deterministic batches**.
+- [x] Public-safe scaled-audit summary and batch manifest committed.
+- [x] External AI adjudication handoff specification written.
+- [x] Citation-edge dual-AI packet generated: **486 edges / 972 assignments / 10 batches**.
+- [ ] Run dual-AI article adjudication + arbitration.
+- [ ] Run dual-AI citation-edge adjudication + arbitration.
 - [ ] Calibrate AI error using high-confidence anchors and sensitivity analysis.
 
 # Live Pilot A anchors
@@ -143,29 +148,22 @@ Completed real 2015–2020 seed frame:
 
 See `process/PILOT_B_SEED_RESULTS.md` and `data/pilot/pilot_b_seed_summary.json`.
 
-## GATE B2 — calibrated adjudication — READY FOR AI EXECUTION
+## GATE B2 — calibrated adjudication — INPUTS COMPLETE / AI EXECUTION PENDING
 
-A balanced cross-domain **60-work / 120-assignment** double-coded micro-pilot is ready.
+Confirmatory random audit now supersedes the 600-work engineering random component for final prevalence estimation.
 
-Composition:
+- target universe: OpenAlex core article+review, 2000–2025;
+- live scaled denominator: **137,436,109** works;
+- random audit: **10,000** works;
+- six publication-period strata with explicit inclusion probabilities/design weights;
+- **3,747 / 10,000** sampled works lack a DOI;
+- dual blinded article adjudication: **20,000 assignments / 80 batches**.
 
-- 10 population-random works;
-- 10 narrow E1-S;
-- 10 paper-mill;
-- 10 major-error;
-- 10 expression-of-concern;
-- 10 process-integrity.
+Earlier Pilot A denominator was 137,445,874. The -9,765 difference (~-0.0071%) is retained as live-database snapshot drift.
 
-Broad domains represented: Social, Physical, Health and Life Sciences.
+See `process/SCALED_AUDIT_RESULTS.md` and `process/AI_ADJUDICATION_HANDOFF.md`.
 
-The micro-pilot is strictly for ontology usability, disagreement, access and review-effort diagnostics. It is **not** a prevalence sample.
-
-A real article-level prevalence estimate still requires independent, calibrated adjudication; AI may supply most labels, but model error must be estimated or sensitivity-tested. Engineering calibration threshold remains:
-
-- >=100 resolved population-random adjudications;
-- >=1 detector with estimable sensitivity and specificity.
-
-Publication-scale target remains 750–1,500 adjudicated works with double coding of severe/disagreement cases.
+AI may provide most labels, but its measurement error must be calibrated or sensitivity-tested. Dual-model agreement is not gold-standard truth.
 
 ## GATE C — latent prevalence identification
 
@@ -176,9 +174,18 @@ No global hidden-case estimate until:
 - one detector/field does not dominate;
 - missingness sensitivity does not change estimates by an order of magnitude.
 
-## GATE D — semantic contamination
+## GATE D — semantic contamination — AI INPUTS COMPLETE / LABELS PENDING
 
-Raw citation counts are not contamination. A validated material-dependence classifier/manual coding layer is still required for global SCF/KGH.
+The real high-propagation stress-test contains:
+
+- 25 source papers;
+- 7,443 observed incoming citation exposures;
+- 1,753 post-retraction exposures;
+- 486 sampled post-retraction edges;
+- **972 dual-AI semantic assignments / 10 deterministic batches**;
+- 200 edges with full-text signal and 290 with OA signal.
+
+Raw citation exposure remains distinct from contamination. SCF and Dependence Ghost Half-Life require semantic labels and calibration. See `process/CITATION_AI_HANDOFF.md`.
 
 ## GATE F — RLY / cost scaling
 
@@ -192,14 +199,14 @@ Innovation Delay requires valid matched topic controls and pre-trends. Permanent
 
 # Next execution queue
 
-1. Build the **scaled 2000–2025 population-random audit** (5,000 minimum; 10,000 preferred) with explicit inclusion probabilities.
-2. Batch it into model-ready blinded packets with locked prompt/version metadata.
-3. Run two independent AI adjudicators plus arbitration; preserve abstentions and disagreements.
-4. Calibrate AI error using formal/high-confidence anchors and sensitivity scenarios.
-5. Fit the latent prevalence model only after adjudicator calibration is available.
-6. Run AI semantic adjudication on the 486 sampled post-retraction citation edges.
-7. Upgrade Citation Ghost Half-Life to **Dependence Ghost Half-Life** from semantic edges.
-8. Continue RLY/cost, Innovation Delay and Sleeping Beauty behind their empirical gates.
+1. Execute the **80 article-adjudication batches** with AI_A and AI_B under `AI-ADJ-V1`.
+2. Merge article outputs with `merge_ai_adjudications.py`; arbitrate disagreements/LOW/INDETERMINATE cases.
+3. Execute the **10 citation-edge batches** under `CIT-EDGE-V1`.
+4. Calibrate/sensitivity-test AI measurement error with formal/high-confidence anchors.
+5. Fit weighted latent prevalence only after calibration.
+6. Convert semantic citation labels into SCF and **Dependence Ghost Half-Life**.
+7. Continue RLY/cost calibration and Innovation Delay event-study infrastructure.
+8. Keep Never-Woken Sleeping Beauty counterfactual behind the causal-identification gate.
 
 ---
 
@@ -218,4 +225,4 @@ Innovation Delay requires valid matched topic controls and pre-trends. Permanent
 
 # Handoff sentence
 
-If this chat is lost, resume from this file. **Pilot A is complete; the real 1,339-work Pilot B probability sample and blinded packets are complete; a 60-work/120-assignment double-coded micro-pilot is ready. Human adjudication is now the prevalence-critical blocker. Continue the semantic contamination module in parallel; do not reopen broad idea generation and do not estimate global latent prevalence yet.**
+If this chat is lost, resume from this file. **The 10,000-work confirmatory random audit is complete; 20,000 article-level AI assignments are split into 80 deterministic batches; the 486-edge semantic-citation task is split into 972 assignments / 10 batches. The next prevalence-critical work is executing and calibrating AI labels, not rebuilding samples. Do not estimate global latent prevalence before calibration.**
