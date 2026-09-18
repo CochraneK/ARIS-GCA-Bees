@@ -93,7 +93,7 @@ def html_to_text(html: str) -> str:
 def _numbered_field(text: str, number: str, label: str) -> str | None:
     """Extract a numbered CCGP body field whether value is same-line or next-line."""
     m = re.search(
-        rf"(?:^|\\n){re.escape(number)}、\\s*{re.escape(label)}\\s*[：:]?\\s*([^\\n]+)",
+        rf"(?:^|\n){re.escape(number)}、\s*{re.escape(label)}\s*[：:]?\s*([^\n]+)",
         text,
     )
     if not m:
@@ -106,7 +106,7 @@ def _clean_project_id(value: str | None) -> str | None:
     if not value:
         return None
     # Central notices often append "(招标文件编号：...)" after the actual ID.
-    value = re.split(r"[（(]\\s*招标文件编号", value, maxsplit=1)[0].strip()
+    value = re.split(r"[（(]\s*招标文件编号", value, maxsplit=1)[0].strip()
     return value or None
 
 
@@ -159,7 +159,7 @@ def _award_section(text: str) -> str:
     # is the procurement-plan filing number. Central notices commonly use section 三.
     for current, nxt in (("四", "五"), ("三", "四")):
         m = re.search(
-            rf"(?:^|\\n){current}、\\s*中标（成交）信息\\s*\\n(?P<body>.*?)(?=\\n{nxt}、)",
+            rf"(?:^|\n){current}、\s*中标（成交）信息\s*\n(?P<body>.*?)(?=\n{nxt}、)",
             text,
             re.S,
         )
