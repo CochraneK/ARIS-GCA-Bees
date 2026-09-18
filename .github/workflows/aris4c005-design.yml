@@ -1,0 +1,78 @@
+name: ARIS4C005 design simulations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c005-design.yml"
+      - "papers/005-hidden-burden-bad-science/code/prevalence_design.py"
+      - "papers/005-hidden-burden-bad-science/code/adjudicator_error_design.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_prevalence_design.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_adjudicator_error_design.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c005-design
+  cancel-in-progress: true
+
+jobs:
+  design:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Run prevalence random-audit design
+        run: |
+          python "$PAPER_DIR/code/prevalence_design.py" \
+            "$PAPER_DIR/data/pilot/prevalence_design_summary.json" \
+            --reps 1000 \
+            --seed 20260918
+
+      - name: Run AI adjudicator error design
+        run: |
+          python "$PAPER_DIR/code/adjudicator_error_design.py" \
+            "$PAPER_DIR/data/pilot/ai_adjudicator_error_design.json"
+
+      - name: Validate design outputs
+        run: |
+          python - <<'PY'
+          import json
+          p1 = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/prevalence_design_summary.json', encoding='utf-8'))
+          p2 = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/ai_adjudicator_error_design.json', encoding='utf-8'))
+          assert p1["classification"] == "DESIGN_SIMULATION_NOT_EMPIRICAL_PREVALENCE"
+          assert p2["classification"] == "AI_ADJUDICATOR_ERROR_DESIGN_SCENARIOS_NOT_EMPIRICAL_ACCURACY"
+          assert len(p1["results"]) > 0
+          assert len(p2["single_model_scenarios"]) > 0
+          print('design outputs OK')
+          PY
+
+      - name: Persist design summaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/pilot/prevalence_design_summary.json" "$PAPER_DIR/data/pilot/ai_adjudicator_error_design.json"
+          if git diff --cached --quiet; then
+            echo "No design summary change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C005 design simulations [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
