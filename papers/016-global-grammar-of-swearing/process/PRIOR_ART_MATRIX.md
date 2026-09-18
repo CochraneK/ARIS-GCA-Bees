@@ -70,3 +70,60 @@ The novelty claim should be downgraded if prior literature is found that already
 - censorship-driven euphemism evolution.
 
 These are expansion tracks, not excuses to inflate the Phase-0 scope.
+
+## Updated field-level context
+
+### Crespo-Fernández (2025) — Taboo language research in the new millennium
+Complutense Journal of English Studies 33. DOI: 10.5209/cjes.102066.
+
+The review of 2000–2024 Anglophone scholarship emphasizes that taboo language
+is not a single phenomenon and spans pragmatics, sociolinguistics, discourse,
+cognitive semantics, psycholinguistics and translation.
+
+Implication:
+ARIS4C016's semantic / pragmatic / social-indexical separation is consistent
+with the field's multidimensional structure. A one-dimensional word category
+cannot stand in for the phenomenon as a whole.
+
+### Allan (ed., 2019) — The Oxford Handbook of Taboo Words and Language
+
+The handbook frames taboo as community-, time-, and context-specific
+proscription of language behaviour and treats swearing, insults, censorship,
+euphemism/dysphemism and language change as related but distinct phenomena.
+
+Implication:
+"tabooness" is not a context-free lexical essence. ARIS4C016 must distinguish
+lexical norms from situated pragmatic use and should phrase universal claims
+at the appropriate level.
+
+### Miller (2022) — Bad Mouths: Taboo and Transgressive Language
+Annual Review of Anthropology 51:17–30.
+
+The review emphasizes taboo/transgressive language in social relationships,
+kinship, subcultures, generations, language contact and other contexts.
+
+Implication:
+kinship/social-indexical structure and multilingual contact are legitimate
+future explanatory axes, but should not be collapsed into country-level
+culture scores.
+
+## Updated novelty boundary
+
+The project does **not** claim novelty for:
+- the existence of semantic taboo domains;
+- a general swearing typology;
+- context sensitivity;
+- cross-language sound symbolism as a question;
+- the approximant hypothesis;
+- same-word English/Spanish community correlations;
+- leave-one-language-out prediction in the Sulpizio dataset.
+
+The candidate novelty is the integrated measurement design:
+1. audit source annotation non-equivalence;
+2. replace flat labels with orthogonal provenance-preserving axes;
+3. quantify annotation coverage/reliability before prevalence comparison;
+4. separate community sample, language ID and genealogy;
+5. use repeated-language item-fixed-effects tests where identification is
+   strongest;
+6. treat semantic and phonological "universals" as held-out-family claims,
+   not visual similarities in an atlas.
