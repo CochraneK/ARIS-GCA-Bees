@@ -1,0 +1,39 @@
+{
+  "classification": "CITATION_GHOST_HALF_LIFE_DESCRIPTIVE_NOT_SEMANTIC_CONTAMINATION",
+  "definition": {
+    "baseline_years": 3,
+    "threshold_fraction": 0.5,
+    "confirm_years": 2,
+    "retraction_year_excluded": true,
+    "last_complete_year": 2025
+  },
+  "sources_total": 25,
+  "sources_estimable": 19,
+  "sources_not_estimable_by_reason": {
+    "INSUFFICIENT_COMPLETE_POST_RETRACTION_YEARS": 2,
+    "NO_PRE_RETRACTION_BASELINE": 4
+  },
+  "kaplan_meier": {
+    "n": 19,
+    "events": 19,
+    "censored": 0,
+    "median_years": 1,
+    "median_reached": true,
+    "survival_curve": [
+      {
+        "time_years": 1,
+        "at_risk": 19,
+        "events": 19,
+        "censored": 0,
+        "survival": 0.0
+      }
+    ]
+  },
+  "warnings": [
+    "This is citation-exposure decay, not material-dependence decay.",
+    "The high-propagation source pilot is not representative of all problematic papers.",
+    "Calendar-year aggregation creates interval coarsening around exact retraction dates.",
+    "OpenAlex citation matching can miss printed references.",
+    "A semantic Dependence Ghost Half-Life requires adjudicated citation contexts."
+  ]
+}

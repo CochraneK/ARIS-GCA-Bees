@@ -1,6 +1,6 @@
 {
   "classification": "HIGH_PROPAGATION_CITATION_EXPOSURE_PILOT_NOT_CONTAMINATION_PREVALENCE",
-  "generated_at_utc": "2026-09-18T02:55:33.116149+00:00",
+  "generated_at_utc": "2026-09-18T02:56:51.136119+00:00",
   "source_selection": {
     "rw_screen": "e1s_narrow_auto==1 and RetractionNature==Retraction",
     "source_publication_years": [
