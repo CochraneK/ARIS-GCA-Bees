@@ -55,8 +55,22 @@ jobs:
             --work-decisions "$PAPER_DIR/data/derived/work_decisions_pilot30.csv" \
             --out-dir "$PAPER_DIR/data/interim/openalex/clean_network"
 
+      - name: Acquire bounded downstream citation neighborhoods
+        run: |
+          python "$PAPER_DIR/code/network/acquire_downstream_neighborhood.py" \
+            --clean-corpus "$PAPER_DIR/data/interim/openalex/clean_network/clean_work_corpus.jsonl" \
+            --out-dir "$PAPER_DIR/data/interim/openalex/downstream_network" \
+            --anchors-per-person 6 \
+            --horizon-years 20 \
+            --study-end-year 2026 \
+            --max-citers-per-anchor 50 \
+            --sleep-rps 2
+
       - name: Print clean-network summary
         run: cat "$PAPER_DIR/data/interim/openalex/clean_network/clean_network_overall.json"
+      - name: Print downstream-neighborhood summary
+        run: cat "$PAPER_DIR/data/interim/openalex/downstream_network/downstream_overall.json"
+
 
       - name: Upload clean-network artifact
         uses: actions/upload-artifact@v4
