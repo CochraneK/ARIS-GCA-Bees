@@ -1,0 +1,42 @@
+name: ARIS4C006 longitudinal panel pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-longitudinal-pilot.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/05_longitudinal_panel_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  longitudinal-panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run aggregate longitudinal feasibility pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/05_longitudinal_panel_pilot.py \
+            --seed-year 2024 \
+            --seed-per-field 20 \
+            --max-authors 120 \
+            --start 2015 \
+            --end 2024 \
+            --max-works 300 \
+            --outdir data/pilot/longitudinal
+      - name: Upload public-safe longitudinal summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-longitudinal-pilot
+          path: ${{ env.PAPER_DIR }}/data/pilot/longitudinal/summary.json
+          if-no-files-found: error
+          retention-days: 30
