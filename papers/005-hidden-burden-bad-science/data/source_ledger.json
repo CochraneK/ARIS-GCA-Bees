@@ -226,6 +226,20 @@
         "external precedent for title/abstract screening"
       ],
       "limitations": "Cancer research only; training labels derive from known/retracted paper-mill cases; textual similarity is not proof of fraud; authors note potential geographic/language-pattern bias and incomplete representation of paper mills."
+    },
+    {
+      "id": "SRC_AZOULAY_2015",
+      "tier": "T1",
+      "type": "matched_retraction_spillover_event_study",
+      "title": "Retractions",
+      "doi": "10.1162/REST_a_00469",
+      "year": 2015,
+      "use": [
+        "field-level retraction spillover precedent",
+        "matched intellectual-neighborhood design",
+        "new-article and funding-flow outcome precedent"
+      ],
+      "limitations": "Retraction is an observed shock and can reflect misconduct or honest error; related-field decline can represent stigma, rational updating, or both. Historical database/context may not transport directly to current global science."
     }
   ],
   "optional_tool_layers": {
