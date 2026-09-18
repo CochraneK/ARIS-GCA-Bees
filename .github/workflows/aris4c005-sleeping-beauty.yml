@@ -1,0 +1,89 @@
+name: ARIS4C005 Sleeping Beauty pilot
+
+on:
+  push:
+    branches:
+      - main
+      - aris4c005-sleeping-beauty-20260918
+    paths:
+      - ".github/workflows/aris4c005-sleeping-beauty.yml"
+      - "papers/005-hidden-burden-bad-science/code/sleeping_beauty.py"
+      - "papers/005-hidden-burden-bad-science/code/build_sleeping_beauty_pilot.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_sleeping_beauty.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c005-sleeping-beauty-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Build mature historical delayed-recognition pilot
+        run: |
+          python "$PAPER_DIR/code/build_sleeping_beauty_pilot.py" \
+            "$RUNNER_TEMP/aris4c005_sb_history.csv" \
+            "$RUNNER_TEMP/aris4c005_sb_metrics.csv" \
+            "$PAPER_DIR/data/pilot/sleeping_beauty_pilot_summary.json" \
+            --start 1990 \
+            --end 2005 \
+            --sample-n 200 \
+            --seed 20260918 \
+            --observation-end-year 2025
+
+      - name: Validate summary
+        run: |
+          python - <<'PY'
+          import json
+          p = 'papers/005-hidden-burden-bad-science/data/pilot/sleeping_beauty_pilot_summary.json'
+          d = json.load(open(p, encoding='utf-8'))
+          assert d["classification"] == "MATURE_RANDOM_DELAYED_RECOGNITION_PILOT_NOT_LOST_DISCOVERY_COUNT"
+          assert d["sampling"]["sample_n_realized"] > 0
+          assert d["beauty_coefficient"]["max"] is not None
+          print(json.dumps(d, indent=2))
+          PY
+
+      - name: Upload row-level historical pilot
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c005-sleeping-beauty-pilot
+          path: |
+            ${{ runner.temp }}/aris4c005_sb_history.csv
+            ${{ runner.temp }}/aris4c005_sb_metrics.csv
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Persist public-safe aggregate summary
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/pilot/sleeping_beauty_pilot_summary.json"
+          if git diff --cached --quiet; then
+            echo "No Sleeping Beauty summary change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C005 Sleeping Beauty pilot summary [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
