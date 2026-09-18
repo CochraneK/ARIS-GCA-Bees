@@ -1,0 +1,69 @@
+name: ARIS4C007 Pilot 2B event-spline CV
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot2b-event-spline.yml"
+      - "papers/007-cross-species-age-equivalence/code/pilot2b_event_spline_cv.R"
+      - "papers/007-cross-species-age-equivalence/code/summarize_pilot2b.py"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  event-spline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5.1"
+
+      - name: Resolve canonical successful Pilot 2A artifact
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot2a
+
+          RUNS_JSON="$(gh run list             --workflow 007-pilot2a-events.yml             --status success             --limit 1             --json databaseId,headSha,createdAt,url,conclusion)"
+          RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.[0].databaseId // empty')"
+          test -n "$RUN_ID"
+
+          gh run view "$RUN_ID"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot2a_run.json
+          gh run download "$RUN_ID"             --name aris4c007-pilot2a-events             --dir data/upstream/pilot2a
+
+          test -s data/upstream/pilot2a/heldout_event_predictions.csv
+
+      - name: Run author-style leave-one-timepoint-out spline benchmark
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          mkdir -p data/pilot2b_event_spline
+          Rscript code/pilot2b_event_spline_cv.R             data/upstream/pilot2a/heldout_event_predictions.csv             data/pilot2b_event_spline/predictions.csv             data/pilot2b_event_spline/model_diagnostics.csv
+
+          python code/summarize_pilot2b.py             data/pilot2b_event_spline/predictions.csv             data/pilot2b_event_spline/model_diagnostics.csv             --out data/pilot2b_event_spline/summary.json
+
+          cp data/upstream/pilot2a_run.json             data/pilot2b_event_spline/upstream_pilot2a_run.json
+          cat data/pilot2b_event_spline/summary.json
+
+      - name: Upload Pilot 2B artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot2b-event-spline
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot2b_event_spline/summary.json
+            papers/007-cross-species-age-equivalence/data/pilot2b_event_spline/predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot2b_event_spline/model_diagnostics.csv
+            papers/007-cross-species-age-equivalence/data/pilot2b_event_spline/upstream_pilot2a_run.json
+          if-no-files-found: error
+          retention-days: 30
