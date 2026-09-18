@@ -1,0 +1,61 @@
+{
+  "classification": "SYNTHETIC_LATENT_MODEL_RECOVERY_NOT_EMPIRICAL_PREVALENCE",
+  "simulation": {
+    "seed": 20260918,
+    "true_stratum_prevalence": {
+      "2000_2004": 0.003,
+      "2005_2009": 0.004,
+      "2010_2014": 0.005,
+      "2015_2019": 0.006,
+      "2020_2024": 0.007,
+      "2025": 0.008
+    },
+    "true_global_prevalence": 0.005434620446072146,
+    "se_a": 0.9,
+    "sp_a": 0.999,
+    "se_b": 0.92,
+    "sp_b": 0.9995,
+    "missing_a": 0.03,
+    "missing_b": 0.04,
+    "sample_rows": 10000
+  },
+  "recovered_global_prevalence": {
+    "mean": 0.004793254484230079,
+    "median": 0.00473119725927626,
+    "q025": 0.00336929619165501,
+    "q975": 0.006422337436965039
+  },
+  "absolute_median_error": 0.000703423186795886,
+  "true_value_inside_95_interval": true,
+  "model_measurement_posterior": {
+    "se_a": {
+      "mean": 0.8998763831358154,
+      "median": 0.8999035323474311,
+      "q025": 0.8938378387521777,
+      "q975": 0.9056505819924334
+    },
+    "sp_a": {
+      "mean": 0.9990000689321634,
+      "median": 0.9989996445526859,
+      "q025": 0.9989350414966328,
+      "q975": 0.9990601635858832
+    },
+    "se_b": {
+      "mean": 0.9199968226160505,
+      "median": 0.9200521975012981,
+      "q025": 0.9145272142366339,
+      "q975": 0.9251255479491328
+    },
+    "sp_b": {
+      "mean": 0.9994997908581081,
+      "median": 0.9995004278406185,
+      "q025": 0.9994577528564891,
+      "q975": 0.9995426765443591
+    }
+  },
+  "warnings": [
+    "Synthetic recovery checks code implementation under the model assumptions.",
+    "It does not prove AI errors are conditionally independent in real data.",
+    "It does not estimate real research-integrity prevalence."
+  ]
+}
