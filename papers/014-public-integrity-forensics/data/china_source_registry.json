@@ -1,0 +1,115 @@
+[
+  {
+    "source_id": "cn_ccgp",
+    "name_zh": "中国政府采购网",
+    "domain": "ccgp.gov.cn",
+    "tier": "CN-A",
+    "access_mode": ["official_interface_or_standard", "html", "documents"],
+    "institution_types": ["government", "public_institution", "hospital", "research_institute", "university"],
+    "stable_identifiers": ["procurement_project_id", "buyer_name", "supplier_name"],
+    "primary_roles": ["procurement_intention", "tender_notice", "award_notice", "contract_notice", "serious_illegality_record"],
+    "notes": "Prefer documented data-interface standards where available; institution routing is based on buyer identity rather than assuming all buyers are government departments."
+  },
+  {
+    "source_id": "cn_ggzy",
+    "name_zh": "全国公共资源交易平台",
+    "domain": "ggzy.gov.cn",
+    "tier": "CN-A",
+    "access_mode": ["federated_portal", "html", "documents"],
+    "institution_types": ["government", "public_institution", "hospital", "soe", "research_institute", "university"],
+    "stable_identifiers": ["project_id", "transaction_id", "buyer_name", "supplier_name"],
+    "primary_roles": ["tender", "award", "construction", "public_resource_transaction"],
+    "notes": "Treat the national platform and provincial/local platforms as a federation; do not assume one endpoint is complete."
+  },
+  {
+    "source_id": "cn_gsxt",
+    "name_zh": "国家企业信用信息公示系统",
+    "domain": "gsxt.gov.cn",
+    "tier": "CN-A",
+    "access_mode": ["interactive_query"],
+    "institution_types": ["soe", "private_supplier", "procurement_agency"],
+    "stable_identifiers": ["unified_social_credit_code", "registration_number"],
+    "primary_roles": ["enterprise_identity", "registration", "business_status", "abnormal_operation", "serious_illegality"],
+    "notes": "Respect interactive access controls; do not bypass CAPTCHAs or access restrictions."
+  },
+  {
+    "source_id": "cn_sasac",
+    "name_zh": "国务院国资委",
+    "domain": "sasac.gov.cn",
+    "tier": "CN-A",
+    "access_mode": ["html", "documents", "official_links"],
+    "institution_types": ["soe", "state_owned_financial_institution"],
+    "stable_identifiers": ["official_group_name"],
+    "primary_roles": ["central_soe_universe", "group_identity", "official_disclosure"],
+    "notes": "Use as an organization-universe and provenance source, never as a risk list."
+  },
+  {
+    "source_id": "cn_nhc",
+    "name_zh": "国家卫生健康委员会/政务服务平台",
+    "domain": "nhc.gov.cn",
+    "alternate_domains": ["zwfw.nhc.gov.cn"],
+    "tier": "CN-A",
+    "access_mode": ["query", "html", "documents"],
+    "institution_types": ["hospital", "public_institution", "ngo_or_social_organization"],
+    "stable_identifiers": ["institution_name", "licensing_record_when_available"],
+    "primary_roles": ["hospital_registration", "medical_institution_universe", "licensed_specialty_list", "supervised_social_organization_list"],
+    "notes": "Use regional health-authority sources to expand beyond central/NHC-specific coverage."
+  },
+  {
+    "source_id": "cn_social_org",
+    "name_zh": "全国社会组织信用信息公示平台",
+    "domain": "xxgs.chinanpo.mca.gov.cn",
+    "alternate_domains": ["chinanpo.mca.gov.cn"],
+    "tier": "CN-A",
+    "access_mode": ["interactive_query", "html"],
+    "institution_types": ["ngo_or_social_organization"],
+    "stable_identifiers": ["unified_social_credit_code", "registration_name"],
+    "primary_roles": ["registration", "annual_report", "evaluation", "administrative_penalty", "credit_record", "suspected_illegal_organization_list"],
+    "notes": "Registered status and regulator records are provenance; advocacy topic or organizational mission is not a risk feature."
+  },
+  {
+    "source_id": "cn_charity",
+    "name_zh": "慈善中国/全国慈善信息公开平台",
+    "domain": "cszg.mca.gov.cn",
+    "tier": "CN-A",
+    "access_mode": ["query", "html", "documents"],
+    "institution_types": ["ngo_or_social_organization"],
+    "stable_identifiers": ["unified_social_credit_code", "charity_registration"],
+    "primary_roles": ["charity_identity", "annual_report", "financial_report", "public_fundraising", "charity_project", "related_party_disclosure"],
+    "notes": "Donation, fundraising and related-party disclosures are factual context, not wrongdoing indicators."
+  },
+  {
+    "source_id": "cn_audit",
+    "name_zh": "中华人民共和国审计署",
+    "domain": "audit.gov.cn",
+    "tier": "CN-C",
+    "access_mode": ["html", "documents"],
+    "institution_types": ["government", "public_institution", "hospital", "soe", "research_institute", "university"],
+    "stable_identifiers": ["institution_name", "document_id"],
+    "primary_roles": ["audit_finding", "budget_execution_audit", "rectification_report"],
+    "notes": "Preserve the exact audited entity, issue and document date; do not generalize one audit finding to unrelated conduct."
+  },
+  {
+    "source_id": "cn_ccdi",
+    "name_zh": "中央纪委国家监委网站",
+    "domain": "ccdi.gov.cn",
+    "tier": "CN-C",
+    "access_mode": ["html"],
+    "institution_types": ["government", "public_institution", "soe", "state_owned_financial_institution"],
+    "stable_identifiers": ["person_name", "organization", "role", "event_date"],
+    "primary_roles": ["investigation_notice", "disciplinary_sanction_notice"],
+    "notes": "Investigation and sanction are distinct outcome classes; neither is silently converted into a criminal conviction."
+  },
+  {
+    "source_id": "cn_nsfc",
+    "name_zh": "国家自然科学基金委员会",
+    "domain": "nsfc.gov.cn",
+    "alternate_domains": ["grants.nsfc.gov.cn"],
+    "tier": "CN-A",
+    "access_mode": ["html", "public_query_when_available"],
+    "institution_types": ["research_institute", "university", "hospital"],
+    "stable_identifiers": ["project_id_when_public", "institution_name"],
+    "primary_roles": ["grant_program", "funding_rule", "institution_universe", "public_project_information"],
+    "notes": "Do not bypass account-only or institution-only project/person queries."
+  }
+]
