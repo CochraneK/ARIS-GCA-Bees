@@ -1,0 +1,13 @@
+{
+  "identity_rows_n": 100,
+  "second_review_selected_n": 40,
+  "single_fraction": 0.25,
+  "seed": "aris4c004-identity-second-review-v1",
+  "selection_reason_counts": {
+    "all_verified_cluster": 21,
+    "all_ambiguous_collision": 8,
+    "deterministic_verified_single_sample": 9,
+    "all_excluded_identity_error": 2
+  },
+  "mental_health_information_used": false
+}
