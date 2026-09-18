@@ -14,17 +14,19 @@ Among scholars participating in the mainland-China scholarly system, is later Pi
 
 ## 3. Primary hypothesis
 
-`H1`: The relationship between surname initial rank (A=1 … Z=26) and listed authorship position becomes more unfavorable as lagged/cross-fitted excess alphabetization exposure increases.
+`H1` (primary mechanism): within the same multi-author work, an author's **relative alphabetical family-name rank within the actual coauthor team** more strongly predicts later normalized listed position when the publication context has higher independently measured prior alphabetization exposure.
 
-The preregistered focus is the interaction `SurnameInitialRank × AlphabetizationExposure`, not the marginal surname-rank coefficient.
+Primary interaction: `RelAlphaRank_iw × PriorAlphabetizationExposure_c,t-1`.
+
+The work fixed-effect design is primary because it compares authors inside the same paper and therefore absorbs all work-level topic, journal, year, and team-wide factors. The stable population-scale `SurnameInitialRank × Exposure` interaction is retained as a secondary structural-vulnerability specification, not the sole headline test.
 
 ## 4. Secondary hypotheses
 
 Subject to pilot feasibility, no more than three will remain confirmatory:
 
-- `H2`: later surname rank × higher prior alphabetization exposure predicts a lower subsequent probability of first-listed authorship on collaborative work.
-- `H3`: later surname rank × higher prior alphabetization exposure predicts lower subsequent field/year-normalized citation impact.
-- `H4`: later surname rank × higher prior alphabetization exposure predicts a less favorable preregistered career endpoint (`TBF`: publication persistence, institutional transition, or affiliation mobility; choose one after coverage audit but before focal effects are viewed).
+- `H2`: the stable Chinese surname-initial rank × prior exposure interaction predicts normalized listed position in the same qualitative direction as the within-team mechanism model.
+- `H3`: higher accumulated structural/realized alphabetical burden predicts lower subsequent field/year-normalized citation impact, conditional on the final identity and cohort gates.
+- `H4`: higher accumulated alphabetical burden predicts one frozen distal career endpoint (`TBF`: observed 5-year publication persistence, institutional-stratum transition, or affiliation transition; choose from coverage/measurement diagnostics before focal effects are viewed).
 
 Corresponding-author outcomes are confirmatory only if coverage is sufficient under a pre-specified missingness threshold (`TBF`).
 
@@ -110,28 +112,35 @@ Whichever is selected becomes immutable for the confirmatory run.
 
 ## 11. Primary outcome
 
-Candidate primary outcome:
+Primary mechanism outcome:
 
-**Normalized listed authorship position on collaborative works**, coded so larger values consistently indicate later/worse list position.
+`ListedPositionNorm_iw = (listed_position_iw - 1) / (team_size_w - 1)`
 
-A binary first-listed outcome will be reported as a co-primary only if the multiplicity plan explicitly allows it; otherwise it is the first secondary outcome.
+for collaborative works with `team_size >= 2`, so 0 = first listed and 1 = last listed.
 
-Exact normalization by team size is `TBF`.
+Primary work-specific predictor:
+
+`RelAlphaRank_iw`, the midrank-normalized family-name position among the actual coauthors, scaled 0 = alphabetically earliest and 1 = latest.
+
+A binary first-listed outcome is secondary. The 3+ author subset is a mandatory robustness analysis.
 
 ## 12. Primary model
 
-Generic work-level model:
+Primary work-level mechanism model:
 
-`Position_ijct = β0 + β1 Rank_i + β2 Exposure_ct + β3 Rank_i×Exposure_ct + X'γ + FE + ε`
+`ListedPositionNorm_iw = WorkFE_w + β1 RelAlphaRank_iw + β2(RelAlphaRank_iw × PriorExposure_c,t-1) + ε_iw`
 
-Primary estimand: `β3`.
+Primary estimand: `β2`.
 
-Required fixed-effect families:
-- field × year;
-- career-stage controls/fixed effects where defined;
-- context/institution structure selected prospectively after pilot dimensionality is known.
+Because the focal context exposure is shared within a work, its main effect is absorbed by `WorkFE_w`. Work fixed effects also absorb work-level journal, topic, publication date, team size, and shared quality/context factors.
 
-Cluster/inference rule: `TBF` after identifying repeated-measure structure; must account for repeated authors and shared works/contexts.
+Secondary structural-vulnerability model:
+
+`ListedPositionNorm_iw = β0 + β1 InitialRank_i + β2 PriorExposure_c,t-1 + β3(InitialRank_i × PriorExposure_c,t-1) + controls + FE + ε_iw`
+
+The structural model is not allowed to supersede the within-work mechanism model merely because its estimate is larger.
+
+Inference must account for repeated authors and shared works. The exact multiway-clustering implementation remains `TBF` until the repeated-measure structure of the frozen frame is summarized, but author clustering is mandatory and work dependence cannot be ignored.
 
 ## 13. Author-year downstream model
 
@@ -246,3 +255,20 @@ It is not by itself evidence that surname letters cause ability, intelligence, p
 - [ ] missing-control handling.
 
 Until these boxes are frozen, the study remains pre-confirmatory.
+
+
+## 23. Identity canonicalization rule
+
+Before constructing any author-level history, every OpenAlex author ID embedded in a work authorship must be re-resolved through the current OpenAlex author endpoint.
+
+Pilot evidence:
+- 977 ORCID-verifiable authorships;
+- 61 raw embedded-ID mismatches (6.24%);
+- all 61/61 mismatches reconciled after canonical author resolution;
+- 0 unresolved conflicts and 0 lookup failures in the deterministic pilot sample.
+
+Therefore the longitudinal join key is the **current canonical OpenAlex author ID**, not the raw ID embedded in a historical work record.
+
+When ORCID is present, ORCID consistency is checked as additional validation. Raw embedded IDs remain preserved for provenance.
+
+This engineering fix does not eliminate residual split/merge error among non-ORCID authors; the preregistered identity-risk sensitivity ladder remains mandatory.
