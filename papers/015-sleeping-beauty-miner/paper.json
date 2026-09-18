@@ -1,0 +1,44 @@
+{
+  "id": "015",
+  "slug": "sleeping-beauty-miner",
+  "title": "Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work",
+  "short_title": "Sleeping Beauty Miner",
+  "year": 2026,
+  "status": "agent-specification-v0.1",
+  "domain": "metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity",
+  "summary": "An open-data-first, auditable agent that retrospectively identifies delayed-recognition papers and prospectively ranks still-dormant candidates using citation trajectories, semantic novelty, network structure, Prince signals and optional technological transfer, while reusing ARIS4C011 as an integrity/provenance quarantine layer and enforcing strict historical-cutoff evaluation.",
+  "authors": ["Cunyi Kang"],
+  "dependencies": {
+    "011": "research-forensics evidence safety, provenance, citation verification, applicability and ABSTAIN semantics",
+    "005": "downstream exploratory input for opportunity-cost / buried-science analyses"
+  },
+  "aris": {
+    "provenance": "ARIS4C guided design with live prior-art audit and explicit reuse of ARIS4C011 architecture",
+    "version": "v0.4.26",
+    "commit": ""
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "agent_spec": "process/AGENT_SPEC.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/015-sleeping-beauty-miner"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "sleeping beauty",
+    "delayed recognition",
+    "beauty coefficient",
+    "scientometrics",
+    "science of science",
+    "citation dynamics",
+    "citation networks",
+    "semantic novelty",
+    "Prince paper",
+    "research integrity",
+    "evidence graph",
+    "time-safe benchmark",
+    "human-in-the-loop"
+  ]
+}
