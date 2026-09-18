@@ -69,5 +69,21 @@
     "median"
   ],
   "estimator": "PyFixest fepois PPML",
-  "notes": "Cross-check with PREREGISTRATION_DRAFT.md and Amendments 001-002."
+  "notes": "Cross-check with PREREGISTRATION_DRAFT.md and Amendments 001-003.",
+  "secondary_temporal_profile": {
+    "status": "locked before outcomes; secondary, not part of confirmatory family",
+    "mature_periods": [
+      "2007-2010",
+      "2011-2014",
+      "2015-2018",
+      "2019-2022"
+    ],
+    "outcomes_each_mature_period": [
+      "fractional_output",
+      "fractional_top10",
+      "fractional_collaboration_mass"
+    ],
+    "recent_output_only_period": "2023-2025",
+    "failed_fit_policy": "FAILED_NO_REPAIR; no silent model/sample changes"
+  }
 }
