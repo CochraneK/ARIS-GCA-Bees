@@ -1,0 +1,77 @@
+{
+  "pilot": "ARIS4C015 Pilot 1B primary-field multi-outcome benchmark",
+  "status": "exploratory-single-stratum-complete",
+  "source": "OpenAlex live API",
+  "sampling": {
+    "publication_year": 1980,
+    "type": "article",
+    "primary_field": "Physics and Astronomy",
+    "primary_field_id": 31,
+    "sample_size": 20,
+    "seed": 15015
+  },
+  "temporal_design": {
+    "feature_cutoff_year": 1995,
+    "outcome_observation_end_year": 2011
+  },
+  "outcome_summary": {
+    "beauty_top_fraction_positive": 4,
+    "awakening_within_15y_positive": 4,
+    "delayed_recognition_consensus_positive": 4
+  },
+  "outcome_baseline_matrix": {
+    "beauty_percentile_ndcg_at_5": {
+      "current_citations": 0.3973034529785471,
+      "momentum_3y": 0.6133492584663546,
+      "acceleration_3y": 0.7870519781370595,
+      "partial_beauty": 0.8528910576412976,
+      "dormancy": 0.257380703821762
+    },
+    "beauty_top_fraction_precision_at_5": {
+      "current_citations": 0.4,
+      "momentum_3y": 0.4,
+      "acceleration_3y": 0.4,
+      "partial_beauty": 0.4,
+      "dormancy": 0.0
+    },
+    "beauty_top_fraction_ndcg_at_5": {
+      "current_citations": 0.34620964322385606,
+      "momentum_3y": 0.5585075862632192,
+      "acceleration_3y": 0.6366824387328317,
+      "partial_beauty": 0.6366824387328317,
+      "dormancy": 0.0
+    },
+    "future_acceleration_percentile_ndcg_at_5": {
+      "current_citations": 0.531927750210079,
+      "momentum_3y": 0.2619929734991459,
+      "acceleration_3y": 0.2349734965547087,
+      "partial_beauty": 0.2489125187383971,
+      "dormancy": 0.6534798045001606
+    },
+    "awakening_within_15y_precision_at_5": {
+      "current_citations": 0.2,
+      "momentum_3y": 0.2,
+      "acceleration_3y": 0.4,
+      "partial_beauty": 0.2,
+      "dormancy": 0.0
+    },
+    "consensus_precision_at_5": {
+      "current_citations": 0.2,
+      "momentum_3y": 0.2,
+      "acceleration_3y": 0.4,
+      "partial_beauty": 0.2,
+      "dormancy": 0.0
+    }
+  },
+  "interpretation": [
+    "The benchmark plumbing works on a reproducible non-hand-picked primary-field cohort.",
+    "Baseline ordering changes substantially across outcome definitions.",
+    "Partial Beauty Coefficient is strongest for graded future Beauty in this small cohort, which is expected to be partly definition-aligned.",
+    "Dormancy is poor for Beauty/awakening outcomes but ranks immediate future acceleration more strongly in this one sample.",
+    "No baseline should be declared superior from N=20 or a single field/year/seed.",
+    "Recognition-floor sensitivity and multi-stratum replication are required before model development."
+  ],
+  "claim_boundary": "Exploratory single-stratum result only; not prospective validation and not evidence of breakthrough prediction.",
+  "workflow_run_id": 35314645939,
+  "retrieved_at": "2026-09-18"
+}
