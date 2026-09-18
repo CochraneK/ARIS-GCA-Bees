@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/015-sleeping-beauty-miner/process/CANDIDATE_EVIDENCE_CARD.schema.json",
+  "title": "ARIS4C015 Candidate Evidence Card",
+  "type": "object",
+  "required": [
+    "paper_id",
+    "mode",
+    "analysis_cutoff",
+    "state",
+    "evidence_families",
+    "integrity_gate",
+    "provenance",
+    "disclaimer"
+  ],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "identifiers": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+    "mode": {"enum": ["RETROSPECTIVE", "PROSPECTIVE", "DISCOVERY_SCAN"]},
+    "analysis_cutoff": {"type": ["string", "integer"]},
+    "state": {
+      "enum": [
+        "CONFIRMED_DELAYED_RECOGNITION",
+        "AWAKENING_NOW",
+        "DORMANT_CANDIDATE",
+        "INTEGRITY_QUARANTINED",
+        "INSUFFICIENT_DATA"
+      ]
+    },
+    "rank": {"type": ["integer", "null"], "minimum": 1},
+    "score": {"type": ["number", "null"]},
+    "score_semantics": {"type": ["string", "null"]},
+    "citation_trajectory": {"type": "object"},
+    "retrospective_metrics": {"type": "object"},
+    "evidence_families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "applicable", "cutoff_safe", "status"],
+        "properties": {
+          "name": {"type": "string"},
+          "applicable": {"type": "boolean"},
+          "cutoff_safe": {"type": "boolean"},
+          "status": {
+            "enum": ["SUPPORTIVE", "CONTRADICTORY", "NEUTRAL", "ABSTAIN", "QUARANTINED"]
+          },
+          "value": {},
+          "uncertainty": {},
+          "provenance": {"type": "array", "items": {"type": "string"}},
+          "notes": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "prince_candidates": {"type": "array"},
+    "integrity_gate": {
+      "type": "object",
+      "required": ["state", "cutoff_safe"],
+      "properties": {
+        "state": {"enum": ["CLEAR", "CAUTION", "QUARANTINE", "ABSTAIN"]},
+        "cutoff_safe": {"type": "boolean"},
+        "finding_ids": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "missing_evidence": {"type": "array", "items": {"type": "string"}},
+    "contradictory_evidence": {"type": "array"},
+    "explanation": {"type": ["string", "null"]},
+    "model_version": {"type": ["string", "null"]},
+    "provenance": {"type": "array", "items": {"type": "string"}},
+    "disclaimer": {
+      "const": "This is a discovery-priority estimate, not a validity or breakthrough judgment."
+    }
+  },
+  "additionalProperties": true
+}
