@@ -31,7 +31,21 @@ The project is no longer framed as merely inventing a better "animal years" calc
 - [x] Official build: 4,645 species rows, 1,349 mammal rows, 786 mammals complete for gestation + maturity + maximum longevity (785 non-human mappings to human).
 - [x] 3,140 prespecified mapping rows generated across maturity and 25/50/75% maximum-lifespan positions.
 - [x] Official descriptive disagreement summary recorded in `process/PILOT0_OFFICIAL_RESULTS.md`.
-- [x] Reproducible summarizer added; artifact/source hashes recorded.\n- [x] Pilot 1 independent demography benchmark completed on 88 overlapping mammals.\n- [x] Péron et al. 2019 published S5 mortality parameters vendored with DOI and SHA-256 provenance.\n- [x] Pilot 1 now consumes the canonical successful Pilot 0 artifact rather than redownloading AnAge.\n- [x] Paired 10,000-resample bootstrap added for cross-method MAD differences.\n- [x] A10 significantly favors A1 concentration; juvenile-stage end modestly favors A3; senescence onset does not clearly separate A1/A3.\n- [x] Full Pilot 1 result frozen in `process/PILOT1_DEMOGRAPHY_RESULTS.md`.\n- [x] Januel et al. 2026 Table S1 (3,754 observations) and authors' Dataset 1 R code acquired from PMC AWS and vendored with hashes.\n- [x] Pilot 2 strict observed-event benchmark built: 945 held-out source→human event rows across 799 Timepoint clusters.\n- [x] Timepoint-cluster bootstrap and species-stratified bootstrap implemented.\n- [x] A4 Januel-style pairwise smooth spline evaluated by leave-one-Timepoint-out rather than training fit.\n- [x] Three-method benchmark completed: A1 median fold error 1.75×; A3 1.69×; A4-LOTO 1.22× overall.\n- [x] A4 does not universally dominate: chimpanzee A3≈A4; postnatal 0–2 years clearly favors A3.\n- [x] Full Pilot 2 result frozen in `process/PILOT2_EVENT_RESULTS.md`.\n- [x] Pilot 3 molecular-axis protocol frozen in `process/PILOT3_MOLECULAR_PLAN.md`.
+- [x] Reproducible summarizer added; artifact/source hashes recorded.
+- [x] Pilot 1 independent demography benchmark completed on 88 overlapping mammals.
+- [x] Péron et al. 2019 published S5 mortality parameters vendored with DOI and SHA-256 provenance.
+- [x] Pilot 1 now consumes the canonical successful Pilot 0 artifact rather than redownloading AnAge.
+- [x] Paired 10,000-resample bootstrap added for cross-method MAD differences.
+- [x] A10 significantly favors A1 concentration; juvenile-stage end modestly favors A3; senescence onset does not clearly separate A1/A3.
+- [x] Full Pilot 1 result frozen in `process/PILOT1_DEMOGRAPHY_RESULTS.md`.
+- [x] Januel et al. 2026 Table S1 (3,754 observations) and authors' Dataset 1 R code acquired from PMC AWS and vendored with hashes.
+- [x] Pilot 2 strict observed-event benchmark built: 945 held-out source→human event rows across 799 Timepoint clusters.
+- [x] Timepoint-cluster bootstrap and species-stratified bootstrap implemented.
+- [x] A4 Januel-style pairwise smooth spline evaluated by leave-one-Timepoint-out rather than training fit.
+- [x] Three-method benchmark completed: A1 median fold error 1.75×; A3 1.69×; A4-LOTO 1.22× overall.
+- [x] A4 does not universally dominate: chimpanzee A3≈A4; postnatal 0–2 years clearly favors A3.
+- [x] Full Pilot 2 result frozen in `process/PILOT2_EVENT_RESULTS.md`.
+- [x] Pilot 3 molecular-axis protocol frozen in `process/PILOT3_MOLECULAR_PLAN.md`.
 
 ## Primary novelty claim to test
 
@@ -83,12 +97,8 @@ Species are not independent observations. Phylogenetic block cross-validation an
 5. Add universal DNAm coordinates to the cross-method disagreement benchmark.
 6. Explicitly audit target-transform circularity for every dual-species clock.
 7. After molecular feasibility, add Myhrvold + mammalian phylogeny for broad trait-level inference.
-4. Build a pilot species intersection with high-quality data across >=3 age axes.
-5. Reproduce published Translating Time / epigenetic mappings on a small reference set.
-6. Run a first disagreement atlas.
-7. Freeze primary evaluation metrics and exclusion rules.
-8. Add phylogeny and perform leave-one-species / leave-one-order-out validation.
-9. Only then consider a learned latent-age model.
+8. Build the first multi-axis disagreement atlas.
+9. Freeze phylogenetic leave-one-order-out validation before any latent-age model.
 
 ## Do not do
 
@@ -102,4 +112,4 @@ Species are not independent observations. Phylogenetic block cross-validation an
 
 ## Handoff sentence
 
-If this chat is lost, resume from this file. **ARIS4C007 is a mammalian multi-axis age-equivalence benchmark, not a new pet-age conversion formula. Novelty was narrowed after discovering 2026 whole-lifespan human-cat Translating Time work. First reproduce several existing age axes, quantify their disagreement and cycle consistency, then test whether a latent common age coordinate is defensible.**
+If this chat is lost, resume from this file. **Pilot 0, Pilot 1 and Pilot 2 are complete. Pilot 2 benchmarks A1/A3/A4 on 945 strict held-out homologous events across 799 Timepoint clusters; A4 is much more accurate overall but does not universally dominate (chimpanzee A3≈A4; postnatal 0–2 years favors A3). Continue with Pilot 3A molecular-clock code/coefficient reproduction. Do not equate high DNAm chronological-age prediction accuracy with proof of biological age equivalence.**
