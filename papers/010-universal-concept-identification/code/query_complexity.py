@@ -11,12 +11,49 @@ from __future__ import annotations
 from functools import lru_cache
 from itertools import combinations
 from math import ceil, log2
+from heapq import heapify, heappop, heappush
 from typing import Hashable, Iterable, Sequence
 
 
 def entropy_bits(probabilities: Iterable[float]) -> float:
     """Shannon entropy in bits."""
     return -sum(p * log2(p) for p in probabilities if p > 0)
+
+
+
+def huffman_expected_length(probabilities: Iterable[float]) -> float:
+    """Optimal expected binary prefix-code length for a target prior.
+
+    This is the unrestricted binary-message baseline when arbitrary partitions
+    are allowed and every question has unit cost.
+    """
+    probs = [float(p) for p in probabilities if p > 0]
+    if not probs:
+        return 0.0
+    total = sum(probs)
+    if total <= 0:
+        raise ValueError("probabilities must have positive total mass")
+    heap = [p / total for p in probs]
+    if len(heap) == 1:
+        return 0.0
+    heapify(heap)
+    cost = 0.0
+    while len(heap) > 1:
+        a = heappop(heap)
+        b = heappop(heap)
+        merged = a + b
+        cost += merged
+        heappush(heap, merged)
+    return cost
+
+
+def unrestricted_uniform_binary_expected_cost(candidate_count: int) -> float:
+    """Optimal expected unrestricted binary questions for a uniform prior."""
+    if candidate_count < 0:
+        raise ValueError("candidate_count must be nonnegative")
+    if candidate_count <= 1:
+        return 0.0
+    return huffman_expected_length([1.0] * candidate_count)
 
 
 def max_targets(question_budget: int, response_count: int = 2) -> int:
