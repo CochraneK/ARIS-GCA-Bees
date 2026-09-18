@@ -1,23 +1,14 @@
 {
-  "id": "001",
-  "slug": "gca-bees",
-  "title": "Uncertainty Monitoring and Cross-Task Cognitive Covariation in Honey Bees",
-  "short_title": "Bee Uncertainty × Cognitive Covariation",
-  "year": 2026,
-  "status": "research-design",
-  "domain": "comparative cognition / computational neuroethology / psychometrics",
-  "summary": "A falsifiable model-comparison project asking whether uncertainty-sensitive choice and cross-task learning covariation in honey bees are best explained by one general factor, separable but correlated factors, or task-local associative mechanisms. Earlier precision/self-awareness simulation claims have been retired from the canonical paper.",
-  "authors": ["Cunyi Kang"],
-  "aris": {
-    "provenance": "ARIS4C full reconstruction replacing the legacy Paper 001 run",
-    "version": "v0.4.26",
-    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
-  },
-  "links": {
-    "paper_en": "paper/en/main.html",
-    "paper_zh": "paper/zh/main.html",
-    "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/process/STATUS.md",
-    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees"
-  },
-  "tags": ["ARIS", "ARIS4C", "honey bees", "uncertainty monitoring", "metacognition", "general cognitive ability", "model comparison"]
+  "id":"001",
+  "slug":"gca-bees",
+  "title":"From General Learning Ability to Uncertainty Monitoring in Honey Bees",
+  "short_title":"Bee GCA × Uncertainty",
+  "year":2026,
+  "status":"final-manuscript",
+  "domain":"comparative cognition / psychometrics / computational neuroethology",
+  "summary":"A completed quantitative synthesis and theory paper showing reproducible covariance among honey-bee learning tasks while separating that evidence from uncertainty-monitoring, metacognition, and consciousness claims; it formalizes competing models and specifies the same-individual experiment needed to connect the literatures.",
+  "authors":["Cunyi Kang"],
+  "aris":{"provenance":"ARIS4C full reconstruction; finalized as quantitative synthesis + theory article","version":"v0.4.26","commit":"951654847b015585385b2448c5667dcd04e7b56b"},
+  "links":{"paper_en":"paper/en/main.html","paper_zh":"paper/zh/main.html","pipeline":"https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/process/STATUS.md","source":"https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees"},
+  "tags":["ARIS","ARIS4C","honey bees","general cognitive ability","uncertainty monitoring","metacognition","quantitative synthesis"]
 }

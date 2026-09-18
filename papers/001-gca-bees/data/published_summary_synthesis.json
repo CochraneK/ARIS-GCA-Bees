@@ -1,0 +1,24 @@
+{
+  "provenance": {"correlations":"Finke et al. 2023","factor_loadings":"Peñaherrera-Aguirre et al. 2024 Table 1","scope":"published-summary synthesis; not raw-data reanalysis"},
+  "inputs": {
+    "correlations": {
+      "visual":{"AL_RL":{"r":0.53,"n":27},"AL_NP":{"r":0.42,"n":33},"RL_NP":{"r":0.25,"n":27}},
+      "olfactory":{"AL_RL":{"r":0.60,"n":20},"AL_NP":{"r":0.46,"n":22},"RL_NP":{"r":0.19,"n":20}}
+    },
+    "factor_loadings": {
+      "visual":{"AL":0.944,"RL":0.562,"NP":0.445,"variance":0.468},
+      "olfactory":{"AL":0.997,"RL":0.601,"NP":0.461,"variance":0.523}
+    }
+  },
+  "descriptive_pooled_correlations": {
+    "AL_RL":{"r":0.5600138157774078,"ci95_low":0.31559995977320954,"ci95_high":0.7347412488576616,"fisher_weight":41},
+    "AL_NP":{"r":0.43571721726812274,"ci95_low":0.18478479343433193,"ci95_high":0.6333151469224113,"fisher_weight":49},
+    "RL_NP":{"r":0.22532556285054048,"ci95_low":-0.07669019565954369,"ci95_high":0.48946768478578406,"fisher_weight":41}
+  },
+  "tucker_congruence_visual_vs_olfactory":0.9999565772012021,
+  "one_factor_implied_correlations":{
+    "visual":{"AL_RL":0.530528,"AL_NP":0.42008,"RL_NP":0.25009000000000003},
+    "olfactory":{"AL_RL":0.599197,"AL_NP":0.459617,"RL_NP":0.277061}
+  },
+  "offdiagonal_rmse":{"visual":0.0003126680881275337,"olfactory":0.05026731615075545}
+}
