@@ -51,7 +51,12 @@ def safe_convert(value: object, origin: str) -> str | None:
     if pd.isna(value):
         return None
     try:
-        ans = countrycode(value, origin=origin, destination="iso3c", warn=False)
+        ans = countrycode([value], origin=origin, destination="iso3c", warn=False)
+        if isinstance(ans, (list, tuple)):
+            ans = ans[0] if ans else None
+        elif hasattr(ans, "to_list"):
+            vals = ans.to_list()
+            ans = vals[0] if vals else None
     except Exception:
         return None
     if ans is None:
