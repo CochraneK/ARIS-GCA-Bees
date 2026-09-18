@@ -1,185 +1,195 @@
-# ARIS4C006 · Cohort and China-based author-year protocol
+# ARIS4C006 · Frozen cohort and China-based author-year protocol
 
 Last updated: 2026-09-18
 
 ## Purpose
 
-Separate the primary work-level author-order mechanism from any downstream person-level career analysis, and prevent the 2024 active-author feasibility seed from becoming a survivor-selected confirmatory cohort.
+Separate the primary work-level author-order mechanism from the secondary longitudinal extension, while preventing survivor selection and avoiding nationality/ethnicity inference.
+
+Machine-readable contract: `process/COHORT_DEFINITION.json`.
 
 ## 1. Terminology
 
-The study does **not** infer nationality, citizenship, ethnicity, or birthplace from a name.
+The study does **not** infer nationality, citizenship, ethnicity, birthplace, migration status, or self-identification from a name.
 
-### China-affiliated authorship
+### CN-affiliated authorship
 
-An authorship is `CN-affiliated` when the OpenAlex authorship record contains at least one resolved institution with `country_code = CN`.
+An authorship is `CN-affiliated` when the OpenAlex authorship contains at least one resolved institution with `country_code = CN`.
 
 ### China-based author-year
 
-Candidate rule:
+Primary author-year state:
 
-> author `i` is China-based in year `t` when at least one eligible work in year `t` contains a CN-affiliated authorship for that resolved author ID.
+`CN_any = 1` when at least one eligible work in year `t` contains a CN-affiliated authorship for the canonical author.
 
-Also retain:
-- `CN_only`: all resolved institutional countries on eligible authorships in year t are CN;
-- `CN_mixed`: CN plus at least one non-CN country;
-- `CN_any`: at least one CN affiliation.
+Retain auxiliary states:
+- `CN_only`;
+- `CN_mixed`;
+- `non_CN_only`;
+- `missing_or_unresolved`.
 
-The primary author-year rule will be frozen after affiliation-coverage diagnostics. It will never be described as nationality.
+These are bibliographic affiliation states, not nationality.
 
-## 2. Two separate analysis frames
+## 2. Primary work frame
 
-### Frame A — work/authorship mechanism frame
+The primary mechanism frame is work/authorship based and is defined in `POPULATION_FRAME.md`.
 
-This is the primary, lower-identity-risk frame.
+It does not require a complete career history.
 
-Unit:
-- eligible authorship within an eligible multi-author work.
+Primary global work window:
 
-Requirements:
-- validated surname evidence;
-- ordered author list;
-- independently measured lagged convention exposure;
-- China-affiliation status for the focal authorship;
-- field/source/year metadata.
+**2011–2025**
 
-This frame does not require reconstructing a complete career.
+selected by the prospectively frozen bibliographic coverage gate in `PILOT11_RESULTS.md`.
 
-### Frame B — longitudinal author cohort
+## 3. Longitudinal entry cohort
 
-This is secondary and remains gated by identity-resolution quality.
+Entry years:
 
-Unit:
-- resolved author-year.
+**2014–2020**
 
-Frame B is constructed from an **entry rule**, not from scholars observed in a late survivor year.
+For a canonical OpenAlex author, entry year `e` is eligible when all hold:
 
-## 3. Candidate entry-cohort rule
+1. the author's **first observed eligible** OpenAlex `article` or `conference-paper` occurs in year `e`;
+2. at least one eligible work in `e` contains a CN-affiliated authorship for that author;
+3. there is no eligible `article` or `conference-paper` attributed to that canonical author in `e-3 ... e-1`;
+4. the surname passes the frozen focal surname-form rule when the author enters a surname-based longitudinal model;
+5. the canonical author ID passes the frozen identity engineering rules.
 
-Before outcomes are opened, choose an index period `T0..T1`.
+The 3-year lookback is therefore wholly inside the high-coverage era:
+- earliest entry 2014 -> lookback 2011–2013.
 
-A candidate entrant is a high-confidence resolved author whose:
+This identifies **first observed eligible scholarly publication in the corpus**, not first academic job.
 
-1. first eligible CN-affiliated scholarly observation occurs in index year `e`;
-2. there is a frozen clean-lookback interval immediately before `e` with no eligible scholarly work attributable to that author under the selected OpenAlex corpus;
-3. surname evidence passes the frozen Tier 1/2 parser rule;
-4. identity-risk score passes the frozen author-resolution threshold;
-5. sufficient follow-up exists for the chosen distal endpoint.
+## 4. Fixed follow-up
 
-Candidate clean lookback: **3 years**. Final value is TBF from coverage diagnostics only.
+Follow every eligible entrant for **5 years** after `e`.
 
-This rule estimates entry into the *observed eligible scholarly record / China-affiliated frame*, not necessarily a person's true first publication or first academic job.
+Latest entry year is 2020 because:
+- 2020 + 5 = 2025;
+- 2025 is the last complete outcome year in the frozen frame.
 
-## 4. Follow-up
+The incomplete year 2026 is not an outcome year.
 
-Use a common, prospectively frozen follow-up horizon rather than unequal raw career length.
+## 5. Frozen distal confirmatory endpoint
 
-Candidate:
-- 5-year follow-up after entry.
+### ObservedFiveYearPublicationPersistence
 
-Examples:
-- entry 2017 -> follow through 2022;
-- entry 2020 -> follow through 2025.
+`Persistence5_i = 1` when canonical author `i` has at least one eligible `article` or `conference-paper` in year `e+4` or `e+5`.
 
-No author is called an "exit" merely because no later work appears unless the outcome definition and observation process support that interpretation.
+Otherwise:
+`Persistence5_i = 0`.
 
-## 5. Right censoring
+Interpretation:
+- observed bibliographic persistence in the eligible scholarly record.
 
-The last complete publication year must be frozen.
+It does **not** mean:
+- continuous employment;
+- annual publishing;
+- true academic retention;
+- true career exit when 0.
 
-Because 2026 is incomplete at the time of study design, **2026 cannot be treated as a complete outcome year**.
+Follow-up work may occur under any affiliation country; persistence is not conditioned on remaining in China.
 
-For a 5-year outcome horizon with last complete year 2025, the latest eligible entry cohort would be 2020.
+## 6. Early-career exposure for the distal model
 
-The final complete-year rule will be verified from OpenAlex coverage before freeze.
+The longitudinal surname/exposure interaction is temporally separated from persistence.
 
-## 6. Left censoring and established scholars
+Define early exposure over `e ... e+2`:
 
-Authors with substantial pre-index publication history are not forced into an entrant cohort.
+1. assign each eligible focal work its frozen LOAO primary-field prior-3-year exposure;
+2. calculate the author's mean exposure across eligible works during `e ... e+2`;
+3. require at least **2 exposure-defined eligible works** in this early window.
 
-They may contribute to:
-- Frame A work-level mechanism analyses;
-- separate prevalent-author longitudinal sensitivity analyses.
+Stable surname vulnerability:
 
-They do not enter the incident/entry cohort merely because a CN affiliation first appears late.
+`InitialRankNorm_i = (InitialRank_i - 1) / 25`.
 
-## 7. International and mixed affiliations
+Secondary-confirmatory longitudinal interaction:
 
-Internationalization is both substantively important and potentially endogenous.
+`InitialRankNorm_i × MeanEarlyLOAOExposure_i`.
 
-Do not simply control it away in every model.
+The distal model is associational/mechanistic, not a randomized treatment estimate.
 
-Retain longitudinal states such as:
-- CN-only;
-- CN + overseas mixed affiliation;
-- non-CN-only after prior CN affiliation;
-- missing/unresolved.
+## 7. Survivor-bias rule
 
-A mobility analysis, if retained, must distinguish a change in bibliographic affiliation from citizenship or physical migration.
+The 2024 seed used in feasibility pilots is **never** a confirmatory career cohort.
 
-## 8. Career-stage alternatives
+No requirement is imposed that an entrant remains observed in a late calendar year.
 
-If the clean-lookback entry rule proves too sensitive to OpenAlex left coverage, fallback options are:
+Entry is defined prospectively from the first observed eligible work and followed forward for a common horizon.
 
-1. first high-confidence CN-affiliated observation + OpenAlex author `counts_by_year` showing no earlier work in the clean lookback;
-2. matched prevalent-author design with explicit observed career age;
-3. work-level-only paper, dropping distal career claims.
+## 8. Identity rule
 
-The fallback is chosen from measurement diagnostics, not from focal surname-effect results.
+Before longitudinal reconstruction:
+- resolve every work-embedded OpenAlex author ID to the current canonical author ID;
+- preserve original ID for provenance;
+- require no known ORCID conflict when ORCID is available;
+- do not merge people from raw-name similarity alone.
 
-## 9. Primary longitudinal exposure
+Pilot 9 repaired all 61/61 raw-ID mismatches through canonical resolution.
 
-For author-year `i,t`:
+Residual non-ORCID split/merge error is addressed through mandatory sensitivity subsets.
 
-`PriorAlphaExposure_it`
+## 9. Primary longitudinal model
 
-is constructed only from convention evidence preceding the outcome year and must satisfy the anti-leakage rules in `EXPOSURE_ESTIMATOR.md`.
+Secondary confirmatory model:
 
-Surname rank is time invariant; exposure can vary with source, field, collaboration environment, and time.
+`logit(Persistence5_i) = alpha + beta1 InitialRankNorm_i + beta2 MeanEarlyExposure_i + beta3(InitialRankNorm_i × MeanEarlyExposure_i) + EntryYearFE + EntryPrimaryFieldFE + f(EntryWorkCount_i)`
 
-This supports author fixed effects for the time-varying exposure term and its interaction with a time-invariant surname rank, while the main surname-rank effect itself is absorbed by author fixed effects.
+Primary longitudinal estimand:
+- `beta3`.
 
-## 10. Survivor-bias rule
+`EntryWorkCount` is measured in entry year only.
 
-The 2024 seed sample used in Pilot 5 is **never** a confirmatory career cohort.
+No citation, prestige, mobility, or later productivity variable is used as a baseline control.
 
-Pilot 5 established only that longitudinal histories are technically retrievable:
-- 91.7% of 120 seeds had >=2 active years;
-- 65.0% had >=5 active years;
-- 75.8% had CN affiliation in >=3 years.
+## 10. Missingness and exclusions
 
-These feasibility proportions cannot be interpreted as population career persistence.
+For this secondary confirmatory model:
+- no surname imputation;
+- no exposure imputation;
+- no author-ID imputation;
+- require the frozen surname form;
+- require >=2 early exposure-defined works;
+- require complete entry year / primary field;
+- missing optional descriptive covariates do not trigger ad hoc imputation.
 
-## 11. Minimum identity requirements for Frame B
+Authors excluded for missing focal variables are counted and reported by entry year and field.
 
-Before Frame B is unlocked:
+## 11. Sensitivity ladder
 
-- surname measurement gate passed;
-- ORCID/OpenAlex consistency pilot completed;
-- identity-risk diagnostics reported by surname-rank/frequency strata where feasible;
-- frozen exclusion/sensitivity ladder exists;
-- no evidence that the apparent rank interaction is carried by high-risk identity records.
+Mandatory:
+1. all eligible canonical authors;
+2. ORCID-linked authors;
+3. uncommon-name / low-collision-risk authors;
+4. direct-Han surname subset where available;
+5. exclusion of implausible publication/affiliation histories;
+6. surname-frequency strata.
 
-If these conditions fail, Frame A remains viable and Frame B is removed from confirmatory claims.
+The distal result is weakened if present only in high identity-risk records.
 
 ## 12. Frozen language
 
 Allowed:
 - China-affiliated authorship;
 - China-based author-year under the operational rule;
-- affiliation transition;
-- observed publication persistence.
+- observed scholarly entry;
+- observed five-year publication persistence;
+- affiliation transition.
 
 Avoid unless independently observed:
 - Chinese national;
 - Chinese ethnicity;
-- emigration/immigration;
+- immigration/emigration;
+- first academic job;
 - true academic exit;
-- first academic job.
+- employment retention.
 
 ## Current status
 
-**Frame A: measurement-feasible.**  
-**Frame B: longitudinal data-feasible, identity-gated.**
+**Frame A work mechanism: research-design ready.**
 
-Exact index years, lookback length, follow-up horizon, and author-year CN rule remain TBF until coverage/identity diagnostics are complete and before focal career outcomes are inspected.
+**Frame B longitudinal extension: retained after feasibility, identity-canonicalization, and within-author exposure-variation gates.**
+
+Its outcome and cohort window are now frozen pre-outcome.
