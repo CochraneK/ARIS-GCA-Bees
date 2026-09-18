@@ -29,7 +29,7 @@ PASS in Draft v1:
 
 Core manuscript numbers were cross-checked against source reports:
 
-- Stage 0: 20-component 0.510 vs null 0.362; p99 residual NMI 0.119 vs 0.039.
+- Stage 0: 20-component TruncatedSVD cumulative explained variance 0.510 vs shuffled-null 0.362; p99 pairwise NMI 0.119 vs permutation null 0.039.
 - Stage 1: family-held-out tree 0.178, graph 0.163, low-rank 0.150, circle 0.109.
 - Stage 1B: 40-feature circle 0.179/tree 0.178; 60-feature circle 0.105/tree 0.147/low-rank 0.153.
 - Stage 1C: Grammar linear order circle 0.401, stability 0.811, tree 0.494.
