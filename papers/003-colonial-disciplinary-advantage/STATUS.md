@@ -45,10 +45,39 @@ country×discipline contemporary results are not.
       cross-disciplinary historical exposure × independently coded field
       entanglement gradient.
 
+## Coder B attempt history
+
+### Attempt 1 status — preserved but not confirmatory
+
+WorkBuddy completed a full second coding pass and explicitly stated that it did
+not view Coder A scores or contemporary confirmatory outcomes. However, the same
+context also stated that it briefly opened the paper-root `STATUS.md` and
+`README.md` during task triage.
+
+That violates the pre-existing whitelist-only blind-bundle rule. Therefore:
+
+- the raw response remains preserved at
+  `process/gptpage/2026-09-18_ikes-coder-b-raw.md`;
+- its parsed scores are preserved at
+  `process/IKES_CODER_B_ATTEMPT1_CONTAMINATED.csv`;
+- its diagnostic agreement is documented in
+  `process/IKES_CODER_B_ATTEMPT1_ASSESSMENT.md`;
+- it is **not** promoted to canonical `IKES_CODER_B.csv`;
+- it cannot unlock contemporary outcomes.
+
+Attempt 1 nevertheless showed useful non-confirmatory stability: mean absolute
+cell difference 0.442, IKES-mean ICC(2,1) 0.754, and 8/231 cells at the frozen
+abs-difference >=2 adjudication threshold.
+
+The retry contract now requires two independent machine-checked declarations:
+
+- `BUNDLE_ACCESS_STATUS: PASS`
+- `INDEPENDENCE_STATUS: PASS`
+
 ## Remaining integrity gate
 
-The only irreducible pre-outcome step is a **genuinely independent Coder B**
-run in a fresh GPTPage/model context that has not seen:
+The only irreducible pre-outcome step is a **fresh confirmatory Coder B retry**
+in a new WorkBuddy/GPTPage/model context that has not seen:
 
 - Coder A scores;
 - contemporary country×discipline outcomes;
