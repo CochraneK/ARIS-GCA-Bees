@@ -126,7 +126,7 @@ def validate_matrix(csv_text: str) -> pd.DataFrame:
 
 def validate_evidence_sections(text_without_csv: str) -> None:
     heading_re = re.compile(
-        r"(?m)^###\s+(D\\d{2})\s+—\s+.+$"
+        r"(?m)^###\s+(D\d{2})\s+—\s+.+$"
     )
     matches = list(heading_re.finditer(text_without_csv))
     ids = [m.group(1) for m in matches]
