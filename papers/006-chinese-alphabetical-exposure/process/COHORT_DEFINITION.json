@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "paper_id": "006",
+  "updated_on": "2026-09-18",
+  "status": "frozen_preoutcome",
+  "primary_work_window": {
+    "start": 2011,
+    "end": 2025,
+    "source_gate": "process/PILOT11_RESULTS.md"
+  },
+  "eligible_work_types": [
+    "article",
+    "conference-paper"
+  ],
+  "longitudinal_entry_window": {
+    "start": 2014,
+    "end": 2020
+  },
+  "clean_lookback_years": 3,
+  "entry_definition": [
+    "canonical OpenAlex author",
+    "first observed eligible article/conference-paper occurs in entry year e",
+    "at least one eligible work in e contains a CN-affiliated authorship for that author",
+    "no eligible article/conference-paper attributed to the canonical author in e-3 through e-1",
+    "surname passes frozen focal mapping rule for longitudinal surname analyses"
+  ],
+  "followup_years": 5,
+  "distal_confirmatory_endpoint": {
+    "name": "ObservedFiveYearPublicationPersistence",
+    "definition": "1 if canonical author has at least one eligible article/conference-paper in entry year e+4 or e+5; 0 otherwise",
+    "interpretation": "observed bibliographic persistence, not true academic employment/exit",
+    "affiliation_requirement_at_followup": "none"
+  },
+  "china_based_author_year": {
+    "primary_state": "CN_any",
+    "definition": "at least one eligible work in year t contains a CN-affiliated authorship for the canonical author",
+    "auxiliary_states": [
+      "CN_only",
+      "CN_mixed",
+      "non_CN_only",
+      "missing_or_unresolved"
+    ]
+  },
+  "survivor_seed_forbidden": true,
+  "latest_complete_outcome_year": 2025,
+  "notes": [
+    "2014 is earliest entry year because a 3-year clean lookback then lies wholly within the high-coverage 2011–2025 window",
+    "2020 is latest entry year because e+5 must be observed by 2025",
+    "entry means first observed eligible scholarly publication under the corpus rule, not first academic job",
+    "persistence does not imply continuous annual publishing and non-persistence does not prove true career exit"
+  ]
+}
