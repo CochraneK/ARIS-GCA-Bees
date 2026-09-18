@@ -3,8 +3,8 @@
 from datetime import datetime
 from pathlib import Path
 
-from china_ccgp import discover_live
-from china_ccgp_detail import dump_detail_report, fetch_and_parse_detail
+from china_ccgp import discover_live, fetch_text
+from china_ccgp_detail import dump_detail_report, parse_ccgp_award_detail, safe_structural_debug_lines
 
 
 def main() -> None:
@@ -18,9 +18,22 @@ def main() -> None:
     urls = urls[:12]
 
     notices = []
+    debug_printed = False
     for url in urls:
         try:
-            notices.append(fetch_and_parse_detail(url, retrieved_at=retrieved_at))
+            html = fetch_text(url)
+            notice = parse_ccgp_award_detail(
+                html,
+                source_url=url,
+                retrieved_at=retrieved_at,
+            )
+            notices.append(notice)
+            if not notice.lots and not debug_printed:
+                print("SAFE_STRUCTURE_DEBUG")
+                for line in safe_structural_debug_lines(html):
+                    print(line)
+                print("END_SAFE_STRUCTURE_DEBUG")
+                debug_printed = True
         except Exception as exc:
             print(f"detail_fetch_failed:{url}:{type(exc).__name__}")
 
