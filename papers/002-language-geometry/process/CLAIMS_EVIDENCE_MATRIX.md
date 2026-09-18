@@ -9,7 +9,7 @@
 | No predefined TLI domain passes local-periodic gate | Stage 1C | moderate exploratory | no tested predefined domain met joint gate | no linguistic subsystem can be periodic |
 | TLI geographic transfer is weak beyond sample-size explanation | Stage 1E/1G | within-TLI robust | TLI association geometry transfers poorly across geographic blocks | geography causes geometry / universal geographic collapse |
 | Tree > circle replicates under GBI curation | Stage 1H | qualitative curation robustness | ranking is robust to an alternative curated representation | fully independent replication |
-| Tree > circle replicates in WALS | Stage 1I | qualitative external sanity | ordering repeats in a sparse external representation | WALS effect size is directly comparable to TLI |
+| Tree > circle reappears in separately processed WALS | Stage 1I | qualitative external sanity | ordering repeats in a sparse external representation | WALS effect size is directly comparable to TLI |
 | Geographic portability is representation-dependent | Stage 1G/H vs 1I | strong contradiction | TLI/GBI and WALS differ substantially in macroarea transfer | one dataset proves the others wrong |
 | Simple global-circle periodic hypothesis is not supported | cumulative Stages 1B–1I | strongest bounded synthesis | tested global circle is not best supported | no possible language periodicity exists |
 
@@ -21,3 +21,7 @@
 - Preserve WALS vs TLI/GBI geography contradiction.
 - The target is the **simple global circle**, not all Baker-style parameter systems.
 - Report per-stage N, feature rules, effect sizes and uncertainty.
+
+## Data-source dependence note
+
+WALS contributes source data to TLI. Stage 1I is therefore a separately processed representation check, not a statistically independent replication of the TLI result. Cross-representation consistency may be claimed; full source independence may not.
