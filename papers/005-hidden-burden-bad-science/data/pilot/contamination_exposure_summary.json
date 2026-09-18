@@ -1,0 +1,36 @@
+{
+  "classification": "HIGH_PROPAGATION_CITATION_EXPOSURE_PILOT_NOT_CONTAMINATION_PREVALENCE",
+  "generated_at_utc": "2026-09-18T02:55:33.116149+00:00",
+  "source_selection": {
+    "rw_screen": "e1s_narrow_auto==1 and RetractionNature==Retraction",
+    "source_publication_years": [
+      2010,
+      2020
+    ],
+    "resolved_candidate_sources": 914,
+    "selected_sources": 25,
+    "selection_rule": "top OpenAlex cited_by_count among resolved candidates",
+    "representative_sample": false
+  },
+  "citation_exposure": {
+    "sum_live_incoming_citation_edges_across_sources": 7443,
+    "sum_post_retraction_incoming_edges_across_sources": 1753,
+    "post_retraction_fraction_of_live_exposure": 0.23552331049308076,
+    "aggregate_post_retraction_exposure_by_publication_year": {
+      "2017": 66,
+      "2021": 57
+    },
+    "sampled_post_retraction_edges_for_semantic_review": 486,
+    "sample_per_source_target": 20
+  },
+  "warnings": [
+    "Citation exposure is not semantic contamination.",
+    "Sources are intentionally selected for high citation exposure; do not infer global averages.",
+    "OpenAlex citation links are reference-matching observations and may miss printed references.",
+    "Post-retraction citation timing does not establish knowledge, negligence, or misconduct by citing authors.",
+    "Semantic SCF requires full-text/context adjudication of sampled edges."
+  ],
+  "retraction_watch_git_commit": "e803893652ac07716c7de368c965065b93e8373f",
+  "source_repository": "https://gitlab.com/crossref/retraction-watch-data",
+  "row_level_release_policy": "Source identities and sampled edges remain workflow artifacts; the public repository stores only aggregate exposure results."
+}
