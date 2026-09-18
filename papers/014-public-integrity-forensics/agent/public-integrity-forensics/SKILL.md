@@ -98,9 +98,11 @@ Prefer:
 5. unsourced web claims — excluded from the evidence graph.
 
 Current reference adapters include:
-- OCDS 1.1.x releases;
+- OCDS 1.1.x releases and lifecycle record packages;
+- UK Find a Tender and Contracts Finder OCDS surfaces;
 - USAspending spending_by_award results;
-- UK Companies House company profile and PSC fragments.
+- UK Companies House company profile and PSC fragments;
+- normalized dated debarment rows after source-specific retrieval.
 
 ### 4. Resolve entities conservatively
 
@@ -253,3 +255,9 @@ Use assets/finding.schema.json and assets/report.schema.json for machine-readabl
 - code/entity_resolution.py — conservative identity baseline.
 - code/batch_detectors.py — cross-contract Pilot 0 rules.
 - code/case_enrichment.py — explicit cross-source joins.
+- code/debarment_enrichment.py — dated external debarment attachment with conservative identity proof.
+- code/source_snapshot.py — SHA-256 source snapshots and Track A publication-time gate.
+- code/evidence_graph.py — descriptive Evidence Graph construction.
+- code/report_builder.py — standard portable report construction.
+- process/PILOT1_PROTOCOL.md — locked UK identifier-first Pilot 1 protocol.
+- process/PILOT1_RESULTS.md — frozen UK Pilot 1A source-feasibility result.
