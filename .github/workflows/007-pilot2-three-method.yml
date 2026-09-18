@@ -1,0 +1,70 @@
+name: ARIS4C007 Pilot 2 three-method benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot2-three-method.yml"
+      - "papers/007-cross-species-age-equivalence/code/summarize_pilot2_three_methods.py"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  three-method:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned numerical runtime
+        run: python -m pip install "numpy==2.3.3"
+
+      - name: Resolve successful upstream Pilot 2 artifacts
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot2_events data/upstream/pilot2_a4
+
+          EVENT_RUN="$(gh run list             --workflow 007-pilot2-events.yml             --status success             --limit 1             --json databaseId | jq -r '.[0].databaseId // empty')"
+          A4_RUN="$(gh run list             --workflow 007-pilot2-a4-loto.yml             --status success             --limit 1             --json databaseId | jq -r '.[0].databaseId // empty')"
+
+          test -n "$EVENT_RUN"
+          test -n "$A4_RUN"
+
+          gh run view "$EVENT_RUN"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot2_events_run.json
+          gh run view "$A4_RUN"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot2_a4_run.json
+
+          gh run download "$EVENT_RUN"             --name aris4c007-pilot2-observed-events             --dir data/upstream/pilot2_events
+          gh run download "$A4_RUN"             --name aris4c007-pilot2-a4-loto             --dir data/upstream/pilot2_a4
+
+          test -s data/upstream/pilot2_events/observed_event_predictions.csv
+          test -s data/upstream/pilot2_a4/a4_loto_predictions.csv
+
+      - name: Build three-method cluster-robust benchmark
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          mkdir -p data/pilot2_three_method
+          python code/summarize_pilot2_three_methods.py             --a1-a3 data/upstream/pilot2_events/observed_event_predictions.csv             --a4 data/upstream/pilot2_a4/a4_loto_predictions.csv             --out data/pilot2_three_method/three_method_summary.json
+          cp data/upstream/pilot2_events_run.json             data/pilot2_three_method/upstream_pilot2_events_run.json
+          cp data/upstream/pilot2_a4_run.json             data/pilot2_three_method/upstream_pilot2_a4_run.json
+          cat data/pilot2_three_method/three_method_summary.json
+
+      - name: Upload three-method benchmark
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot2-three-method
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot2_three_method/three_method_summary.json
+            papers/007-cross-species-age-equivalence/data/pilot2_three_method/upstream_pilot2_events_run.json
+            papers/007-cross-species-age-equivalence/data/pilot2_three_method/upstream_pilot2_a4_run.json
+          if-no-files-found: error
+          retention-days: 30
