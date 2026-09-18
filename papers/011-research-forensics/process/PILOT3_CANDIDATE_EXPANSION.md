@@ -63,3 +63,18 @@ Completed true-positive cases are removed from active acquisition. Formatting-on
 Pilot 3 is allowed to be enriched for recoverable, detector-compatible cases because its purpose is pipeline development.
 
 No confirmatory sensitivity, precision, or comparative-performance claim may be calculated from this queue. A later confirmatory cohort must be selected under a frozen, broader sampling protocol independent of whether a detector is expected to succeed.
+
+
+## Pilot 3B resolution of the former rank-1 case
+
+The music-country case (10.1371/journal.pone.0293412) is no longer an active acquisition target.
+
+New evidence changed its routing:
+
+- the Humboldt-Universität repository record is dated 2023-10-26 and stores journal.pone.0293412.pdf;
+- that file is byte-identical to the PLOS printable PDF (SHA-256 95460abea1594e8f8f1aec4e8fb029df0e0faacf4e7244ba7ddb25dc7eefe60b);
+- the public OSF file survey1_ratings.csv is version 1, created/modified 2023-07-28, with SHA-256 90f86ae54abb67e980a3379bfc95ab796fb9ebfe1ea9580fa4afde8743a035bb;
+- the historical table's Mexico 16/4.5% is internally arithmetic-consistent with the table because Other is simultaneously 88;
+- raw-data normalization of Mexico/México/MÉXICO yields 17/4.8%.
+
+Accordingly, the candidate was reclassified from DETERMINISTIC_INTERNAL to RAW_DATA_RECOMPUTE and from ACTIVE to COMPLETE. This demonstrates why candidate routing is provisional during pipeline development: source anatomy can change which detector is actually capable of detecting a documented error.
