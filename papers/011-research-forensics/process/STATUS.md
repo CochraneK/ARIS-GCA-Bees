@@ -4,9 +4,22 @@ Updated: 2026-09-18
 
 ## State
 
-**RESEARCH DESIGN + BENCHMARK SPECIFICATION LOCKED**
+**RESEARCH DESIGN LOCKED · BENCHMARK SOURCE INGEST IN PROGRESS**
 
-The project is promoted as ARIS4C011. It is not yet an empirical paper and no performance claims are permitted until Benchmark v0 is materialised and evaluated.
+ARIS4C011 is promoted on main. The framework and benchmark protocol are locked; the current work is materialising Benchmark v0 without introducing label leakage or source-schema errors. No empirical performance claims are permitted yet.
+
+## Completed
+
+- 10-family detector taxonomy.
+- Evidence-class and evidence-graph semantics.
+- Track A content-only vs Track B open-world benchmark split.
+- Issue-level ground-truth tiers.
+- Shortcut-stress-test plan including BMMDetect-like retraction classifiers.
+- Pilot 0 deterministic GRIM-style and N-consistency checks.
+- Benchmark-v0 leakage-safe manifest builder.
+- Initial 8 unit tests passed before promotion.
+- Live Crossref production API source-anatomy audit.
+- Crossref assertion/event adapter added after identifying notice-DOI vs target-DOI ambiguity.
 
 ## Locked decisions
 
@@ -20,15 +33,19 @@ The project is promoted as ARIS4C011. It is not yet an empirical paper and no pe
 - Applicability/abstention must be measured.
 - Fairness audit required; geographic or language identity cannot be a suspicion feature.
 - Known-notice comparator language: "no-known-integrity-concern", not "clean".
+- Crossref top-level work metadata must never be assumed to describe `update-to` target works.
+- Publisher and Retraction Watch assertions are preserved separately before event-level collapse.
 
 ## Gates
 
 ### Gate 1 — benchmark provenance
 Required before corpus construction is considered complete:
-- DOI/source provenance for every labelled paper;
+- target DOI/source provenance for every labelled paper;
+- assertion vs event separation;
+- target metadata resolved independently of notice metadata;
 - notice/correction reason mapped to a controlled issue taxonomy;
 - distinction between confirmed problem, correction/error, and no-known-concern comparison;
-- duplicate manuscripts and multiple notices deduplicated.
+- duplicate manuscripts and multiple notices deduplicated without deleting provenance.
 
 ### Gate 2 — leakage
 Required before model training:
@@ -56,8 +73,8 @@ Before final benchmark scoring:
 
 ## Next execution
 
-1. Materialise Benchmark v0 manifest from Crossref/Retraction Watch plus correction/error and comparator sets.
-2. Implement deterministic statistical checks first.
-3. Add bibliographic verification and post-publication notice adapters.
-4. Add text/paper-mill and image modules only after detector contracts are explicit.
-5. Run Pilot 0 and update the design only for implementation defects, not outcome-driven optimisation.
+1. Resolve `target_doi` metadata independently through Crossref.
+2. Join Retraction Watch reason text by `record-id` while keeping it outside Track A.
+3. Materialise a small adjudication seed across retractions and corrections.
+4. Implement deterministic statistical checks against real full-text examples.
+5. Add no-known-concern matching only after target metadata completeness is quantified.

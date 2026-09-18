@@ -1,0 +1,75 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message-version": "1.0.0",
+  "message": {
+    "items": [
+      {
+        "DOI": "10.1177/17588359211061903",
+        "title": [
+          "Retraction notice: Downregulation of long noncoding RNA LINC01419 inhibits cell migration, invasion, and tumor growth and promotes autophagy via inactivation of the PI3K/Akt1/mTOR pathway in gastric cancer."
+        ],
+        "published": {"date-parts": [[2021, 1]]},
+        "container-title": ["Therapeutic Advances in Medical Oncology"],
+        "update-to": [
+          {
+            "DOI": "10.1177/1758835919874651",
+            "type": "retraction",
+            "label": "Retraction",
+            "source": "retraction-watch",
+            "updated": {"date-parts": [[2021, 12, 15]]},
+            "record-id": "34999"
+          },
+          {
+            "DOI": "10.1177/1758835919874651",
+            "type": "retraction",
+            "label": "Retraction",
+            "source": "publisher",
+            "updated": {"date-parts": [[2021, 12, 15]]}
+          }
+        ]
+      },
+      {
+        "DOI": "10.1538/expanim.54.1.r1",
+        "title": ["Retraction: Effect of Treadmill Exercise on Bone Mass in Female Rats"],
+        "published": {"date-parts": [[2022]]},
+        "container-title": ["Experimental Animals"],
+        "update-to": [
+          {
+            "DOI": "10.1538/expanim.54.1",
+            "type": "retraction",
+            "label": "Retraction",
+            "source": "retraction-watch",
+            "updated": {"date-parts": [[2022, 8, 1]]},
+            "record-id": "38511"
+          }
+        ]
+      },
+      {
+        "DOI": "10.1007/s11277-021-09072-0",
+        "title": [
+          "RETRACTED ARTICLE: Deep Reinforcement Learning-Based Smart Manufacturing Plants with a Novel Digital Twin Training Model"
+        ],
+        "published": {"date-parts": [[2021, 9, 11]]},
+        "container-title": ["Wireless Personal Communications"],
+        "update-to": [
+          {
+            "DOI": "10.1007/s11277-021-09072-0",
+            "type": "retraction",
+            "label": "Retraction",
+            "source": "retraction-watch",
+            "updated": {"date-parts": [[2022, 12, 6]]},
+            "record-id": "42746"
+          },
+          {
+            "DOI": "10.1007/s11277-021-09072-0",
+            "type": "retraction",
+            "label": "Retraction",
+            "source": "publisher",
+            "updated": {"date-parts": [[2021, 9, 11]]}
+          }
+        ]
+      }
+    ]
+  }
+}
