@@ -39,7 +39,9 @@ ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests wh
 - [x] completed umbrella-theory novelty audit and rejected the original broad novelty claim;
 - [x] narrowed the canonical title from “a science of” to an indexed cross-domain framework;
 - [x] completed prior-art saturation audit across sociology, complex systems, energy, transportation, ecology, psychology, communication, clinical science, scientometrics, and risk science;
-- [x] completed 165-record retrieval-frame structure audit and identified within-stratum query imbalance.
+- [x] completed 165-record retrieval-frame structure audit and identified within-stratum query imbalance;
+- [x] identified a v1 ontology orthogonality problem (index switches mixed with generative mechanisms);
+- [x] drafted a post-Gate-B `SCHEMA_V2_PROPOSAL.md` without modifying frozen Pilot 0B materials.
 
 ## Pilot 0A result
 
@@ -124,12 +126,13 @@ Retrieval v0.1 is retained as a failed-but-informative snapshot. Retrieval v0.2 
 ## Next execution queue
 
 1. ingest the genuinely independent WorkBuddy Coder B output into `data/pilot0_coderB_blind.csv` (current canonical file remains blank; no 012 WorkBuddy artifact is discoverable in main/branches/Project files);
-2. calculate kappa/alpha and adjudicate disagreements;
-3. compare the independently coded Pilot with the reproducible v0.2 retrieval frame;
-4. after Gate B passes, screen the 165-record frame, then targeted-expand underrepresented query families rather than treating raw retrieval counts as prevalence;
-5. expand backward/forward citation chasing and historical terminology toward review saturation;
-6. freeze the full evidence-map screening protocol after Gate B;
-7. update `manuscript/DRAFT.md` with independently validated reliability and evidence-map results.
+2. calculate kappa/alpha and inspect whether low `primary_mechanism` agreement is caused by the v1 category-mixing problem;
+3. decide whether v1 survives or v2 requires a fresh independent pilot;
+4. compare the independently coded Pilot with the reproducible v0.2 retrieval frame;
+5. after a reliable schema passes, screen the 165-record frame, then targeted-expand underrepresented query families rather than treating raw retrieval counts as prevalence;
+6. expand backward/forward citation chasing and historical terminology toward review saturation;
+7. freeze the full evidence-map screening protocol after schema validation;
+8. update `manuscript/DRAFT.md` with independently validated reliability and evidence-map results.
 
 ## Handoff sentence
 
