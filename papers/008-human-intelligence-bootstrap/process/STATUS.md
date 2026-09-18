@@ -128,3 +128,32 @@ The novelty claim has been narrowed. ARIS4C008 does **not** claim novelty for:
 - cultural open-endedness as a proposed human distinction.
 
 The provisional contribution is the **configuration-testing design**: a multi-clade, source-traceable comparison of additive, weakest-link, threshold and feedback architectures, with deliberate evolutionary counterexamples and a separate hominin temporal layer.
+
+
+## Pilot 6 hominin + neural update
+
+### Hominin temporal layer
+- 15 first-secure-evidence milestone intervals coded from 3.3 Ma to 73 ka.
+- 14 temporal falsification tests defined.
+- All 11 pairwise dated tests passed interval-direction audit: the target evidence is securely older than the proposed later prerequisite in every coded contradiction.
+- The layer is explicitly interpreted as archaeological first-secure evidence, not true evolutionary origin dates.
+
+Immediate falsifiers include:
+- anatomical Homo sapiens is not an observable prerequisite for stone manufacture, Acheulean technology, secure fire use, hafting, large structural woodworking, or geometric engraving;
+- habitual ochre / personal ornaments are not observable prerequisites for several earlier complex technologies;
+- deliberate fire-making at the current earliest secure ~400 ka claim is not an observable prerequisite for ~476 ka Kalambo structural woodworking;
+- stone tools, fire use and engraving arise far too early to be stand-alone sufficient explanations of later open-ended culture.
+
+### Neural harmonization
+A source-traceable neural seed now separates:
+- whole-brain neuron counts;
+- mammalian cerebral-cortex counts;
+- avian pallial counts;
+- cerebellar allocation;
+- distributed cephalopod neural architecture;
+- insect mini-brain scale;
+- counting method and comparability class.
+
+The seed demonstrates why brain mass or total neurons cannot be treated as a universal animal intelligence score. It also records a >4x cetacean cortical-neuron method discrepancy (stereology versus isotropic fractionator) as a mandatory sensitivity issue.
+
+Neural harmonization is now a dedicated design gate rather than an implicit brain-size covariate.
