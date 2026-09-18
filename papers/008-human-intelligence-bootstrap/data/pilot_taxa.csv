@@ -1,0 +1,26 @@
+taxon_id,scientific_name,common_name,major_clade,contrast_role,priority
+HUM,Homo sapiens,human,Primates,target_reference,core
+PTR,Pan troglodytes,chimpanzee,Primates,near_human_dissociation,core
+PPA,Pan paniscus,bonobo,Primates,near_human_social_tolerance,core
+PON,Pongo spp.,orangutans,Primates,ape_tool_culture_contrast,core
+GOR,Gorilla spp.,gorillas,Primates,ape_phylogenetic_control,core
+CAP,Sapajus spp.,capuchin_monkeys,Primates,independent_primate_tool_traditions,core
+MAC,Macaca spp.,macaques,Primates,social_learning_traditions,extended
+MAR,Callitrichidae,marmosets_and_tamarins,Primates,cooperative_breeding_teaching,extended
+CME,Corvus moneduloides,New_Caledonian_crow,Aves,convergent_tool_cognition,core
+CRA,Corvus corax,common_raven,Aves,convergent_social_cognition,core
+KEA,Nestor notabilis,kea,Aves,parrot_innovation_play,core
+CGO,Cacatua goffiniana,Goffins_cockatoo,Aves,parrot_tool_innovation,core
+PER,Psittacus erithacus,African_grey_parrot,Aves,communication_cognition,core
+MUN,Melopsittacus undulatus,budgerigar,Aves,vocal_learning_neural_convergence,extended
+TTR,Tursiops truncatus,bottlenose_dolphin,Cetacea,culture_vocal_social_aquatic,core
+OOR,Orcinus orca,killer_whale,Cetacea,cultural_repertoire_social_structure,core
+PMA,Physeter macrocephalus,sperm_whale,Cetacea,clan_vocal_culture,extended
+MNO,Megaptera novaeangliae,humpback_whale,Cetacea,song_cultural_transmission,extended
+LAF,Loxodonta africana,African_elephant,Proboscidea,long_life_social_memory,core
+EMA,Elephas maximus,Asian_elephant,Proboscidea,long_life_manipulation,extended
+OVU,Octopus vulgaris,common_octopus,Cephalopoda,cognition_manipulation_short_life,core
+BTE,Bombus terrestris,buff_tailed_bumblebee,Hymenoptera,social_learning_small_brain,core
+AME,Apis mellifera,honeybee,Hymenoptera,collective_information_external_structure,core
+CLI,Columba livia,rock_pigeon,Aves,cumulative_route_experiment,extended
+SSU,Suricata suricatta,meerkat,Carnivora,teaching_without_open_ended_culture,core
