@@ -37,11 +37,11 @@
     },
     "005": {
       "progress": 68,
-      "stage": "Confirmatory adjudication ready",
-      "activity": "quiet",
+      "stage": "Confirmatory adjudication ready · independent dual-AI gate",
+      "activity": "gated",
       "evidence": "10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds",
-      "next_gate": "Execute dual-AI adjudication, arbitration and calibration",
-      "blocker": "Adjudication/calibration execution"
+      "next_gate": "Run genuinely independent dual-AI adjudication + arbitration + calibration",
+      "blocker": "Second independent adjudicator execution surface is not available in the current control thread; do not duplicate one model as two."
     },
     "006": {
       "progress": 62,
@@ -60,12 +60,12 @@
       "blocker": "Independent molecular-axis data/reproduction"
     },
     "008": {
-      "progress": 58,
-      "stage": "Pilot 8 Tier-1 comparative design",
-      "activity": "quiet",
-      "evidence": "238-taxa screen; 79-taxa staged panel; architecture-balanced recovery gate",
-      "next_gate": "Deep-code A–F trait blocks and build comparative/phylogenetic matrix",
-      "blocker": "Empirical trait matrix remains incomplete"
+      "progress": 60,
+      "stage": "Pilot 8 · atomic A–F deep-coding queue",
+      "activity": "active",
+      "evidence": "238-taxa screen + 79 Tier-1 panel + architecture-balanced recoverability + 399 explicit open A–F cells",
+      "next_gate": "Fill priority-1 tested-negative/positive A–F cells, then rebuild empirical matrix",
+      "blocker": "399 A–F cells remain open; 150 calibration cells are highest priority"
     },
     "009": {
       "progress": 56,
@@ -84,12 +84,12 @@
       "blocker": "Human semantic calibration before benchmark-scale claims"
     },
     "011": {
-      "progress": 68,
-      "stage": "Pilot 3 candidate expansion",
-      "activity": "quiet",
-      "evidence": "Agent + methods draft + time-safe artifact framework + first real pre-outcome FLAG + control artifact",
-      "next_gate": "Scale issue-level benchmark provenance and detector evaluation",
-      "blocker": "More SAFE_EXACT historical artifacts and issue adjudication"
+      "progress": 69,
+      "stage": "Pilot 3 historical-artifact acquisition",
+      "activity": "active",
+      "evidence": "Time-safe framework + first real FLAG + candidate queue + live CDX discovery for priority cases",
+      "next_gate": "Qualify newly discovered pre-correction objects for exact table/PDF equivalence",
+      "blocker": "SAFE_EXACT historical table objects remain scarce"
     },
     "012": {
       "progress": 63,
@@ -108,20 +108,20 @@
       "blocker": "External administrative-data access; no fabricated identity allowed"
     },
     "014": {
-      "progress": 67,
-      "stage": "China Pilot 0 stable-ID graph",
-      "activity": "quiet",
-      "evidence": "OpenIntegrity agent + UK Pilot1A + CCGP/CAS/USCC live feasibility + procurement graph",
-      "next_gate": "Cross-source entity enrichment across procurement and institution/company universes",
-      "blocker": "Cross-source coverage and entity linkage at real scale"
+      "progress": 69,
+      "stage": "China Pilot 1 · conservative cross-source entity layer",
+      "activity": "active",
+      "evidence": "CCGP/CAS/USCC live graph + stable-ID-only auto-merge resolver under CI",
+      "next_gate": "Run cross-source enrichment with exact stable IDs; route name-only matches to review",
+      "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
     },
     "015": {
-      "progress": 75,
-      "stage": "Pilot 1 + Mechanism Track",
-      "activity": "quiet",
-      "evidence": "200-paper 10-stratum benchmark + seed sensitivity + lexical ablation + mechanism cohort tooling",
-      "next_gate": "Populate non-hand-picked robust-SB mechanism cohort and matched controls",
-      "blocker": "Reproducible source slice and robust-SB match yield"
+      "progress": 76,
+      "stage": "Mechanism Track · zero-yield random-cohort result",
+      "activity": "active",
+      "evidence": "Pilot1 benchmark + mechanism tooling + 5-stratum/500-paper real-data yield diagnostic (0 strict robust SB)",
+      "next_gate": "Build large retrospective Track-A case discovery corpus, then matched mechanism controls",
+      "blocker": "Random small cohorts yield no robust SB cases under strict gate; case discovery must scale"
     },
     "016": {
       "progress": 55,
