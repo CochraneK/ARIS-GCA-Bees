@@ -19,7 +19,10 @@
     "paper_en": "paper/en/main.html",
     "paper_zh": "paper/zh/main.html",
     "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/process/STATUS.md",
-    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees"
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees",
+    "figures": "https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees/figures",
+    "tables": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/tables/TABLES.md",
+    "paper_zh_full": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/manuscript/MAIN.zh-CN.md"
   },
   "tags": [
     "ARIS",
@@ -29,5 +32,18 @@
     "uncertainty monitoring",
     "metacognition",
     "quantitative synthesis"
-  ]
+  ],
+  "outputs": {
+    "paper_en": "complete",
+    "paper_zh": "complete",
+    "figures": {
+      "status": "complete",
+      "count": 3
+    },
+    "tables": {
+      "status": "complete",
+      "count": 3
+    },
+    "exception": ""
+  }
 }
