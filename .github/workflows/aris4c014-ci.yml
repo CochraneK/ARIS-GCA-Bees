@@ -1,0 +1,54 @@
+name: ARIS4C014 Public Integrity Forensics CI
+
+on:
+  pull_request:
+    paths:
+      - "papers/014-public-integrity-forensics/**"
+      - ".github/workflows/aris4c014-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "papers/014-public-integrity-forensics/**"
+      - ".github/workflows/aris4c014-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependencies
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run OpenIntegrity Pilot 0 invariants
+        working-directory: papers/014-public-integrity-forensics/code
+        run: python -m pytest -q
+
+      - name: Validate canonical metadata and safety invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("papers/014-public-integrity-forensics")
+          paper = json.loads((root / "paper.json").read_text(encoding="utf-8"))
+          assert paper["id"] == "014"
+          assert paper["agent_name"] == "OpenIntegrity"
+          assert paper["inherits_from"] == ["011-research-forensics"]
+
+          code = (root / "code/open_integrity_agent.py").read_text(encoding="utf-8")
+          assert "corruption_inference" in code
+          assert "ABSTAIN" in code
+
+          readme = (root / "README.md").read_text(encoding="utf-8")
+          assert "not an \"AI corruption detector\"" in readme
+          print("ARIS4C014 metadata/safety validation passed")
+          PY
