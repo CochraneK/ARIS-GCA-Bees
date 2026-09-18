@@ -1,6 +1,6 @@
 # Paper 002 · Testing the Periodic-Table Hypothesis of Human Language
 
-**Status:** promoted after independent ARIS secondary review · manuscript preparation  
+**Status:** manuscript Draft v1 complete · independent manuscript-stage review pending  
 **Canonical paper ID:** `002`  
 **Slug:** `language-geometry`
 
@@ -21,7 +21,7 @@ It was promoted to formal Paper 002 after an independent WorkBuddy review using 
 - no fatal prior-art collision
 - manuscript-stage mandatory claim/clarity requirements, but no blocking additional experiment
 
-The full exploratory and confirmatory history remains in `ideas/language-periodic-system/` as provenance rather than being deleted or rewritten.
+The full exploratory and robustness-screening history remains in `ideas/language-periodic-system/` as provenance rather than being deleted or rewritten.
 
 ## Key evidence
 
@@ -52,3 +52,16 @@ The staging directory remains canonical for the full analysis code/results gener
 `../../ideas/language-periodic-system/`
 
 Future manuscript-facing artifacts should be developed inside this Paper 002 directory.
+
+
+## Manuscript v1
+
+- Main draft: `manuscript/DRAFT.md`
+- Core result tables: `manuscript/TABLES.md`
+- Figure captions: `manuscript/FIGURE_CAPTIONS.md`
+- Figures: `figures/`
+- Claims–evidence matrix: `process/CLAIMS_EVIDENCE_MATRIX.md`
+- Data provenance: `process/DATA_PROVENANCE.md`
+- Draft audit: `process/MANUSCRIPT_AUDIT.md`
+
+Draft v1 implements all manuscript-level boundaries required by the independent Hy3 secondary review. The next hard quality gate is an independent **manuscript-stage** review, not another idea-stage promotion review.

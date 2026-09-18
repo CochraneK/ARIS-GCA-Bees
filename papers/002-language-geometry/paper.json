@@ -4,7 +4,7 @@
   "title": "Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure",
   "short_title": "Language Periodic-Table Hypothesis",
   "year": 2026,
-  "status": "manuscript-preparation",
+  "status": "manuscript-draft-v1",
   "domain": "linguistic typology / quantitative linguistics / language universals / model comparison",
   "summary": "A predictive stress test of the simple global-circle form of the language periodic-table hypothesis across TLI, GBI, and WALS. Family-held-out evidence and direct circularity diagnostics do not support the tested global circular geometry; hierarchical/non-circular models provide stronger predictive benchmarks without establishing one universal tree geometry.",
   "authors": [
@@ -23,11 +23,13 @@
     }
   },
   "links": {
-    "paper_en": "",
+    "paper_en": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/manuscript/DRAFT.md",
     "paper_zh": "",
-    "pipeline": "process/STATUS.md",
+    "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/process/STATUS.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry",
-    "staging_provenance": "https://github.com/CochraneK/ARIS4C/tree/main/ideas/language-periodic-system"
+    "staging_provenance": "https://github.com/CochraneK/ARIS4C/tree/main/ideas/language-periodic-system",
+    "figures": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry/figures",
+    "tables": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/manuscript/TABLES.md"
   },
   "tags": [
     "ARIS",
