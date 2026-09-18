@@ -1,14 +1,14 @@
 """Wayback/CDX discovery helpers for ARIS4C011 historical artifacts.
 
-This module separates *discovery* from *qualification*. A CDX hit is only a
-candidate historical object. It still needs content-level verification and the
-artifact_safety gate before entering Track A.
+Discovery is not qualification. A CDX hit is only a candidate historical
+object. It still needs identity checking, content/version verification, and
+the artifact-safety gate before entering Track A.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 import json
 from typing import Iterable, List, Optional
 from urllib.parse import urlencode
@@ -42,8 +42,9 @@ def build_cdx_url(
     from_year: Optional[int] = None,
     include_mimetype: bool = True,
 ) -> str:
-    """Build a fail-closed CDX query ending the day before the event."""
+    """Build a fail-closed CDX query ending on the day before the event."""
     event = date.fromisoformat(event_date[:10])
+    cutoff = event - timedelta(days=1)
     fields = ["timestamp", "original", "digest", "statuscode"]
     if include_mimetype:
         fields.append("mimetype")
@@ -52,7 +53,7 @@ def build_cdx_url(
         "url": original_url,
         "output": "json",
         "filter": "statuscode:200",
-        "to": event.strftime("%Y%m%d"),
+        "to": cutoff.strftime("%Y%m%d"),
         "fl": ",".join(fields),
         "collapse": "digest",
     }
@@ -79,11 +80,27 @@ def parse_cdx_json(payload: str) -> List[CdxRecord]:
     return records
 
 
+def filter_identity(
+    records: Iterable[CdxRecord],
+    identity_marker: Optional[str],
+) -> List[CdxRecord]:
+    """Filter wildcard collisions using a target-specific URL marker.
+
+    A prefix wildcard can return a neighboring article whose identifier merely
+    starts with the target identifier. For example, a search around 54_1_1 can
+    also return 54_1_101, 54_1_107, or 54_1_13.
+    """
+    if not identity_marker:
+        return list(records)
+    marker = str(identity_marker)
+    return [record for record in records if marker in record.original]
+
+
 def pre_event_records(
     records: Iterable[CdxRecord],
     event_date: str,
 ) -> List[CdxRecord]:
-    """Return only captures strictly earlier than the event date."""
+    """Return only status-200 captures strictly earlier than the event date."""
     event = date.fromisoformat(event_date[:10])
     valid = [
         r for r in records
@@ -99,15 +116,18 @@ def discover(
     *,
     event_date: str,
     from_year: Optional[int] = None,
+    identity_marker: Optional[str] = None,
     timeout: int = 20,
 ) -> List[CdxRecord]:
-    """Perform live CDX discovery. Network results remain candidates only."""
+    """Perform live CDX discovery and conservative identity/time filtering."""
     url = build_cdx_url(
         original_url,
         event_date=event_date,
         from_year=from_year,
     )
-    req = Request(url, headers={"User-Agent": "ARIS4C011-Research-Forensics/0.1"})
+    req = Request(url, headers={"User-Agent": "ARIS4C011-Research-Forensics/0.2"})
     with urlopen(req, timeout=timeout) as response:
         payload = response.read().decode("utf-8")
-    return pre_event_records(parse_cdx_json(payload), event_date)
+    records = parse_cdx_json(payload)
+    records = filter_identity(records, identity_marker)
+    return pre_event_records(records, event_date)
