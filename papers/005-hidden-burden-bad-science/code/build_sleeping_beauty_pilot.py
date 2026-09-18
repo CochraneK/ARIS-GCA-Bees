@@ -117,7 +117,7 @@ def citation_counts_by_year(work_id: str) -> dict[int, int]:
         {
             "filter": f"cites:{bare_id(work_id)}",
             "group_by": "publication_year",
-            "per_page": 200,
+            "per_page": 100,
         }
     )
     out: dict[int, int] = {}
