@@ -1,0 +1,43 @@
+name: ARIS4C006 measurement gate pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-measurement-gate.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/04_measurement_gate_pilot.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  measurement-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run DOI/Crossref/ORCID measurement gate
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/04_measurement_gate_pilot.py \
+            --years 2015,2020,2024 \
+            --per-cell 40 \
+            --outdir data/pilot/measurement_gate
+
+      - name: Upload aggregate public-safe measurement artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-measurement-gate
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/measurement_gate/measurement_gate_by_field_year.csv
+            ${{ env.PAPER_DIR }}/data/pilot/measurement_gate/manifest.json
+          if-no-files-found: error
+          retention-days: 30
