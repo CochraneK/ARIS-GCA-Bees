@@ -100,6 +100,9 @@ class IntegrityCase:
     entities: dict[str, EntityRecord] = field(default_factory=dict)
     relations: list[RelationRecord] = field(default_factory=list)
     debarments: list[DebarmentRecord] = field(default_factory=list)
+    source_coverage: set[str] = field(default_factory=set)
+    # Examples: procurement_award, procurement_competition, ownership,
+    # public_office, debarment. Absence of a source family is not negative evidence.
 
 
 @dataclass
@@ -385,14 +388,26 @@ class InForceDebarmentDetector(Detector):
             )
 
         relevant = [d for d in case.debarments if d.entity_id in set(c.supplier_ids)]
+        coverage_present = "debarment" in case.source_coverage or bool(case.debarments)
+        if not relevant and not coverage_present:
+            return self._finding(
+                case,
+                applicable=False,
+                reason="no debarment source coverage was supplied",
+                status=Status.ABSTAIN,
+                evidence_class=EvidenceClass.E2,
+                claim="Debarment check was not performed because source coverage is absent.",
+                sources=c.source_refs,
+                dependency_group=f"debarment:{c.contract_id}",
+            )
         if not relevant:
             return self._finding(
                 case,
                 applicable=True,
-                reason="no supplied debarment record matched a supplier stable identity",
+                reason="debarment source coverage is present and no supplier match was found",
                 status=Status.PASS,
                 evidence_class=EvidenceClass.E2,
-                claim="No matched supplier debarment record was supplied to this case.",
+                claim="No covered debarment record matched a supplier stable identity.",
                 sources=c.source_refs,
                 dependency_group=f"debarment:{c.contract_id}",
             )
@@ -480,13 +495,24 @@ class PublicOfficeOwnershipLinkDetector(Detector):
             )
 
         if not candidates:
+            covered = {"ownership", "public_office"}.issubset(case.source_coverage)
+            if not covered:
+                return self._finding(
+                    case,
+                    applicable=False,
+                    reason="ownership and public-office source coverage are both required",
+                    status=Status.ABSTAIN,
+                    evidence_class=EvidenceClass.E2,
+                    claim="Public-office ownership-link check could not establish a negative result because source coverage is incomplete.",
+                    dependency_group=f"office_owner:{c.contract_id}",
+                )
             return self._finding(
                 case,
                 applicable=True,
-                reason="relevant relationships were checked with temporal overlap",
+                reason="ownership and public-office source coverage are present and relevant relationships were checked",
                 status=Status.PASS,
                 evidence_class=EvidenceClass.E2,
-                claim="No identity-resolved public-office ownership link was found in supplied relations.",
+                claim="No identity-resolved public-office ownership link was found in covered relations.",
                 dependency_group=f"office_owner:{c.contract_id}",
             )
 
