@@ -7,8 +7,13 @@ on:
       - ".github/workflows/aris4c004-pilot.yml"
       - "papers/004-counterfactual-cost-of-exclusion/code/acquire/openalex_pilot.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/resolve/**"
+      - "papers/004-counterfactual-cost-of-exclusion/code/network/**"
+      - "papers/004-counterfactual-cost-of-exclusion/code/validate_work_decisions.py"
       - "papers/004-counterfactual-cost-of-exclusion/code/config/pilot_config.json"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/science_candidates_frozen.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_pilot30.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/process/WORK_CODEBOOK.md"
   workflow_dispatch:
 
 permissions:
@@ -170,6 +175,16 @@ jobs:
             --min-network-works 5 \
             --sleep-rps 2
 
+      - name: Validate frozen work decisions against regenerated review queue
+        if: always()
+        shell: bash
+        run: |
+          python "$PAPER_DIR/code/validate_work_decisions.py" \
+            "$PAPER_DIR/data/derived/work_decisions_pilot30.csv" \
+            --identity-decisions "$PAPER_DIR/data/derived/identity_decisions_pilot30.csv" \
+            --review-queue "$PAPER_DIR/data/interim/openalex/verified_work_corpus/work_review_queue.csv" \
+            --require-complete-queue
+
       - name: Summarize candidate, network and identity-review coverage
         shell: bash
         run: |
@@ -210,6 +225,9 @@ jobs:
           packet = root / "openalex" / "identity_packet" / "identity_review_packet_summary.json"
           if packet.exists():
               summary["identity_packet"] = json.loads(packet.read_text())
+          works = root / "openalex" / "verified_work_corpus" / "verified_work_overall.json"
+          if works.exists():
+              summary["verified_work_corpus"] = json.loads(works.read_text())
           out = root / "pilot_summary.json"
           out.write_text(json.dumps(summary, indent=2, default=dict) + "\n", encoding="utf-8")
           print(out.read_text())
