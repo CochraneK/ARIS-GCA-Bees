@@ -13,9 +13,12 @@
     "source": "../manuscript/MAIN.md",
     "approximate_main_text_words": 3001,
     "abstract_words": 250,
-    "figures": 0,
-    "tables": 1,
-    "keywords": 8
+    "figures": 3,
+    "tables": 3,
+    "keywords": 8,
+    "chinese_mirror": "../manuscript/MAIN.zh-CN.md",
+    "figure_captions": "../figures/FIGURE_CAPTIONS.md",
+    "tables_file": "../tables/TABLES.md"
   },
   "author_only_fields_pending": [
     "current affiliation",
@@ -26,5 +29,6 @@
     "simultaneous-submission/originality confirmation"
   ],
   "scientific_blockers": [],
-  "editorial_blockers": []
+  "editorial_blockers": [],
+  "output_standard": "../../../ARIS4C_OUTPUT_STANDARD.md"
 }
