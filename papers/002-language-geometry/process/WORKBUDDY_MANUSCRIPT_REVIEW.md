@@ -18,7 +18,8 @@ Read in this order:
 5. `papers/002-language-geometry/process/REVIEW_REQUIREMENTS.md`
 6. `papers/002-language-geometry/process/DATA_PROVENANCE.md`
 7. `papers/002-language-geometry/process/MANUSCRIPT_AUDIT.md`
-8. `papers/002-language-geometry/process/SECONDARY_REVIEW_RECEIPT.md`
+8. `papers/002-language-geometry/process/LITERATURE_RESCAN_2026-09-18.md`
+9. `papers/002-language-geometry/process/SECONDARY_REVIEW_RECEIPT.md`
 
 For any important numerical claim, inspect the source report / JSON under:
 
@@ -35,7 +36,7 @@ Review independently rather than polishing toward agreement. Search the literatu
 Evaluate:
 
 1. title/abstract fidelity;
-2. novelty wording relative to Baker, Port/Marcolli, Grambank, Graff GBI/TLI, Verkerk, SIGTYP and circular-seriation work;
+2. novelty wording relative to Baker, Port/Marcolli, Grambank, Graff GBI/TLI, Verkerk, SIGTYP, Kemp (2026) symmetry/circular category systems, and circular-seriation work;
 3. whether the single-global-circle operationalization is described fairly rather than presented as Baker's literal model;
 4. exact consistency between Methods and implementation;
 5. exact consistency between Results/Tables/Figures and archived JSON;
