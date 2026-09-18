@@ -8,10 +8,10 @@ on:
       - "papers/007-cross-species-age-equivalence/code/download_public_sources.py"
       - "papers/007-cross-species-age-equivalence/code/build_pilot1_demography.py"
       - "papers/007-cross-species-age-equivalence/code/age_mappings.py"
-      - "papers/007-cross-species-age-equivalence/code/build_pilot0.py"
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   demography:
@@ -29,19 +29,48 @@ jobs:
       - name: Install pinned workbook reader
         run: python -m pip install "openpyxl==3.1.5"
 
-      - name: Download official AnAge and Péron 2019 S5
+      - name: Resolve canonical successful Pilot 0 artifact
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot0
+
+          RUNS_JSON="$(gh run list             --workflow 007-pilot0.yml             --status success             --limit 1             --json databaseId,headSha,createdAt,url,conclusion)"
+          PILOT0_RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.[0].databaseId // empty')"
+
+          if [ -z "$PILOT0_RUN_ID" ]; then
+            echo "No successful ARIS4C007 Pilot 0 run is available." >&2
+            exit 1
+          fi
+
+          gh run view "$PILOT0_RUN_ID"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot0_run.json
+
+          gh run download "$PILOT0_RUN_ID"             --name aris4c007-pilot0             --dir data/upstream/pilot0
+
+          test -s data/upstream/pilot0/pilot0/coverage_summary.json
+          test -s data/upstream/pilot0/pilot0/life_history_mapping_grid.csv
+
+          echo "Using Pilot 0 run $PILOT0_RUN_ID"
+          cat data/upstream/pilot0_run.json
+          cat data/upstream/pilot0/raw/source_manifest.json
+
+      - name: Download Péron 2019 S5 only
         working-directory: papers/007-cross-species-age-equivalence
         run: |
-          python code/download_public_sources.py --out data/raw --source all
+          python code/download_public_sources.py             --out data/raw             --source peron2019_s5
           cat data/raw/source_manifest.json
 
       - name: Build independent demographic benchmark
         working-directory: papers/007-cross-species-age-equivalence
         run: |
-          python code/build_pilot1_demography.py \
-            data/raw/anage_data.txt \
-            data/raw/peron2019_s5.xlsx \
-            --out data/pilot1_demography
+          python code/build_pilot1_demography.py             --pilot0-grid data/upstream/pilot0/pilot0/life_history_mapping_grid.csv             --pilot0-coverage data/upstream/pilot0/pilot0/coverage_summary.json             --peron-s5 data/raw/peron2019_s5.xlsx             --out data/pilot1_demography
+
+          cp data/upstream/pilot0_run.json             data/pilot1_demography/upstream_pilot0_run.json
+          cp data/upstream/pilot0/raw/source_manifest.json             data/pilot1_demography/upstream_pilot0_source_manifest.json
+
           cat data/pilot1_demography/demography_summary.json
 
       - name: Upload Pilot 1 demographic artifact
@@ -52,5 +81,7 @@ jobs:
             papers/007-cross-species-age-equivalence/data/raw/source_manifest.json
             papers/007-cross-species-age-equivalence/data/pilot1_demography/demography_summary.json
             papers/007-cross-species-age-equivalence/data/pilot1_demography/demography_event_mapping.csv
+            papers/007-cross-species-age-equivalence/data/pilot1_demography/upstream_pilot0_run.json
+            papers/007-cross-species-age-equivalence/data/pilot1_demography/upstream_pilot0_source_manifest.json
           if-no-files-found: error
           retention-days: 30
