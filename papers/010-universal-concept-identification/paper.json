@@ -7,7 +7,7 @@
   "status": "pilot0-combinatorial-complete",
   "domain": "information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition",
   "summary": "A formal and empirical research program asking what semantic structure is necessary to identify arbitrary human-representable concepts under finite query budgets, how much natural semantic questions cost relative to unrestricted information-theoretic queries, and where identification fails for vague, contextual, empty, contradictory, self-referential, undecidable, or ineffable targets.",
-  "authors": ["Cunyi Kang"],
+  "authors": ["Cochrane Kang"],
   "aris": {
     "provenance": "ARIS4C guided design, live prior-art audit, and combinatorial Pilot 0; full empirical-run provenance to be frozen at Benchmark v0",
     "version": "v0.4.26",
