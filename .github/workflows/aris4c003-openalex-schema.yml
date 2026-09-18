@@ -78,5 +78,6 @@ jobs:
             echo "OpenAlex schema probe already current."
           else
             git commit -m "ARIS4C003 record outcome-blind OpenAlex schema probe"
+            git pull --rebase origin main
             git push
           fi
