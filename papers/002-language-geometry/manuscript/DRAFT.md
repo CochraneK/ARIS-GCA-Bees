@@ -54,7 +54,7 @@ For Stage 1, a feature was eligible if it had at least 180 observed language val
 
 #### GBI
 
-Stage 1H used the statistically curated GBI representation from Graff et al. (2025), derived from Grambank under an alternative feature-curation strategy. The analysis used 1,140 languages and 60 selected features. Because GBI and TLI are curated from partly related typological infrastructure and are not fully independent scientific data-generating processes, GBI is treated as a **curation/representation replication**, not as a fully external dataset.
+Stage 1H used the statistically curated GBI representation from Graff et al. (2025), derived from Grambank under an alternative feature-curation strategy. Features were eligible with at least 180 observed language values and 2–15 observed states, ranked by coverage and then lower cardinality, with the top 60 retained. The analysis used 1,140 languages and 12 valid family-held-out splits. Because GBI and TLI share a curation framework and overlapping language populations even though their source feature databases differ, GBI is treated conservatively as a **curation/representation robustness check**, not as a fully independent replication.
 
 #### WALS
 
@@ -235,7 +235,7 @@ However, the separately processed WALS analysis later showed much stronger cross
 
 ### 3.8 Tree-over-circle ordering replicated under GBI curation
 
-In GBI, using 1,140 languages and 60 selected features, family-held-out mean Spearman was 0.122 ± 0.038 for the tree and 0.073 ± 0.036 for the optimized circle; the tree-minus-circle mean difference was +0.049 and the tree was higher in every evaluated split. Rank-2 low-rank performance was 0.098 ± 0.034.
+In GBI, using 1,140 languages and 60 selected features, family-held-out mean Spearman was 0.122 ± 0.038 for the tree and 0.073 ± 0.036 for the optimized circle; the tree-minus-circle mean difference was +0.049 and the tree was higher in all 12 evaluated splits. Rank-2 low-rank performance was 0.098 ± 0.034.
 
 Mean cross-macroarea association transfer was 0.144 ± 0.043, qualitatively similar to the weak geographic transfer observed in TLI. Because GBI and TLI are alternative curations rather than fully independent sources, this result is interpreted as robustness to representation/curation rather than a fully independent replication.
 
