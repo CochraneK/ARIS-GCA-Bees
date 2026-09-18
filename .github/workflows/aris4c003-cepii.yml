@@ -1,0 +1,112 @@
+name: ARIS4C003 CEPII dyad refresh
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "papers/003-colonial-disciplinary-advantage/data/derived/COUNTRY_CROSSWALK.csv"
+      - "papers/003-colonial-disciplinary-advantage/code/build_cepii_dyads.py"
+
+permissions:
+  contents: write
+
+jobs:
+  cepii-dyads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+
+      - name: Require frozen country universe
+        run: test -s data/derived/COUNTRY_CROSSWALK.csv
+
+      - name: Download official CEPII Gravity V202211 CSV zip
+        run: |
+          mkdir -p data/raw/cepii data/manifests
+          curl -fL --retry 4 --retry-delay 3 \
+            "https://www.cepii.fr/DATA_DOWNLOAD/gravity/data/Gravity_csv_V202211.zip" \
+            -o data/raw/cepii/Gravity_csv_V202211.zip
+          test "$(stat -c%s data/raw/cepii/Gravity_csv_V202211.zip)" -gt 100000000
+          unzip -l data/raw/cepii/Gravity_csv_V202211.zip | grep -q "Gravity_V202211.csv"
+
+      - name: Build compact historical dyads
+        run: |
+          python code/build_cepii_dyads.py \
+            data/raw/cepii/Gravity_csv_V202211.zip \
+            data/derived/COUNTRY_CROSSWALK.csv \
+            data/derived/CEPII_DYADS.csv
+
+      - name: Audit and write source-specific manifest
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import pandas as pd
+
+          z = Path("data/raw/cepii/Gravity_csv_V202211.zip")
+          out = Path("data/derived/CEPII_DYADS.csv")
+          df = pd.read_csv(out)
+          assert df["pair_id"].is_unique
+          assert (df["iso3_i"] < df["iso3_j"]).all()
+          assert set(df["col_dep_ever"].dropna().unique()).issubset({0,1})
+          assert int(df["col_dep_ever"].sum()) > 0
+          cross = pd.read_csv("data/derived/COUNTRY_CROSSWALK.csv")
+          universe = set(cross.loc[cross["status"].eq("RESOLVED"), "iso3c"])
+          assert set(df["iso3_i"]).issubset(universe)
+          assert set(df["iso3_j"]).issubset(universe)
+
+          def sha(path):
+              h=hashlib.sha256()
+              with path.open("rb") as f:
+                  for b in iter(lambda:f.read(1<<20), b""):
+                      h.update(b)
+              return h.hexdigest()
+
+          payload = {
+              "source": "CEPII Gravity",
+              "version": "202211",
+              "url": "https://www.cepii.fr/DATA_DOWNLOAD/gravity/data/Gravity_csv_V202211.zip",
+              "landing": "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8",
+              "license": "Etalab Open Licence 2.0",
+              "retrieved_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+              "raw_zip_bytes": z.stat().st_size,
+              "raw_zip_sha256": sha(z),
+              "derived_sha256": sha(out),
+              "derived_pairs": int(len(df)),
+              "derived_colonial_ties": int(df["col_dep_ever"].sum()),
+              "status": "PASS",
+          }
+          Path("data/manifests/CEPII_GRAVITY_V202211.json").write_text(
+              json.dumps(payload, indent=2)+"\n", encoding="utf-8"
+          )
+          print(json.dumps(payload, indent=2))
+          PY
+
+      - name: Commit compact CEPII artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/derived/CEPII_DYADS.csv
+          git add data/manifests/CEPII_GRAVITY_V202211.json
+          if git diff --cached --quiet; then
+            echo "CEPII dyads already current."
+          else
+            git commit -m "ARIS4C003 refresh CEPII historical dyads"
+            git push
+          fi
