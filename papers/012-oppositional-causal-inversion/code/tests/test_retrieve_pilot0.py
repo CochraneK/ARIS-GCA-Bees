@@ -34,6 +34,35 @@ class RetrievalTests(unittest.TestCase):
         groups=[[{"doi":f"10.1/{i}","title":str(i),"year":2020} for i in range(5)]]
         self.assertEqual(len(m.interleave_unique(groups, 3)), 3)
 
+    def test_anchor_groups_require_one_from_each_group(self):
+        ok, missing = m.title_passes_anchor_groups(
+            "Over-optimization of academic publishing metrics: observing Goodhart's Law in action",
+            [["goodhart", "campbell"], ["metric", "target", "proxy"]],
+        )
+        self.assertTrue(ok)
+        self.assertEqual(missing, [])
+
+        ok, missing = m.title_passes_anchor_groups(
+            "Goodhart, Sir Ernest Frederic, barrister-at-law",
+            [["goodhart", "campbell"], ["metric", "target", "proxy"]],
+        )
+        self.assertFalse(ok)
+        self.assertEqual(len(missing), 1)
+
+    def test_filter_rejects_wrong_type_and_wrong_topic(self):
+        query = {"anchor_groups":[["autonomy"],["dependence","delegation"]]}
+        records = [
+            {"title":"Autonomy and dependence in organizations","type":"article"},
+            {"title":"Cardiovascular autonomic neuropathy in diabetes","type":"article"},
+            {"title":"Autonomy and dependence questionnaire","type":"dataset"},
+        ]
+        accepted, rejected = m.filter_records(records, query, ["article"])
+        self.assertEqual(len(accepted), 1)
+        self.assertEqual(len(rejected), 2)
+        reasons = [r["rejection_reasons"] for r in rejected]
+        self.assertTrue(any("missing_anchor_group" in x for x in reasons))
+        self.assertTrue(any("type_not_allowed" in x for x in reasons))
+
 
 if __name__ == "__main__":
     unittest.main()
