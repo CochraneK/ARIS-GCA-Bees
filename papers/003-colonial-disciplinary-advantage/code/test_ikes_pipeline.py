@@ -61,6 +61,17 @@ def main() -> None:
             )
 
         fence = chr(96) * 3
+        evidence = []
+        for i in range(1, 22):
+            cid = f"D{i:02d}"
+            evidence.append(
+                f"### {cid} — Synthetic Discipline {i:02d}\n\n"
+                "Synthetic rationale for parser and pipeline testing only. "
+                "No historical or contemporary empirical claim is made. "
+                "No score >=2 source requirement is being substantively tested here.\n\n"
+                "Uncertainty: synthetic fixture.\n\n"
+                "Confidence: high\n"
+            )
         raw = (
             "# Synthetic Coder B response\n\n"
             + fence
@@ -68,8 +79,8 @@ def main() -> None:
             + buf.getvalue()
             + fence
             + "\n\n## Evidence notes\n\n"
-            "Synthetic smoke-test evidence only. No historical claim is made.\n\n"
-            "## BLINDING DECLARATION\n"
+            + "\n".join(evidence)
+            + "\n## BLINDING DECLARATION\n"
             "INDEPENDENCE_STATUS: PASS\n"
             "Synthetic test fixture; no real outcomes or Coder A evidence were consulted.\n"
         )
