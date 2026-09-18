@@ -2,7 +2,7 @@
 
 | Claim | Evidence | Strength | Allowed manuscript wording | Prohibited escalation |
 |---|---|---|---|---|
-| TLI contains non-random multifeature structure | Stage 0 compression + residual NMI | screening | sufficient structure exists to justify geometry comparison | structure implies periodicity |
+| TLI contains non-random multifeature structure | Stage 0 TruncatedSVD compression + pairwise NMI permutation screen | screening | sufficient structure exists to justify geometry comparison | structure implies periodicity |
 | Simple global circle is not strongest TLI held-out model | Stage 1, 1B, 1F | strong descriptive | optimized circle is outpredicted by tree/low-rank under family hold-out | language is therefore a tree |
 | Tree > optimized circle is split-stable in TLI | Stage 1F, 20 splits | strong robustness | paired mean +0.073; split-bootstrap CI [0.055,0.092] | CI represents phylogenetic uncertainty |
 | Stable order does not imply periodic closure | Stage 1C linear-order domain + Stage 1D | strong conceptual | reproducible ordering can occur without best circular prediction/closure | all circular structure is absent |
