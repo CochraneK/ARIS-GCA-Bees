@@ -67,3 +67,41 @@ Prepared:
 - `MANUSCRIPT_REVIEW_RECEIPT.template.json`
 
 A fresh different-family reviewer should write `MANUSCRIPT_REVIEW_RECEIPT.md`. A `PASS_SUBMISSION_PREP` verdict authorizes target-journal formatting; `REOPEN_ANALYSIS` reopens scientific work.
+
+
+## Pre-review hardening · 2026-09-18
+
+**State:** COMPLETE
+
+- [x] Draft v1 complete.
+- [x] Independent idea-stage secondary review PASS retained.
+- [x] 2026 literature collision rescan completed; no new fatal collision found.
+- [x] Kemp (2026) domain-specific circular/symmetry work integrated and distinguished from global feature-space circularity.
+- [x] General circular-seriation method prior art expanded.
+- [x] Core bibliography metadata audited.
+- [x] Stage 0 terminology aligned to implementation (mode imputation + one-hot + TruncatedSVD; pairwise NMI permutation null).
+- [x] WALS–TLI source overlap made explicit; Stage 1I no longer described as an independent replication.
+- [x] TLI/GBI vs WALS family-metadata code paths documented accurately.
+- [x] GBI feature-selection and 12-split rules documented.
+- [x] Stage inventory table added.
+- [x] Clean GitHub Actions manuscript CI regenerates all three figures and checks manifest/artifacts/claim boundaries.
+- [x] Latest `main` Paper 002 manuscript CI: SUCCESS.
+- [x] Stale concurrency PRs #9 and #11 closed after safe direct integration.
+
+## Current hard gate
+
+**Different-family manuscript-stage review.**
+
+Use:
+`WORKBUDDY_MANUSCRIPT_REVIEW.md`
+
+Expected output:
+`MANUSCRIPT_REVIEW_RECEIPT.md`
+
+Possible verdicts:
+- `PASS_SUBMISSION_PREP`
+- `REVISE_MANUSCRIPT`
+- `REOPEN_ANALYSIS`
+- `STOP_MANUSCRIPT`
+
+No further primary-executor scientific expansion should be added merely to keep the project moving before this independent review. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
