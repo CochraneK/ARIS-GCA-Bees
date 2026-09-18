@@ -11,8 +11,10 @@ from query_complexity import (
     expected_greedy_cost,
     greedy_information_gain_query,
     greedy_path_costs,
+    huffman_expected_length,
     max_targets,
     minimum_static_separating_set,
+    unrestricted_uniform_binary_expected_cost,
     optimal_tree_cost,
     worst_case_lower_bound,
 )
@@ -53,6 +55,17 @@ class QueryComplexityTests(unittest.TestCase):
             [[0, 8], [1, 9], [2, 10], [3, 11]],
         )
 
+
+
+    def test_unrestricted_uniform_huffman_baseline(self):
+        self.assertAlmostEqual(
+            unrestricted_uniform_binary_expected_cost(15),
+            59 / 15,
+        )
+        self.assertAlmostEqual(
+            huffman_expected_length([0.5, 0.25, 0.25]),
+            1.5,
+        )
 
     def test_greedy_binary_demo_matches_optimal_expected_cost(self):
         matrix = demo_matrix()
