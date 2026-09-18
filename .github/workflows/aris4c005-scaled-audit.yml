@@ -1,0 +1,113 @@
+name: ARIS4C005 scaled AI audit
+
+on:
+  push:
+    branches:
+      - main
+      - aris4c005-scaled-audit-20260918
+    paths:
+      - ".github/workflows/aris4c005-scaled-audit.yml"
+      - "papers/005-hidden-burden-bad-science/code/build_scaled_random_audit.py"
+      - "papers/005-hidden-burden-bad-science/code/batch_ai_packets.py"
+      - "papers/005-hidden-burden-bad-science/code/make_adjudication_packet.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_scaled_random_audit.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c005-scaled-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Build scaled 10000-work random audit
+        run: |
+          python "$PAPER_DIR/code/build_scaled_random_audit.py" \
+            "$RUNNER_TEMP/aris4c005_scaled_random_audit.csv" \
+            "$PAPER_DIR/data/pilot/scaled_random_audit_summary.json" \
+            --total-n 10000 \
+            --minimum-per-stratum 1000 \
+            --corpus core \
+            --seed 20260918
+
+      - name: Build dual-AI blinded packet
+        run: |
+          python "$PAPER_DIR/code/make_adjudication_packet.py" \
+            "$RUNNER_TEMP/aris4c005_scaled_random_audit.csv" \
+            "$RUNNER_TEMP/aris4c005_scaled_ai_reviewer_packet.csv" \
+            "$RUNNER_TEMP/aris4c005_scaled_ai_manager_linkage.csv" \
+            --reviewer AI_A \
+            --reviewer AI_B \
+            --double-fraction 1.0 \
+            --seed 20260918
+
+      - name: Split model-specific batches
+        run: |
+          python "$PAPER_DIR/code/batch_ai_packets.py" \
+            "$RUNNER_TEMP/aris4c005_scaled_ai_reviewer_packet.csv" \
+            "$RUNNER_TEMP/aris4c005_ai_batches" \
+            "$PAPER_DIR/data/pilot/scaled_ai_batch_manifest.json" \
+            --batch-size 250
+
+      - name: Validate scaled outputs
+        run: |
+          python - <<'PY'
+          import json
+          s = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/scaled_random_audit_summary.json', encoding='utf-8'))
+          m = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/scaled_ai_batch_manifest.json', encoding='utf-8'))
+          assert s["classification"] == "SCALED_RANDOM_AUDIT_FRAME_NOT_ADJUDICATION_RESULTS"
+          assert s["realized_total_n"] == 10000
+          assert len(s["strata"]) == 6
+          assert m["classification"] == "AI_ADJUDICATION_BATCH_MANIFEST_NO_LABELS"
+          assert m["assignments_total"] == 20000
+          assert m["reviewers"]["AI_A"] == 10000
+          assert m["reviewers"]["AI_B"] == 10000
+          print('scaled audit validation OK')
+          PY
+
+      - name: Upload scaled adjudication artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c005-scaled-ai-audit
+          path: |
+            ${{ runner.temp }}/aris4c005_scaled_random_audit.csv
+            ${{ runner.temp }}/aris4c005_scaled_ai_reviewer_packet.csv
+            ${{ runner.temp }}/aris4c005_scaled_ai_manager_linkage.csv
+            ${{ runner.temp }}/aris4c005_ai_batches/
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Persist public-safe summaries
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/pilot/scaled_random_audit_summary.json" "$PAPER_DIR/data/pilot/scaled_ai_batch_manifest.json"
+          if git diff --cached --quiet; then
+            echo "No scaled summary change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C005 scaled AI audit summaries [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
