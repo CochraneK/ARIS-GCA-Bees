@@ -4,7 +4,7 @@
   "title": "Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data",
   "short_title": "Public Integrity Forensics",
   "year": 2026,
-  "status": "pilot0-expanded-live-source-smoke-agent-skill",
+  "status": "pilot1a-uk-source-feasibility-frozen-ownership-enrichment-next",
   "domain": "anti-corruption / public procurement / beneficial ownership / entity resolution / graph analytics / public integrity / computational social science",
   "summary": "An auditable public-data agent that routes procurement, corporate, beneficial-ownership, public-office, sanctions, offshore and disclosure records to applicability-aware forensic checks, then fuses reproducible findings in an evidence graph for human review without equating anomalies with corruption.",
   "authors": [
@@ -25,7 +25,13 @@
     "pipeline": "process/RESEARCH_PLAN.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/014-public-integrity-forensics",
     "skill": "agent/public-integrity-forensics/SKILL.md",
-    "live_smoke": ".github/workflows/aris4c014-live-source-smoke.yml"
+    "live_smoke": ".github/workflows/aris4c014-live-source-smoke.yml",
+    "pilot1_protocol": "process/PILOT1_PROTOCOL.md",
+    "pilot1_results": "process/PILOT1_RESULTS.md",
+    "pilot1_config": "data/pilot1_uk_config.json",
+    "pilot1_workflow": ".github/workflows/aris4c014-pilot1-uk.yml",
+    "report_builder": "code/report_builder.py",
+    "evidence_graph": "code/evidence_graph.py"
   },
   "tags": [
     "ARIS",
