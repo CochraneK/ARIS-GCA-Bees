@@ -84,7 +84,7 @@ def build_mechanism_cohort(
     sb_fixed_sleep_years: int = 10,
     sb_max_sleep_years: int | None = None,
     sb_wake_years: int = 4,
-    sb_max_sleep_rate: float = 1.0,
+    sb_max_sleep_rate: float = 2.0,
     sb_min_wake_rate: float = 5.0,
     sb_min_total_citations: int = 50,
     controls_per_case: int = 1,
