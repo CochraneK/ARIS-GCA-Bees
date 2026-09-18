@@ -1,0 +1,93 @@
+name: ARIS4C007 Pilot 3A universal-clock parity
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot3a-clock-parity.yml"
+      - "papers/007-cross-species-age-equivalence/code/audit_pilot3a_universal_clocks.R"
+      - "papers/007-cross-species-age-equivalence/code/summarize_pilot3a_clock_audit.py"
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5.1"
+
+      - name: Acquire pinned upstream reference files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pilot3a/mmc /tmp/pilot3a/zoller /tmp/pilot3a/pkg
+
+          MMC_REF="v3.0.0"
+          ZOLLER_REF="v1.1.0"
+          MMC_BASE="https://raw.githubusercontent.com/shorvath/MammalianMethylationConsortium/${MMC_REF}/UniversalPanMammalianClock"
+          Z_BASE="https://raw.githubusercontent.com/jazoller96/mammalian-methyl-clocks/${ZOLLER_REF}"
+          PKG_URL="https://github.com/jazoller96/mammalian-methyl-clocks/releases/download/v1.1.0/MammalMethylClock_1.0.0.tar.gz"
+
+          curl --fail --location --retry 4             "$MMC_BASE/ClockParameters/mydata_GitHub.Rds"             -o /tmp/pilot3a/mmc/mydata_GitHub.Rds
+          curl --fail --location --retry 4             "$MMC_BASE/ClockParameters/clock2.csv"             -o /tmp/pilot3a/mmc/clock2.csv
+          curl --fail --location --retry 4             "$MMC_BASE/ClockParameters/clock3.csv"             -o /tmp/pilot3a/mmc/clock3.csv
+          curl --fail --location --retry 4             "$MMC_BASE/R_code/R_pgm1_threeUnversalClocks.R"             -o /tmp/pilot3a/mmc/reference.R
+
+          curl --fail --location --retry 4             "$Z_BASE/ClockCoefficients/Universal_Coef.CombAnn.csv"             -o /tmp/pilot3a/zoller/Universal_Coef.CombAnn.csv
+          curl --fail --location --retry 4             "$Z_BASE/AgeTransformations/1-age_transformations__functions_Joseph_Zoller.R"             -o /tmp/pilot3a/zoller/transformations_repo.R
+          curl --fail --location --retry 4             "$PKG_URL"             -o /tmp/pilot3a/pkg/MammalMethylClock_1.0.0.tar.gz
+
+          tar -xzf /tmp/pilot3a/pkg/MammalMethylClock_1.0.0.tar.gz -C /tmp/pilot3a/pkg/extracted
+          PKG_TRANSFORM="$(grep -rl --include='*.R' 'fun_llinreladult.inv' /tmp/pilot3a/pkg/extracted | head -n 1)"
+          test -n "$PKG_TRANSFORM"
+          printf '%s\n' "$PKG_TRANSFORM" > /tmp/pilot3a/pkg/transform_source_path.txt
+
+          {
+            printf 'resource\tref\tsha256\tbytes\tlicense_or_role\n'
+            for spec in               "MMC_mydata|v3.0.0|/tmp/pilot3a/mmc/mydata_GitHub.Rds|MIT/reference example"               "MMC_clock2|v3.0.0|/tmp/pilot3a/mmc/clock2.csv|MIT/reference coefficients"               "MMC_clock3|v3.0.0|/tmp/pilot3a/mmc/clock3.csv|MIT/reference coefficients"               "MMC_script|v3.0.0|/tmp/pilot3a/mmc/reference.R|MIT/reference implementation"               "MammalMethylClock_coeff|v1.1.0|/tmp/pilot3a/zoller/Universal_Coef.CombAnn.csv|CC BY-NC-ND 4.0/read-only audit"               "MammalMethylClock_repo_transform|v1.1.0|/tmp/pilot3a/zoller/transformations_repo.R|CC BY-NC-ND 4.0/read-only audit"               "MammalMethylClock_release|v1.1.0|/tmp/pilot3a/pkg/MammalMethylClock_1.0.0.tar.gz|CC BY-NC-ND 4.0/read-only audit"
+            do
+              IFS='|' read -r name ref path role <<< "$spec"
+              printf '%s\t%s\t%s\t%s\t%s\n'                 "$name" "$ref" "$(sha256sum "$path" | awk '{print $1}')"                 "$(stat -c %s "$path")" "$role"
+            done
+          } > /tmp/pilot3a/provenance.tsv
+
+          echo "Released transform source: $PKG_TRANSFORM"
+          grep -n -A12 -B12 'fun_llinreladult.inv' "$PKG_TRANSFORM" || true
+
+      - name: Run implementation and coefficient parity audit
+        working-directory: papers/007-cross-species-age-equivalence
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT=data/pilot3a_clock_parity
+          mkdir -p "$OUT"
+          PKG_TRANSFORM="$(cat /tmp/pilot3a/pkg/transform_source_path.txt)"
+
+          Rscript code/audit_pilot3a_universal_clocks.R             /tmp/pilot3a/mmc/mydata_GitHub.Rds             /tmp/pilot3a/mmc/clock2.csv             /tmp/pilot3a/mmc/clock3.csv             /tmp/pilot3a/zoller/Universal_Coef.CombAnn.csv             /tmp/pilot3a/pkg/extracted             "$PKG_TRANSFORM"             "$OUT"             /tmp/pilot3a/provenance.tsv
+
+          python code/summarize_pilot3a_clock_audit.py             --metrics "$OUT/audit_metrics.csv"             --provenance "$OUT/upstream_provenance.tsv"             --out "$OUT/summary.json"
+
+          cat "$OUT/summary.json"
+
+      - name: Upload bounded audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot3a-clock-parity
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot3a_clock_parity/summary.json
+            papers/007-cross-species-age-equivalence/data/pilot3a_clock_parity/audit_metrics.csv
+            papers/007-cross-species-age-equivalence/data/pilot3a_clock_parity/coefficient_parity.csv
+            papers/007-cross-species-age-equivalence/data/pilot3a_clock_parity/example_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot3a_clock_parity/upstream_provenance.tsv
+          if-no-files-found: error
+          retention-days: 30
