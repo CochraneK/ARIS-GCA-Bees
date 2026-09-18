@@ -1,0 +1,107 @@
+{
+  "classification": "SCALED_RANDOM_AUDIT_FRAME_NOT_ADJUDICATION_RESULTS",
+  "target_universe": "OpenAlex core article|review 2000-2025",
+  "total_population_N": 137436109,
+  "target_total_n": 10000,
+  "realized_total_n": 10000,
+  "allocation_rule": "minimum_per_stratum then remaining sample proportional to remaining stratum population; design weights recover target-universe prevalence",
+  "minimum_per_stratum": 1000,
+  "strata": {
+    "2000_2004": {
+      "start_year": 2000,
+      "end_year": 2004,
+      "population_N": 15767429,
+      "target_n": 1459,
+      "realized_unique_n": 1459,
+      "inclusion_probability": 9.253252385027388e-05,
+      "design_weight": 10807.010966415352
+    },
+    "2005_2009": {
+      "start_year": 2005,
+      "end_year": 2009,
+      "population_N": 22538013,
+      "target_n": 1656,
+      "realized_unique_n": 1656,
+      "inclusion_probability": 7.347586497531969e-05,
+      "design_weight": 13609.911231884058
+    },
+    "2010_2014": {
+      "start_year": 2010,
+      "end_year": 2014,
+      "population_N": 29906848,
+      "target_n": 1871,
+      "realized_unique_n": 1871,
+      "inclusion_probability": 6.25609225017628e-05,
+      "design_weight": 15984.419027258153
+    },
+    "2015_2019": {
+      "start_year": 2015,
+      "end_year": 2019,
+      "population_N": 31791658,
+      "target_n": 1925,
+      "realized_unique_n": 1925,
+      "inclusion_probability": 6.0550475222147896e-05,
+      "design_weight": 16515.147012987014
+    },
+    "2020_2024": {
+      "start_year": 2020,
+      "end_year": 2024,
+      "population_N": 30282727,
+      "target_n": 1881,
+      "realized_unique_n": 1881,
+      "inclusion_probability": 6.211461735265784e-05,
+      "design_weight": 16099.270069112174
+    },
+    "2025": {
+      "start_year": 2025,
+      "end_year": 2025,
+      "population_N": 7149434,
+      "target_n": 1208,
+      "realized_unique_n": 1208,
+      "inclusion_probability": 0.00016896442431666618,
+      "design_weight": 5918.4056291390725
+    }
+  },
+  "realized_domain_counts": {
+    "Social Sciences": 2692,
+    "Physical Sciences": 3862,
+    "Life Sciences": 1208,
+    "Health Sciences": 2140,
+    "missing": 98
+  },
+  "realized_year_counts": {
+    "2000": 264,
+    "2001": 243,
+    "2002": 298,
+    "2003": 327,
+    "2004": 327,
+    "2005": 300,
+    "2006": 302,
+    "2007": 335,
+    "2008": 335,
+    "2009": 384,
+    "2010": 340,
+    "2011": 370,
+    "2012": 368,
+    "2013": 394,
+    "2014": 399,
+    "2015": 409,
+    "2016": 397,
+    "2017": 390,
+    "2018": 375,
+    "2019": 354,
+    "2020": 407,
+    "2021": 376,
+    "2022": 344,
+    "2023": 381,
+    "2024": 373,
+    "2025": 1208
+  },
+  "works_without_doi": 3747,
+  "warnings": [
+    "This frame contains no integrity labels.",
+    "AI adjudication error must be calibrated or sensitivity-tested.",
+    "Weighted analysis is required because time strata have unequal inclusion probabilities.",
+    "OpenAlex metadata coverage and type classification remain denominator limitations."
+  ]
+}

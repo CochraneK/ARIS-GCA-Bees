@@ -1,0 +1,571 @@
+{
+  "classification": "AI_ADJUDICATION_BATCH_MANIFEST_NO_LABELS",
+  "batch_size": 250,
+  "assignments_total": 20000,
+  "reviewers": {
+    "AI_A": 10000,
+    "AI_B": 10000
+  },
+  "batches": [
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 1,
+      "filename": "AI_A_batch_001.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "f84a09547ef7be3c4d470e530e9eba92d03b1ca4500ef33925aff85f041020d2"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 2,
+      "filename": "AI_A_batch_002.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "37946927591a2553867ebe77844ec45a630f2efadba1e07effd85021e0fb40dc"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 3,
+      "filename": "AI_A_batch_003.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "01e8ff555a5cf0168b0efa3d42d8212a31de4d954a4a08f99461d8ae5cf46e71"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 4,
+      "filename": "AI_A_batch_004.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "72a4239c836f00252d62107a455274041478596b919bb0b03827dbfe301b3a4a"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 5,
+      "filename": "AI_A_batch_005.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "bb4593d64ae0108b37646db9b56c56c05c1de5a4ffdf4386e96a00b63624db58"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 6,
+      "filename": "AI_A_batch_006.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "42efac18f5fe633bb36c3d02048a7dfa0736a7df3188af049c5826ba14ceecf8"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 7,
+      "filename": "AI_A_batch_007.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "4243ce6b04f8bbb040063688a42321c7a4f863c90090e1f404ba218fb73cfd14"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 8,
+      "filename": "AI_A_batch_008.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "deae0c4235ae58ca0acb2452dbeb5f8775669ed53b90687ded50ec5841781646"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 9,
+      "filename": "AI_A_batch_009.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "dd8233f4cc4e965b1052329d54d9618301369faadbf660410a69f3e545f93c5b"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 10,
+      "filename": "AI_A_batch_010.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "5254c60b305be25e01097833a205cfea5c18bdb93917e88c7e26f44628108c0d"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 11,
+      "filename": "AI_A_batch_011.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "15f36ad8e25ddc953729bcd48ee6fe78237aadb1cda16677dc0783bdf97c0e22"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 12,
+      "filename": "AI_A_batch_012.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "3a39dfa04641480dcc25ac395e65fbd4fc2322bf41ac04e68027250de8a95e21"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 13,
+      "filename": "AI_A_batch_013.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "8f4c0059375e6e9de128c01a6d737a72183073ff6010cde483b827ef04c9ecc2"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 14,
+      "filename": "AI_A_batch_014.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "7c5fe6abb4fd08765cecca01d9a72f0d9cd3f84fc8848d59a0408223317395db"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 15,
+      "filename": "AI_A_batch_015.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "a428100a5d64e16a76f96447685ca6416d58f81ad30aab4b32e20da877f994b7"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 16,
+      "filename": "AI_A_batch_016.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "c1861904d46d2fd8309784798a13bcb6459c9a3f482dd61e760277bc606576c2"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 17,
+      "filename": "AI_A_batch_017.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "a96c24db1b1fcf706de98a9f10556850f4db7b7a0d1ab74ca057e778c8607a98"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 18,
+      "filename": "AI_A_batch_018.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "be4b5b979f54e4509d98281df18a0bdcd2bcfbef0be28300def244d52c9b8011"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 19,
+      "filename": "AI_A_batch_019.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "d11c2f7175c81910b769550da0e1e0308473bbd1c5833771d072c10036bb1573"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 20,
+      "filename": "AI_A_batch_020.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "40919d3189fe03f2a0eaa29b09978f3dae0ea28c1e0d881d0c17a725fb583d52"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 21,
+      "filename": "AI_A_batch_021.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "cf1174d9a3c541cef4453889a011040374aa4ad3a4a25f95c690afa99bb5e475"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 22,
+      "filename": "AI_A_batch_022.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "a7caf650c0e75bc802fd81e3be9b6213229f27170b5231e04e88f5c2241e6594"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 23,
+      "filename": "AI_A_batch_023.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "55ec41e124cb11cd8a11520e665f5b2f7aef0df37fd7a3cb488daf48bbd00e53"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 24,
+      "filename": "AI_A_batch_024.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "4c813311d71390a519a6e6465a179187ab9d3b89d3a0ca67ef05ea78ee2da7b3"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 25,
+      "filename": "AI_A_batch_025.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "7d2a5bc7b286468b9aaa489b30ee52178dc31435425afaef6841dcd5af8d522c"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 26,
+      "filename": "AI_A_batch_026.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "0e2d9af5f34f43245ceec6db0ca56ae78ff10ef9f8086ba5cba349b6571340c1"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 27,
+      "filename": "AI_A_batch_027.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "7f1495020efc7a3fb168e9c6b0dd1a663cd2ffebf6145883ec297f437a1bd033"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 28,
+      "filename": "AI_A_batch_028.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "6cd713c2e668c1e8499dcd66c09b33b25b85b6320a9179fc679d49bc985003b1"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 29,
+      "filename": "AI_A_batch_029.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "f004f3158cb8cdf8c48e3d207c89b74003ff1ebd41eb876bde4b20939f422aca"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 30,
+      "filename": "AI_A_batch_030.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "e95950a9785c487370dda562e7958657a41841a62e9b62d6bb142dbb8da93ae4"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 31,
+      "filename": "AI_A_batch_031.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "575de6578cd11ccb1d9bc944a2647b207bd2be9eb8afa698b9cf8d3357aa0d03"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 32,
+      "filename": "AI_A_batch_032.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "f2696294aed4cb18573ea93101279996fd424d745c38a45f23885a1dc6d24eda"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 33,
+      "filename": "AI_A_batch_033.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "c87ceb49feddcd5b63efa0161c2e4369457ec7dcc9cca142a2338e46c4f62080"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 34,
+      "filename": "AI_A_batch_034.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "4fb77a8b5f20a301dce05ed1188004e728121abeb90f251e25c8968f4f1c183b"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 35,
+      "filename": "AI_A_batch_035.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "294fd5220ed5def3e2d638eac0d65051dbec2c442effae56a62cd3d365e0edcc"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 36,
+      "filename": "AI_A_batch_036.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "dc79c695ab465b161dc1e330302abd0a4697599d779b9a7c402eb3100bad5ec3"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 37,
+      "filename": "AI_A_batch_037.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "bd57af4a8569b7a80a7e427bd15d456cb03783537fcb1c28471213afdd971f10"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 38,
+      "filename": "AI_A_batch_038.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "f3b3a6f72e8f7590b7d2de78ac552bf001308cee54ee3abff26ec1fd0288a357"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 39,
+      "filename": "AI_A_batch_039.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "ac16eabc97ad68901244a2f28b2f46d6b6baba00c8bf1f9b5ef7d5de6470f21c"
+    },
+    {
+      "reviewer_id": "AI_A",
+      "batch_number": 40,
+      "filename": "AI_A_batch_040.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "22ca3ae3306f0d7a778c465b14432c0e1c07fe5a30588a0e8dae94765e566865"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 1,
+      "filename": "AI_B_batch_001.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "9047ddb815ce83bd798472a75071b95048014e5d05e1fd6d9e1e0495563340cf"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 2,
+      "filename": "AI_B_batch_002.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "299295d254ba6bd65f1d9a795b171b4f2ab07ffd42970ed1f69d4d1972f65c95"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 3,
+      "filename": "AI_B_batch_003.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "01cee551a7e18d2bc52494d025161bc9676d840292a8a0f4903cf66223a05552"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 4,
+      "filename": "AI_B_batch_004.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "5daa7f5a44abda41ed4a9018a4add1c465f1f90fcf9d84aeeddb5fd3178e6c3c"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 5,
+      "filename": "AI_B_batch_005.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "6733c2b37e846e409cd3564981d66b46236059d51790e3e3bf688d1f0f808137"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 6,
+      "filename": "AI_B_batch_006.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "d6eb64a1b3a459b4f18690ae8880b23138c1c73127c94886c44b730ab564b337"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 7,
+      "filename": "AI_B_batch_007.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "9eb466a08fdbb97904454d87a8b20148fb5fb657276126b2b71cc2ecf526b745"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 8,
+      "filename": "AI_B_batch_008.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "95d0fbc8bf8069535139d4efd6b27774fc02a1d5fbed10d679d7ab77bdf2f9ee"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 9,
+      "filename": "AI_B_batch_009.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "b78f3f1427c083456109f02cfa084c00b2916c5ca470d013faa328de6aa560bb"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 10,
+      "filename": "AI_B_batch_010.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "5749a6256d96970c46dfe1681b98cb01971ec5e7d01c044b7f74e4f6d05fad23"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 11,
+      "filename": "AI_B_batch_011.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "2b1e7a1024f26f42b6f78d67b1d1eb7ebf71af51a14af0ab8dc9fdad76638c20"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 12,
+      "filename": "AI_B_batch_012.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "454e47feb9f614485f4729572383259f8c9fb46fae1f7ec2085a8e35af3d4c2d"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 13,
+      "filename": "AI_B_batch_013.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "15fd168a4cafd9fa311ee2e0cc86d537e86f606d4b8888abfab3f42d7b0d65e3"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 14,
+      "filename": "AI_B_batch_014.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "9c97ffaddf5d7021d305ca74d03e2af5199735177d6d380d9d6e0c4634111c57"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 15,
+      "filename": "AI_B_batch_015.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "e0fcab959ed79cb34fd931d74a34e11db0c213aaf02226996c86ee666b321549"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 16,
+      "filename": "AI_B_batch_016.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "27a3dcbc5a453bf47af623a0f78f197363f57e97837462ae6f1937255b482d3a"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 17,
+      "filename": "AI_B_batch_017.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "00c513873909fb7742b7a2d49b61e2dcec13013776dc5f9ef0ad49f08e2c6843"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 18,
+      "filename": "AI_B_batch_018.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "7cad36faa62716302d1b6986fe9d88130015f6118d2c40c1a5c8ab7d872d7e7b"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 19,
+      "filename": "AI_B_batch_019.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "18cd90e565f707d7737dae24685d8fcd7bbaef67b460ebd30347879e2605c748"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 20,
+      "filename": "AI_B_batch_020.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "1f0a707aa9f98e1a28ef4ca328addf3c6eed9024de5aabf3f129b6acf265746d"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 21,
+      "filename": "AI_B_batch_021.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "750188885243b29419cb77f3780e2262271552ab406056b75c75a92d0b8d5326"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 22,
+      "filename": "AI_B_batch_022.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "21eff2f56e59d1cb4fe3ace0ca92681ea416213ea8d14128869c3a379baecc0f"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 23,
+      "filename": "AI_B_batch_023.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "348b7ff86078f0b73e357d1d580b27c949dc6d1d7392f24044c43c789eadf9b6"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 24,
+      "filename": "AI_B_batch_024.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "c2c59c54ca5e352cc02247257a91b89c1e052f3f5d8b3c57f8aaf7eed1a990eb"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 25,
+      "filename": "AI_B_batch_025.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "4e03b11bc7a944884f3868081636d874dea2c3d9fc504b729664b4e98d10678c"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 26,
+      "filename": "AI_B_batch_026.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "0c3ac76bff88e2d9c7734a66d764551ca1fad40a508d5fd9d268740301a59376"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 27,
+      "filename": "AI_B_batch_027.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "325d5fa89723786b5cb33593cc0f70caf335098da2b30fd9511d9780894c7ce0"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 28,
+      "filename": "AI_B_batch_028.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "15b2f06d940e24997bbc0d342b524859788c3de653d792e15f44cc9c3496b9a4"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 29,
+      "filename": "AI_B_batch_029.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "f2a539a53a3f10f552cf45fb798bc28ce11abf6deff7ef047861be500b6036dd"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 30,
+      "filename": "AI_B_batch_030.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "ee69607fd31382f794f0b5c80693598ff1273d2a91f7ccee54a0eb49376254af"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 31,
+      "filename": "AI_B_batch_031.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "3c6b20ba1c73f2541409bd9f94623ea7fba4d547cfb94b3d24d70efff64a7760"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 32,
+      "filename": "AI_B_batch_032.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "f3628b65aba7af7b25ed24050365e30961dd261a33aded2b5e729bf23bb6e5c0"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 33,
+      "filename": "AI_B_batch_033.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "19fc95e6929705f6d7419d5fe49077634a2a8b97867e2e7817d98691b36cdf4d"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 34,
+      "filename": "AI_B_batch_034.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "e240358ca28e3d28b6da8db7d5daa5985781069463453e459c0ccb2ff3854254"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 35,
+      "filename": "AI_B_batch_035.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "a596c0e5f290110ba68d62f40ea14e4da3170538298f5bfa74e40ccfebc38b55"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 36,
+      "filename": "AI_B_batch_036.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "24dad575091d2b351455738fe15c5df4c982d451520512cfb3868402cf651c81"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 37,
+      "filename": "AI_B_batch_037.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "bd1ee91adc158ed370e5a0acf3016f5584eb936e880db5ed3ec71be25bccb916"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 38,
+      "filename": "AI_B_batch_038.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "3c05ac4ac8f0b99996be59f3d0d4c99d72354bdd1c34d6e02ef770855734da97"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 39,
+      "filename": "AI_B_batch_039.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "172d647ad0826ca2dda28d0af0618efb3f06f09fb581f8aab25bdd80e8f95773"
+    },
+    {
+      "reviewer_id": "AI_B",
+      "batch_number": 40,
+      "filename": "AI_B_batch_040.csv",
+      "assignments": 250,
+      "assignment_checksum_sha256": "66e6624ab2f31959a330b822d74289b9bfe0b3258fd8cb763e33ec8f5dc1b3b8"
+    }
+  ]
+}
