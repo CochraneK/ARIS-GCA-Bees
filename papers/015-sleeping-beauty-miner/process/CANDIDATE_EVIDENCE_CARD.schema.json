@@ -14,10 +14,33 @@
     "disclaimer"
   ],
   "properties": {
-    "paper_id": {"type": "string"},
-    "identifiers": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
-    "mode": {"enum": ["RETROSPECTIVE", "PROSPECTIVE", "DISCOVERY_SCAN"]},
-    "analysis_cutoff": {"type": ["string", "integer"]},
+    "paper_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identifiers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "mode": {
+      "enum": [
+        "RETROSPECTIVE",
+        "MECHANISM",
+        "PROSPECTIVE",
+        "DISCOVERY_SCAN"
+      ]
+    },
+    "analysis_cutoff": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
     "state": {
       "enum": [
         "CONFIRMED_DELAYED_RECOGNITION",
@@ -27,48 +50,183 @@
         "INSUFFICIENT_DATA"
       ]
     },
-    "rank": {"type": ["integer", "null"], "minimum": 1},
-    "score": {"type": ["number", "null"]},
-    "score_semantics": {"type": ["string", "null"]},
-    "citation_trajectory": {"type": "object"},
-    "retrospective_metrics": {"type": "object"},
+    "rank": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "score": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "score_semantics": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "citation_trajectory": {
+      "type": "object"
+    },
+    "retrospective_metrics": {
+      "type": "object"
+    },
     "evidence_families": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "applicable", "cutoff_safe", "status"],
+        "required": [
+          "name",
+          "applicable",
+          "cutoff_safe",
+          "status"
+        ],
         "properties": {
-          "name": {"type": "string"},
-          "applicable": {"type": "boolean"},
-          "cutoff_safe": {"type": "boolean"},
+          "name": {
+            "type": "string"
+          },
+          "applicable": {
+            "type": "boolean"
+          },
+          "cutoff_safe": {
+            "type": "boolean"
+          },
           "status": {
-            "enum": ["SUPPORTIVE", "CONTRADICTORY", "NEUTRAL", "ABSTAIN", "QUARANTINED"]
+            "enum": [
+              "SUPPORTIVE",
+              "CONTRADICTORY",
+              "NEUTRAL",
+              "ABSTAIN",
+              "QUARANTINED"
+            ]
           },
           "value": {},
           "uncertainty": {},
-          "provenance": {"type": "array", "items": {"type": "string"}},
-          "notes": {"type": ["string", "null"]}
+          "provenance": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
         }
       }
     },
-    "prince_candidates": {"type": "array"},
+    "prince_candidates": {
+      "type": "array"
+    },
     "integrity_gate": {
       "type": "object",
-      "required": ["state", "cutoff_safe"],
+      "required": [
+        "state",
+        "cutoff_safe",
+        "finding_ids",
+        "reasons"
+      ],
       "properties": {
-        "state": {"enum": ["CLEAR", "CAUTION", "QUARANTINE", "ABSTAIN"]},
-        "cutoff_safe": {"type": "boolean"},
-        "finding_ids": {"type": "array", "items": {"type": "string"}},
-        "notes": {"type": ["string", "null"]}
+        "state": {
+          "enum": [
+            "CLEAR",
+            "CAUTION",
+            "QUARANTINE",
+            "ABSTAIN"
+          ]
+        },
+        "cutoff_safe": {
+          "type": "boolean"
+        },
+        "finding_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excluded_future_finding_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknown_time_finding_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
-    "missing_evidence": {"type": "array", "items": {"type": "string"}},
-    "contradictory_evidence": {"type": "array"},
-    "explanation": {"type": ["string", "null"]},
-    "model_version": {"type": ["string", "null"]},
-    "provenance": {"type": "array", "items": {"type": "string"}},
+    "missing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contradictory_evidence": {
+      "type": "array"
+    },
+    "explanation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "model_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "disclaimer": {
       "const": "This is a discovery-priority estimate, not a validity or breakthrough judgment."
+    },
+    "mechanism_state": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "SLEEPING_BEAUTY",
+        "FORGOTTEN",
+        "IMMEDIATE_HIT",
+        "FADING",
+        "AMBIGUOUS",
+        "LOW_EARLY_HIGH_LATE_UNCONFIRMED",
+        "ABSTAIN_STRATUM_TOO_SMALL",
+        null
+      ]
+    },
+    "mechanism_ready": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "mechanism_contrast_role": {
+      "type": [
+        "string",
+        "null"
+      ]
     }
   },
   "additionalProperties": true
