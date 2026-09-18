@@ -49,8 +49,10 @@ OUTCOME_TYPES = {
     "beauty_percentile": "graded",
     "beauty_top_fraction": "binary",
     "future_acceleration_percentile": "graded",
+    "future_uptake_percentile": "graded",
     "awakening_within_horizon": "binary",
     "delayed_recognition_consensus": "binary",
+    "delayed_recognition_with_uptake_floor": "binary",
 }
 
 
@@ -63,6 +65,7 @@ def run_cohort(
     observation_end_year: int = 2011,
     beauty_fraction: float = 0.20,
     acceleration_fraction: float = 0.20,
+    uptake_fraction: float = 0.50,
     awakening_horizon_years: int = 15,
     review_budget_k: int = 5,
     api_key: str | None = None,
@@ -127,6 +130,7 @@ def run_cohort(
         beauty_fraction=beauty_fraction,
         acceleration_fraction=acceleration_fraction,
         horizon_years=awakening_horizon_years,
+        uptake_fraction=uptake_fraction,
     )
     outcomes = {
         name: (OUTCOME_TYPES[name], relevance)
@@ -197,6 +201,7 @@ def run_cohort(
         "outcome_definitions": {
             "beauty_top_fraction": beauty_fraction,
             "future_acceleration_top_fraction": acceleration_fraction,
+            "future_uptake_top_fraction": uptake_fraction,
             "awakening_horizon_years": awakening_horizon_years,
             "consensus_min_components": 2,
             "universal_sleeping_beauty_definition": False,
@@ -218,6 +223,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--observation-end-year", type=int, default=2011)
     parser.add_argument("--beauty-fraction", type=float, default=0.20)
     parser.add_argument("--acceleration-fraction", type=float, default=0.20)
+    parser.add_argument("--uptake-fraction", type=float, default=0.50)
     parser.add_argument("--awakening-horizon-years", type=int, default=15)
     parser.add_argument("--review-budget-k", type=int, default=5)
     parser.add_argument("--api-key", default=None)
@@ -235,6 +241,7 @@ def main() -> None:
         observation_end_year=args.observation_end_year,
         beauty_fraction=args.beauty_fraction,
         acceleration_fraction=args.acceleration_fraction,
+        uptake_fraction=args.uptake_fraction,
         awakening_horizon_years=args.awakening_horizon_years,
         review_budget_k=args.review_budget_k,
         api_key=args.api_key,
