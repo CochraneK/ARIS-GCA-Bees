@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p /tmp/pilot3a/mmc /tmp/pilot3a/zoller /tmp/pilot3a/pkg
+          mkdir -p /tmp/pilot3a/mmc /tmp/pilot3a/zoller /tmp/pilot3a/pkg /tmp/pilot3a/pkg/extracted
 
           MMC_REF="v3.0.0"
           ZOLLER_REF="v1.1.0"
