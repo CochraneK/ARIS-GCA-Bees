@@ -72,10 +72,24 @@ def main() -> None:
         )
 
     has_adjudication = df["adjudicated_score"].notna()
+    illegal_override = (~calculated_flag) & has_adjudication
+    if illegal_override.any():
+        cols = [
+            "concept_id", "discipline", "dimension",
+            "score_A", "score_B", "adjudicated_score"
+        ]
+        raise SystemExit(
+            "Cannot freeze IKES: unflagged cells may not be manually overridden. "
+            "Primary rule is the A/B mean for abs-difference < threshold:\n"
+            + df.loc[illegal_override, cols].to_string(index=False)
+        )
+
     bad_adj = df.loc[has_adjudication, "adjudicated_score"]
     if (~bad_adj.between(0, 3)).any():
         raise SystemExit("Adjudicated scores must be in [0,3]")
-    missing_notes = calculated_flag & (df["adjudication_note"].fillna("").str.strip() == "")
+    missing_notes = has_adjudication & (
+        df["adjudication_note"].fillna("").str.strip() == ""
+    )
     if missing_notes.any():
         raise SystemExit("Every flagged adjudication requires a non-empty adjudication_note")
 
@@ -110,7 +124,7 @@ def main() -> None:
         "paper": "ARIS4C003",
         "created_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "canonical_key": "concept_id D01-D21",
-        "rule": "unflagged A/B mean; missing or abs-diff>=threshold requires explicit outcome-blind adjudication",
+        "rule": "unflagged A/B cells are immutable means; missing or abs-diff>=threshold requires explicit outcome-blind adjudication",
         "threshold": args.threshold,
         "coder_a": {"path": str(args.coder_a), "sha256": sha256(args.coder_a)},
         "coder_b": {"path": str(args.coder_b), "sha256": sha256(args.coder_b)},
