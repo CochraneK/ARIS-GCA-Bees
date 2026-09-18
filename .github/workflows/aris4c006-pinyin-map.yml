@@ -1,0 +1,52 @@
+name: ARIS4C006 canonical Pinyin surname map
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-pinyin-map.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/14_canonical_pinyin_surname_map.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pinyin-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned pypinyin
+        run: pip install --disable-pip-version-check --no-cache-dir pypinyin==0.55.0
+      - name: Download public engineering mirror of ChineseNames familyname table
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv"             -o "$PAPER_DIR/data/raw/familyname.csv"
+          test "$(($(wc -l < "$PAPER_DIR/data/raw/familyname.csv") - 1))" -eq 1806
+      - name: Build canonical Pinyin map and estimate coverage
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/14_canonical_pinyin_surname_map.py             data/raw/familyname.csv             --year 2024             --per-field 10             --outdir data/pilot/pinyin_map
+      - name: Remove downloaded source mirror
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        run: rm -rf data/raw
+      - name: Upload public-safe surname-map artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-canonical-pinyin-map
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/pinyin_map/romanization_population_map.csv
+            ${{ env.PAPER_DIR }}/data/pilot/pinyin_map/unresolved_surnames.csv
+            ${{ env.PAPER_DIR }}/data/pilot/pinyin_map/field_mapping_coverage.csv
+            ${{ env.PAPER_DIR }}/data/pilot/pinyin_map/manifest.json
+          if-no-files-found: error
+          retention-days: 30
