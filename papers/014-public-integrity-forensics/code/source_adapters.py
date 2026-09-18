@@ -13,7 +13,7 @@ without credentials or internet access.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date, datetime
 from typing import Any, Iterable, Optional
 
@@ -446,3 +446,129 @@ def normalize_usaspending_award(
         source_coverage={"procurement_award"},
     )
     return USASpendingImportResult(case=case, warnings=warnings)
+
+
+
+@dataclass
+class OCDSRecordImportResult:
+    cases: list[IntegrityCase] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
+    record_count: int = 0
+    release_count: int = 0
+
+
+def _release_datetime(release: dict[str, Any]) -> datetime:
+    raw = release.get("date")
+    if isinstance(raw, str) and raw.strip():
+        try:
+            return datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        except ValueError:
+            pass
+    return datetime.min
+
+
+def normalize_ocds_record_package(
+    package: dict[str, Any],
+    *,
+    source_name: str = "OCDS record package",
+    source_url: str = "",
+    jurisdiction: Optional[str] = None,
+    retrieved_at: Optional[date] = None,
+) -> OCDSRecordImportResult:
+    """Normalize an OCDS record package into de-duplicated award cases.
+
+    A record package can contain multiple lifecycle releases for one OCID.
+    This function preserves the latest observed award representation while
+    carrying forward competition fields such as tender.numberOfTenderers from
+    earlier releases *within the same OCID*.
+
+    It does not carry fields across OCIDs and does not infer missing values.
+    """
+    records = package.get("records") or []
+    all_cases: list[IntegrityCase] = []
+    warnings: list[str] = []
+    total_releases = 0
+
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        releases = [r for r in (record.get("releases") or []) if isinstance(r, dict)]
+        total_releases += len(releases)
+        releases.sort(key=_release_datetime)
+
+        latest_bid_count: Optional[int] = None
+        latest_method: Optional[str] = None
+        seen_bid_counts: list[int] = []
+        merged_entities: dict[str, EntityRecord] = {}
+        latest_cases: dict[str, tuple[datetime, IntegrityCase]] = {}
+
+        for release in releases:
+            tender = release.get("tender") or {}
+            raw_count = tender.get("numberOfTenderers")
+            if isinstance(raw_count, int) and not isinstance(raw_count, bool):
+                latest_bid_count = raw_count
+                seen_bid_counts.append(raw_count)
+
+            raw_method = tender.get("procurementMethod")
+            if raw_method is not None:
+                latest_method = str(raw_method)
+
+            imported = normalize_ocds_release(
+                release,
+                source_name=source_name,
+                source_url=source_url,
+                jurisdiction=jurisdiction,
+                retrieved_at=retrieved_at,
+            )
+            warnings.extend(imported.warnings)
+            release_time = _release_datetime(release)
+
+            for case in imported.cases:
+                merged_entities.update(case.entities)
+                previous = latest_cases.get(case.contract.contract_id)
+                if previous is None or release_time >= previous[0]:
+                    latest_cases[case.contract.contract_id] = (release_time, case)
+
+        if len(set(seen_bid_counts)) > 1:
+            record_ocid = str(record.get("ocid") or (releases[-1].get("ocid") if releases else "unknown"))
+            warnings.append(
+                f"number_of_tenderers_changed:{record_ocid}:{','.join(map(str, seen_bid_counts))}"
+            )
+
+        for _, case in latest_cases.values():
+            contract = case.contract
+            coverage = set(case.source_coverage)
+            if latest_bid_count is not None:
+                coverage.add("procurement_competition")
+            contract = replace(
+                contract,
+                bid_count=(
+                    contract.bid_count
+                    if contract.bid_count is not None
+                    else latest_bid_count
+                ),
+                procurement_method=(
+                    contract.procurement_method
+                    if contract.procurement_method
+                    else latest_method
+                ),
+            )
+            entities = dict(merged_entities)
+            entities.update(case.entities)
+            all_cases.append(
+                IntegrityCase(
+                    subject_id=case.subject_id,
+                    contract=contract,
+                    entities=entities,
+                    relations=list(case.relations),
+                    debarments=list(case.debarments),
+                    source_coverage=coverage,
+                )
+            )
+
+    return OCDSRecordImportResult(
+        cases=all_cases,
+        warnings=warnings,
+        record_count=sum(1 for r in records if isinstance(r, dict)),
+        release_count=total_releases,
+    )
