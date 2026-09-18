@@ -2,13 +2,13 @@
 """Materialize preregistered OpenAlex country×discipline×window cells.
 
 THIS IS A CONFIRMATORY-OUTCOME SCRIPT. It refuses to run unless
-`preoutcome_gate.py --strict` passes. Do not bypass the gate.
+preoutcome_gate.py --strict passes. Do not bypass the gate.
 
-Primary rules implemented here:
-- OpenAlex public Parquet Works snapshot;
+Primary rules:
+- OpenAlex public Parquet Works snapshot, local or anonymous public S3;
 - publication years 2007-2025 (2023-25 output-only sensitivity retained);
 - article, review, conference-paper, book, book-chapter;
-- exclude retracted and expansion-corpus (`is_xpac`) works;
+- exclude retracted and expansion-corpus (is_xpac) works;
 - discipline = frozen concept matched through the work's single primary_topic;
 - country credit = 1 / number of ALL distinct identifiable OpenAlex countries
   on the work, computed before restricting to the primary COLDAT-anchored
@@ -33,29 +33,45 @@ DATA = PAPER / "data"
 WORK_TYPES = ("article", "review", "conference-paper", "book", "book-chapter")
 
 
-def q(path: Path) -> str:
-    return str(path).replace("'", "''")
+def q(value: object) -> str:
+    return str(value).replace("'", "''")
+
+
+def prepare_source(source_arg: str) -> tuple[str, list[str]]:
+    """Return Parquet source/glob and hard-gate command."""
+    if source_arg.startswith("s3://"):
+        return source_arg, [
+            sys.executable,
+            str(CODE / "preoutcome_gate.py"),
+            "--strict",
+        ]
+
+    root = Path(source_arg).expanduser().resolve()
+    return str(root / "**" / "*.parquet"), [
+        sys.executable,
+        str(CODE / "preoutcome_gate.py"),
+        "--snapshot-root",
+        str(root),
+        "--strict",
+    ]
 
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("snapshot_root", type=Path)
+    p.add_argument(
+        "snapshot_root",
+        help=(
+            "local Works Parquet root or public S3 parquet glob, e.g. "
+            "s3://openalex/data/parquet/works/**/*.parquet"
+        ),
+    )
     p.add_argument("--output-dir", type=Path, default=DATA / "derived" / "openalex")
     args = p.parse_args()
 
-    root = args.snapshot_root.expanduser().resolve()
-    subprocess.run(
-        [
-            sys.executable,
-            str(CODE / "preoutcome_gate.py"),
-            "--snapshot-root",
-            str(root),
-            "--strict",
-        ],
-        check=True,
-    )
+    source_arg = str(args.snapshot_root)
+    parquet_source, gate_cmd = prepare_source(source_arg)
+    subprocess.run(gate_cmd, check=True)
 
-    glob = root / "**" / "*.parquet"
     crosswalk = PROCESS / "DISCIPLINE_CROSSWALK.csv"
     countries = DATA / "derived" / "COUNTRY_CROSSWALK.csv"
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -65,6 +81,9 @@ def main() -> None:
     types_sql = ",".join("'" + x.replace("'", "''") + "'" for x in WORK_TYPES)
     con = duckdb.connect(database=":memory:")
     con.execute("SET preserve_insertion_order=false")
+    if source_arg.startswith("s3://"):
+        con.execute("INSTALL httpfs")
+        con.execute("LOAD httpfs")
 
     con.execute(
         f"""
@@ -87,7 +106,12 @@ def main() -> None:
         """
     )
 
-    work_source = f"read_parquet('{q(glob)}', union_by_name=true)"
+    # Parquet projection and publication_year predicates are deliberately kept
+    # inside the first CTE so DuckDB can use Parquet column/row-group pruning.
+    work_source = (
+        f"read_parquet('{q(parquet_source)}', "
+        "union_by_name=true, hive_partitioning=true)"
+    )
     base_sql = f"""
         WITH eligible AS (
             SELECT
@@ -122,10 +146,18 @@ def main() -> None:
             JOIN concept_map m
               ON (
                   starts_with(m.selector_level, 'subfield')
-                  AND regexp_extract(CAST(e.primary_topic.subfield.id AS VARCHAR), '([0-9]+)$', 1) = m.oa_id
+                  AND regexp_extract(
+                      CAST(e.primary_topic.subfield.id AS VARCHAR),
+                      '([0-9]+)$',
+                      1
+                  ) = m.oa_id
               ) OR (
                   m.selector_level = 'field'
-                  AND regexp_extract(CAST(e.primary_topic.field.id AS VARCHAR), '([0-9]+)$', 1) = m.oa_id
+                  AND regexp_extract(
+                      CAST(e.primary_topic.field.id AS VARCHAR),
+                      '([0-9]+)$',
+                      1
+                  ) = m.oa_id
               )
         ),
         work_country_unique AS (
@@ -175,7 +207,6 @@ def main() -> None:
         )
     """
 
-    # A work must map to at most one frozen concept. This is checked before COPY.
     duplicate_concepts = con.execute(
         base_sql
         + """
@@ -203,11 +234,22 @@ def main() -> None:
                 conceptual_discipline,
                 period,
                 SUM(country_weight) AS fractional_output,
-                SUM(CASE WHEN is_top10 IS NOT NULL THEN country_weight ELSE 0 END) AS impact_denominator,
-                SUM(CASE WHEN is_top10 = TRUE THEN country_weight ELSE 0 END) AS fractional_top10,
-                SUM(CASE WHEN fwci IS NOT NULL THEN country_weight ELSE 0 END) AS fwci_denominator,
-                SUM(CASE WHEN fwci IS NOT NULL THEN country_weight * fwci ELSE 0 END)
-                  / NULLIF(SUM(CASE WHEN fwci IS NOT NULL THEN country_weight ELSE 0 END), 0)
+                SUM(
+                    CASE WHEN is_top10 IS NOT NULL THEN country_weight ELSE 0 END
+                ) AS impact_denominator,
+                SUM(
+                    CASE WHEN is_top10 = TRUE THEN country_weight ELSE 0 END
+                ) AS fractional_top10,
+                SUM(
+                    CASE WHEN fwci IS NOT NULL THEN country_weight ELSE 0 END
+                ) AS fwci_denominator,
+                SUM(
+                    CASE WHEN fwci IS NOT NULL THEN country_weight * fwci ELSE 0 END
+                )
+                  / NULLIF(
+                      SUM(CASE WHEN fwci IS NOT NULL THEN country_weight ELSE 0 END),
+                      0
+                    )
                   AS weighted_mean_fwci
             FROM weighted
             GROUP BY iso3c, country, concept_id, conceptual_discipline, period
@@ -215,7 +257,6 @@ def main() -> None:
         """
     )
 
-    # Coverage diagnostics do not merge historical exposure or estimate effects.
     con.execute(
         base_sql
         + f"""
@@ -225,17 +266,31 @@ def main() -> None:
                 c.concept_id,
                 c.conceptual_discipline,
                 COUNT(DISTINCT c.work_id) AS classified_works,
-                COUNT(DISTINCT CASE WHEN s.n_all_identifiable_countries > 0 THEN c.work_id END)
-                  AS works_with_any_identifiable_country,
-                COUNT(DISTINCT CASE WHEN cov.n_mapped_primary_universe_countries > 0 THEN c.work_id END)
-                  AS works_with_primary_universe_country,
-                AVG(CASE WHEN s.n_all_identifiable_countries > 0 THEN 1.0 ELSE 0.0 END)
-                  AS share_with_any_identifiable_country,
-                AVG(CASE WHEN cov.n_mapped_primary_universe_countries > 0 THEN 1.0 ELSE 0.0 END)
-                  AS share_with_primary_universe_country
+                COUNT(
+                    DISTINCT CASE
+                        WHEN s.n_all_identifiable_countries > 0 THEN c.work_id
+                    END
+                ) AS works_with_any_identifiable_country,
+                COUNT(
+                    DISTINCT CASE
+                        WHEN cov.n_mapped_primary_universe_countries > 0 THEN c.work_id
+                    END
+                ) AS works_with_primary_universe_country,
+                AVG(
+                    CASE WHEN s.n_all_identifiable_countries > 0 THEN 1.0 ELSE 0.0 END
+                ) AS share_with_any_identifiable_country,
+                AVG(
+                    CASE
+                        WHEN cov.n_mapped_primary_universe_countries > 0
+                        THEN 1.0 ELSE 0.0
+                    END
+                ) AS share_with_primary_universe_country
             FROM classified c
             LEFT JOIN (
-                SELECT work_id, MAX(n_all_identifiable_countries) AS n_all_identifiable_countries
+                SELECT
+                    work_id,
+                    MAX(n_all_identifiable_countries)
+                      AS n_all_identifiable_countries
                 FROM country_sized
                 GROUP BY work_id
             ) s USING (work_id)
@@ -247,7 +302,10 @@ def main() -> None:
 
     print(cells_out)
     print(coverage_out)
-    print("Confirmatory outcome cells materialized under a passed hard gate.")
+    print(
+        "Confirmatory outcome cells materialized under a passed hard gate. "
+        f"source={parquet_source}"
+    )
 
 
 if __name__ == "__main__":
