@@ -31,6 +31,8 @@ from openpyxl import load_workbook
 
 ARTICLE_DOI = "10.1242/bio.062604"
 PMCID = "PMC13382973"
+PMC_VERSION = "1"
+PMC_CLOUD_BASE = f"https://pmc-oa-opendata.s3.amazonaws.com/{PMCID}.{PMC_VERSION}/"
 ARTICLE_URLS = [
     f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/",
     f"https://doi.org/{ARTICLE_DOI}",
@@ -297,64 +299,93 @@ def main() -> None:
     discovery_attempts = []
     oa_package_meta = None
 
+    # PMC changed its Article Dataset Distribution Services in August 2026.
+    # Try the current AWS Cloud Service first; retain legacy fallbacks only for
+    # historical reproducibility.
+    cloud_table = urllib.parse.urljoin(PMC_CLOUD_BASE, TARGETS["table_s1"])
+    cloud_dataset = urllib.parse.urljoin(PMC_CLOUD_BASE, TARGETS["dataset1"])
+    table_path = tmp / TARGETS["table_s1"]
+    dataset_path = tmp / TARGETS["dataset1"]
+
     try:
-        oa_files, oa_package_meta = acquire_from_pmc_oa_package(tmp)
-        table_path = oa_files["table_s1"]
-        dataset_path = oa_files["dataset1"]
+        table_meta = download_validated([cloud_table], table_path, "xlsx")
+        dataset_meta = download_validated([cloud_dataset], dataset_path, "zip")
+        table_meta["acquisition"] = "PMC AWS Cloud Service"
+        dataset_meta["acquisition"] = "PMC AWS Cloud Service"
+        oa_package_meta = {
+            "service": "PMC AWS Cloud Service",
+            "base_url": PMC_CLOUD_BASE,
+            "article_version": f"{PMCID}.{PMC_VERSION}",
+        }
+    except Exception as cloud_exc:
+        discovery_attempts.append(
+            {
+                "source": "PMC AWS Cloud Service",
+                "success": False,
+                "error": f"{type(cloud_exc).__name__}: {cloud_exc}",
+            }
+        )
 
-        if not zipfile.is_zipfile(table_path):
-            raise RuntimeError("PMC OA Table S1 is not a valid XLSX container")
-        if not zipfile.is_zipfile(dataset_path):
-            raise RuntimeError("PMC OA Dataset 1 is not a valid ZIP container")
+        try:
+            oa_files, oa_package_meta = acquire_from_pmc_oa_package(tmp)
+            table_path = oa_files["table_s1"]
+            dataset_path = oa_files["dataset1"]
 
-        table_meta = {
+            if not zipfile.is_zipfile(table_path):
+                raise RuntimeError("PMC OA Table S1 is not a valid XLSX container")
+            if not zipfile.is_zipfile(dataset_path):
+                raise RuntimeError("PMC OA Dataset 1 is not a valid ZIP container")
+
+            table_meta = {
             "acquisition": "PMC Open Access package",
             "file": table_path.name,
             "bytes": table_path.stat().st_size,
             "sha256": sha256(table_path),
         }
-        dataset_meta = {
-            "acquisition": "PMC Open Access package",
+            dataset_meta = {
+                "acquisition": "PMC Open Access package",
             "file": dataset_path.name,
             "bytes": dataset_path.stat().st_size,
             "sha256": sha256(dataset_path),
         }
-    except Exception as oa_exc:
-        discovery_attempts.append(
+        except Exception as oa_exc:
+            discovery_attempts.append(
             {
-                "source": "PMC Open Access package",
-                "success": False,
-                "error": f"{type(oa_exc).__name__}: {oa_exc}",
-            }
-        )
+                    "source": "PMC Open Access package",
+                    "success": False,
+                    "error": f"{type(oa_exc).__name__}: {oa_exc}",
+                }
+            )
 
-        links, html_attempts = discover_links()
-        discovery_attempts.extend(html_attempts)
+            links, html_attempts = discover_links()
+            discovery_attempts.extend(html_attempts)
 
-        table_path = tmp / TARGETS["table_s1"]
-        dataset_path = tmp / TARGETS["dataset1"]
+            table_path = tmp / TARGETS["table_s1"]
+            dataset_path = tmp / TARGETS["dataset1"]
 
-        table_urls = [
+            table_urls = [
+            urllib.parse.urljoin(PMC_CLOUD_BASE, TARGETS["table_s1"]),
             links["table_s1"],
             f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/bin/{TARGETS['table_s1']}",
             f"https://pmc.ncbi.nlm.nih.gov/articles/instance/{PMCID.replace('PMC','')}/bin/{TARGETS['table_s1']}",
         ]
-        dataset_urls = [
+            dataset_urls = [
+            urllib.parse.urljoin(PMC_CLOUD_BASE, TARGETS["dataset1"]),
             links["dataset1"],
             f"https://pmc.ncbi.nlm.nih.gov/articles/{PMCID}/bin/{TARGETS['dataset1']}",
             f"https://pmc.ncbi.nlm.nih.gov/articles/instance/{PMCID.replace('PMC','')}/bin/{TARGETS['dataset1']}",
         ]
 
-        table_meta = download_validated(
-            list(dict.fromkeys(table_urls)),
-            table_path,
-            "xlsx",
-        )
-        dataset_meta = download_validated(
-            list(dict.fromkeys(dataset_urls)),
-            dataset_path,
-            "zip",
-        )
+            table_meta = download_validated(
+                list(dict.fromkeys(table_urls)),
+                table_path,
+                "xlsx",
+            )
+            dataset_meta = download_validated(
+                list(dict.fromkeys(dataset_urls)),
+                dataset_path,
+                "zip",
+            )
 
     table_outputs = convert_table_s1(table_path, args.out)
     dataset_outputs = extract_dataset1(dataset_path, args.out)
