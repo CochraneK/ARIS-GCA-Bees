@@ -4,10 +4,12 @@
   "title": "Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals",
   "short_title": "Cross-Species Age Equivalence",
   "year": 2026,
-  "status": "research-design",
+  "status": "pilot-engineering",
   "domain": "comparative biology / geroscience / life-history evolution / computational biology",
-  "summary": "A multi-axis benchmark of cross-species age-equivalence definitions that asks whether developmental, life-history, demographic and molecular clocks yield a coherent common biological-age scale across mammals, and quantifies where and why they disagree.",
-  "authors": ["Cunyi Kang"],
+  "summary": "A multi-axis benchmark of cross-species age-equivalence definitions, now with a working Pilot 0 mapping engine, testing whether developmental, life-history, demographic and molecular clocks yield a coherent common biological-age scale across mammals and quantifying where and why they disagree.",
+  "authors": [
+    "Cunyi Kang"
+  ],
   "aris": {
     "provenance": "ARIS4C guided run with live literature/novelty audit and public-web fallback for literature stages",
     "version": "v0.4.26",
