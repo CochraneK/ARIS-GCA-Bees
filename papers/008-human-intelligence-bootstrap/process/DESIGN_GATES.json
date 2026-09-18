@@ -20,17 +20,17 @@
     {
       "id": "phylogeny",
       "status": "provisional_pass",
-      "requirement": "All 29 species-level v2 taxa resolve exactly in OpenTree and a synthetic induced topology was generated. Confirmatory PGLS/rate models still require a dated within-clade tree or an explicitly justified branch-length strategy."
+      "requirement": "The retained 29 resolve in OpenTree and the expanded 238-taxon screening pool has a complete auditable TNRS/crosswalk layer: 222 clean self-species matches, 15 explicit synonym/operational cases, 3 self-resolvable multi-matches, and one documented OpenTree gap. Confirmatory comparative models still require dated within-clade trees or a justified branch-length strategy."
     },
     {
       "id": "pilot_matrix",
       "status": "provisional_pass",
-      "requirement": "The canonical panel is now 29 exact species; 29/29 have an exact-species evidence route and module_evidence_state_v2 records the A–J observed mask. Behavioral modules remain sparse, so this is an integration pass rather than confirmatory completeness."
+      "requirement": "Pilot 8 now has a 238-taxon screening pool, a staged 79-taxon Tier-1 panel, low-cost standardized screening features, and module_evidence_state_tier1_v0. Current 79-taxon A–J coverage is 9,16,11,8,10,21,60,55,53,41 respectively. A–E deep coding remains incomplete."
     },
     {
       "id": "model_recoverability",
       "status": "blocked",
-      "requirement": "Observed 29×10 coverage yields recovery ≈0.660 additive, 0.346 weakest-link and 0.162 threshold in the design diagnostic. Even complete random 29-taxon sampling remains weak for threshold identification. Unblock by expanding A/C/D/E/F coverage and selecting configuration-diverse counterexample taxa, then rerun."
+      "requirement": "Architecture-balanced v2 simulation shows the 79-taxon design is viable in principle but not yet empirically adequate: current recovery is ≈0.768 additive, 0.414 weakest-link, 0.448 threshold; complete random-configuration 79 reaches ≈1.000/0.850/0.748, while an oracle configuration-diverse upper bound reaches ≈1.000/1.000/0.915. Unblock only after A–F deep coding/backfill, O1–O7 outcome coding, H/J improvement, empirical configuration audit, and rerun on observed values/missingness. Dynamic interaction/feedback requires a separately specified temporal/network model."
     },
     {
       "id": "hominin_layer",
