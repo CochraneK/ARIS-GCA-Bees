@@ -1,0 +1,131 @@
+# ARIS4C003 STATUS
+
+**Canonical state:** `DESIGN_LOCKED / OUTCOME_LOCKED`  
+**Updated:** 2026-09-18  
+**Contemporary confirmatory outcomes opened:** **NO**
+
+This file is the operational resume point for ARIS4C003. Historical exposure
+data and schema-only metadata checks are allowed before outcome unlock;
+country×discipline contemporary results are not.
+
+## Closed gates
+
+- [x] ARIS provenance frozen: v0.4.26 / `951654847b015585385b2448c5667dcd04e7b56b`.
+- [x] 21 confirmatory concepts frozen as D01–D21.
+- [x] Primary OpenAlex discipline crosswalk frozen.
+- [x] IKES 11-dimension rubric frozen.
+- [x] Coder A completed before modern outcome inspection.
+- [x] Fresh-context Coder B packet frozen.
+- [x] Coder-B raw-response ingestion validates matrix, D01–D21 evidence
+      sections, confidence labels, and independence declaration.
+- [x] Unflagged IKES cells are immutable A/B means; only missing or
+      abs-difference >=2 cells may be adjudicated.
+- [x] COLDAT historical exposure pipeline audited.
+- [x] COLDAT current-state country universe: 159/159 resolved.
+- [x] COLDAT original-vs-OWID imperial-intensity cross-check: max relative
+      difference 0.
+- [x] CEPII Gravity V202211 audited: 12,561 complete unordered pairs and
+      156 `col_dep_ever=1` ties.
+- [x] OpenAlex public-S3 Works schema probe PASS without outcome aggregation.
+- [x] OpenAlex materializers support local Parquet or anonymous public S3.
+- [x] Country and dyad fractional-counting rules frozen.
+- [x] Primary mature period 2019–2022 frozen.
+- [x] PPML/HDFE estimator and clustering frozen.
+- [x] 999 IKES-label permutations and 21 leave-one-discipline-out diagnostics
+      frozen.
+- [x] Period-specific secondary persistence profiles frozen in Amendment 003.
+- [x] Small-N imperial-center corroboration protocol frozen.
+- [x] Pre-outcome synthetic CI covers data builders, Coder-B ingestion/freeze,
+      PPML engine, and design gate.
+- [x] Novelty claim narrowed: not “colonialism affects science,” but the
+      cross-disciplinary historical exposure × independently coded field
+      entanglement gradient.
+
+## Remaining integrity gate
+
+The only irreducible pre-outcome step is a **genuinely independent Coder B**
+run in a fresh GPTPage/model context that has not seen:
+
+- Coder A scores;
+- contemporary country×discipline outcomes;
+- confirmatory ranking/bibliometric results.
+
+Use:
+
+`process/IKES_CODER_B_PACKET.md`
+
+Save the untouched response under:
+
+`process/gptpage/<date>_ikes-coder-b-raw.md`
+
+Then execute:
+
+```bash
+python code/ingest_coder_b.py \
+  process/gptpage/<date>_ikes-coder-b-raw.md \
+  --output-csv process/IKES_CODER_B.csv \
+  --output-notes process/IKES_CODER_B.md
+
+python code/adjudicate_ikes.py \
+  process/IKES_CODER_A.csv \
+  process/IKES_CODER_B.csv \
+  --output-dir process/ikes_adjudication
+```
+
+Resolve only the automatically flagged missing / abs-difference >=2 cells
+against historical evidence, then:
+
+```bash
+python code/freeze_ikes.py \
+  process/ikes_adjudication/IKES_DISAGREEMENTS.csv \
+  --output process/IKES_FROZEN.csv \
+  --provenance process/IKES_FROZEN.provenance.json \
+  --coder-a process/IKES_CODER_A.csv \
+  --coder-b process/IKES_CODER_B.csv
+```
+
+## Unlock sequence after Coder B
+
+Do not reorder these steps.
+
+1. `python code/preoutcome_gate.py --strict`
+2. Materialize OpenAlex country cells.
+3. Materialize OpenAlex dyad-positive cells.
+4. Build complete country×discipline and pair×discipline panels with explicit
+   eligible zeros.
+5. Run `run_confirmatory_models.py`.
+6. Run `run_imperial_corroboration.py`.
+7. Inspect the three headline 2019–2022 estimates **for the first time** along
+   with permutation/LOO diagnostics.
+8. Interpret the full prespecified temporal profile.
+9. Only then proceed to secondary ranking/prestige and broad exploratory
+   all-field layers.
+
+## Headline family
+
+Exactly three confirmatory gradient coefficients:
+
+1. former-colony fractional output: Exposure × IKES;
+2. former-colony Top-10% impact rate: Exposure × IKES;
+3. former-colonial-tie collaboration: ColonialTie × IKES.
+
+No ranking result, earlier/later period, colonizer stratum, or exploratory field
+may replace a null/inconvenient headline result.
+
+## Secondary source roles
+
+- Leiden Open Edition: open processing/indicator robustness, but shares
+  OpenAlex as the bibliographic source.
+- QS Subject: prestige-heavy secondary layer.
+- THE Subject: broad composite secondary layer.
+- Shanghai GRAS: research-oriented external-source ranking contrast using
+  WoS/InCites components.
+
+These sources cannot be used to “rescue” the primary outcome family.
+
+## Resume rule
+
+If a future chat resumes ARIS4C003, read this file, `MODEL_SPEC_LOCK.json`,
+the three preregistration amendments, and `preoutcome_gate.py` before changing
+the design. Never infer that Coder B or outcome unlock happened merely because
+time has passed.
