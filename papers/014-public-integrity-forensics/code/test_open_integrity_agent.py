@@ -157,3 +157,27 @@ def test_e5_alone_can_never_be_high_priority():
     # ABSTAIN is not even a flag; if an E5 flag is later introduced the priority
     # policy still forbids E5-only HIGH.
     assert review_priority([f]) != "HIGH"
+
+
+def test_missing_debarment_coverage_abstains_instead_of_passing():
+    from open_integrity_agent import InForceDebarmentDetector
+
+    finding = InForceDebarmentDetector().run(base_case())
+    assert finding.status == Status.ABSTAIN
+    assert finding.applicable is False
+
+
+def test_explicit_debarment_coverage_can_support_negative_pass():
+    from open_integrity_agent import InForceDebarmentDetector
+
+    case = base_case()
+    case.source_coverage.add("debarment")
+    finding = InForceDebarmentDetector().run(case)
+    assert finding.status == Status.PASS
+    assert finding.applicable is True
+
+
+def test_missing_ownership_or_public_office_coverage_abstains():
+    finding = PublicOfficeOwnershipLinkDetector().run(base_case())
+    assert finding.status == Status.ABSTAIN
+    assert finding.applicable is False
