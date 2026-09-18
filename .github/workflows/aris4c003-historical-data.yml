@@ -1,0 +1,121 @@
+name: ARIS4C003 historical exposure refresh
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/aris4c003-historical-data.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  historical-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+
+      - name: Acquire OWID-processed COLDAT and source manifest
+        run: |
+          python code/acquire_sources.py init
+          python code/acquire_sources.py coldat --execute
+
+      - name: Acquire original COLDAT CC0 file
+        run: |
+          mkdir -p data/raw/coldat
+          curl -fL --retry 4 --retry-delay 2 \
+            "https://dataverse.harvard.edu/api/access/datafile/7416946?format=original" \
+            -o data/raw/coldat/COLDAT_colonies.tab
+          python code/acquire_sources.py register \
+            --source coldat_original \
+            --file data/raw/coldat/COLDAT_colonies.tab
+
+      - name: Build historical exposure tables
+        run: |
+          mkdir -p data/derived
+          python code/build_coldat_exposures.py \
+            --years data/raw/coldat/years-colonized.csv \
+            --colonizer-year data/raw/coldat/colonizer-by-country-year.csv \
+            --output-dir data/derived
+          python code/build_coldat_imperial_intensity.py \
+            data/raw/coldat/COLDAT_colonies.tab \
+            data/derived/COLDAT_IMPERIAL_INTENSITY.csv
+
+      - name: Build primary country crosswalk
+        run: |
+          python code/build_primary_country_crosswalk.py \
+            data/derived/COLDAT_FORMER_COLONY_EXPOSURE.csv \
+            data/derived/COUNTRY_CROSSWALK.csv \
+            --unresolved-output data/derived/COUNTRY_CROSSWALK_UNRESOLVED.csv
+
+      - name: Audit historical outputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import pandas as pd
+
+          d = Path("data/derived")
+          exposure = pd.read_csv(d / "COLDAT_FORMER_COLONY_EXPOSURE.csv")
+          intensity = pd.read_csv(d / "COLDAT_IMPERIAL_INTENSITY.csv")
+          cross = pd.read_csv(d / "COUNTRY_CROSSWALK.csv")
+          unresolved = pd.read_csv(d / "COUNTRY_CROSSWALK_UNRESOLVED.csv")
+
+          powers = {"BEL","GBR","FRA","DEU","NLD","PRT","ESP","ITA"}
+          assert powers.issubset(set(exposure["iso3c"])), powers-set(exposure["iso3c"])
+          assert set(intensity["iso3c"]) == powers
+          assert intensity["cumulative_colony_years_ruled"].gt(0).all()
+          assert cross["status"].eq("RESOLVED").all()
+          assert len(unresolved) == 0
+          assert exposure["iso3c"].is_unique
+          assert cross["iso3c"].is_unique
+
+          audit = {
+              "exposure_rows": int(len(exposure)),
+              "ever_colonized": int(exposure["ever_colonized"].sum()),
+              "country_crosswalk_rows": int(len(cross)),
+              "imperial_centers": intensity[
+                  ["iso3c","cumulative_colony_years_ruled","distinct_colonies","peak_simultaneous_colonies"]
+              ].to_dict("records"),
+              "status": "PASS",
+          }
+          Path("process/HISTORICAL_DATA_AUDIT.json").write_text(
+              json.dumps(audit, indent=2) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(audit, indent=2))
+          PY
+
+      - name: Commit compact reproducible historical artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/manifests/source_manifest.json
+          git add data/derived/COLDAT_FORMER_COLONY_EXPOSURE.csv
+          git add data/derived/COLDAT_COLONIZER_IDENTITY.csv
+          git add data/derived/COLDAT_RULER_PROFILE_LOWER_BOUND.csv
+          git add data/derived/COLDAT_IMPERIAL_INTENSITY.csv
+          git add data/derived/COUNTRY_CROSSWALK.csv
+          git add data/derived/COUNTRY_CROSSWALK_UNRESOLVED.csv
+          git add process/HISTORICAL_DATA_AUDIT.json
+          if git diff --cached --quiet; then
+            echo "Historical artifacts already current."
+          else
+            git commit -m "ARIS4C003 refresh historical exposure artifacts"
+            git push
+          fi
