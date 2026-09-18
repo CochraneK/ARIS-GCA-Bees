@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ROOT / "papers"
 
-FINAL_RE = re.compile(r"(final|submission)", re.I)
+FINAL_RE = re.compile(r"(^|[-_])(final|final-manuscript|submission-ready|submission-package-ready)($|[-_])", re.I)
 
 def main() -> int:
     rows = []
@@ -18,9 +18,8 @@ def main() -> int:
         p = json.loads(manifest.read_text(encoding='utf-8'))
         links = p.get('links', {})
         outputs = p.get('outputs', {})
-        is_final = bool(FINAL_RE.search(str(p.get('status', ''))))
-        en = bool(links.get('paper_en')) or outputs.get('paper_en') in {'complete','final'}
-        zh = bool(links.get('paper_zh')) or outputs.get('paper_zh') in {'complete','final'}
+        en = outputs.get('paper_en') in {'complete','final'}
+        zh = outputs.get('paper_zh') in {'complete','final'}
         fig = outputs.get('figures', {}) if isinstance(outputs.get('figures'), dict) else {}
         tab = outputs.get('tables', {}) if isinstance(outputs.get('tables'), dict) else {}
         fig_count = int(fig.get('count', 0) or 0)
