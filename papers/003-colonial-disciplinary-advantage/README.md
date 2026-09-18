@@ -1,6 +1,6 @@
 # ARIS4C003 · Colonial Legacies and the Global Geography of Disciplinary Advantage
 
-**Status:** pre-data research design / ARIS conditional GO
+**Status:** design locked / outcome locked · executable pipeline ready
 
 **ARIS provenance:** v0.4.26 · `951654847b015585385b2448c5667dcd04e7b56b`
 
@@ -61,7 +61,7 @@ Test whether ranking/reputation outcomes remain unusually high relative to conte
 
 ## Confirmatory conceptual disciplines
 
-The conceptual set is now frozen before outcome inspection; database crosswalks are not yet frozen:
+The conceptual set and primary OpenAlex crosswalk are frozen before outcome inspection:
 
 1. Anthropology
 2. Archaeology
@@ -167,3 +167,33 @@ Before full contemporary outcomes are opened:
 - [ ] write preregistration-style specification.
 
 After those gates, data acquisition and modeling can begin.
+
+
+## Current execution gate
+
+The project now enforces a machine-readable pre-outcome lock.
+
+**Completed before contemporary confirmatory outcomes:**
+
+- 21 conceptual disciplines frozen as D01–D21;
+- OpenAlex primary-topic crosswalk frozen;
+- Coder A IKES pass complete and machine-readable;
+- independent Coder B packet frozen for a fresh GPTPage/model context;
+- country attribution, multilateral dyad weighting, work types, time windows, and zero-cell rules frozen;
+- COLDAT / CEPII / OpenAlex acquisition and transformation scripts implemented;
+- PPML model family frozen in `process/MODEL_SPEC_LOCK.json`;
+- `code/run_confirmatory_models.py` implements the three headline 2019–2022 tests plus persistence, 999 IKES-label permutations, leave-one-discipline-out, volume, and median-IKES sensitivities;
+- outcome-blind PyFixest model-engine smoke tests pass in GitHub Actions;
+- imperial-center evidence is explicitly small-N and has its own frozen corroboration protocol.
+
+**Still required before `OUTCOME_UNLOCKED`:**
+
+1. independent blinded Coder B in a fresh context;
+2. outcome-blind adjudication and `IKES_FROZEN.csv`;
+3. successful historical-source builds/checksums and audited country/dyad crosswalks;
+4. exact OpenAlex snapshot schema probe and local/public snapshot availability.
+
+Run `python code/preoutcome_gate.py --require-design-locked` to assert the design gate.
+Run `python code/preoutcome_gate.py --strict` only when attempting to unlock contemporary confirmatory outcomes.
+
+The intended state before those external/local gates close is **DESIGN_LOCKED / OUTCOME_LOCKED**. This is an integrity feature, not an unfinished hypothesis.
