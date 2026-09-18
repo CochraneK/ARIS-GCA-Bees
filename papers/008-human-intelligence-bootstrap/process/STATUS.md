@@ -111,3 +111,20 @@ A module-specific OpenAlex literature-exposure proxy was built for all 29 specie
 A direct diagnostic against the 13 exact ACDB-matched species found that ACDB behaviour-row counts do **not** behave like an exhaustive repertoire census: Spearman correlation with behavioural research exposure was about −0.44. The interpretation is measurement/curation structure, not a negative biological effect of research.
 
 Design consequence: raw ACDB behaviour counts are now prohibited as the primary O4 cultural-repertoire outcome. ACDB remains a source-traceable presence/transmission/domain evidence layer.
+
+
+## Pilot 5 novelty update
+
+The closest-prior-work map now includes conceptual, experimental, comparative and cultural-evolution predecessors.
+
+The novelty claim has been narrowed. ARIS4C008 does **not** claim novelty for:
+- multi-domain interaction/feedback accounts of human cognition;
+- cumulative-culture criteria;
+- packages of teaching/imitation/prosociality;
+- phylogenetic or research-effort correction;
+- primate general/cultural-intelligence factors;
+- coevolution of social learning, brain size, lifespan and sociality;
+- network memory;
+- cultural open-endedness as a proposed human distinction.
+
+The provisional contribution is the **configuration-testing design**: a multi-clade, source-traceable comparison of additive, weakest-link, threshold and feedback architectures, with deliberate evolutionary counterexamples and a separate hominin temporal layer.
