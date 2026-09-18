@@ -1,0 +1,37 @@
+{
+  "id": "012",
+  "slug": "oppositional-causal-inversion",
+  "title": "When Opposites Become Causes: A Cross-Domain Science of Oppositional Causal Inversion",
+  "short_title": "Oppositional Causal Inversion",
+  "year": 2026,
+  "status": "research-design",
+  "domain": "metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems",
+  "summary": "A cross-domain framework for testing when an increase in a construct causally increases a prespecified functional opposite after a change in actor, level, time, construct, feedback state, or capacity regime. Orwell's war-peace, freedom-slavery, and ignorance-strength triad is treated as a motivating stress test rather than as a conclusion.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided design with live prior-art audit and falsification-first framing",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/012-oppositional-causal-inversion"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "causal inversion",
+    "paradox",
+    "unintended consequences",
+    "counterfinality",
+    "choice overload",
+    "autonomy",
+    "deliberate ignorance",
+    "less-is-more",
+    "deterrence",
+    "intergroup conflict",
+    "Orwell"
+  ]
+}
