@@ -1,0 +1,412 @@
+{
+  "snapshot_root": "s3://openalex/data/parquet/works/updated_date=2016-06-24/part_0000.parquet",
+  "parquet_file_count": 1,
+  "top_level_columns": [
+    {
+      "column_name": "id",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "doi",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "title",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "display_name",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "ids",
+      "column_type": "MAP(VARCHAR, VARCHAR)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "indexed_in",
+      "column_type": "VARCHAR[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "publication_date",
+      "column_type": "DATE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "publication_year",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "language",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "type",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "authorships",
+      "column_type": "STRUCT(author STRUCT(display_name VARCHAR, id VARCHAR, orcid VARCHAR), author_position VARCHAR, affiliations STRUCT(institution_ids VARCHAR[], raw_affiliation_string VARCHAR)[], countries VARCHAR[], raw_author_name VARCHAR, raw_orcid VARCHAR, is_corresponding BOOLEAN, raw_affiliation_strings VARCHAR[], institutions STRUCT(country_code VARCHAR, display_name VARCHAR, id VARCHAR, lineage VARCHAR[], ror VARCHAR, \"type\" VARCHAR)[])[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "authors_count",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "corresponding_author_ids",
+      "column_type": "VARCHAR[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "corresponding_institution_ids",
+      "column_type": "VARCHAR[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "primary_topic",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, score FLOAT, subfield STRUCT(id VARCHAR, display_name VARCHAR), field STRUCT(id VARCHAR, display_name VARCHAR), \"domain\" STRUCT(id VARCHAR, display_name VARCHAR))",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "topics",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, score FLOAT, subfield STRUCT(id VARCHAR, display_name VARCHAR), field STRUCT(id VARCHAR, display_name VARCHAR), \"domain\" STRUCT(id VARCHAR, display_name VARCHAR))[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "keywords",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, score FLOAT)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "concepts",
+      "column_type": "STRUCT(id VARCHAR, wikidata VARCHAR, display_name VARCHAR, \"level\" INTEGER, score FLOAT)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "locations",
+      "column_type": "STRUCT(id VARCHAR, \"source\" STRUCT(id VARCHAR, display_name VARCHAR, issn_l VARCHAR, issn VARCHAR[], is_oa BOOLEAN, is_in_doaj BOOLEAN, is_core BOOLEAN, host_organization VARCHAR, host_organization_name VARCHAR, host_organization_lineage VARCHAR[], host_organization_lineage_names VARCHAR[], \"type\" VARCHAR), is_oa BOOLEAN, is_published BOOLEAN, landing_page_url VARCHAR, pdf_url VARCHAR, raw_source_name VARCHAR, raw_type VARCHAR, provenance VARCHAR, license VARCHAR, license_id VARCHAR, \"version\" VARCHAR, is_accepted BOOLEAN)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "locations_count",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "primary_location",
+      "column_type": "STRUCT(id VARCHAR, \"source\" STRUCT(id VARCHAR, display_name VARCHAR, issn_l VARCHAR, issn VARCHAR[], is_oa BOOLEAN, is_in_doaj BOOLEAN, is_core BOOLEAN, host_organization VARCHAR, host_organization_name VARCHAR, host_organization_lineage VARCHAR[], host_organization_lineage_names VARCHAR[], \"type\" VARCHAR), is_oa BOOLEAN, is_published BOOLEAN, landing_page_url VARCHAR, pdf_url VARCHAR, raw_source_name VARCHAR, raw_type VARCHAR, provenance VARCHAR, license VARCHAR, license_id VARCHAR, \"version\" VARCHAR, is_accepted BOOLEAN)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "best_oa_location",
+      "column_type": "STRUCT(id VARCHAR, \"source\" STRUCT(id VARCHAR, display_name VARCHAR, issn_l VARCHAR, issn VARCHAR[], is_oa BOOLEAN, is_in_doaj BOOLEAN, is_core BOOLEAN, host_organization VARCHAR, host_organization_name VARCHAR, host_organization_lineage VARCHAR[], host_organization_lineage_names VARCHAR[], \"type\" VARCHAR), is_oa BOOLEAN, is_published BOOLEAN, landing_page_url VARCHAR, pdf_url VARCHAR, raw_source_name VARCHAR, raw_type VARCHAR, provenance VARCHAR, license VARCHAR, license_id VARCHAR, \"version\" VARCHAR, is_accepted BOOLEAN)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "sustainable_development_goals",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, score DOUBLE)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "awards",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, funder_award_id VARCHAR, funder_id VARCHAR, funder_display_name VARCHAR)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "funders",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, ror VARCHAR)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "institutions",
+      "column_type": "STRUCT(id VARCHAR, display_name VARCHAR, ror VARCHAR, country_code VARCHAR, \"type\" VARCHAR, lineage VARCHAR[])[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "countries_distinct_count",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "institutions_distinct_count",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "open_access",
+      "column_type": "STRUCT(is_oa BOOLEAN, oa_status VARCHAR, any_repository_has_fulltext BOOLEAN, oa_url VARCHAR)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_paratext",
+      "column_type": "BOOLEAN",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_retracted",
+      "column_type": "BOOLEAN",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "is_xpac",
+      "column_type": "BOOLEAN",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "biblio",
+      "column_type": "STRUCT(volume VARCHAR, issue VARCHAR, first_page VARCHAR, last_page VARCHAR)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "referenced_works",
+      "column_type": "VARCHAR[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "referenced_works_count",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "related_works",
+      "column_type": "VARCHAR[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "abstract_inverted_index",
+      "column_type": "VARCHAR",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cited_by_count",
+      "column_type": "INTEGER",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "counts_by_year",
+      "column_type": "STRUCT(\"year\" INTEGER, cited_by_count INTEGER)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "apc_list",
+      "column_type": "STRUCT(\"value\" INTEGER, currency VARCHAR, value_usd INTEGER)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "apc_paid",
+      "column_type": "STRUCT(\"value\" DOUBLE, currency VARCHAR, value_usd DOUBLE)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "fwci",
+      "column_type": "DOUBLE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "citation_normalized_percentile",
+      "column_type": "STRUCT(\"value\" DOUBLE, is_in_top_1_percent BOOLEAN, is_in_top_10_percent BOOLEAN)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "cited_by_percentile_year",
+      "column_type": "STRUCT(min INTEGER, max INTEGER)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "mesh",
+      "column_type": "STRUCT(descriptor_ui VARCHAR, descriptor_name VARCHAR, qualifier_ui VARCHAR, qualifier_name VARCHAR, is_major_topic BOOLEAN)[]",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "has_content",
+      "column_type": "STRUCT(pdf BOOLEAN, grobid_xml BOOLEAN)",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "has_fulltext",
+      "column_type": "BOOLEAN",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "created_date",
+      "column_type": "TIMESTAMP WITH TIME ZONE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    },
+    {
+      "column_name": "updated_date",
+      "column_type": "DATE",
+      "null": "YES",
+      "key": null,
+      "default": null,
+      "extra": null
+    }
+  ],
+  "required_top_level_missing": [],
+  "nested_binding_checks": {
+    "primary_topic_subfield_id": "OK",
+    "primary_topic_field_id": "OK",
+    "authorship_country": "OK",
+    "citation_top10": "OK"
+  },
+  "safe_to_build_extractor": true,
+  "note": "Schema-only probe; no country-by-discipline outcome aggregation performed.",
+  "checked_utc": "2026-09-18T02:16:00+00:00",
+  "snapshot_prefix": "s3://openalex/data/parquet/works/",
+  "access_mode": "anonymous public S3 range read via DuckDB httpfs",
+  "outcomes_materialized": false,
+  "integrity_note": "Schema/binding only. No country-by-discipline aggregate or substantive confirmatory result was computed."
+}
