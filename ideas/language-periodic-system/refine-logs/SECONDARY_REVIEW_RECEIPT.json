@@ -1,0 +1,75 @@
+{
+  "candidate": "language-periodic-system",
+  "canonical_branch": "main",
+  "primary_executor_family": "OpenAI GPT",
+  "reviewer": {
+    "provider": "WorkBuddy platform",
+    "model": "hy3",
+    "family": "non-OpenAI-GPT",
+    "independent_from_primary": true,
+    "fresh_session": true,
+    "trace_id": "ARIS4C-review-slot-002-workbuddy-hy3",
+    "timestamp": "2026-09-18T03:20:00Z",
+    "literature_search_cutoff": "2026-09-18"
+  },
+  "verdict": "PASS",
+  "promotion_authorized": true,
+  "executive_rationale": "The candidate falsifiably stress-tests Baker's periodic-table metaphor with an explicit periodic/circular model vs factor/tree/graph/low-rank/null alternatives under held-out evaluation. The evidence chain (directly optimized circle persistently underpredicts hierarchical/low-rank models under family hold-out across TLI/GBI/WALS; circular-Robinson/closure diagnostics fail; no predefined local-periodic domain; multi-source replication) solidly supports the bounded negative claim. Faithfulness is reasonable, capacity boundary cautious, geography contradiction preserved, and the novelty wedge is unoccupied in independent search. Remaining weaknesses are manuscript-level and do not mandate new experiments before promotion.",
+  "answers": {
+    "novelty_collision": "No fatal collision. Baker 2001 is a parameter-hierarchy tree, not an equivalent predictive contest. Port/Marcolli 2018/2022 topology, Bjerva 2019 tree-model WALS prediction, Karkada 2026 NLP representation geometry, Grambank 2023, Graff 2025, Verkerk 2025/2026, and SIGTYP none perform the equivalent explicit periodic-vs-nonperiodic predictive model competition. Novelty wedge unoccupied.",
+    "faithfulness": "Direct n-1 angular optimization + circular-Robinson row-unimodality + explicit wrap-around closure is a fair, targeted operationalization of the simple global periodic hypothesis, stricter than inherited spectral angles. Caveat: it tests the single-global-circle strong form, not every form of Baker's original multi-dimensional parameter hierarchy; scope is transparently declared.",
+    "capacity": "Tree/graph are more flexible than a single circle; the candidate handles this via MODEL_CAPACITY_NOTE and rests the negative conclusion on direct optimization, predefined domains, circular-Robinson/closure, low-rank comparison, repeated splits, and replication. 'Tree wins != language is a tree' is explicit. Adequate.",
+    "validation": "Top-level-family hold-out + geographic blocks + matched-size calibration + GBI curation replication + WALS external replication are sufficient for the bounded negative claim. A full phylogenetic model is not mandatory before promotion. Manuscript must state that residual genealogical/contact dependence is not fully removed.",
+    "statistics": "Repeated splits + bootstrap CI above zero adequately support stable tree>circle. Must state in manuscript: bootstrap quantifies split sensitivity not phylogenetic uncertainty; label Stage1->1I exploratory and discuss multiple comparisons; report N, feature set, selection rule, effect sizes. 20 splits is small (optional increase to 50-100).",
+    "data_dependence": "TLI/GBI weak cross-region transfer vs WALS strong cross-Macroarea transfer (0.634) is correctly preserved as a contradiction and not promoted to a universal geography result. Robust cross-source result is family-held-out tree/non-circle > simple circle.",
+    "publication_value": "Falsifiable stress test of an old un-rigorously-tested metaphor with direct circularity diagnostics and multi-source replication is a reasonable, valuable diagnostic/constraint paper. Value is methodological rigor, not new structure discovery.",
+    "claim_rewrite": "The global-circle form of the language periodic-table hypothesis tested here is not supported by predictive and held-out circularity evidence; hierarchical/non-circular models provide stronger family-held-out benchmarks across TLI, GBI, and WALS, without establishing one universal tree geometry."
+  },
+  "mandatory_changes": [
+    "State explicitly that the bootstrap quantifies split sensitivity, not phylogenetic uncertainty; state that residual genealogical/contact dependence is not fully removed.",
+    "Label Stage 1 -> 1I as exploratory/screening; explain handling of multiple exploratory stages and multiple comparisons; avoid confirmatory language.",
+    "Explicitly preserve and discuss the WALS vs TLI/GBI geography contradiction; do not promote it to a universal geographic conclusion.",
+    "Make explicit that the test targets the simple global circle strong form of Baker's metaphor, not every form of Baker's original parameter hierarchy / multi-dimensional periodic system.",
+    "Report per-stage language count N, feature set, feature-selection rule, and effect sizes with CIs."
+  ],
+  "optional_improvements": [
+    "Increase family-held-out splits to 50-100 for stronger bootstrap stability.",
+    "As a supplement (not mandatory), add a Verkerk-style phylogenetic regression / controlled comparison.",
+    "Clean up or annotate Stage 1D closure-ratio values for tree/random order (only circular order is meaningful).",
+    "Consider reporting p-values or permutation tests alongside the bootstrap CI."
+  ],
+  "permitted_claim": "The global-circle form of the language periodic-table hypothesis tested here is not supported by predictive and held-out circularity evidence; hierarchical/non-circular models provide stronger family-held-out benchmarks across TLI, GBI, and WALS, without establishing one universal tree geometry.",
+  "unsupported_claims": [
+    "No possible form of linguistic periodicity can ever exist.",
+    "Language has been proven to be tree-shaped.",
+    "TLI/GBI geographic heterogeneity is a universal property of all typological datasets.",
+    "Statistical geometry proves universal grammar or causal mechanisms.",
+    "Family-held-out validation fully removes phylogenetic/contact dependence."
+  ],
+  "prior_art_collisions": [],
+  "evidence_inspected": [
+    "papers/002-REVIEW-CANDIDATE.md",
+    "ideas/language-periodic-system/refine-logs/WORKBUDDY_HANDOFF.md",
+    "ideas/language-periodic-system/idea.json",
+    "ideas/language-periodic-system/RESEARCH_BRIEF.md",
+    "ideas/language-periodic-system/ARIS_STATUS.md",
+    "ideas/language-periodic-system/README.md",
+    "ideas/language-periodic-system/PILOT_REPORT.md",
+    "ideas/language-periodic-system/STAGE1_REPORT.md",
+    "ideas/language-periodic-system/STAGE1B_REPORT.md",
+    "ideas/language-periodic-system/STAGE1C_REPORT.md",
+    "ideas/language-periodic-system/STAGE1D_REPORT.md",
+    "ideas/language-periodic-system/STAGE1E_REPORT.md",
+    "ideas/language-periodic-system/STAGE1F_REPORT.md",
+    "ideas/language-periodic-system/STAGE1G_REPORT.md",
+    "ideas/language-periodic-system/STAGE1H_REPORT.md",
+    "ideas/language-periodic-system/STAGE1I_REPORT.md",
+    "ideas/language-periodic-system/refine-logs/FINAL_PROPOSAL.md",
+    "ideas/language-periodic-system/refine-logs/SECONDARY_REVIEW_PACKET.md",
+    "ideas/language-periodic-system/refine-logs/MODEL_CAPACITY_NOTE.md",
+    "ideas/language-periodic-system/refine-logs/EXPERIMENT_TRACKER.md",
+    "ideas/language-periodic-system/idea-stage/IDEA_REPORT.md",
+    "independent WebSearch 2026-09-18 (Baker 2001 tree; Bjerva 2019; Port/Marcolli 2018/2022; Karkada 2026; Grambank 2023; Graff 2025; Verkerk 2025/2026)"
+  ],
+  "integrity_statement": "I independently reviewed the candidate rather than merely endorsing the primary executor's summary. I performed an independent literature search, cross-checked numbers across stage reports/idea.json/EXPERIMENT_TRACKER, and issued PASS based on evidence with manuscript-level mandatory statement requirements. I am not from the OpenAI GPT family that executed the primary run."
+}
