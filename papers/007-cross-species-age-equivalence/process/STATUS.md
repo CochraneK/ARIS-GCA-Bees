@@ -1,7 +1,7 @@
 # STATUS — ARIS4C007
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT0_ENGINEERING_COMPLETE / OFFICIAL_DATA_ACQUISITION_PENDING`  
+**State:** `PILOT0_OFFICIAL_COMPLETE / PILOT1_INDEPENDENT_AXIS_ACQUISITION`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
@@ -27,6 +27,11 @@ The project is no longer framed as merely inventing a better "animal years" calc
 - [x] Reproducible public-source downloader with SHA-256 provenance added.
 - [x] Engineering smoke test run on a stale public AnAge mirror: 1,329 mammal rows, 672 with gestation + maturity + maximum-longevity completeness.
 - [x] Smoke test confirmed species- and stage-dependent disagreement is technically measurable; no smoke-test number is treated as a scientific estimate.
+- [x] Official AnAge Pilot 0 completed successfully on GitHub Actions run `35300106950`.
+- [x] Official build: 4,645 species rows, 1,349 mammal rows, 786 mammals complete for gestation + maturity + maximum longevity (785 non-human mappings to human).
+- [x] 3,140 prespecified mapping rows generated across maturity and 25/50/75% maximum-lifespan positions.
+- [x] Official descriptive disagreement summary recorded in `process/PILOT0_OFFICIAL_RESULTS.md`.
+- [x] Reproducible summarizer added; artifact/source hashes recorded.
 
 ## Primary novelty claim to test
 
@@ -71,9 +76,11 @@ Species are not independent observations. Phylogenetic block cross-validation an
 
 ## Next execution queue
 
-1. Acquire and pin the current official AnAge build; rerun Pilot 0 and discard mirror-derived numerical outputs.
-2. Acquire/pin Myhrvold and the Péron et al. 2019 mortality-parameter supplement.
-3. Extend the deterministic benchmark from two to at least four low-cost mappings before any methylation work.
+1. Acquire/pin Myhrvold and the Péron et al. 2019 mortality-parameter supplement.
+2. Add held-out milestones so candidate mappings are judged on information not used to construct them.
+3. Reproduce a Translating Time event-scale subset and add demographic survival/hazard mappings.
+4. Extend the deterministic benchmark beyond the current two life-history coordinates.
+5. Add published molecular clocks only after the independent event/demographic benchmark is stable.
 4. Build a pilot species intersection with high-quality data across >=3 age axes.
 5. Reproduce published Translating Time / epigenetic mappings on a small reference set.
 6. Run a first disagreement atlas.
