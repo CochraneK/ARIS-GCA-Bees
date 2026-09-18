@@ -335,7 +335,7 @@ def main() -> None:
         age_years, age_unit=parse_age_years(age_raw)
 
         normalized.append({
-            "geo_accession": s.get("geo_accession", ""),
+            "geo_accession": clean_scalar(s.get("geo_accession")),
             "title": clean_scalar(s.get("title")),
             "source_name": clean_scalar(s.get("source_name_ch1")),
             "organism": organism,
