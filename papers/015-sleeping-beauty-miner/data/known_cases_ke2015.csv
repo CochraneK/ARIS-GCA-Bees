@@ -1,0 +1,8 @@
+case_id,title,authors,publication_year,published_awakening_year,published_B,field,doi,reference_doi,reference_note
+ke2015_01,"Concerning adsorption in solutions","Freundlich, H",1906,2002,11600,Chemistry,,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
+ke2015_02,"Preparation of graphitic oxide","Hummers, WS; Offeman, RE",1958,2007,10769,Chemistry,10.1021/ja01539a017,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
+ke2015_03,"The Scherrer formula for X-ray particle size determination","Patterson, AL",1939,2004,5923,Physics,,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
+ke2015_04,"Wettability of porous surfaces","Cassie, ABD; Baxter, S",1944,2002,5168,Chemistry,,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
+ke2015_05,"A study of the nucleation and growth processes in the synthesis of colloidal gold","Turkevich, J",1951,1997,4273,Chemistry,,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
+ke2015_06,"Can quantum-mechanical description of physical reality be considered complete?","Einstein, A; Podolsky, B; Rosen, N",1935,1994,2258,Physics,10.1103/PhysRev.47.777,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
+ke2015_07,"The dynamics of capillary flow","Washburn, EW",1921,1995,2184,Physics,10.1103/PhysRev.17.273,10.1073/pnas.1424329112,"Ke et al. 2015 Table 1"
