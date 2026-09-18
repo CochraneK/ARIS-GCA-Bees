@@ -53,6 +53,7 @@ class VanRaanGate:
             "sleep_citations": self.sleep_citations,
             "wake_citations": self.wake_citations,
             "sleep_rate": self.sleep_rate,
+            "sleep_depth_class": sleep_depth_class(self.sleep_rate),
             "wake_rate": self.wake_rate,
             "max_sleep_rate": self.max_sleep_rate,
             "min_wake_rate": self.min_wake_rate,
@@ -130,6 +131,21 @@ def _counts(values: Sequence[int | float]) -> tuple[int, ...]:
     if any(x < 0 for x in result):
         raise ValueError("citation counts must be non-negative")
     return result
+
+
+
+def sleep_depth_class(rate: float) -> str:
+    """Descriptive van-Raan-style sleep-depth band."""
+    value = float(rate)
+    if value == 0:
+        return "COMA"
+    if value <= 0.5:
+        return "VERY_DEEP"
+    if value <= 1.0:
+        return "DEEP"
+    if value <= 2.0:
+        return "LESS_DEEP"
+    return "SHALLOW"
 
 
 def van_raan_gate(
@@ -292,7 +308,7 @@ def robust_sleeping_beauty_gate(
     min_sleep_years: int = 5,
     max_sleep_years: int | None = None,
     wake_years: int = 4,
-    max_sleep_rate: float = 1.0,
+    max_sleep_rate: float = 2.0,
     min_wake_rate: float = 5.0,
     min_total_citations: int = 50,
     required_component_passes: int = 3,
@@ -305,6 +321,10 @@ def robust_sleeping_beauty_gate(
     3. later-recognition floor via total citations.
 
     With the default required_component_passes=3, all three must pass.
+
+    The default retrospective profile allows up to 2 citations/year during
+    sleep, covering deep and less-deep literature variants. A stricter
+    max_sleep_rate=1.0 analysis should be reported as sensitivity.
 
     This is intentionally stricter than the prospective benchmark's relative
     outcomes. It is designed for mechanism-case enrichment, not for ranking.
