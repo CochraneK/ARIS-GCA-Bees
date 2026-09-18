@@ -3,11 +3,11 @@ name: ARIS4C010 CI
 on:
   push:
     paths:
-      - "papers/010-universal-concept-identification/**"
+      - "papers/010-universal-concept-identification/code/**/*.py"\n      - "papers/010-universal-concept-identification/data/**/*.json"
       - ".github/workflows/aris4c010-ci.yml"
   pull_request:
     paths:
-      - "papers/010-universal-concept-identification/**"
+      - "papers/010-universal-concept-identification/code/**/*.py"\n      - "papers/010-universal-concept-identification/data/**/*.json"
       - ".github/workflows/aris4c010-ci.yml"
   workflow_dispatch:
 
