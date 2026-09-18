@@ -1,0 +1,134 @@
+name: ARIS4C005 citation-edge AI packets
+
+on:
+  push:
+    branches:
+      - main
+      - aris4c005-citation-ai-20260918
+    paths:
+      - ".github/workflows/aris4c005-citation-ai.yml"
+      - "papers/005-hidden-burden-bad-science/code/make_citation_ai_packet.py"
+      - "papers/005-hidden-burden-bad-science/code/batch_citation_ai_packets.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_make_citation_ai_packet.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_batch_citation_ai_packets.py"
+      - "papers/005-hidden-burden-bad-science/code/build_contamination_exposure.py"
+      - "papers/005-hidden-burden-bad-science/code/classify_retractions.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c005-citation-ai-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PAPER_DIR: papers/005-hidden-burden-bad-science
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_*.py' -v
+
+      - name: Acquire Retraction Watch snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/rw"
+          git clone --depth 1 https://gitlab.com/crossref/retraction-watch-data.git "$RUNNER_TEMP/rw/repo"
+          cd "$RUNNER_TEMP/rw/repo"
+          git rev-parse HEAD > "$RUNNER_TEMP/rw/git_commit.txt"
+          CSV="$(find . -type f -iname '*.csv' -printf '%s %p\n' | sort -nr | head -1 | cut -d' ' -f2-)"
+          test -n "$CSV"
+          cp "$CSV" "$RUNNER_TEMP/rw/retraction_watch.csv"
+
+      - name: Classify source signals
+        run: |
+          python "$PAPER_DIR/code/classify_retractions.py" \
+            "$RUNNER_TEMP/rw/retraction_watch.csv" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv"
+
+      - name: Rebuild frozen contamination exposure edge sample
+        run: |
+          python "$PAPER_DIR/code/build_contamination_exposure.py" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv" \
+            "$RUNNER_TEMP/contamination_exposure_summary.json" \
+            "$RUNNER_TEMP/aris4c005_contamination_sources.csv" \
+            "$RUNNER_TEMP/aris4c005_contamination_edges.csv" \
+            --start 2010 \
+            --end 2020 \
+            --source-n 25 \
+            --edge-sample-per-source 20 \
+            --seed 20260918
+
+      - name: Build dual-AI citation-edge packet
+        run: |
+          python "$PAPER_DIR/code/make_citation_ai_packet.py" \
+            "$RUNNER_TEMP/aris4c005_contamination_edges.csv" \
+            "$RUNNER_TEMP/aris4c005_citation_ai_packet.csv" \
+            "$RUNNER_TEMP/aris4c005_citation_ai_linkage.csv" \
+            "$PAPER_DIR/data/pilot/citation_ai_packet_summary.json" \
+            --adjudicator CIT_AI_A \
+            --adjudicator CIT_AI_B
+
+      - name: Split citation-edge AI batches
+        run: |
+          python "$PAPER_DIR/code/batch_citation_ai_packets.py" \
+            "$RUNNER_TEMP/aris4c005_citation_ai_packet.csv" \
+            "$RUNNER_TEMP/aris4c005_citation_ai_batches" \
+            "$PAPER_DIR/data/pilot/citation_ai_batch_manifest.json" \
+            --batch-size 100
+
+      - name: Validate packet
+        run: |
+          python - <<'PY'
+          import json
+          s = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/citation_ai_packet_summary.json', encoding='utf-8'))
+          m = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/citation_ai_batch_manifest.json', encoding='utf-8'))
+          assert s["classification"] == "CITATION_EDGE_AI_PACKET_NO_ADJUDICATION_RESULTS"
+          assert s["unique_edges"] > 0
+          assert s["assignments_total"] == 2 * s["unique_edges"]
+          assert m["assignments_total"] == s["assignments_total"]
+          assert m["adjudicators"]["CIT_AI_A"] == s["unique_edges"]
+          assert m["adjudicators"]["CIT_AI_B"] == s["unique_edges"]
+          print(json.dumps(s, indent=2))
+          PY
+
+      - name: Upload private citation-edge AI artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c005-citation-ai-packets
+          path: |
+            ${{ runner.temp }}/aris4c005_contamination_edges.csv
+            ${{ runner.temp }}/aris4c005_citation_ai_packet.csv
+            ${{ runner.temp }}/aris4c005_citation_ai_linkage.csv
+            ${{ runner.temp }}/aris4c005_citation_ai_batches/
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Persist public-safe packet summaries
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/pilot/citation_ai_packet_summary.json" "$PAPER_DIR/data/pilot/citation_ai_batch_manifest.json"
+          if git diff --cached --quiet; then
+            echo "No citation packet summary change."
+            exit 0
+          fi
+          git commit -m "Update ARIS4C005 citation AI packet summaries [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
