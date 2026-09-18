@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-09-18",
+  "source": "Glottolog 5.3",
+  "note": "Community sample IDs are kept separate from language IDs. Broad-family labels follow Glottolog; they are not cultural categories.",
+  "samples": [
+    {
+      "sample": "Cantonese (CN)",
+      "country": "CN",
+      "language": "Yue Chinese",
+      "iso639_3": "yue",
+      "glottocode": "yuec1235",
+      "family": "Sino-Tibetan"
+    },
+    {
+      "sample": "Dutch (BE)",
+      "country": "BE",
+      "language": "Dutch",
+      "iso639_3": "nld",
+      "glottocode": "dutc1256",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "English (AU)",
+      "country": "AU",
+      "language": "English",
+      "iso639_3": "eng",
+      "glottocode": "stan1293",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "English (CA)",
+      "country": "CA",
+      "language": "English",
+      "iso639_3": "eng",
+      "glottocode": "stan1293",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "English (GB)",
+      "country": "GB",
+      "language": "English",
+      "iso639_3": "eng",
+      "glottocode": "stan1293",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "English (SG)",
+      "country": "SG",
+      "language": "English",
+      "iso639_3": "eng",
+      "glottocode": "stan1293",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "English (US)",
+      "country": "US",
+      "language": "English",
+      "iso639_3": "eng",
+      "glottocode": "stan1293",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Finnish (FI)",
+      "country": "FI",
+      "language": "Finnish",
+      "iso639_3": "fin",
+      "glottocode": "finn1318",
+      "family": "Uralic"
+    },
+    {
+      "sample": "French (FR)",
+      "country": "FR",
+      "language": "French",
+      "iso639_3": "fra",
+      "glottocode": "stan1290",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "German (DE)",
+      "country": "DE",
+      "language": "German",
+      "iso639_3": "deu",
+      "glottocode": "stan1295",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Italian (IT)",
+      "country": "IT",
+      "language": "Italian",
+      "iso639_3": "ita",
+      "glottocode": "ital1282",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Mandarin (CN)",
+      "country": "CN",
+      "language": "Mandarin Chinese",
+      "iso639_3": "cmn",
+      "glottocode": "mand1415",
+      "family": "Sino-Tibetan"
+    },
+    {
+      "sample": "Serbian (RS)",
+      "country": "RS",
+      "language": "Serbian Standard",
+      "iso639_3": "srp",
+      "glottocode": "serb1264",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Setswana (BW)",
+      "country": "BW",
+      "language": "Tswana",
+      "iso639_3": "tsn",
+      "glottocode": "tswa1253",
+      "family": "Atlantic-Congo"
+    },
+    {
+      "sample": "Slovenian (SI)",
+      "country": "SI",
+      "language": "Slovenian",
+      "iso639_3": "slv",
+      "glottocode": "slov1268",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Spanish (CL)",
+      "country": "CL",
+      "language": "Spanish",
+      "iso639_3": "spa",
+      "glottocode": "stan1288",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Spanish (ES)",
+      "country": "ES",
+      "language": "Spanish",
+      "iso639_3": "spa",
+      "glottocode": "stan1288",
+      "family": "Indo-European"
+    },
+    {
+      "sample": "Thai (TH)",
+      "country": "TH",
+      "language": "Thai",
+      "iso639_3": "tha",
+      "glottocode": "thai1261",
+      "family": "Tai-Kadai"
+    }
+  ],
+  "design_summary": {
+    "community_samples": 18,
+    "unique_languages": 13,
+    "unique_countries": 17,
+    "top_level_families": 5,
+    "indo_european_languages": 8,
+    "indo_european_share_of_languages": 0.6154,
+    "repeated_language_samples": {
+      "English": 5,
+      "Spanish": 2
+    },
+    "repeated_country_samples": {
+      "CN": 2
+    }
+  }
+}
