@@ -69,6 +69,12 @@ jobs:
       - name: Validate human participant forms
         run: python validate_human_forms.py
 
+      - name: Export human forms to CSV
+        run: python export_human_forms_csv.py
+
+      - name: Dry-run human analysis pipeline
+        run: python dryrun_human_analysis.py
+
       - name: Upload calibration60 artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -90,5 +96,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: aris4c010-human-forms
-          path: papers/010-universal-concept-identification/data/human_forms/forms.generated.json
+          path: |
+            papers/010-universal-concept-identification/data/human_forms/forms.generated.json
+            papers/010-universal-concept-identification/data/human_forms/csv/
           if-no-files-found: error
