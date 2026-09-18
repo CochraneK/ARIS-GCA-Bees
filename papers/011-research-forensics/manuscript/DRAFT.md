@@ -2,7 +2,7 @@
 
 **Methods and benchmark manuscript draft — ARIS4C011**  
 **Status:** Methods frozen in principle; confirmatory benchmark results pending  
-**Author:** Cochrane Kang
+**Author:** Cunyi Kang
 
 ## Abstract
 
@@ -175,7 +175,7 @@ Track A asks a counterfactual operational question: what could have been detecte
 
 Excluded from model-visible inputs are outcome-defining notice text, retraction status, Retraction Watch record identifiers, current status markers, and similar leakage. Current target-paper metadata is also not automatically trusted, because bibliographic services may update titles and metadata after retraction. Historical-equivalent content must pass a safety preflight.
 
-A critical consequence follows: not every officially documented issue is eligible for Track A. Manipulated peer review, for example, may be established by editorial evidence but be invisible in manuscript content. This is not counted as a content-detector failure. Instead, detector eligibility is reported separately from overall coverage.
+A critical consequence follows: not every officially documented issue is eligible for Track A. Manipulated peer review, for example, may be established by editorial evidence but be invisible in manuscript content. This is not counted as a content-detector failure. Instead, detector eligibility is reported separately from overall coverage.\n\nTrack A eligibility is evaluated at the level of paper × issue × required artifact role rather than assigning one historical-safety label to an entire paper. A historical HTML page can be safe for body text while the figure image referenced by that page remains unverified. Structured detector inputs also undergo an extraction-provenance preflight: non-empty records must retain a source locator and explicit verification against the qualified artifact. Archive discovery itself is fail-closed on time and object identity because wildcard queries can return neighbouring article identifiers.
 
 ### 5.4 Track B: open-world triage
 
@@ -296,7 +296,7 @@ This is a general lesson for retrospective machine-learning studies: hiding a re
 
 The initial seed contains three intentionally heterogeneous records. One official notice described concerns about scientific accuracy and legitimacy without establishing a more specific issue type. A second explicitly described an illegal gift-authorship case [15]. A third attributed retraction to a compromised guest-edited editorial process and manipulated peer review.
 
-The point is not the prevalence of these categories; three records cannot estimate prevalence. The point is structural: one binary “retracted” label collapses content-validity concerns, authorship problems, and editorial-process manipulation into a single target. It also mixes issues that may be visible in manuscript content with issues that may not be.
+The point is not the prevalence of these categories; three records cannot estimate prevalence. The point is structural: one binary “retracted” label collapses content-validity concerns, authorship problems, and editorial-process manipulation into a single target. It also mixes issues that may be visible in manuscript content with issues that may not be.\n\n### 7.4 Historical-artifact and extraction pilot\n\nThe first object-level acquisition pilot recovered a Wayback capture of the exact J-STAGE publisher PDF for DOI 10.1538/expanim.54.1 from 25 July 2018, more than four years before its 2022 retraction. The PDF was therefore eligible as a SAFE_EXACT body-text/reference artifact. The document is a review and contains no structured records eligible for the current deterministic statistical/table adapters; those modules correctly abstained rather than producing synthetic PASS results. This case also showed why coverage must be separated from issue recall: the documented retraction reason concerns gift authorship, which need not leave a detectable manuscript-content trace.\n\nThe same pilot exposed extraction error as a separate failure stage. Automated PDF extraction reported the publication year as 2004 and pagination as 1–8, whereas the source header identifies volume 54(1), pages 1–6, 2005; the 2004 dates correspond to receipt and acceptance. Track A therefore requires source-anchored verification of structured detector inputs before execution.\n\nFinally, an archive wildcard query for the J-STAGE article prefix returned neighbouring identifiers such as 54_1_101 and 54_1_107 in addition to the intended 54_1_1. The archive layer now applies target-specific identity markers and sets CDX query cutoffs to the day before the outcome. Historical-artifact attrition and retrieval collisions are reported as acquisition outcomes rather than detector false negatives.
 
 ## 8. Detector versioning and defect governance
 
