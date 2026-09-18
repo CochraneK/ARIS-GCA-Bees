@@ -60,10 +60,10 @@ Within China's research system, does an author's relative alphabetical surname p
 
 ## Remaining outcome-blind execution gates
 
-1. [ ] reproduce ChineseNames baseline from the pinned **2025.8 R package**, not only the public engineering mirror;
+1. [x] reproduce ChineseNames baseline from the official **2025.8 R-universe source package** (Pilot 18 PASS);
 2. [ ] materialize final 26-field primary convention/exposure build under article+conference-paper types;
-3. [ ] validate LOAO implementation against synthetic/hand-computed cases;
-4. [ ] run a synthetic-only work-FE + interaction + frozen multiway-cluster smoke test;
+3. [x] validate LOAO implementation against synthetic/hand-computed cases (PASS);
+4. [x] run a synthetic-only work-FE + interaction + frozen multiway-cluster smoke test (PASS);
 5. [ ] materialize the primary work frame and report only sample/cluster/exclusion counts, **without estimating H1/H2**;
 6. [ ] finalize deterministic longitudinal identity-risk QA flags and report prevalence only;
 7. [ ] finish preregistration consistency audit, generate lock/hash, then explicitly unlock confirmatory outcomes.
