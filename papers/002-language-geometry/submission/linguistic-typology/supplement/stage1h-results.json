@@ -1,0 +1,557 @@
+{
+  "seed": 2033,
+  "dataset": "https://raw.githubusercontent.com/annagraff/crossling-curated/main/curated_data/GBI/statisticalGBI/statisticalGBI_densified.csv",
+  "n_languages": 1140,
+  "n_features": 60,
+  "features": [
+    "GB030",
+    "GB131",
+    "GB031",
+    "GB028",
+    "GB132",
+    "GB480m",
+    "GB777drm",
+    "GB563m",
+    "GB137",
+    "GB138",
+    "GB036",
+    "GB557drm",
+    "GB035",
+    "GB945m",
+    "GB625mC",
+    "GB081",
+    "GB129",
+    "GB037",
+    "GB108",
+    "GB552m",
+    "GB103",
+    "GB059",
+    "GB107C",
+    "GB136",
+    "GB116",
+    "GB130e",
+    "GB298",
+    "GB299",
+    "GB550m",
+    "GB559drm",
+    "GB117",
+    "GB558drm",
+    "GB104",
+    "GB099",
+    "GB139",
+    "GB177",
+    "GB111C",
+    "GB105",
+    "GB313",
+    "GB568drm",
+    "GB075c",
+    "GB068",
+    "GB074c",
+    "GB567drm",
+    "GB095C",
+    "GB620drmc",
+    "GB850drm",
+    "GB324",
+    "GB069",
+    "GB151",
+    "GB623drmc",
+    "GB950m",
+    "GB113",
+    "GB621drmc",
+    "GB260",
+    "GB624drmc",
+    "GB622drmc",
+    "GB500drm",
+    "GB955drmc",
+    "GB024e"
+  ],
+  "family_heldout": {
+    "runs": [
+      {
+        "split": 0,
+        "n_train": 797,
+        "n_test": 343,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.5919090832639874,
+            "spearman": 0.12182832906440581,
+            "rmse": 0.03009623087056416,
+            "mae": 0.016646658035178244
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.7830274690462762,
+            "spearman": 0.16331039316916685,
+            "rmse": 0.02063730204241135,
+            "mae": 0.01063953943636516
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.1055093095962711,
+            "spearman": 0.03085969533296586,
+            "rmse": 0.0325555498112134,
+            "mae": 0.013279761524973923
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.19739867566504912,
+            "spearman": 0.133688712073283,
+            "rmse": 0.03209056167568325,
+            "mae": 0.013174896789199213
+          }
+        }
+      },
+      {
+        "split": 1,
+        "n_train": 798,
+        "n_test": 342,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.5099487625769974,
+            "spearman": 0.09134259271089168,
+            "rmse": 0.03268478926490927,
+            "mae": 0.017773285053059862
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.8041155882316592,
+            "spearman": 0.12686816671849677,
+            "rmse": 0.016251401236836122,
+            "mae": 0.009260680972395194
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.1787571098714006,
+            "spearman": 0.049070763201719006,
+            "rmse": 0.02603297124609038,
+            "mae": 0.011609978645057572
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.1608227758734094,
+            "spearman": 0.037572565530736554,
+            "rmse": 0.026334052746768862,
+            "mae": 0.011908469105862993
+          }
+        }
+      },
+      {
+        "split": 2,
+        "n_train": 798,
+        "n_test": 342,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.6030114752628684,
+            "spearman": 0.0694105039098036,
+            "rmse": 0.029205831555903037,
+            "mae": 0.017041270422340268
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.8131481948485203,
+            "spearman": 0.17243657492539186,
+            "rmse": 0.017625637159838378,
+            "mae": 0.009673205153534993
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.08558032019170503,
+            "spearman": 0.003613494603012178,
+            "rmse": 0.030101486752675138,
+            "mae": 0.012558480824854454
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.15911833957458027,
+            "spearman": 0.04755642103111199,
+            "rmse": 0.02983662870824102,
+            "mae": 0.012612270380295618
+          }
+        }
+      },
+      {
+        "split": 3,
+        "n_train": 797,
+        "n_test": 343,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.5667356266806924,
+            "spearman": 0.12483885096920341,
+            "rmse": 0.03124222473613738,
+            "mae": 0.01811421174628038
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.7603853092337637,
+            "spearman": 0.12243490611925487,
+            "rmse": 0.02106784440377475,
+            "mae": 0.011278946792916382
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.12222064112103463,
+            "spearman": 0.056892280903781324,
+            "rmse": 0.03177344377368884,
+            "mae": 0.013740275276950547
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.14441945870024,
+            "spearman": 0.08107599717951006,
+            "rmse": 0.03169149344167498,
+            "mae": 0.013664895397678473
+          }
+        }
+      },
+      {
+        "split": 4,
+        "n_train": 737,
+        "n_test": 403,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.45829050818137346,
+            "spearman": 0.126351570264824,
+            "rmse": 0.03535301806879992,
+            "mae": 0.01827455224077112
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.7238833005894234,
+            "spearman": 0.11433253344351577,
+            "rmse": 0.021685017512243995,
+            "mae": 0.011733586446356399
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.056843745305985974,
+            "spearman": 0.00936962698739511,
+            "rmse": 0.030976309379828683,
+            "mae": 0.013428948072209996
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.13950754111637895,
+            "spearman": 0.02762999289143626,
+            "rmse": 0.030731695296705257,
+            "mae": 0.013582444387671994
+          }
+        }
+      },
+      {
+        "split": 5,
+        "n_train": 771,
+        "n_test": 369,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.4518859777358133,
+            "spearman": 0.08702213898215286,
+            "rmse": 0.03475894926167388,
+            "mae": 0.0171258308417036
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.6768614691994095,
+            "spearman": 0.07034859182656113,
+            "rmse": 0.02390874556656209,
+            "mae": 0.01202739439554868
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.11374891957136375,
+            "spearman": 0.011226948839929089,
+            "rmse": 0.03146964619899323,
+            "mae": 0.01370231110754712
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.14466335262996866,
+            "spearman": 0.05972297958111968,
+            "rmse": 0.031440313613734706,
+            "mae": 0.0138955455742329
+          }
+        }
+      },
+      {
+        "split": 6,
+        "n_train": 798,
+        "n_test": 342,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.6068529124607348,
+            "spearman": 0.08014611385638556,
+            "rmse": 0.02810766821500379,
+            "mae": 0.01517531174736098
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.7014709661381218,
+            "spearman": 0.0973981220087154,
+            "rmse": 0.022523186937570414,
+            "mae": 0.010639117385817621
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.1024940072283301,
+            "spearman": 0.02237672430395393,
+            "rmse": 0.031147684030815113,
+            "mae": 0.012874199895203635
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.13084113628304486,
+            "spearman": 0.03627542392182027,
+            "rmse": 0.031063487531253573,
+            "mae": 0.01295914658411036
+          }
+        }
+      },
+      {
+        "split": 7,
+        "n_train": 798,
+        "n_test": 342,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.46690498576838635,
+            "spearman": 0.037758894032113,
+            "rmse": 0.033061626073974504,
+            "mae": 0.018018371138924006
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.6755415333664675,
+            "spearman": 0.07721434517444231,
+            "rmse": 0.02296191680097319,
+            "mae": 0.012676966070850997
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.16376370445707397,
+            "spearman": 0.06982054378750069,
+            "rmse": 0.028571031498638846,
+            "mae": 0.014010758325669748
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.15443214844249334,
+            "spearman": 0.06261335430772688,
+            "rmse": 0.02872203183101194,
+            "mae": 0.014402302992989792
+          }
+        }
+      },
+      {
+        "split": 8,
+        "n_train": 782,
+        "n_test": 358,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.5154760099255209,
+            "spearman": 0.08315810572327623,
+            "rmse": 0.033291329718013435,
+            "mae": 0.017570941796010573
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.8062777760904664,
+            "spearman": 0.12117492678707208,
+            "rmse": 0.019627080776087137,
+            "mae": 0.010454175172221759
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.15895437965741763,
+            "spearman": 0.050084981407725666,
+            "rmse": 0.03221719181671789,
+            "mae": 0.01312494870227182
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.1633302964651995,
+            "spearman": 0.08812280243921462,
+            "rmse": 0.03223974089495372,
+            "mae": 0.013064890967343938
+          }
+        }
+      },
+      {
+        "split": 9,
+        "n_train": 797,
+        "n_test": 343,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.4273206337791601,
+            "spearman": 0.08982889237293039,
+            "rmse": 0.03620776529283832,
+            "mae": 0.019257026833035783
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.6402082790057506,
+            "spearman": 0.07712032739320597,
+            "rmse": 0.02459532633926429,
+            "mae": 0.012474920377458969
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.11524691687257868,
+            "spearman": 0.029729698683326602,
+            "rmse": 0.030422474591371727,
+            "mae": 0.014376703411142909
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.13964748227957793,
+            "spearman": 0.05686020975004851,
+            "rmse": 0.03043097258371333,
+            "mae": 0.014436647585484958
+          }
+        }
+      },
+      {
+        "split": 10,
+        "n_train": 797,
+        "n_test": 343,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.6083656345689442,
+            "spearman": 0.09397264700005221,
+            "rmse": 0.028801077765974816,
+            "mae": 0.015799081482612342
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.7646945020615252,
+            "spearman": 0.135550496201196,
+            "rmse": 0.020684379800225423,
+            "mae": 0.010944456205915701
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.13301326624163257,
+            "spearman": 0.06584447384570047,
+            "rmse": 0.03156661195495043,
+            "mae": 0.013327616904718521
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.1606849670273255,
+            "spearman": 0.13299939171562467,
+            "rmse": 0.03142637221559337,
+            "mae": 0.013045671717870732
+          }
+        }
+      },
+      {
+        "split": 11,
+        "n_train": 750,
+        "n_test": 390,
+        "n_eval_pairs": 1770,
+        "scores": {
+          "lowrank2": {
+            "n_pairs": 1770,
+            "pearson": 0.5660626679641934,
+            "spearman": 0.17297236790075268,
+            "rmse": 0.03035585384158511,
+            "mae": 0.01659890949058365
+          },
+          "tree": {
+            "n_pairs": 1770,
+            "pearson": 0.7354405894859385,
+            "spearman": 0.183079539788503,
+            "rmse": 0.021279937007104163,
+            "mae": 0.01139918438471825
+          },
+          "euclidean_connected": {
+            "n_pairs": 1770,
+            "pearson": 0.08418794095379918,
+            "spearman": 0.017014779129180087,
+            "rmse": 0.03045587023463646,
+            "mae": 0.013743557650953937
+          },
+          "circular_optimized": {
+            "n_pairs": 1770,
+            "pearson": 0.16235654300363433,
+            "spearman": 0.10611887992450877,
+            "rmse": 0.030209374704007703,
+            "mae": 0.014030352565642046
+          }
+        }
+      }
+    ],
+    "summary": {
+      "lowrank2": {
+        "mean": 0.09821925056556595,
+        "sd": 0.03430533765810888
+      },
+      "tree": {
+        "mean": 0.12177241029629349,
+        "sd": 0.03758689384173493
+      },
+      "euclidean_connected": {
+        "mean": 0.034658667585515834,
+        "sd": 0.022966752467671585
+      },
+      "circular_optimized": {
+        "mean": 0.0725197275288451,
+        "sd": 0.03633846609228169
+      }
+    },
+    "tree_minus_circular_mean": 0.049252682767448396,
+    "tree_win_fraction": 1.0
+  },
+  "macroarea_transfer": {
+    "blocks": [
+      {
+        "macroarea": "Africa",
+        "n_test": 212,
+        "association_transfer_spearman": 0.132481015633401
+      },
+      {
+        "macroarea": "Eurasia",
+        "n_test": 301,
+        "association_transfer_spearman": 0.09699674478828778
+      },
+      {
+        "macroarea": "North America",
+        "n_test": 213,
+        "association_transfer_spearman": 0.11772628544257303
+      },
+      {
+        "macroarea": "Papunesia",
+        "n_test": 177,
+        "association_transfer_spearman": 0.20698183581649576
+      },
+      {
+        "macroarea": "South America",
+        "n_test": 172,
+        "association_transfer_spearman": 0.16541884306837096
+      }
+    ],
+    "mean_spearman": 0.1439209449498257,
+    "sd": 0.04317912780117031
+  },
+  "verdict": "TREE_REPLICATES_OVER_CIRCULAR__WEAK_CROSS_MACROAREA_TRANSFER",
+  "claim_boundary": "GBI is an alternative dependency-curation/representation, not a fully independent typological source from TLI. Agreement strengthens robustness to curation choice but does not constitute external-dataset replication."
+}
