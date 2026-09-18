@@ -52,9 +52,20 @@ run in a fresh GPTPage/model context that has not seen:
 - contemporary country×discipline outcomes;
 - confirmatory ranking/bibliometric results.
 
-Use:
+Preferred WorkBuddy route:
 
-`process/IKES_CODER_B_PACKET.md`
+`process/coder_b_blind/WORKBUDDY_HANDOFF.md`
+
+Allow WorkBuddy to read only the files whitelisted in:
+
+`process/coder_b_blind/MANIFEST.json`
+
+Do **not** give it the paper root or parent `process/` directory. The blind
+bundle is pinned by Git blob SHA and validated in pre-outcome CI.
+
+The older `process/IKES_CODER_B_PACKET.md` remains the canonical full protocol,
+but WorkBuddy should receive the isolated blind-bundle copy rather than browse
+the surrounding repository.
 
 Save the untouched response under:
 
