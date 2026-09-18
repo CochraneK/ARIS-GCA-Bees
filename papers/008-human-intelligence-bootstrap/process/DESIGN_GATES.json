@@ -14,8 +14,8 @@
     },
     {
       "id": "research_effort",
-      "status": "in_progress",
-      "requirement": "Source counts and database coverage are available, but module-specific search effort, tested-negative evidence, and publication-intensity correction remain required."
+      "status": "provisional_pass",
+      "requirement": "A reproducible 29-species OpenAlex exposure proxy now exists for all-taxonomy, general behaviour, cognition, social transmission, manipulation, and communication searches. Confirmatory work must still audit tested-negative evidence and validate sensitivity to query definitions."
     },
     {
       "id": "phylogeny",
