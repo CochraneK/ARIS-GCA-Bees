@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  historical-cohort-smoke:
+  historical-cohort-multi-outcome:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -22,12 +22,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run reproducible 1980 Physics & Astronomy cohort
+      - name: Run reproducible primary-field Physics & Astronomy cohort
         working-directory: papers/015-sleeping-beauty-miner/code
         run: |
-          python pilot0_openalex_cohort.py             --sample-size 20             --seed 15015             --filters "publication_year:1980,type:article,topics.field.id:31"             --cutoff-year 1995             --observation-end-year 2011             --positive-fraction 0.20             --review-budget-k 5             --output ../data/pilot1_openalex_1980_physics_seed15015.json
+          python pilot1_openalex_cohort.py \
+            --sample-size 20 \
+            --seed 15015 \
+            --filters "publication_year:1980,type:article,primary_topic.field.id:31" \
+            --cutoff-year 1995 \
+            --observation-end-year 2011 \
+            --beauty-fraction 0.20 \
+            --acceleration-fraction 0.20 \
+            --awakening-horizon-years 15 \
+            --review-budget-k 5 \
+            --output ../data/pilot1_openalex_1980_physics_primary_seed15015.json
 
-      - name: Validate time split and benchmark output
+      - name: Validate temporal split and outcome matrix
         run: |
           python - <<'PY'
           import json
@@ -35,38 +45,61 @@ jobs:
 
           path = Path(
               "papers/015-sleeping-beauty-miner/data/"
-              "pilot1_openalex_1980_physics_seed15015.json"
+              "pilot1_openalex_1980_physics_primary_seed15015.json"
           )
           result = json.loads(path.read_text(encoding="utf-8"))
 
           assert result["benchmark_type"] == (
-              "non-hand-picked historical cohort smoke test"
+              "Pilot 1 non-hand-picked multi-outcome historical cohort"
           )
           assert result["sampling"]["seed"] == 15015
           assert result["sampling"]["sample_size_analyzed"] >= 10
+          assert (
+              "primary_topic.field.id:31"
+              in result["sampling"]["filters"]
+          )
           assert result["temporal_design"]["feature_cutoff_year"] == 1995
-          assert result["temporal_design"]["outcome_observation_end_year"] == 2011
-          assert result["outcome"]["universal_sleeping_beauty_definition"] is False
+          assert (
+              result["temporal_design"]["outcome_observation_end_year"]
+              == 2011
+          )
+          assert (
+              result["outcome_definitions"][
+                  "universal_sleeping_beauty_definition"
+              ]
+              is False
+          )
 
-          strategies = {x["strategy"] for x in result["baseline_results"]}
-          assert strategies == {
+          expected_outcomes = {
+              "beauty_percentile",
+              "beauty_top_fraction",
+              "future_acceleration_percentile",
+              "awakening_within_horizon",
+              "delayed_recognition_consensus",
+          }
+          matrix = result["outcome_baseline_matrix"]
+          assert set(matrix) == expected_outcomes
+
+          expected_strategies = {
               "current_citations",
               "momentum_3y",
               "acceleration_3y",
               "partial_beauty",
               "dormancy",
           }
+          for rows in matrix.values():
+              assert {row["strategy"] for row in rows} == expected_strategies
 
           print(json.dumps({
               "n": result["sampling"]["sample_size_analyzed"],
-              "n_positive": result["outcome"]["n_positive"],
-              "baseline_results": result["baseline_results"],
+              "outcome_summary": result["outcome_summary"],
+              "outcome_baseline_matrix": matrix,
           }, indent=2))
           PY
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilot1-openalex-1980-physics
-          path: papers/015-sleeping-beauty-miner/data/pilot1_openalex_1980_physics_seed15015.json
+          name: aris4c015-pilot1-openalex-1980-physics-primary
+          path: papers/015-sleeping-beauty-miner/data/pilot1_openalex_1980_physics_primary_seed15015.json
           if-no-files-found: error
           retention-days: 30
