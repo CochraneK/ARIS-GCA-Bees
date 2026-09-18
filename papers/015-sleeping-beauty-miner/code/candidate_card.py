@@ -58,8 +58,11 @@ def build_candidate_card(
     score_semantics: str | None = None,
     explanation: str | None = None,
     model_version: str | None = None,
+    mechanism_state: str | None = None,
+    mechanism_ready: bool | None = None,
+    mechanism_contrast_role: str | None = None,
 ) -> dict[str, Any]:
-    if mode not in {"RETROSPECTIVE", "PROSPECTIVE", "DISCOVERY_SCAN"}:
+    if mode not in {"RETROSPECTIVE", "MECHANISM", "PROSPECTIVE", "DISCOVERY_SCAN"}:
         raise ValueError("Unsupported mode")
     allowed_states = {
         "CONFIRMED_DELAYED_RECOGNITION",
@@ -104,6 +107,9 @@ def build_candidate_card(
         "contradictory_evidence": contradictory,
         "explanation": explanation,
         "model_version": model_version,
+        "mechanism_state": mechanism_state,
+        "mechanism_ready": mechanism_ready,
+        "mechanism_contrast_role": mechanism_contrast_role,
         "provenance": list(provenance),
         "disclaimer": DISCLAIMER,
     }
