@@ -1,10 +1,11 @@
-name: ARIS4C009 DAIS-C Pilot-0 inventory
+name: ARIS4C009 DAIS-C Pilot-0
 
 on:
   push:
     branches: [main]
     paths:
       - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_structure.py'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_DATA_OPTIONS.md'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_RUNBOOK_009A1.md'
       - '.github/workflows/aris4c009-daisc-pilot0.yml'
@@ -35,27 +36,50 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/daisc"
-          curl -L --fail --retry 3             "https://reshare.ukdataservice.ac.uk/855021/1/DAIS-C-Annotated-Upload.7z"             -o "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"
-          7z x -y "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"             -o"$RUNNER_TEMP/daisc" >/dev/null
+          curl -L --fail --retry 3 \
+            "https://reshare.ukdataservice.ac.uk/855021/1/DAIS-C-Annotated-Upload.7z" \
+            -o "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"
+          7z x -y "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z" \
+            -o"$RUNNER_TEMP/daisc" >/dev/null
 
       - name: Build privacy-preserving inventory
         shell: bash
         run: |
-          python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py             --root "$RUNNER_TEMP/daisc"             --archive "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py \
+            --root "$RUNNER_TEMP/daisc" \
+            --archive "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z" \
+            --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
+            --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+
+      - name: Classify canonical transcript structures
+        shell: bash
+        run: |
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_structure.py \
+            --root "$RUNNER_TEMP/daisc" \
+            --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
+            --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
 
       - name: Assert no raw transcript files were staged
         shell: bash
         run: |
           set -euo pipefail
-          git add             papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json             papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+          git add \
+            papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
+            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md \
+            papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
+            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
+
           staged="$(git diff --cached --name-only)"
           echo "$staged"
-          if echo "$staged" | grep -Eiv             'pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md' >/dev/null; then
-            echo "Unexpected file staged; refusing to publish." >&2
+          unexpected="$(echo "$staged" | grep -Ev \
+            '(^|/)(pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md|pilot0_daisc_structure\.json|PILOT0_DAISC_STRUCTURE\.md)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected file staged; refusing to publish:" >&2
+            echo "$unexpected" >&2
             exit 1
           fi
 
-      - name: Publish aggregate inventory
+      - name: Publish aggregate outputs
         shell: bash
         run: |
           set -euo pipefail
@@ -85,11 +109,11 @@ jobs:
               papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
 
             if git diff --cached --quiet; then
-              echo "Inventory already current."
+              echo "Aggregate outputs already current."
               exit 0
             fi
 
-            git commit -m "data: record ARIS4C009 DAIS-C aggregate inventory"
+            git commit -m "data: record ARIS4C009 DAIS-C aggregate structure"
 
             if git push origin HEAD:main; then
               exit 0
@@ -98,5 +122,5 @@ jobs:
             echo "Concurrent main update; retrying on newest main."
           done
 
-          echo "Could not publish inventory after retries." >&2
+          echo "Could not publish aggregate outputs after retries." >&2
           exit 1
