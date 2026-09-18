@@ -130,6 +130,18 @@ def reconstruct_candidates(works,seen,excl):
         keys=[norm_family(x.get("family")) for x in ca]
         if any(not x for x in keys):
             excl["missing_structured_family"]+=1;continue
+        compatible=True
+        for oa_row,fam in zip(auth,keys):
+            raw_name=norm_family(
+                oa_row.get("raw_author_name")
+                or (oa_row.get("author") or {}).get("display_name")
+                or ""
+            )
+            if not raw_name or fam not in raw_name:
+                compatible=False
+                break
+        if not compatible:
+            excl["position_name_incompatibility"]+=1;continue
         rawids=[short((x.get("author") or {}).get("id")) for x in auth]
         if any(not x for x in rawids):
             excl["missing_openalex_author_id"]+=1;continue
