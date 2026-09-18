@@ -26,7 +26,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install test dependencies
-        run: python -m pip install --disable-pip-version-check pytest
+        run: python -m pip install --disable-pip-version-check pytest jsonschema pyyaml
 
       - name: Run OpenIntegrity Pilot 0 invariants
         working-directory: papers/014-public-integrity-forensics/code
@@ -50,5 +50,23 @@ jobs:
 
           readme = (root / "README.md").read_text(encoding="utf-8")
           assert "not an \"AI corruption detector\"" in readme
-          print("ARIS4C014 metadata/safety validation passed")
+
+          import yaml
+          from jsonschema import Draft202012Validator
+          skill = root / "agent/public-integrity-forensics/SKILL.md"
+          skill_text = skill.read_text(encoding="utf-8")
+          assert skill_text.startswith("---\n")
+          _, front, _ = skill_text.split("---", 2)
+          meta = yaml.safe_load(front)
+          assert meta["name"] == "public-integrity-forensics"
+          assert meta["metadata"]["inherits_from"] == "ARIS4C011"
+
+          for name in ["finding.schema.json", "report.schema.json"]:
+              schema = json.loads(
+                  (root / "agent/public-integrity-forensics/assets" / name).read_text(encoding="utf-8")
+              )
+              Draft202012Validator.check_schema(schema)
+
+          assert paper["links"]["skill"] == "agent/public-integrity-forensics/SKILL.md"
+          print("ARIS4C014 metadata/safety/skill validation passed")
           PY
