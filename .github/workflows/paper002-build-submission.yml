@@ -60,7 +60,7 @@ jobs:
           cat > /tmp/style_docx.py <<'PY'
           from pathlib import Path
           from docx import Document
-          from docx.shared import Inches, Pt
+          from docx.shared import Inches, Pt, RGBColor
           from docx.enum.text import WD_LINE_SPACING
           from docx.oxml.ns import qn
 
@@ -94,6 +94,7 @@ jobs:
                       st._element.rPr.rFonts.set(qn('w:hAnsi'), 'Times New Roman')
                       st.font.size = Pt(size)
                       st.font.bold = True
+                      st.font.color.rgb = RGBColor(0, 0, 0)
               for table in doc.tables:
                   table.autofit = True
                   for row_i, row in enumerate(table.rows):
