@@ -110,7 +110,7 @@ def iter_citing_works(
     *,
     api_key: str | None = None,
     max_records: int | None = None,
-    per_page: int = 200,
+    per_page: int = 100,
     polite_sleep_seconds: float = 0.0,
     to_publication_year: int | None = None,
 ) -> Iterator[dict[str, Any]]:
@@ -125,8 +125,8 @@ def iter_citing_works(
     target = _short_id(work_id)
     if not target:
         raise ValueError("work_id is required")
-    if per_page < 1 or per_page > 200:
-        raise ValueError("per_page must be between 1 and 200")
+    if per_page < 1 or per_page > 100:
+        raise ValueError("per_page must be between 1 and 100")
 
     filters = [f"cites:{target}"]
     if to_publication_year is not None:
