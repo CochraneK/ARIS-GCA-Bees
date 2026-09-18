@@ -73,6 +73,8 @@ def main() -> None:
             )
 
     handoff = (BLIND / "WORKBUDDY_HANDOFF.md").read_text(encoding="utf-8")
+    if "BUNDLE_ACCESS_STATUS: PASS" not in handoff:
+        fail("Handoff missing bundle-access declaration contract")
     if "INDEPENDENCE_STATUS: PASS" not in handoff:
         fail("Handoff missing independence declaration contract")
     ids = re.findall(r"(?m)^\| (D\d{2}) \|", handoff)
