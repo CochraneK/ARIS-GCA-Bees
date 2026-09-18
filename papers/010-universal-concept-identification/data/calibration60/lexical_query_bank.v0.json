@@ -1,0 +1,608 @@
+{
+  "dataset_id": "ucid-lexical-query-bank-v0",
+  "created_on": "2026-09-19",
+  "purpose": "Generic non-leaking semantic questions for lexical-sense calibration.",
+  "warning": "Question wording is researcher/model authored and requires human usability calibration.",
+  "questions": [
+    {
+      "query_id": "lex-physical-object",
+      "text": "Does this sense denote a physical object or physically bounded thing?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-living",
+      "text": "Does this sense denote a living organism or living agent?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-person",
+      "text": "Does this sense denote a human person or category of people?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-body-part",
+      "text": "Does this sense denote a body part or biological structure?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-artifact",
+      "text": "Does this sense denote a human-made artifact, device, or tool?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-building",
+      "text": "Does this sense denote a building or built structure?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-substance",
+      "text": "Does this sense denote a substance or material?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-natural-feature",
+      "text": "Does this sense denote a naturally occurring physical feature or phenomenon?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-location",
+      "text": "Does this sense primarily denote a place, location, point, or region?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-event-process",
+      "text": "Does this sense denote an event, action, movement, or process?",
+      "query_kind": "event_or_temporal",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-property-state",
+      "text": "Does this sense denote a property, quality, condition, or state?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-social",
+      "text": "Does this sense denote a social group, institution, occupation, role, or organized activity?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-information",
+      "text": "Does this sense denote information, communication, text, a signal, or a message-like object?",
+      "query_kind": "lexical_metalinguistic",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-abstract-formal",
+      "text": "Does this sense primarily denote an abstract, conceptual, mathematical, or formal entity?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-time",
+      "text": "Does this sense denote a time, time period, season, or temporal position?",
+      "query_kind": "event_or_temporal",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-quantity",
+      "text": "Does this sense denote a quantity, unit, score, degree, or measurement?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-relation-arrangement",
+      "text": "Does this sense denote a relation, ordering, arrangement, boundary, or configuration among things?",
+      "query_kind": "relation",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-economic",
+      "text": "Is money, finance, trade, credit, or economic activity central to this sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-transport",
+      "text": "Is transport, travel, navigation, or movement through space central to this sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-water",
+      "text": "Is water or another liquid central to this sense?",
+      "query_kind": "physical_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-biological",
+      "text": "Is biology, anatomy, organisms, or life processes central to this sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-language",
+      "text": "Is language, grammar, writing, or textual structure central to this sense?",
+      "query_kind": "lexical_metalinguistic",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-cognition",
+      "text": "Is thought, knowledge, perception, belief, or another mental phenomenon central to this sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    },
+    {
+      "query_id": "lex-game-sport",
+      "text": "Is a game, sport, contest, or entertainment activity central to this sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Generic lexical calibration query; not target-specific.",
+      "provenance": {
+        "source_type": "human_authored",
+        "source": null,
+        "license": null,
+        "notes": "ARIS4C010 query-bank design."
+      }
+    }
+  ]
+}
