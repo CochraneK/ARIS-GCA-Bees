@@ -148,9 +148,9 @@ def _parse_value(raw: str | None) -> tuple[float | None, str]:
     value = float(num_m.group(1)) if num_m else None
 
     if "万元" in compact and value is not None:
-        return value * 10000.0, "currency"
+        return round(value * 10000.0, 2), "currency"
     if re.search(r"(?<!万)元", compact) and value is not None:
-        return value, "currency"
+        return round(value, 2), "currency"
     if "%" in compact or "％" in compact:
         return None, "percentage"
     return None, "unknown"
