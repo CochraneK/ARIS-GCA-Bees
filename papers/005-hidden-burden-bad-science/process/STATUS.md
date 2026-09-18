@@ -1,158 +1,176 @@
 # STATUS — ARIS4C005
 
 **Last updated:** 2026-09-18  
-**State:** `PILOT_READY / PRE-DATA`  
+**State:** `PILOT_A_COMPLETE / PILOT_B_ENGINEERING_READY`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
 
 **The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures**
 
-The project is no longer in free-form idea generation. Scope is frozen and the next valid work is empirical pilot execution.
+Scope remains frozen. The project has moved from design-only work into live public-data execution.
 
 ---
 
 # Completed
 
-## Concept / scope
+## Concept / measurement
 
-- [x] Idea saturation pass completed.
 - [x] Five-layer Loss Ontology frozen.
-- [x] E1/E2/E3 exposure separation frozen.
-- [x] Further distinction added between:
-  - E1-S severe scientific unreliability with integrity evidence;
-  - E1-M confirmed major misconduct;
-  - E1-P publication-process integrity failure;
-  - E3 broader unreliability/research waste.
-- [x] Primary / secondary / exploratory estimands defined.
-- [x] Sleeping Beauty outcome explicitly downgraded to exploratory structural counterfactual.
+- [x] E1-S / E1-M / E1-P / E2 / E3 separation frozen.
 - [x] No-single-score rule frozen.
+- [x] Primary binary severe-failure latent target frozen for identifiability.
+- [x] Researcher-level self-report prevalence explicitly separated from article-level prevalence.
+- [x] Detection/governance bias explicitly treated as part of the observation model.
+- [x] Sleeping Beauty permanent-loss count kept exploratory.
 
 ## Evidence
 
-- [x] Initial atomic numeric evidence ledger created.
-- [x] Current Crossref/OpenAlex universe anchors verified.
-- [x] Researcher-level misconduct/QRP meta-analysis anchors verified.
-- [x] Netherlands randomized-response survey anchor verified.
-- [x] VITALITY I contamination cascade and leave-out effects verified.
-- [x] Collateral collaborator citation-effect anchor retrieved.
-- [x] Participant nonpublication/waste anchor retrieved.
-- [x] Peer-review labor context anchor retrieved.
-- [x] Sleeping Beauty/Prince large-network feasibility anchor retrieved.
-- [x] 2026 NIH retraction-cost preprint recorded as QUALIFIED, not peer-reviewed evidence.
+- [x] Canonical numeric evidence ledger exists.
+- [x] Crossref/OpenAlex denominator anchors recorded.
+- [x] VITALITY I contamination cascade recorded.
+- [x] 2025 JAMA Network Open paper-mill systematic-review contamination benchmark added.
+- [x] 2026 BMJ paper-mill ML detector study recorded as detector-feasibility / bias precedent.
+- [x] Human-time, participant, collaborator and NIH-cost context anchors recorded with qualifications.
 
-## Method
+## Pilot A — live public-data acquisition
 
-- [x] Formal estimands written.
-- [x] Causal + measurement DAG written.
-- [x] Detection/governance bias explicitly modeled conceptually.
-- [x] Article-level latent prevalence separated from researcher survey prevalence.
-- [x] Primary latent model simplified to binary severe-failure state for identifiability.
-- [x] Capture-recapture demoted to sensitivity analysis.
-- [x] Manual audit design specified.
-- [x] Material citation-dependence taxonomy specified.
-- [x] Knowledge Ghost Half-Life identification constraints specified.
-- [x] Innovation Delay event-study/synthetic-control requirements specified.
-- [x] Retraction Watch reason/exposure codebook written.
-- [x] Adversarial AUTO_REVIEW completed with 20 major concerns and gates.
+- [x] GitHub Actions networked runner operational.
+- [x] OpenAlex core article+review universe extracted for 2000–2025.
+- [x] Frozen OpenAlex query returned **137,445,874** works under the target metadata definition.
+- [x] Annual counts and query provenance committed.
+- [x] Retraction Watch snapshot pinned to Git commit `448a0ed262c6348dd6f06ac03f5602bae4ef2d01`.
+- [x] Snapshot summarized without redistributing raw CSV.
+- [x] 72,577 correction/event rows observed.
+- [x] 63,434 unique resolvable original-paper DOIs observed.
+- [x] 60,971 unique original DOIs had at least one event with nature `Retraction`.
+- [x] Row-level vs unique-work counts separated.
+- [x] Retraction dates parsed chronologically rather than lexically.
+- [x] Current reason labels/renames handled case-insensitively.
+- [x] CI smoke gate passes.
 
-## Data / implementation
+**Interpretation:** these are detected/corrected records, not latent prevalence.
 
-- [x] Data feasibility + acquisition plan written.
-- [x] `build_universe.py` scaffold created for OpenAlex core article/review counts.
-- [x] `classify_retractions.py` conservative reason classifier created.
-- [x] `scenario_model.py` created for explicitly non-empirical Fermi scenarios.
-- [x] Example scenario input/output created and segregated from evidence ledger.
-- [x] Invariant unit tests created for retraction classification and scenario engine.
-- [x] ARIS4C005 smoke CI workflow added.
-- [x] Public-repository data governance rules documented.
+## Pilot B — engineering layer
+
+- [x] Adjudication protocol frozen.
+- [x] Pilot B data contract frozen.
+- [x] Adjudication CSV template committed.
+- [x] Probability-aware two-phase sampler implemented.
+- [x] Sampling uses independent Bernoulli/Poisson random + enrichment components with exact first-order inclusion probability.
+- [x] Design weights retained for every selected work.
+- [x] Design-weighted detector calibration diagnostic implemented.
+- [x] Kish effective sample size reported.
+- [x] Unresolved/indeterminate labels are never silently recoded as negatives.
+- [x] Sampling/calibration invariant tests pass in GitHub Actions.
 
 ---
 
-# Important current findings / anchors
+# Live Pilot A anchors
 
-These are evidence anchors, not the final global estimate:
+Primary target denominator:
 
-- Crossref (2026-09-16): `187,832,048` total metadata records; `125,897,384` journal DOIs.
-- OpenAlex core: `327,203,926` scholarly works at initialization; work types are broader than papers.
-- Xie et al. 2021: researcher-level pooled FFP-type misconduct self-report `2.9% (95% CI 2.1–3.8%)`; this **cannot** be multiplied by paper counts.
-- Gopalakrishna et al. 2022: Netherlands researcher self-report using randomized response: fabrication `4.3%`, falsification `4.2%`; also not paper prevalence.
-- VITALITY I: 1,330 retracted RCTs; 312 contaminated 4,095 meta-analyses from 847 systematic reviews; 218 substantially affected meta-analyses in 68 reviews were used by 157 English-language guidelines. Removing retracted trials changed pooled-effect direction in 8.4% and P-value significance in 16.0% of the analyzed meta-analyses.
-- Hussinger & Pellens 2019: uninvolved prior collaborators experienced an estimated 8–9% citation penalty after documented misconduct cases.
-- Yilmaz et al. 2018: 66,655 participants in completed but unpublished AD/MCI trials and 18,246 in unpublished discontinued trials — E3 research-waste evidence, not fraud evidence.
+`OpenAlex core + type:article|review + publication_year:2000-2025`
 
-See `data/numeric_evidence.csv` for the canonical numeric ledger and qualifications.
+- metadata count: **137,445,874**
+- source: OpenAlex Works API
+- extraction timestamp stored in `data/pilot/openalex_universe_provenance.json`
+
+Retraction Watch snapshot:
+
+- event rows: **72,577**
+- unique original-paper DOIs: **63,434**
+- unique original DOIs with Retraction nature: **60,971**
+- paper-mill signal unique DOIs: **11,706**
+- narrow auto E1-S unique DOIs: **2,020**
+- strong E1-M unique DOIs: **18,863**
+- strong E1-P unique DOIs: **20,417**
+- rows/cases requiring manual review remain large; these auto flags are screening variables only.
+
+See `data/pilot/retraction_watch_snapshot_summary.json`.
+
+---
+
+# Important external calibration anchors
+
+- Xie et al. 2021 pooled researcher-level FFP self-report: 2.9% (95% CI 2.1–3.8%); **not paper prevalence**.
+- VITALITY I: retracted RCTs propagated into meta-analyses and clinical guidelines, demonstrating that source-paper count alone understates downstream burden.
+- Tang & Cai 2025: among 200,000 life-science systematic reviews, 299 incorporated at least one already-retracted paper-mill article into evidence synthesis (0.15%); 124/385 qualifying citations occurred after retraction. This is a detected-pathway contamination benchmark, not latent paper-mill prevalence.
+- Scancar et al. 2026 demonstrates large-scale text screening feasibility but also why detector training on known/retracted cases cannot replace population-random adjudication.
 
 ---
 
 # Current blockers / gates
 
-## BLOCKER A — actual denominator extraction
+## GATE B1 — real Pilot B feature frame
 
-The code exists, but the current local execution container has no outbound DNS to GitHub/OpenAlex. This is an execution-environment constraint, not a design blocker.
+Need a reproducible row-level frame combining:
 
-**Resolution path:** run via GitHub Actions/Codex/normal networked environment and freeze output/provenance.
+- a population-random OpenAlex component;
+- formal correction/retraction/EOC signals;
+- at least one additional independent detector stream if legally/reproducibly available;
+- explicit detector applicability/missingness.
 
-## BLOCKER B — correction join pilot
+The frame must not use region/nationality as a suspicion feature.
 
-Need actual Retraction Watch CSV snapshot and join audit before any detected-rate result.
+## GATE B2 — manual adjudication capacity
 
-## BLOCKER C — manual adjudication protocol / reviewers
+A real article-level prevalence estimate requires human adjudication. Engineering dry-run threshold:
 
-The label ontology is defined, but a real gold-standard audit requires actual article review and adjudication resources.
+- >=100 resolved population-random adjudications;
+- >=1 detector with estimable sensitivity and specificity.
 
-## BLOCKER D — detector acquisition
+Publication-scale target remains 750–1,500 adjudicated works with double coding of severe/disagreement cases.
 
-Need to settle legally/reproducibly accessible detector sources before Pilot B.
+## GATE C — latent prevalence identification
 
-## BLOCKER E — RLY calibration
+No global hidden-case estimate until:
 
-The vivid scenario engine works, but no empirical RLY scaling is allowed until study-type effort distributions are anchored.
+- random-audit estimate and latent model are reconcilable;
+- posterior materially updates the prior;
+- one detector/field does not dominate;
+- missingness sensitivity does not change estimates by an order of magnitude.
 
-## BLOCKER F — semantic contamination classifier
+## GATE D — semantic contamination
 
-No global Scientific Contamination Footprint until material dependence is validated beyond raw citation counts.
+Raw citation counts are not contamination. A validated material-dependence classifier/manual coding layer is still required for global SCF/KGH.
 
-## BLOCKER G — innovation/Sleeping Beauty causal chain
+## GATE F — RLY / cost scaling
 
-IDY requires valid matched topic controls/pre-trends. NWSB remains exploratory even if IDY succeeds.
+Scenario model remains non-empirical until effort distributions are calibrated. Whole associated grants are never called wasted funding.
 
----
+## GATE G/H — innovation and Sleeping Beauty
 
-# Tool/access notes
-
-- Elicit API attempt: blocked by current plan (`api_access_denied`). Not a dependency.
-- Scite literature retrieval: available.
-- Scite Collection creation attempt: HTTP 402/payment required. Not a dependency.
-- Local container: no DNS for direct GitHub clone / OpenAlex API during initialization.
-- GitHub connector: repository read/write works; all canonical state is committed there.
+Innovation Delay requires valid matched topic controls and pre-trends. Permanent Never-Woken Sleeping Beauty counts remain downstream exploratory work.
 
 ---
 
 # Next execution queue
 
-1. Run ARIS4C005 smoke CI and fix any failing tests.
-2. Execute `build_universe.py` in a networked runner; commit annual counts + provenance.
-3. Pin/download Retraction Watch CSV snapshot and checksum/date it.
-4. Run `classify_retractions.py` and audit a stratified sample of reason mappings.
-5. Produce Pilot A baseline: publication counts, detected E1-S/E1-M/E1-P rates, correction latency.
-6. Freeze a practical detector set and manual adjudication form for Pilot B.
-7. Only after Pilot B/C: fit latent prevalence.
-8. Then start contamination graph / NIH cost / innovation modules.
+1. Build a **real Pilot B seed frame**: OpenAlex random works + formal correction-signal enrichment with public-safe provenance.
+2. Run the probability-aware sampler on that frame.
+3. Produce an adjudication packet with blinded sampling metadata separated from reviewer-facing fields.
+4. Add at least one independent detector family only if its validation/applicability can be documented.
+5. Run a small adjudication micro-pilot to test label usability and disagreement rate.
+6. Freeze Pilot B calibration outputs.
+7. Only then implement/fill the Bayesian latent prevalence model.
+8. In parallel, begin the evidence-synthesis contamination module because VITALITY/Tang-Cai provide a strong validated pathway.
 
 ---
 
-# Do not do next
+# Do not do
 
-- Do not publish the example Fermi outputs as findings.
-- Do not calculate `2.9% × global papers`.
-- Do not calculate `global R&D × misconduct rate`.
-- Do not rank countries by raw retraction rate.
-- Do not call every citation to a retracted paper contamination.
-- Do not claim a global count of Never-Woken Sleeping Beauties before the innovation-delay chain validates.
+- Do not multiply researcher self-report prevalence by global publication counts.
+- Do not divide all Retraction Watch events by all OpenAlex works and call the result fraud prevalence.
+- Do not add overlapping E1-S/E1-M/E1-P counts.
+- Do not infer fraud from country, language, institution or journal.
+- Do not treat text/image detector positives as guilt.
+- Do not call every citation contamination.
+- Do not publish Fermi scenario output as empirical finding.
+- Do not claim a global count of never-awakened discoveries before the causal chain validates.
 
 ---
 
 # Handoff sentence
 
-If this chat is lost, resume from this file and run **Pilot A (OpenAlex universe + Retraction Watch correction join)**. Do not reopen idea mining unless new evidence reveals a genuinely new first-order loss category.
+If this chat is lost, resume from this file. **Pilot A is complete. Pilot B engineering is ready. The next valid task is a real, probability-traceable Pilot B seed frame plus a small adjudication micro-pilot; do not reopen broad idea generation.**
