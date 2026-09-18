@@ -18,8 +18,10 @@ This directory is the canonical registry of research projects produced with ARIS
 | 010 | formal research design / combinatorial Pilot 0 complete | papers/010-universal-concept-identification/ |
 | 011 | formal research design / benchmark specification locked | papers/011-research-forensics/ |
 | 012 | indexed framework / Pilot retrieval passed / independent Coder B blocked | papers/012-oppositional-causal-inversion/ |
+| 013 | formal research design / administrative Pilot 1 discovery | papers/013-birth-death-temporal-coupling/ |
 | 014 | OpenIntegrity / UK Pilot 1A frozen / China Pilot 0 live procurement + CAS universe feasibility frozen / cross-source entity graph next | papers/014-public-integrity-forensics/ |
-| 015 | Sleeping Beauty Miner / agent specification v0.1 | papers/015-sleeping-beauty-miner/ |
+| 015 | Sleeping Beauty Miner / pilot + mechanism track | papers/015-sleeping-beauty-miner/ |
+| 016 | Global Grammar of Swearing / research design + prior-art audit | papers/016-global-grammar-of-swearing/ |
 
 Paper 002 passed independent cross-family ARIS secondary review and has been formally promoted.
 
