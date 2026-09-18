@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - aris4c005-sleeping-beauty-20260918
+      - aris4c005-sleeping-beauty-final-20260918
     paths:
       - ".github/workflows/aris4c005-sleeping-beauty.yml"
       - "papers/005-hidden-burden-bad-science/code/sleeping_beauty.py"
