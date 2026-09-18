@@ -32,3 +32,21 @@ def test_cas_parser_normalizes_research_unit_names():
         "中国科学院理论物理研究所",
     ]
     assert all(x.institution_type == "research_institute" for x in snap.seeds)
+
+
+def test_unavailable_source_is_not_empty_universe_evidence():
+    from china_universe import _unavailable_snapshot, dump_universe_report
+    import json
+
+    snap = _unavailable_snapshot(
+        "https://official.example/",
+        retrieved_at="2026-09-18T00:00:00Z",
+        reason="SSLError:certificate verification failed",
+    )
+    assert snap.seeds == ()
+    assert snap.html_sha256 == ""
+    assert snap.warnings[0].startswith("source_unavailable:")
+    report = json.loads(dump_universe_report([snap]))
+    assert report["aggregate"]["available_sources"] == 0
+    assert report["aggregate"]["unavailable_sources"] == 1
+    assert report["aggregate"]["corruption_inference"] is False
