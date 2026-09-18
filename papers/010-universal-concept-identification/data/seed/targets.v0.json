@@ -1,0 +1,561 @@
+{
+  "dataset": "UCID constructed semantic seed v0",
+  "evidence_class": "synthetic_design_validation",
+  "generated_on": "2026-09-18",
+  "warning": "Not human calibrated or adjudicated. Do not treat labels as semantic gold.",
+  "targets": [
+    {
+      "target_id": "seed-dog",
+      "surface_forms": [
+        "dog"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The ordinary dog concept, operationalized as a crisp animal-kind seed for Pilot 1.",
+      "ontology_kinds": [
+        "organism_or_agent"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-water",
+      "surface_forms": [
+        "water"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The ordinary substance concept water.",
+      "ontology_kinds": [
+        "substance"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-running",
+      "surface_forms": [
+        "running"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The ordinary action/process concept running.",
+      "ontology_kinds": [
+        "action",
+        "process"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "motor_embodied"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-red",
+      "surface_forms": [
+        "red"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The color-property concept red, treated as a context-sensitive scalar/boundary seed.",
+      "ontology_kinds": [
+        "quality_or_property"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "scalar_context_threshold",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-teacher",
+      "surface_forms": [
+        "teacher"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The social role teacher.",
+      "ontology_kinds": [
+        "role",
+        "social_institutional_normative"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "convention_dependent",
+      "context_status": "social_institutional",
+      "grounding_modes": [
+        "lexical_definitional",
+        "social_normative"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-justice",
+      "surface_forms": [
+        "justice"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The abstract social/normative concept justice.",
+      "ontology_kinds": [
+        "social_institutional_normative"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "prototype_family_resemblance",
+      "context_status": "social_institutional",
+      "grounding_modes": [
+        "lexical_definitional",
+        "social_normative"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-unicorn",
+      "surface_forms": [
+        "unicorn"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The familiar fictional unicorn kind.",
+      "ontology_kinds": [
+        "organism_or_agent",
+        "fictional_or_represented"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "fictional",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "multimodal_exemplar"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-current-king-france",
+      "surface_forms": [
+        "the current king of France"
+      ],
+      "target_level": "referent",
+      "canonical_description": "A present-tense definite description operationalized as having no current satisfier in the benchmark context.",
+      "ontology_kinds": [
+        "role",
+        "social_institutional_normative"
+      ],
+      "composition_forms": [
+        "relation_defined",
+        "temporal"
+      ],
+      "existence_status": "empty_contingent",
+      "boundary_status": "crisp",
+      "context_status": "temporal_deictic",
+      "grounding_modes": [
+        "lexical_definitional",
+        "encyclopedic_factual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "presupposition_failure"
+      ],
+      "expressibility_status": "conventional_multiword",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-round-square",
+      "surface_forms": [
+        "round square"
+      ],
+      "target_level": "concept",
+      "canonical_description": "An intentionally inconsistent geometric description combining round and square.",
+      "ontology_kinds": [
+        "geometric_object"
+      ],
+      "composition_forms": [
+        "conjunction"
+      ],
+      "existence_status": "impossible_or_inconsistent",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "mathematical_formal"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "inconsistent_description"
+      ],
+      "expressibility_status": "conventional_multiword",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-bank-financial",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "The financial-institution sense of the English surface form bank.",
+      "ontology_kinds": [
+        "social_institutional_normative"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "convention_dependent",
+      "context_status": "social_institutional",
+      "grounding_modes": [
+        "lexical_definitional",
+        "social_normative"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-bank-river",
+      "surface_forms": [
+        "bank"
+      ],
+      "target_level": "sense",
+      "canonical_description": "The river-edge/landform sense of the English surface form bank.",
+      "ontology_kinds": [
+        "part_boundary_region"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual",
+        "spatial"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-tall",
+      "surface_forms": [
+        "tall"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The gradable property tall, whose threshold depends on a comparison class.",
+      "ontology_kinds": [
+        "quality_or_property"
+      ],
+      "composition_forms": [
+        "comparative_or_superlative"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "vague_borderline",
+      "context_status": "comparison_class",
+      "grounding_modes": [
+        "lexical_definitional",
+        "perceptual"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-here",
+      "surface_forms": [
+        "here"
+      ],
+      "target_level": "sense",
+      "canonical_description": "The spatial indexical here, requiring a speaker/location context.",
+      "ontology_kinds": [
+        "other"
+      ],
+      "composition_forms": [
+        "primitive_relative_to_vocabulary"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "spatial_deictic",
+      "grounding_modes": [
+        "lexical_definitional",
+        "spatial"
+      ],
+      "epistemic_status": "context_underdetermined",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-and",
+      "surface_forms": [
+        "and"
+      ],
+      "target_level": "rule_or_operation",
+      "canonical_description": "The logical/linguistic connective and treated as an operation-level target.",
+      "ontology_kinds": [
+        "logical_object"
+      ],
+      "composition_forms": [
+        "quotation_or_metalinguistic"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "mathematical_formal"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "ordinary",
+        "metalinguistic"
+      ],
+      "expressibility_status": "lexicalized",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-liar",
+      "surface_forms": [
+        "this sentence is false"
+      ],
+      "target_level": "proposition",
+      "canonical_description": "A liar-like self-referential sentence used only as a semantic-pathology stress seed.",
+      "ontology_kinds": [
+        "logical_object",
+        "informational_entity"
+      ],
+      "composition_forms": [
+        "higher_order",
+        "quotation_or_metalinguistic"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "lexical_definitional",
+        "mathematical_formal"
+      ],
+      "epistemic_status": "representation_decidable",
+      "pathology_labels": [
+        "self_referential",
+        "liar_like"
+      ],
+      "expressibility_status": "conventional_multiword",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    },
+    {
+      "target_id": "seed-halting-set",
+      "surface_forms": [
+        "halting set"
+      ],
+      "target_level": "concept",
+      "canonical_description": "The formal set of encoded programs/inputs that halt, used to represent an undecidability stress case.",
+      "ontology_kinds": [
+        "set_or_class",
+        "logical_object"
+      ],
+      "composition_forms": [
+        "higher_order"
+      ],
+      "existence_status": "present_actual",
+      "boundary_status": "crisp",
+      "context_status": "benchmark_invariant",
+      "grounding_modes": [
+        "mathematical_formal"
+      ],
+      "epistemic_status": "undecidable_in_general",
+      "pathology_labels": [
+        "ordinary"
+      ],
+      "expressibility_status": "conventional_multiword",
+      "open_world_role": "in_support",
+      "provenance": {
+        "source_type": "constructed_stress_case",
+        "source": null,
+        "license": "CC BY 4.0 / repository-authored metadata",
+        "notes": "Constructed Semantic Pilot 1 seed. Design validation only; not adjudicated semantic gold."
+      },
+      "annotation_status": "constructed_seed"
+    }
+  ]
+}
