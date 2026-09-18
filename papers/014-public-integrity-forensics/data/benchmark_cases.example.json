@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "synthetic-track-a-001",
+    "unit_type": "procurement_process",
+    "jurisdiction": "SYNTHETIC",
+    "source_cutoff": "2026-01-31",
+    "outcome_class": "official_audit_finding",
+    "outcome_date": "2026-06-15",
+    "outcome_source": {
+      "source_name": "Synthetic Audit Office",
+      "record_id": "audit-001",
+      "url": ""
+    },
+    "feature_sources": [
+      {
+        "source_name": "Synthetic OCDS Publisher",
+        "record_id": "release-001",
+        "url": "",
+        "first_public_at": "2026-01-10",
+        "valid_from": "2026-01-10",
+        "valid_to": null,
+        "track_a_allowed": true,
+        "exclusion_reason": null
+      },
+      {
+        "source_name": "Synthetic Audit Office",
+        "record_id": "audit-001",
+        "url": "",
+        "first_public_at": "2026-06-15",
+        "valid_from": "2026-06-15",
+        "valid_to": null,
+        "track_a_allowed": false,
+        "exclusion_reason": "Published after Track A cutoff and defines the outcome."
+      }
+    ],
+    "matching_stratum": {
+      "agency_or_authority": "synthetic-authority-1",
+      "sector": "synthetic-road-maintenance",
+      "year": 2026,
+      "procurement_method": "open",
+      "value_band": "100k-250k"
+    },
+    "leakage_audit": {
+      "future_outcome_sources_excluded": true,
+      "historical_ownership_checked": true,
+      "outcome_label_removed_from_features": true,
+      "reviewed": true,
+      "review_notes": "Synthetic fixture demonstrating the intended Track A registry semantics."
+    },
+    "notes": "Synthetic only; not an allegation about a real person, company, or authority."
+  }
+]
