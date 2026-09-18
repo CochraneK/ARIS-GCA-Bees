@@ -178,9 +178,10 @@ def main() -> int:
                 "target_year": citing_year,
                 "edge_type": "citation_knowledge_flow",
             }
-            internal_edges.append(edge)
             if cited_year is not None and citing_year is not None and int(cited_year) > int(citing_year):
                 temporal_anomalies.append(edge)
+                continue
+            internal_edges.append(edge)
 
     person_rows = [person_summary(rows) for _, rows in sorted(by_person.items())]
 
@@ -241,7 +242,14 @@ def main() -> int:
         "coauthor_metadata_coverage": works_with_coauthors / clean_n if clean_n else 0.0,
         "unique_external_coauthors_n": len(all_external_coauthors),
         "internal_clean_citation_edges_n": len(internal_edges),
+        "within_person_internal_citation_edges_n": sum(
+            edge["source_person_id"] == edge["target_person_id"] for edge in internal_edges
+        ),
+        "cross_person_internal_citation_edges_n": sum(
+            edge["source_person_id"] != edge["target_person_id"] for edge in internal_edges
+        ),
         "internal_citation_temporal_anomalies_n": len(temporal_anomalies),
+        "temporal_anomalies_excluded_from_graph": True,
         "build_errors_n": len(errors),
         "errors": errors,
         "interpretation_note": (
