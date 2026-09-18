@@ -18,6 +18,7 @@ import json
 import math
 import re
 import statistics
+import random
 from collections import defaultdict
 from pathlib import Path
 
@@ -63,6 +64,35 @@ def dispersion(values: list[float]) -> dict[str, float]:
         "sd_human_y": statistics.stdev(values) if len(values) > 1 else 0.0,
         "min_human_y": min(values),
         "max_human_y": max(values),
+    }
+
+
+def bootstrap_mad_difference(
+    a1: list[float],
+    a3: list[float],
+    *,
+    seed: int,
+    reps: int = 10000,
+) -> dict[str, object]:
+    """Paired species bootstrap for MAD(A3) - MAD(A1)."""
+    if len(a1) != len(a3):
+        raise ValueError("paired vectors must have equal length")
+    rng = random.Random(seed)
+    n = len(a1)
+    diffs = []
+    for _ in range(reps):
+        idx = [rng.randrange(n) for _ in range(n)]
+        b1 = [a1[i] for i in idx]
+        b3 = [a3[i] for i in idx]
+        diffs.append(mad(b3) - mad(b1))
+    diffs.sort()
+    return {
+        "observed_mad_difference_A3_minus_A1_y": mad(a3) - mad(a1),
+        "bootstrap_reps": reps,
+        "bootstrap_95pct_interval_y": [
+            quantile(diffs, 0.025),
+            quantile(diffs, 0.975),
+        ],
     }
 
 
@@ -144,13 +174,18 @@ def main() -> None:
         by_event[row["event"]].append(row)
 
     event_summary = {}
-    for event, group in sorted(by_event.items()):
+    for event_index, (event, group) in enumerate(sorted(by_event.items())):
         a1 = [float(r["A1_relative_lifespan_human_y"]) for r in group]
         a3 = [float(r["A3_loglinear_human_y"]) for r in group]
         event_summary[event] = {
             "n_species": len(group),
             "A1_relative_lifespan": dispersion(a1),
             "A3_loglinear": dispersion(a3),
+            "paired_bootstrap_mad_difference": bootstrap_mad_difference(
+                a1,
+                a3,
+                seed=20260918 + event_index,
+            ),
             "note": (
                 "Lower cross-species dispersion is a necessary-style coherence "
                 "diagnostic for a homologous event, not proof of biological truth."
