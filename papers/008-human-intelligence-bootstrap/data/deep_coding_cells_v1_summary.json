@@ -1,0 +1,19 @@
+{
+  "open_A_F_cells": 399,
+  "priority1_calibration_cells": 150,
+  "priority2_theory_or_backfill_cells": 191,
+  "priority3_source_candidate_cells": 58,
+  "open_by_module": {
+    "A": 70,
+    "B": 63,
+    "C": 68,
+    "D": 71,
+    "E": 69,
+    "F": 58
+  },
+  "open_by_segment": {
+    "current29": 128,
+    "tier1_new50": 271
+  },
+  "missingness_is_absence": false
+}
