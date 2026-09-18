@@ -63,9 +63,9 @@ def figure_cross_dataset():
 def figure_tli_contrasts():
     f = load("stage1f-results.json")
     keys = [
-        ("tree_minus_circular", "Tree − circle"),
-        ("lowrank_minus_circular", "Low-rank − circle"),
-        ("euclidean_minus_circular", "Euclidean − circle"),
+        ("tree_minus_circular", "Tree - circle"),
+        ("lowrank_minus_circular", "Low-rank - circle"),
+        ("euclidean_minus_circular", "Euclidean - circle"),
     ]
     means = np.array([f["paired_contrasts"][k]["mean"] for k, _ in keys])
     lows = np.array([f["paired_contrasts"][k]["ci95_low"] for k, _ in keys])
