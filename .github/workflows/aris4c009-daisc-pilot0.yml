@@ -68,6 +68,8 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
+            mkdir -p papers/009-phenomenology-preserving-computational-psychiatry/data
+            mkdir -p papers/009-phenomenology-preserving-computational-psychiatry/process
 
             cp "$RUNNER_TEMP/inventory.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json
             cp "$RUNNER_TEMP/inventory.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
