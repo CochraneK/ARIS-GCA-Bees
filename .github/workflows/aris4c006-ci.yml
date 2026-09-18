@@ -60,6 +60,8 @@ jobs:
               "STATUS.md",
               "DESIGN_GATES.json",
               "ANALYSIS_SPEC.json",
+              "POPULATION_FRAME.md",
+              "LOAO_EXPOSURE_RULE.md",
           ]
           missing = [x for x in required if not (root / "process" / x).exists()]
           assert not missing, f"missing required process files: {missing}"
@@ -74,6 +76,8 @@ jobs:
           assert analysis_spec["primary_exposure"]["primary_source_level_exposure_forbidden"] is True
           assert "Tier3_last_token_heuristic" in analysis_spec["surname_measurement"]["forbidden"]
           assert analysis_spec["primary_model"]["work_fixed_effects"] is True
+          assert "ChineseNames-mappable" in analysis_spec["primary_frame"]["population"]
+          assert analysis_spec["primary_predictor"]["rank_reference"].startswith("entire actual author list")
           assert analysis_spec["confirmatory_outcomes_unlocked"] is False
           if not gates.get("confirmatory_outcomes_unlocked", False):
               assert manifest["status"] not in {"analysis", "manuscript"}, "analysis/manuscript status forbidden while outcome gate is locked"
