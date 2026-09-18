@@ -253,6 +253,21 @@
         "new-article and funding-flow outcome precedent"
       ],
       "limitations": "Retraction is an observed shock and can reflect misconduct or honest error; related-field decline can represent stigma, rational updating, or both. Historical database/context may not transport directly to current global science."
+    },
+    {
+      "id": "SRC_KE_2015",
+      "tier": "T1",
+      "type": "large_scale_delayed_recognition_study",
+      "title": "Defining and identifying Sleeping Beauties in science",
+      "doi": "10.1073/pnas.1424329112",
+      "year": 2015,
+      "use": [
+        "Beauty Coefficient definition",
+        "awakening-time definition",
+        "continuous delayed-recognition spectrum",
+        "large-scale historical precedent"
+      ],
+      "limitations": "Web of Science/APS historical citation corpora; citation coverage and field composition differ from OpenAlex. The study argues against a natural binary Sleeping Beauty threshold."
     }
   ],
   "optional_tool_layers": {
