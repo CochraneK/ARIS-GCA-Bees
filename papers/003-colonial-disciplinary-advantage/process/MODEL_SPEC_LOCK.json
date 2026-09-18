@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "paper": "ARIS4C003",
+  "locked_date": "2026-09-18",
+  "outcome_seen_at_lock": false,
+  "primary_period": "2019-2022",
+  "persistence_periods": [
+    "2007-2010",
+    "2011-2014",
+    "2015-2018",
+    "2019-2022"
+  ],
+  "permutation": {
+    "reps": 999,
+    "seed": 20260918,
+    "unit": "IKES labels across D01-D21",
+    "two_sided": true,
+    "failed_refit_policy": "invalidate sensitivity"
+  },
+  "loo": {
+    "units": "D01-D21",
+    "failed_refit_policy": "invalidate sensitivity"
+  },
+  "headline_models": {
+    "output": {
+      "outcome": "fractional_output",
+      "regressor": "exposure_x_ikes",
+      "fixed_effects": [
+        "iso3c",
+        "concept_id"
+      ],
+      "cluster": [
+        "iso3c",
+        "concept_id"
+      ]
+    },
+    "top10": {
+      "outcome": "fractional_top10",
+      "regressor": "exposure_x_ikes",
+      "offset": "log_impact_denominator",
+      "fixed_effects": [
+        "iso3c",
+        "concept_id"
+      ],
+      "cluster": [
+        "iso3c",
+        "concept_id"
+      ]
+    },
+    "dyad": {
+      "outcome": "fractional_collaboration_mass",
+      "regressor": "colonial_tie_x_ikes",
+      "fixed_effects": [
+        "pair_fe",
+        "i_discipline_period_fe",
+        "j_discipline_period_fe"
+      ],
+      "cluster": [
+        "pair_fe",
+        "concept_id"
+      ]
+    }
+  },
+  "country_volume_sensitivity": [
+    50,
+    200
+  ],
+  "ikes_sensitivity": [
+    "median"
+  ],
+  "estimator": "PyFixest fepois PPML",
+  "notes": "Cross-check with PREREGISTRATION_DRAFT.md and Amendments 001-002."
+}
