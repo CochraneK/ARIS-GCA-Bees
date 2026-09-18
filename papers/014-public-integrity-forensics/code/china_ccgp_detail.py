@@ -56,6 +56,8 @@ class CCGPAwardLot:
     award_value_yuan: float | None
     award_value_raw: str | None
     pricing_basis: str
+    result_status: str = "awarded"
+    candidate_rank: int | None = None
     score: float | None = None
     item_name: str | None = None
     corruption_inference: bool = False
@@ -155,11 +157,11 @@ def _parse_value(raw: str | None) -> tuple[float | None, str]:
 
 
 def _award_section(text: str) -> str:
-    # Local notices often place award information at section 四 because section 二
-    # is the procurement-plan filing number. Central notices commonly use section 三.
+    # Central/local templates vary in both section number and heading wording.
+    heading = r"(?:中标（成交）信息|中标信息|成交信息)"
     for current, nxt in (("四", "五"), ("三", "四")):
         m = re.search(
-            rf"(?:^|\n){current}、\s*中标（成交）信息\s*\n(?P<body>.*?)(?=\n{nxt}、)",
+            rf"(?:^|\n){current}、\s*{heading}\s*\n(?P<body>.*?)(?=\n{nxt}、)",
             text,
             re.S,
         )
@@ -177,6 +179,40 @@ def _nearby_field(segment: str, labels: Iterable[str]) -> str | None:
         if m:
             return m.group(1).strip()
     return None
+
+
+def _award_value_raw(segment: str) -> str | None:
+    """Extract amount without losing a unit embedded in the field label."""
+    m = re.search(
+        r"(?:^|\n)(?:中标|成交)金额\s*[（(]\s*(万元|元|%|％)\s*[）)]\s*[：:]\s*([^\n]+)",
+        segment,
+    )
+    if m:
+        unit, value = m.group(1), m.group(2).strip()
+        return f"{value}({unit})"
+    return _nearby_field(
+        segment,
+        ("中标（成交）金额", "中标金额", "成交金额"),
+    )
+
+
+def _supplier_status(raw_name: str) -> tuple[str, str, int | None]:
+    """Separate ranked candidates from final award relationships."""
+    value = raw_name.strip()
+    m = re.match(
+        r"第([一二三四五六七八九十\d]+)中标候选人[：:]\s*(.+)",
+        value,
+    )
+    if not m:
+        return value, "awarded", None
+
+    rank_token = m.group(1)
+    chinese = {
+        "一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
+        "六": 6, "七": 7, "八": 8, "九": 9, "十": 10,
+    }
+    rank = int(rank_token) if rank_token.isdigit() else chinese.get(rank_token)
+    return m.group(2).strip(), "candidate", rank
 
 
 def _score(segment: str) -> float | None:
@@ -224,11 +260,9 @@ def parse_ccgp_award_detail(
         package = pkg_matches[-1].group(1).strip() if pkg_matches else None
 
         segment = body[start:end]
-        supplier = m.group(1).strip()
-        raw_value = _nearby_field(
-            segment,
-            ("中标（成交）金额", "中标金额", "成交金额"),
-        )
+        supplier_raw = m.group(1).strip()
+        supplier, result_status, candidate_rank = _supplier_status(supplier_raw)
+        raw_value = _award_value_raw(segment)
         amount, basis = _parse_value(raw_value)
 
         item = _nearby_field(segment, ("名称",))
@@ -240,6 +274,8 @@ def parse_ccgp_award_detail(
                 award_value_yuan=amount,
                 award_value_raw=raw_value,
                 pricing_basis=basis,
+                result_status=result_status,
+                candidate_rank=candidate_rank,
                 score=_score(segment),
                 item_name=item,
             )
@@ -296,6 +332,12 @@ def dump_detail_report(notices: Iterable[CCGPAwardNotice]) -> str:
                 "percentage_pricing_lots": sum(
                     x.pricing_basis == "percentage" for x in lots
                 ),
+                "final_award_lots": sum(
+                    x.result_status == "awarded" for x in lots
+                ),
+                "candidate_lots": sum(
+                    x.result_status == "candidate" for x in lots
+                ),
                 "corruption_inference": False,
                 "privacy_note": (
                     "Normalized public output excludes personal contact names, "
@@ -328,7 +370,7 @@ def safe_structural_debug_lines(html: str, *, limit: int = 80) -> list[str]:
             continue
         # Strip long digit runs as an additional privacy guard. Project IDs with
         # mixed letters/punctuation remain structurally useful.
-        line = re.sub(r"(?<![A-Za-z])\\d{7,}(?![A-Za-z])", "[REDACTED_NUM]", line)
+        line = re.sub(r"(?<![A-Za-z])\d{7,}(?![A-Za-z])", "[REDACTED_NUM]", line)
         out.append(line[:300])
         if len(out) >= limit:
             break
