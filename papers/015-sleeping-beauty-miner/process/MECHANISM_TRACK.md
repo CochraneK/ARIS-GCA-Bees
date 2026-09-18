@@ -82,14 +82,20 @@ The current mechanism gate requires converging evidence.
 
 ### Component 1 — Sleep / wake trajectory
 
-Default literature-style settings:
+Default mechanism settings:
 
-- sleeping period: first 10 years;
-- average sleeping citation rate <= 1/year;
-- awakening window: following 4 years;
-- average awakening citation rate > 5/year.
+- VARIABLE_SLEEP mode: scan admissible sleep lengths rather than forcing a
+  single 5/10/15/20-year sleep;
+- minimum sleep length: 5 years;
+- primary sleep-depth profile: <= 2 citations/year, covering deep and
+  less-deep literature variants;
+- awakening window: 4 years immediately after the candidate sleep period;
+- awakening intensity: > 5 citations/year;
+- strict DEEP sensitivity: <= 1 citation/year;
+- fixed s = 5/10/15/20 analyses remain available for literature replication.
 
-These settings are configurable and sensitivity-tested.
+The sleep length s is therefore an estimated/tunable trajectory dimension, not
+a universal constant.
 
 The original van Raan framework characterizes Sleeping Beauties by:
 
@@ -122,6 +128,10 @@ paper that later receives substantial scientific attention.
 Current mechanism default:
 
 - at least 50 total citations over the full observation window.
+
+The primary gate includes both DEEP and LESS_DEEP profiles. A DEEP-only
+(maximum 1 citation/year during sleep) subset is reported as a stricter
+sensitivity analysis rather than treated as the only valid SB definition.
 
 Sensitivity analyses should include:
 
