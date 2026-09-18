@@ -179,3 +179,101 @@ def assess_track_a_artifact(
         warnings=warnings,
         evidence=evidence,
     )
+
+
+@dataclass(frozen=True)
+class ArtifactObject:
+    """One historically qualified object and the forensic role it can support."""
+
+    object_id: str
+    role: str
+    status: str  # SAFE_EXACT | PROXY_ONLY | BLOCKED
+    source: str = ""
+    note: str = ""
+
+
+@dataclass
+class IssueArtifactQualification:
+    status: str
+    track_a_eligible: bool
+    proxy_eligible: bool
+    required_roles: List[str]
+    exact_roles: List[str] = field(default_factory=list)
+    proxy_roles: List[str] = field(default_factory=list)
+    missing_or_blocked_roles: List[str] = field(default_factory=list)
+    evidence_objects: Dict[str, List[str]] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+def qualify_issue_artifact_set(
+    objects: List[ArtifactObject],
+    required_roles: List[str],
+) -> IssueArtifactQualification:
+    """Qualify an issue/detector at object/modality level.
+
+    A paper-level historical HTML snapshot does not automatically make an image
+    detector eligible. Each required role must be supplied by at least one
+    historically qualified object.
+    """
+    required = sorted(set(str(r).strip() for r in required_roles if str(r).strip()))
+    if not required:
+        return IssueArtifactQualification(
+            status="BLOCKED",
+            track_a_eligible=False,
+            proxy_eligible=False,
+            required_roles=[],
+            missing_or_blocked_roles=["<no required roles declared>"],
+        )
+
+    exact_roles: List[str] = []
+    proxy_roles: List[str] = []
+    blocked_roles: List[str] = []
+    evidence: Dict[str, List[str]] = {}
+
+    for role in required:
+        matching = [obj for obj in objects if obj.role == role]
+        evidence[role] = [obj.object_id for obj in matching]
+
+        if any(obj.status == "SAFE_EXACT" for obj in matching):
+            exact_roles.append(role)
+        elif any(obj.status == "PROXY_ONLY" for obj in matching):
+            proxy_roles.append(role)
+        else:
+            blocked_roles.append(role)
+
+    if blocked_roles:
+        return IssueArtifactQualification(
+            status="BLOCKED",
+            track_a_eligible=False,
+            proxy_eligible=False,
+            required_roles=required,
+            exact_roles=exact_roles,
+            proxy_roles=proxy_roles,
+            missing_or_blocked_roles=blocked_roles,
+            evidence_objects=evidence,
+        )
+
+    if proxy_roles:
+        return IssueArtifactQualification(
+            status="PROXY_ONLY",
+            track_a_eligible=False,
+            proxy_eligible=True,
+            required_roles=required,
+            exact_roles=exact_roles,
+            proxy_roles=proxy_roles,
+            missing_or_blocked_roles=[],
+            evidence_objects=evidence,
+        )
+
+    return IssueArtifactQualification(
+        status="SAFE_EXACT",
+        track_a_eligible=True,
+        proxy_eligible=False,
+        required_roles=required,
+        exact_roles=exact_roles,
+        proxy_roles=[],
+        missing_or_blocked_roles=[],
+        evidence_objects=evidence,
+    )
