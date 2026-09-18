@@ -1,0 +1,37 @@
+{
+  "source_name": "Public-Use NUMIDENT Death Files",
+  "canonical_project_doi": "10.3886/E207202V3",
+  "project_url": "https://www.openicpsr.org/openicpsr/project/207202/version/V3/view",
+  "provenance": "NARA Numerical Identification Files (NUMIDENT), deposited by Anthony Wray; derived from public NARA release",
+  "access_class": "public-use; no access/use restrictions reported by replication documentation; browser transfer may still be required",
+  "nara_identifiers": {
+    "series": "12004494",
+    "death_files": "23845618",
+    "ss5_files": "23845613",
+    "claims_files": "23852747"
+  },
+  "death_archives": [
+    {
+      "filename": "NUMDEATH01-10_PU.zip",
+      "published_size_mb": 938.4,
+      "role": "death-file parts 01–10"
+    },
+    {
+      "filename": "NUMDEATH11-20_PU.zip",
+      "published_size_mb": 938.1,
+      "role": "death-file parts 11–20"
+    }
+  ],
+  "expected_record_universe": "49,459,293 death record entries reported by OpenICPSR project metadata",
+  "required_for_aris4c013": [
+    "exact birth month/day/year",
+    "exact death month/day/year",
+    "death-source / proof / exception fields where available in raw layout"
+  ],
+  "locked_analysis_windows": {
+    "discovery": "1988-1996",
+    "temporal_holdout": "1997-2005"
+  },
+  "claim_boundary": "Source acquisition/provenance manifest only. It does not imply the bytes have been downloaded or validated.",
+  "last_verified": "2026-09-19"
+}
