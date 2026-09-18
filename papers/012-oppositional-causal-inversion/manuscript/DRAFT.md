@@ -1,4 +1,4 @@
-# When Opposites Become Causes: A Cross-Domain Science of Oppositional Causal Inversion
+# When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion
 
 **Cunyi Kang**
 
@@ -22,7 +22,7 @@ denote a construct for actor (a), level (l), time (t), operational dimension (d)
 
 The missing indices transform a contradiction into an empirical causal proposition.
 
-A large number of mature literatures already study particular instances of backfire, paradox, and unintended consequence: security dilemmas, choice overload, iatrogenic treatment effects, boomerang effects, rebound effects, Braess paradoxes, Goodhart-type target corruption, organizational capability–rigidity transitions, rational inattention, and ecological rationality. The contribution sought here is therefore **not** the observation that interventions sometimes backfire. Instead, we ask whether these literatures can be represented by a common indexed causal grammar that is narrow enough to reject superficially similar noncases and useful enough to predict boundary conditions across domains.
+A large number of mature literatures already study particular instances of backfire, paradox, and unintended consequence: security dilemmas, choice overload, iatrogenic treatment effects, boomerang effects, rebound effects, Braess paradoxes, Goodhart-type target corruption, organizational capability–rigidity transitions, rational inattention, and ecological rationality. The contribution sought here is therefore **not** the observation that interventions sometimes backfire. Classic work on unanticipated consequences, later typologies of perverse and unintended effects, and recent complex-systems analyses already make that territory broad and explicit. In particular, contemporary work describes how feedback, adaptation, nonlinearity, and scale can cause well-intended interventions to undermine their goals across ecological, technological, social, and economic systems. The narrower question is whether one restricted subclass—effects producing a **prespecified functional opposite**—can be represented by a common indexed causal grammar that is narrow enough to reject superficially similar noncases and useful enough to predict boundary conditions across domains.
 
 We call the candidate representation **Oppositional Causal Inversion (OCI)**.
 
@@ -86,6 +86,12 @@ We distinguish eight provisional mechanism families.
 The taxonomy is provisional until independent coding tests whether distinct reviewers can apply it reliably.
 
 ## 3. Relation to neighboring theories
+
+### 3.0 Unanticipated consequences and complex adaptive systems
+
+The broadest prior art predates the contemporary “paradox” literatures. Merton's analysis of unanticipated consequences and Boudon's treatment of perverse effects already establish unintended social outcomes as a general theoretical problem. Later work on unintended-consequence typologies explicitly argues that structured classification may be more defensible than one universal causal theory. Recent complex-systems commentary goes further, emphasizing nonlinear dynamics, adaptation, feedback, and multiple spatial and temporal scales across domains.
+
+These traditions substantially narrow the novelty of OCI. OCI is not proposed as a general theory of unintended consequences. Its candidate contribution is a **measurement and representation layer** for the subset in which the outcome can be independently defined as a functional opposite of the exposure or its intended function.
 
 ### 3.1 Paradox theory
 
@@ -241,11 +247,13 @@ The most important empirical challenge is semantic discipline. If “opposite”
 
 ## 10. Current limitations and locked next steps
 
+A novelty audit conducted before full evidence-map screening rejected the project's original broad “science of causal inversion” framing. Existing theory already spans cross-domain unintended consequences, feedback, adaptation, multilevel rebound, and paradox. Accordingly, the canonical title and claim have been narrowed to an **indexed framework**. The framework earns a distinct name only if independent coding demonstrates that the combination of functional-opposition prespecification and index restoration is reliable and useful.
+
 This draft precedes two hard gates.
 
 First, the 30-record feasibility labels were produced by one coder. A blind Coder B packet has been frozen, but independent coding must occur in a genuinely separate context before agreement statistics are calculated.
 
-Second, the first reproducible database retrieval exposed lexical contamination. Retrieval v0.2 was prospectively amended with type and topical anchors and must be audited before the evidence-map sampling frame is frozen.
+Second, the first reproducible database retrieval exposed lexical contamination. Retrieval v0.1 was preserved as a failed-but-informative snapshot. Retrieval v0.2 prospectively added record-type and topical title anchors and subsequently passed the Pilot reproducibility/gross-relevance gate, yielding 165 selected candidates from 1,800 raw OpenAlex/Crossref hits while preserving 1,375 rejected records and reasons. This does not establish systematic-review saturation.
 
 No general-theory claim, prevalence estimate, or cross-domain predictive claim is permitted until both gates are passed.
 
