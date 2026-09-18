@@ -1,0 +1,47 @@
+name: Paper 002 anonymized supplement CI
+
+on:
+  push:
+    paths:
+      - 'papers/002-language-geometry/submission/linguistic-typology/supplement/**'
+      - '.github/workflows/paper002-supplement.yml'
+  pull_request:
+    paths:
+      - 'papers/002-language-geometry/submission/linguistic-typology/supplement/**'
+      - '.github/workflows/paper002-supplement.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  supplement-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned environment
+        run: python -m pip install --disable-pip-version-check -r papers/002-language-geometry/submission/linguistic-typology/supplement/requirements.txt
+      - name: Compile all Python scripts
+        run: python -m compileall -q papers/002-language-geometry/submission/linguistic-typology/supplement
+      - name: Parse all JSON outputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('papers/002-language-geometry/submission/linguistic-typology/supplement')
+          files=sorted(root.glob('*results.json'))
+          assert len(files) >= 10, f'Expected >=10 results files, got {len(files)}'
+          for p in files:
+              json.loads(p.read_text(encoding='utf-8'))
+          print(f'Parsed {len(files)} JSON result files')
+          PY
+      - name: Anonymization smoke check
+        run: |
+          if grep -RniE 'CochraneK|Cochrane Kang|WorkBuddy|Tencent|ARIS4C' papers/002-language-geometry/submission/linguistic-typology/supplement; then
+            echo 'Identity/process marker found in anonymized supplement'
+            exit 1
+          fi
