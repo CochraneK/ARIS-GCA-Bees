@@ -90,6 +90,12 @@ def main() -> None:
         notes = coder_b_notes.read_text(encoding="utf-8", errors="replace")
         if "BLINDING DECLARATION" not in notes:
             outcome_problems.append("Coder B notes missing BLINDING DECLARATION")
+        if notes.count("INDEPENDENCE_STATUS: PASS") != 1:
+            outcome_problems.append(
+                "Coder B notes must contain exactly one INDEPENDENCE_STATUS: PASS"
+            )
+        if "INDEPENDENCE_STATUS: FAIL" in notes:
+            outcome_problems.append("Coder B declared failed independence/blinding")
 
     frozen = PROCESS / "IKES_FROZEN.csv"
     if frozen.exists():
