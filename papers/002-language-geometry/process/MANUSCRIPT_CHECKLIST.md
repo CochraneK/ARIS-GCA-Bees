@@ -26,13 +26,30 @@
 - [x] Claims–evidence matrix.
 - [x] Data provenance note.
 - [x] Publication-oriented SVG figures generated and clean-CI regeneration tested (final journal styling may still change).
-- [ ] Target-journal formatting.
-- [ ] Final abstract after figure/statistical audit.
-- [ ] Independent manuscript-stage review.
+- [x] Target-journal formatting package prepared for Linguistic Typology.
+- [x] Final submission abstract reduced to 160 words and journal keywords added.
+- [x] Independent manuscript-stage review PASS_SUBMISSION_PREP.
 
 ## Literature freshness
 
 - [x] 2026-09-18 direct-collision rescan completed (`LITERATURE_RESCAN_2026-09-18.md`).
 - [x] Kemp (2026) domain-specific circular-structure work integrated into novelty boundary.
 - [x] General circular-seriation embedding prior art integrated.
-- [ ] Different-family manuscript reviewer repeats targeted collision search.
+- [x] Different-family manuscript reviewer repeated targeted collision search.
+
+
+## Submission package
+
+- [x] Strictly anonymised manuscript Markdown.
+- [x] Abstract 100–200 words and 3–6 lowercase keywords.
+- [x] Tables 1–6 embedded in blinded manuscript.
+- [x] Figures 1–3 explicitly cited in text and supplied separately.
+- [x] Title-page template prepared.
+- [x] Cover-letter template prepared.
+- [x] Funding/conflict/AI/data declaration template prepared.
+- [x] Anonymous Stage 0–1I scripts and JSON outputs bundled for supplement.
+- [x] Reproducibility environment frozen.
+- [x] Supplement CI passed.
+- [ ] DOCX/PDF build artifact passes visual QA.
+- [ ] Author completes IPA/affiliation/address/email/ORCID/funding/COI and confirms exclusivity.
+- [ ] ScholarOne submission.
