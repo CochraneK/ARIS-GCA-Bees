@@ -30,6 +30,12 @@ jobs:
             publication_year: 1935
             published_b: 2258
             awakening_year: 1994
+          - slug: washburn
+            case_id: ke2015_07
+            doi: 10.1103/PhysRev.17.273
+            publication_year: 1921
+            published_b: 2184
+            awakening_year: 1995
 
     steps:
       - uses: actions/checkout@v4
