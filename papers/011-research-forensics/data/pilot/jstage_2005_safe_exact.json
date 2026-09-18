@@ -1,0 +1,46 @@
+{
+  "artifact_id": "jstage-expanim54-1-pdf-20180725",
+  "target_doi": "10.1538/expanim.54.1",
+  "issue_code": "authorship_peer_review",
+  "ground_truth_tier": "GT-A",
+  "event_type": "retraction",
+  "event_date": "2022-08-01",
+  "archive": {
+    "source": "Internet Archive Wayback Machine",
+    "snapshot_timestamp": "20180725154120",
+    "original_url": "https://www.jstage.jst.go.jp/article/expanim/54/1/54_1_1/_pdf",
+    "content_type": "application/pdf",
+    "digest_type": "wayback_cdx_digest",
+    "digest": "BVVVDATHFQQOSOD4UX6KKPS7YDZJF3H3",
+    "status": "SAFE_EXACT"
+  },
+  "source_verified_metadata": {
+    "title": "Effect of Treadmill Exercise on Bone Mass in Female Rats",
+    "journal": "Experimental Animals",
+    "volume": "54",
+    "issue": "1",
+    "pages": "1-6",
+    "year": "2005",
+    "article_type": "Review"
+  },
+  "automated_extraction_audit": {
+    "extracted_year": "2004",
+    "extracted_pages": "1-8",
+    "source_verified_year": "2005",
+    "source_verified_pages": "1-6",
+    "status": "FAILED_VERIFICATION",
+    "interpretation": "The extraction layer produced bibliographic errors and must not be trusted without source anchoring."
+  },
+  "structured_detector_inputs": {
+    "nhst_tests": [],
+    "discrete_means": [],
+    "binary_summaries": [],
+    "table_checks": [],
+    "doi_resolutions": []
+  },
+  "expected_pilot1_outcome": {
+    "review_priority": "NONE",
+    "finding_statuses": ["ABSTAIN", "ABSTAIN", "ABSTAIN", "ABSTAIN", "ABSTAIN"],
+    "interpretation": "The SAFE_EXACT review contains no eligible structured inputs for the current deterministic adapters. This is a coverage/applicability result, not evidence that the retraction reason is absent or false."
+  }
+}

@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**PILOT 1B TABLE SEMANTICS HARDENED · ARCHIVE DISCOVERY AUTOMATED**
+**FIRST SAFE_EXACT REAL MANUSCRIPT RUN · EXTRACTION GUARD ADDED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -41,6 +41,10 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - F3 table checks now include row_completeness in addition to rank_sequence.
 - Wayback/CDX candidate discovery helper added with strict pre-event filtering.
 - PLOS SAFE_EXACT body-text smoke test correctly abstained for F1/GRIM because required recomputation inputs were absent.
+- First exact historical publisher PDF recovered: J-STAGE 10.1538/expanim.54.1, captured 2018-07-25 before the 2022 retraction.
+- Pilot 1C real-manuscript run: all currently implemented deterministic families correctly ABSTAIN on this review; review priority NONE.
+- Real extractor QA failure documented: automated extraction confused 2004 received/accepted dates with publication year and misreported pages as 1-8 instead of 1-6.
+- Track A now fails closed when any supplied structured detector record lacks source_locator or provenance_verified=true.
 
 ## Critical design findings already established
 
@@ -96,5 +100,5 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 1. Scale object-level historical-artifact qualification beyond the six-record source-anatomy seed.
 2. Acquire SAFE_EXACT body/table/reference/image objects for a pilot subset and freeze hashes/provenance.
 3. Run deterministic adapters only where their required artifact roles are SAFE_EXACT; treat missing inputs as ABSTAIN rather than failures.
-4. Quantify extraction error, applicability, alert yield, and human verification time.
+4. Quantify extraction error, applicability, alert yield, and human verification time; first real extraction-error case is now recorded.
 5. Add image/text/semantic modules only after deterministic real-manuscript validation.
