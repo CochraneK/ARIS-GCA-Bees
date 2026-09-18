@@ -1,0 +1,56 @@
+name: ARIS4C007 Pilot 0
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "papers/007-cross-species-age-equivalence/code/**"
+      - ".github/workflows/007-pilot0.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pilot0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run mapping unit tests
+        working-directory: papers/007-cross-species-age-equivalence/code
+        run: python -m unittest -v test_age_mappings.py
+
+      - name: Download pinned public sources
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/download_public_sources.py --out data/raw --source anage
+
+      - name: Build Pilot 0 from official AnAge
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/build_pilot0.py data/raw/anage_data.txt --out data/pilot0
+
+      - name: Show provenance and coverage
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          cat data/raw/source_manifest.json
+          cat data/pilot0/coverage_summary.json
+
+      - name: Upload Pilot 0 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot0
+          path: |
+            papers/007-cross-species-age-equivalence/data/raw/source_manifest.json
+            papers/007-cross-species-age-equivalence/data/pilot0/coverage_summary.json
+            papers/007-cross-species-age-equivalence/data/pilot0/life_history_mapping_grid.csv
+          if-no-files-found: error
+          retention-days: 30
