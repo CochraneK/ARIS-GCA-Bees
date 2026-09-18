@@ -1,0 +1,32 @@
+name: ARIS4C014 China CCGP USCC Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/014-public-integrity-forensics/code/china_ccgp_detail.py"
+      - "papers/014-public-integrity-forensics/code/live_china_ccgp_uscc_smoke.py"
+      - ".github/workflows/aris4c014-china-ccgp-uscc-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ccgp-uscc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run privacy-minimized USCC regression
+        working-directory: papers/014-public-integrity-forensics/code
+        run: python live_china_ccgp_uscc_smoke.py
+      - name: Upload aggregate USCC artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c014-china-ccgp-uscc-regression
+          path: papers/014-public-integrity-forensics/code/ccgp_uscc_smoke.json
+          retention-days: 30
