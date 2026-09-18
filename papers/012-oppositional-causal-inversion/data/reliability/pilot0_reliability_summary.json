@@ -1,0 +1,280 @@
+{
+  "classification": "INDEPENDENT_CODER_RELIABILITY",
+  "coder_a_records": 30,
+  "coder_b_records": 30,
+  "completeness": {
+    "expected_records": 30,
+    "present_records": 30,
+    "missing_records": [],
+    "records_missing_core_fields": {
+      "P01": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P02": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P03": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P04": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P05": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P06": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P07": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P08": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P09": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P10": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P11": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P12": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P13": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P14": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P15": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P16": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P17": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P18": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P19": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P20": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P21": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P22": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P23": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P24": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P25": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P26": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P27": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P28": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P29": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ],
+      "P30": [
+        "opposition_valid",
+        "oci_candidate",
+        "primary_mechanism"
+      ]
+    },
+    "complete": false
+  },
+  "fields": {
+    "opposition_valid": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "oci_candidate": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "primary_mechanism": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "actor_switch": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "level_switch": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "time_switch": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "construct_switch": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "environment_switch": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "feedback": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "nonlinearity": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "selection_filtering": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "power_asymmetry": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "evidence_mode": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "evidence_tier": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "causal_claim_strength": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    },
+    "result_support": {
+      "n_pairwise_complete": 0,
+      "n_missing_either": 30,
+      "raw_agreement": null,
+      "cohen_kappa": null,
+      "krippendorff_alpha_nominal": null
+    }
+  },
+  "status": "BLOCKED_INCOMPLETE_CODER_B",
+  "key_gate_metrics": {},
+  "disagreement_cells": 0
+}
