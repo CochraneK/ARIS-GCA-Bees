@@ -21,7 +21,7 @@ This directory is the canonical registry of research projects produced with ARIS
 | 013 | formal research design / administrative Pilot 1 discovery | papers/013-birth-death-temporal-coupling/ |
 | 014 | OpenIntegrity / UK Pilot 1A frozen / China Pilot 0 live procurement + CAS universe feasibility frozen / cross-source entity graph next | papers/014-public-integrity-forensics/ |
 | 015 | Sleeping Beauty Miner / pilot + mechanism track | papers/015-sleeping-beauty-miner/ |
-| 016 | Global Grammar of Swearing / research design + prior-art audit | papers/016-global-grammar-of-swearing/ |
+| 016 | Global Grammar of Swearing / Phase-0 working manuscript + validation gates | papers/016-global-grammar-of-swearing/ |
 
 Paper 002 passed independent cross-family ARIS secondary review and has been formally promoted.
 
