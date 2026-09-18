@@ -334,3 +334,110 @@ def normalize_companies_house(
         relations=relations,
         warnings=warnings,
     )
+
+
+@dataclass
+class USASpendingImportResult:
+    case: IntegrityCase
+    warnings: list[str] = field(default_factory=list)
+
+
+def normalize_usaspending_award(
+    row: dict[str, Any],
+    *,
+    retrieved_at: Optional[date] = None,
+    source_url: str = "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+) -> USASpendingImportResult:
+    """Normalize one USAspending spending_by_award result.
+
+    This adapter intentionally leaves bid_count and legal_threshold unset:
+    USAspending award search is an award/spending source, not a complete
+    tender-competition record.
+    """
+    warnings: list[str] = []
+
+    award_id = str(
+        row.get("Award ID")
+        or row.get("generated_internal_id")
+        or row.get("internal_id")
+        or ""
+    ).strip()
+    if not award_id:
+        raise ValueError("USAspending row requires an award identifier")
+
+    recipient_name = str(row.get("Recipient Name") or "").strip()
+    recipient_uei = str(row.get("Recipient UEI") or "").strip()
+    recipient_id = str(row.get("recipient_id") or "").strip()
+
+    if recipient_uei:
+        supplier_id = f"US-UEI:{recipient_uei}"
+        stable_ids = (supplier_id,)
+    elif recipient_id:
+        supplier_id = f"USAspending-recipient:{recipient_id}"
+        stable_ids = ()
+        warnings.append("recipient_uei_missing")
+    else:
+        supplier_id = f"USAspending-recipient-name:{recipient_name or 'unknown'}"
+        stable_ids = ()
+        warnings.append("stable_recipient_identifier_missing")
+
+    agency_code = str(row.get("Awarding Agency Code") or "").strip()
+    agency_name = str(row.get("Awarding Agency") or "").strip()
+    if agency_code:
+        authority_id = f"US-FED-AGENCY:{agency_code}"
+    elif agency_name:
+        authority_id = f"USAspending-agency-name:{agency_name}"
+        warnings.append("awarding_agency_code_missing")
+    else:
+        authority_id = "USAspending-agency:unknown"
+        warnings.append("awarding_agency_missing")
+
+    published = _date(row.get("Last Modified Date"))
+    award_date = _date(row.get("Base Obligation Date") or row.get("Start Date"))
+    amount = _amount(row.get("Award Amount"))
+
+    src = SourceRef(
+        source_name="USAspending",
+        record_id=award_id,
+        url=source_url,
+        published_at=published,
+        retrieved_at=retrieved_at,
+    )
+
+    supplier = EntityRecord(
+        entity_id=supplier_id,
+        name=recipient_name or supplier_id,
+        entity_type="legal_entity",
+        stable_ids=stable_ids,
+        source_refs=(src,),
+    )
+    authority = EntityRecord(
+        entity_id=authority_id,
+        name=agency_name or authority_id,
+        entity_type="public_authority",
+        stable_ids=(authority_id,) if agency_code else (),
+        source_refs=(src,),
+    )
+
+    contract = ContractRecord(
+        contract_id=f"USAspending:{award_id}",
+        authority_id=authority_id,
+        supplier_ids=(supplier_id,),
+        award_date=award_date,
+        publication_date=published,
+        award_value=amount,
+        legal_threshold=None,
+        bid_count=None,
+        procurement_method=str(row.get("Contract Award Type") or "") or None,
+        jurisdiction="US-federal",
+        source_refs=(src,),
+    )
+    case = IntegrityCase(
+        subject_id=contract.contract_id,
+        contract=contract,
+        entities={
+            supplier.entity_id: supplier,
+            authority.entity_id: authority,
+        },
+    )
+    return USASpendingImportResult(case=case, warnings=warnings)
