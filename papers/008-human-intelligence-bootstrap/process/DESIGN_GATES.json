@@ -14,8 +14,8 @@
     },
     {
       "id": "research_effort",
-      "status": "open",
-      "requirement": "Every literature-derived behavioural trait must include research-effort and missingness metadata."
+      "status": "in_progress",
+      "requirement": "ACDB/source counts are available as first research-effort proxies, but module-specific search effort and tested-negative evidence must still be quantified."
     },
     {
       "id": "phylogeny",
@@ -25,12 +25,12 @@
     {
       "id": "pilot_matrix",
       "status": "in_progress",
-      "requirement": "Complete a 20–40 taxon high-contrast pilot before full scaling."
+      "requirement": "Pilot matrix v0 exists for 25 taxa; 19 have an exact-species evidence route and six still require exact-species resolution or sensitivity-only treatment."
     },
     {
       "id": "model_recoverability",
-      "status": "open",
-      "requirement": "Simulation must show that additive, bottleneck and threshold architectures are distinguishable under realistic missingness and measurement error."
+      "status": "provisional_pass",
+      "requirement": "Toy simulation demonstrates meaningful model discrimination only with configuration-aware sampling and controlled missingness; repeat using observed pilot missingness before confirmatory analysis."
     },
     {
       "id": "hominin_layer",
