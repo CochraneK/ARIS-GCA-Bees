@@ -70,6 +70,118 @@ def get(url: str) -> tuple[bytes, str, str]:
         )
 
 
+def discover_pmc_cloud_media() -> tuple[dict[str, str], dict[str, object]]:
+    """Resolve supplement URLs from the current PMC AWS metadata object."""
+    metadata_url = (
+        f"https://pmc-oa-opendata.s3.amazonaws.com/metadata/"
+        f"{PMCID}.{PMC_VERSION}.json"
+    )
+    body, final_url, content_type = get(metadata_url)
+    metadata = json.loads(body.decode("utf-8"))
+    media_urls = metadata.get("media_urls") or []
+
+    resolved: dict[str, str] = {}
+    for key, target_filename in TARGETS.items():
+        target_lower = target_filename.lower()
+        for item in media_urls:
+            url = item.get("url") if isinstance(item, dict) else str(item)
+            if not url:
+                continue
+            decoded = urllib.parse.unquote(url)
+            base = Path(urllib.parse.urlsplit(decoded).path).name
+            if (
+                base.lower() == target_lower
+                or "tables1" in base.lower() and key == "table_s1"
+                or "dataset1" in base.lower() and key == "dataset1"
+            ):
+                resolved[key] = url
+                break
+
+    if len(resolved) != len(TARGETS):
+        # Fallback to official S3 ListObjectsV2 to expose exact object keys.
+        prefix = f"{PMCID}.{PMC_VERSION}/"
+        list_url = (
+            "https://pmc-oa-opendata.s3.amazonaws.com/"
+            "?list-type=2&prefix="
+            + urllib.parse.quote(prefix, safe="")
+        )
+        list_body, list_final, list_type = get(list_url)
+        xml = ET.fromstring(list_body)
+        keys = []
+        for elem in xml.iter():
+            if elem.tag.endswith("Key") and elem.text:
+                keys.append(elem.text)
+
+        for key, target_filename in TARGETS.items():
+            if key in resolved:
+                continue
+            for object_key in keys:
+                base = Path(object_key).name
+                low = base.lower()
+                if (
+                    base.lower() == target_filename.lower()
+                    or ("tables1" in low and key == "table_s1")
+                    or ("dataset1" in low and key == "dataset1")
+                ):
+                    resolved[key] = (
+                        "https://pmc-oa-opendata.s3.amazonaws.com/"
+                        + urllib.parse.quote(object_key, safe="/")
+                    )
+                    break
+
+        cloud_meta = {
+            "metadata_url": metadata_url,
+            "metadata_final_url": final_url,
+            "metadata_content_type": content_type,
+            "article_metadata": {
+                k: metadata.get(k)
+                for k in (
+                    "pmcid",
+                    "version",
+                    "pmid",
+                    "doi",
+                    "title",
+                    "citation",
+                    "license_code",
+                    "is_pmc_openaccess",
+                )
+            },
+            "media_url_count": len(media_urls),
+            "list_objects_url": list_url,
+            "listed_object_count": len(keys),
+            "listed_object_basenames": [Path(x).name for x in keys],
+        }
+    else:
+        cloud_meta = {
+            "metadata_url": metadata_url,
+            "metadata_final_url": final_url,
+            "metadata_content_type": content_type,
+            "article_metadata": {
+                k: metadata.get(k)
+                for k in (
+                    "pmcid",
+                    "version",
+                    "pmid",
+                    "doi",
+                    "title",
+                    "citation",
+                    "license_code",
+                    "is_pmc_openaccess",
+                )
+            },
+            "media_url_count": len(media_urls),
+        }
+
+    missing = sorted(set(TARGETS) - set(resolved))
+    if missing:
+        raise RuntimeError(
+            f"PMC AWS metadata/listing could not resolve {missing}; "
+            f"media_urls={media_urls[:20]}"
+        )
+    cloud_meta["resolved_targets"] = resolved
+    return resolved, cloud_meta
+
+
 def acquire_from_pmc_oa_package(tmp: Path) -> tuple[dict[str, Path], dict[str, object]]:
     """Acquire supplement bytes from the official PMC Open Access package."""
     oa_url = f"https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi?id={PMCID}"
@@ -302,20 +414,27 @@ def main() -> None:
     # PMC changed its Article Dataset Distribution Services in August 2026.
     # Try the current AWS Cloud Service first; retain legacy fallbacks only for
     # historical reproducibility.
-    cloud_table = urllib.parse.urljoin(PMC_CLOUD_BASE, TARGETS["table_s1"])
-    cloud_dataset = urllib.parse.urljoin(PMC_CLOUD_BASE, TARGETS["dataset1"])
     table_path = tmp / TARGETS["table_s1"]
     dataset_path = tmp / TARGETS["dataset1"]
 
     try:
-        table_meta = download_validated([cloud_table], table_path, "xlsx")
-        dataset_meta = download_validated([cloud_dataset], dataset_path, "zip")
-        table_meta["acquisition"] = "PMC AWS Cloud Service"
-        dataset_meta["acquisition"] = "PMC AWS Cloud Service"
+        cloud_urls, cloud_meta = discover_pmc_cloud_media()
+        table_meta = download_validated(
+            [cloud_urls["table_s1"]],
+            table_path,
+            "xlsx",
+        )
+        dataset_meta = download_validated(
+            [cloud_urls["dataset1"]],
+            dataset_path,
+            "zip",
+        )
+        table_meta["acquisition"] = "PMC AWS Cloud Service metadata/media_urls"
+        dataset_meta["acquisition"] = "PMC AWS Cloud Service metadata/media_urls"
         oa_package_meta = {
             "service": "PMC AWS Cloud Service",
-            "base_url": PMC_CLOUD_BASE,
             "article_version": f"{PMCID}.{PMC_VERSION}",
+            **cloud_meta,
         }
     except Exception as cloud_exc:
         discovery_attempts.append(
