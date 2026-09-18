@@ -1,0 +1,92 @@
+name: ARIS4C009 DAIS-C Pilot-0 inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_DATA_OPTIONS.md'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_RUNBOOK_009A1.md'
+      - '.github/workflows/aris4c009-daisc-pilot0.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c009-daisc-pilot0
+  cancel-in-progress: true
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install 7z
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full
+
+      - name: Download DAIS-C from official UK Data Service source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/daisc"
+          curl -L --fail --retry 3             "https://reshare.ukdataservice.ac.uk/855021/1/DAIS-C-Annotated-Upload.7z"             -o "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"
+          7z x -y "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"             -o"$RUNNER_TEMP/daisc" >/dev/null
+
+      - name: Build privacy-preserving inventory
+        shell: bash
+        run: |
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py             --root "$RUNNER_TEMP/daisc"             --archive "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+
+      - name: Assert no raw transcript files were staged
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add             papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json             papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+          staged="$(git diff --cached --name-only)"
+          echo "$staged"
+          if echo "$staged" | grep -Eiv             'pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md' >/dev/null; then
+            echo "Unexpected file staged; refusing to publish." >&2
+            exit 1
+          fi
+
+      - name: Publish aggregate inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json "$RUNNER_TEMP/inventory.json"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md "$RUNNER_TEMP/inventory.md"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+
+            cp "$RUNNER_TEMP/inventory.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json
+            cp "$RUNNER_TEMP/inventory.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+
+            git add               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json               papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
+
+            if git diff --cached --quiet; then
+              echo "Inventory already current."
+              exit 0
+            fi
+
+            git commit -m "data: record ARIS4C009 DAIS-C aggregate inventory"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Concurrent main update; retrying on newest main."
+          done
+
+          echo "Could not publish inventory after retries." >&2
+          exit 1
