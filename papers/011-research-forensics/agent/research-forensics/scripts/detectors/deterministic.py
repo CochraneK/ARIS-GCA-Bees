@@ -482,6 +482,49 @@ class TableArithmeticDetector:
                     }
                     claim_pass = "Displayed rank sequence is complete and unique."
                     claim_flag = "Displayed rank sequence contains a gap, duplicate, or out-of-range rank."
+
+                elif kind == "row_completeness":
+                    rows = record["rows"]
+                    required_fields = [str(x) for x in record["required_fields"]]
+                    if not required_fields:
+                        raise ValueError("required_fields must be non-empty")
+                    missing_by_row = []
+                    duplicate_keys = []
+                    row_key = str(record.get("row_key", "row_id"))
+                    seen_keys = set()
+
+                    for row_index, row in enumerate(rows):
+                        key_value = row.get(row_key, row_index)
+                        if key_value in seen_keys:
+                            duplicate_keys.append(key_value)
+                        seen_keys.add(key_value)
+
+                        missing_fields = []
+                        for field_name in required_fields:
+                            value = row.get(field_name)
+                            if value is None:
+                                missing_fields.append(field_name)
+                            elif isinstance(value, str) and not value.strip():
+                                missing_fields.append(field_name)
+                            elif isinstance(value, (list, tuple, dict, set)) and len(value) == 0:
+                                missing_fields.append(field_name)
+
+                        if missing_fields:
+                            missing_by_row.append({
+                                "row_key": key_value,
+                                "missing_fields": missing_fields,
+                            })
+
+                    ok = not missing_by_row and not duplicate_keys
+                    evidence = {
+                        "row_key": row_key,
+                        "required_fields": required_fields,
+                        "row_count": len(rows),
+                        "missing_by_row": missing_by_row,
+                        "duplicate_keys": duplicate_keys,
+                    }
+                    claim_pass = "Every displayed row contains the required table fields and row keys are unique."
+                    claim_flag = "At least one displayed row is missing a required field or duplicates a row key."
                 else:
                     raise ValueError(f"unsupported check_type: {kind!r}")
 

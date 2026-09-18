@@ -120,3 +120,44 @@ def test_reference_nonexistent_is_provenance_fact_not_misconduct():
     assert f["status"] == "FLAG"
     assert f["evidence_class"] == "E2"
     assert f["misconduct_inference"] is False
+
+
+def test_table_row_completeness_catches_present_rank_with_missing_article_cell():
+    d = TableArithmeticDetector()
+    ctx = context(table_checks=[
+        {
+            "check_type": "row_completeness",
+            "row_key": "rank",
+            "required_fields": ["rank", "article", "citations"],
+            "rows": [
+                {"rank": 13, "article": "Article thirteen", "citations": "324 (18.0)"},
+                {"rank": 14, "article": "", "citations": "314 (6.8)"},
+                {"rank": 15, "article": "Article fifteen", "citations": "306 (18.0)"},
+            ],
+            "source_locator": "Table 1, ranks 13-15",
+        }
+    ])
+    out = run_forensics(ctx, [d])
+    f = out["findings"][0]
+    assert f["status"] == "FLAG"
+    assert f["evidence"]["missing_by_row"] == [
+        {"row_key": 14, "missing_fields": ["article"]}
+    ]
+    assert f["misconduct_inference"] is False
+
+
+def test_table_row_completeness_passes_complete_rows():
+    d = TableArithmeticDetector()
+    ctx = context(table_checks=[
+        {
+            "check_type": "row_completeness",
+            "row_key": "rank",
+            "required_fields": ["rank", "article", "citations"],
+            "rows": [
+                {"rank": 13, "article": "Article thirteen", "citations": "324 (18.0)"},
+                {"rank": 14, "article": "Article fourteen", "citations": "314 (6.8)"},
+            ],
+        }
+    ])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "PASS"

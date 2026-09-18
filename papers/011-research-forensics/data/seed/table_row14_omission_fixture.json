@@ -1,0 +1,21 @@
+{
+  "fixture_id": "gtb-sage-table-row14-omission",
+  "target_doi": "10.1177/1758573221989669",
+  "correction_doi": "10.1177/17585732221124203",
+  "ground_truth_tier": "GT-B",
+  "benchmark_use": "detector-capability-regression-only",
+  "track_a_status": "BLOCKED_UNTIL_PRE_ERRATUM_TABLE_OBJECT_VERIFIED",
+  "source_statement": "Official erratum reports that article information for number 14 in Table 1 was missing.",
+  "table_check": {
+    "check_type": "row_completeness",
+    "row_key": "rank",
+    "required_fields": ["rank", "article", "citations"],
+    "rows": [
+      {"rank": 13, "article": "present", "citations": "present"},
+      {"rank": 14, "article": "", "citations": "present"},
+      {"rank": 15, "article": "present", "citations": "present"}
+    ],
+    "source_locator": "Table 1, row 14"
+  },
+  "interpretation": "This fixture proves the detector can represent the documented error. It is not scored as a real Track A detector hit until an exact pre-erratum table object is verified."
+}
