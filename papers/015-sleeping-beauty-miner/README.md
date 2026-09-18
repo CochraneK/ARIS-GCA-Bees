@@ -209,20 +209,57 @@ Commercial or restricted sources may be used for external validation, but the ca
 
 ## Current state
 
-**PROJECT INITIALIZED / AGENT SPECIFICATION v0.1.**
+**PILOT 0 EMPIRICAL VALIDATION IN PROGRESS.**
 
-Completed:
-1. deterministic Beauty Coefficient B implementation;
-2. deterministic awakening-time implementation;
-3. synthetic unit tests;
-4. agent contract;
-5. historical-cutoff benchmark design;
-6. 011 integration contract.
+The reusable agent surface, deterministic citation metrics, cutoff-safe adapters, ARIS4C011 routing, baseline evaluator, local corpus scanner, and CI are implemented.
 
-Immediate next steps:
-1. implement SciSciNet-v2 / citation-edge ingestion;
-2. reconstruct full yearly citation trajectories;
-3. cross-check B and awakening time against published / SciSciNet values;
-4. run Pilot 0 on a bounded field/cohort;
-5. add the 011 integrity adapter;
-6. only then train prospective ranking models.
+### Initial empirical cross-source probe
+
+Three classic Sleeping Beauty reference cases from Ke et al. (2015) were reconstructed from the live OpenAlex citation graph using a fixed 2011 observation endpoint to match the publication window of the original WoS analysis as closely as possible.
+
+| Case | OpenAlex citations ≤2011 | B OpenAlex | B WoS | Awakening OpenAlex | Awakening WoS |
+|---|---:|---:|---:|---:|---:|
+| Hummers & Offeman (1958) | 1,811 | 12,679.33 | 10,769 | 2007 | 2007 |
+| Einstein–Podolsky–Rosen (1935) | 6,593 | 2,458.72 | 2,258 | 1991 | 1994 |
+| Washburn (1921) | 1,857 | 2,472.08 | 2,184 | 1995 | 1995 |
+
+Across these three selected implementation probes:
+
+- mean absolute relative B difference is about 13.3%;
+- 2/3 awakening years reproduce exactly;
+- all 3 awakening years are within 3 years;
+- mean absolute awakening-year difference is 1 year.
+
+These cases are deliberately **not** treated as evidence that the system can prospectively predict future breakthroughs. They show that the trajectory reconstruction and delayed-recognition geometry survive a first cross-database stress test while also demonstrating that absolute B values depend on bibliographic coverage.
+
+Full persisted results are under `data/pilot0_openalex_*.json` and `data/pilot0_cross_source_summary.json`.
+
+### Completed engineering gates
+
+1. deterministic Beauty Coefficient and awakening-time implementation;
+2. complete zero-filled citation-history reconstruction;
+3. historical-cutoff leakage firewall for OpenAlex and local SciSciNet-style data;
+4. reusable `sleeping-beauty-miner` Skill + JSON orchestrator;
+5. Candidate Evidence Card schema;
+6. ARIS4C011 integrity adapter with E0–E5-compatible routing;
+7. transparent citation baselines;
+8. Precision@K / Recall@K / NDCG@K / Brier / calibration utilities;
+9. historical-cutoff baseline evaluator;
+10. cutoff-safe local corpus discovery scan;
+11. GitHub Actions CI and live OpenAlex Pilot 0 workflows;
+12. three non-synthetic cross-source validation cases.
+
+### Immediate next gates
+
+1. process a non-hand-picked historical cohort rather than only famous reference cases;
+2. obtain/query a reproducible SciSciNet-v2 slice;
+3. compare against SciSciNet-v2's precomputed Sleeping Beauty metrics where compatible;
+4. construct field- and age-normalized future outcomes;
+5. add semantic novelty and atypical-combination features;
+6. add network bridge/community-diversity features;
+7. implement Prince-paper candidate extraction;
+8. run feature-family ablations and chronological/field/era holdouts;
+9. connect real ARIS4C011 findings on the same corpus;
+10. train prospective models only after the baseline and leakage gates pass.
+
+See `process/STATUS.md` for the canonical execution state.
