@@ -33,6 +33,7 @@ jobs:
             --observation-end-year 2011 \
             --beauty-fraction 0.20 \
             --acceleration-fraction 0.20 \
+            --uptake-fraction 0.50 \
             --awakening-horizon-years 15 \
             --review-budget-k 5 \
             --output ../data/pilot1_openalex_1980_physics_primary_seed15015.json
@@ -74,8 +75,10 @@ jobs:
               "beauty_percentile",
               "beauty_top_fraction",
               "future_acceleration_percentile",
+              "future_uptake_percentile",
               "awakening_within_horizon",
               "delayed_recognition_consensus",
+              "delayed_recognition_with_uptake_floor",
           }
           matrix = result["outcome_baseline_matrix"]
           assert set(matrix) == expected_outcomes
