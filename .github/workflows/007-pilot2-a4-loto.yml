@@ -1,0 +1,63 @@
+name: ARIS4C007 Pilot 2 A4 LOTO
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot2-a4-loto.yml"
+      - "papers/007-cross-species-age-equivalence/code/build_pilot2_a4_loto.R"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  a4-loto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "release"
+          use-public-rspm: true
+
+      - name: Resolve canonical successful Pilot 2 observed-event artifact
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot2
+
+          RUNS_JSON="$(gh run list             --workflow 007-pilot2-events.yml             --status success             --limit 1             --json databaseId,headSha,createdAt,url,conclusion)"
+          PILOT2_RUN_ID="$(printf '%s' "$RUNS_JSON" | jq -r '.[0].databaseId // empty')"
+          if [ -z "$PILOT2_RUN_ID" ]; then
+            echo "No successful ARIS4C007 Pilot 2 observed-event run." >&2
+            exit 1
+          fi
+
+          gh run view "$PILOT2_RUN_ID"             --json databaseId,headSha,createdAt,url,conclusion,workflowName             > data/upstream/pilot2_run.json
+
+          gh run download "$PILOT2_RUN_ID"             --name aris4c007-pilot2-observed-events             --dir data/upstream/pilot2
+
+          test -s data/upstream/pilot2/observed_event_predictions.csv
+
+      - name: Run leave-one-Timepoint-out A4 benchmark
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          mkdir -p data/pilot2_a4
+          Rscript code/build_pilot2_a4_loto.R             data/upstream/pilot2/observed_event_predictions.csv             data/pilot2_a4/a4_loto_predictions.csv
+          cp data/upstream/pilot2_run.json             data/pilot2_a4/upstream_pilot2_run.json
+
+      - name: Upload A4 LOTO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot2-a4-loto
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot2_a4/a4_loto_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot2_a4/upstream_pilot2_run.json
+          if-no-files-found: error
+          retention-days: 30
