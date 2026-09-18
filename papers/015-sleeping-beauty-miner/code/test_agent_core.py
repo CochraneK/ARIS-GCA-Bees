@@ -1,5 +1,4 @@
 import csv
-import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,7 +6,11 @@ from pathlib import Path
 from baselines import cutoff_features, rank_histories
 from candidate_card import DISCLAIMER, build_candidate_card, evidence_item
 from integrity_adapter import adapt_011_findings
-from sciscinet_adapter import ColumnMap, iter_citation_edges, load_paper_years, reconstruct_target_history
+from sciscinet_adapter import (
+    iter_citation_edges,
+    load_paper_years,
+    reconstruct_target_history,
+)
 
 
 class BaselineTests(unittest.TestCase):
@@ -44,8 +47,7 @@ class IntegrityAdapterTests(unittest.TestCase):
                 "detector_id": "d2",
                 "applicable": True,
                 "status": "FLAG",
-                "evidence_class": "E0",
-                "reproducible": "yes",
+                "evidence_class": "E2",
                 "available_year": 2020,
             },
         ]
@@ -61,13 +63,29 @@ class IntegrityAdapterTests(unittest.TestCase):
                     "detector_id": "d1",
                     "applicable": True,
                     "status": "FLAG",
-                    "evidence_class": "E0",
+                    "evidence_class": "E1",
                 }
             ],
             cutoff_year=2015,
         )
         self.assertEqual(gate.state, "ABSTAIN")
         self.assertFalse(gate.cutoff_safe)
+
+    def test_single_e0_flag_is_caution_not_quarantine(self):
+        gate = adapt_011_findings(
+            [
+                {
+                    "finding_id": "meta",
+                    "detector_id": "metadata-check",
+                    "applicable": True,
+                    "status": "FLAG",
+                    "evidence_class": "E0",
+                    "available_year": 2010,
+                }
+            ],
+            cutoff_year=2015,
+        )
+        self.assertEqual(gate.state, "CAUTION")
 
     def test_independent_strong_flags_quarantine(self):
         findings = [
@@ -104,10 +122,18 @@ class CandidateCardTests(unittest.TestCase):
                     "dependency_group": "g1",
                     "applicable": True,
                     "status": "FLAG",
-                    "evidence_class": "E0",
-                    "reproducible": "yes",
+                    "evidence_class": "E1",
                     "available_year": 2010,
-                }
+                },
+                {
+                    "finding_id": "b",
+                    "detector_id": "d2",
+                    "dependency_group": "g2",
+                    "applicable": True,
+                    "status": "FLAG",
+                    "evidence_class": "E3",
+                    "available_year": 2010,
+                },
             ],
             cutoff_year=2015,
         )
