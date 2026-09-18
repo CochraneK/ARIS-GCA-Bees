@@ -1,0 +1,33 @@
+{
+  "freeze_date": "2026-09-18",
+  "state": "CODER_B_MATERIALS_FROZEN_BEFORE_ANY_B_LABELS",
+  "purpose": "Freeze materials governing independent Coder B before any B labels are observed.",
+  "rule": "Any later amendment to a frozen file must be versioned and the original retained; the current Pilot 0B must be scored against these frozen materials.",
+  "files": {
+    "process/CONCEPT_SCHEMA.md": {
+      "blob_sha": "1a1d0bfb09495e993d03935e7281d210517bbb33"
+    },
+    "process/SEARCH_PROTOCOL.md": {
+      "blob_sha": "6de4b2c03b79c3270a05309cf813f35c66e446a4"
+    },
+    "process/CODER_B_HANDOFF.md": {
+      "blob_sha": "8ab08a825a23ea34f721e4e00dcd287f6242f5d4"
+    },
+    "data/pilot0_coderB_blind.csv": {
+      "blob_sha": "22baa1d0bd65e42e1b12e15dba11d67487709cf7"
+    },
+    "code/score_coder_agreement.py": {
+      "blob_sha": "1e7d235010304e1cabde55cd20113bc43fb91dad"
+    }
+  },
+  "primary_reliability_fields": [
+    "opposition_valid",
+    "oci_candidate",
+    "primary_mechanism"
+  ],
+  "workflow_thresholds": {
+    "revise_schema_if_below": 0.7,
+    "preferred_operational_target": 0.8,
+    "note": "Workflow thresholds, not universal psychometric standards."
+  }
+}
