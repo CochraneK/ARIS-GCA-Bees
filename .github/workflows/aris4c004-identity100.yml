@@ -1,5 +1,9 @@
 name: ARIS4C004 identity100 expansion
 
+concurrency:
+  group: aris4c004-identity100
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main]
