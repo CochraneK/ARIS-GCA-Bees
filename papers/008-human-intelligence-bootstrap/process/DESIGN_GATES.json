@@ -25,12 +25,12 @@
     {
       "id": "pilot_matrix",
       "status": "provisional_pass",
-      "requirement": "Pilot matrix v1 integrates culture/cognition evidence with AnimalTraits and AnAge; a 29-species resolved panel v2 now exists. Rebuild downstream matrices on v2 before confirmatory analysis."
+      "requirement": "The canonical panel is now 29 exact species; 29/29 have an exact-species evidence route and module_evidence_state_v2 records the A–J observed mask. Behavioral modules remain sparse, so this is an integration pass rather than confirmatory completeness."
     },
     {
       "id": "model_recoverability",
-      "status": "provisional_pass",
-      "requirement": "Toy simulation demonstrates meaningful model discrimination only with configuration-aware sampling and controlled missingness; repeat using observed pilot missingness before confirmatory analysis."
+      "status": "blocked",
+      "requirement": "Observed 29×10 coverage yields recovery ≈0.660 additive, 0.346 weakest-link and 0.162 threshold in the design diagnostic. Even complete random 29-taxon sampling remains weak for threshold identification. Unblock by expanding A/C/D/E/F coverage and selecting configuration-diverse counterexample taxa, then rerun."
     },
     {
       "id": "hominin_layer",
@@ -49,8 +49,8 @@
     },
     {
       "id": "aris_provenance",
-      "status": "open",
-      "requirement": "Freeze exact ARIS release and commit before formal full run."
+      "status": "pass",
+      "requirement": "Paper 008 is frozen to ARIS v0.4.26 tag commit 951654847b015585385b2448c5667dcd04e7b56b; future engine upgrades must not rewrite this run's provenance."
     }
   ]
 }

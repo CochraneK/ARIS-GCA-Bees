@@ -1,0 +1,291 @@
+taxon_id,scientific_name,module_id,module_name,evidence_state,positive_rows,negative_rows,ambiguous_rows,source_count,measurement_coverage,measurement_sources,basis
+HUM,Homo sapiens,A,generative_cognition,not_tested,0,0,0,0,,,
+HUM,Homo sapiens,B,social_transmission,not_tested,0,0,0,0,,,
+HUM,Homo sapiens,C,communication,not_tested,0,0,0,0,,,
+HUM,Homo sapiens,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+HUM,Homo sapiens,E,externalization,not_tested,0,0,0,0,,,
+HUM,Homo sapiens,F,social_architecture,not_tested,0,0,0,0,,,
+HUM,Homo sapiens,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+HUM,Homo sapiens,H,energetics_neural_budget,measured_multi_axis,,,,2,,,metabolic;neural
+HUM,Homo sapiens,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+HUM,Homo sapiens,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+PTR,Pan troglodytes,A,generative_cognition,not_tested,0,0,0,0,standardized_proxy,MacLean2014,
+PTR,Pan troglodytes,B,social_transmission,positive,3,0,0,2,,,literature:supra_individual_skill_acquisition; ACDB:transmission:CWOT chimpanzees group 1 grooming handclasp behavior; ACDB:transmission:CWOT chimpanzees group 2 grooming handclasp behavior
+PTR,Pan troglodytes,C,communication,not_tested,0,0,0,0,,,
+PTR,Pan troglodytes,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+PTR,Pan troglodytes,E,externalization,not_tested,0,0,0,0,,,
+PTR,Pan troglodytes,F,social_architecture,positive,2,0,0,1,positive_evidence_plus_network_data,ASNR,ACDB:social:CWOT chimpanzees group 1 grooming handclasp behavior; ACDB:social:CWOT chimpanzees group 2 grooming handclasp behavior
+PTR,Pan troglodytes,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+PTR,Pan troglodytes,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+PTR,Pan troglodytes,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+PTR,Pan troglodytes,J,demography_cultural_population,measured_network_proxy,,,,0,network_measured,ASNR,
+PPA,Pan paniscus,A,generative_cognition,not_tested,0,0,0,0,standardized_proxy,MacLean2014,
+PPA,Pan paniscus,B,social_transmission,not_tested,0,0,0,0,,,
+PPA,Pan paniscus,C,communication,not_tested,0,0,0,0,,,
+PPA,Pan paniscus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+PPA,Pan paniscus,E,externalization,not_tested,0,0,0,0,,,
+PPA,Pan paniscus,F,social_architecture,not_tested,0,0,0,0,network_measured,ASNR,
+PPA,Pan paniscus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+PPA,Pan paniscus,H,energetics_neural_budget,not_measured,,,,0,,,
+PPA,Pan paniscus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+PPA,Pan paniscus,J,demography_cultural_population,measured_network_proxy,,,,0,network_measured,ASNR,
+PAB,Pongo abelii,A,generative_cognition,not_tested,0,0,0,0,,,
+PAB,Pongo abelii,B,social_transmission,not_tested,0,0,0,0,,,
+PAB,Pongo abelii,C,communication,not_tested,0,0,0,0,,,
+PAB,Pongo abelii,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+PAB,Pongo abelii,E,externalization,not_tested,0,0,0,0,,,
+PAB,Pongo abelii,F,social_architecture,not_tested,0,0,0,0,,,
+PAB,Pongo abelii,G,life_history_learning_opportunity,not_measured,,,,0,,,
+PAB,Pongo abelii,H,energetics_neural_budget,not_measured,,,,0,,,
+PAB,Pongo abelii,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+PAB,Pongo abelii,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+PPY,Pongo pygmaeus,A,generative_cognition,not_tested,0,0,0,0,,,
+PPY,Pongo pygmaeus,B,social_transmission,not_tested,0,0,0,0,,,
+PPY,Pongo pygmaeus,C,communication,not_tested,0,0,0,0,,,
+PPY,Pongo pygmaeus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+PPY,Pongo pygmaeus,E,externalization,not_tested,0,0,0,0,,,
+PPY,Pongo pygmaeus,F,social_architecture,not_tested,0,0,0,0,,,
+PPY,Pongo pygmaeus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+PPY,Pongo pygmaeus,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+PPY,Pongo pygmaeus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+PPY,Pongo pygmaeus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+GGO,Gorilla gorilla,A,generative_cognition,not_tested,0,0,0,0,,,
+GGO,Gorilla gorilla,B,social_transmission,not_tested,0,0,0,0,,,
+GGO,Gorilla gorilla,C,communication,not_tested,0,0,0,0,,,
+GGO,Gorilla gorilla,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+GGO,Gorilla gorilla,E,externalization,not_tested,0,0,0,0,,,
+GGO,Gorilla gorilla,F,social_architecture,not_tested,0,0,0,0,,,
+GGO,Gorilla gorilla,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+GGO,Gorilla gorilla,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+GGO,Gorilla gorilla,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+GGO,Gorilla gorilla,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+GBE,Gorilla beringei,A,generative_cognition,not_tested,0,0,0,0,,,
+GBE,Gorilla beringei,B,social_transmission,not_tested,0,0,0,0,,,
+GBE,Gorilla beringei,C,communication,not_tested,0,0,0,0,,,
+GBE,Gorilla beringei,D,manipulation_embodiment,positive,1,0,0,1,,,literature:wild_tool_use_food_acquisition; literature:wild_tool_use_food_acquisition
+GBE,Gorilla beringei,E,externalization,not_tested,0,0,0,0,,,
+GBE,Gorilla beringei,F,social_architecture,not_tested,0,0,0,0,,,
+GBE,Gorilla beringei,G,life_history_learning_opportunity,not_measured,,,,0,,,
+GBE,Gorilla beringei,H,energetics_neural_budget,not_measured,,,,0,,,
+GBE,Gorilla beringei,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+GBE,Gorilla beringei,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+SLI,Sapajus libidinosus,A,generative_cognition,not_tested,0,0,0,0,,,
+SLI,Sapajus libidinosus,B,social_transmission,not_tested,0,0,0,0,,,
+SLI,Sapajus libidinosus,C,communication,not_tested,0,0,0,0,,,
+SLI,Sapajus libidinosus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+SLI,Sapajus libidinosus,E,externalization,not_tested,0,0,0,0,,,
+SLI,Sapajus libidinosus,F,social_architecture,not_tested,0,0,0,0,,,
+SLI,Sapajus libidinosus,G,life_history_learning_opportunity,not_measured,,,,0,,,
+SLI,Sapajus libidinosus,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+SLI,Sapajus libidinosus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+SLI,Sapajus libidinosus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+MFU,Macaca fuscata,A,generative_cognition,not_tested,0,0,0,0,,,
+MFU,Macaca fuscata,B,social_transmission,positive,1,0,0,1,,,ACDB:transmission:Koshima macaque troop sweet-potato washing
+MFU,Macaca fuscata,C,communication,not_tested,0,0,0,0,,,
+MFU,Macaca fuscata,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+MFU,Macaca fuscata,E,externalization,not_tested,0,0,0,0,,,
+MFU,Macaca fuscata,F,social_architecture,not_tested,0,0,0,0,network_measured,ASNR,
+MFU,Macaca fuscata,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+MFU,Macaca fuscata,H,energetics_neural_budget,not_measured,,,,0,,,
+MFU,Macaca fuscata,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+MFU,Macaca fuscata,J,demography_cultural_population,measured_network_proxy,,,,0,network_measured,ASNR,
+CJA,Callithrix jacchus,A,generative_cognition,not_tested,0,0,0,0,,,
+CJA,Callithrix jacchus,B,social_transmission,not_tested,0,0,0,0,,,
+CJA,Callithrix jacchus,C,communication,not_tested,0,0,0,0,,,
+CJA,Callithrix jacchus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+CJA,Callithrix jacchus,E,externalization,not_tested,0,0,0,0,,,
+CJA,Callithrix jacchus,F,social_architecture,not_tested,0,0,0,0,,,
+CJA,Callithrix jacchus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+CJA,Callithrix jacchus,H,energetics_neural_budget,partial_measured,,,,1,,,metabolic
+CJA,Callithrix jacchus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+CJA,Callithrix jacchus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+LRO,Leontopithecus rosalia,A,generative_cognition,not_tested,0,0,0,0,,,
+LRO,Leontopithecus rosalia,B,social_transmission,not_tested,0,0,0,0,,,
+LRO,Leontopithecus rosalia,C,communication,not_tested,0,0,0,0,,,
+LRO,Leontopithecus rosalia,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+LRO,Leontopithecus rosalia,E,externalization,not_tested,0,0,0,0,,,
+LRO,Leontopithecus rosalia,F,social_architecture,not_tested,0,0,0,0,,,
+LRO,Leontopithecus rosalia,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+LRO,Leontopithecus rosalia,H,energetics_neural_budget,not_measured,,,,0,,,
+LRO,Leontopithecus rosalia,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+LRO,Leontopithecus rosalia,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+CME,Corvus moneduloides,A,generative_cognition,not_tested,0,0,0,0,,,
+CME,Corvus moneduloides,B,social_transmission,positive,4,0,0,2,,,literature:tool_development_scaffolding; ACDB:transmission:Grande Terre New Caledonian crows narrow-type Padanus tools; ACDB:transmission:Grande Terre New Caledonian crows stepped Padanus tools; ACDB:transmission:New Caledonian crows wide-type Padanus tools
+CME,Corvus moneduloides,C,communication,positive,1,0,0,1,,,ACDB:vocal_communication:Grande Terre New Caledonian crows alarm calls
+CME,Corvus moneduloides,D,manipulation_embodiment,positive,1,0,0,1,,,literature:pandanus_tool_manufacture; literature:pandanus_tool_manufacture
+CME,Corvus moneduloides,E,externalization,positive,0,0,0,0,global_bird_nest_traits,Sheard2024,Cup nest structure explicitly scored 1.
+CME,Corvus moneduloides,F,social_architecture,not_tested,0,0,0,0,,,
+CME,Corvus moneduloides,G,life_history_learning_opportunity,not_measured,,,,0,,,
+CME,Corvus moneduloides,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+CME,Corvus moneduloides,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+CME,Corvus moneduloides,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+CRA,Corvus corax,A,generative_cognition,not_tested,0,0,0,0,,,
+CRA,Corvus corax,B,social_transmission,not_tested,0,0,0,0,,,
+CRA,Corvus corax,C,communication,positive,2,0,0,1,,,ACDB:vocal_communication:TT-QQ West dialect ravens vocal dialect; ACDB:vocal_communication:EE-WW East dialect ravens vocal dialect
+CRA,Corvus corax,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+CRA,Corvus corax,E,externalization,positive,0,0,0,0,global_bird_nest_traits,Sheard2024,Cup nest structure explicitly scored 1.
+CRA,Corvus corax,F,social_architecture,positive,2,0,0,1,,,ACDB:social:TT-QQ West dialect ravens vocal dialect; ACDB:social:EE-WW East dialect ravens vocal dialect
+CRA,Corvus corax,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+CRA,Corvus corax,H,energetics_neural_budget,measured_multi_axis,,,,2,,,metabolic;neural
+CRA,Corvus corax,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+CRA,Corvus corax,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+KEA,Nestor notabilis,A,generative_cognition,not_tested,0,0,0,0,,,
+KEA,Nestor notabilis,B,social_transmission,positive,1,0,0,1,,,literature:demonstration_aided_sequence_solving
+KEA,Nestor notabilis,C,communication,not_tested,0,0,0,0,,,
+KEA,Nestor notabilis,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+KEA,Nestor notabilis,E,externalization,ambiguous,0,0,0,0,global_bird_nest_traits,Sheard2024,Structure itself unresolved in S2; location information does not establish construction.
+KEA,Nestor notabilis,F,social_architecture,not_tested,0,0,0,0,,,
+KEA,Nestor notabilis,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+KEA,Nestor notabilis,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+KEA,Nestor notabilis,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+KEA,Nestor notabilis,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+CGO,Cacatua goffiniana,A,generative_cognition,not_tested,0,0,0,0,,,
+CGO,Cacatua goffiniana,B,social_transmission,not_tested,0,0,0,0,,,
+CGO,Cacatua goffiniana,C,communication,not_tested,0,0,0,0,,,
+CGO,Cacatua goffiniana,D,manipulation_embodiment,positive,2,0,0,2,,,literature:innovative_tool_manufacture; literature:composite_tool_innovation; literature:innovative_tool_manufacture; literature:composite_tool_innovation
+CGO,Cacatua goffiniana,E,externalization,ambiguous,0,0,0,0,global_bird_nest_traits,Sheard2024,No confirmed constructed nest-structure category in S2; cavity modification/none uncertain.
+CGO,Cacatua goffiniana,F,social_architecture,not_tested,0,0,0,0,,,
+CGO,Cacatua goffiniana,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+CGO,Cacatua goffiniana,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+CGO,Cacatua goffiniana,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+CGO,Cacatua goffiniana,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+PER,Psittacus erithacus,A,generative_cognition,not_tested,0,0,0,0,,,
+PER,Psittacus erithacus,B,social_transmission,not_tested,0,0,0,0,,,
+PER,Psittacus erithacus,C,communication,positive,1,0,0,1,,,literature:referential_vocal_label_learning
+PER,Psittacus erithacus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+PER,Psittacus erithacus,E,externalization,ambiguous,0,0,0,0,global_bird_nest_traits,Sheard2024,Excavation/cavity modification/none uncertain; no confirmed constructed structure category.
+PER,Psittacus erithacus,F,social_architecture,not_tested,0,0,0,0,,,
+PER,Psittacus erithacus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+PER,Psittacus erithacus,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+PER,Psittacus erithacus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+PER,Psittacus erithacus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+MUN,Melopsittacus undulatus,A,generative_cognition,not_tested,0,0,0,0,,,
+MUN,Melopsittacus undulatus,B,social_transmission,not_tested,0,0,0,0,,,
+MUN,Melopsittacus undulatus,C,communication,positive,1,0,0,1,,,literature:vocal_motor_representation_convergence
+MUN,Melopsittacus undulatus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+MUN,Melopsittacus undulatus,E,externalization,ambiguous,0,0,0,0,global_bird_nest_traits,Sheard2024,Excavation/cavity modification/none uncertain; no confirmed constructed structure category.
+MUN,Melopsittacus undulatus,F,social_architecture,not_tested,0,0,0,0,,,
+MUN,Melopsittacus undulatus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+MUN,Melopsittacus undulatus,H,energetics_neural_budget,measured_multi_axis,,,,2,,,metabolic;neural
+MUN,Melopsittacus undulatus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+MUN,Melopsittacus undulatus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+TTR,Tursiops truncatus,A,generative_cognition,not_tested,0,0,0,0,,,
+TTR,Tursiops truncatus,B,social_transmission,not_tested,0,0,0,0,,,
+TTR,Tursiops truncatus,C,communication,not_tested,0,0,0,0,,,
+TTR,Tursiops truncatus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+TTR,Tursiops truncatus,E,externalization,not_tested,0,0,0,0,,,
+TTR,Tursiops truncatus,F,social_architecture,not_tested,0,0,0,0,network_measured,ASNR,
+TTR,Tursiops truncatus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+TTR,Tursiops truncatus,H,energetics_neural_budget,not_measured,,,,0,,,
+TTR,Tursiops truncatus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+TTR,Tursiops truncatus,J,demography_cultural_population,measured_network_proxy,,,,0,network_measured,ASNR,
+TAD,Tursiops aduncus,A,generative_cognition,not_tested,0,0,0,0,,,
+TAD,Tursiops aduncus,B,social_transmission,positive,2,0,0,2,,,ACDB:transmission:Shark Bay dolphins sponging; ACDB:transmission:Shark Bay dolphins prey inspection
+TAD,Tursiops aduncus,C,communication,not_tested,0,0,0,0,,,
+TAD,Tursiops aduncus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+TAD,Tursiops aduncus,E,externalization,not_tested,0,0,0,0,,,
+TAD,Tursiops aduncus,F,social_architecture,not_tested,0,0,0,0,,,
+TAD,Tursiops aduncus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+TAD,Tursiops aduncus,H,energetics_neural_budget,not_measured,,,,0,,,
+TAD,Tursiops aduncus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+TAD,Tursiops aduncus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+OOR,Orcinus orca,A,generative_cognition,not_tested,0,0,0,0,,,
+OOR,Orcinus orca,B,social_transmission,not_tested,0,0,0,0,,,
+OOR,Orcinus orca,C,communication,positive,6,0,0,4,,,ACDB:vocal_communication:K19 acoustic clan discrete calls; ACDB:vocal_communication:K20 acoustic clan discrete calls; ACDB:vocal_communication:Avacha acoustic clan discrete calls; ACDB:vocal_communication:Northern Resident killer whales whistles; ACDB:vocal_communication:Southern Resident killer whales whistles; ACDB:vocal_communication:Southern Resident killer whales discrete calls
+OOR,Orcinus orca,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+OOR,Orcinus orca,E,externalization,not_tested,0,0,0,0,,,
+OOR,Orcinus orca,F,social_architecture,positive,8,0,0,6,positive_evidence_plus_network_data,ASNR,ACDB:social:T-type killer whales discrete calls; ACDB:social:K19 acoustic clan discrete calls; ACDB:social:K20 acoustic clan discrete calls; ACDB:social:Avacha acoustic clan discrete calls; ACDB:social:Northern Resident killer whales whistles; ACDB:social:R-type killer whales groundfish depredation; ACDB:social:Southern Resident killer whales whistles; ACDB:social:Southern Resident killer whales porpoise harassment
+OOR,Orcinus orca,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+OOR,Orcinus orca,H,energetics_neural_budget,not_measured,,,,0,,,
+OOR,Orcinus orca,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+OOR,Orcinus orca,J,demography_cultural_population,measured_network_proxy,,,,0,network_measured,ASNR,
+PMA,Physeter macrocephalus,A,generative_cognition,not_tested,0,0,0,0,,,
+PMA,Physeter macrocephalus,B,social_transmission,not_tested,0,0,0,0,,,
+PMA,Physeter macrocephalus,C,communication,positive,2,0,0,1,,,ACDB:vocal_communication:Plus-One clan coda dialect; ACDB:vocal_communication:Regular clan coda dialect
+PMA,Physeter macrocephalus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+PMA,Physeter macrocephalus,E,externalization,not_tested,0,0,0,0,,,
+PMA,Physeter macrocephalus,F,social_architecture,positive,3,0,0,2,,,ACDB:social:Gulf of Alaska sperm whales longline depradation; ACDB:social:Plus-One clan coda dialect; ACDB:social:Regular clan coda dialect
+PMA,Physeter macrocephalus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+PMA,Physeter macrocephalus,H,energetics_neural_budget,not_measured,,,,0,,,
+PMA,Physeter macrocephalus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+PMA,Physeter macrocephalus,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+MNO,Megaptera novaeangliae,A,generative_cognition,not_tested,0,0,0,0,,,
+MNO,Megaptera novaeangliae,B,social_transmission,positive,3,0,0,3,,,ACDB:transmission:Gulf of Maine humpback whales lobtail feeding; ACDB:transmission:North Pacific humpback whale metapopulation song; ACDB:transmission:Southern Hemisphere Group V humpback whale song variants
+MNO,Megaptera novaeangliae,C,communication,positive,2,0,0,2,,,ACDB:vocal_communication:North Pacific humpback whale metapopulation song; ACDB:vocal_communication:Southern Hemisphere Group V humpback whale song variants
+MNO,Megaptera novaeangliae,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+MNO,Megaptera novaeangliae,E,externalization,not_tested,0,0,0,0,,,
+MNO,Megaptera novaeangliae,F,social_architecture,not_tested,0,0,0,0,,,
+MNO,Megaptera novaeangliae,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+MNO,Megaptera novaeangliae,H,energetics_neural_budget,not_measured,,,,0,,,
+MNO,Megaptera novaeangliae,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+MNO,Megaptera novaeangliae,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+LAF,Loxodonta africana,A,generative_cognition,not_tested,0,0,0,0,,,
+LAF,Loxodonta africana,B,social_transmission,not_tested,0,0,0,0,,,
+LAF,Loxodonta africana,C,communication,positive,3,0,0,2,,,literature:population_social_group_vocal_variation; ACDB:vocal_communication:Amboseli elephant population elephant rumbles; ACDB:vocal_communication:Samburu elephant population elephant rumbles
+LAF,Loxodonta africana,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+LAF,Loxodonta africana,E,externalization,not_tested,0,0,0,0,,,
+LAF,Loxodonta africana,F,social_architecture,positive,2,0,0,1,,,ACDB:social:Amboseli elephant population elephant rumbles; ACDB:social:Samburu elephant population elephant rumbles
+LAF,Loxodonta africana,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+LAF,Loxodonta africana,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+LAF,Loxodonta africana,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+LAF,Loxodonta africana,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+EMA,Elephas maximus,A,generative_cognition,positive,1,0,0,1,direct_evidence_plus_standardized_proxy,MacLean2014,literature:insightful_object_tool_use
+EMA,Elephas maximus,B,social_transmission,not_tested,0,0,0,0,,,
+EMA,Elephas maximus,C,communication,not_tested,0,0,0,0,,,
+EMA,Elephas maximus,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+EMA,Elephas maximus,E,externalization,not_tested,0,0,0,0,,,
+EMA,Elephas maximus,F,social_architecture,not_tested,0,0,0,0,network_measured,ASNR,
+EMA,Elephas maximus,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+EMA,Elephas maximus,H,energetics_neural_budget,partial_measured,,,,1,,,metabolic
+EMA,Elephas maximus,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+EMA,Elephas maximus,J,demography_cultural_population,measured_network_proxy,,,,0,network_measured,ASNR,
+OVU,Octopus vulgaris,A,generative_cognition,not_tested,0,0,0,0,,,
+OVU,Octopus vulgaris,B,social_transmission,positive,1,0,0,1,,,literature:observational_learning
+OVU,Octopus vulgaris,C,communication,not_tested,0,0,0,0,,,
+OVU,Octopus vulgaris,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+OVU,Octopus vulgaris,E,externalization,not_tested,0,0,0,0,,,
+OVU,Octopus vulgaris,F,social_architecture,not_tested,0,0,0,0,,,
+OVU,Octopus vulgaris,G,life_history_learning_opportunity,not_measured,,,,0,,,
+OVU,Octopus vulgaris,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+OVU,Octopus vulgaris,I,ecological_challenge_opportunity,not_systematically_joined,,,,0,,,
+OVU,Octopus vulgaris,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+BTE,Bombus terrestris,A,generative_cognition,not_tested,0,0,0,0,,,
+BTE,Bombus terrestris,B,social_transmission,positive,1,0,0,1,,,literature:supra_individual_skill_acquisition
+BTE,Bombus terrestris,C,communication,not_tested,0,0,0,0,,,
+BTE,Bombus terrestris,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+BTE,Bombus terrestris,E,externalization,not_tested,0,0,0,0,,,
+BTE,Bombus terrestris,F,social_architecture,not_tested,0,0,0,0,,,
+BTE,Bombus terrestris,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+BTE,Bombus terrestris,H,energetics_neural_budget,not_measured,,,,0,,,
+BTE,Bombus terrestris,I,ecological_challenge_opportunity,not_systematically_joined,,,,0,,,
+BTE,Bombus terrestris,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+AME,Apis mellifera,A,generative_cognition,not_tested,0,0,0,0,,,
+AME,Apis mellifera,B,social_transmission,positive,2,0,0,2,,,literature:waggle_dance_learning; ACDB:transmission:E1 honey bee colonies waggle dance
+AME,Apis mellifera,C,communication,not_tested,0,0,0,0,,,
+AME,Apis mellifera,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+AME,Apis mellifera,E,externalization,not_tested,0,0,0,0,,,
+AME,Apis mellifera,F,social_architecture,not_tested,0,0,0,0,,,
+AME,Apis mellifera,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+AME,Apis mellifera,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+AME,Apis mellifera,I,ecological_challenge_opportunity,not_systematically_joined,,,,0,,,
+AME,Apis mellifera,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+CLI,Columba livia,A,generative_cognition,not_tested,0,0,0,0,standardized_proxy,MacLean2014,
+CLI,Columba livia,B,social_transmission,positive,1,0,0,1,,,literature:cumulative_route_improvement
+CLI,Columba livia,C,communication,not_tested,0,0,0,0,,,
+CLI,Columba livia,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+CLI,Columba livia,E,externalization,ambiguous,0,0,0,0,global_bird_nest_traits,Sheard2024,Platform structure is uncertain in S2; nesting locations are known but location alone is not persistent construction.
+CLI,Columba livia,F,social_architecture,not_tested,0,0,0,0,,,
+CLI,Columba livia,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+CLI,Columba livia,H,energetics_neural_budget,partial_measured,,,,1,,,neural
+CLI,Columba livia,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+CLI,Columba livia,J,demography_cultural_population,not_systematically_joined,,,,0,,,
+SSU,Suricata suricatta,A,generative_cognition,not_tested,0,0,0,0,,,
+SSU,Suricata suricatta,B,social_transmission,positive,1,0,0,1,,,literature:teaching_prey_handling
+SSU,Suricata suricatta,C,communication,not_tested,0,0,0,0,,,
+SSU,Suricata suricatta,D,manipulation_embodiment,not_tested,0,0,0,0,,,
+SSU,Suricata suricatta,E,externalization,not_tested,0,0,0,0,,,
+SSU,Suricata suricatta,F,social_architecture,not_tested,0,0,0,0,,,
+SSU,Suricata suricatta,G,life_history_learning_opportunity,measured,,,,1,,,AnAge exact-species life-history row
+SSU,Suricata suricatta,H,energetics_neural_budget,partial_measured,,,,1,,,metabolic
+SSU,Suricata suricatta,I,ecological_challenge_opportunity,measured_ecology,,,,0,eltontraits,EltonTraits1.0,
+SSU,Suricata suricatta,J,demography_cultural_population,not_systematically_joined,,,,0,,,

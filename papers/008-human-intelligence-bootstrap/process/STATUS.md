@@ -2,158 +2,152 @@
 
 Updated: 2026-09-18
 
-## Current state
+## Canonical question
 
-ARIS4C008 has moved from research-design scaffolding into **pilot evidence integration and design stress-testing**.
+**Which configurations of cognitive, social, embodied, life-history, energetic, ecological, demographic and externalized-information capacities are candidate necessary, enabling, bottleneck, amplifying or jointly sufficient components for transitions toward open-ended cumulative intelligence?**
 
-The original "animal skill-point allocation" intuition is now operationalized as a test of additive, threshold, weakest-link and feedback architectures for open-ended cumulative intelligence.
+The project compares additive, weakest-link, threshold and interaction/feedback architectures. It does **not** assume that animals possess a fixed total “skill-point budget”.
 
-## Completed
+## Current stage
 
-- [x] canonical research question frozen at design level;
-- [x] multidimensional O1–O7 outcome codebook;
-- [x] candidate-condition ontology;
-- [x] initial 25-taxon comparative scaffold;
-- [x] source-level evidence schema with explicit missingness states;
-- [x] Animal Culture Database v0.1 pilot extraction;
-- [x] 13 direct ACDB pilot-species matches, 32 groups and 42 cultural-behaviour records extracted;
-- [x] scope-aware literature evidence seed expanded to 24 source-traceable rows;
-- [x] exact-species versus genus/family/clade exemplar evidence separated;
-- [x] scope-aware coverage matrix;
-- [x] first 25-taxon pilot evidence matrix;
-- [x] toy model-recoverability simulation;
-- [x] model-discriminating panel-v2 sampling principle;
-- [x] AnimalTraits v1.0.7 ingestion code prepared.
+**Pilot data integration + design stress-testing. Confirmatory architecture inference is BLOCKED by identifiability.**
 
-## Pilot coverage
+The project has progressed beyond idea/design scaffolding: real comparative datasets, taxonomic reconciliation, research-effort controls, archaeological temporal falsifiers and neural harmonization are all present. However, the current empirical panel is still too sparse and configuration-clustered for a defensible minimal necessary/sufficient set.
 
-Current scope-aware seed coverage:
+## Canonical extant panel
 
-- **14 / 25** taxa have exact-species literature seed evidence;
-- **5 / 25** additional taxa have exact-species ACDB coverage without a separate literature-seed row;
-- **5 / 25** currently rely on genus-level exemplar evidence;
-- **1 / 25** currently relies on family-level exemplar evidence.
+- **29 exact species terminals** in `data/pilot_taxa_v2.csv`.
+- **29 / 29** resolve in Open Tree of Life.
+- **29 / 29** have at least one exact-species evidence route.
+- genus/family exemplar evidence is retained separately and never silently promoted to species-level measurement.
 
-Thus **19 / 25** pilot taxa currently have at least one exact-species evidence route suitable for expansion into the primary matrix. The remaining six require exact-species resolution or must remain sensitivity-analysis taxa.
+## Current A–J measurement/evidence coverage
 
-No missing database record is interpreted as absence of an ability.
+From `data/module_evidence_state_v2.csv`:
 
-## Model-recoverability lesson
+| Module | Coverage |
+|---|---:|
+| A · generative cognition | 4 / 29 |
+| B · social transmission | 11 / 29 |
+| C · communication | 8 / 29 |
+| D · manipulation / embodiment | 7 / 29 |
+| E · persistent externalization | 7 / 29 |
+| F · social architecture | 9 / 29 |
+| G · life history / learning opportunity | 24 / 29 |
+| H · energetics / neural budget | 18 / 29 |
+| I · ecological challenge / opportunity | 26 / 29 |
+| J · demography / cultural population | 19 / 29 |
 
-A toy simulation with eight latent modules showed that small, famous-"intelligent"-animal panels can make additive, threshold and weakest-link mechanisms difficult to distinguish, especially with 20–40% missing behavioural data.
+Overall cell coverage is ~45.9%. Missing/not-tested is never converted to zero.
 
-At 25 taxa / 20% missingness, selecting taxa for disagreement among candidate models increased mean exact architecture recovery from about **0.45 to 0.59** in the toy setup. Gains were largest for threshold and weakest-link models.
+## Data layers completed
 
-This is a **design diagnostic, not a biological power analysis**.
+### Culture / social learning
+- Animal Culture Database extraction and source-traceable behavior layer.
+- ACDB raw behavior counts are prohibited as an exhaustive repertoire outcome.
+- ACDB cultural-group context: 65 matched group rows across 16 panel species.
 
-## Key design change
+### Life history / energetics
+- AnAge integration.
+- AnimalTraits body/brain/metabolic integration.
+- PanTHERIA social-demography layer.
 
-The first 25 taxa are now treated as a seed panel, not the final sample.
+### Ecology
+- EltonTraits exact/synonym-resolved ecology layer: 26 / 29 taxa.
 
-Panel v2 will deliberately seek:
-- high-average / one-severe-bottleneck configurations;
-- balanced moderate configurations;
-- threshold-straddling configurations;
-- cognition-matched but embodiment-different pairs;
-- social-learning-matched but life-history/network-different pairs;
-- ordinary negative/calibration taxa.
+### Cognition
+- MacLean et al. standardized self-control task extraction for exact matching panel species.
+- Task scores remain task-specific indicators, not global intelligence scores.
 
-## Pilot 2 additions
+### Manipulation / tool use
+- source-level exact literature evidence;
+- Johnston & Røyrvik 22-mode tool-use hierarchy;
+- only exact named species enter the main species mask; family/order/class rows remain contextual.
 
-- [x] parsed frozen AnimalTraits v1.0.7 and generated pilot body/brain/metabolic summaries;
-- [x] parsed AnAge bulk life-history data and generated a normalized pilot extract;
-- [x] joined culture/cognition evidence with energetic and life-history coverage in `pilot_matrix_v1.csv`;
-- [x] resolved the seed panel to 29 species-level taxa in `pilot_taxa_v2.csv`;
-- [x] added reproducible ingestion scripts for AnimalTraits and AnAge;
+### Externalization
+- global bird nest-traits layer for all 7 panel bird species;
+- uncertain/NA nest states remain uncertain/missing.
 
-Current integrated coverage in the 25-label v1 matrix includes longevity for 22 labels, AnimalTraits brain-size records for 10, and at least one metabolic-rate source for 6. Scope flags distinguish exact species from exemplars.
+### Social architecture / demography
+- ASNR network data;
+- PanTHERIA group size/density;
+- ACDB culture-linked group context;
+- these are kept as separate measurement layers rather than averaged into one “social complexity” score.
 
-## In progress
+### Neural architecture
+- region × method × clade measurement schema;
+- human, elephant, birds, honeybee, octopus and cetacean method-calibration evidence;
+- global raw brain-mass / total-neuron scoring is prohibited.
 
-- [ ] rebuild all downstream matrices on the 29-taxon species-level v2 panel;
-- [ ] quantify research effort per taxon and module;
-- [ ] harmonize neural measures beyond raw brain mass (relative brain measures, neuron counts where comparable);
-- [ ] expand each core module beyond one or two flagship papers;
-- [x] resolve all 29 v2 taxa through OpenTree TNRS and generate a global induced topology;
-- [ ] add dated within-clade phylogenies / justified branch-length strategy for confirmatory comparative models;
-- [ ] build hominin archaeological time-slice layer;
-- [ ] complete closest-prior-work novelty map for explicit necessary/sufficient-configuration claims;
-- [ ] simulate recoverability using the **observed** missingness structure rather than toy missingness;
-- [ ] freeze exact ARIS engine version/commit and begin formal full ARIS run.
+### Phylogeny
+- 29 / 29 exact OpenTree resolution;
+- synthetic global topology available;
+- dated/branch-length strategy remains required for confirmatory comparative models.
 
-## Current assessment
-
-**Scientific framing: strong. Data integration: underway. Confirmatory analysis: not yet ready.**
-
-The project should not advance to a headline "minimal sufficient set" until the exact-species panel, research-effort correction and phylogenetic layer pass their gates.
-
-
-## Pilot 3 phylogeny update
-
-- 29 / 29 species-level v2 taxa resolved through Open Tree of Life with approximate matching disabled.
-- 0 unmatched taxa and 0 approximate matches.
-- One explicit synonym mapping is retained: `Physeter macrocephalus` → OpenTree `Physeter catodon` (OTT 276851).
-- A 29-taxon induced synthetic topology was generated in the live pilot.
-- OpenTree reported 110 supporting studies for that induced synthetic subtree.
-- The global OpenTree tree is treated as topology only; it is **not** being misrepresented as a dated chronogram.
-
-The phylogeny gate is therefore provisionally passed for taxonomy/topology, while calibrated branch lengths remain an open confirmatory requirement.
-
-
-## Pilot 4 research-effort update
-
-A module-specific OpenAlex literature-exposure proxy was built for all 29 species-level v2 taxa using 174 exact-scientific-name Boolean searches over 1990–2026.
-
-- all 174 cells were recovered after rate-limit-aware retries;
-- broad behavioural-literature exposure spans roughly 618-fold across the current panel;
-- this proxy is explicitly a nuisance/bias covariate, not an ability score.
-
-A direct diagnostic against the 13 exact ACDB-matched species found that ACDB behaviour-row counts do **not** behave like an exhaustive repertoire census: Spearman correlation with behavioural research exposure was about −0.44. The interpretation is measurement/curation structure, not a negative biological effect of research.
-
-Design consequence: raw ACDB behaviour counts are now prohibited as the primary O4 cultural-repertoire outcome. ACDB remains a source-traceable presence/transmission/domain evidence layer.
-
-
-## Pilot 5 novelty update
-
-The closest-prior-work map now includes conceptual, experimental, comparative and cultural-evolution predecessors.
-
-The novelty claim has been narrowed. ARIS4C008 does **not** claim novelty for:
-- multi-domain interaction/feedback accounts of human cognition;
-- cumulative-culture criteria;
-- packages of teaching/imitation/prosociality;
-- phylogenetic or research-effort correction;
-- primate general/cultural-intelligence factors;
-- coevolution of social learning, brain size, lifespan and sociality;
-- network memory;
-- cultural open-endedness as a proposed human distinction.
-
-The provisional contribution is the **configuration-testing design**: a multi-clade, source-traceable comparison of additive, weakest-link, threshold and feedback architectures, with deliberate evolutionary counterexamples and a separate hominin temporal layer.
-
-
-## Pilot 6 hominin + neural update
+### Research-effort bias
+- 29 species × 6 OpenAlex query families = 174 recovered exposure cells;
+- literature exposure spans orders of magnitude and is treated as nuisance structure.
 
 ### Hominin temporal layer
-- 15 first-secure-evidence milestone intervals coded from 3.3 Ma to 73 ka.
-- 14 temporal falsification tests defined.
-- All 11 pairwise dated tests passed interval-direction audit: the target evidence is securely older than the proposed later prerequisite in every coded contradiction.
-- The layer is explicitly interpreted as archaeological first-secure evidence, not true evolutionary origin dates.
+- 15 first-secure archaeological milestone intervals;
+- 14 temporal falsification tests;
+- 11 pairwise dated contradictions passed interval-direction audit.
 
-Immediate falsifiers include:
-- anatomical Homo sapiens is not an observable prerequisite for stone manufacture, Acheulean technology, secure fire use, hafting, large structural woodworking, or geometric engraving;
-- habitual ochre / personal ornaments are not observable prerequisites for several earlier complex technologies;
-- deliberate fire-making at the current earliest secure ~400 ka claim is not an observable prerequisite for ~476 ka Kalambo structural woodworking;
-- stone tools, fire use and engraving arise far too early to be stand-alone sufficient explanations of later open-ended culture.
+### Novelty
+Closest-prior-work map is complete at pilot level. The defensible contribution is **configuration-model competition + deliberate counterexample sampling + temporal triangulation**, not the generic claim that multiple traits interact.
 
-### Neural harmonization
-A source-traceable neural seed now separates:
-- whole-brain neuron counts;
-- mammalian cerebral-cortex counts;
-- avian pallial counts;
-- cerebellar allocation;
-- distributed cephalopod neural architecture;
-- insect mini-brain scale;
-- counting method and comparability class.
+## Recoverability result · current hard blocker
 
-The seed demonstrates why brain mass or total neurons cannot be treated as a universal animal intelligence score. It also records a >4x cetacean cortical-neuron method discrepancy (stereology versus isotropic fractionator) as a mandatory sensitivity issue.
+Observed-mask simulation using the real 29 × 10 coverage pattern:
 
-Neural harmonization is now a dedicated design gate rather than an implicit brain-size covariate.
+- additive recovery: **0.660**
+- weakest-link recovery: **0.346**
+- threshold recovery: **0.162**
+
+Even a hypothetically complete **random** 29-taxon panel recovered threshold only ~0.255 in the current design diagnostic.
+
+Configuration-aware/oracle selection of 29 complete taxa increased approximate recovery to:
+- additive 0.795;
+- weakest-link 0.645;
+- threshold 0.665.
+
+Therefore:
+
+> **Missingness is not the only problem. The taxon panel must also contain deliberate dissociations/counterexamples.**
+
+These simulations are design diagnostics, not biological power estimates.
+
+## Design gates
+
+### Passed
+- ARIS provenance frozen to v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`.
+
+### Provisional pass
+- outcome codebook;
+- condition ontology;
+- research-effort correction;
+- phylogenetic taxonomy/topology;
+- exact-species pilot matrix;
+- hominin temporal layer;
+- novelty boundary;
+- neural harmonization.
+
+### BLOCKED
+- **confirmatory model recoverability / minimal necessary-sufficient configuration inference.**
+
+## Unblock plan
+
+1. expand exact-species A/C/D/E/F measurement coverage;
+2. construct a substantially larger candidate pool including ordinary/negative calibration taxa;
+3. use low-cost provisional traits to select configuration-diverse taxa before expensive deep coding;
+4. prioritize high-average/one-bottleneck, balanced-moderate and threshold-straddling configurations;
+5. add dated within-clade phylogenies or an explicit branch-length strategy;
+6. code tested-negative evidence systematically;
+7. re-run observed-missingness recoverability;
+8. only then run confirmatory additive vs weakest-link vs threshold/interaction analyses.
+
+## Current scientific assessment
+
+**Framing: strong. Novelty: defensible. Data engineering: advanced pilot. Causal/configurational conclusion: not ready.**
+
+The project has already falsified several naive single-factor explanations, but it should not yet claim the minimal sufficient or necessary architecture of human-like open-ended intelligence.

@@ -1,0 +1,7 @@
+scientific_name,n_networks,interaction_types,population_types,median_nodes,median_density,median_avg_degree,median_transitivity,median_Qrel,source_scope
+Elephas maximus,1,dominance,free-ranging,73,0.023,1.644,0.076,0.734,exact_species
+Tursiops truncatus,5,"spatial_proximity; overall_mix; physical_contact",free-ranging,188,0.075,11.937,0.517,0.565,exact_species
+Macaca fuscata,7,"dominance; grooming; spatial_proximity","semi-ranging; free-ranging; free ranging",20,0.617,8.6,0.66,0.147,exact_species
+Pan paniscus,23,grooming,"captive; unspecified",6,0.933,4.333,0.923,0.029,exact_species
+Pan troglodytes,4,"grooming; spatial_proximity","semi-ranging; unspecified",67.5,0.1155,7.787,0.2035,0.35,exact_species
+Orcinus orca,2,spatial_proximity,"free-ranging; free ranging",50,0.521,27.4315,0.6715,0.3325,exact_species

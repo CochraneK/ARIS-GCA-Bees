@@ -60,3 +60,40 @@ Once provisional module values exist for a larger candidate pool:
 5. reserve ~20% of the final panel for deliberately ordinary/negative calibration taxa.
 
 The final paper should report both the selection algorithm and sensitivity to an unselected/random panel.
+
+
+## Pilot 7 recoverability implication
+
+The observed 29 × 10 module mask confirms that the seed panel is not merely incomplete; it is **structurally under-informative** for weakest-link/threshold discrimination.
+
+Current exact/proxy measurement coverage is especially sparse in A, C, D, E and F.
+
+A design simulation found:
+- current observed mask: threshold recovery ~0.16;
+- complete but randomly configured 29 taxa: threshold recovery ~0.26;
+- complete 29-taxon oracle configuration-aware selection: threshold recovery ~0.67.
+
+These are not biological power calculations. They show that **configuration diversity is at least as important as row count**.
+
+### Revised sampling workflow
+
+1. Build a broad **screening pool**, not a fixed “smart animal” shortlist.
+2. Obtain inexpensive provisional A–J indicators for the pool.
+3. Compute candidate prediction signatures under additive / minimum / threshold summaries.
+4. Select taxa that maximize disagreement in prediction-signature space.
+5. Add phylogenetic diversity and data recoverability constraints.
+6. Reserve ordinary/negative calibration taxa.
+7. Only then spend effort on deep source-level coding.
+
+The screening pool should be substantially larger than the final deeply coded panel. The current simulations do **not** justify a single magic target sample size such as 40, 60 or 80; sample size and configuration geometry must be evaluated jointly.
+
+### Priority gaps
+
+Immediate deep-coding priority:
+1. A · generative cognition;
+2. D · manipulation / embodiment;
+3. E · persistent externalization;
+4. C · communication;
+5. F · social architecture.
+
+G, I and J now have substantially better standardized coverage and are no longer the first-order bottleneck.

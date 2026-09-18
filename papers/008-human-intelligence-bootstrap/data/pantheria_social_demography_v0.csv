@@ -1,0 +1,20 @@
+scientific_name,source_name,taxon_mapping,population_group_size,social_group_size,population_density_per_km2,home_range_km2,home_range_indiv_km2
+Callithrix jacchus,Callithrix jacchus,exact_name,,8.55,508.18,0.02,
+Elephas maximus,Elephas maximus,exact_name,,7.75,0.53,38.36,28.08
+Gorilla beringei,Gorilla beringei,exact_name,,,,,
+Gorilla gorilla,Gorilla gorilla,exact_name,10.00,6.00,0.59,4.03,
+Homo sapiens,Homo sapiens,exact_name,,,,,
+Leontopithecus rosalia,Leontopithecus rosalia,exact_name,,4.50,4.07,0.26,0.37
+Loxodonta africana,Loxodonta africana,exact_name,,19.50,6.72,587.53,1284.09
+Macaca fuscata,Macaca fuscata,exact_name,,40.65,30.19,1.43,
+Megaptera novaeangliae,Megaptera novaeangliae,exact_name,,2.00,,,
+Orcinus orca,Orcinus orca,exact_name,9.00,12.00,,79244.72,112249.72
+Pan paniscus,Pan paniscus,exact_name,90.00,85.00,2.00,27.93,
+Pan troglodytes,Pan troglodytes,exact_name,45.00,50.00,1.63,10.85,12.50
+Physeter macrocephalus,Physeter catodon,explicit_synonym,11.00,25.00,,,
+Pongo abelii,Pongo abelii,exact_name,,,,,
+Pongo pygmaeus,Pongo pygmaeus,exact_name,1.00,1.00,2.00,3.88,5.49
+Sapajus libidinosus,Cebus libidinosus,explicit_synonym,,,,,
+Suricata suricatta,Suricata suricatta,exact_name,,,,11.76,14.06
+Tursiops aduncus,Tursiops aduncus,exact_name,64.00,,,,
+Tursiops truncatus,Tursiops truncatus,exact_name,7.00,10.00,0.20,52.77,84.99

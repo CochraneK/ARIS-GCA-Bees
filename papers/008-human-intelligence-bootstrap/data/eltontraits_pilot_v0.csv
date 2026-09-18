@@ -1,0 +1,27 @@
+scientific_name,source_scientific_name,source_clade,taxon_mapping,Diet-Inv,Diet-Vend,Diet-Vect,Diet-Vfish,Diet-Vunk,Diet-Scav,Diet-Fruit,Diet-Nect,Diet-Seed,Diet-PlantO,diet_summary,foraging_stratum,activity_nocturnal,activity_crepuscular,activity_diurnal,body_mass_g,diet_certainty,foraging_certainty,activity_certainty
+Cacatua goffiniana,Cacatua goffiniana,birds,exact_name,10,0,0,0,0,0,20,0,60,10,PlantSeed,ground:50;understory:50,0,,,275,D1,1,
+Callithrix jacchus,Callithrix jacchus,mammals,exact_name,20,0,0,0,10,0,30,40,0,0,,Ar,0,0,1,292,ABC,A,ABC
+Columba livia,Columba livia,birds,exact_name,10,0,0,0,0,0,0,0,60,30,PlantSeed,ground:80;understory:20,0,,,354.2,A,1,
+Corvus corax,Corvus corax,birds,exact_name,10,20,10,10,0,20,10,0,10,10,VertFishScav,ground:80;midhigh:10;aerial:10,0,,,927.97,A,1,
+Corvus moneduloides,Corvus moneduloides,birds,exact_name,20,10,0,0,0,10,20,0,20,20,Omnivore,ground:50;understory:20;midhigh:20;canopy:10,0,,,277.38,A,1,
+Elephas maximus,Elephas maximus,mammals,exact_name,0,0,0,0,0,0,0,0,0,100,,G,1,1,1,2915040,ABC,A,ABC
+Gorilla beringei,Gorilla beringei,mammals,exact_name,0,0,0,0,0,0,10,0,0,90,,G,0,0,1,149325.19,ABC,A,ABC
+Gorilla gorilla,Gorilla gorilla,mammals,exact_name,0,0,0,0,0,0,10,0,0,90,,G,0,0,1,131625.52,ABC,A,ABC
+Homo sapiens,Homo sapiens,mammals,exact_name,10,0,0,0,0,0,60,0,0,30,,G,0,0,1,58540.63,D2,A,ABC
+Leontopithecus rosalia,Leontopithecus rosalia,mammals,exact_name,50,0,0,0,0,0,50,0,0,0,,Ar,0,0,1,535.5,ABC,A,ABC
+Loxodonta africana,Loxodonta africana,mammals,exact_name,0,0,0,0,0,0,0,0,0,100,,G,1,1,1,3940034.28,ABC,A,ABC
+Macaca fuscata,Macaca fuscata,mammals,exact_name,10,0,0,0,0,0,30,0,20,40,,S,0,0,1,10400,ABC,A,ABC
+Megaptera novaeangliae,Megaptera novaeangliae,mammals,exact_name,80,0,0,20,0,0,0,0,0,0,,M,0,0,1,30000000,ABC,A,D2
+Melopsittacus undulatus,Melopsittacus undulatus,birds,exact_name,0,0,0,0,0,0,0,0,100,0,PlantSeed,ground:60;understory:40,0,,,28.99,A,1,
+Nestor notabilis,Nestor notabilis,birds,exact_name,0,0,0,0,0,10,30,0,0,60,PlantSeed,ground:20;understory:40;midhigh:30;canopy:10,0,,,862.97,A,1,
+Orcinus orca,Orcinus orca,mammals,exact_name,25,50,0,25,0,0,0,0,0,0,,M,1,1,1,4300000,ABC,A,D2
+Pan paniscus,Pan paniscus,mammals,exact_name,10,0,0,0,0,0,60,0,10,20,,S,0,0,1,34000.08,ABC,A,ABC
+Pan troglodytes,Pan troglodytes,mammals,exact_name,10,0,0,0,0,0,60,0,0,30,,S,0,0,1,42500,ABC,A,ABC
+Physeter macrocephalus,Physeter catodon,mammals,explicit_synonym,100,0,0,0,0,0,0,0,0,0,,M,1,1,1,14025000,ABC,A,D2
+Pongo abelii,Pongo abelii,mammals,exact_name,10,0,0,0,10,0,80,0,0,0,,Ar,0,0,1,39696.12,ABC,A,ABC
+Pongo pygmaeus,Pongo pygmaeus,mammals,exact_name,10,0,0,0,10,0,80,0,0,0,,Ar,0,0,1,37000,ABC,A,ABC
+Psittacus erithacus,Psittacus erithacus,birds,exact_name,0,0,0,0,0,0,50,0,50,0,Omnivore,midhigh:40;canopy:60,0,,,333,A,1,
+Sapajus libidinosus,Cebus libidinosus,mammals,explicit_synonym,20,0,0,0,10,0,40,20,0,10,,Ar,0,0,1,2687.21,ABC,A,ABC
+Suricata suricatta,Suricata suricatta,mammals,exact_name,70,0,0,0,20,0,0,0,0,10,,G,0,0,1,725.5,ABC,A,ABC
+Tursiops aduncus,Tursiops aduncus,mammals,exact_name,20,0,0,80,0,0,0,0,0,0,,M,0,0,1,175000,ABC,A,ABC
+Tursiops truncatus,Tursiops truncatus,mammals,exact_name,20,0,0,80,0,0,0,0,0,0,,M,0,0,1,175000,ABC,A,ABC
