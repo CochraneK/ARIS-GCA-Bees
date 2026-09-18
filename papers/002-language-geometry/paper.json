@@ -1,0 +1,44 @@
+{
+  "id": "002",
+  "slug": "language-geometry",
+  "title": "Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure",
+  "short_title": "Language Periodic-Table Hypothesis",
+  "year": 2026,
+  "status": "manuscript-preparation",
+  "domain": "linguistic typology / quantitative linguistics / language universals / model comparison",
+  "summary": "A predictive stress test of the simple global-circle form of the language periodic-table hypothesis across TLI, GBI, and WALS. Family-held-out evidence and direct circularity diagnostics do not support the tested global circular geometry; hierarchical/non-circular models provide stronger predictive benchmarks without establishing one universal tree geometry.",
+  "authors": [
+    "Cunyi Kang"
+  ],
+  "aris": {
+    "provenance": "ARIS4C primary OpenAI GPT executor + independent WorkBuddy/Tencent Hy3 secondary review; review slot 002 promoted after PASS",
+    "version": "v0.4.26",
+    "commit": "951654847b015585385b2448c5667dcd04e7b56b",
+    "secondary_review": {
+      "provider": "WorkBuddy",
+      "model": "Tencent Hy3",
+      "verdict": "PASS",
+      "promotion_authorized": true,
+      "receipt_source": "../../ideas/language-periodic-system/refine-logs/SECONDARY_REVIEW_RECEIPT.md"
+    }
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/STATUS.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry",
+    "staging_provenance": "https://github.com/CochraneK/ARIS4C/tree/main/ideas/language-periodic-system"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "linguistic typology",
+    "language periodic table",
+    "model comparison",
+    "circular seriation",
+    "WALS",
+    "Grambank",
+    "TLI",
+    "GBI"
+  ]
+}
