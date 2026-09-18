@@ -1,0 +1,75 @@
+{
+  "artifact_id": "plos0258910-pdf-20220114",
+  "target_doi": "10.1371/journal.pone.0258910",
+  "target_publication_date": "2021-10-22",
+  "correction_doi": "10.1371/journal.pone.0303714",
+  "correction_date": "2024-05-09",
+  "issue_code": "table_reference_summary_error",
+  "ground_truth_tier": "GT-B",
+  "archive": {
+    "source": "Internet Archive Wayback Machine",
+    "snapshot_timestamp": "20220114120313",
+    "original_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0258910&type=printable",
+    "content_type": "application/pdf",
+    "digest_type": "wayback_cdx_digest",
+    "digest": "BLKICC3WUYN7GH4E7K63U5GD2NW2RYWY",
+    "status": "SAFE_EXACT",
+    "role": "table"
+  },
+  "contemporaneous_comparison_source": {
+    "doi": "10.1111/bjso.12452",
+    "first_published": "2021-02-17",
+    "title": "Reanalysing the factor structure of the moral foundations questionnaire",
+    "availability": "publicly available before target publication"
+  },
+  "structured_detector_inputs": {
+    "cross_source_records": [
+      {
+        "source_locator": "Archived target PDF p.15 Table 1, Harper & Rhodes (2021) row",
+        "target_source_locator": "Archived target PDF p.15 Table 1, Harper & Rhodes (2021) row",
+        "comparison_source_locator": "Harper & Rhodes (2021), Study 2 confirmatory factor analysis results",
+        "source_doi": "10.1111/bjso.12452",
+        "source_available_at_target_time": true,
+        "provenance_verified": true,
+        "fields_to_compare": [
+          "n",
+          "rmsea",
+          "cfi",
+          "best_fitting_model"
+        ],
+        "field_types": {
+          "n": "numeric",
+          "rmsea": "numeric",
+          "cfi": "numeric",
+          "best_fitting_model": "text"
+        },
+        "target_fields": {
+          "n": 322,
+          "rmsea": "0.080",
+          "cfi": "0.77",
+          "best_fitting_model": "5 factors"
+        },
+        "source_fields": {
+          "n": 322,
+          "rmsea": "0.07",
+          "cfi": "0.87",
+          "best_fitting_model": "3 factors"
+        }
+      }
+    ]
+  },
+  "expected_result": {
+    "detector_id": "cross_source_field_consistency",
+    "status": "FLAG",
+    "evidence_class": "E2",
+    "matched_fields": [
+      "n"
+    ],
+    "mismatch_fields": [
+      "rmsea",
+      "cfi",
+      "best_fitting_model"
+    ],
+    "misconduct_inference": false
+  }
+}

@@ -1,0 +1,8 @@
+target_doi,issue_code,stratum,ground_truth_tier,track_a_issue_status,required_roles,exact_roles,proxy_roles,unavailable_roles,role_states,issue_readiness
+10.1371/journal.pone.0161231,figure_panel_label_swap,E,GT-B,CONTENT_ELIGIBLE,figure_image,,,figure_image,figure_image:BLOCKED,BLOCKED_REQUIRED_ROLE
+10.1038/s41929-026-01569-w,figure_scientific_content_error,E,GT-B,CONTENT_ELIGIBLE,figure_image,,,figure_image,figure_image:NO_OBJECT,BLOCKED_REQUIRED_ROLE
+10.1177/1758573221989669,table_row_omission,E,GT-B,CONTENT_ELIGIBLE,table,,,table,table:NO_OBJECT,BLOCKED_REQUIRED_ROLE
+10.1538/expanim.54.1,authorship_peer_review,P,GT-A,CONTENT_INELIGIBLE,,,,,,TRACK_A_INELIGIBLE_CONTENT
+10.1177/1758835919874651,other_unclear,P,GT-A,ADJUDICATION_REQUIRED,,,,,,ADJUDICATION_REQUIRED
+10.1007/s11277-021-09072-0,authorship_peer_review,P,GT-A,CONTENT_INELIGIBLE,,,,,,TRACK_A_INELIGIBLE_CONTENT
+10.1371/journal.pone.0258910,table_reference_summary_error,E,GT-B,CONTENT_ELIGIBLE,table,table,,,,table:SAFE_EXACT,SAFE_EXACT_READY

@@ -1,0 +1,10 @@
+{
+  "adjudication_required_issue_count": 1,
+  "blocked_required_role_count": 3,
+  "content_eligible_issue_count": 4,
+  "content_ineligible_issue_count": 2,
+  "proxy_only_issue_ready_count": 0,
+  "safe_exact_issue_ready_count": 1,
+  "seed_issue_count": 7,
+  "targets_with_any_safe_exact_object": 3
+}

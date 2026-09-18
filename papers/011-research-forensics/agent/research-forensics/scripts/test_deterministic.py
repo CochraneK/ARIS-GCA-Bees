@@ -2,6 +2,7 @@ import math
 
 from orchestrator import ForensicContext, run_forensics
 from detectors.deterministic import (
+    CrossSourceFieldConsistencyDetector,
     DebitStyleBinaryDetector,
     GRIMItemMeanDetector,
     NHSTConsistencyDetector,
@@ -161,3 +162,61 @@ def test_table_row_completeness_passes_complete_rows():
     ])
     out = run_forensics(ctx, [d])
     assert out["findings"][0]["status"] == "PASS"
+
+
+def test_cross_source_numeric_formatting_is_not_a_false_mismatch():
+    d = CrossSourceFieldConsistencyDetector()
+    ctx = context(cross_source_records=[{
+        "source_locator": "target Table 1",
+        "target_source_locator": "target Table 1",
+        "comparison_source_locator": "cited paper Results",
+        "source_doi": "10.1111/example",
+        "source_available_at_target_time": True,
+        "provenance_verified": True,
+        "fields_to_compare": ["rmsea"],
+        "field_types": {"rmsea": "numeric"},
+        "target_fields": {"rmsea": "0.080"},
+        "source_fields": {"rmsea": "0.08"},
+    }])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "PASS"
+
+
+def test_cross_source_detects_field_mismatches_without_misconduct_inference():
+    d = CrossSourceFieldConsistencyDetector()
+    ctx = context(cross_source_records=[{
+        "source_locator": "archived PDF p.15 Table 1",
+        "target_source_locator": "archived PDF p.15 Table 1, Harper & Rhodes (2021)",
+        "comparison_source_locator": "Harper & Rhodes (2021), Study 2 CFA results",
+        "source_doi": "10.1111/bjso.12452",
+        "source_available_at_target_time": True,
+        "provenance_verified": True,
+        "fields_to_compare": ["n", "rmsea", "cfi", "best_fitting_model"],
+        "field_types": {"n":"numeric","rmsea":"numeric","cfi":"numeric","best_fitting_model":"text"},
+        "target_fields": {"n":322,"rmsea":"0.080","cfi":"0.77","best_fitting_model":"5 factors"},
+        "source_fields": {"n":322,"rmsea":"0.07","cfi":"0.87","best_fitting_model":"3 factors"},
+    }])
+    out = run_forensics(ctx, [d])
+    f = out["findings"][0]
+    assert f["status"] == "FLAG"
+    assert f["evidence_class"] == "E2"
+    assert f["evidence"]["matched_fields"] == ["n"]
+    assert [m["field"] for m in f["evidence"]["mismatches"]] == ["rmsea","cfi","best_fitting_model"]
+    assert f["misconduct_inference"] is False
+
+
+def test_cross_source_abstains_without_contemporaneous_source_proof():
+    d = CrossSourceFieldConsistencyDetector()
+    ctx = context(cross_source_records=[{
+        "source_locator":"target table",
+        "target_source_locator":"target table",
+        "comparison_source_locator":"source results",
+        "source_doi":"10.1111/example",
+        "source_available_at_target_time":False,
+        "provenance_verified":True,
+        "fields_to_compare":["n"],
+        "target_fields":{"n":10},
+        "source_fields":{"n":10},
+    }])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "ABSTAIN"

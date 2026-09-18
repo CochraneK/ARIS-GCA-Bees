@@ -1,0 +1,37 @@
+{
+  "target_doi": "10.1371/journal.pone.0258910",
+  "correction_doi": "10.1371/journal.pone.0303714",
+  "historical_artifact_status": "SAFE_EXACT_READY",
+  "historical_pdf_snapshot": "20220114120313",
+  "historical_pdf_digest": "BLKICC3WUYN7GH4E7K63U5GD2NW2RYWY",
+  "detector": "cross_source_field_consistency",
+  "detector_family": "citation_forensics",
+  "result": "FLAG",
+  "evidence_class": "E2",
+  "matched_fields": [
+    "n"
+  ],
+  "mismatch_fields": [
+    "rmsea",
+    "cfi",
+    "best_fitting_model"
+  ],
+  "target_values": {
+    "n": 322,
+    "rmsea": "0.080",
+    "cfi": "0.77",
+    "best_fitting_model": "5 factors"
+  },
+  "contemporaneous_source_values": {
+    "n": 322,
+    "rmsea": "0.07",
+    "cfi": "0.87",
+    "best_fitting_model": "3 factors"
+  },
+  "comparison_source_doi": "10.1111/bjso.12452",
+  "comparison_source_first_published": "2021-02-17",
+  "target_first_published": "2021-10-22",
+  "correction_published": "2024-05-09",
+  "correction_used_as_detector_input": false,
+  "interpretation": "First real pre-outcome true-positive case in the expanded pilot. One case is not a performance estimate."
+}

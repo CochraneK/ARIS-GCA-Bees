@@ -40,7 +40,14 @@
   },
   "expected_pilot1_outcome": {
     "review_priority": "NONE",
-    "finding_statuses": ["ABSTAIN", "ABSTAIN", "ABSTAIN", "ABSTAIN", "ABSTAIN"],
+    "finding_statuses": [
+      "ABSTAIN",
+      "ABSTAIN",
+      "ABSTAIN",
+      "ABSTAIN",
+      "ABSTAIN",
+      "ABSTAIN"
+    ],
     "interpretation": "The SAFE_EXACT review contains no eligible structured inputs for the current deterministic adapters. This is a coverage/applicability result, not evidence that the retraction reason is absent or false."
   }
 }

@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**ARCHIVE QUERY SAFETY HARDENED · SOURCE-CANDIDATE MANIFEST ADDED**
+**FIRST PRE-OUTCOME REAL TRUE-POSITIVE · PILOT 2B EXPANDED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -44,7 +44,18 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - First exact historical publisher PDF recovered: J-STAGE 10.1538/expanim.54.1, captured 2018-07-25 before the 2022 retraction.
 - Pilot 1C real-manuscript run: all currently implemented deterministic families correctly ABSTAIN on this review; review priority NONE.
 - Real extractor QA failure documented: automated extraction confused 2004 received/accepted dates with publication year and misreported pages as 1-8 instead of 1-6.
-- Track A now fails closed when any supplied structured detector record lacks source_locator or provenance_verified=true.\n- CDX query builder fixed to end on event_date - 1 day rather than querying the outcome day.\n- Archive wildcard identity-collision guard added after J-STAGE prefix search returned neighbouring article IDs.\n- Six-seed source-candidate registry and reproducible artifact-search manifest builder added.
+- Track A now fails closed when any supplied structured detector record lacks source_locator or provenance_verified=true.
+- CDX query builder fixed to end on event_date - 1 day rather than querying the outcome day.
+- Archive wildcard identity-collision guard added after J-STAGE prefix search returned neighbouring article IDs.
+- Six-seed source-candidate registry and reproducible artifact-search manifest builder added.
+- Six issues now have explicit Track A content-eligibility / artifact-role requirements.
+- Pilot 2 seed acquisition result quantified: 3 content-eligible, 2 content-ineligible process/authorship issues, 1 adjudication-required issue.
+- Two of six targets have at least one SAFE_EXACT historical object, but 0/3 content-eligible issues are currently SAFE_EXACT-ready at their required artifact role.
+- Acquisition readiness is now reported separately from detector performance.
+- Expanded Pilot 2B adds PLOS DOI 10.1371/journal.pone.0258910 with a SAFE_EXACT pre-correction PDF captured 2022-01-14.
+- New F5 cross_source_field_consistency adapter compares source-verified target fields with a contemporaneously available cited source.
+- First real Track A true-positive: N matched, while RMSEA, CFI and best-fitting-model fields disagreed with Harper & Rhodes (2021); the later 2024 correction independently confirms these same errors.
+- The first true-positive is a pipeline demonstration only, not a performance estimate.
 
 ## Critical design findings already established
 
@@ -78,9 +89,12 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - freeze target metadata completeness criteria.
 
 ### Gate 2 — time-safe Track A corpus
-- paper-level qualification rules and code: COMPLETE;\n- object/modality-level role qualification: COMPLETE;\n- archive candidate discovery utility: COMPLETE;\n- archive identity/collision guard + source-candidate manifest: COMPLETE;
+- paper-level qualification rules and code: COMPLETE;
+- object/modality-level role qualification: COMPLETE;
+- archive candidate discovery utility: COMPLETE;
+- archive identity/collision guard + source-candidate manifest: COMPLETE;
 - acquire and verify historical-equivalent full texts: IN PROGRESS;
-- quantify SAFE_EXACT vs PROXY_ONLY vs BLOCKED attrition;
+- quantify SAFE_EXACT vs PROXY_ONLY vs BLOCKED attrition: SEED PILOT COMPLETE; scale-up IN PROGRESS;
 - build grouped and temporal split manifests;
 - verify no label-bearing metadata reaches model features.
 
@@ -97,8 +111,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Scale object-level historical-artifact qualification beyond the six-record source-anatomy seed.
-2. Acquire SAFE_EXACT body/table/reference/image objects for a pilot subset and freeze hashes/provenance.
-3. Run deterministic adapters only where their required artifact roles are SAFE_EXACT; treat missing inputs as ABSTAIN rather than failures.
-4. Quantify extraction error, applicability, alert yield, and human verification time; first real extraction-error case is now recorded.
-5. Add image/text/semantic modules only after deterministic real-manuscript validation.
+1. Expand beyond the six-case seed with a small stratified Pilot 2 sample.
+2. Prioritise issue types whose required roles are realistically recoverable: tables/statistics/references before image-only cases.
+3. Promote cases to SAFE_EXACT_READY only after issue-specific artifact-role qualification; first expanded case is now complete.
+4. Run deterministic adapters on the first issue-ready real cases and produce descriptive alert-yield / false-alert results.
+5. Add image/text/semantic modules only after the deterministic real-manuscript pipeline has non-trivial denominators.

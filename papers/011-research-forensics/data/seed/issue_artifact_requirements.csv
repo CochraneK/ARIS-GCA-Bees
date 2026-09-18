@@ -1,0 +1,7 @@
+target_doi,stratum,ground_truth_tier,issue_code,track_a_issue_status,required_roles,eligible_detector_families,rationale
+10.1371/journal.pone.0161231,E,GT-B,figure_panel_label_swap,CONTENT_ELIGIBLE,figure_image,F4;F8,"The documented error concerns switched figure panels, so primary Track A evaluation requires the historical figure object rather than body text alone."
+10.1038/s41929-026-01569-w,E,GT-B,figure_scientific_content_error,CONTENT_ELIGIBLE,figure_image,F4;F8,"The documented correction changes scientific content in Fig. 6; the historical figure object is required for issue-level scoring."
+10.1177/1758573221989669,E,GT-B,table_row_omission,CONTENT_ELIGIBLE,table,F3,"The documented erratum concerns missing article information in Table 1, so the historical table representation is required."
+10.1538/expanim.54.1,P,GT-A,authorship_peer_review,CONTENT_INELIGIBLE,,,"The official issue is gift authorship. A time-safe manuscript can be audited for other anomalies, but absence of a manuscript signal is not an issue-level false negative for gift authorship."
+10.1177/1758835919874651,P,GT-A,other_unclear,ADJUDICATION_REQUIRED,,,"The official notice states broad concerns about scientific accuracy and legitimacy without a sufficiently specific issue type for confirmatory issue-level Track A scoring."
+10.1007/s11277-021-09072-0,P,GT-A,authorship_peer_review,CONTENT_INELIGIBLE,,,"The official issue concerns manipulated peer review/editorial process, which is not required to leave a detectable trace in manuscript content."
