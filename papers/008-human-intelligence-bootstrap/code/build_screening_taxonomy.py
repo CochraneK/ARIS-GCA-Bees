@@ -22,7 +22,7 @@ def post(payload):
 
 def main():
     base=Path(__file__).resolve().parents[1]
-    pool=list(csv.DictReader(open(base/"data"/"screening_pool_expanded_v0.csv",encoding="utf-8-sig")))
+    pool=list(csv.DictReader(open(base/"data"/"screening_pool_expanded_v1.csv",encoding="utf-8-sig")))
     overrides={r["query_name"]:r for r in csv.DictReader(open(base/"data"/"screening_taxonomy_overrides_v0.csv",encoding="utf-8-sig"))}
     names=[r["scientific_name"] for r in pool]
     tn=post({"names":names,"context_name":"Animals","do_approximate_matching":False})
