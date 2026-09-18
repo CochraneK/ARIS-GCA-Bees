@@ -18,7 +18,7 @@ import build_primary_country_crosswalk as cc
 
 
 def test_countrycode() -> None:
-    expected = {"USA": "US", "GBR": "GB", "FRA": "FR", "DZA": "DZ"}
+    expected = {"USA": "US", "GBR": "GB", "FRA": "FR", "DZA": "DZ", "NAM": "NA"}
     got = {k: cc.convert(k) for k in expected}
     if got != expected:
         raise AssertionError(f"ISO3->ISO2 conversion mismatch: got={got}, expected={expected}")
