@@ -75,7 +75,11 @@ jobs:
         working-directory: papers/007-cross-species-age-equivalence
         run: |
           python code/build_pilot2_events.py             --table-s1 data/sources/translating_time_2026/TableS1__Sheet1.csv             --pilot0-grid data/upstream/pilot0/pilot0/life_history_mapping_grid.csv             --pilot0-coverage data/upstream/pilot0/pilot0/coverage_summary.json             --out data/pilot2_events
-          cp data/upstream/pilot0_run.json             data/pilot2_events/upstream_pilot0_run.json
+          python code/summarize_pilot2_cluster.py \
+            data/pilot2_events/observed_event_predictions.csv \
+            --out data/pilot2_events/cluster_robust_summary.json
+          cp data/upstream/pilot0_run.json \
+            data/pilot2_events/upstream_pilot0_run.json
           cp data/sources/translating_time_2026/provenance.json             data/pilot2_events/translating_time_2026.provenance.json
           cat data/pilot2_events/observed_event_summary.json
           cat data/pilot2_events/cluster_robust_summary.json
