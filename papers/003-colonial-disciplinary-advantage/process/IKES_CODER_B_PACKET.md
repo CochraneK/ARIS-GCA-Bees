@@ -141,12 +141,20 @@ section for every frozen concept is not an admissible independent coding pass.
 
 At the end include a section titled `BLINDING DECLARATION`.
 
-The **first line under that heading must be exactly one of**:
+The first two lines under that heading must report both procedural isolation
+and substantive independence:
 
-- `INDEPENDENCE_STATUS: PASS` — you did not encounter any Coder A score or contemporary confirmatory outcome;
-- `INDEPENDENCE_STATUS: FAIL` — you encountered Coder A scores and/or contemporary confirmatory outcomes.
+- `BUNDLE_ACCESS_STATUS: PASS` only if this context accessed only the pinned
+  blind-bundle files plus independently discovered historical scholarship;
+- `BUNDLE_ACCESS_STATUS: FAIL` if it opened any ARIS4C003 file outside the
+  blind bundle, including paper-root README/STATUS files;
+- `INDEPENDENCE_STATUS: PASS` only if it did not encounter any Coder A score
+  or contemporary confirmatory outcome;
+- `INDEPENDENCE_STATUS: FAIL` otherwise.
 
-Then state what you did or did not encounter. If status is FAIL, identify the contamination and do not present the coding as independent.
+A confirmatory Coder B requires **both PASS statuses**. Then state what you did
+or did not encounter. If either status is FAIL, identify the contamination and
+do not present the coding as confirmatory independent Coder B.
 
 ---
 
@@ -164,9 +172,10 @@ python code/ingest_coder_b.py \
   --output-notes process/IKES_CODER_B.md
 ```
 
-The ingestion script must reject missing/failed blinding declarations,
-malformed D01-D21 matrices, out-of-range scores, an `IKES_B` inconsistent
-with the D1-D11 mean, or missing D01-D21 evidence sections/confidence labels.
+The ingestion script must reject missing/failed bundle-access or blinding
+declarations, malformed D01-D21 matrices, out-of-range scores, an `IKES_B`
+inconsistent with the D1-D11 mean, or missing D01-D21 evidence
+sections/confidence labels.
 
 Manual fallback only if the parser cannot handle a faithfully formatted response:
 
