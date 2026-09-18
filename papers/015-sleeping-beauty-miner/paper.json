@@ -4,10 +4,12 @@
   "title": "Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work",
   "short_title": "Sleeping Beauty Miner",
   "year": 2026,
-  "status": "agent-implementation-v0.1-ci",
+  "status": "pilot0-empirical-validation-in-progress",
   "domain": "metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity",
-  "summary": "An open-data-first, auditable agent that retrospectively identifies delayed-recognition patterns and supports time-safe prospective rediscovery ranking using citation trajectories, semantic and network evidence, Prince signals, optional technological transfer, and ARIS4C011 integrity/provenance gating.",
-  "authors": ["Cunyi Kang"],
+  "summary": "An open-data-first, auditable Sleeping Beauty discovery agent with a reusable Skill surface, cutoff-safe citation reconstruction, transparent baseline/backtest infrastructure, ARIS4C011 integrity gating, and initial live OpenAlex cross-source replication of three classic delayed-recognition cases. Prospective predictive validity remains unestablished pending representative historical-cohort tests.",
+  "authors": [
+    "Cunyi Kang"
+  ],
   "dependencies": {
     "011": "research-forensics evidence safety, provenance, citation verification, applicability and ABSTAIN semantics",
     "005": "downstream exploratory input for opportunity-cost / buried-science analyses"
@@ -25,7 +27,10 @@
     "skill": "agent/sleeping-beauty-miner/SKILL.md",
     "agent_readme": "agent/sleeping-beauty-miner/README.md",
     "candidate_schema": "agent/sleeping-beauty-miner/assets/candidate-card.schema.json",
-    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/015-sleeping-beauty-miner"
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/015-sleeping-beauty-miner",
+    "status": "process/STATUS.md",
+    "pilot0": "process/PILOT0.md",
+    "empirical_summary": "data/pilot0_cross_source_summary.json"
   },
   "tags": [
     "ARIS",
