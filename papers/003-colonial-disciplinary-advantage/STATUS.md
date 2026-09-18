@@ -29,6 +29,8 @@ country×discipline contemporary results are not.
 - [x] CEPII Gravity V202211 audited: 12,561 complete unordered pairs and
       156 `col_dep_ever=1` ties.
 - [x] OpenAlex public-S3 Works schema probe PASS without outcome aggregation.
+- [x] Official OpenAlex Works Parquet manifest pinned (2026-06-26 snapshot
+      manifest; 510,372,821 Works; SHA-256 verified against source ledger).
 - [x] OpenAlex materializers support local Parquet or anonymous public S3.
 - [x] Country and dyad fractional-counting rules frozen.
 - [x] Primary mature period 2019–2022 frozen.
