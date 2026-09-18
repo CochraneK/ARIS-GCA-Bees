@@ -1,65 +1,117 @@
 # Code — ARIS4C005
 
-## `build_universe.py`
+## Current executable modules
 
-Queries the OpenAlex Works API and writes annual publication-universe counts plus a provenance JSON.
+### `build_universe.py`
 
-Default target:
+Queries the OpenAlex Works API and writes annual target-universe counts plus query provenance.
 
-```bash
-python build_universe.py \
-  --start 2000 \
-  --end 2025 \
-  --types article,review \
-  --corpus core \
-  --output ../data/openalex_universe_counts.csv \
-  --provenance ../data/openalex_universe_provenance.json
-```
+Primary frozen definition:
 
-Optional environment variables:
+`OpenAlex core + article|review + publication years 2000–2025`.
 
-```bash
-OPENALEX_API_KEY=...
-OPENALEX_MAILTO=you@example.org
-```
+This constructs a denominator only; it does not estimate misconduct.
 
-The script constructs a denominator only. It does not estimate research misconduct.
+### `classify_retractions.py`
 
-## `scenario_model.py`
+Maps raw Retraction Watch multi-label reasons to conservative screening variables:
 
-Runs transparent Monte Carlo/Fermi scenarios from an external parameter JSON.
+- narrow E1-S;
+- strong E1-M;
+- strong E1-P;
+- paper-mill signal;
+- major-error signal;
+- manual scientific/process review.
 
-```bash
-python scenario_model.py \
-  ../data/scenario_parameters.example.json \
-  --output ../data/scenario_output.example.json
-```
+Automatic flags are screening variables, not adjudicated truth.
 
-Every output is tagged `SCENARIO_NOT_EMPIRICAL_ESTIMATE`.
+### `summarize_retractions.py`
 
-The example parameter file intentionally demonstrates the vivid units requested during idea development:
+Produces a public-safe aggregate snapshot:
 
-- problematic works under a hypothetical paper-level rate;
-- Researcher-Life-Years;
-- equivalent 5-year PhD blocks;
-- equivalent 40-year research-career blocks;
-- optional Sleeping Beauty candidate / counterfactual non-awakening quantities.
+- event rows;
+- unique original-paper DOI counts;
+- row-level and unique-work flag counts;
+- real parsed date range;
+- reason frequencies;
+- provenance/checksum.
 
-These outputs are **not** allowed into the scientific evidence ledger unless the parameter ranges are independently calibrated and the resulting analysis is explicitly labelled as modelled/scenario evidence.
+Raw Retraction Watch input is not committed.
 
-## Validation note
+### `pilot_b_sample.py`
 
-The execution environment used during initialization did not have direct DNS access to GitHub/OpenAlex from the local container, so live API execution was not used as evidence. API syntax was checked against the current OpenAlex documentation through web access, and the scenario algorithm was independently reproduced in Python to verify its numerical logic. Production CI should run `python -m py_compile` and unit tests inside GitHub Actions where network-independent tests can execute.
+Creates the two-phase Pilot B adjudication sample using independent Bernoulli/Poisson components:
 
-## Planned modules
+1. population-random probability `p_r`;
+2. detector-enrichment probability `p_e`.
+
+Exact first-order inclusion probability:
+
+`pi = 1 - (1 - p_r)(1 - p_e)`
+
+Every selected paper stores `pi` and `1/pi` design weight. CLI sample-size targets are expected counts.
+
+### `calibrate_detectors.py`
+
+Computes design-weighted calibration diagnostics against resolved manual adjudications:
+
+- severe-failure prevalence point estimate;
+- detector sensitivity/specificity/PPV/NPV;
+- detector missingness;
+- Kish effective sample size;
+- engineering identification gate.
+
+This is **not** the final Bayesian latent prevalence model.
+
+### `scenario_model.py`
+
+Runs transparent Monte Carlo/Fermi scenarios from external parameter JSON. Every output is tagged:
+
+`SCENARIO_NOT_EMPIRICAL_ESTIMATE`.
+
+Scenario output cannot enter the evidence ledger as a finding without empirical calibration.
+
+---
+
+## Validation
+
+GitHub Actions compiles all Python sources and runs invariant unit tests.
+
+Current protected invariants include:
+
+- plagiarism is not automatically false science;
+- honest major error is not misconduct;
+- investigation alone is not misconduct;
+- paper-mill signal is not automatically E1-S;
+- Pilot B inclusion probabilities follow the frozen two-phase design;
+- unresolved adjudications are not silently recoded negative;
+- scenario outputs remain labelled non-empirical.
+
+---
+
+## Pilot B data governance
+
+See:
+
+- `../process/ADJUDICATION_PROTOCOL.md`
+- `../process/PILOT_B_DATA_CONTRACT.md`
+- `../data/adjudication_template.csv`
+
+No public unretracted-author fraud-score list is allowed.
+
+---
+
+## Next modules
 
 ```text
-classify_retractions.py
+build_pilot_b_frame.py
 latent_prevalence.py
-contamination_graph.py
 citation_dependence.py
+contamination_graph.py
+knowledge_ghost_half_life.py
+rly_cost.py
 innovation_delay.py
 sleeping_beauty.py
 ```
 
-They will be implemented after the denominator/correction pilot fixes the actual data contracts rather than guessing schemas too early.
+Implementation order follows empirical gates rather than story order.
