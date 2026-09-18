@@ -31,6 +31,7 @@ from sb_metrics import beauty_coefficient, awakening_time
 @dataclass(frozen=True)
 class VanRaanGate:
     passed: bool
+    mode: str
     sleep_years: int
     wake_years: int
     sleep_citations: int
@@ -41,10 +42,12 @@ class VanRaanGate:
     min_wake_rate: float
     min_total_citations: int | None
     total_citations: int
+    candidate_windows: int = 1
 
     def as_dict(self) -> dict:
         return {
             "passed": self.passed,
+            "mode": self.mode,
             "sleep_years": self.sleep_years,
             "wake_years": self.wake_years,
             "sleep_citations": self.sleep_citations,
@@ -55,6 +58,7 @@ class VanRaanGate:
             "min_wake_rate": self.min_wake_rate,
             "min_total_citations": self.min_total_citations,
             "total_citations": self.total_citations,
+            "candidate_windows": self.candidate_windows,
         }
 
 
@@ -131,7 +135,10 @@ def _counts(values: Sequence[int | float]) -> tuple[int, ...]:
 def van_raan_gate(
     counts: Sequence[int | float],
     *,
+    sleep_mode: str = "VARIABLE_SLEEP",
     sleep_years: int = 10,
+    min_sleep_years: int = 5,
+    max_sleep_years: int | None = None,
     wake_years: int = 4,
     max_sleep_rate: float = 1.0,
     min_wake_rate: float = 5.0,
@@ -173,6 +180,7 @@ def van_raan_gate(
 
     return VanRaanGate(
         passed=passed,
+        mode="FIXED_SLEEP",
         sleep_years=sleep_years,
         wake_years=wake_years,
         sleep_citations=sleep_total,
@@ -183,6 +191,95 @@ def van_raan_gate(
         min_wake_rate=float(min_wake_rate),
         min_total_citations=min_total_citations,
         total_citations=total,
+    )
+
+
+
+
+
+def variable_van_raan_gate(
+    counts: Sequence[int | float],
+    *,
+    min_sleep_years: int = 5,
+    max_sleep_years: int | None = None,
+    wake_years: int = 4,
+    max_sleep_rate: float = 1.0,
+    min_wake_rate: float = 5.0,
+    min_total_citations: int | None = None,
+) -> VanRaanGate:
+    """Search over possible sleep lengths instead of fixing s in advance.
+
+    van Raan's framework treats sleep length s as a tunable dimension. This
+    function evaluates every admissible s and, when multiple windows pass,
+    reports the longest qualifying sleep. That makes long-sleep classical SBs
+    identifiable without forcing them into a 5- or 10-year window.
+
+    A fixed-s gate remains available for direct replication/sensitivity work.
+    """
+    c = _counts(counts)
+    if min_sleep_years < 1 or wake_years < 1:
+        raise ValueError("sleep/wake years must be >= 1")
+
+    latest = len(c) - wake_years
+    if latest < min_sleep_years:
+        raise ValueError(
+            "citation history is too short for variable sleep search"
+        )
+    if max_sleep_years is not None:
+        if max_sleep_years < min_sleep_years:
+            raise ValueError(
+                "max_sleep_years cannot be below min_sleep_years"
+            )
+        latest = min(latest, int(max_sleep_years))
+
+    evaluated = [
+        van_raan_gate(
+            c,
+            sleep_years=s,
+            wake_years=wake_years,
+            max_sleep_rate=max_sleep_rate,
+            min_wake_rate=min_wake_rate,
+            min_total_citations=min_total_citations,
+        )
+        for s in range(min_sleep_years, latest + 1)
+    ]
+    passing = [gate for gate in evaluated if gate.passed]
+
+    if passing:
+        chosen = max(passing, key=lambda gate: gate.sleep_years)
+        return VanRaanGate(
+            passed=True,
+            mode="VARIABLE_SLEEP",
+            sleep_years=chosen.sleep_years,
+            wake_years=chosen.wake_years,
+            sleep_citations=chosen.sleep_citations,
+            wake_citations=chosen.wake_citations,
+            sleep_rate=chosen.sleep_rate,
+            wake_rate=chosen.wake_rate,
+            max_sleep_rate=chosen.max_sleep_rate,
+            min_wake_rate=chosen.min_wake_rate,
+            min_total_citations=chosen.min_total_citations,
+            total_citations=chosen.total_citations,
+            candidate_windows=len(passing),
+        )
+
+    # For a failed search, expose the strongest wake window for diagnostics
+    # without silently turning it into a pass.
+    chosen = max(evaluated, key=lambda gate: gate.wake_rate)
+    return VanRaanGate(
+        passed=False,
+        mode="VARIABLE_SLEEP",
+        sleep_years=chosen.sleep_years,
+        wake_years=chosen.wake_years,
+        sleep_citations=chosen.sleep_citations,
+        wake_citations=chosen.wake_citations,
+        sleep_rate=chosen.sleep_rate,
+        wake_rate=chosen.wake_rate,
+        max_sleep_rate=chosen.max_sleep_rate,
+        min_wake_rate=chosen.min_wake_rate,
+        min_total_citations=chosen.min_total_citations,
+        total_citations=chosen.total_citations,
+        candidate_windows=0,
     )
 
 
@@ -213,14 +310,30 @@ def robust_sleeping_beauty_gate(
         raise ValueError("required_component_passes must be 1..3")
 
     c = _counts(counts)
-    vr = van_raan_gate(
-        c,
-        sleep_years=sleep_years,
-        wake_years=wake_years,
-        max_sleep_rate=max_sleep_rate,
-        min_wake_rate=min_wake_rate,
-        min_total_citations=None,
-    )
+    mode = sleep_mode.upper()
+    if mode == "VARIABLE_SLEEP":
+        vr = variable_van_raan_gate(
+            c,
+            min_sleep_years=min_sleep_years,
+            max_sleep_years=max_sleep_years,
+            wake_years=wake_years,
+            max_sleep_rate=max_sleep_rate,
+            min_wake_rate=min_wake_rate,
+            min_total_citations=None,
+        )
+    elif mode == "FIXED_SLEEP":
+        vr = van_raan_gate(
+            c,
+            sleep_years=sleep_years,
+            wake_years=wake_years,
+            max_sleep_rate=max_sleep_rate,
+            min_wake_rate=min_wake_rate,
+            min_total_citations=None,
+        )
+    else:
+        raise ValueError(
+            "sleep_mode must be VARIABLE_SLEEP or FIXED_SLEEP"
+        )
     b = float(beauty_coefficient(c))
     ta = int(awakening_time(c))
     b_high = b > float(b_calibration.high_b_threshold)
@@ -240,10 +353,15 @@ def robust_sleeping_beauty_gate(
             "B threshold is calibrated to SciSciNet and should be "
             "re-estimated or sensitivity-tested in another bibliographic source."
         )
-    if ta < sleep_years:
+    if mode == "FIXED_SLEEP" and ta < sleep_years:
         warnings.append(
-            "Geometric awakening occurs before the configured sleep window; "
-            "inspect the trajectory manually before mechanism analysis."
+            "Geometric awakening occurs before the configured fixed sleep "
+            "window; inspect the trajectory manually."
+        )
+    if mode == "VARIABLE_SLEEP" and abs(ta - vr.sleep_years) > wake_years:
+        warnings.append(
+            "Geometric awakening time and van-Raan qualifying sleep length "
+            "differ materially; retain both as definition sensitivity."
         )
 
     return RobustSBResult(
