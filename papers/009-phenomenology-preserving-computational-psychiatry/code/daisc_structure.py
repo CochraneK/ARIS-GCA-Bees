@@ -1,34 +1,53 @@
 #!/usr/bin/env python3
-"""Classify DAIS-C text assets without emitting interview content.
-
-This script identifies structural file classes using the public DAIS-C transcription
-conventions. It outputs aggregate counts only; participant IDs and transcript text are
-never written to the repository.
-"""
+"""Classify DAIS-C assets without emitting interview content or participant IDs."""
 
 from __future__ import annotations
 
-import argparse
-import json
-import re
+import argparse, html, json, re, zipfile
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
-TEXT_EXTENSIONS = {".txt", ".rtf"}
-PARTICIPANT_BLOCK = re.compile(
-    r"<([0-9]{2}[A-Z]{2}[0-9]{2})>(.*?)</\1>", re.DOTALL
-)
+TEXT_EXTENSIONS = {".txt", ".rtf", ".docx"}
+PARTICIPANT_ID = re.compile(r"[0-9]{2}[A-Z]{2}[0-9]{2}")
+PARTICIPANT_BLOCK = re.compile(r"<([0-9]{2}[A-Z]{2}[0-9]{2})>(.*?)</\1>", re.DOTALL)
 INT_BLOCK = re.compile(r"<INT>(.*?)</INT>", re.DOTALL | re.IGNORECASE)
 TIMESTAMP = re.compile(r"#\d{2}:\d{2}:\d{2}(?:[-.]\d+)?#")
 XML_TAG = re.compile(r"<[^>]+>")
 WORD = re.compile(r"\b[\w'-]+\b", re.UNICODE)
+RTF_CONTROL = re.compile(r"\\[A-Za-z]+-?\d* ?")
+
+
+def read_docx(path: Path) -> str | None:
+    try:
+        with zipfile.ZipFile(path) as zf:
+            raw = zf.read("word/document.xml")
+        root = ET.fromstring(raw)
+        ns = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+        paragraphs = []
+        for paragraph in root.findall(".//w:p", ns):
+            pieces = []
+            for node in paragraph.iter():
+                if node.tag.endswith("}t") and node.text:
+                    pieces.append(node.text)
+                elif node.tag.endswith("}tab"):
+                    pieces.append("\t")
+                elif node.tag.endswith("}br"):
+                    pieces.append("\n")
+            if pieces:
+                paragraphs.append("".join(pieces))
+        return "\n".join(paragraphs)
+    except Exception:
+        return None
 
 
 def safe_read(path: Path) -> str | None:
+    if path.suffix.lower() == ".docx":
+        return read_docx(path)
     for enc in ("utf-8", "latin-1"):
         try:
-            return path.read_text(encoding=enc)
+            return html.unescape(path.read_text(encoding=enc))
         except UnicodeDecodeError:
             continue
         except Exception:
@@ -38,29 +57,34 @@ def safe_read(path: Path) -> str | None:
 
 def clean_words(text: str) -> int:
     text = XML_TAG.sub(" ", text)
-    text = re.sub(r"\\[A-Za-z]+-?\d* ?", " ", text)  # common RTF control words
+    text = RTF_CONTROL.sub(" ", text)
     text = text.replace("{", " ").replace("}", " ")
     return len(WORD.findall(text))
 
 
-def classify(text: str) -> tuple[str, int, int, int]:
-    participant_blocks = PARTICIPANT_BLOCK.findall(text)
-    int_blocks = INT_BLOCK.findall(text)
+def classify(text: str):
+    pblocks = PARTICIPANT_BLOCK.findall(text)
+    iblocks = INT_BLOCK.findall(text)
     timestamps = len(TIMESTAMP.findall(text))
-    participant_words = sum(clean_words(block) for _, block in participant_blocks)
-    interviewer_words = sum(clean_words(block) for block in int_blocks)
-
-    if timestamps >= 3 and participant_blocks:
+    pwords = sum(clean_words(block) for _, block in pblocks)
+    iwords = sum(clean_words(block) for block in iblocks)
+    ids = {pid for pid, _ in pblocks}
+    if timestamps >= 3 and pblocks:
         kind = "timestamped"
-    elif participant_blocks and int_blocks and participant_words >= 50:
+    elif pblocks and iblocks and pwords >= 50:
         kind = "interactional"
-    elif participant_blocks and not int_blocks and participant_words >= 50:
-        kind = "speaker_only"
-    elif participant_blocks:
+    elif pblocks and not iblocks and pwords >= 50:
+        kind = "speaker_only_xml"
+    elif pblocks:
         kind = "participant_tagged_other"
     else:
         kind = "non_transcript_text"
-    return kind, participant_words, interviewer_words, timestamps
+    return kind, pwords, iwords, timestamps, ids
+
+
+def sanitize(value: str) -> str:
+    value = PARTICIPANT_ID.sub("<PID>", value)
+    return re.sub(r"\d{4,}", "<N>", value)
 
 
 def main() -> None:
@@ -69,14 +93,16 @@ def main() -> None:
     ap.add_argument("--json-out", required=True)
     ap.add_argument("--md-out", required=True)
     args = ap.parse_args()
-
     root = Path(args.root)
+
     counts = Counter()
-    ext_by_kind: dict[str, Counter] = defaultdict(Counter)
-    participant_words = Counter()
-    interviewer_words = Counter()
-    timestamp_counts = Counter()
-    unique_ids_by_kind: dict[str, set[str]] = defaultdict(set)
+    ext_by_kind = defaultdict(Counter)
+    pwords = Counter()
+    iwords = Counter()
+    timestamps = Counter()
+    ids_by_kind = defaultdict(set)
+    readable = Counter()
+    patterns = Counter()
 
     for path in root.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in TEXT_EXTENSIONS:
@@ -84,95 +110,84 @@ def main() -> None:
         text = safe_read(path)
         if text is None:
             continue
-        kind, pwords, iwords, ts = classify(text)
+        readable[path.suffix.lower()] += 1
+        kind, pw, iw, ts, ids = classify(text)
         counts[kind] += 1
         ext_by_kind[kind][path.suffix.lower()] += 1
-        participant_words[kind] += pwords
-        interviewer_words[kind] += iwords
-        timestamp_counts[kind] += ts
-        for pid, _ in PARTICIPANT_BLOCK.findall(text):
-            unique_ids_by_kind[kind].add(pid)
+        pwords[kind] += pw
+        iwords[kind] += iw
+        timestamps[kind] += ts
+        ids_by_kind[kind].update(ids)
+        rel = "/".join(sanitize(x) for x in path.relative_to(root).parts)
+        patterns[f"{kind}: {rel}"] += 1
 
     result = {
         "dataset": "DAIS-C",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "privacy_rule": "No transcript text or participant IDs emitted.",
+        "readable_files_by_extension": dict(sorted(readable.items())),
         "classification_counts": dict(sorted(counts.items())),
-        "extensions_by_class": {
-            k: dict(sorted(v.items())) for k, v in sorted(ext_by_kind.items())
-        },
-        "participant_word_counts_by_class": dict(sorted(participant_words.items())),
-        "interviewer_word_counts_by_class": dict(sorted(interviewer_words.items())),
-        "timestamp_markers_by_class": dict(sorted(timestamp_counts.items())),
-        "unique_participant_id_counts_by_class": {
-            k: len(v) for k, v in sorted(unique_ids_by_kind.items())
-        },
+        "extensions_by_class": {k: dict(sorted(v.items())) for k, v in sorted(ext_by_kind.items())},
+        "participant_word_counts_by_class": dict(sorted(pwords.items())),
+        "interviewer_word_counts_by_class": dict(sorted(iwords.items())),
+        "timestamp_markers_by_class": dict(sorted(timestamps.items())),
+        "unique_participant_id_counts_by_class": {k: len(v) for k, v in sorted(ids_by_kind.items())},
+        "sanitized_path_pattern_counts": dict(sorted(patterns.items())),
         "published_reference": {
             "paper_total_tokens": 97357,
+            "paper_clinical_tokens": 58444,
+            "paper_comparison_tokens": 33025,
             "paper_audio_minutes": 1284.8,
-            "note": (
-                "Published token count is a validation reference, not an expected exact "
-                "match because tokenization and file class differ."
-            ),
         },
     }
 
-    jout = Path(args.json_out)
-    mout = Path(args.md_out)
+    jout, mout = Path(args.json_out), Path(args.md_out)
     jout.parent.mkdir(parents=True, exist_ok=True)
     mout.parent.mkdir(parents=True, exist_ok=True)
     jout.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
 
-    rows = []
-    for kind in sorted(counts):
-        rows.append(
-            f"| {kind} | {counts[kind]} | "
-            f"{len(unique_ids_by_kind[kind])} | "
-            f"{participant_words[kind]:,} | "
-            f"{interviewer_words[kind]:,} |"
-        )
+    rows = [
+        f"| {k} | {counts[k]} | {len(ids_by_kind[k])} | {pwords[k]:,} | {iwords[k]:,} |"
+        for k in sorted(counts)
+    ]
+    pattern_rows = [f"- `{p}` × {n}" for p, n in sorted(patterns.items())]
+    ext_rows = [f"- `{e}`: {n}" for e, n in sorted(readable.items())]
 
     md = f"""# ARIS4C009 Pilot-0 · DAIS-C structural classification
 
 **Generated:** {result['generated_utc']}
 
 ## Privacy rule
+No transcript text or participant IDs are emitted. TXT/RTF/DOCX parsing occurs only
+inside the transient GitHub Actions runner.
 
-No transcript text or participant IDs are emitted. Classification occurs only inside
-the transient GitHub Actions runner.
+## Readable formats
+{chr(10).join(ext_rows) or '- none'}
 
 ## Structural classes
-
 | Class | Files | Unique pseudonymous speaker IDs | Participant words | Interviewer words |
 |---|---:|---:|---:|---:|
 {chr(10).join(rows)}
 
+## Sanitized archive path patterns
+Speaker identifiers and long numeric strings are masked.
+{chr(10).join(pattern_rows) or '- none'}
+
 ## Published validation reference
+The DAIS-C paper reports approximately 97,357 total corpus tokens
+(58,444 clinical; 33,025 comparison) and 1,284.8 audio minutes.
+These are validation references rather than exact tokenizer targets.
 
-The DAIS-C resource paper reports approximately:
+## Canonical-source gate
+A source class is acceptable only if it contains interviewer + participant speech,
+excludes timestamp-only versions, has plausible corpus scale, and does not duplicate
+the same interview through multiple formats.
 
-- 97,357 corpus tokens;
-- 1,284.8 audio minutes.
-
-Those values are **not** expected to match this script exactly because the archive
-contains multiple representations of the same speech and the script uses a simple
-Unicode word tokenizer. They are used to detect gross duplication or parser failure.
-
-## Canonical-candidate rule
-
-For Pilot-0 episode parsing, the preferred source class is:
-
-> `interactional` — files containing both a participant XML block and `<INT>`
-> interviewer blocks, while excluding timestamp-only representations.
-
-If this class does not recover approximately one transcript representation per
-participant or produces implausible aggregate scale, the parser must be revised before
-any fidelity analysis.
+If no full-interaction class passes, Pilot-0 must either use speaker-only XML with an
+explicit context limitation or switch corpus.
 
 ## Next gate
-
-Freeze an episode parser on calibration-only files and report only aggregate episode
-counts, length distributions, and annotation feasibility before manual fidelity scoring.
+Freeze an episode parser only after the canonical source class is identified.
 """
     mout.write_text(md, encoding="utf-8")
 
