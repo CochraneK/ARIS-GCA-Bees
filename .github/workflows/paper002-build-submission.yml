@@ -1,0 +1,158 @@
+name: Build Paper 002 submission package
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'papers/002-language-geometry/submission/linguistic-typology/**'
+      - '.github/workflows/paper002-build-submission.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq pandoc libreoffice
+          python -m pip install --disable-pip-version-check python-docx cairosvg
+
+      - name: Prepare figures and manuscript source
+        run: |
+          set -euo pipefail
+          SRC=papers/002-language-geometry/submission/linguistic-typology
+          BUILD=build/paper002-submission
+          mkdir -p "$BUILD/figures"
+          python - <<'PY'
+          from pathlib import Path
+          import cairosvg
+          src = Path('papers/002-language-geometry/submission/linguistic-typology/figures')
+          out = Path('build/paper002-submission/figures')
+          for p in sorted(src.glob('*.svg')):
+              cairosvg.svg2png(url=str(p), write_to=str(out/(p.stem+'.png')), output_width=1950)
+          md = Path('papers/002-language-geometry/submission/linguistic-typology/MANUSCRIPT_BLINDED.md').read_text(encoding='utf-8')
+          md = md.replace('.svg)', '.png)')
+          Path('build/paper002-submission/MANUSCRIPT_FOR_BUILD.md').write_text(md, encoding='utf-8')
+          PY
+
+      - name: Convert Markdown to DOCX
+        run: |
+          set -euo pipefail
+          SRC=papers/002-language-geometry/submission/linguistic-typology
+          BUILD=build/paper002-submission
+          pandoc "$BUILD/MANUSCRIPT_FOR_BUILD.md" --from=gfm+tex_math_dollars --resource-path="$BUILD:$SRC" -o "$BUILD/Paper002_MANUSCRIPT_BLINDED.docx"
+          pandoc "$SRC/TITLE_PAGE.template.md" --from=gfm -o "$BUILD/Paper002_TITLE_PAGE_TEMPLATE.docx"
+          pandoc "$SRC/COVER_LETTER.md" --from=gfm -o "$BUILD/Paper002_COVER_LETTER_TEMPLATE.docx"
+          pandoc "$SRC/DECLARATIONS.template.md" --from=gfm -o "$BUILD/Paper002_DECLARATIONS_TEMPLATE.docx"
+
+      - name: Apply journal-friendly Word styling
+        run: |
+          cat > /tmp/style_docx.py <<'PY'
+          from pathlib import Path
+          from docx import Document
+          from docx.shared import Inches, Pt
+          from docx.enum.text import WD_LINE_SPACING
+          from docx.oxml.ns import qn
+
+          build = Path('build/paper002-submission')
+          files = [
+              ('Paper002_MANUSCRIPT_BLINDED.docx', True),
+              ('Paper002_TITLE_PAGE_TEMPLATE.docx', False),
+              ('Paper002_COVER_LETTER_TEMPLATE.docx', False),
+              ('Paper002_DECLARATIONS_TEMPLATE.docx', False),
+          ]
+          for name, manuscript in files:
+              path = build/name
+              doc = Document(path)
+              for sec in doc.sections:
+                  sec.top_margin = Inches(1)
+                  sec.bottom_margin = Inches(1)
+                  sec.left_margin = Inches(1)
+                  sec.right_margin = Inches(1)
+              normal = doc.styles['Normal']
+              normal.font.name = 'Times New Roman'
+              normal._element.rPr.rFonts.set(qn('w:ascii'), 'Times New Roman')
+              normal._element.rPr.rFonts.set(qn('w:hAnsi'), 'Times New Roman')
+              normal.font.size = Pt(12)
+              normal.paragraph_format.line_spacing = 2 if manuscript else 1.15
+              normal.paragraph_format.space_after = Pt(0)
+              for sname, size in [('Title',14),('Heading 1',13),('Heading 2',12),('Heading 3',12)]:
+                  if sname in doc.styles:
+                      st = doc.styles[sname]
+                      st.font.name = 'Times New Roman'
+                      st._element.rPr.rFonts.set(qn('w:ascii'), 'Times New Roman')
+                      st._element.rPr.rFonts.set(qn('w:hAnsi'), 'Times New Roman')
+                      st.font.size = Pt(size)
+                      st.font.bold = True
+              for table in doc.tables:
+                  table.autofit = True
+                  for row_i, row in enumerate(table.rows):
+                      for cell in row.cells:
+                          for p in cell.paragraphs:
+                              p.paragraph_format.space_after = Pt(0)
+                              for r in p.runs:
+                                  r.font.name = 'Times New Roman'
+                                  r.font.size = Pt(8 if len(table.columns) >= 5 else 8.5)
+                                  if row_i == 0:
+                                      r.bold = True
+              if manuscript:
+                  for shape in doc.inline_shapes:
+                      if shape.width > Inches(6.15):
+                          ratio = shape.height / shape.width
+                          shape.width = Inches(6.15)
+                          shape.height = int(shape.width * ratio)
+              doc.save(path)
+          PY
+          python /tmp/style_docx.py
+
+      - name: Convert DOCX to PDF
+        run: |
+          set -euo pipefail
+          BUILD=build/paper002-submission
+          mkdir -p /tmp/lo
+          libreoffice --headless --convert-to pdf --outdir "$BUILD" "$BUILD/Paper002_MANUSCRIPT_BLINDED.docx"
+          libreoffice --headless --convert-to pdf --outdir "$BUILD" "$BUILD/Paper002_TITLE_PAGE_TEMPLATE.docx"
+          libreoffice --headless --convert-to pdf --outdir "$BUILD" "$BUILD/Paper002_COVER_LETTER_TEMPLATE.docx"
+
+      - name: Build anonymized supplement ZIP
+        run: |
+          set -euo pipefail
+          SRC=papers/002-language-geometry/submission/linguistic-typology
+          BUILD=build/paper002-submission
+          cp "$SRC/FIGURE_LEGENDS_ALT_TEXT.md" "$BUILD/"
+          (cd "$SRC" && zip -qr "$GITHUB_WORKSPACE/$BUILD/Paper002_ANONYMIZED_SUPPLEMENT.zip" supplement)
+          cp "$SRC/SUBMISSION_METADATA_CHECKLIST.md" "$BUILD/"
+          cp "$SRC/README.md" "$BUILD/SUBMISSION_README.md"
+          rm -f "$BUILD/MANUSCRIPT_FOR_BUILD.md"
+          (cd "$BUILD" && sha256sum Paper002_* figures/*.png > SHA256SUMS.txt)
+
+      - name: Anonymization checks
+        run: |
+          set -euo pipefail
+          BUILD=build/paper002-submission
+          unzip -p "$BUILD/Paper002_MANUSCRIPT_BLINDED.docx" word/document.xml > /tmp/manuscript.xml
+          if grep -Eiq 'CochraneK|Cochrane Kang|WorkBuddy|Tencent|ARIS4C' /tmp/manuscript.xml; then
+            echo 'Identity/process marker found in blinded manuscript'
+            exit 1
+          fi
+          if unzip -p "$BUILD/Paper002_ANONYMIZED_SUPPLEMENT.zip" | strings | grep -Eiq 'CochraneK|Cochrane Kang|WorkBuddy|Tencent|ARIS4C'; then
+            echo 'Identity/process marker found in supplement'
+            exit 1
+          fi
+
+      - name: Upload submission artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper002-linguistic-typology-submission
+          path: build/paper002-submission/
+          if-no-files-found: error
