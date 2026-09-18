@@ -41,17 +41,15 @@ def oa_params(extra):
     return extra
 
 def seed_works(fid,year,target):
-    cur="*";n=0
-    while n<target:
-        p=oa_params({"filter":",".join(["authorships.institutions.country_code:CN",f"topics.field.id:{fid}",f"from_publication_date:{year}-01-01",f"to_publication_date:{year}-12-31"]),"select":"id,doi,authorships","per-page":100,"cursor":cur})
-        d=get(OA_WORKS+"?"+urllib.parse.urlencode(p))
-        if not d:break
-        for w in d.get("results") or []:
-            if w.get("doi") and len(w.get("authorships") or [])>=2:
-                yield w;n+=1
-                if n>=target:break
-        cur=(d.get("meta") or {}).get("next_cursor")
-        if not cur:break
+    sample_n=min(100,max(target*3,target+30));seed=int(f"{year}{fid:02d}7")
+    p=oa_params({"filter":",".join(["authorships.institutions.country_code:CN",f"topics.field.id:{fid}",f"from_publication_date:{year}-01-01",f"to_publication_date:{year}-12-31"]),"select":"id,doi,authorships","sample":sample_n,"seed":seed,"per-page":sample_n})
+    d=get(OA_WORKS+"?"+urllib.parse.urlencode(p))
+    if not d:return
+    n=0
+    for w in d.get("results") or []:
+        if w.get("doi") and len(w.get("authorships") or [])>=2:
+            yield w;n+=1
+            if n>=target:break
 
 def crossref(doi_url):
     doi=doi_url.removeprefix("https://doi.org/").removeprefix("http://doi.org/")
@@ -121,6 +119,6 @@ def main():
         h=author_history(aid,a.start,a.end,a.max_works);h["orcid_seed"]=orc;hist.append(h)
         if k%20==0:print("authors",k)
     count=lambda pred:sum(bool(pred(x)) for x in hist)
-    summary={"script":"05_longitudinal_panel_pilot.py","confirmatory_use_allowed":False,"seed_year":a.seed_year,"history_window":[a.start,a.end],"seed_authors":len(hist),"seed_authors_with_orcid":sum(x["orcid_seed"] for x in hist),"crossref_seed_records_found":crossref_ok,"authors_2plus_active_years":count(lambda x:x["years"]>=2),"authors_5plus_active_years":count(lambda x:x["years"]>=5),"authors_10plus_multiworks":count(lambda x:x["multi_works"]>=10),"authors_2plus_sources":count(lambda x:x["sources"]>=2),"authors_3plus_sources":count(lambda x:x["sources"]>=3),"authors_2plus_fields":count(lambda x:x["fields"]>=2),"authors_cn_affiliation_3plus_years":count(lambda x:x["cn_years"]>=3),"median_works":quantile([x["works"] for x in hist],.5),"median_active_years":quantile([x["years"] for x in hist],.5),"median_sources":quantile([x["sources"] for x in hist],.5),"median_fields":quantile([x["fields"] for x in hist],.5),"p25_active_years":quantile([x["years"] for x in hist],.25),"p75_active_years":quantile([x["years"] for x in hist],.75),"privacy":"aggregate only; no names, author IDs, ORCIDs or work IDs persisted"}
+    summary={"script":"05_longitudinal_panel_pilot.py","sampling":"OpenAlex reproducible random sample+seed for recent seed works","confirmatory_use_allowed":False,"seed_year":a.seed_year,"history_window":[a.start,a.end],"seed_authors":len(hist),"seed_authors_with_orcid":sum(x["orcid_seed"] for x in hist),"crossref_seed_records_found":crossref_ok,"authors_2plus_active_years":count(lambda x:x["years"]>=2),"authors_5plus_active_years":count(lambda x:x["years"]>=5),"authors_10plus_multiworks":count(lambda x:x["multi_works"]>=10),"authors_2plus_sources":count(lambda x:x["sources"]>=2),"authors_3plus_sources":count(lambda x:x["sources"]>=3),"authors_2plus_fields":count(lambda x:x["fields"]>=2),"authors_cn_affiliation_3plus_years":count(lambda x:x["cn_years"]>=3),"median_works":quantile([x["works"] for x in hist],.5),"median_active_years":quantile([x["years"] for x in hist],.5),"median_sources":quantile([x["sources"] for x in hist],.5),"median_fields":quantile([x["fields"] for x in hist],.5),"p25_active_years":quantile([x["years"] for x in hist],.25),"p75_active_years":quantile([x["years"] for x in hist],.75),"privacy":"aggregate only; no names, author IDs, ORCIDs or work IDs persisted"}
     out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True);(out/"summary.json").write_text(json.dumps(summary,indent=2,ensure_ascii=False)+"\n",encoding="utf-8");print(json.dumps(summary,indent=2,ensure_ascii=False))
 if __name__=="__main__":main()
