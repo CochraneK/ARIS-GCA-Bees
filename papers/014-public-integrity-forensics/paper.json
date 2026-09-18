@@ -8,7 +8,7 @@
   "domain": "anti-corruption / public procurement / beneficial ownership / entity resolution / graph analytics / public integrity / computational social science",
   "summary": "An auditable public-data agent that routes procurement, corporate, beneficial-ownership, public-office, sanctions, offshore and disclosure records to applicability-aware forensic checks, then fuses reproducible findings in an evidence graph for human review without equating anomalies with corruption.",
   "authors": [
-    "Cunyi Kang"
+    "Cochrane Kang"
   ],
   "inherits_from": [
     "011-research-forensics"
