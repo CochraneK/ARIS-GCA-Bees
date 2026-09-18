@@ -4,6 +4,8 @@ from outcome_labels import (
     awakening_within_horizon_outcome,
     build_outcome_record,
     delayed_recognition_consensus_outcome,
+    delayed_recognition_with_uptake_floor_outcome,
+    future_uptake_percentile_outcome,
     outcome_bundle,
     percentile_ranks,
     top_fraction_binary,
@@ -88,6 +90,56 @@ class OutcomeLabelTests(unittest.TestCase):
         self.assertEqual(set(result), {"a", "b", "c"})
         self.assertTrue(all(value in {0.0, 1.0} for value in result.values()))
 
+    def test_future_uptake_percentile_rewards_later_attention(self):
+        rows = [
+            build_outcome_record(
+                paper_id="high",
+                publication_year=2000,
+                counts=[0, 0, 0, 10, 10],
+                cutoff_year=2002,
+            ),
+            build_outcome_record(
+                paper_id="low",
+                publication_year=2000,
+                counts=[0, 0, 0, 0, 1],
+                cutoff_year=2002,
+            ),
+        ]
+        result = future_uptake_percentile_outcome(rows)
+        self.assertGreater(result["high"], result["low"])
+
+    def test_uptake_floor_can_remove_low_uptake_consensus_case(self):
+        rows = [
+            build_outcome_record(
+                paper_id="strong",
+                publication_year=2000,
+                counts=[0, 0, 0, 0, 5, 20, 30],
+                cutoff_year=2002,
+            ),
+            build_outcome_record(
+                paper_id="sparse",
+                publication_year=2000,
+                counts=[0, 0, 0, 0, 0, 0, 1],
+                cutoff_year=2002,
+            ),
+            build_outcome_record(
+                paper_id="steady",
+                publication_year=2000,
+                counts=[0, 2, 2, 2, 2, 2, 2],
+                cutoff_year=2002,
+            ),
+        ]
+        result = delayed_recognition_with_uptake_floor_outcome(
+            rows,
+            beauty_fraction=2 / 3,
+            acceleration_fraction=2 / 3,
+            horizon_years=10,
+            uptake_fraction=1 / 3,
+            min_components=2,
+        )
+        self.assertEqual(result["strong"], 1.0)
+        self.assertEqual(sum(result.values()), 1.0)
+
     def test_bundle_contains_prespecified_outcomes(self):
         rows = [
             build_outcome_record(
@@ -110,8 +162,10 @@ class OutcomeLabelTests(unittest.TestCase):
                 "beauty_percentile",
                 "beauty_top_fraction",
                 "future_acceleration_percentile",
+                "future_uptake_percentile",
                 "awakening_within_horizon",
                 "delayed_recognition_consensus",
+                "delayed_recognition_with_uptake_floor",
             },
         )
 
