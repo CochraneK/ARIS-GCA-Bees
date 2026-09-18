@@ -51,6 +51,10 @@ Paper 001 was fully reconstructed on 2026-09-18 with ARIS v0.4.26. The earlier s
 - [Canonical Paper 001 folder](papers/001-gca-bees/)
 - [Status and gates](papers/001-gca-bees/process/STATUS.md)
 
+## Final output contract
+
+ARIS4C final papers now follow [ARIS4C_OUTPUT_STANDARD.md](ARIS4C_OUTPUT_STANDARD.md): English full paper + Chinese full paper + an article-type-appropriate figure/table package, with reproducible provenance where applicable. Final/submission-ready projects should expose these outputs on the public Research Command Center.
+
 ## Keep ARIS current
 
 The repository currently recommends **ARIS v0.4.26** in aris.lock.json. New work records the exact tag/commit used; prior research history remains available through Git.
@@ -59,4 +63,4 @@ The repository currently recommends **ARIS v0.4.26** in aris.lock.json. New work
 
 > Upgrade the research engine, and allow stronger methods to replace weaker canonical claims when a paper is explicitly reconstructed.
 
-Maintainer: **Cunyi Kang**
+Maintainer: **Cochrane Kang**
