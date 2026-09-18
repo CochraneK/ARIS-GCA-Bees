@@ -1,0 +1,36 @@
+{
+  "id": "010",
+  "slug": "universal-concept-identification",
+  "title": "Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification",
+  "short_title": "Universal Concept Identification",
+  "year": 2026,
+  "status": "design-literature-audited",
+  "domain": "information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition",
+  "summary": "A formal and empirical research program asking what semantic structure is necessary to identify arbitrary human-representable concepts under finite query budgets, how much natural semantic questions cost relative to unrestricted information-theoretic queries, and where identification fails for vague, contextual, empty, contradictory, self-referential, undecidable, or ineffable targets.",
+  "authors": ["Cunyi Kang"],
+  "aris": {
+    "provenance": "ARIS4C guided design with live prior-art audit; formal full-run provenance to be frozen at implementation",
+    "version": "v0.4.26",
+    "commit": ""
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/010-universal-concept-identification"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "Twenty Questions",
+    "query complexity",
+    "active learning",
+    "ontology",
+    "lexical semantics",
+    "concept identification",
+    "information theory",
+    "vagueness",
+    "paraconsistent logic",
+    "ineffability"
+  ]
+}
