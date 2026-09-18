@@ -35,7 +35,14 @@ def main():
             "description": item.get("description") or df.get("description"),
             "directoryLabel": item.get("directoryLabel"),
             "persistentId": df.get("persistentId"),
-            "md5": (df.get("checksum") or {}).get("value"),
+            "pidURL": df.get("pidURL"),
+            "storageIdentifier": df.get("storageIdentifier"),
+            "rootDataFileId": df.get("rootDataFileId"),
+            "restricted": item.get("restricted"),
+            "embargo": item.get("embargo"),
+            "originalFileFormat": df.get("originalFileFormat"),
+            "originalFormatLabel": df.get("originalFormatLabel"),
+            "checksum": df.get("checksum"),
         })
     files.sort(key=lambda x: (-(x.get("filesize") or 0), x.get("filename") or ""))
     payload={"status":obj.get("status"),"file_count":len(files),"files":files}
@@ -44,5 +51,8 @@ def main():
     for f in files:
         size=f.get("filesize") or 0
         print(f"{f.get('id')}\t{size/1024/1024:.1f} MiB\t{f.get('filename')}\t{f.get('directoryLabel') or ''}")
+        if f.get("filename")=="bunmd_v2.zip":
+            print("TARGET_FILE_JSON="+json.dumps(f,ensure_ascii=False,sort_keys=True))
+
 if __name__=="__main__":
     main()
