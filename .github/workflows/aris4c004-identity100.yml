@@ -30,7 +30,7 @@ permissions:
 jobs:
   identity100:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     env:
       PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
       OUT: papers/004-counterfactual-cost-of-exclusion/data/interim/identity100
