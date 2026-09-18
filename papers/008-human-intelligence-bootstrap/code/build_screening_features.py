@@ -247,8 +247,11 @@ def main():
             anchors=[a for a in current+selected if a.get("geometry_dimensions",0)>=2]
             for x in cands:
                 if x in selected:continue
-                dd=[d for a in anchors if (d:=dist(x,a)) is not None]
-                novelty=min(dd) if dd else 0.0
+                dd=sorted(d for a in anchors if (d:=dist(x,a)) is not None)
+                # Robust local novelty: one intentionally matched near-neighbour
+                # should not collapse the score. Average the three closest
+                # comparable anchors (or all available if fewer than three).
+                novelty=(sum(dd[:3])/len(dd[:3])) if dd else 0.0
                 feas=min(1.0,x["source_feasibility"]/5)
                 score=novelty*(0.75+0.25*feas)
                 # if geometry is sparse, feasibility still allows a documented but lower score
