@@ -1,0 +1,25 @@
+taxon_id,pilot_label,evidence_scope,scientific_name,common_name,female_maturity_days,male_maturity_days,gestation_incubation_days,weaning_days,litter_clutch_size,interbirth_interval_days,adult_weight_g,maximum_longevity_yrs,metabolic_rate_w,body_mass_g,temperature_k,data_quality
+AME,Apis mellifera,exact_species,Apis mellifera,Honey bee,,,,,,,,8,,,,acceptable
+BTE,Bombus terrestris,exact_species,Bombus terrestris,Buff tailed bumblebee,,,,,,,,0.27,,,,acceptable
+CLI,Columba livia,exact_species,Columba livia,Rock dove,140,140,18,,2,,358.7,35,,,,high
+CRA,Corvus corax,exact_species,Corvus corax,Common raven,1095,1095,19,,5,,1041.2,69,5.5656,1203,,acceptable
+CGO,Cacatua goffiniana,exact_species,Cacatua goffiniana,Tanimbar cockatoo,,,,,,,275,26,,,,questionable
+MUN,Melopsittacus undulatus,exact_species,Melopsittacus undulatus,Budgerigar,180,180,18,,5,,30,21,0.3035,25.2,314.15,high
+KEA,Nestor notabilis,exact_species,Nestor notabilis,Kea,,,,,,,867.5,47,,,,acceptable
+PER,Psittacus erithacus,exact_species,Psittacus erithacus,Grey parrot,,,,,,,333,49.7,,,,acceptable
+SSU,Suricata suricatta,exact_species,Suricata suricatta,Meerkat,365,365,77,,4,365,776,20.6,1.729,850,309.45,high
+MNO,Megaptera novaeangliae,exact_species,Megaptera novaeangliae,Humpback whale,1643,1643,342,,1,657,30000000,95,,,309.15,acceptable
+OOR,Orcinus orca,exact_species,Orcinus orca,Killer whale,3780,4930,435,471,1,1096,3987500,90,,,309.15,acceptable
+TTR,Tursiops truncatus,genus_exemplar,Tursiops aduncus,Indo-pacific bottlenose dolphin,,,365,,,1095,,,,,,low
+TTR,Tursiops truncatus,exact_species,Tursiops truncatus,Bottlenosed dolphin,2831,3689,365,,1,858,200000,51.6,,,,acceptable
+PMA,Physeter macrocephalus,exact_species,Physeter macrocephalus,Sperm whale,2922,3650,502,560,1,1259,28500000,77,,,,acceptable
+MAR,Callitrichidae,family_exemplar,Callithrix jacchus,White-tufted-ear marmoset,477,382,144,62,2,169,255.2,22.8,0.848,190,309.15,high
+MAR,Callitrichidae,family_exemplar,Leontopithecus rosalia,Golden lion tamarin,547,730,128,131,2,189,654.5,31.6,,,,high
+MAC,Macaca spp.,genus_exemplar,Macaca fuscata,Japanese macaque,1483,1369,174,,1.5,514,8882.5,38.5,,,,high
+GOR,Gorilla spp.,genus_exemplar,Gorilla gorilla,Gorilla,2829,4015,256,,1,1397,139842,60.1,,,308.65,acceptable
+HUM,Homo sapiens,exact_species,Homo sapiens,Human,4745,5110,280,,1,639,62035,122.5,82.78,70000,310.15,high
+PPA,Pan paniscus,exact_species,Pan paniscus,"Pygmy chimpanzee, or Bonobo",3194,,232,635,1,1825,39925,55,,,,acceptable
+PTR,Pan troglodytes,exact_species,Pan troglodytes,Chimpanzee,3376,2920,229,1111,1,840,44983.5,68,,,308.85,acceptable
+PON,Pongo spp.,genus_exemplar,Pongo pygmaeus,Orangutan,2555,2555,249,1003,1,1414,64475,59,,,,acceptable
+EMA,Elephas maximus,exact_species,Elephas maximus,Asiatic elephant,3287,3287,644,,1,1141,3178000,79.6,2336.5,3672000,308.95,acceptable
+LAF,Loxodonta africana,exact_species,Loxodonta africana,African bush elephant,4018,3650,670,1071,1,1707,4800000,65,,,309.35,acceptable
