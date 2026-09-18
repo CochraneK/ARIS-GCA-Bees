@@ -3,7 +3,9 @@ import unittest
 from mechanism_matching import (
     MechanismPaper,
     build_priority_contrasts,
+    match_balance_diagnostics,
     nearest_controls,
+    standardized_mean_difference,
 )
 
 
@@ -91,6 +93,30 @@ class MechanismMatchingTests(unittest.TestCase):
         )
         self.assertEqual(len(matches), 1)
         self.assertEqual(len(unmatched), 1)
+
+    def test_standardized_mean_difference_detects_balance(self):
+        self.assertAlmostEqual(
+            standardized_mean_difference([1, 2, 3], [1, 2, 3]),
+            0.0,
+        )
+        self.assertGreater(
+            standardized_mean_difference([1, 2, 3], [3, 4, 5]),
+            0.1,
+        )
+
+    def test_balance_requires_multiple_pairs(self):
+        match, _ = nearest_controls(
+            [self.sb],
+            [self.forgotten_close],
+            control_state="FORGOTTEN",
+        )
+        diagnostics = match_balance_diagnostics(
+            match,
+            [self.sb, self.forgotten_close],
+            include_early_attention=True,
+        )
+        self.assertFalse(diagnostics["balance_assessable"])
+        self.assertIsNone(diagnostics["balance_pass"])
 
     def test_priority_contrasts_build_two_questions(self):
         result = build_priority_contrasts(
