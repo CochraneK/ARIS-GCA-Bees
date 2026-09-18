@@ -68,8 +68,9 @@ jobs:
           prereg = (root / "process" / "PREREGISTRATION_DRAFT.md").read_text(encoding="utf-8")
           gates = json.loads((root / "process" / "DESIGN_GATES.json").read_text(encoding="utf-8"))
           analysis_spec = json.loads((root / "process" / "ANALYSIS_SPEC.json").read_text(encoding="utf-8"))
-          assert analysis_spec["primary_exposure"]["context"] == "OpenAlex field"
+          assert analysis_spec["primary_exposure"]["context"] == "OpenAlex primary_topic field"
           assert analysis_spec["primary_exposure"]["lag_window_years"] == 3
+          assert "primary_topic.field.id" in analysis_spec["primary_exposure"]["field_assignment_rule"]
           assert analysis_spec["primary_exposure"]["primary_source_level_exposure_forbidden"] is True
           assert "Tier3_last_token_heuristic" in analysis_spec["surname_measurement"]["forbidden"]
           assert analysis_spec["primary_model"]["work_fixed_effects"] is True
