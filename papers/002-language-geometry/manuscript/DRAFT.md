@@ -1,8 +1,8 @@
-# Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure
+# Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization
 
 **Paper 002 · ARIS4C**  
 **Author:** Cochrane Kang  
-**Manuscript status:** Draft v1 · exploratory/model-comparison study  
+**Manuscript status:** Submission-preparation draft · exploratory/model-comparison study  
 **Secondary ARIS review:** PASS (WorkBuddy / Tencent Hy3)  
 **Last substantive evidence cutoff:** 2026-09-18
 
@@ -206,7 +206,7 @@ Grammatical categories was the only domain in which the optimized circular mean 
 
 In Stage 1D, lower row-unimodality deviation indicates closer circular-Robinson-style compatibility. At 40 features the circular order scored 0.222 ± 0.012, compared with 0.209 ± 0.011 for the tree leaf order and 0.237 ± 0.009 for random orders. At 60 features the corresponding values were 0.297 ± 0.009, 0.284 ± 0.010 and 0.307 ± 0.009.
 
-More directly, the mean circular wrap-around closure/internal-adjacency ratio was 0.608 at 40 features but only **0.037** at 60 features. The 60-feature result provides little support for the key edge that distinguishes a closed cycle from a stable open ordering.
+More directly, the mean circular wrap-around closure/internal-adjacency ratio was 0.608 at 40 features, but this estimate was highly unstable (SD = 0.764) and is not treated as informative evidence for closure. At 60 features the mean ratio was only **0.037** (SD = 0.091). The 60-feature result provides little support for the key edge that distinguishes a closed cycle from a stable open ordering.
 
 These diagnostics are noisy-data sensitivities, not formal rejection tests for all circular-Robinson structures. Their value is that the negative periodic interpretation no longer depends solely on a higher-capacity tree outperforming a circle.
 
