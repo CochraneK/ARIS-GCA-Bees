@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'papers/**/paper.json'
+      - 'papers/dashboard.json'
       - 'tools/build_papers_index.py'
       - 'tools/audit_paper_outputs.py'
       - 'ARIS4C_OUTPUT_STANDARD.md'
