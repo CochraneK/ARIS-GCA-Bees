@@ -102,18 +102,20 @@ Main workflow run:
 
 `ARIS4C005 scaled AI audit`
 
-Run ID: `35301945169`
+Run ID: `35313753877`
 
-Main merge commit: `d3c113752a6b395b8ecd0cf3ec4c0ea4c052d290`
+Main merge commit: `615debe59eede323a0473fc35d949940ac50dd4e`
 
 Private row-level artifact:
 
 - artifact name: `aris4c005-scaled-ai-audit`
-- artifact ID: `10529404069`
-- digest: `sha256:065230382d1f69f98ebb4ce189158c93a5b00f5e3ac2f46aa877bd51587af699`
+- artifact ID: `10534118414`
+- digest: `sha256:579ffeb1d0d67217914d3aa14923fee816360ec7f8e8f6ee3a4d9ebdffa397f1`
 - workflow retention expiry: 2026-10-18
 
 The public repository stores only aggregate summaries and the batch manifest. Row-level random works, manager linkage and AI input batches remain workflow artifacts.
+
+The current canonical artifact was regenerated after the manager-linkage fix and preserves the complete sampling design, including `audit_stratum`, `stratum_population_N`, `stratum_sample_n`, inclusion probability and design weight. It supersedes the earlier artifact generated before that fix.
 
 ---
 
