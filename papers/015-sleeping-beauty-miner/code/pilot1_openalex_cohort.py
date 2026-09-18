@@ -1,34 +1,27 @@
 """ARIS4C015 Pilot 1: reproducible multi-outcome historical cohort benchmark.
 
-This runner advances beyond the Pilot-0 plumbing smoke test by evaluating
-multiple prespecified future outcomes against multiple transparent baselines.
+This runner evaluates multiple prespecified future outcomes against multiple
+transparent baselines on reproducible, non-hand-picked historical cohorts.
 
-It is still *not* prospective-model validation. The main purposes are:
-- verify historical-cutoff separation on non-hand-picked samples;
+It is not prospective-model validation. Its purposes are to:
+- verify historical-cutoff separation;
 - expose outcome-definition sensitivity;
 - quantify how strong simple citation baselines already are;
-- provide a benchmark that later semantic/network features must beat.
-
-Default frame
--------------
-Publication year: 1980
-Document type: article
-Primary OpenAlex field: Physics & Astronomy (field 31)
-Sample: reproducible OpenAlex random sample
-Feature cutoff: 1995
-Outcome endpoint: 2011
+- create self-contained cohort artifacts that can be re-analysed offline;
+- provide a benchmark later semantic/network features must beat.
 
 OpenAlex field assignments are current metadata. They are used here only to
-define/evaluate strata, not as predictive features. Confirmatory work should
-audit whether current topic classification introduces selection bias.
+define/evaluate strata, not as predictive features.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
+from baselines import baseline_score, cutoff_features
 from historical_backtest import PaperHistory, evaluate_outcome_matrix
 from openalex_adapter import reconstruct_history_from_openalex, sample_works
 from outcome_labels import build_outcome_record, outcome_bundle
@@ -54,6 +47,11 @@ OUTCOME_TYPES = {
     "delayed_recognition_consensus": "binary",
     "delayed_recognition_with_uptake_floor": "binary",
 }
+
+
+def _hash_ids(ids: list[str]) -> str:
+    payload = "\n".join(sorted(ids)).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def run_cohort(
@@ -105,6 +103,13 @@ def run_cohort(
         )
         histories.append(paper_history)
 
+        visible_counts = paper_history.counts_through(cutoff_year)
+        features = cutoff_features(visible_counts)
+        baseline_scores = {
+            strategy: baseline_score(features, strategy)
+            for strategy in DEFAULT_STRATEGIES
+        }
+
         outcome = build_outcome_record(
             paper_id=work.openalex_id,
             publication_year=int(work.publication_year),
@@ -121,6 +126,10 @@ def run_cohort(
                 "publication_year": work.publication_year,
                 "primary_topic": work.primary_topic,
                 "citations_through_observation_end": history.total_citations,
+                "annual_citation_counts": list(history.counts),
+                "cutoff_citation_counts": list(visible_counts),
+                "cutoff_features": features.as_dict(),
+                "baseline_scores": baseline_scores,
                 **outcome.as_dict(),
             }
         )
@@ -170,6 +179,8 @@ def run_cohort(
             )
         outcome_summary[name] = summary
 
+    analyzed_ids = [row["paper_id"] for row in cases]
+
     return {
         "benchmark_type": (
             "Pilot 1 non-hand-picked multi-outcome historical cohort"
@@ -186,6 +197,7 @@ def run_cohort(
             "sample_size_requested": sample_size,
             "sample_size_analyzed": len(histories),
             "seed": seed,
+            "sample_id_sha256": _hash_ids(analyzed_ids),
             "sampling_method": "OpenAlex sample + seed",
             "field_assignment_temporality": (
                 "current OpenAlex primary-topic field; stratification only"
