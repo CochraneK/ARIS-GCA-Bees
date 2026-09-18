@@ -43,10 +43,20 @@ jobs:
         run: |
           python "$PAPER_DIR/code/network/build_verified_work_corpus.py"             --decisions "$PAPER_DIR/data/derived/identity_decisions_100.csv"             --out-dir "$OUT/verified_work_corpus"             --fetch-year-min 1800             --fetch-year-max 2026             --max-works-per-id 500             --min-network-works 5             --sleep-rps 2
 
+      - name: Build deterministic held-work audit sample
+        run: |
+          python "$PAPER_DIR/code/analysis/build_work_audit_sample.py" \
+            --corpus "$OUT/verified_work_corpus/verified_work_corpus.jsonl" \
+            --identities "$PAPER_DIR/data/derived/identity_decisions_100.csv" \
+            --output-csv "$OUT/held_work_audit_sample.csv" \
+            --summary-json "$OUT/held_work_audit_sample_summary.json" \
+            --max-per-person 12
+
       - name: Print P3 acquisition summaries
         run: |
           cat "$OUT/identity_second_review_summary.json"
           cat "$OUT/verified_work_corpus/verified_work_overall.json"
+          cat "$OUT/held_work_audit_sample_summary.json"
 
       - name: Upload network100 acquisition artifact
         uses: actions/upload-artifact@v4
