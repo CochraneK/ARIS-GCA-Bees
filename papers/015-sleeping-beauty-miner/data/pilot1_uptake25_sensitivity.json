@@ -1,0 +1,33 @@
+{
+  "pilot": "ARIS4C015 Pilot 1 recognition-floor sensitivity",
+  "definition": "delayed_recognition_consensus AND top 25% within-stratum held-out future citation uptake",
+  "n_strata": 10,
+  "total_papers": 200,
+  "strata": [
+    {"stratum":"computer_science_1990_s1","consensus_n":4,"uptake25_consensus_n":4},
+    {"stratum":"computer_science_1990_s2","consensus_n":4,"uptake25_consensus_n":3},
+    {"stratum":"medicine_1980_s1","consensus_n":3,"uptake25_consensus_n":1},
+    {"stratum":"medicine_1980_s2","consensus_n":4,"uptake25_consensus_n":1},
+    {"stratum":"physics_1980_s1","consensus_n":4,"uptake25_consensus_n":3},
+    {"stratum":"physics_1980_s2","consensus_n":4,"uptake25_consensus_n":2},
+    {"stratum":"physics_1990_s1","consensus_n":1,"uptake25_consensus_n":1},
+    {"stratum":"physics_1990_s2","consensus_n":3,"uptake25_consensus_n":2},
+    {"stratum":"social_1980_s1","consensus_n":1,"uptake25_consensus_n":1},
+    {"stratum":"social_1980_s2","consensus_n":3,"uptake25_consensus_n":3}
+  ],
+  "macro_ndcg_at_5": {
+    "current_citations": 0.242051,
+    "momentum_3y": 0.242905,
+    "acceleration_3y": 0.327486,
+    "partial_beauty": 0.428218,
+    "dormancy": 0.097184
+  },
+  "interpretation": [
+    "A top-25% future-uptake floor is materially more discriminating than the previous top-50% floor.",
+    "Positive counts shrink in several medicine and physics strata, showing that some delayed-recognition-consensus cases have only moderate later uptake.",
+    "Partial Beauty Coefficient has the highest macro NDCG under this stricter label in this exploratory sample, but performance remains highly stratum-dependent.",
+    "The uptake floor is an outcome sensitivity analysis and never enters prospective features."
+  ],
+  "claim_boundary": "Exploratory offline sensitivity using frozen cohort artifacts; not a universal Sleeping Beauty definition.",
+  "computed_at": "2026-09-18"
+}
