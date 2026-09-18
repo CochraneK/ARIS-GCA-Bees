@@ -7,7 +7,7 @@
   "status": "methods-draft-agent-skill-benchmark-seed",
   "domain": "metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication",
   "summary": "A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct.",
-  "authors": ["Cunyi Kang"],
+  "authors": ["Cochrane Kang"],
   "aris": {
     "provenance": "ARIS4C guided design with live prior-art and source-anatomy audits; benchmark protocol and evidence semantics frozen before confirmatory corpus construction",
     "version": "v0.4.26",
