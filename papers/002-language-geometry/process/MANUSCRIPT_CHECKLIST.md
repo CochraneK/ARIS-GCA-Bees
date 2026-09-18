@@ -8,7 +8,7 @@
 - [x] Preserve WALS vs TLI/GBI geographic contradiction.
 - [x] Scope test to simple global circle, not every possible periodic system.
 - [x] Report major per-stage N, feature counts, selection rules and effect sizes in Draft v1 / tables.
-- [ ] Perform final line-by-line claim audit before submission.
+- [x] Perform Draft v1 line-by-line claim audit (repeat before submission).
 - [ ] Confirm all bibliography metadata against publisher records before formatted submission.
 
 ## Reproducibility
