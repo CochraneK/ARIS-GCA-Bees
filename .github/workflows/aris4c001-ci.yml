@@ -22,8 +22,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install numpy scipy
-      - run: python -m py_compile papers/001-gca-bees/code/quality_gate.py papers/001-gca-bees/code/published_summary_analysis.py papers/001-gca-bees/code/model_recovery.py
+      - run: python -m py_compile papers/001-gca-bees/code/quality_gate.py papers/001-gca-bees/code/published_summary_analysis.py papers/001-gca-bees/code/model_recovery.py papers/001-gca-bees/code/generate_figures.py
       - run: python papers/001-gca-bees/code/quality_gate.py
       - run: python papers/001-gca-bees/code/published_summary_analysis.py
       - run: git diff --exit-code papers/001-gca-bees/data/published_summary_synthesis.json
+      - run: python papers/001-gca-bees/code/generate_figures.py
+      - run: git diff --exit-code papers/001-gca-bees/figures/figure1_published_learning_covariance.svg papers/001-gca-bees/figures/figure2_factor_loading_congruence.svg papers/001-gca-bees/figures/figure3_model_recovery.svg
+      - run: python tools/audit_paper_outputs.py
       - run: python papers/001-gca-bees/code/model_recovery.py --smoke
