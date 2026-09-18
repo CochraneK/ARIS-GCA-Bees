@@ -1,0 +1,25 @@
+id,domain,source_year,seed_source,exposure_or_intervention,outcome,index_switch,mechanism,evidence_role
+S01,international_relations,1999,Huth,deterrent military threat,crisis or attack prevention,actor/system,strategic deterrence,conditional support
+S02,social_psychology,2026,van Tartwijk et al.,intergroup competition,intragroup cooperation,level,intergroup interdependence,meta-analytic support
+S03,social_psychology,2003,Bornstein,intergroup conflict,within-group cooperation dilemmas,level,multilevel social dilemma,theory/review
+S04,international_relations,1992,Morgan and Bickers,domestic discontent/external force,domestic support,actor/time,diversion/rally,negative-mixed boundary evidence
+S05,international_relations,2010,Tir,territorial external conflict,domestic political diversion,actor/time,territorial diversion,conditional support
+S06,international_relations,2009,Tang,security-seeking capability,own/others security,actor/system,equilibrium feedback,strong neighboring instance
+S07,consumer_psychology,2015,Chernev et al.,number/complexity of choices,satisfaction regret deferral switching,construct/capacity,choice overload,meta-analytic support
+S08,organization_science,2013,Mazmanian et al.,mobile-work flexibility,effective ability to disconnect,time/construct,collective norm feedback,strong qualitative instance
+S09,health_psychology,2012,Ng et al.,autonomy support/autonomous motivation,health outcomes,none,counterevidence,meta-analytic counterevidence
+S10,work_psychology,2026,Hagger and McAnally Star,need support/autonomous motivation,adaptive workplace outcomes,none,counterevidence,meta-analytic counterevidence
+S11,cognitive_science,2009,Gigerenzer,less information/heuristic processing,predictive accuracy,capacity/selection,bias-variance ecological fit,strong neighboring instance
+S12,psychology,2016,Hertwig and Engel,deliberate non-acquisition of information,functional outcomes vary,actor/construct,deliberate ignorance,review/theory
+S13,psychology,2010,Sweeny et al.,information avoidance,psychological/decision outcomes,actor/construct,avoidance motives,counterbalance review
+S14,economics,2003,Sims,limited information processing,decision/economic adjustment,capacity,rational inattention,formal mechanism
+S15,economics,2002,Morris and Shin,more public information,social welfare,system/construct,coordination externality,formal conditional reversal
+S16,political_communication,2013,King Pan Roberts,selective censorship,collective expression/mobilization,actor,power/coordination asymmetry,empirical mechanism seed
+S17,organization_science,2011,Smith and Lewis,contradictory organizational demands,sustained performance,dynamic/paradox,paradox management,umbrella competitor
+S18,social_psychology,2018,Schumpe et al.,means detrimental to alternative goal,perceived focal-goal instrumentality,goal/construct,counterfinality,umbrella competitor
+S19,energy_economics,2021,rebound typology,efficiency improvement,energy consumption,level/time,economic rebound,strong umbrella competitor
+S20,transportation,2023,traffic paradox review,added network capacity,total travel cost,system,equilibrium/selfish routing,strong formal instance
+S21,social_psychology,2007,Schultz et al.,descriptive norm message,household energy use,baseline/feedback,boomerang norm feedback,field-experimental instance
+S22,clinical_psychology,2005,Moos,psychosocial treatment,post-treatment condition,time/construct,iatrogenic effect,review neighboring family
+S23,safety_behavior,1996,Stetzer and Hofmann,safer environment,riskier behavior,feedback,risk compensation,conditional neighboring family
+S24,metascience,2019,Goodhart-law publishing analysis,citation metrics as targets,metric validity/system distortion,construct/feedback,target gaming,strong neighboring family
