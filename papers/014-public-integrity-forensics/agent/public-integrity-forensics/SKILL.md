@@ -48,6 +48,17 @@ CN-F is lead-generation only and defaults to E5. Social/web content cannot by it
 
 Research-publication forensics can delegate to ARIS4C011.
 
+
+### China procurement result semantics
+
+For CCGP-style procurement records:
+
+- a final supplier result may become an `AWARDED_TO` relationship after normal source/identity checks;
+- a ranked `中标候选人` is a candidate record, not a final award, and must use a distinct candidate relationship;
+- percentage/discount pricing is not currency and must never be coerced into a contract value;
+- parser misses and inaccessible official sources are coverage gaps, not negative evidence;
+- personal contacts, telephone numbers and street addresses should be excluded from public feasibility artifacts unless a later detector explicitly requires and justifies them.
+
 ## Core invariants
 
 1. Never output a binary corrupt/not-corrupt verdict.
@@ -297,3 +308,7 @@ Use assets/finding.schema.json and assets/report.schema.json for machine-readabl
 - data/china_source_registry.json — machine-readable China source registry.
 - code/china_scope.py — China institution/source-tier policy.
 - code/china_web_leads.py — web-lead evidence contract and Track A gate.
+- code/china_ccgp.py — bounded CCGP award-list discovery and buyer routing.
+- code/china_ccgp_detail.py — privacy-minimized CCGP award-detail normalization with final-award/candidate separation.
+- code/china_universe.py — official China institution-universe seed adapters with source-unavailable semantics.
+- process/CHINA_PILOT0_RESULTS.md — frozen live China source-feasibility results.
