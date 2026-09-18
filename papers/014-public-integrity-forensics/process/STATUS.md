@@ -2,13 +2,13 @@
 
 ## State
 
-**UK PILOT 1A FROZEN / CHINA-FIRST MULTI-INSTITUTION WEB-MINING EXPANSION ACTIVE**
+**CHINA PILOT 0 LIVE PROCUREMENT + CAS UNIVERSE FEASIBILITY PROVEN / CROSS-SOURCE ENTITY GRAPH NEXT**
 
 Date: 2026-09-18
 
 ## Current maturity estimate
 
-**~60%**
+**~65%**
 
 ## Completed foundations
 
@@ -27,7 +27,16 @@ Date: 2026-09-18
 - [x] China machine-readable source registry created;
 - [x] China web-lead evidence contract created;
 - [x] public/social-web content is hard-limited to lead generation and cannot alone produce strong review evidence;
-- [x] ARIS4C011 is explicitly reusable for research-publication forensics inside the research-institute/university layer.
+- [x] ARIS4C011 is explicitly reusable for research-publication forensics inside the research-institute/university layer;
+- [x] completed bounded live CCGP award-list discovery: 36 unique notices with 100% buyer/publication-time metadata coverage in the sample;
+- [x] implemented central/local CCGP award-detail parsing with source hashing and privacy-minimized output;
+- [x] separated final awards from ranked bid candidates so candidate records cannot silently become AWARDED_TO relations;
+- [x] normalized CCGP currency fields including unit-in-label local templates and preserved percentage pricing as non-currency;
+- [x] completed bounded live CCGP detail smoke: 12 notices -> 10 supplier-result records -> 7 final awards + 3 candidate records, with 4 parser-miss notices retained as coverage gaps;
+- [x] implemented official institution-universe seed adapters;
+- [x] normalized 106 CAS official research-unit seeds in the live universe pilot;
+- [x] isolated SASAC machine-access TLS failure as source_unavailable rather than inferring an empty SOE universe;
+- [x] froze China Pilot 0 results in process/CHINA_PILOT0_RESULTS.md.
 
 ## China-first source backbone
 
@@ -54,6 +63,41 @@ Canonical files:
 - `data/china_source_registry.json`
 - `code/china_scope.py`
 - `code/china_web_leads.py`
+
+## China Pilot 0 frozen result
+
+Canonical result: `process/CHINA_PILOT0_RESULTS.md`
+
+### CCGP list discovery
+
+Workflow **35314543749**:
+- 36 unique award-notice leads;
+- buyer metadata coverage 100%;
+- publication-time coverage 100%;
+- institution routing is source feasibility only, not a risk distribution.
+
+### Official institution universe
+
+Workflow **35314852919**:
+- 106 successfully normalized CAS research-unit seeds;
+- SASAC source unavailable in GitHub Actions because the source TLS chain could not be verified;
+- TLS verification was not disabled;
+- unavailable source != zero organizations.
+
+### CCGP detail normalization
+
+Workflow **35315473480**:
+- 12 bounded live notices;
+- 10 normalized supplier-result records;
+- 7 final-award records;
+- 3 ranked candidate records;
+- 4 notices retained as parser-miss coverage gaps;
+- supplier/value coverage among parsed records: 100%;
+- normalized output excludes personal contacts, telephone numbers and street addresses for this pilot.
+
+Candidate records are structurally distinct from final awards and must not create `AWARDED_TO` edges.
+
+All China Pilot 0 statistics are engineering/source-feasibility results, not corruption findings or prevalence estimates.
 
 ## Priority institution modules
 
@@ -124,16 +168,16 @@ UK remains a portability/benchmark track, but China-first internet mining is now
 
 ## Immediate next work
 
-1. implement China Government Procurement Network / CCGP discovery-normalization using documented public standards/interfaces where feasible;
-2. implement a federated National Public Resource Trading Platform + provincial-source discovery layer;
-3. build organization-universe adapters for hospitals, central/local SOEs, research institutes/universities and social organizations;
-4. add stable China organization identity around unified social credit code and authoritative registration/licensing IDs;
+1. convert final CCGP supplier results into canonical procurement graph relations while mapping ranked candidates to a separate candidate edge;
+2. add authoritative China organization identity joins around unified social credit codes and source-specific official identifiers where lawfully/publicly available;
+3. implement the National Public Resource Trading Platform federation and selected provincial adapters;
+4. build official organization-universe adapters for hospitals, SOEs, universities/research institutes and social organizations/charities;
 5. build institution-domain crawler contracts for hospital/SOE/institute/university/NGO procurement pages and PDFs;
-6. add audit/discipline/outcome adapters that preserve investigation vs sanction vs penalty vs judgment vs audit-finding classes;
-7. add charity/social-organization annual-report and related-party graph extraction;
+6. add audit/discipline/administrative/judicial outcome adapters that preserve investigation vs sanction vs penalty vs judgment vs audit-finding classes;
+7. add charity/social-organization annual-report, related-party and project-flow extraction;
 8. add research grant/patent/technology-transfer edges and delegate publication forensics to 011;
-9. create the first frozen China Pilot dataset across at least hospitals + SOEs + research institutes + social organizations rather than only government agencies;
-10. run an independent identity/privacy/defamation/temporal-leakage audit before publishing named review packets.
+9. freeze China Pilot 1 as a stratified cross-institution dataset rather than a government-only sample;
+10. run independent identity/privacy/defamation/temporal-leakage review before any named integrity-review packet is surfaced.
 
 ## Hard blockers
 
