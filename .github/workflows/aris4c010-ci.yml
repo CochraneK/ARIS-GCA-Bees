@@ -3,11 +3,13 @@ name: ARIS4C010 CI
 on:
   push:
     paths:
-      - "papers/010-universal-concept-identification/code/**/*.py"\n      - "papers/010-universal-concept-identification/data/**/*.json"
+      - "papers/010-universal-concept-identification/code/**/*.py"
+      - "papers/010-universal-concept-identification/data/**/*.json"
       - ".github/workflows/aris4c010-ci.yml"
   pull_request:
     paths:
-      - "papers/010-universal-concept-identification/code/**/*.py"\n      - "papers/010-universal-concept-identification/data/**/*.json"
+      - "papers/010-universal-concept-identification/code/**/*.py"
+      - "papers/010-universal-concept-identification/data/**/*.json"
       - ".github/workflows/aris4c010-ci.yml"
   workflow_dispatch:
 
@@ -17,7 +19,7 @@ permissions:
 jobs:
   test-010:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: papers/010-universal-concept-identification/code
@@ -26,15 +28,37 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install pinned lexical dependency
+        run: python -m pip install "wn==1.1.1"
+
       - name: Unit tests
         run: python -m unittest -v test_query_complexity.py
+
       - name: Validate constructed seed
         run: python validate_seed_data.py
+
       - name: Check seed leakage splits
         run: python check_seed_splits.py
+
       - name: Run combinatorial Pilot 0
         run: python query_complexity.py
+
       - name: Run synthetic semantic Pilot 1
         run: python pilot1_semantic_seed.py
+
       - name: Run OEWN lexical Pilot 2
         run: python pilot2_oewn_lexical.py
+
+      - name: Build pinned OEWN calibration60 source pool
+        run: python build_oewn_calibration60.py
+
+      - name: Validate calibration60
+        run: python validate_calibration60.py
+
+      - name: Upload calibration60 source pool
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c010-calibration60
+          path: papers/010-universal-concept-identification/data/calibration60/oewn_source_pool.generated.json
+          if-no-files-found: error
