@@ -74,7 +74,8 @@ Current integrated coverage in the 25-label v1 matrix includes longevity for 22 
 - [ ] quantify research effort per taxon and module;
 - [ ] harmonize neural measures beyond raw brain mass (relative brain measures, neuron counts where comparable);
 - [ ] expand each core module beyond one or two flagship papers;
-- [ ] choose compatible phylogenetic trees and taxonomic reconciliation rules;
+- [x] resolve all 29 v2 taxa through OpenTree TNRS and generate a global induced topology;
+- [ ] add dated within-clade phylogenies / justified branch-length strategy for confirmatory comparative models;
 - [ ] build hominin archaeological time-slice layer;
 - [ ] complete closest-prior-work novelty map for explicit necessary/sufficient-configuration claims;
 - [ ] simulate recoverability using the **observed** missingness structure rather than toy missingness;
@@ -85,3 +86,15 @@ Current integrated coverage in the 25-label v1 matrix includes longevity for 22 
 **Scientific framing: strong. Data integration: underway. Confirmatory analysis: not yet ready.**
 
 The project should not advance to a headline "minimal sufficient set" until the exact-species panel, research-effort correction and phylogenetic layer pass their gates.
+
+
+## Pilot 3 phylogeny update
+
+- 29 / 29 species-level v2 taxa resolved through Open Tree of Life with approximate matching disabled.
+- 0 unmatched taxa and 0 approximate matches.
+- One explicit synonym mapping is retained: `Physeter macrocephalus` → OpenTree `Physeter catodon` (OTT 276851).
+- A 29-taxon induced synthetic topology was generated in the live pilot.
+- OpenTree reported 110 supporting studies for that induced synthetic subtree.
+- The global OpenTree tree is treated as topology only; it is **not** being misrepresented as a dated chronogram.
+
+The phylogeny gate is therefore provisionally passed for taxonomy/topology, while calibrated branch lengths remain an open confirmatory requirement.
