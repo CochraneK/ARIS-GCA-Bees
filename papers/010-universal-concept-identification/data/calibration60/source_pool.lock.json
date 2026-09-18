@@ -1,0 +1,44 @@
+{
+  "lock_version": 1,
+  "dataset_id": "ucid-oewn-calibration60-v0",
+  "generated_from": {
+    "resource": "oewn:2025",
+    "python_dependency": "wn==1.1.1",
+    "builder": "code/build_oewn_calibration60.py",
+    "manifest": "data/calibration60/selection_manifest.v0.json"
+  },
+  "verified_ci": {
+    "workflow": "ARIS4C010 CI",
+    "run_id": 35405784262,
+    "run_number": 12,
+    "head_sha": "26d0bdf97671919b3014fbd67a1c1ff1ff370601",
+    "conclusion": "success",
+    "artifact_id": 10572770866,
+    "artifact_name": "aris4c010-calibration60",
+    "artifact_sha256": "1450c4b3a77b041b8aaa2a3003cdabc06835dbe69ca85d78f23521f09a5f48ff",
+    "generated_json_sha256": "c515b0a57f4853dc4972dfb2c9fbecf3677674022ff6a09a3a064216a45dafe6",
+    "generated_json_bytes": 45813
+  },
+  "record_count": 60,
+  "group_count": 10,
+  "records_per_group": 6,
+  "source_noun_sense_counts": {
+    "bank": 10,
+    "spring": 6,
+    "head": 33,
+    "line": 30,
+    "point": 26,
+    "light": 15,
+    "field": 17,
+    "board": 9,
+    "foot": 11,
+    "case": 20
+  },
+  "selection_invariants": [
+    "All records are noun senses from pinned oewn:2025.",
+    "Exactly six senses are selected per lemma.",
+    "Selection is deterministic and diversity-seeking across lexfiles.",
+    "All senses from a lemma remain a leakage group.",
+    "The source pool contains no human or model semantic response gold."
+  ]
+}
