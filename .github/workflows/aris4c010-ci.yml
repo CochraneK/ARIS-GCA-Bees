@@ -60,6 +60,9 @@ jobs:
       - name: Build human annotation packets
         run: python build_calibration_annotation_packet.py
 
+      - name: Build mixed P6 calibration packet
+        run: python build_mixed_p6_calibration.py
+
       - name: Upload calibration60 artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -68,4 +71,11 @@ jobs:
             papers/010-universal-concept-identification/data/calibration60/oewn_source_pool.generated.json
             papers/010-universal-concept-identification/data/calibration60/full_matrix.generated.json
             papers/010-universal-concept-identification/data/calibration60/calibration_subset.generated.json
+          if-no-files-found: error
+
+      - name: Upload mixed P6 calibration artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c010-mixed-p6-calibration
+          path: papers/010-universal-concept-identification/data/mixed_calibration/annotation_packet.generated.json
           if-no-files-found: error
