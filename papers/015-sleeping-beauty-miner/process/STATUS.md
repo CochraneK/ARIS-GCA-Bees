@@ -14,6 +14,21 @@ ARIS4C015 now has three separate research tracks:
 
 A validated prospective Sleeping Beauty prediction model does not yet exist.
 
+## Pilot M multi-stratum yield diagnostic
+
+A bounded real-data mechanism-yield benchmark was run across five reproducible OpenAlex strata (Physics 1980, Medicine 1980, Social Sciences 1980, Physics 1990, Computer Science 1990), 100 papers per stratum.
+
+Result:
+- papers analyzed: **500**;
+- robust Sleeping Beauties under the current strict gate: **0**;
+- mechanism-ready strata: **0/5**;
+- mechanism-analysis-ready strata: **0/5**;
+- selection on future citation count: **false**.
+
+Interpretation: this is a scientifically useful negative yield result, not evidence that Sleeping Beauties do not exist. It demonstrates that small random historical cohorts cannot be assumed to contain robust SB cases and therefore cannot support mechanism analysis. Track M must now receive cases from a larger retrospective Track-A discovery corpus rather than forcing positives in random samples.
+
+Workflow: `ARIS4C015 Pilot M Multi-Stratum` run `35406774616`.
+
 ## Completed
 
 ### Core agent / engineering
