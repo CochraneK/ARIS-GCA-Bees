@@ -12,7 +12,9 @@ Outcome families
 1. future citation acceleration;
 2. full-history Beauty Coefficient percentile;
 3. awakening within a future horizon after cutoff;
-4. delayed-recognition composite based on multiple prespecified criteria.
+4. delayed-recognition composite based on multiple prespecified criteria;
+5. later-uptake sensitivity, used to distinguish delayed recognition from
+   trajectories that remain scarcely cited.
 
 No outcome here is equivalent to "scientific truth", "breakthrough", or
 "intrinsic value".
@@ -120,7 +122,6 @@ def percentile_ranks(
         j = i + 1
         while j < n and ordered[j][1] == ordered[i][1]:
             j += 1
-        # Average zero-based rank, mapped to [0,1].
         avg_rank = (i + (j - 1)) / 2
         percentile = avg_rank / (n - 1) if n > 1 else 1.0
         for index in range(i, j):
@@ -180,10 +181,38 @@ def beauty_top_fraction_outcome(
 def future_acceleration_percentile_outcome(
     records: Iterable[OutcomeRecord],
 ) -> dict[str, float]:
-    """Graded outcome: within-cohort percentile of immediate future acceleration."""
+    """Graded outcome: percentile of immediate post-cutoff acceleration."""
     rows = list(records)
     return percentile_ranks(
         {row.paper_id: row.future_acceleration for row in rows}
+    )
+
+
+def future_uptake_percentile_outcome(
+    records: Iterable[OutcomeRecord],
+) -> dict[str, float]:
+    """Graded outcome: percentile of all held-out post-cutoff citations."""
+    rows = list(records)
+    return percentile_ranks(
+        {row.paper_id: float(row.future_citations) for row in rows}
+    )
+
+
+def future_uptake_top_fraction_outcome(
+    records: Iterable[OutcomeRecord],
+    *,
+    fraction: float = 0.50,
+) -> dict[str, float]:
+    """Binary later-uptake sensitivity label.
+
+    This is not itself a Sleeping Beauty definition. It is used as a floor to
+    distinguish a delayed-looking trajectory from one that remains scarcely
+    cited throughout the future observation window.
+    """
+    rows = list(records)
+    return top_fraction_binary(
+        {row.paper_id: float(row.future_citations) for row in rows},
+        fraction=fraction,
     )
 
 
@@ -262,12 +291,51 @@ def delayed_recognition_consensus_outcome(
     }
 
 
+def delayed_recognition_with_uptake_floor_outcome(
+    records: Iterable[OutcomeRecord],
+    *,
+    beauty_fraction: float = 0.20,
+    acceleration_fraction: float = 0.20,
+    horizon_years: int = 15,
+    uptake_fraction: float = 0.50,
+    min_components: int = 2,
+) -> dict[str, float]:
+    """Consensus delayed-recognition label plus later-uptake floor.
+
+    A paper must first satisfy the delayed-recognition consensus definition and
+    then fall in the top uptake_fraction share by total held-out future
+    citations.
+
+    This is a sensitivity analysis, not a replacement for the raw B metric and
+    not a universal definition of scientific importance.
+    """
+    rows = list(records)
+    consensus = delayed_recognition_consensus_outcome(
+        rows,
+        beauty_fraction=beauty_fraction,
+        acceleration_fraction=acceleration_fraction,
+        horizon_years=horizon_years,
+        min_components=min_components,
+    )
+    uptake = future_uptake_top_fraction_outcome(
+        rows,
+        fraction=uptake_fraction,
+    )
+    return {
+        row.paper_id: 1.0
+        if consensus[row.paper_id] and uptake[row.paper_id]
+        else 0.0
+        for row in rows
+    }
+
+
 def outcome_bundle(
     records: Iterable[OutcomeRecord],
     *,
     beauty_fraction: float = 0.20,
     acceleration_fraction: float = 0.20,
     horizon_years: int = 15,
+    uptake_fraction: float = 0.50,
 ) -> dict[str, dict[str, float]]:
     """Return a standard multi-outcome bundle for one historical cohort."""
     rows = list(records)
@@ -280,6 +348,7 @@ def outcome_bundle(
         "future_acceleration_percentile": future_acceleration_percentile_outcome(
             rows
         ),
+        "future_uptake_percentile": future_uptake_percentile_outcome(rows),
         "awakening_within_horizon": awakening_within_horizon_outcome(
             rows,
             horizon_years=horizon_years,
@@ -289,5 +358,14 @@ def outcome_bundle(
             beauty_fraction=beauty_fraction,
             acceleration_fraction=acceleration_fraction,
             horizon_years=horizon_years,
+        ),
+        "delayed_recognition_with_uptake_floor": (
+            delayed_recognition_with_uptake_floor_outcome(
+                rows,
+                beauty_fraction=beauty_fraction,
+                acceleration_fraction=acceleration_fraction,
+                horizon_years=horizon_years,
+                uptake_fraction=uptake_fraction,
+            )
         ),
     }
