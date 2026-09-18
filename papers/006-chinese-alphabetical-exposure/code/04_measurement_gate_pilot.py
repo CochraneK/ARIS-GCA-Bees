@@ -14,7 +14,7 @@ from pathlib import Path
 
 OPENALEX = "https://api.openalex.org/works"
 CROSSREF = "https://api.crossref.org/works/"
-USER_AGENT = "ARIS4C006/0.4 measurement-gate pilot"
+USER_AGENT = "ARIS4C006/0.4.1 randomized measurement-gate pilot"
 FIELD_SET = {
     20: "Economics, Econometrics and Finance",
     26: "Mathematics",
@@ -63,40 +63,36 @@ def authorship_is_cn(authorship: dict) -> bool:
     return any((i.get("country_code") == "CN") for i in (authorship.get("institutions") or [])) or "CN" in (authorship.get("countries") or [])
 
 def openalex_cell(field_id: int, year: int, target: int):
-    cursor, yielded = "*", 0
-    while yielded < target:
-        params = {
-            "filter": ",".join([
-                "authorships.institutions.country_code:CN",
-                f"topics.field.id:{field_id}",
-                f"from_publication_date:{year}-01-01",
-                f"to_publication_date:{year}-12-31",
-            ]),
-            "select": "id,doi,publication_year,authorships,primary_location",
-            "per-page": 100,
-            "cursor": cursor,
-        }
-        if os.getenv("OPENALEX_API_KEY"):
-            params["api_key"] = os.environ["OPENALEX_API_KEY"]
-        if os.getenv("OPENALEX_MAILTO"):
-            params["mailto"] = os.environ["OPENALEX_MAILTO"]
-        payload = fetch_json(OPENALEX + "?" + urllib.parse.urlencode(params))
-        if not payload:
+    """Yield a reproducible random multi-author sample from the filtered cell."""
+    sample_n = min(100, max(target * 2, target + 20))
+    seed = int(f"{year}{field_id:02d}")
+    params = {
+        "filter": ",".join([
+            "authorships.institutions.country_code:CN",
+            f"topics.field.id:{field_id}",
+            f"from_publication_date:{year}-01-01",
+            f"to_publication_date:{year}-12-31",
+        ]),
+        "select": "id,doi,publication_year,authorships,primary_location",
+        "sample": sample_n,
+        "seed": seed,
+        "per-page": sample_n,
+    }
+    if os.getenv("OPENALEX_API_KEY"):
+        params["api_key"] = os.environ["OPENALEX_API_KEY"]
+    if os.getenv("OPENALEX_MAILTO"):
+        params["mailto"] = os.environ["OPENALEX_MAILTO"]
+    payload = fetch_json(OPENALEX + "?" + urllib.parse.urlencode(params))
+    if not payload:
+        return
+    yielded = 0
+    for w in payload.get("results") or []:
+        if len(w.get("authorships") or []) < 2:
+            continue
+        yield w
+        yielded += 1
+        if yielded >= target:
             break
-        results = payload.get("results") or []
-        if not results:
-            break
-        for w in results:
-            if len(w.get("authorships") or []) < 2:
-                continue
-            yield w
-            yielded += 1
-            if yielded >= target:
-                break
-        cursor = (payload.get("meta") or {}).get("next_cursor")
-        if not cursor:
-            break
-        time.sleep(0.08)
 
 def crossref_record(doi_url: str) -> dict | None:
     doi = doi_url.removeprefix("https://doi.org/").removeprefix("http://doi.org/")
@@ -216,7 +212,7 @@ def main() -> None:
     out = Path(a.outdir)
     write_csv(out / "measurement_gate_by_field_year.csv", rows)
     manifest = {
-        "script": "04_measurement_gate_pilot.py",
+        "script": "04_measurement_gate_pilot.py",\n        "sampling": "OpenAlex reproducible random sample via sample+seed, then multi-author conditioning",
         "years": years, "per_cell_requested": a.per_cell, "fields": FIELD_SET,
         "confirmatory_use_allowed": False,
         "purpose": "Gate DOI/Crossref surname coverage, positional author alignment, ORCID agreement, and lower-bound OpenAlex identity inconsistency.",
