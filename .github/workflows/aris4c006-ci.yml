@@ -62,6 +62,8 @@ jobs:
               "ANALYSIS_SPEC.json",
               "POPULATION_FRAME.md",
               "LOAO_EXPOSURE_RULE.md",
+              "WORK_TYPE_RULE.md",
+              "INFERENCE_RULE.md",
           ]
           missing = [x for x in required if not (root / "process" / x).exists()]
           assert not missing, f"missing required process files: {missing}"
@@ -76,6 +78,8 @@ jobs:
           assert analysis_spec["primary_exposure"]["primary_source_level_exposure_forbidden"] is True
           assert "Tier3_last_token_heuristic" in analysis_spec["surname_measurement"]["forbidden"]
           assert analysis_spec["primary_model"]["work_fixed_effects"] is True
+          assert analysis_spec["primary_frame"]["work_types"] == ["article", "conference-paper"]
+          assert analysis_spec["primary_model"]["inference"]["cluster"] == ["canonical_author_id", "work_id", "primary_field_x_year"]
           assert "ChineseNames-mappable" in analysis_spec["primary_frame"]["population"]
           assert analysis_spec["primary_predictor"]["rank_reference"].startswith("entire actual author list")
           assert analysis_spec["confirmatory_outcomes_unlocked"] is False
