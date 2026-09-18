@@ -115,11 +115,34 @@ For each `concept_id` provide:
 - any dimension coded `NA`;
 - a confidence label: high / medium / low.
 
-At the end include a section titled `BLINDING DECLARATION` stating whether you encountered any Coder A score or contemporary outcome during the task. If yes, identify the contamination and do not present the coding as independent.
+At the end include a section titled `BLINDING DECLARATION`.
+
+The **first line under that heading must be exactly one of**:
+
+- `INDEPENDENCE_STATUS: PASS` — you did not encounter any Coder A score or contemporary confirmatory outcome;
+- `INDEPENDENCE_STATUS: FAIL` — you encountered Coder A scores and/or contemporary confirmatory outcomes.
+
+Then state what you did or did not encounter. If status is FAIL, identify the contamination and do not present the coding as independent.
 
 ---
 
 ## Handoff back into ARIS4C
+
+Preferred ingestion route:
+
+1. Save the complete raw GPTPage response unchanged as `process/gptpage/<date>_ikes-coder-b-raw.md`.
+2. Run:
+
+```bash
+python code/ingest_coder_b.py \
+  process/gptpage/<date>_ikes-coder-b-raw.md \
+  --output-csv process/IKES_CODER_B.csv \
+  --output-notes process/IKES_CODER_B.md
+```
+
+The ingestion script must reject missing/failed blinding declarations, malformed D01-D21 matrices, out-of-range scores, or an `IKES_B` inconsistent with the D1-D11 mean.
+
+Manual fallback only if the parser cannot handle a faithfully formatted response:
 
 Save the returned CSV as:
 
