@@ -22,7 +22,7 @@ Human languages vary extensively in word order, morphology, phonology, lexical s
 
 The analogy was generative, but it was not a single statistical hypothesis. Baker's own exposition culminated in a parameter hierarchy rather than a literal circular table. Subsequent quantitative work has established that linguistic structure is neither random nor independent across languages. Grambank documents broad morphosyntactic diversity across more than two thousand languages and shows strong genealogical structure (Skirgård et al., 2023). Curated GBI and TLI resources were subsequently designed to reduce logical and strong statistical dependencies among structural features, enabling large-scale multivariate analyses under clearer feature-independence assumptions (Graff et al., 2025). Bayesian spatiophylogenetic work further shows that some proposed grammatical universals remain supported after explicit controls for genealogy and geography, while many weaken substantially (Verkerk et al., 2026).
 
-At the same time, several adjacent claims are already well explored and are not the novelty target here. Persistent topology, dimensionality and hierarchical clustering have been applied to syntactic parameter data (Port et al., 2018; Port, Karidi, & Marcolli, 2022). Probabilistic prediction of typological features is an established task in computational typology (e.g., Bjerva et al., 2019). Circular seriation itself has a formal mathematical literature built around circular Robinson dissimilarities (Armstrong, Guzmán, & Sing-Long, 2021). The scientific gap is therefore not whether language data can be clustered, embedded or predicted. The narrower question is whether a periodic interpretation can be turned into an explicit predictive competitor and survive out-of-sample comparison with non-periodic alternatives.
+At the same time, several adjacent claims are already well explored and are not the novelty target here. Persistent topology, dimensionality and hierarchical clustering have been applied to syntactic parameter data (Port et al., 2018; Port, Karidi, & Marcolli, 2022). Probabilistic prediction of typological features is an established task in computational typology (e.g., Bjerva et al., 2019). Circular seriation itself has a general methodological literature, including spectral and embedding-based approaches for recovering circular arrangements (Evangelopoulos et al., 2020) and formal work on strict circular Robinson structure (Armstrong, Guzmán, & Sing-Long, 2021). More recently, Kemp (2026) proposed and tested **bisected circular structures** for specific cross-linguistic semantic category systems such as seasons, moon phases, and cardinal directions. That result is directly relevant to the scope of the present study: it demonstrates that circular structure can be a meaningful domain-level hypothesis in language, but it does not test whether the global association geometry among heterogeneous typological features forms one circle. The scientific gap is therefore not whether language data can be clustered, embedded, predicted, or exhibit circular structure in a known cyclic semantic domain. The narrower question is whether a global periodic interpretation of broad structural feature relations can be turned into an explicit predictive competitor and survive out-of-sample comparison with non-periodic alternatives.
 
 ### 1.1 A bounded operationalization of periodicity
 
@@ -90,7 +90,7 @@ A two-dimensional spectral embedding was estimated from the training affinity ma
 
 #### Hierarchical-tree benchmark
 
-Training dissimilarity was defined as (1-mathrm{NMI}). Average-linkage hierarchical clustering produced a dendrogram, and cophenetic distances between features were converted to predicted association using a quadratic training-set calibration. This model is a predictive benchmark, not an assertion that linguistic structure is literally a phylogenetic tree.
+Training dissimilarity was defined as $1-\mathrm{NMI}$. Average-linkage hierarchical clustering produced a dendrogram, and cophenetic distances between features were converted to predicted association using a quadratic training-set calibration. This model is a predictive benchmark, not an assertion that linguistic structure is literally a phylogenetic tree.
 
 #### Graph benchmark
 
@@ -102,11 +102,11 @@ The initial circular model projected a two-dimensional spectral embedding to ang
 
 The stronger Stage 1B model directly optimized one angular coordinate per feature, fixing one feature at angle zero to remove rotational non-identifiability. At each optimization step the association prediction was fit as
 
-[
-hat{s}_{ij} = eta_0 + eta_1cos(Delta_{ij}) + eta_2cos(2Delta_{ij}),
-]
+$
+\hat{s}_{ij}=\beta_0+\beta_1\cos(\Delta_{ij})+\beta_2\cos(2\Delta_{ij}),
+$
 
-where (Delta_{ij}) is circular angular distance. The (n-1) free angular coordinates were optimized by L-BFGS-B to minimize mean squared error in the training association matrix, with multiple starting points. This reduces the concern that a negative circular result is merely caused by inheriting poor spectral angles.
+where $\Delta_{ij}$ is circular angular distance. The $n-1$ free angular coordinates were optimized by L-BFGS-B to minimize mean squared error in the training association matrix, with multiple starting points. This reduces the concern that a negative circular result is merely caused by inheriting poor spectral angles.
 
 ### 2.4 Train/test evaluation
 
@@ -282,6 +282,8 @@ Third, the study does **not** claim that typological features are natural kinds 
 
 ### 4.3 Stable order without periodic closure
 
+The negative global result should not be read as evidence that circular structure is linguistically meaningless. Kemp (2026), for example, shows that a bisected circular structure can make testable predictions for specific semantic domains whose underlying referents are naturally cyclic or directional. Our target is different: a single global circle over heterogeneous structural features spanning grammatical, lexical and phonological domains. This distinction between **domain-grounded circularity** and **global feature-space circularity** is central to interpreting the present results.
+
 One of the most useful findings is conceptual rather than simply negative. Grammar linear order showed high circular-order stability (0.811) and substantial circular prediction (0.401), yet tree/low-rank prediction was stronger (about 0.49). The 60-feature global optimized circle likewise had fairly stable order while showing almost no wrap-around closure.
 
 This suggests a general warning for studies that infer periodicity from circular embeddings or stable orderings alone. Reproducible order may reflect a gradient, hierarchy or manifold that can be drawn around a circle without possessing the defining closure expected of a genuine periodic system.
@@ -298,7 +300,7 @@ This caution aligns with recent spatiophylogenetic work showing that raw cross-l
 
 Baker (2001) supplied the motivating analogy and a parameter-hierarchical organization, not the predictive circular test used here. Port and colleagues demonstrated that syntactic-parameter datasets can exhibit non-trivial topology, clustering and loops (Port et al., 2018; Port et al., 2022), making it inappropriate to claim novelty for simply finding low-dimensional or topological structure. Grambank established the scale of global morphosyntactic structure and the importance of genealogy (Skirgård et al., 2023). Graff et al. (2025) provided the dependency-curated GBI/TLI substrates that make a multifeature geometry comparison more defensible. Computational typology already treats held-out prediction as a useful probe of structural information (Bjerva et al., 2019).
 
-The contribution here is therefore methodological and diagnostic: **turning one strong form of the periodic-table metaphor into an explicit held-out competitor, then attempting to falsify it using predictive, domain, circularity, family, geographic and cross-representation tests.**
+The contribution here is therefore methodological and diagnostic: **turning one strong global form of the periodic-table metaphor into an explicit held-out competitor, then attempting to falsify it using predictive, domain, circularity, family, geographic and cross-representation tests.** This framing is compatible with positive evidence for circularity in narrowly defined semantic systems (Kemp, 2026); the two claims operate at different levels of representation.
 
 ## 5. Limitations
 
@@ -357,6 +359,10 @@ Bjerva, J., Kementchedjhieva, Y., Cotterell, R., & Augenstein, I. (2019). A prob
 Dryer, M. S., & Haspelmath, M. (Eds.). (2013). *The World Atlas of Language Structures Online*. Max Planck Institute for Evolutionary Anthropology.
 
 Graff, A., Chousou-Polydouri, N., Inman, D., et al. (2025). Curating global datasets of structural linguistic features for independence. *Scientific Data, 12*, 106. https://doi.org/10.1038/s41597-024-04319-4
+
+Evangelopoulos, X., Brockmeier, A. J., Mu, T., & Goulermas, J. Y. (2020). Circular object arrangement using spherical embeddings. *Pattern Recognition, 103*, 107192. https://doi.org/10.1016/j.patcog.2019.107192
+
+Kemp, C. (2026). Symmetry in category systems across languages. *Nature Communications, 17*, 358. https://doi.org/10.1038/s41467-025-67463-4
 
 Port, A., Gheorghita, I., Guth, D., Clark, J. M., Liang, C., Dasu, S., & Marcolli, M. (2018). Persistent topology of syntax. *Mathematics in Computer Science, 12*(1), 33–50. https://doi.org/10.1007/s11786-017-0329-x
 
