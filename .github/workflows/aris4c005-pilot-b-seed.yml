@@ -159,5 +159,6 @@ jobs:
             echo "No summary change."
             exit 0
           fi
-          git commit -m "Update ARIS4C005 Pilot B seed summary [skip ci]"
-          git push
+          git commit -m "Update ARIS4C005 Pilot B summaries [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
