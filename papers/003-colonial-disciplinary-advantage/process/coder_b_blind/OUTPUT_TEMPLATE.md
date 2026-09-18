@@ -48,6 +48,8 @@ Repeat through D21.
 
 `## BLINDING DECLARATION`
 
+`BUNDLE_ACCESS_STATUS: PASS|FAIL`
+
 `INDEPENDENCE_STATUS: PASS|FAIL`
 
 Brief access declaration.
