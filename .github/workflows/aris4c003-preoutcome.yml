@@ -39,6 +39,9 @@ jobs:
       - name: Compile all paper code
         run: python -m compileall -q code
 
+      - name: Data-builder smoke tests
+        run: python code/test_data_builders.py
+
       - name: Legacy synthetic PPML sanity
         run: python code/simulate_ppml.py
 
