@@ -111,3 +111,41 @@ The strongest immediate move is:
 > apparent contradiction -> restore indices -> specify mediator/feedback -> test boundary conditions -> compare with counterevidence.
 
 Novelty remains provisional until the umbrella-theory search is saturated.
+
+
+## E. Saturation / umbrella competitors added after Pilot 0A
+
+### Merton (1936)
+**The Unanticipated Consequences of Purposive Social Action.** *American Sociological Review* 1(6):894–904. DOI: 10.2307/2084615.
+
+Use: foundational umbrella prior art; rejects any claim that OCI discovers unintended consequences as a general phenomenon.
+
+### Perri 6 (2010)
+**When Forethought and Outturn Part: Types of Unanticipated and Unintended Consequences.** DOI: 10.1093/acprof:oso/9780199573547.003.0003.
+
+Use: direct methodological competitor. Explicitly favors conceptual frameworks and typologies over one universal causal theory.
+
+### Perc (2026)
+**Unintended consequences of well-intended interventions.** *PNAS* 123(2):e2533905122. DOI: 10.1073/pnas.2533905122.
+
+Use: recent cross-domain complex-systems umbrella covering feedback, adaptation, nonlinearities, and scale. Strongly narrows OCI novelty.
+
+### Abrams (2009)
+**When does greater mortality increase population size? The long history and diverse mechanisms underlying the hydra effect.** *Ecology Letters* 12(5):462–474. DOI: 10.1111/j.1461-0248.2009.01282.x.
+
+Use: clean ecological dynamic reversal benchmark.
+
+### Li & Shi (2026)
+**Message effects on psychological reactance: meta-analyses.** *Human Communication Research* 52(1):38–52. DOI: 10.1093/hcr/hqaf016.
+
+Use: meta-analytic evidence that freedom-threatening messaging raises reactance, which is negatively related to persuasion outcomes. Candidate control/persuasion-backfire family.
+
+### Jansen & Martin (2015)
+**The Streisand Effect and Censorship Backfire.** *International Journal of Communication* 9:656–671.
+
+Use: dissemination-suppression attempts can sometimes amplify attention/outrage; candidate actor/network-feedback family, not a universal censorship claim.
+
+### John et al. (2023)
+**Dead rats, dopamine, performance metrics, and peacock tails: Proxy failure is an inherent risk in goal-oriented systems.** *Behavioral and Brain Sciences*. DOI: 10.1017/S0140525X23002753.
+
+Use: broad proxy-failure competitor adjacent to Goodhart/Campbell effects.
