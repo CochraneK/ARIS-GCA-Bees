@@ -21,6 +21,9 @@
 - [x] 009A preregistration-ready protocol skeleton drafted.
 - [x] Episode-level data dictionary drafted.
 - [x] Reference Pareto-frontier code added.
+- [x] Independent-panel fidelity metric specification drafted.
+- [x] Minimal relation ontology drafted.
+- [x] Synthetic engineering benchmark added with explicit non-empirical labeling.
 
 ## Next ARIS gates
 
@@ -34,16 +37,22 @@ Pass condition: novelty claim is rewritten to the narrowest defensible form afte
 
 ### Gate B — fidelity metric preregistration
 
-**Status:** protocol skeleton complete; operational calibration pending.
+**Status:** formal metric architecture complete; empirical calibration pending.
 
-Finalize:
+Completed:
 
-- source-grounded query bank;
+- independent query-construction/adjudication/evaluation panels;
+- semantic, relational, context, temporal and participant fidelity definitions;
+- source-uncertainty propagation;
+- rate- and burden-matched fairness analyses;
 - relation ontology;
-- context-loss rubric;
-- participant-confirmation protocol;
-- inter-rater calibration procedure;
-- acceptable reliability threshold;
+- provisional reliability gates.
+
+Still required:
+
+- pilot query bank on independent episodes;
+- inter-rater calibration;
+- frozen acceptable thresholds;
 - simulation-based sample-size target.
 
 Pass condition: metrics can be applied without knowing representation identity and without tuning on confirmatory cases.
