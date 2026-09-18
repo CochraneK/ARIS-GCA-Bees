@@ -7,7 +7,7 @@
   "status": "feasibility-pilot",
   "domain": "science of science / computational social science / cultural analytics / mental-health stigma",
   "summary": "A sign-neutral counterfactual network study of how scientific, intellectual, and cultural development changes when the productive participation of historically realized contributors is reduced, with mental-health evidence, discrimination, adaptive substitution, identity uncertainty, and retrospective documentation handled as separate components.",
-  "authors": ["Cunyi Kang"],
+  "authors": ["Cochrane Kang"],
   "aris": {
     "provenance": "ARIS4C guided run; GPTPage/web handoff for API-gated LLM/reviewer steps",
     "version": "v0.4.26",
