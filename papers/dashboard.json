@@ -116,12 +116,12 @@
       "blocker": "Historical cross-source coverage/identifiers"
     },
     "015": {
-      "progress": 62,
-      "stage": "Empirical Pilot 0 + cohort scaffold",
+      "progress": 75,
+      "stage": "Pilot 1 + Mechanism cohort build",
       "activity": "active",
-      "evidence": "3 live OpenAlex cross-source replications + CI + cutoff-safe scan",
-      "next_gate": "Run non-hand-picked historical cohort backtest",
-      "blocker": "Representative time-safe cohort + semantic/network feature validation"
+      "evidence": "200-paper 10-stratum benchmark + seed sensitivity + lexical ablation + robust-SB/matched-control mechanism code",
+      "next_gate": "Populate empirical robust-SB mechanism cohort from SciSciNet-v2",
+      "blocker": "Reproducible SciSciNet-v2 slice/query and mechanism match yield"
     }
   }
 }
