@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/010-universal-concept-identification/data/ucid-target.schema.json",
+  "title": "UCID target record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "target_id",
+    "surface_forms",
+    "target_level",
+    "canonical_description",
+    "ontology_kinds",
+    "composition_forms",
+    "existence_status",
+    "boundary_status",
+    "context_status",
+    "grounding_modes",
+    "epistemic_status",
+    "pathology_labels",
+    "expressibility_status",
+    "provenance"
+  ],
+  "properties": {
+    "target_id": {"type": "string", "minLength": 1},
+    "surface_forms": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "target_level": {
+      "enum": [
+        "string",
+        "word_token",
+        "lexeme",
+        "sense",
+        "concept",
+        "referent",
+        "proposition",
+        "rule_or_operation",
+        "metalinguistic"
+      ]
+    },
+    "canonical_description": {"type": "string", "minLength": 1},
+    "frozen_context": {"type": ["object", "null"]},
+    "ontology_kinds": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "material_object",
+          "organism_or_agent",
+          "substance",
+          "part_boundary_region",
+          "artifact",
+          "biological_structure",
+          "event",
+          "process",
+          "action",
+          "change",
+          "state",
+          "quality_or_property",
+          "disposition_or_capacity",
+          "relation",
+          "role",
+          "function",
+          "number",
+          "set_or_class",
+          "geometric_object",
+          "logical_object",
+          "algorithm_or_formal_structure",
+          "measure_or_unit",
+          "informational_entity",
+          "mental_or_phenomenal",
+          "social_institutional_normative",
+          "fictional_or_represented",
+          "other"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "composition_forms": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "primitive_relative_to_vocabulary",
+          "conjunction",
+          "disjunction",
+          "negation",
+          "set_difference",
+          "relation_defined",
+          "quantified",
+          "comparative_or_superlative",
+          "modal",
+          "temporal",
+          "counterfactual",
+          "recursive_or_inductive",
+          "higher_order",
+          "quotation_or_metalinguistic"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "existence_status": {
+      "enum": [
+        "present_actual",
+        "past_actual",
+        "future_contingent",
+        "possible_nonactual",
+        "fictional",
+        "hypothetical",
+        "empty_contingent",
+        "impossible_or_inconsistent",
+        "unknown_or_contested"
+      ]
+    },
+    "boundary_status": {
+      "enum": [
+        "crisp",
+        "scalar_explicit_threshold",
+        "scalar_context_threshold",
+        "prototype_family_resemblance",
+        "vague_borderline",
+        "probabilistic_or_dispositional",
+        "convention_dependent"
+      ]
+    },
+    "context_status": {
+      "enum": [
+        "benchmark_invariant",
+        "speaker_relative",
+        "spatial_deictic",
+        "temporal_deictic",
+        "comparison_class",
+        "discourse_anaphoric",
+        "social_institutional",
+        "possible_world",
+        "perspective_evaluator"
+      ]
+    },
+    "grounding_modes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "lexical_definitional",
+          "encyclopedic_factual",
+          "perceptual",
+          "spatial",
+          "motor_embodied",
+          "interoceptive_phenomenal",
+          "social_normative",
+          "mathematical_formal",
+          "testimonial_source_dependent",
+          "multimodal_exemplar",
+          "ostensive_primary"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "epistemic_status": {
+      "enum": [
+        "representation_decidable",
+        "finite_lookup_or_measurement",
+        "empirically_unknown",
+        "oracle_inaccessible",
+        "stochastic",
+        "context_underdetermined",
+        "undecidable_in_general",
+        "decidable_but_intractable"
+      ]
+    },
+    "pathology_labels": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "ordinary",
+          "metalinguistic",
+          "self_referential",
+          "circular_definition",
+          "inconsistent_description",
+          "liar_like",
+          "set_membership_paradox",
+          "category_error",
+          "presupposition_failure"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "expressibility_status": {
+      "enum": [
+        "lexicalized",
+        "conventional_multiword",
+        "paraphrasable_unlexicalized",
+        "contextually_compositional",
+        "primarily_ostensive",
+        "weakly_ineffable_relative_to_resource",
+        "strong_ineffability_boundary"
+      ]
+    },
+    "open_world_role": {
+      "enum": ["in_support", "held_out_oos", "expansion_candidate"]
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source_type"],
+      "properties": {
+        "source_type": {
+          "enum": ["lexical_resource", "ontology", "literature", "constructed_stress_case", "human_annotation", "other"]
+        },
+        "source": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}
