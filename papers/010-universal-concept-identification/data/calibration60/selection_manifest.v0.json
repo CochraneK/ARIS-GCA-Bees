@@ -1,0 +1,32 @@
+{
+  "dataset_id": "ucid-oewn-calibration60-v0",
+  "source": "Open English WordNet",
+  "source_project": "oewn:2025",
+  "builder_dependency": {
+    "package": "wn",
+    "version": "1.1.1"
+  },
+  "design": "10 polysemous English lemmas × 6 noun senses each",
+  "lemma_groups": [
+    "bank",
+    "spring",
+    "head",
+    "line",
+    "point",
+    "light",
+    "field",
+    "board",
+    "foot",
+    "case"
+  ],
+  "senses_per_lemma": 6,
+  "selection_rule": [
+    "Query all noun senses for each lemma in pinned oewn:2025.",
+    "Sort source senses deterministically by (lexfile, synset_id, sense_id).",
+    "Round-robin across distinct lexfiles to increase within-lemma semantic diversity.",
+    "Fill any remaining quota from the sorted unused senses.",
+    "Fail rather than silently substitute a lemma if it has fewer than six noun senses."
+  ],
+  "leakage_policy": "All senses sharing a lemma are one indivisible group for later train/calibration/test assignment.",
+  "representativeness_warning": "This is a grouped polysemy calibration set, not a frequency-representative sample of English concepts."
+}
