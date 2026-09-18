@@ -350,3 +350,60 @@ def test_ocds_record_package_never_carries_competition_across_ocids():
     assert case.contract.contract_id == "ocds-b:1"
     assert case.contract.bid_count is None
     assert "procurement_competition" not in case.source_coverage
+
+
+def test_ocds_record_normalizer_accepts_legacy_bare_release_list():
+    from source_adapters import normalize_ocds_record_package
+
+    legacy = [
+        {
+            "ocid": "ocds-legacy-1",
+            "id": "tender",
+            "date": "2026-01-01T00:00:00Z",
+            "tender": {"numberOfTenderers": 2},
+        },
+        {
+            "ocid": "ocds-legacy-1",
+            "id": "award",
+            "date": "2026-01-02T00:00:00Z",
+            "parties": [
+                {
+                    "id": "s",
+                    "identifier": {"scheme": "GB-COH", "id": "12345678"},
+                }
+            ],
+            "awards": [{"id": "1", "suppliers": [{"id": "s"}]}],
+        },
+    ]
+    result = normalize_ocds_record_package(legacy)
+    assert result.record_count == 1
+    assert result.release_count == 2
+    assert result.cases[0].contract.bid_count == 2
+    assert "procurement_competition" in result.cases[0].source_coverage
+
+
+def test_ocds_record_normalizer_accepts_legacy_bare_record_list():
+    from source_adapters import normalize_ocds_record_package
+
+    legacy = [
+        {
+            "ocid": "ocds-legacy-2",
+            "releases": [
+                {
+                    "ocid": "ocds-legacy-2",
+                    "id": "award",
+                    "date": "2026-01-02T00:00:00Z",
+                    "parties": [
+                        {
+                            "id": "s",
+                            "identifier": {"scheme": "GB-COH", "id": "87654321"},
+                        }
+                    ],
+                    "awards": [{"id": "1", "suppliers": [{"id": "s"}]}],
+                }
+            ],
+        }
+    ]
+    result = normalize_ocds_record_package(legacy)
+    assert result.record_count == 1
+    assert result.cases[0].contract.supplier_ids == ("GB-COH:87654321",)
