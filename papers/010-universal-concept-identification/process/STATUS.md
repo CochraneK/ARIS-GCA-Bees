@@ -1,7 +1,7 @@
 # ARIS4C010 · STATUS
 
 **Updated:** 2026-09-19  
-**Stage:** source-derived Pilot 2 complete · pinned 60-target OEWN calibration build configured  
+**Stage:** HUMAN-CALIBRATION-READY · source, calibration, mixed-P6, form-generation and analysis plumbing CI-verified  
 **Current claim strength:** provisional integration gap; not manuscript-frozen
 
 ## Completed
@@ -24,6 +24,16 @@
 - [x] Pilot 0 executed and recorded
 - [x] Pilot 1 synthetic semantic seed executed and recorded (taxonomy collisions → multi-axis separation; synthetic only)
 - [x] machine-readable UCID target schema v0
+- [x] figure/table plan with confirmatory-result placeholders
+- [x] English + Chinese pre-results manuscript scaffolds
+- [x] annotation adjudication policy + review triage tool
+- [x] staged human precision/stopping plan
+- [x] human-form validation, CSV export and synthetic analysis dry-run verified in CI run #43
+- [x] balanced human forms built: 72 forms (36 P2 + 36 P6), 92 presented trials/form
+- [x] complete calibration chain verified in ARIS4C010 CI run #30
+- [x] mixed P6 packet built: 24 scenarios × 9 probes = 216 blank pairs
+- [x] lexical human packet built: 1,440 full pairs + 720 answer-blind calibration pairs
+- [x] Calibration60 built from pinned oewn:2025 and CI-verified: 60 targets, 10 lemma groups × 6 senses
 - [x] calibration60 builder + validator + artifact upload configured
 - [x] pinned dependency/resource path: wn==1.1.1 + oewn:2025
 - [x] calibration60 sampling frozen: 10 polysemous lemmas × 6 noun senses
@@ -112,13 +122,13 @@ Pause or split the project if:
 
 ## Current readiness
 
-**Engineering:** pinned lexical source ingestion implemented; calibration60 CI build is the current hard gate.
+**Engineering:** human-calibration pipeline complete and CI-verified.
 
 **Theory:** baseline propositions and failure-mode distinctions are frozen enough for implementation; they remain revisable if a closer prior is found.
 
 **Empirical evidence:** Pilot 2 is source-derived but still exploratory because semantic responses are not human calibrated. Pilots 0–1 remain synthetic/combinatorial.
 
-**Next real evidence step:** freeze the generated 60-target OEWN source pool, create its P2/P6 human annotation packet, and calibrate semantic responses before expanding toward the ~320-target mixed Benchmark v0.
+**Next real evidence step:** collect Stage-A real human P2/P6 calibration responses; analyze reliability/category use; then decide whether P6 survives and which cells require additional ratings/adjudication before Benchmark v0 expansion.
 
 The project should not spend more time expanding ontology prose before that evidence step unless a literature collision forces redesign.
 
@@ -167,3 +177,73 @@ The builder intentionally fails if any selected lemma has fewer than six noun se
 - calibration60 artifact upload.
 
 The first pre-calibration60 CI run completed successfully. The new pinned-resource build is being validated by the updated workflow.
+
+
+## Human calibration gate
+
+The repository is now **human-calibration-ready**.
+
+### Verified lexical calibration artifacts
+
+CI run #30 confirms:
+
+- 60 pinned OEWN 2025 targets;
+- 10 lemma groups × 6 noun senses;
+- 1,440 blank full target-query pairs;
+- 720 answer-blind lexical calibration pairs;
+- generic query exposure 29–31 times in the 720-pair subset.
+
+### Verified mixed response-state artifacts
+
+CI run #30 confirms:
+
+- 24 constructed stress scenarios;
+- 18 generic probes;
+- 216 blank target-query pairs;
+- each probe exposed exactly 12 times.
+
+### Verified participant forms
+
+CI run #43 confirms:
+
+- 72 total forms;
+- P2/P6 = 36/36;
+- 84 unique main trials + 8 retests = 92 presented trials/form;
+- lexical pair main exposure = 3 per protocol per complete form cycle;
+- mixed-stress pair main exposure = 4 per protocol per complete form cycle;
+- 72 per-form CSVs + one index;
+- synthetic analyzer dry-run passes, including retest matching.
+
+The one failed CI attempt before run #43 exposed an immediate main/retest adjacency in one form; the ordering algorithm was changed to deterministic reshuffling until no adjacent duplicate remains. Run #43 verifies the fix.
+
+### What is genuinely blocked
+
+No further code or ontology prose can substitute for the next evidence step:
+
+1. ethics/exemption determination as appropriate;
+2. recruitment/platform decision;
+3. real P2/P6 participant responses;
+4. Stage-A reliability/category-use analysis;
+5. only then promotion of selected response cells from `unannotated` toward `human_annotated` / adjudication.
+
+Synthetic responses, LLM responses, and the exploratory Pilot 2 matrix must not be used to pretend that this gate has been passed.
+
+## Current canonical claim ceiling
+
+Allowed now:
+
+> ARIS4C010 provides a formal theory, source-locked benchmark architecture, exploratory source-derived query-complexity pilot, and CI-verified human calibration protocol for measuring Semantic Query Overhead.
+
+Not yet allowed:
+
+> the proposed multi-axis ontology is empirically superior across human semantic judgments;
+
+or:
+
+> P6 is more reliable/valid than binary answering;
+
+or:
+
+> the final Benchmark v0 semantic response matrix has been validated.
+
+Those require real human data.
