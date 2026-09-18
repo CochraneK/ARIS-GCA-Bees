@@ -115,6 +115,9 @@ Tree/graph models are not exactly capacity-matched to a single circle, so tree s
 
 ## Remaining decisive gate
 
+**WorkBuddy / cross-family handoff:** `refine-logs/WORKBUDDY_HANDOFF.md`  
+**Receipt template:** `refine-logs/SECONDARY_REVIEW_RECEIPT.template.json`
+
 1. **Identity-bearing ARIS secondary novelty/research review.**
 2. Reviewer checks for a missed prior-art collision equivalent to the full periodic-vs-nonperiodic predictive stress test.
 3. Reviewer checks that manuscript claims remain at “simple global circle not supported,” not “all periodicity disproven” or “language proven tree-shaped.”
