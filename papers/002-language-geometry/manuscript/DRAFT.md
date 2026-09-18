@@ -1,7 +1,7 @@
 # Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure
 
 **Paper 002 · ARIS4C**  
-**Author:** Cunyi Kang  
+**Author:** Cochrane Kang  
 **Manuscript status:** Draft v1 · exploratory/model-comparison study  
 **Secondary ARIS review:** PASS (WorkBuddy / Tencent Hy3)  
 **Last substantive evidence cutoff:** 2026-09-18
