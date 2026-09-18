@@ -48,7 +48,7 @@ The strongest conclusion permitted by the design is also deliberately narrow:
 
 #### TLI
 
-The primary analyses used the statistically curated TLI resource from Graff et al. (2025), specifically the densified-small full dataset used by the ARIS4C pipeline. TLI combines structural information derived from WALS, AUTOTYP, PHOIBLE and Lexibank and applies curation to reduce logical dependencies and strong statistical dependencies among features. Stage 0 used 644 languages and up to 120 features. Global predictive comparisons used the 60 best-covered eligible features unless otherwise stated; robustness analyses repeated selected comparisons at 40 features.
+The primary analyses used the statistically curated TLI resource from Graff et al. (2025), specifically the densified-small full dataset used by the ARIS4C pipeline. TLI combines structural information derived from WALS, AUTOTYP, PHOIBLE and Lexibank and applies curation to reduce logical dependencies and strong statistical dependencies among features. Stage 0 used 644 languages and up to 120 features. For the compression screen, missing feature values were imputed by the feature-wise mode, categorical states were one-hot encoded, and cumulative explained variance was summarized with TruncatedSVD; the null independently shuffled each imputed feature while preserving its marginal distribution. A separate Stage-0 pairwise-NMI screen used jointly observed languages for each feature pair and permuted one feature within each pair to construct an independence-style null. Global predictive comparisons used the 60 best-covered eligible features unless otherwise stated; robustness analyses repeated selected comparisons at 40 features.
 
 For Stage 1, a feature was eligible if it had at least 180 observed language values and between 2 and 15 observed states. Eligible features were ranked first by coverage and then by lower cardinality, reducing unstable NMI estimates from sparse, high-cardinality variables. The top 60 were used for the main global screen.
 
@@ -178,7 +178,7 @@ These intervals quantify sensitivity to the sampled family splits. They do **not
 
 ### 3.1 Structural signal exists, but Stage 0 does not imply periodicity
 
-On the TLI Stage-0 screen, 20 principal components explained 0.510 of cumulative variance compared with 0.362 under a column-wise shuffled null, an excess of 0.148. Pairwise residual association was small for most feature pairs but showed a stronger upper tail: the observed 99th percentile of NMI was 0.119 compared with 0.039 under permutation.
+On the TLI Stage-0 screen, 20 TruncatedSVD components of the mode-imputed, one-hot-encoded feature matrix accounted for 0.510 of cumulative explained variance compared with 0.362 under a column-wise shuffled null, an excess of 0.148. Pairwise feature association was small for most pairs but showed a stronger upper tail: the observed 99th percentile of NMI was 0.119 compared with 0.039 under within-pair permutation.
 
 These results justified explicit geometry tests. They were not interpreted as evidence for periodicity.
 
