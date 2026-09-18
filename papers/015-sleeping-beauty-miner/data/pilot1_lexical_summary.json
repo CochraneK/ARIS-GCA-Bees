@@ -1,0 +1,64 @@
+{
+  "pilot": "ARIS4C015 Pilot 1 historical title lexical-novelty ablation",
+  "status": "exploratory-ablation-complete",
+  "workflow_run_id": 35316024391,
+  "n_strata": 10,
+  "target_papers": 200,
+  "prior_titles_per_field_era": 100,
+  "signals": [
+    "lexical_nearest1_distance",
+    "lexical_nearest3_distance",
+    "lexical_oov_share"
+  ],
+  "known_target_token_share_range": [0.155039, 0.393701],
+  "macro_ndcg_at_5": {
+    "beauty_percentile": {
+      "lexical_nearest1_distance": 0.536827,
+      "lexical_nearest3_distance": 0.545885,
+      "lexical_oov_share": 0.554575
+    },
+    "future_acceleration_percentile": {
+      "lexical_nearest1_distance": 0.599945,
+      "lexical_nearest3_distance": 0.609200,
+      "lexical_oov_share": 0.616108
+    },
+    "future_uptake_percentile": {
+      "lexical_nearest1_distance": 0.529538,
+      "lexical_nearest3_distance": 0.516902,
+      "lexical_oov_share": 0.525212
+    },
+    "awakening_within_horizon": {
+      "lexical_nearest1_distance": 0.273442,
+      "lexical_nearest3_distance": 0.288544,
+      "lexical_oov_share": 0.273442
+    },
+    "delayed_recognition_consensus": {
+      "lexical_nearest1_distance": 0.225698,
+      "lexical_nearest3_distance": 0.240800,
+      "lexical_oov_share": 0.240800
+    }
+  },
+  "citation_baseline_reference": {
+    "awakening_best_macro_ndcg": {
+      "feature": "acceleration_3y",
+      "value": 0.291229
+    },
+    "consensus_best_macro_ndcg": {
+      "feature": "partial_beauty",
+      "value": 0.357188
+    },
+    "future_acceleration_best_macro_ndcg": {
+      "feature": "dormancy",
+      "value": 0.662329
+    }
+  },
+  "interpretation": [
+    "Simple title lexical novelty does not provide a stable improvement over the strongest citation-only baseline for delayed-recognition consensus.",
+    "Nearest-3 lexical distance is approximately tied with the best citation baseline on awakening in this exploratory sample, but variance is high.",
+    "Lexical OOV share approaches but does not beat the strongest citation baseline on immediate future acceleration.",
+    "The 100-title prior corpus leaves substantial vocabulary out-of-coverage; this feature family should receive a prior-corpus-size sensitivity test before being declared definitively uninformative.",
+    "No weighted lexical novelty composite is introduced post hoc."
+  ],
+  "claim_boundary": "Transparent lexical proxy with a small historical reference corpus; not an embedding novelty measure and not evidence of scientific importance.",
+  "computed_at": "2026-09-18"
+}
