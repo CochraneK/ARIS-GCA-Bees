@@ -55,7 +55,7 @@ def main() -> None:
         "status": "idea",
         "domain": "",
         "summary": "",
-        "authors": ["Cunyi Kang"],
+        "authors": ["Cochrane Kang"],
         "aris": {
             "provenance": "ARIS",
             "version": args.aris_version,
