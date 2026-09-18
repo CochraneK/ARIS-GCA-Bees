@@ -2,7 +2,7 @@
 
 **Current stage:** design hardened / pilot-gated  
 **ARIS baseline:** v0.4.26  
-**Canonical scope:** separate acquisition loss from encoding loss before any mechanistic expansion.
+**Canonical scope:** quantify acquisition and encoding divergence separately before mechanistic expansion.
 
 ## Completed
 
@@ -10,97 +10,100 @@
 - [x] Source evidence distinguished from latent lived-state ground truth.
 - [x] Acquisition (A_m) and encoding (E_k) formally separated.
 - [x] 009A split into 009A1 same-source encoding benchmark and 009A2 acquisition benchmark.
-- [x] Actual participant self-report separated from questionnaire-format source projection.
-- [x] Diagnosis removed from universal narrative-fidelity ranking.
-- [x] Intended-use validity formalized separately from source fidelity.
-- [x] Multi-objective, use-conditioned Pareto frontier specified.
-- [x] Phenomenological fidelity separated from reliability, validity, prediction and burden.
-- [x] Rate-distortion formulation restricted to fixed-source encoding comparisons.
-- [x] Idiographic + hierarchical longitudinal extension specified.
-- [x] Active inference demoted from assumed ontology to candidate model family.
-- [x] Seed literature matrix created.
-- [x] Targeted novelty search completed and logged.
-- [x] Adversarial audit completed with fatal-design corrections.
+- [x] Actual self-report separated from questionnaire-format source projection.
+- [x] Intended-use validity separated from source-reconstruction fidelity.
+- [x] Use-conditioned Pareto frontier specified.
+- [x] Rate-distortion formulation restricted to fixed-source encoding.
+- [x] Independent fidelity metrics, relation ontology and query bank specified.
+- [x] Power/precision sensitivity framework added.
+- [x] Adversarial audit completed and fatal-design confounds corrected.
+- [x] Expanded Gate A novelty review completed; broad novelty claims retired.
+- [x] PNDI, clinical summarization and intended-use validity incorporated as prior art.
 - [x] 009A1 preregistration-ready protocol skeleton revised.
-- [x] Episode-level data dictionary drafted.
-- [x] Independent-panel fidelity metric specification drafted.
-- [x] Minimal relation ontology drafted.
-- [x] Independent query-bank template drafted with anti-redundancy rules.
-- [x] Synthetic fidelity-frontier engineering benchmark added.
-- [x] Participant/episode/query/evaluator power-sensitivity framework added.
-- [x] Portfolio Pipeline-link generator bug fixed and Page verified.
+- [x] 009A2 matched-content + native-instrument acquisition protocol drafted.
+- [x] Counterbalanced order / first-method estimands specified for 009A2.
+- [x] Physical-context constraint layer specified separately from phenomenological fidelity.
+- [x] Public paper metadata moved to pilot-gated.
 
-## Gate A — systematic novelty search
+## Gate A — novelty
 
-**Status:** targeted audit complete; formal multi-database systematic novelty review remains.
+**Status:** conditional pass for research development.
 
-Pass condition: strongest novelty sentence is supported after database and citation-chain screening.
+The defensible candidate contribution is the integrated experimental architecture, not phenomenology, computational phenomenology, narrative loss or fidelity individually.
 
-## Gate B — fidelity metric calibration
+Before submission, complete formal searches in MEDLINE, PsycINFO, Scopus/Web of Science and a phenomenology/philosophy index, plus citation chaining.
 
-**Status:** design specification complete; empirical calibration required.
+## Gate B — 009A1 fidelity calibration
+
+**Status:** design complete; empirical calibration required.
 
 Need pilot estimates of:
 
 - source answerability;
 - query redundancy;
-- source-adjudication agreement;
+- adjudication agreement;
 - evaluator variance;
 - usable queries per episode;
 - R3P/R4P projection feasibility;
-- participant-meaning-check feasibility.
+- participant meaning-check feasibility.
 
-Pass condition: reliability and scoring rules are frozen before confirmatory cases.
+## Gate C — 009A1 pilot material
 
-## Gate C — pilot material
+**Status:** primary blocker.
 
-**Status:** main blocker.
+Need independent, ethically usable, sufficiently rich source episodes plus trained/adjudicating raters.
 
-009A1 needs independent, ethically usable source episodes.
+## Gate D — 009A1 reliability
 
-009A2 additionally needs purpose-collected multimethod assessments from the same participants and therefore likely requires a dedicated protocol/ethics workflow.
+Freeze thresholds after calibration and before confirmatory scoring.
 
-## Gate D — reliability
+## Gate E — 009A1 confirmatory benchmark
 
-Pass condition: primary fidelity components meet frozen reliability gates or are revised before confirmatory scoring.
-
-## Gate E — confirmatory encoding benchmark
-
-Compare at minimum:
+Minimum conditions:
 
 - R0 rich source;
 - R1 episode graph;
 - R2 phenomenological code;
 - R3P questionnaire-format projection;
-- R4P conventional symptom projection.
+- R4P symptom-code projection.
 
-R5 low-dimensional representation may be confirmatory if its decoding rule is frozen.
+## Gate F — 009A2 acquisition pilot
 
-## Gate F — acquisition benchmark
+**Status:** protocol drafted; data/ethics not started.
 
-Only after 009A1 methodology is stable, test genuine differences among:
+Primary acquisition experiment:
 
-- phenomenological interview;
-- participant self-report;
-- conventional clinical assessment;
-- EMA/other acquisition streams where justified.
+- M1 self-administered matched content;
+- M2 fully structured matched-content interview;
+- M3 phenomenological semi-structured interview;
+- six counterbalanced orders;
+- randomized first-method estimand;
+- full crossover method/order analysis.
 
-## Deferred
+Native-instrument/EMA comparison is secondary A2b.
 
-- EEG/fMRI mechanism study;
-- passive digital phenotyping;
-- intervention control;
-- full digital-twin language;
-- clinical decision support.
+## Gate G — multimodal/mechanistic extension
+
+Deferred until measurement layers survive.
+
+Candidate later additions:
+
+- EMA dynamics;
+- passive contextual anchors;
+- EEG/fMRI/physiology;
+- computational model competition;
+- intervention perturbation.
 
 ## Current main blocker
 
-The project no longer benefits from adding broad conceptual layers.
+More conceptual expansion is now lower value than obtaining **pilot source material and independent raters**.
 
-The next scientifically meaningful step is **real pilot material + independent raters**.
+009A1 can proceed before 009A2 because it can use existing ethically permissible records.
 
 ## Scope control
 
-009A1 = encoding measurement paper.  
-009A2 = acquisition-method paper.  
-Mechanistic/neural/longitudinal work follows only after these measurement layers survive calibration.
+009A1 = encoding measurement.  
+009A2 = acquisition measurement.  
+009B = cross-level mechanism.  
+009C = longitudinal idiographic dynamics.  
+009D = perturbation/intervention validation.
