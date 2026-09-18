@@ -41,6 +41,9 @@ def main() -> None:
         ("IKES_CODER_A.csv", "IKES Coder A"),
         ("IKES_CODER_B_PACKET.md", "blind Coder B packet"),
         ("SYNTHETIC_PPML_REPORT.md", "synthetic PPML report"),
+        ("PREREGISTRATION_AMENDMENT_001.md", "implementation amendment 001"),
+        ("PREREGISTRATION_AMENDMENT_002.md", "estimator amendment 002"),
+        ("MODEL_SPEC_LOCK.json", "machine-readable model specification lock"),
     ]:
         check_file(PROCESS / rel, label, design_problems)
 
@@ -51,6 +54,20 @@ def main() -> None:
             design_problems.append(f"discipline crosswalk should have 21 rows, found {len(x)}")
         if "status" not in x.columns or not x["status"].astype(str).str.startswith("FROZEN").all():
             design_problems.append("not every discipline crosswalk row is FROZEN")
+
+    model_lock = PROCESS / "MODEL_SPEC_LOCK.json"
+    if model_lock.exists():
+        try:
+            lock = json.loads(model_lock.read_text(encoding="utf-8"))
+            if lock.get("outcome_seen_at_lock") is not False:
+                design_problems.append("MODEL_SPEC_LOCK must state outcome_seen_at_lock=false")
+            if lock.get("primary_period") != "2019-2022":
+                design_problems.append("MODEL_SPEC_LOCK primary_period must be 2019-2022")
+            perm = lock.get("permutation", {})
+            if perm.get("reps") != 999 or perm.get("seed") != 20260918:
+                design_problems.append("MODEL_SPEC_LOCK permutation settings differ from frozen 999/20260918")
+        except Exception as exc:
+            design_problems.append(f"MODEL_SPEC_LOCK unreadable: {type(exc).__name__}")
 
     # These are intentionally external/local gates.
     for path, label in [
