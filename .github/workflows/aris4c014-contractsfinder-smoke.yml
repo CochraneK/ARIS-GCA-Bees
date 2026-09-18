@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "papers/014-public-integrity-forensics/code/live_uk_contractsfinder_smoke.py"
+      - "papers/014-public-integrity-forensics/code/source_adapters.py"
       - ".github/workflows/aris4c014-contractsfinder-smoke.yml"
 
 permissions:
