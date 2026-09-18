@@ -1,7 +1,7 @@
 # ARIS4C010 · STATUS
 
 **Updated:** 2026-09-18  
-**Stage:** design + prior-art audit + combinatorial Pilot 0 complete  
+**Stage:** design + prior-art audit + Pilot 0 + synthetic Semantic Pilot 1 complete  
 **Current claim strength:** provisional integration gap; not manuscript-frozen
 
 ## Completed
@@ -22,6 +22,7 @@
 - [x] pragmatic/RSA neighbor identified
 - [x] standard-library combinatorial engine
 - [x] Pilot 0 executed and recorded
+- [x] Pilot 1 synthetic semantic seed executed and recorded (taxonomy collisions → multi-axis separation; synthetic only)
 - [x] machine-readable UCID target schema v0
 
 ## Main correction made during audit
