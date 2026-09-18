@@ -1,0 +1,89 @@
+{
+  "pilot": "ARIS4C015 Pilot 1 two-seed seed-sensitivity",
+  "status": "exploratory-10-strata-complete",
+  "n_strata": 10,
+  "total_papers_analyzed": 200,
+  "field_era_pairs": {
+    "computer_science_1990": {"sample_jaccard": 0.0, "consensus_positive_rates": [0.2, 0.2]},
+    "medicine_1980": {"sample_jaccard": 0.0, "consensus_positive_rates": [0.15, 0.2]},
+    "physics_1980": {"sample_jaccard": 0.0, "consensus_positive_rates": [0.2, 0.2]},
+    "physics_1990": {"sample_jaccard": 0.0, "consensus_positive_rates": [0.05, 0.15]},
+    "social_1980": {"sample_jaccard": 0.0, "consensus_positive_rates": [0.05, 0.15]}
+  },
+  "macro_ndcg_at_5": {
+    "beauty_percentile": {
+      "current_citations": {"mean": 0.632695, "sd": 0.159175},
+      "momentum_3y": {"mean": 0.659220, "sd": 0.137992},
+      "acceleration_3y": {"mean": 0.693972, "sd": 0.119740},
+      "partial_beauty": {"mean": 0.887566, "sd": 0.061908},
+      "dormancy": {"mean": 0.413301, "sd": 0.105179}
+    },
+    "beauty_top_fraction": {
+      "current_citations": {"mean": 0.288621, "sd": 0.212033},
+      "momentum_3y": {"mean": 0.358396, "sd": 0.228951},
+      "acceleration_3y": {"mean": 0.457218, "sd": 0.224908},
+      "partial_beauty": {"mean": 0.644429, "sd": 0.229084},
+      "dormancy": {"mean": 0.161957, "sd": 0.149306}
+    },
+    "future_acceleration_percentile": {
+      "current_citations": {"mean": 0.493432, "sd": 0.199458},
+      "momentum_3y": {"mean": 0.427178, "sd": 0.226524},
+      "acceleration_3y": {"mean": 0.513440, "sd": 0.157362},
+      "partial_beauty": {"mean": 0.596920, "sd": 0.209177},
+      "dormancy": {"mean": 0.662329, "sd": 0.142366}
+    },
+    "future_uptake_percentile": {
+      "current_citations": {"mean": 0.882988, "sd": 0.071201},
+      "momentum_3y": {"mean": 0.846011, "sd": 0.090012},
+      "acceleration_3y": {"mean": 0.698594, "sd": 0.112091},
+      "partial_beauty": {"mean": 0.722590, "sd": 0.110641},
+      "dormancy": {"mean": 0.391259, "sd": 0.082716}
+    },
+    "awakening_within_horizon": {
+      "current_citations": {"mean": 0.152125, "sd": 0.223904},
+      "momentum_3y": {"mean": 0.167137, "sd": 0.229297},
+      "acceleration_3y": {"mean": 0.291229, "sd": 0.231012},
+      "partial_beauty": {"mean": 0.257410, "sd": 0.201123},
+      "dormancy": {"mean": 0.209118, "sd": 0.202991}
+    },
+    "delayed_recognition_consensus": {
+      "current_citations": {"mean": 0.215866, "sd": 0.250176},
+      "momentum_3y": {"mean": 0.214298, "sd": 0.266624},
+      "acceleration_3y": {"mean": 0.340609, "sd": 0.208457},
+      "partial_beauty": {"mean": 0.357188, "sd": 0.226758},
+      "dormancy": {"mean": 0.204414, "sd": 0.191440}
+    },
+    "delayed_recognition_with_uptake_floor": {
+      "current_citations": {"mean": 0.215866, "sd": 0.250176},
+      "momentum_3y": {"mean": 0.214298, "sd": 0.266624},
+      "acceleration_3y": {"mean": 0.340609, "sd": 0.208457},
+      "partial_beauty": {"mean": 0.357188, "sd": 0.226758},
+      "dormancy": {"mean": 0.204414, "sd": 0.191440}
+    }
+  },
+  "ndcg_winner_counts": {
+    "beauty_percentile": {"momentum_3y": 1, "partial_beauty": 9},
+    "beauty_top_fraction": {"partial_beauty": 7, "dormancy": 2, "acceleration_3y": 2},
+    "future_acceleration_percentile": {"momentum_3y": 1, "partial_beauty": 4, "dormancy": 3, "current_citations": 2},
+    "future_uptake_percentile": {"momentum_3y": 4, "current_citations": 5, "partial_beauty": 1},
+    "awakening_within_horizon": {"current_citations": 1, "momentum_3y": 1, "acceleration_3y": 3, "partial_beauty": 3, "dormancy": 4},
+    "delayed_recognition_consensus": {"momentum_3y": 2, "partial_beauty": 3, "dormancy": 3, "acceleration_3y": 3},
+    "delayed_recognition_with_uptake_floor": {"momentum_3y": 2, "partial_beauty": 3, "dormancy": 3, "acceleration_3y": 3}
+  },
+  "interpretation": [
+    "Within every field-era pair the two fixed seeds produced disjoint 20-paper samples in this run, so the seed sensitivity comparison is not driven by duplicate samples.",
+    "Partial Beauty Coefficient remains strongest for Beauty-defined outcomes, which is expected metric-definition alignment rather than independent rediscovery evidence.",
+    "Current citations and recent momentum remain strongest for later citation uptake.",
+    "No citation-only baseline consistently dominates awakening or delayed-recognition-consensus outcomes across the 10 strata.",
+    "Consensus NDCG variability is large relative to its macro mean, so single-cohort winners are unstable.",
+    "The top-50-percent future-uptake floor remained non-discriminating and should be tightened offline.",
+    "These findings justify independent semantic/network ablations before learned-model training."
+  ],
+  "assembled_from": {
+    "multistrata_workflow_run_id": 35315308268,
+    "repair_workflow_run_id": 35315672839,
+    "note": "9 successful strata plus repaired Physics-1990 seed31590 after an OpenAlex 429."
+  },
+  "claim_boundary": "Exploratory 10-stratum, two-seed-per-field-era result; not prospective validation and not evidence of breakthrough prediction.",
+  "assembled_at": "2026-09-18"
+}
