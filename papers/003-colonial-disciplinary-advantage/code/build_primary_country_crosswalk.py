@@ -33,7 +33,7 @@ def convert(iso3: str) -> str | None:
     if value is None:
         return None
     value = str(value).strip().upper()
-    return value if len(value) == 2 and value not in {"NA", "NAN"} else None
+    return value if len(value) == 2 and value != "NAN" else None
 
 
 def main() -> None:
