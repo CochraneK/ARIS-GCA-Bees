@@ -42,6 +42,8 @@ class OpenAlexWork:
     doi: str | None
     cited_by_count: int | None
     primary_topic: str | None
+    referenced_works_count: int | None = None
+    authorship_count: int | None = None
 
     @classmethod
     def from_payload(cls, payload: dict[str, Any]) -> "OpenAlexWork":
@@ -53,6 +55,12 @@ class OpenAlexWork:
             doi=payload.get("doi"),
             cited_by_count=payload.get("cited_by_count"),
             primary_topic=topic.get("display_name"),
+            referenced_works_count=payload.get("referenced_works_count"),
+            authorship_count=(
+                len(payload.get("authorships") or [])
+                if "authorships" in payload
+                else None
+            ),
         )
 
 
@@ -317,7 +325,7 @@ def sample_works(
             "per_page": int(sample_size),
             "select": (
                 "id,display_name,publication_year,doi,cited_by_count,"
-                "primary_topic"
+                "primary_topic,referenced_works_count,authorships"
             ),
         },
         api_key=api_key,
