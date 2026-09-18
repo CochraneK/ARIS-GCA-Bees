@@ -1,0 +1,65 @@
+name: ARIS4C011 Research Forensics CI
+
+on:
+  pull_request:
+    paths:
+      - "papers/011-research-forensics/**"
+      - ".github/workflows/aris4c011-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/**"
+      - ".github/workflows/aris4c011-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependencies
+        run: python -m pip install --disable-pip-version-check pytest jsonschema pyyaml
+
+      - name: Test benchmark and deterministic utilities
+        run: python -m pytest -q papers/011-research-forensics/code
+
+      - name: Test Research Forensics orchestrator
+        working-directory: papers/011-research-forensics/agent/research-forensics/scripts
+        run: python -m pytest -q
+
+      - name: Validate Agent Skill and JSON schemas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import yaml
+          from jsonschema import Draft202012Validator
+
+          root = Path("papers/011-research-forensics")
+          skill = root / "agent/research-forensics/SKILL.md"
+          text = skill.read_text(encoding="utf-8")
+          assert text.startswith("---\n"), "SKILL.md must start with YAML frontmatter"
+          _, front, _ = text.split("---", 2)
+          meta = yaml.safe_load(front)
+          assert meta["name"] == "research-forensics"
+          assert isinstance(meta.get("description"), str) and len(meta["description"]) >= 40
+
+          for name in ["finding.schema.json", "report.schema.json"]:
+              path = root / "agent/research-forensics/assets" / name
+              schema = json.loads(path.read_text(encoding="utf-8"))
+              Draft202012Validator.check_schema(schema)
+
+          paper = json.loads((root / "paper.json").read_text(encoding="utf-8"))
+          assert paper["id"] == "011"
+          assert paper["links"]["skill"] == "agent/research-forensics/SKILL.md"
+          assert paper["links"]["paper_en"] == "manuscript/DRAFT.md"
+          print("ARIS4C011 skill/schema validation passed")
+          PY

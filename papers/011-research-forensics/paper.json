@@ -4,19 +4,20 @@
   "title": "Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening",
   "short_title": "Research Forensics",
   "year": 2026,
-  "status": "research-design-benchmark-locked",
+  "status": "methods-draft-agent-skill-benchmark-seed",
   "domain": "metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication",
   "summary": "A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct.",
   "authors": ["Cunyi Kang"],
   "aris": {
-    "provenance": "ARIS4C guided design with live prior-art audit; benchmark protocol and evidence semantics frozen before corpus construction",
+    "provenance": "ARIS4C guided design with live prior-art and source-anatomy audits; benchmark protocol and evidence semantics frozen before confirmatory corpus construction",
     "version": "v0.4.26",
     "commit": ""
   },
   "links": {
-    "paper_en": "",
+    "paper_en": "manuscript/DRAFT.md",
     "paper_zh": "",
     "pipeline": "process/RESEARCH_PLAN.md",
+    "skill": "agent/research-forensics/SKILL.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/011-research-forensics"
   },
   "tags": [
@@ -33,6 +34,7 @@
     "paper mills",
     "AI detection",
     "evidence graph",
-    "human-in-the-loop"
+    "human-in-the-loop",
+    "agent skills"
   ]
 }

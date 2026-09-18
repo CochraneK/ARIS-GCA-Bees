@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/011-research-forensics/agent/research-forensics/assets/report.schema.json",
+  "title": "Research Forensics Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_version",
+    "artifact_id",
+    "mode",
+    "artifact_safety",
+    "findings",
+    "coverage",
+    "review_priority",
+    "interpretation",
+    "limitations"
+  ],
+  "properties": {
+    "report_version": {
+      "type": "string"
+    },
+    "artifact_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "track_a",
+        "track_b",
+        "ad_hoc"
+      ]
+    },
+    "artifact_safety": {
+      "type": "object",
+      "required": [
+        "eligible",
+        "reason"
+      ],
+      "properties": {
+        "eligible": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "time_safe": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "finding.schema.json"
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "registered_families",
+        "applicable_families",
+        "executed_families",
+        "abstained_families",
+        "errored_families"
+      ],
+      "properties": {
+        "registered_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applicable_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "executed_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "abstained_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errored_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_graph": {
+      "type": "object"
+    },
+    "review_priority": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "LOW",
+        "MODERATE",
+        "HIGH",
+        "BLOCKED"
+      ]
+    },
+    "interpretation": {
+      "type": "string"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
