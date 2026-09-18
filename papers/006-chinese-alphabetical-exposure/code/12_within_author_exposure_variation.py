@@ -49,7 +49,7 @@ def cr(doi_url):
 
 def sample_field_window(fid,start,end,target,seed):
     want=min(100,max(target*3,target+40))
-    p={"filter":",".join(["authorships.institutions.country_code:CN",f"topics.field.id:{fid}",f"from_publication_date:{start}-01-01",f"to_publication_date:{end}-12-31"]),"select":"id,doi,authorships","sample":want,"seed":seed,"per_page":want}
+    p={"filter":",".join(["authorships.institutions.country_code:CN",f"primary_topic.field.id:{fid}",f"from_publication_date:{start}-01-01",f"to_publication_date:{end}-12-31"]),"select":"id,doi,authorships","sample":want,"seed":seed,"per_page":want}
     if os.getenv("OPENALEX_API_KEY"):p["api_key"]=os.environ["OPENALEX_API_KEY"]
     d=get(OA_WORKS+"?"+urllib.parse.urlencode(p))
     if not d:return []
@@ -101,7 +101,7 @@ def seed_authors(year,target):
 def author_works(aid,start,end,maxworks=300):
     cur="*";out=[]
     while cur and len(out)<maxworks:
-        p={"filter":",".join([f"author.id:{aid}",f"from_publication_date:{start}-01-01",f"to_publication_date:{end}-12-31"]),"select":"id,publication_year,topics,authorships","per_page":100,"cursor":cur}
+        p={"filter":",".join([f"author.id:{aid}",f"from_publication_date:{start}-01-01",f"to_publication_date:{end}-12-31"]),"select":"id,publication_year,primary_topic,authorships","per_page":100,"cursor":cur}
         if os.getenv("OPENALEX_API_KEY"):p["api_key"]=os.environ["OPENALEX_API_KEY"]
         d=get(OA_WORKS+"?"+urllib.parse.urlencode(p))
         if not d:break
@@ -112,9 +112,7 @@ def author_works(aid,start,end,maxworks=300):
     return out
 
 def primary_field(w):
-    tops=w.get("topics") or []
-    if not tops:return None
-    fld=tops[0].get("field") or {}
+    fld=(w.get("primary_topic") or {}).get("field") or {}
     raw=fld.get("id")
     if raw is None:return None
     try:return int(str(raw).rstrip("/").split("/")[-1])
@@ -145,7 +143,7 @@ def main():
     elig=[x for x in stats if x["years"]>=3]
     def med(vals):
         return statistics.median(vals) if vals else None
-    manifest={"script":"12_within_author_exposure_variation.py","confirmatory_use_allowed":False,"exposure_level":"field × prior-3-year window","seed_authors":len(stats),"authors_with_3plus_defined_exposure_years":len(elig),"share_3plus_defined_years":len(elig)/len(stats) if stats else None,"median_within_author_range_3plus":med([x["range"] for x in elig]),"median_within_author_sd_3plus":med([x["sd"] for x in elig]),"share_range_ge_0_05_3plus":sum(x["range"]>=.05 for x in elig)/len(elig) if elig else None,"share_range_ge_0_10_3plus":sum(x["range"]>=.10 for x in elig)/len(elig) if elig else None,"prospective_gate":"Retain a within-author longitudinal exposure design only if >=50 authors have >=3 exposure-defined years and >=50% of that subset has within-author exposure range >=0.05. Otherwise longitudinal within-author exposure is secondary/exploratory.","privacy":"aggregate only; no author IDs or names persisted"}
+    manifest={"script":"12_within_author_exposure_variation.py","confirmatory_use_allowed":False,"exposure_level":"primary_topic field × prior-3-year window","seed_authors":len(stats),"authors_with_3plus_defined_exposure_years":len(elig),"share_3plus_defined_years":len(elig)/len(stats) if stats else None,"median_within_author_range_3plus":med([x["range"] for x in elig]),"median_within_author_sd_3plus":med([x["sd"] for x in elig]),"share_range_ge_0_05_3plus":sum(x["range"]>=.05 for x in elig)/len(elig) if elig else None,"share_range_ge_0_10_3plus":sum(x["range"]>=.10 for x in elig)/len(elig) if elig else None,"prospective_gate":"Retain a within-author longitudinal exposure design only if >=50 authors have >=3 exposure-defined years and >=50% of that subset has within-author exposure range >=0.05. Otherwise longitudinal within-author exposure is secondary/exploratory.","privacy":"aggregate only; no author IDs or names persisted"}
     out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True)
     with (out/"field_window_exposure.csv").open("w",encoding="utf-8",newline="") as h:
         w=csv.DictWriter(h,fieldnames=list(erows[0]));w.writeheader();w.writerows(erows)
