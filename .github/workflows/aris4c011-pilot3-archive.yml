@@ -38,6 +38,17 @@ jobs:
           assert r["safe_exact_claims"]==0
           assert all(q["qualification_status"]=="DISCOVERY_ONLY" for q in r["queries"])
           print(json.dumps({k:v for k,v in r.items() if k!="queries"},indent=2))
+          for q in r["queries"]:
+              print(json.dumps({
+                  "candidate_id": q["candidate_id"],
+                  "target_doi": q["target_doi"],
+                  "query_role": q["query_role"],
+                  "capture_n": q["capture_n"],
+                  "first_timestamp": q["captures"][0]["timestamp"] if q["captures"] else None,
+                  "last_timestamp": q["captures"][-1]["timestamp"] if q["captures"] else None,
+                  "first_original": q["captures"][0]["original"] if q["captures"] else None,
+                  "error": q["error"],
+              }, ensure_ascii=False))
           PY
       - uses: actions/upload-artifact@v4
         with:
