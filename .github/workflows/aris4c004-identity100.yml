@@ -288,6 +288,7 @@ jobs:
           git add "$PAPER_DIR/data/derived/identity_decisions_100.csv"
           if ! git diff --cached --quiet; then
             git commit -m "freeze ARIS4C004 MH-blind first-review identity100 frame"
+            git pull --rebase origin main
             git push
           fi
 
