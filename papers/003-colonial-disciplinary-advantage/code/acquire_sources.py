@@ -76,9 +76,10 @@ SOURCES = {
     },
     "cepii_gravity": {
         "landing": "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8",
+        "download": "https://www.cepii.fr/DATA_DOWNLOAD/gravity/data/Gravity_csv_V202211.zip",
         "version": "202211",
         "license": "Etalab 2.0",
-        "redistribution": "follow Etalab 2.0; keep exact downloaded file/version/checksum in manifest",
+        "redistribution": "follow Etalab 2.0; raw zip remains gitignored; keep exact checksum/version in manifest",
     },
     "leiden_open_2025_results": {
         "landing": "https://open.leidenranking.com/resources",
@@ -218,6 +219,22 @@ def cmd_coldat(args: argparse.Namespace) -> None:
         print(dest)
 
 
+def cmd_cepii(args: argparse.Namespace) -> None:
+    dest = RAW / "cepii" / "Gravity_csv_V202211.zip"
+    if not args.execute:
+        print("Dry run. Official CEPII download:", SOURCES["cepii_gravity"]["download"])
+        print("Target:", dest)
+        return
+    download(SOURCES["cepii_gravity"]["download"], dest)
+    if dest.stat().st_size < 100_000_000:
+        raise SystemExit(
+            f"CEPII archive unexpectedly small ({dest.stat().st_size} bytes); "
+            "possible error page or truncated download"
+        )
+    record("cepii_gravity", dest, status="acquired_local")
+    print(dest)
+
+
 def cmd_icow(args: argparse.Namespace) -> None:
     dest = RAW / "icow" / "colhist_v1.1.zip"
     if not args.execute:
@@ -256,6 +273,10 @@ def main() -> None:
     p = sub.add_parser("coldat", help="download OWID-processed COLDAT primary exposure files")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(func=cmd_coldat)
+
+    p = sub.add_parser("cepii", help="download CEPII Gravity V202211 CSV zip")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(func=cmd_cepii)
 
     p = sub.add_parser("icow", help="download ICOW locally from its official site")
     p.add_argument("--execute", action="store_true")
