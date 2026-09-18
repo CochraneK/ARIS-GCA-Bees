@@ -87,6 +87,8 @@ def build_mechanism_cohort(
     controls_per_case: int = 1,
     matching_year_tolerance: int = 0,
     matching_early_percentile_caliper: float = 0.15,
+    matching_max_abs_smd: float = 0.10,
+    min_primary_match_rate: float = 0.50,
 ) -> dict[str, Any]:
     """Create four mechanism states and primary matched contrasts.
 
@@ -108,6 +110,10 @@ def build_mechanism_cohort(
         raise ValueError("early_years and late_years must be >= 1")
     if min_stratum_size < 2:
         raise ValueError("min_stratum_size must be >= 2")
+    if matching_max_abs_smd <= 0:
+        raise ValueError("matching_max_abs_smd must be positive")
+    if not 0 <= min_primary_match_rate <= 1:
+        raise ValueError("min_primary_match_rate must be in [0,1]")
 
     for paper in rows:
         _validate_paper(paper)
@@ -221,9 +227,36 @@ def build_mechanism_cohort(
         controls_per_case=controls_per_case,
         year_tolerance=matching_year_tolerance,
         early_percentile_caliper=matching_early_percentile_caliper,
+        max_abs_smd=matching_max_abs_smd,
     )
 
     n_sb = state_counts.get("SLEEPING_BEAUTY", 0)
+    primary = contrasts["SB_vs_FORGOTTEN"]
+    primary_balance = primary["balance"]
+    primary_match_ok = primary["match_rate"] >= min_primary_match_rate
+    primary_balance_ok = primary_balance["balance_pass"] is True
+
+    mechanism_analysis_ready = (
+        n_sb > 0
+        and primary_match_ok
+        and primary_balance_ok
+    )
+
+    analysis_block_reasons = []
+    if n_sb == 0:
+        analysis_block_reasons.append("no robust Sleeping Beauty cases")
+    if n_sb > 0 and not primary_match_ok:
+        analysis_block_reasons.append(
+            "SB-vs-Forgotten match rate below required minimum"
+        )
+    if n_sb > 0 and primary_balance["balance_pass"] is None:
+        analysis_block_reasons.append(
+            "SB-vs-Forgotten balance not assessable"
+        )
+    elif n_sb > 0 and primary_balance["balance_pass"] is False:
+        analysis_block_reasons.append(
+            "SB-vs-Forgotten observed covariates remain imbalanced"
+        )
 
     return {
         "dataset_type": "case-enriched mechanism cohort",
@@ -262,6 +295,14 @@ def build_mechanism_cohort(
                 "the corpus or revisit prespecified gate sensitivity."
             )
         ),
+        "mechanism_analysis_ready": mechanism_analysis_ready,
+        "mechanism_analysis_block_reasons": analysis_block_reasons,
+        "analysis_readiness_rule": {
+            "primary_contrast": "SB_vs_FORGOTTEN",
+            "min_match_rate": min_primary_match_rate,
+            "max_abs_smd": matching_max_abs_smd,
+            "requires_assessable_balance": True,
+        },
         "contrasts": contrasts,
         "records": records,
     }
