@@ -1,12 +1,21 @@
 {
-  "protocol_version": "0.1.0",
+  "protocol_version": "0.2.0",
   "frozen_date": "2026-09-18",
+  "amendment_reason": "v0.1 proved reproducible but showed lexical/semantic contamination. v0.2 adds outcome-independent record-type and title-anchor relevance gates before screening.",
   "purpose": "Reproducible retrieval stress test for ARIS4C012 Gate R. Results are candidate records, not OCI-positive labels.",
   "providers": {
     "openalex": {
       "endpoint": "https://api.openalex.org/works",
-      "rows_per_query": 25,
+      "rows_per_query": 50,
       "sort": "relevance_score:desc",
+      "allowed_types": [
+        "article",
+        "book-chapter",
+        "preprint",
+        "book",
+        "report",
+        "dissertation"
+      ],
       "select": [
         "id",
         "doi",
@@ -20,7 +29,17 @@
     },
     "crossref": {
       "endpoint": "https://api.crossref.org/works",
-      "rows_per_query": 25,
+      "rows_per_query": 50,
+      "allowed_types": [
+        "journal-article",
+        "book-chapter",
+        "proceedings-article",
+        "posted-content",
+        "book",
+        "monograph",
+        "report",
+        "dissertation"
+      ],
       "select": [
         "DOI",
         "title",
@@ -33,59 +52,287 @@
     }
   },
   "selection": {
-    "merge_rule": "interleave_by_source_rank_openalex_then_crossref",
+    "merge_rule": "interleave_by_source_rank_openalex_then_crossref_after_type_and_title_anchor_gates",
     "dedupe_rule": "normalized DOI, otherwise normalized title + publication year",
     "selected_per_stratum": 30,
     "no_random_sampling": true,
-    "no_post_retrieval_relevance_reranking": true
+    "no_post_retrieval_outcome_reranking": true,
+    "topical_gate": "Every anchor group must contribute at least one phrase present in the normalized title."
   },
   "strata": [
     {
       "id": "conflict_security",
       "queries": [
-        "intergroup competition intragroup cooperation",
-        "external threat internal cohesion rally around flag",
-        "security dilemma deterrence conflict prevention"
+        {
+          "text": "intergroup competition intragroup cooperation",
+          "anchor_groups": [
+            [
+              "intergroup"
+            ],
+            [
+              "intragroup",
+              "within group"
+            ]
+          ]
+        },
+        {
+          "text": "external threat internal cohesion rally around flag",
+          "anchor_groups": [
+            [
+              "rally",
+              "wartime",
+              "external threat",
+              "common enemy"
+            ]
+          ]
+        },
+        {
+          "text": "security dilemma deterrence conflict prevention",
+          "anchor_groups": [
+            [
+              "security dilemma",
+              "deterrence"
+            ]
+          ]
+        }
       ]
     },
     {
       "id": "autonomy_choice",
       "queries": [
-        "choice overload too many options decision satisfaction",
-        "autonomy paradox flexibility constant connectivity",
-        "formal choice effective autonomy dependence"
+        {
+          "text": "choice overload too many options decision satisfaction",
+          "anchor_groups": [
+            [
+              "choice overload",
+              "too many choice",
+              "too much choice",
+              "choice options",
+              "choice set"
+            ]
+          ]
+        },
+        {
+          "text": "autonomy paradox flexibility constant connectivity",
+          "anchor_groups": [
+            [
+              "autonomy paradox",
+              "flexibility paradox",
+              "constant connectivity",
+              "temporal flexibility",
+              "work flexibility"
+            ]
+          ]
+        },
+        {
+          "text": "autonomy dependence delegation algorithmic autonomy",
+          "anchor_groups": [
+            [
+              "autonomy"
+            ],
+            [
+              "dependence",
+              "dependency",
+              "delegation",
+              "algorithmic"
+            ]
+          ]
+        }
       ]
     },
     {
       "id": "information_attention",
       "queries": [
-        "less is more heuristic information decision accuracy",
-        "rational inattention deliberate ignorance information avoidance",
-        "public information social welfare coordination"
+        {
+          "text": "less is more heuristic information decision accuracy",
+          "anchor_groups": [
+            [
+              "less is more",
+              "heuristic",
+              "fast and frugal"
+            ]
+          ]
+        },
+        {
+          "text": "rational inattention deliberate ignorance information avoidance",
+          "anchor_groups": [
+            [
+              "rational inattention",
+              "deliberate ignorance",
+              "information avoidance"
+            ]
+          ]
+        },
+        {
+          "text": "public information social welfare coordination",
+          "anchor_groups": [
+            [
+              "public information"
+            ],
+            [
+              "welfare",
+              "coordination",
+              "social value"
+            ]
+          ]
+        }
       ]
     },
     {
       "id": "backfire_iatrogenic",
       "queries": [
-        "boomerang effect intervention opposite behavior",
-        "iatrogenic psychological intervention harm",
-        "backfire counterproductive intervention systematic review"
+        {
+          "text": "boomerang effect intervention opposite behavior",
+          "anchor_groups": [
+            [
+              "boomerang",
+              "backfire"
+            ],
+            [
+              "intervention",
+              "message",
+              "norm",
+              "behavior"
+            ]
+          ]
+        },
+        {
+          "text": "iatrogenic psychological intervention harm",
+          "anchor_groups": [
+            [
+              "iatrogenic"
+            ],
+            [
+              "treatment",
+              "therapy",
+              "intervention",
+              "harm"
+            ]
+          ]
+        },
+        {
+          "text": "backfire counterproductive intervention systematic review",
+          "anchor_groups": [
+            [
+              "backfire",
+              "counterproductive",
+              "unintended consequence",
+              "boomerang"
+            ],
+            [
+              "intervention",
+              "policy",
+              "treatment",
+              "campaign"
+            ]
+          ]
+        }
       ]
     },
     {
       "id": "economic_network_rebound",
       "queries": [
-        "Jevons paradox rebound effect efficiency backfire",
-        "Braess paradox added capacity worse performance",
-        "safe development paradox protection increased risk"
+        {
+          "text": "Jevons paradox rebound effect efficiency backfire",
+          "anchor_groups": [
+            [
+              "jevons",
+              "rebound"
+            ],
+            [
+              "efficiency",
+              "energy",
+              "resource"
+            ]
+          ]
+        },
+        {
+          "text": "Braess paradox added capacity worse performance",
+          "anchor_groups": [
+            [
+              "braess"
+            ],
+            [
+              "network",
+              "traffic",
+              "capacity",
+              "routing",
+              "performance"
+            ]
+          ]
+        },
+        {
+          "text": "safe development paradox protection increased risk",
+          "anchor_groups": [
+            [
+              "safe development",
+              "levee",
+              "flood protection"
+            ],
+            [
+              "risk",
+              "flood",
+              "development"
+            ]
+          ]
+        }
       ]
     },
     {
       "id": "organization_measurement",
       "queries": [
-        "organizational paradox core capability rigidity",
-        "Goodhart law metric target validity",
-        "control paradox optimization fragility unintended consequences"
+        {
+          "text": "organizational paradox core capability rigidity",
+          "anchor_groups": [
+            [
+              "capability rigidity",
+              "core rigidity",
+              "rigidity paradox",
+              "organizational paradox"
+            ],
+            [
+              "capability",
+              "organization",
+              "innovation",
+              "management"
+            ]
+          ]
+        },
+        {
+          "text": "Goodhart law metric target validity",
+          "anchor_groups": [
+            [
+              "goodhart",
+              "campbell",
+              "proxy failure"
+            ],
+            [
+              "metric",
+              "target",
+              "measure",
+              "performance",
+              "proxy"
+            ]
+          ]
+        },
+        {
+          "text": "control paradox optimization fragility unintended consequences",
+          "anchor_groups": [
+            [
+              "control paradox",
+              "optimization",
+              "over optimization",
+              "overoptimization"
+            ],
+            [
+              "fragility",
+              "unintended",
+              "control",
+              "robustness",
+              "risk"
+            ]
+          ]
+        }
       ]
     }
   ]
