@@ -143,5 +143,6 @@ jobs:
             echo "Historical artifacts already current."
           else
             git commit -m "ARIS4C003 refresh historical exposure artifacts"
+            git pull --rebase origin main
             git push
           fi
