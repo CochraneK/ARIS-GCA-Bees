@@ -10,12 +10,13 @@
       "note": "Proceed only as China-based population-calibrated, time-varying measured byline-exposure design; raw surname-success, citation-only, country-level surname-distribution, and generic long-run exposure claims are occupied prior art."
     },
     "chinese_surname_population_baseline": {
-      "status": "pass-corrected-awaiting-pinned-R-reproduction",
+      "status": "pass",
       "evidence": [
         "process/PILOT15_RESULTS.md",
-        "process/PILOT17_RESULTS.md"
+        "process/PILOT17_RESULTS.md",
+        "process/PILOT18_RESULTS.md"
       ],
-      "note": "ChineseNames supplies population weights and pinned CCNC supplies surname-specific pronunciation/order. Corrected mapped denominator covers 99.9671% of population; weighted initial rank 16.25491. Final execution gate is reproduction from the pinned ChineseNames 2025.8 R package."
+      "note": "ChineseNames 2025.8 official source tarball reproduced the exact 1,806 surname identities and population counts (total 1,181,719,774). CCNC supplies surname-specific pronunciation/order. Corrected mapped denominator covers 99.9671% of population."
     },
     "crossref_structured_surname_route": {
       "status": "pass",
