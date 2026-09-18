@@ -1,10 +1,10 @@
 # ARIS Status · Language Periodic System
 
 **Candidate:** `language-periodic-system`  
-**Branch:** `research/language-periodic-system-aris`  
+**Branch:** `research/language-geometry-confirmatory`  
 **ARIS lock:** v0.4.26  
 **Paper ID:** not assigned  
-**Overall state:** ACTIVE CANDIDATE — REFRAME toward predictive geometry; confirmatory controls pending
+**Overall state:** REVIEW-READY ACTIVE CANDIDATE — confirmatory screen complete; formal ARIS secondary review pending
 
 ## Pipeline alignment
 
@@ -15,82 +15,111 @@ ARIS idea-discovery order:
 | Phase | State | Durable evidence |
 |---|---|---|
 | Research brief | DONE | `RESEARCH_BRIEF.md` |
-| research-lit | DONE (primary pass) | `idea-stage/IDEA_REPORT.md#literature-landscape` |
-| idea-creator | DONE (scope variants ranked) | `idea-stage/IDEA_REPORT.md#ranked-ideas` |
-| novelty-check | DONE as primary-executor search; FORMAL REVIEW RECEIPT PENDING | `idea-stage/IDEA_REPORT.md#novelty-verification` |
-| research-review | PENDING formal secondary ARIS reviewer | `refine-logs/REVIEW_SUMMARY.md` |
-| research-refine | REFRAMED / evidence-updated | `refine-logs/FINAL_PROPOSAL.md` |
-| experiment-plan | ACTIVE | `refine-logs/EXPERIMENT_PLAN.md`, `refine-logs/EXPERIMENT_TRACKER.md` |
+| research-lit | DONE (primary pass + stronger prior-art pass) | `idea-stage/IDEA_REPORT.md` |
+| idea-creator | DONE | `idea-stage/IDEA_REPORT.md#ranked-ideas` |
+| novelty-check | PRIMARY PASS COMPLETE; FORMAL REVIEW RECEIPT PENDING | `idea-stage/IDEA_REPORT.md#novelty-verification` |
+| research-review | **PENDING identity-bearing secondary ARIS reviewer** | `refine-logs/REVIEW_SUMMARY.md`, `refine-logs/SECONDARY_REVIEW_PACKET.md` |
+| research-refine | CONFIRMATORY REFRAME COMPLETE | `refine-logs/FINAL_PROPOSAL.md` |
+| experiment-plan | CONFIRMATORY SCREEN COMPLETE | `refine-logs/EXPERIMENT_TRACKER.md` |
 
 ## Formal ARIS gate
 
-ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases. This run has no identity-bearing secondary-review trace, so the formal review gate remains **PENDING**. No reviewer identity, verdict, or trace is fabricated.
+ARIS v0.4.26 treats novelty-check and research-review as reviewer-bearing phases. No identity-bearing independent ARIS reviewer trace has been produced in this ChatGPT-side run, so that gate remains **PENDING**. It is not self-certified.
 
 ## Scientific state
 
-### Stage 0 · prerequisite signal
+### Stage 0 · prerequisite structure
 
 `MIXED_SIGNAL`.
 
-- 20-component observed compression: 0.510 vs null mean 0.362 (+0.148).
-- Residual pairwise association is weak for most pairs but has a substantial upper tail.
-- Conclusion: language structure is non-random enough to justify geometry tests; this is not evidence of periodicity.
+TLI contains non-random compressibility and residual feature association, justifying geometry tests but not supporting periodicity by itself.
 
-### Stage 1 · global model competition
+### Stage 1 / 1B · global predictive competition
 
-`REFRAME_NONPERIODIC_GEOMETRY`.
+The initial and fairness-improved screens show that a simple global circle contains some reproducible structure but does not robustly dominate non-periodic alternatives.
 
-On 60 well-covered TLI features:
+At 60 TLI features, optimized circular remains below tree/low-rank under family hold-out.
 
-- random-split Spearman: tree 0.199, graph 0.205, low-rank 0.172, circular 0.122;
-- family-held-out Spearman: tree **0.178**, graph 0.163, low-rank/euclidean 0.150, circular **0.109**;
-- family-held-out circular-order stability: **0.542 ± 0.139**.
-
-The simple global circle contains reproducible information but predicts less well than non-periodic alternatives.
-
-### Stage 1B · fairer periodic baseline
-
-`MIXED_ROBUSTNESS`.
-
-The disconnected-affinity issue was removed and angular feature positions were optimized directly.
-
-- **40 features:** optimized circular 0.179; tree 0.178; connected Euclidean 0.217; circular stability 0.419.
-- **60 features:** optimized circular 0.105; tree 0.147; low-rank 0.153; circular stability 0.628.
-
-Conclusion: the initial circle was not merely a strawman, but periodic competitiveness is feature-count sensitive and does not support a simple global periodic system.
-
-### Stage 1C · predefined subsystem test
+### Stage 1C · predefined subsystem screen
 
 `NO_PREDEFINED_LOCAL_PERIODIC_CANDIDATE`.
 
-TLI's own grouping metadata were used to predefine Grammar linear order, Grammar other, Grammatical categories, Lexical, and Phonology. Every reported domain contains four valid top-level-family-held-out splits.
+No TLI-defined Grammar / Grammatical categories / Lexical / Phonology domain simultaneously met the predeclared predictive-competitiveness and circular-stability thresholds.
 
-- **Grammar linear order:** circular optimized 0.401 with very stable ordering (0.811), but tree/low-rank ≈0.494/0.493 — stable structure, not best represented as a circle.
-- **Grammar other:** circular optimized 0.253 vs tree 0.313; stability 0.274.
-- **Grammatical categories:** circular optimized 0.252 vs tree 0.229, but stability only 0.373 — ambiguous, below the predeclared periodic-candidate threshold.
-- **Lexical:** circular optimized 0.142 vs tree 0.269; stability 0.057.
-- **Phonology:** circular optimized 0.151 vs tree 0.229; stability 0.550.
+### Stage 1D · direct circularity sensitivity
 
-No predefined domain simultaneously met the predictive and stability criteria for local periodicity.
+`CIRCULAR_ROBINSON_NOT_SUPPORTED`.
 
-## Current interpretation
+Held-out circular-Robinson-style row-unimodality deviation is not better than the tree order, and the 60-feature wrap-around closure/internal-adjacency ratio is only **0.037**. This weakens the periodic interpretation directly, rather than only because a richer competitor wins.
 
-The evidence now favors the broader framing:
+### Stage 1E / 1G · geography sensitivity
 
-> **Beyond the Periodic Table: Predictive Geometry of Cross-Linguistic Structural Space**
+TLI shows severe loss of association transfer under large geographic blocks. Matched-size random calibration shows this is not explained merely by smaller test samples.
 
-Baker's periodic-table idea remains the motivating historical hypothesis, but the empirical target is now to identify which non-periodic geometry best generalizes and whether the periodic hypothesis can be rejected fairly after standardized circular-seriation, geography, capacity, and replication checks.
+However, this geographic-collapse result is **not universal**: WALS later shows much stronger cross-Macroarea transfer. Geography/area therefore remains a representation-dependent secondary result, not the headline contribution.
 
-This is **not yet a manuscript-level rejection** of periodicity. Circular seriation has a formal literature built around circular Robinson matrices; one standards-aligned seriation/goodness-of-fit check should be added before closing that hypothesis.
+### Stage 1F · repeated family-held-out uncertainty
 
-## Remaining decisive gates
+`TREE_ADVANTAGE_STABLE`.
 
-1. standards-aligned circular-seriation / circular-Robinson sensitivity;
-2. geography-aware blocked validation;
-3. stronger repeated-split uncertainty and model-capacity accounting;
-4. second-dataset or second-domain replication;
-5. identity-bearing ARIS secondary review.
+Across 20 TLI family-held-out splits:
+
+- tree 0.182 ± 0.047;
+- optimized circular 0.109 ± 0.030;
+- tree − circular = **+0.073**;
+- 95% bootstrap CI **[0.055, 0.092]**;
+- tree win fraction **1.00**.
+
+Low-rank also beats circular on average, so the negative circular result is not based on one tree comparison alone.
+
+### Stage 1H · GBI alternative-curation replication
+
+`TREE_REPLICATES_OVER_CIRCULAR__WEAK_CROSS_MACROAREA_TRANSFER`.
+
+On 1,140 GBI languages / 60 features:
+
+- tree 0.122 ± 0.038;
+- circular 0.073 ± 0.036;
+- tree win fraction 1.00;
+- mean Macroarea association transfer 0.144 ± 0.043.
+
+This is curation robustness, not a fully independent data source.
+
+### Stage 1I · WALS external sanity replication
+
+`WALS_TREE_OVER_CIRCULAR`.
+
+On 2,659 WALS languages / 30 best-covered parameters:
+
+- tree 0.603 ± 0.026;
+- circular 0.410 ± 0.050;
+- tree − circular = +0.193;
+- tree win fraction 1.00 across 8 valid splits.
+
+WALS Macroarea association transfer is high (0.634 ± 0.075), showing that the TLI/GBI geographic-collapse result is not externally stable.
+
+## Current synthesis
+
+The strongest defensible result is:
+
+> **The simple global circular form of the language periodic-table hypothesis is not supported by held-out predictive or direct circularity evidence. Hierarchical/non-circular structure is a stronger family-held-out benchmark across TLI, GBI, and WALS, but the study does not establish one universal tree geometry.**
+
+The project should remain motivated by Baker's historical hypothesis rather than pivoting to a generic “genealogy/geography matters” claim, because strong genealogy/space effects already have major prior art in Grambank and related work.
+
+## Capacity boundary
+
+See `refine-logs/MODEL_CAPACITY_NOTE.md`.
+
+Tree/graph models are not exactly capacity-matched to a single circle, so tree superiority alone cannot prove a universal tree geometry. The negative periodic conclusion is supported additionally by direct optimization, predefined-domain tests, circular-Robinson/closure diagnostics, low-rank comparisons, repeated split uncertainty, and cross-representation replication.
+
+## Remaining decisive gate
+
+1. **Identity-bearing ARIS secondary novelty/research review.**
+2. Reviewer checks for a missed prior-art collision equivalent to the full periodic-vs-nonperiodic predictive stress test.
+3. Reviewer checks that manuscript claims remain at “simple global circle not supported,” not “all periodicity disproven” or “language proven tree-shaped.”
 
 ## Promotion rule
 
-Do not create `papers/002-*` yet. Promotion requires the remaining controls to support a stable framing and the formal ARIS review gate to be satisfied honestly.
+Do not create `papers/002-*` yet.
+
+If formal ARIS secondary review returns PASS or a tractable REVISE verdict without a fatal prior-art/design collision, promote this candidate to the next available Paper ID and begin manuscript-generation/reviewer loops using `refine-logs/FINAL_PROPOSAL.md` as the frozen scientific brief.
