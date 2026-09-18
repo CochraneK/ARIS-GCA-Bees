@@ -1,135 +1,135 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-18",
-  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means final/submission-ready package.",
+  "as_of": "2026-09-19",
+  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the repository-level final output contract is satisfied (English full paper + Chinese full paper + appropriate figures/tables + review/reproducibility gates).",
   "projects": {
     "001": {
       "progress": 100,
-      "stage": "Submission package ready",
+      "stage": "Submission package ready · output gate PASS",
       "activity": "quiet",
-      "evidence": "Final manuscript + reproducible synthesis + journal package",
+      "evidence": "Final EN + ZH manuscripts, reproducible synthesis, 3 figures, 3 tables, journal package",
       "next_gate": "Author portal submission",
-      "blocker": "None scientific; author-only contact/confirmation fields"
+      "blocker": "None scientific; author-only portal/contact fields"
     },
     "002": {
-      "progress": 90,
-      "stage": "Manuscript review",
-      "activity": "gated",
-      "evidence": "Multi-dataset empirical manuscript",
-      "next_gate": "Final polish and submission-ready freeze",
-      "blocker": "Final editorial packaging"
+      "progress": 97,
+      "stage": "Submission formatting + final-output packaging",
+      "activity": "active",
+      "evidence": "Independent review PASS_SUBMISSION_PREP; 3 manuscript figures; Linguistic Typology package under CI",
+      "next_gate": "Clean submission CI, add full Chinese mirror, register final output metadata",
+      "blocker": "Editorial/output packaging only; science not reopened"
     },
     "003": {
-      "progress": 55,
-      "stage": "Preregistration + data assembly",
-      "activity": "active",
-      "evidence": "Historical/dyadic sources + locked model",
-      "next_gate": "Run primary country × discipline and dyad analyses",
-      "blocker": "Full contemporary outcome matrix"
+      "progress": 58,
+      "stage": "Pre-outcome design · independent coding gate",
+      "activity": "gated",
+      "evidence": "Historical exposures + OpenAlex schema + PPML/model lock + Coder A",
+      "next_gate": "Fresh blind Coder B retry and adjudication before modern outcomes",
+      "blocker": "Independent Coder B; prior attempt intentionally invalidated for contamination"
     },
     "004": {
-      "progress": 60,
-      "stage": "Pre-exposure scale-up",
-      "activity": "active",
-      "evidence": "Real identity/work/network pilot",
-      "next_gate": "Freeze 100-person analytic frame",
-      "blocker": "Identity/network scale-up before exposure coding"
+      "progress": 62,
+      "stage": "Pre-exposure 100-person scale-up",
+      "activity": "quiet",
+      "evidence": "Pilot30 identity/work/network feasibility passed; deterministic network100 scaffolding exists",
+      "next_gate": "Complete frozen 100-person identity/work/network frame",
+      "blocker": "Machine execution of scale-up before MH exposure coding"
     },
     "005": {
-      "progress": 65,
-      "stage": "Confirmatory adjudication",
-      "activity": "active",
-      "evidence": "10k random audit + citation pilot",
-      "next_gate": "Dual-AI adjudication, arbitration and calibration",
-      "blocker": "Adjudication execution/calibration"
+      "progress": 68,
+      "stage": "Confirmatory adjudication ready",
+      "activity": "quiet",
+      "evidence": "10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds",
+      "next_gate": "Execute dual-AI adjudication, arbitration and calibration",
+      "blocker": "Adjudication/calibration execution"
     },
     "006": {
-      "progress": 45,
-      "stage": "Identification + feasibility",
+      "progress": 62,
+      "stage": "Identification feasibility · historical window frozen",
       "activity": "active",
-      "evidence": "Surname pilot + locked inference rules",
-      "next_gate": "OpenAlex author-order and disambiguation pilot",
-      "blocker": "Validated exposure + author identity pipeline"
+      "evidence": "CCNC Romanization audit + 26-field OpenAlex historical coverage PASS; focal window 2011–2025",
+      "next_gate": "Finish validated author-order/identity exposure pipeline and unlock longitudinal outcome design",
+      "blocker": "Exposure/identity validation before confirmatory career outcomes"
     },
     "007": {
-      "progress": 58,
-      "stage": "Pilot 1 independent axes",
-      "activity": "gated",
-      "evidence": "Official 785-species Pilot 0",
-      "next_gate": "Add event, demographic and molecular validation",
-      "blocker": "Independent-axis data acquisition"
+      "progress": 76,
+      "stage": "Pilot 3A molecular reproduction",
+      "activity": "active",
+      "evidence": "785-species Pilot0 + 88-species demography + 945 held-out events + universal-clock implementation parity PASS",
+      "next_gate": "Materialise molecular/epigenetic age axes and compare independent clocks",
+      "blocker": "Independent molecular-axis data/reproduction"
     },
     "008": {
-      "progress": 32,
-      "stage": "Comparative design",
+      "progress": 58,
+      "stage": "Pilot 8 Tier-1 comparative design",
       "activity": "quiet",
-      "evidence": "Ontology + species panel + source map",
-      "next_gate": "Build comparative trait matrix and phylogenetic pilot",
-      "blocker": "Empirical matrix not yet materialised"
+      "evidence": "238-taxa screen; 79-taxa staged panel; architecture-balanced recovery gate",
+      "next_gate": "Deep-code A–F trait blocks and build comparative/phylogenetic matrix",
+      "blocker": "Empirical trait matrix remains incomplete"
     },
     "009": {
-      "progress": 48,
-      "stage": "009A benchmark design",
-      "activity": "gated",
-      "evidence": "Prereg-ready design + synthetic pilot",
-      "next_gate": "Run real representation-fidelity benchmark",
-      "blocker": "Real benchmark corpus"
+      "progress": 56,
+      "stage": "Design hardened · pilot-gated",
+      "activity": "active",
+      "evidence": "Prereg skeleton + fidelity metrics + synthetic pilot + query/power gates + novelty/acquisition boundary hardening",
+      "next_gate": "Acquire real pilot material and independent raters",
+      "blocker": "Real phenomenological corpus + reliability calibration"
     },
     "010": {
-      "progress": 50,
-      "stage": "Benchmark v0 build",
-      "activity": "gated",
-      "evidence": "Formal model + combinatorial Pilot 0",
-      "next_gate": "Populate mixed semantic benchmark and human calibration",
-      "blocker": "Licensed benchmark corpus + calibration"
+      "progress": 72,
+      "stage": "Source-derived Pilot 2 + calibration60",
+      "activity": "active",
+      "evidence": "Formal model + Pilots 0–2 + pinned OEWN 60-target calibration build; current CI PASS",
+      "next_gate": "Human-calibrate P2/P6 responses, then expand toward mixed Benchmark v0",
+      "blocker": "Human semantic calibration before benchmark-scale claims"
     },
     "011": {
-      "progress": 55,
-      "stage": "Methods + benchmark seed",
-      "activity": "active",
-      "evidence": "Agent skill + real seed + historical artifact gate",
-      "next_gate": "Scale time-safe benchmark and detector evaluation",
-      "blocker": "Historical-equivalent manuscript artifacts"
+      "progress": 68,
+      "stage": "Pilot 3 candidate expansion",
+      "activity": "quiet",
+      "evidence": "Agent + methods draft + time-safe artifact framework + first real pre-outcome FLAG + control artifact",
+      "next_gate": "Scale issue-level benchmark provenance and detector evaluation",
+      "blocker": "More SAFE_EXACT historical artifacts and issue adjudication"
     },
     "012": {
-      "progress": 60,
-      "stage": "Pilot 0A validation",
+      "progress": 63,
+      "stage": "Pilot 0A complete · Coder B gate",
       "activity": "gated",
-      "evidence": "Retrieval pass + methods draft",
-      "next_gate": "Independent Coder B reliability gate",
-      "blocker": "Independent coding"
+      "evidence": "165-record reproducible retrieval + Coder A + prior-art saturation audit + methods/schema work",
+      "next_gate": "Ingest genuinely independent WorkBuddy Coder B and adjudicate reliability",
+      "blocker": "Independent Coder B output missing"
     },
     "013": {
-      "progress": 45,
-      "stage": "Administrative Pilot 1 discovery",
-      "activity": "active",
-      "evidence": "Wikidata stress-test + BUNMD route",
-      "next_gate": "Acquire/audit BUNMD and run clean-date Pilot 1",
-      "blocker": "Administrative-data precision and access"
+      "progress": 48,
+      "stage": "Administrative Pilot 1 transfer gate",
+      "activity": "blocked",
+      "evidence": "2.95M Wikidata stress test + NUMIDENT parser + locked administrative design",
+      "next_gate": "Acquire BUNMD or public NUMIDENT bytes and run frozen Pilot 1",
+      "blocker": "External administrative-data access; no fabricated identity allowed"
     },
     "014": {
-      "progress": 45,
-      "stage": "Pilot 1 assembly",
-      "activity": "active",
-      "evidence": "Executable OpenIntegrity skill + live smoke",
-      "next_gate": "Assemble first real multi-source jurisdiction",
-      "blocker": "Historical cross-source coverage/identifiers"
+      "progress": 67,
+      "stage": "China Pilot 0 stable-ID graph",
+      "activity": "quiet",
+      "evidence": "OpenIntegrity agent + UK Pilot1A + CCGP/CAS/USCC live feasibility + procurement graph",
+      "next_gate": "Cross-source entity enrichment across procurement and institution/company universes",
+      "blocker": "Cross-source coverage and entity linkage at real scale"
     },
     "015": {
       "progress": 75,
-      "stage": "Pilot 1 + Mechanism cohort build",
-      "activity": "active",
-      "evidence": "200-paper 10-stratum benchmark + seed sensitivity + lexical ablation + robust-SB/matched-control mechanism code",
-      "next_gate": "Populate empirical robust-SB mechanism cohort from SciSciNet-v2",
-      "blocker": "Reproducible SciSciNet-v2 slice/query and mechanism match yield"
+      "stage": "Pilot 1 + Mechanism Track",
+      "activity": "quiet",
+      "evidence": "200-paper 10-stratum benchmark + seed sensitivity + lexical ablation + mechanism cohort tooling",
+      "next_gate": "Populate non-hand-picked robust-SB mechanism cohort and matched controls",
+      "blocker": "Reproducible source slice and robust-SB match yield"
     },
     "016": {
-      "progress": 45,
-      "stage": "Working manuscript + Phase 0 validation gates",
-      "activity": "active",
-      "evidence": "Empirical manuscript draft + measurement audit + ontology/harmonization + genealogy + item-FE model + phonology feasibility",
-      "next_gate": "Independent dual-coder ontology audit, then measurement-corrected semantic fingerprints",
-      "blocker": "Independent/native-speaker annotation is the main remaining Phase-0 evidence gate"
+      "progress": 55,
+      "stage": "Empirical Phase 0 working manuscript",
+      "activity": "gated",
+      "evidence": "Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript",
+      "next_gate": "Independent dual-coder ontology audit and end-to-end variance decomposition",
+      "blocker": "Independent/native-speaker annotation and Phase-0 reliability"
     }
   }
 }
