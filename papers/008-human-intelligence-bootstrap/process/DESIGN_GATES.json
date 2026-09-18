@@ -49,8 +49,8 @@
     },
     {
       "id": "aris_provenance",
-      "status": "open",
-      "requirement": "Freeze exact ARIS release and commit before formal full run."
+      "status": "pass",
+      "requirement": "Paper 008 is frozen to ARIS v0.4.26 tag commit 951654847b015585385b2448c5667dcd04e7b56b; future engine upgrades must not rewrite this run's provenance."
     }
   ]
 }
