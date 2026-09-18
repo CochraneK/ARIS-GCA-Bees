@@ -72,13 +72,67 @@ def main() -> None:
 
     # These are intentionally external/local gates.
     for path, label in [
-        (PROCESS / "IKES_CODER_B.csv", "independent blinded IKES Coder B"),
+        (PROCESS / "IKES_CODER_B.csv", "independent blinded IKES Coder B scores"),
+        (PROCESS / "IKES_CODER_B.md", "independent blinded IKES Coder B evidence notes"),
         (PROCESS / "IKES_FROZEN.csv", "adjudicated IKES_FROZEN"),
         (PROCESS / "IKES_FROZEN.provenance.json", "IKES freeze provenance"),
         (DATA / "derived" / "COLDAT_FORMER_COLONY_EXPOSURE.csv", "derived COLDAT exposure table"),
         (DATA / "derived" / "COUNTRY_CROSSWALK.csv", "audited country crosswalk"),
+        (DATA / "derived" / "CEPII_DYADS.csv", "derived CEPII historical dyads"),
+        (DATA / "manifests" / "CEPII_GRAVITY_V202211.json", "CEPII source manifest"),
+        (PROCESS / "HISTORICAL_DATA_AUDIT.json", "historical data audit"),
+        (PROCESS / "OPENALEX_SCHEMA_PROBE.json", "OpenAlex schema-only probe"),
     ]:
         check_file(path, label, outcome_problems)
+
+    coder_b_notes = PROCESS / "IKES_CODER_B.md"
+    if coder_b_notes.exists():
+        notes = coder_b_notes.read_text(encoding="utf-8", errors="replace")
+        if "BLINDING DECLARATION" not in notes:
+            outcome_problems.append("Coder B notes missing BLINDING DECLARATION")
+
+    frozen = PROCESS / "IKES_FROZEN.csv"
+    if frozen.exists():
+        try:
+            f = pd.read_csv(frozen)
+            expected = {f"D{i:02d}" for i in range(1, 22)}
+            if "concept_id" not in f.columns or set(f["concept_id"].astype(str)) != expected:
+                outcome_problems.append("IKES_FROZEN must contain exactly concept_id D01-D21")
+            if "IKES" not in f.columns or f["IKES"].isna().any():
+                outcome_problems.append("IKES_FROZEN missing complete IKES values")
+        except Exception as exc:
+            outcome_problems.append(f"IKES_FROZEN unreadable: {type(exc).__name__}")
+
+    country_crosswalk = DATA / "derived" / "COUNTRY_CROSSWALK.csv"
+    if country_crosswalk.exists():
+        try:
+            cw = pd.read_csv(country_crosswalk)
+            if "status" not in cw.columns or not cw["status"].eq("RESOLVED").all():
+                outcome_problems.append("COUNTRY_CROSSWALK contains unresolved rows")
+            if "iso3c" not in cw.columns or cw["iso3c"].duplicated().any():
+                outcome_problems.append("COUNTRY_CROSSWALK iso3c must be unique")
+        except Exception as exc:
+            outcome_problems.append(f"COUNTRY_CROSSWALK unreadable: {type(exc).__name__}")
+
+    historical_audit = PROCESS / "HISTORICAL_DATA_AUDIT.json"
+    if historical_audit.exists():
+        try:
+            ha = json.loads(historical_audit.read_text(encoding="utf-8"))
+            if ha.get("status") != "PASS":
+                outcome_problems.append("historical data audit is not PASS")
+        except Exception as exc:
+            outcome_problems.append(f"HISTORICAL_DATA_AUDIT unreadable: {type(exc).__name__}")
+
+    oa_probe = PROCESS / "OPENALEX_SCHEMA_PROBE.json"
+    if oa_probe.exists():
+        try:
+            oa = json.loads(oa_probe.read_text(encoding="utf-8"))
+            if oa.get("safe_to_build_extractor") is not True:
+                outcome_problems.append("OpenAlex schema probe did not pass")
+            if oa.get("outcomes_materialized") is not False:
+                outcome_problems.append("OpenAlex schema probe integrity flag is not outcome-free")
+        except Exception as exc:
+            outcome_problems.append(f"OPENALEX_SCHEMA_PROBE unreadable: {type(exc).__name__}")
 
     manifest = DATA / "manifests" / "source_manifest.json"
     check_file(manifest, "source manifest", outcome_problems)
