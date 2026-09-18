@@ -1,0 +1,34 @@
+name: ARIS4C006 LOAO synthetic validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-loao-test.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/19_validate_loao_synthetic.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  loao-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run synthetic/hand LOAO checks
+        working-directory: ${{ env.PAPER_DIR }}
+        run: python code/19_validate_loao_synthetic.py
+      - name: Upload validation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-loao-synthetic-validation
+          path: ${{ env.PAPER_DIR }}/data/pilot/loao_synthetic/manifest.json
+          if-no-files-found: error
+          retention-days: 30
