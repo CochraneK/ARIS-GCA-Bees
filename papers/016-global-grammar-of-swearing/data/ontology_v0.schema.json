@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARIS4C016 Taboo Ontology Annotation v0",
+  "type": "object",
+  "required": [
+    "source_sample",
+    "source_row_id",
+    "semantic_source",
+    "target",
+    "pragmatic_function",
+    "social_indexical_basis",
+    "taboo_mechanism",
+    "confidence"
+  ],
+  "properties": {
+    "source_sample": {
+      "type": "string"
+    },
+    "source_row_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "raw_category1": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_category2": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_category3": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "semantic_source": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "SEX_SEXUALITY",
+          "GENITAL_BODY",
+          "EXCRETION_DISGUST",
+          "RELIGION_SACRED",
+          "KINSHIP_ANCESTRY",
+          "DEATH_DISEASE",
+          "ANIMAL_DEHUMANIZATION",
+          "INTELLIGENCE_COMPETENCE",
+          "MORALITY_CHARACTER",
+          "APPEARANCE_ABILITY",
+          "VIOLENCE_HARM",
+          "SUBSTANCE_ILLEGALITY",
+          "POLITICS_HISTORY",
+          "OTHER_SEMANTIC",
+          "UNRESOLVED_LOCAL"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "target": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "NO_EXPLICIT_TARGET",
+          "SELF",
+          "INTERLOCUTOR",
+          "THIRD_PERSON",
+          "KIN",
+          "ANCESTOR",
+          "SOCIAL_GROUP",
+          "SACRED_ENTITY",
+          "INSTITUTION",
+          "UNKNOWN_TARGET"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "pragmatic_function": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "DIRECT_INSULT",
+          "EXPLETIVE_INTERJECTION",
+          "INTENSIFIER_EMPHASIS",
+          "CURSE_WISH_HARM",
+          "THREAT",
+          "DISMISSAL_COMMAND",
+          "TEASING_BANTER",
+          "SOLIDARITY_IN_GROUP",
+          "QUOTED_METALINGUISTIC",
+          "OTHER_PRAGMATIC",
+          "CONTEXT_REQUIRED"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "social_indexical_basis": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "NONE_OBVIOUS",
+          "RACE_ETHNICITY_NATIONALITY",
+          "GENDER_SEX",
+          "SEXUAL_ORIENTATION",
+          "DISABILITY_HEALTH",
+          "AGE",
+          "CLASS_STATUS_OCCUPATION",
+          "RELIGIOUS_IDENTITY",
+          "POLITICAL_IDENTITY",
+          "OTHER_IDENTITY",
+          "UNRESOLVED_IDENTITY"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "taboo_mechanism": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "POLLUTION_DISGUST",
+          "SEXUALIZATION",
+          "DEHUMANIZATION",
+          "INCOMPETENCE",
+          "IMMORALITY",
+          "SACRILEGE",
+          "KINSHIP_DISHONOR",
+          "STATUS_DEGRADATION",
+          "THREAT_HARM",
+          "IDENTITY_DEROGATION",
+          "OTHER_MECHANISM",
+          "UNKNOWN_MECHANISM"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "confidence": {
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "UNRESOLVED"
+      ]
+    },
+    "evidence_note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "annotator": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mapping_rule_version": {
+      "type": "string",
+      "default": "v0"
+    }
+  },
+  "additionalProperties": false
+}
