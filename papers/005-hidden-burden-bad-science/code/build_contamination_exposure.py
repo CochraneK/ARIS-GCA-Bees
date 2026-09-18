@@ -159,12 +159,18 @@ def citing_count(openalex_id: str, extra_filter: str | None = None) -> int:
     return int(data["meta"]["count"])
 
 
-def citing_by_year(openalex_id: str) -> dict[int, int]:
+def citing_by_year(
+    openalex_id: str,
+    extra_filter: str | None = None,
+) -> dict[int, int]:
+    filters = [f"cites:{bare_oa_id(openalex_id)}"]
+    if extra_filter:
+        filters.append(extra_filter)
     data = request(
         {
-            "filter": f"cites:{bare_oa_id(openalex_id)}",
+            "filter": ",".join(filters),
             "group_by": "publication_year",
-            "per_page": 1,
+            "per_page": 200,
         }
     )
     out: dict[int, int] = {}
@@ -267,6 +273,10 @@ def main() -> int:
             f"from_publication_date:{source['retraction_date'].isoformat()}",
         )
         by_year = citing_by_year(source["openalex_id"])
+        post_by_year = citing_by_year(
+            source["openalex_id"],
+            f"from_publication_date:{source['retraction_date'].isoformat()}",
+        )
         domain, field, subfield = topic_names({"primary_topic": source.get("primary_topic")})
 
         source_rows.append(
@@ -292,9 +302,8 @@ def main() -> int:
         )
         exposure_totals.append(total)
         post_totals.append(post)
-        for year, count in by_year.items():
-            if year >= source["retraction_date"].year:
-                yearly_post_counts[year] += count
+        for year, count in post_by_year.items():
+            yearly_post_counts[year] += count
 
         citers = sample_post_retraction_citers(
             source, args.edge_sample_per_source, args.seed
@@ -363,6 +372,10 @@ def main() -> int:
             ),
             "aggregate_post_retraction_exposure_by_publication_year": dict(
                 sorted(yearly_post_counts.items())
+            ),
+            "yearly_aggregation_note": (
+                "Annual post-retraction counts are queried with the exact "
+                "from_publication_date equal to each source retraction date."
             ),
             "sampled_post_retraction_edges_for_semantic_review": len(edge_rows),
             "sample_per_source_target": args.edge_sample_per_source,
