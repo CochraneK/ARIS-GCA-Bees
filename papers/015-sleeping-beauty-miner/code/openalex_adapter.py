@@ -215,3 +215,42 @@ def history_is_complete(work: OpenAlexWork, history: CitationHistory) -> bool | 
     if work.cited_by_count is None:
         return None
     return history.valid_edges >= int(work.cited_by_count)
+
+
+def sample_works(
+    *,
+    filters: str,
+    sample_size: int,
+    seed: int,
+    api_key: str | None = None,
+) -> list[OpenAlexWork]:
+    """Return a reproducible random sample of works.
+
+    OpenAlex supports `sample=N` with `seed` for reproducible sampling.
+    Keep the sampling frame defined only by cutoff-safe attributes (for
+    example publication year, document type, or field). Do not filter the
+    historical benchmark sample using present-day citation count or later
+    awards/status.
+    """
+    if sample_size < 1 or sample_size > 100:
+        raise ValueError(
+            "sample_size must be between 1 and 100 for one-page sampling"
+        )
+    payload = _request_json(
+        "/works",
+        params={
+            "filter": filters,
+            "sample": int(sample_size),
+            "seed": int(seed),
+            "per_page": int(sample_size),
+            "select": (
+                "id,display_name,publication_year,doi,cited_by_count,"
+                "primary_topic"
+            ),
+        },
+        api_key=api_key,
+    )
+    return [
+        OpenAlexWork.from_payload(row)
+        for row in (payload.get("results") or [])
+    ]
