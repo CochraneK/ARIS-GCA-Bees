@@ -1,0 +1,35 @@
+name: ARIS4C006 final convention probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-final-convention-probe.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/22_materialize_field_convention.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe-mathematics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Materialize Mathematics convention sample
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/22_materialize_field_convention.py             --field-id 26             --start-year 2008             --end-year 2024             --annual-D 35             --annual-D3 20             --max-blocks 4             --outdir data/pilot/final_convention_probe/field_26
+      - name: Upload probe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-final-convention-probe-field26
+          path: ${{ env.PAPER_DIR }}/data/pilot/final_convention_probe/field_26/
+          if-no-files-found: error
+          retention-days: 30
