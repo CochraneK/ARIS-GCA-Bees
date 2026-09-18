@@ -1,0 +1,68 @@
+name: ARIS4C015 Sleeping Beauty Miner CI
+
+on:
+  pull_request:
+    paths:
+      - "papers/015-sleeping-beauty-miner/**"
+      - ".github/workflows/aris4c015-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "papers/015-sleeping-beauty-miner/**"
+      - ".github/workflows/aris4c015-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check pytest jsonschema pyyaml
+
+      - name: Test deterministic core
+        run: python -m pytest -q papers/015-sleeping-beauty-miner/code
+
+      - name: Test agent orchestrator
+        working-directory: papers/015-sleeping-beauty-miner/agent/sleeping-beauty-miner/scripts
+        run: python -m pytest -q
+
+      - name: Validate skill metadata and schema
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          import yaml
+          from jsonschema import Draft202012Validator
+
+          root = Path("papers/015-sleeping-beauty-miner")
+          skill = root / "agent/sleeping-beauty-miner/SKILL.md"
+          text = skill.read_text(encoding="utf-8")
+          assert text.startswith("---\n"), "SKILL.md must start with YAML frontmatter"
+          _, front, _ = text.split("---", 2)
+          meta = yaml.safe_load(front)
+          assert meta["name"] == "sleeping-beauty-miner"
+          assert isinstance(meta.get("description"), str)
+          assert len(meta["description"]) >= 80
+          assert meta["metadata"]["project"] == "ARIS4C015"
+
+          schema_path = root / "agent/sleeping-beauty-miner/assets/candidate-card.schema.json"
+          schema = json.loads(schema_path.read_text(encoding="utf-8"))
+          Draft202012Validator.check_schema(schema)
+
+          paper = json.loads((root / "paper.json").read_text(encoding="utf-8"))
+          assert paper["id"] == "015"
+          assert paper["links"]["skill"] == "agent/sleeping-beauty-miner/SKILL.md"
+
+          print("ARIS4C015 skill/schema validation passed")
+          PY
