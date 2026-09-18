@@ -309,6 +309,7 @@ Use assets/finding.schema.json and assets/report.schema.json for machine-readabl
 - code/china_scope.py — China institution/source-tier policy.
 - code/china_web_leads.py — web-lead evidence contract and Track A gate.
 - code/china_ccgp.py — bounded CCGP award-list discovery and buyer routing.
-- code/china_ccgp_detail.py — privacy-minimized CCGP award-detail normalization with final-award/candidate separation.
+- code/china_ccgp_detail.py — privacy-minimized CCGP award-detail normalization with final-award/candidate separation and supplier USCC extraction where exposed.
+- code/china_procurement_graph.py — China procurement graph projection; exact USCC may form stable supplier identity, while name-only records remain source-local.
 - code/china_universe.py — official China institution-universe seed adapters with source-unavailable semantics.
 - process/CHINA_PILOT0_RESULTS.md — frozen live China source-feasibility results.
