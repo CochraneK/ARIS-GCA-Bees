@@ -46,7 +46,7 @@ Negative estimates are not truncated in the primary construction.
 
 **Frozen primary context after Pilot 10:**
 
-**OpenAlex field × prior 3 complete publication years**
+**OpenAlex **primary-topic field** × prior 3 complete publication years**
 
 For a 2024 focal work:
 
@@ -117,11 +117,11 @@ Do **not** inspect focal career-effect interactions while tuning the estimator.
 
 Primary confirmatory moderator:
 
-1. **field × prior-3-year window**.
+1. **primary-topic field × prior-3-year window**.
 
 Mandatory robustness / secondary:
 
-2. field × prior-3-year window using only 3+ author convention works;
+2. primary-topic field × prior-3-year window using only 3+ author convention works;
 3. field-level longer-run convention as a stability sensitivity;
 4. source × field × prior-3-year exposure only after hierarchical shrinkage toward the field parent and only as secondary/exploratory.
 
@@ -167,7 +167,7 @@ Using the deterministic work-ID split defined in `code/10_source_reliability_pil
 
 If passed, the primary high-resolution moderator becomes:
 
-**shrunk source × field × prior-3-year window exposure**
+**shrunk source × primary-topic field × prior-3-year window exposure**
 
 with field × prior-3-year exposure as its parent/fallback.
 
@@ -175,7 +175,7 @@ with field × prior-3-year exposure as its parent/fallback.
 
 If either Pearson or Spearman lies in **0.40–0.59**, or median absolute difference is **0.15–0.20**, source-level estimates may be retained only as a shrunk secondary/exploratory moderator. The primary confirmatory moderator becomes:
 
-**field × prior-3-year window exposure**.
+**primary-topic field × prior-3-year window exposure**.
 
 ### Source-level rejection
 
@@ -189,3 +189,12 @@ then source-level exposure is not used confirmatorily.
 ### Rationale
 
 These thresholds are engineering reliability criteria, not significance thresholds and not tuned to any surname/career-effect result. They intentionally favor the coarser field-level exposure if source-level measurement is unstable.
+
+
+## Primary-field assignment correction
+
+The confirmatory context uses OpenAlex `primary_topic.field.id`, not `topics.field.id`.
+
+Reason: a work may have multiple topics spanning multiple fields, whereas its primary field is uniquely defined by the field of `primary_topic`. Earlier six-field feasibility pilots that filtered on `topics.field.id` are retained only as engineering/anchor evidence and are superseded for confirmatory field assignment by primary-topic-field pilots.
+
+The six anchor fields are not the final scope. All current OpenAlex fields that pass the prospective all-field volume/coverage gate may enter the work-level primary frame.
