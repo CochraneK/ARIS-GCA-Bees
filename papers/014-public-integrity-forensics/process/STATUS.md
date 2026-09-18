@@ -2,7 +2,7 @@
 
 ## State
 
-**PILOT 0 EXPANDED / LIVE PUBLIC-SOURCE SMOKE PASSED / AGENT SKILL READY / PILOT 1 ASSEMBLY**
+**PILOT 1A UK SOURCE FEASIBILITY FROZEN / AGENT CORE + EVIDENCE GRAPH READY / OWNERSHIP ENRICHMENT NEXT**
 
 Date: 2026-09-18
 
@@ -21,49 +21,81 @@ Date: 2026-09-18
 - [x] added benign-offshore and name-collision negative controls;
 - [x] implemented conservative entity resolution with stable-ID, official-cross-ID, multi-attribute, possible, abstain, and conflict states;
 - [x] implemented explicit source_coverage semantics so missing source families ABSTAIN rather than PASS;
-- [x] implemented OCDS 1.1.x normalization;
+- [x] implemented OCDS release and lifecycle-record normalization, including legacy list-shaped record responses;
 - [x] implemented Companies House company-profile / PSC normalization;
 - [x] implemented USAspending award normalization;
 - [x] implemented explicit procurement -> company -> beneficial owner -> public-office cross-source joins;
-- [x] rejected name-only cross-source person joins from high-priority evidence;
-- [x] ran a live USAspending public-source smoke test and preserved output as a workflow artifact;
-- [x] confirmed live award-only records cause uncovered detector families to ABSTAIN rather than emit false negative PASS results;
+- [x] implemented dated debarment enrichment with explicit identity proof and source-scan coverage semantics;
+- [x] rejected name-only cross-source person/company/debarment joins from high-priority evidence;
+- [x] implemented immutable-style raw source snapshots with SHA-256 plus Track A publication-time gates;
+- [x] implemented a descriptive Evidence Graph and standard report builder;
+- [x] report finding IDs and graph finding IDs are now canonical and identical;
 - [x] created the formal portable Agent Skill at agent/public-integrity-forensics/SKILL.md;
 - [x] created machine-readable finding and report JSON Schemas;
 - [x] created a benchmark-case registry schema with source cutoff, outcome classes, matching strata, and leakage audit;
-- [x] added a synthetic Track A registry fixture demonstrating post-cutoff outcome exclusion;
-- [x] integrated pytest, skill metadata validation, and JSON Schema validation into CI;
-- [x] final expanded Pilot 0 / skill / benchmark CI passed on 2026-09-18 (workflow run 35304992483).
+- [x] locked a UK identifier-first Pilot 1 protocol;
+- [x] completed live USAspending, Find a Tender, FTS lifecycle, and Contracts Finder engineering smokes;
+- [x] froze UK Pilot 1A collection window at 2026-09-01T00:00:00Z to 2026-09-17T23:59:59Z;
+- [x] completed frozen Pilot 1A public-source collection;
+- [x] preserved raw release packages and per-release SHA-256 manifest in workflow artifact;
+- [x] all current OpenIntegrity tests, Agent Skill validation, and JSON Schema validation pass in CI.
 
-## Live-source milestone
+## Pilot 1A frozen result
 
-USAspending live smoke workflow: 35304795418.
+Canonical result record: `process/PILOT1_RESULTS.md`.
 
-The live query returned three public award records. The adapter preserved stable UEIs and federal agency identifiers where available. Because those rows only supplied procurement-award coverage, the current competition, threshold, incorporation, debarment, and public-office/ownership checks correctly returned ABSTAIN rather than pretending that missing sources were negative evidence. No automated corruption inference was produced.
+Frozen collection workflow: **35305663110**  
+Artifact: `aris4c014-pilot1-uk-p1a-v0`  
+Artifact digest: `sha256:400d7843872a75271ba13d7da8df38d0d4af0fa886962c56289e67c16b982473`
+
+Fixed bounded collection:
+
+- Find a Tender: 100 releases -> 119 award cases -> 32 direct `GB-COH` join candidates (26.9%);
+- Contracts Finder: 100 releases -> 104 award cases -> 57 direct `GB-COH` join candidates (54.8%);
+- raw total: 223 award cases, 89 direct company-identifier join candidates;
+- competition-covered award cases: 0.
+
+The raw total is not de-duplicated across sources and the percentages are not population estimates.
+
+The zero competition coverage is treated as a source limitation. Single-bidder/competition checks remain ABSTAIN rather than being imputed.
 
 ## Current maturity estimate
 
-**~45%**
+**~55%**
 
-The project now has a reproducible executable core, expanded synthetic Pilot 0, three source-normalization surfaces, conservative entity resolution, explicit cross-source joining, a live public-source smoke test, a portable Agent Skill, benchmark registry semantics, and green CI.
+OpenIntegrity now has:
 
-The remaining work is dominated by real multi-source Pilot 1 construction, historical snapshots, additional source adapters, calibration/reference populations, benchmark annotation, independent review, and manuscript/results work.
+- a tested forensic core;
+- formal Agent Skill;
+- source adapters;
+- conservative entity resolution;
+- explicit source-coverage semantics;
+- cross-source enrichment contracts;
+- debarment enrichment;
+- temporal leakage controls;
+- snapshot hashing;
+- Evidence Graph and report builder;
+- a frozen real-data UK Pilot 1A procurement artifact.
+
+The main missing empirical layer is authenticated corporate/beneficial-ownership enrichment of the identifier-first subset, followed by calibration, historical outcome cases, independent review, and manuscript/results work.
 
 ## Immediate next work
 
-1. select and assemble the first real multi-source Pilot 1 jurisdiction, prioritizing identifier joinability and historical source quality rather than perceived corruption prevalence;
-2. add an official debarment/sanctions adapter with historical validity dates;
-3. add a public-office/PEP source adapter that preserves office-occupancy intervals and identity provenance;
-4. build a historical snapshot/cache layer with first_public_at, valid_from, valid_to, retrieved_at, checksum, and parser version;
-5. add procurement-document and bidder-network ingestion where public records permit;
-6. calibrate supplier concentration / price / graph anomalies against sector, value band, procurement method, and data completeness;
-7. populate the real benchmark registry with concluded public cases plus matched no-known-adverse-finding comparators;
-8. perform an independent shortcut, temporal-leakage, and identity-resolution audit;
-9. freeze the v1 detector taxonomy and priority policy after Pilot 1;
-10. begin manuscript methods/results once a preregistered real-data Pilot 1 is reproducible.
+1. enrich the 89 direct `GB-COH` candidate cases with Companies House company profiles and PSC/control records using authenticated API access;
+2. preserve retrieved_at, notified_on/ceased_on, raw checksum, parser version, and source IDs for each ownership record;
+3. run newly-incorporated-supplier and ownership-graph detectors only where their data are actually covered;
+4. add a vetted public-office source adapter with occupancy intervals and conservative identity resolution;
+5. add an official/approved debarment-source ingestion adapter without relying on undocumented dynamic endpoints;
+6. de-duplicate FTS/Contracts Finder procurement overlap by OCID/award identity before any prevalence/yield statistic;
+7. construct historical Track A benchmark cases with outcome-independent source cutoffs;
+8. calibrate supplier concentration and other E4 signals against relevant reference populations;
+9. run an independent shortcut, temporal-leakage, entity-resolution, and defamation-language audit;
+10. begin manuscript methods/results after enriched Pilot 1 is reproducible.
 
 ## Hard blockers
 
-None at the architecture, Agent Skill, synthetic Pilot 0, or public procurement ingestion level.
+No blocker remains for the architecture, Agent Skill, public procurement collection, Evidence Graph, or frozen Pilot 1A source feasibility.
 
-The main practical dependencies are access/rate constraints for specific registries, availability of historical ownership/public-office snapshots, and reliable cross-source identifiers. These should produce ABSTAIN or source-specific limitations rather than silent imputation.
+**Current external dependency:** live Companies House Public Data API enrichment requires authenticated API access. The key must be provided through secure runtime configuration; it must not be committed to the repository.
+
+Until authenticated ownership enrichment is available, missing ownership/PSC data remain ABSTAIN and cannot be treated as evidence of absence.
