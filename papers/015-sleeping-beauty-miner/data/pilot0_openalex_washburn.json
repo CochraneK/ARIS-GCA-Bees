@@ -1,0 +1,52 @@
+{
+  "case_id": "ke2015_07",
+  "target": {
+    "doi": "10.1103/PhysRev.17.273",
+    "openalex_id": "W2058046601",
+    "title": "The Dynamics of Capillary Flow",
+    "publication_year": 1921,
+    "primary_topic": "Surface Modification and Superhydrophobicity"
+  },
+  "source": {
+    "name": "OpenAlex live API",
+    "observation_end_year": 2011,
+    "query_semantics": "incoming works citing target with to_publication_date:2011-12-31",
+    "workflow_run_id": 35305459966,
+    "retrieved_at": "2026-09-18"
+  },
+  "trajectory": {
+    "publication_year": 1921,
+    "end_year": 2011,
+    "counts": [
+      1, 2, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 2, 0, 2, 1, 1, 0, 0, 0,
+      0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1, 1, 0, 1, 2, 3, 2, 0, 2,
+      3, 3, 2, 2, 3, 2, 3, 2, 2, 3, 4, 2, 7, 7, 8, 4, 7, 4, 10, 7,
+      7, 9, 15, 9, 9, 14, 13, 13, 9, 19, 22, 14, 27, 23, 20, 32, 27,
+      33, 35, 53, 63, 73, 70, 84, 100, 110, 117, 160, 171, 182, 212
+    ],
+    "valid_edges": 1857,
+    "invalid_prepublication_edges": 0,
+    "total_citations": 1857
+  },
+  "reconstructed": {
+    "beauty_coefficient": 2472.083999248507,
+    "peak_time": 90,
+    "awakening_time": 74,
+    "sleep_length": 74,
+    "peak_citations": 212.0,
+    "citations_at_publication_age_0": 1.0,
+    "awakening_year": 1995
+  },
+  "reference_ke2015": {
+    "beauty_coefficient": 2184.0,
+    "awakening_year": 1995,
+    "source_dataset": "Web of Science",
+    "reference_doi": "10.1073/pnas.1424329112"
+  },
+  "cross_source_difference": {
+    "beauty_coefficient_absolute": 288.0839992485071,
+    "beauty_coefficient_relative": 0.13190659306250324,
+    "awakening_year": 0
+  },
+  "interpretation": "Differences from Ke et al. are expected because OpenAlex and Web of Science have different citation coverage. The Beauty Coefficient is 13.2% higher and the awakening year reproduces exactly in the OpenAlex reconstruction. This is a cross-source robustness result, not an exact WoS replication."
+}
