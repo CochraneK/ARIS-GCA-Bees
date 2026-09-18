@@ -8,7 +8,7 @@
   "domain": "metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity",
   "summary": "An open-data-first, auditable Sleeping Beauty discovery agent with a reusable Skill surface, cutoff-safe citation reconstruction, transparent baseline/backtest infrastructure, ARIS4C011 integrity gating, and initial live OpenAlex cross-source replication of three classic delayed-recognition cases. Prospective predictive validity remains unestablished pending representative historical-cohort tests.",
   "authors": [
-    "Cunyi Kang"
+    "Cochrane Kang"
   ],
   "dependencies": {
     "011": "research-forensics evidence safety, provenance, citation verification, applicability and ABSTAIN semantics",
