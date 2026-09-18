@@ -1,109 +1,106 @@
 # ARIS4C009 · Status
 
-**Current stage:** design / pre-ARIS deepening  
+**Current stage:** design hardened / pilot-gated  
 **ARIS baseline:** v0.4.26  
-**Canonical scope:** fidelity benchmark first; mechanistic and longitudinal extensions second.
+**Canonical scope:** separate acquisition loss from encoding loss before any mechanistic expansion.
 
 ## Completed
 
 - [x] Canonical research question defined.
-- [x] Epistemic boundary defined: source evidence is not latent mental-state ground truth.
-- [x] Representation ladder specified.
+- [x] Source evidence distinguished from latent lived-state ground truth.
+- [x] Acquisition (A_m) and encoding (E_k) formally separated.
+- [x] 009A split into 009A1 same-source encoding benchmark and 009A2 acquisition benchmark.
+- [x] Actual participant self-report separated from questionnaire-format source projection.
+- [x] Diagnosis removed from universal narrative-fidelity ranking.
+- [x] Intended-use validity formalized separately from source fidelity.
+- [x] Multi-objective, use-conditioned Pareto frontier specified.
 - [x] Phenomenological fidelity separated from reliability, validity, prediction and burden.
-- [x] Multi-objective fidelity frontier specified.
-- [x] Rate-distortion formulation added with psychiatry-specific distortion requirements.
+- [x] Rate-distortion formulation restricted to fixed-source encoding comparisons.
 - [x] Idiographic + hierarchical longitudinal extension specified.
 - [x] Active inference demoted from assumed ontology to candidate model family.
 - [x] Seed literature matrix created.
-- [x] Novelty and failure-mode audit created.
-- [x] Initial falsification criteria defined.
 - [x] Targeted novelty search completed and logged.
-- [x] 009A preregistration-ready protocol skeleton drafted.
+- [x] Adversarial audit completed with fatal-design corrections.
+- [x] 009A1 preregistration-ready protocol skeleton revised.
 - [x] Episode-level data dictionary drafted.
-- [x] Reference Pareto-frontier code added.
 - [x] Independent-panel fidelity metric specification drafted.
 - [x] Minimal relation ontology drafted.
-- [x] Synthetic engineering benchmark added with explicit non-empirical labeling.
 - [x] Independent query-bank template drafted with anti-redundancy rules.
-- [x] Simulation-based sample-size / precision sensitivity framework added.
-- [x] Portfolio Pipeline-link generator bug fixed and regenerated Page verified.
+- [x] Synthetic fidelity-frontier engineering benchmark added.
+- [x] Participant/episode/query/evaluator power-sensitivity framework added.
+- [x] Portfolio Pipeline-link generator bug fixed and Page verified.
 
-## Next ARIS gates
-
-### Gate A — systematic novelty search
+## Gate A — systematic novelty search
 
 **Status:** targeted audit complete; formal multi-database systematic novelty review remains.
 
-Determine whether prior work already benchmarks explicit representational loss from phenomenological interview → scale → computational representation.
+Pass condition: strongest novelty sentence is supported after database and citation-chain screening.
 
-Pass condition: novelty claim is rewritten to the narrowest defensible form after database and citation-chain screening.
+## Gate B — fidelity metric calibration
 
-### Gate B — fidelity metric preregistration
+**Status:** design specification complete; empirical calibration required.
 
-**Status:** design specification complete; empirical calibration is now the blocker.
+Need pilot estimates of:
 
-Completed:
+- source answerability;
+- query redundancy;
+- source-adjudication agreement;
+- evaluator variance;
+- usable queries per episode;
+- R3P/R4P projection feasibility;
+- participant-meaning-check feasibility.
 
-- independent query-construction/adjudication/evaluation panels;
-- semantic, relational, context, temporal and participant fidelity definitions;
-- source-uncertainty propagation;
-- rate- and burden-matched fairness analyses;
-- relation ontology;
-- provisional reliability gates;
-- independent query-bank template;
-- participant/episode/query/evaluator power-sensitivity simulation.
+Pass condition: reliability and scoring rules are frozen before confirmatory cases.
 
-Still required from actual pilot material:
+## Gate C — pilot material
 
-- construct/adjudicate queries on independent episodes;
-- measure query redundancy and usable-query yield;
-- estimate inter-rater/evaluator variance;
-- freeze acceptable reliability thresholds after pilot calibration;
-- rerun sample-size/precision simulation using empirical variance components.
+**Status:** main blocker.
 
-Pass condition: metrics can be applied without knowing representation identity, reliability is adequate, and no confirmatory choices are tuned on confirmatory cases.
+009A1 needs independent, ethically usable source episodes.
 
-### Gate C — pilot material
+009A2 additionally needs purpose-collected multimethod assessments from the same participants and therefore likely requires a dedicated protocol/ethics workflow.
 
-**Status:** now the main execution gate.
+## Gate D — reliability
 
-Use de-identified or purpose-collected episodes to verify:
+Pass condition: primary fidelity components meet frozen reliability gates or are revised before confirmatory scoring.
 
-- source construction;
-- query adjudication;
-- graph extraction;
-- blinded reconstruction;
-- burden measurement;
-- participant-meaning checks where feasible.
+## Gate E — confirmatory encoding benchmark
 
-Synthetic examples may be used only for engineering and must be labeled synthetic.
+Compare at minimum:
 
-### Gate D — metric reliability
+- R0 rich source;
+- R1 episode graph;
+- R2 phenomenological code;
+- R3P questionnaire-format projection;
+- R4P conventional symptom projection.
 
-Pass condition: key fidelity components achieve prespecified acceptable rater agreement or are revised before substantive comparisons.
+R5 low-dimensional representation may be confirmatory if its decoding rule is frozen.
 
-### Gate E — representation benchmark
+## Gate F — acquisition benchmark
 
-Compare at minimum full context, structured graph, expert phenomenological code, self-report abstraction and conventional symptom abstraction.
+Only after 009A1 methodology is stable, test genuine differences among:
 
-Pass condition: effect estimates and uncertainty are reported; no universal representation winner is forced.
+- phenomenological interview;
+- participant self-report;
+- conventional clinical assessment;
+- EMA/other acquisition streams where justified.
 
 ## Deferred
 
 - EEG/fMRI mechanism study;
-- digital phenotyping;
+- passive digital phenotyping;
 - intervention control;
 - full digital-twin language;
 - clinical decision support.
 
-These are intentionally deferred until the representation-loss measurement problem is solved.
-
 ## Current main blocker
 
-The project no longer needs more conceptual expansion before pilot execution.
+The project no longer benefits from adding broad conceptual layers.
 
-It needs **independent, ethically usable pilot episodes and trained/adjudicating raters** so the fidelity instrument can be calibrated on real material.
+The next scientifically meaningful step is **real pilot material + independent raters**.
 
 ## Scope control
 
-Paper 009A remains a measurement / representation paper. Everything else is a programmatic extension.
+009A1 = encoding measurement paper.  
+009A2 = acquisition-method paper.  
+Mechanistic/neural/longitudinal work follows only after these measurement layers survive calibration.

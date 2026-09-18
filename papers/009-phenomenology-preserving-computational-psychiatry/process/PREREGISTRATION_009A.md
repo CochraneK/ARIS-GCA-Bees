@@ -2,287 +2,286 @@
 
 ## Title
 
-**How Much Lived Psychopathology Survives Quantification? A Blinded Benchmark of Representation Fidelity**
+**How Much Psychopathological Information Survives Encoding? A Blinded Same-Source Benchmark of Representation Fidelity**
 
 ## Status
 
 Protocol skeleton for preregistration. No participant data have been collected under this protocol.
 
+## Scope correction
+
+009A is now explicitly **009A1: an encoding benchmark**.
+
+It does **not** compare an actual participant self-report against an interactive phenomenological interview and call the difference "compression loss."
+
+Different acquisition procedures can elicit different evidence. That question belongs to 009A2.
+
 ## Primary question
 
-When the **same source episode** is represented at progressively more compressed levels, how much source-grounded phenomenological structure can a blinded evaluator recover?
+When the **same source episode** is encoded into different representations, how much source-grounded semantic, relational, contextual and temporal structure can a blinded evaluator recover?
 
-The study does not treat the source interview as the participant's complete inner reality. It treats it as the richest common evidential reference available to all representation conditions.
+## Source
 
-## Design summary
+The initial source is a rich, ethically collected, de-identified phenomenological interview episode.
 
-A within-episode, blinded reconstruction benchmark.
+The source is not treated as the participant's complete inner reality. It is the fixed evidential reference for the encoding experiment.
 
-Each focal episode is transformed into multiple representations. Independent evaluators receive exactly one representation and answer a preregistered set of questions about the episode. Their answers are compared with a multi-anchor source adjudication.
+## Core encoding conditions
 
-### Core representation conditions
+1. **R0 · Rich source record**  
+   De-identified transcript segment, relevant prompts and contextual qualifiers.
 
-1. **R0 · Rich source record** — de-identified transcript segment, relevant interviewer prompts and contextual qualifiers.
-2. **R1 · Structured phenomenological episode graph** — self, body, thought, other, world, time, space, affect, salience, agency, attribution, certainty and context, all with provenance.
-3. **R2 · Specialist phenomenological coding** — trained-rater representation using the selected EASE/EAWE/STEP-compatible coding scheme.
-4. **R3 · Self-report abstraction** — participant-completed or source-derived self-report representation using a frozen instrument.
-5. **R4 · Conventional symptom abstraction** — conventional symptom/dimensional coding.
-6. **R5 · Low-dimensional quantitative representation** — compact latent vector or summary with decoding instructions frozen before evaluation.
+2. **R1 · Structured phenomenological episode graph**  
+   Entities, relations, temporal order, uncertainty, context and provenance.
 
-An LLM-assisted representation may be tested as exploratory but is not part of the human-only primary contrast unless preregistered before data access.
+3. **R2 · Specialist phenomenological coding**  
+   Frozen trained-rater coding scheme based on selected EASE/EAWE/STEP-compatible constructs.
 
-## Population
+4. **R3P · Questionnaire-format projection**  
+   A frozen mapping from the same source episode into the response format/content of a selected questionnaire.
 
-The initial benchmark domain is schizophrenia-spectrum / early-psychosis phenomenology because detailed phenomenological instruments and prior neurophenomenology are comparatively mature. This does not imply that the ontology generalizes unchanged to other disorders.
+   **R3P is not called self-report.** The participant did not generate it by completing the questionnaire.
 
-A clinically relevant comparison group and/or non-clinical participants may be included to test whether compression errors are psychopathology-specific rather than generic narrative compression.
+5. **R4P · Conventional symptom-code projection**  
+   A frozen mapping from the same source episode into selected conventional symptom/dimensional codes.
 
-## Unit structure
+6. **R5 · Low-dimensional representation**  
+   A compact latent/vector representation with frozen decoding instructions.
 
-The analysis is multilevel:
+7. **R6 · LLM-assisted representation, exploratory only**  
+   Frozen model/version/prompt, human primary endpoint retained.
 
-- participant;
-- focal episode;
-- benchmark query or relation;
-- representation;
-- evaluator.
+## Excluded from the primary fidelity ranking
 
-The number of observations is not equated with the number of participants.
+A DSM/ICD diagnosis or other categorical clinical label is not part of the primary source-reconstruction competition unless the study explicitly frames it as a deliberately coarse negative-control representation.
 
-## Source construction
+Low narrative fidelity of diagnosis is not interpreted as evidence that diagnosis fails its intended purpose.
 
-For every focal episode preserve, subject to ethics and de-identification:
+## Acquisition benchmark deferred to 009A2
 
-- participant wording;
-- interviewer prompt;
-- immediate context;
-- temporal qualifiers;
-- certainty/uncertainty;
-- literal/metaphoric status when explicitly clarified;
-- attribution;
-- relevant medication, sleep, substance or acute-context information when consented;
-- unresolved ambiguity;
-- provenance pointer.
+A later protocol will compare genuinely different acquisition methods in the same participants:
 
-### Multi-anchor adjudication
+- phenomenological interview;
+- participant-completed self-report;
+- conventional clinical assessment;
+- EMA where relevant.
 
-The reference answer set is produced from:
+009A2 must model:
 
-1. the source record;
-2. two independent trained raters;
-3. adjudication of disagreement;
-4. participant clarification where feasible and ethically appropriate.
+- assessment order;
+- interval between assessments;
+- state change;
+- priming/learning;
+- interviewer effects;
+- method-specific missingness.
 
-Uncertainty and alternative interpretations are stored rather than forced into false certainty.
+## Query-bank construction
 
-## Query bank
+Three independent roles are retained:
 
-The benchmark query bank is frozen before representation evaluation and contains at least five classes.
+- **Panel A:** constructs candidate questions from the source only;
+- **Panel B:** adjudicates source answers and uncertainty;
+- **Panel C:** sees one encoded representation and answers frozen questions.
 
-### Q1 · Semantic content
+Panel A and B never construct questions by inspecting R1–R6.
 
-Examples include agency, attribution, literal/metaphoric/uncertain status and affective valence.
+## Query classes
 
-### Q2 · Relations
+At minimum:
 
-Examples include self–thought, self–body, self–other, event–meaning, causation and salience–belief relationships.
+- semantic content;
+- relations;
+- context;
+- temporal structure;
+- participant-meaning checks where feasible.
 
-### Q3 · Context
+Query origin is recorded:
 
-Questions test whether the representation preserves situational qualifiers and alternative explanations such as sleep, medication or ordinary experience.
+- domain-general;
+- phenomenology-informed;
+- conventional-clinical;
+- participant-generated.
 
-### Q4 · Time
-
-Questions test order, duration, recurrence and episodic versus trait-like status.
-
-### Q5 · Participant-meaning checks
-
-A subset of reconstructed descriptions is shown back to participants under a structured fidelity rubric when feasible.
+Results are stratified by query origin to detect ontology favoritism.
 
 ## Primary endpoint
 
-The primary family is **source-grounded semantic reconstruction fidelity** at the query level.
+The primary endpoint is **source-grounded semantic reconstruction fidelity** at query level.
 
-For categorical queries, the primary analysis uses correct/incorrect/indeterminate judgments against the adjudicated reference in a hierarchical model. The primary estimand is the representation-condition contrast in probability of a correct answer.
+For categorical queries:
 
-Semantic, relational, contextual, temporal and participant-endorsed fidelity remain separate. A scalar composite is not the primary endpoint because its weights would encode an unvalidated value judgment.
+- correct;
+- incorrect;
+- indeterminate/abstain.
+
+For uncertain source adjudication, use admissible answer sets or probabilistic scoring.
 
 ## Secondary endpoints
 
-1. relation-level precision, recall and F1;
-2. context-loss error;
-3. temporal-order accuracy;
-4. participant-endorsed reconstruction fidelity;
-5. evaluator-confidence calibration;
-6. inter-rater reliability;
-7. representation length/dimensionality;
-8. participant acquisition burden;
-9. expert annotation burden;
-10. computational burden.
+- relation precision/recall/F1;
+- context-ablation loss;
+- temporal-order concordance;
+- participant-endorsed fidelity;
+- evaluator calibration;
+- inter-rater reliability;
+- representation rate/length;
+- encoding time;
+- expert time;
+- computational cost.
 
-## Core hypotheses
+Acquisition time is reported for R0 source creation but is conceptually separated from encoding cost.
 
-### H1 · Richness gradient
+## Hypotheses
 
-R0/R1/R2 preserve more source-grounded semantic and relational information than R3/R4 on average.
+### H1 · Encoding gradient
+
+Lower-bandwidth same-source encodings will show lower average source-reconstruction fidelity, with substantial overlap and exceptions.
 
 ### H2 · Domain interaction
 
-Compression loss is larger for agency, minimal-self, self-world boundary, temporality and atmospheric/salience phenomena than for more behaviorally concrete facts.
+Agency, mineness, self-world boundary, temporality and atmospheric/salience content will show larger loss than more concrete factual content under aggressive encoding.
 
-### H3 · Context effect
+### H3 · Context ablation
 
-Removing contextual qualifiers increases interpretive error, particularly for distinctions among anomalous self-experience, ordinary experience, medication/sleep effects and overt psychotic phenomena.
+Removing contextual qualifiers will increase reconstruction error.
 
-### H4 · Non-equivalence at equal predictive utility
+### H4 · Structured middle-layer efficiency
 
-If an external prediction task is added, representations with similar predictive accuracy may still differ in phenomenological fidelity.
+R1/R2 may occupy a favorable fidelity-versus-burden region relative to full source and coarse projections.
 
-### H5 · Structured middle-layer efficiency
+### H5 · No universal winner
 
-R1/R2 occupy a favorable region of the fidelity–burden Pareto frontier relative to both full narrative and coarse symptom representation.
+A representation with lower narrative fidelity may still be superior for a different intended use; 009A1 does not generalize source fidelity into universal validity.
 
 ## Blinding
 
-- evaluators do not see participant identity;
-- evaluators do not see other representation conditions for the same episode;
-- representation creators do not evaluate their own representations;
-- adjudicators are separated from representation-condition evaluation where feasible.
+- evaluator does not see participant identity;
+- evaluator sees only one representation condition for a given episode;
+- representation creators do not evaluate their own representation;
+- source adjudicators are separated from representation evaluation.
 
 ## Randomization
 
-Episodes are assigned using a balanced incomplete-block design so that each episode is evaluated in every representation condition across the evaluator pool, no evaluator sees the same episode in more than one condition, and evaluator × representation imbalance is minimized.
+Use a balanced incomplete-block assignment so:
 
-Randomization code and seed are frozen before unblinding.
+- every episode is evaluated under every representation condition across the evaluator pool;
+- one evaluator does not see the same episode in multiple conditions;
+- evaluator × representation imbalance is minimized.
+
+Freeze code and seed before unblinding.
 
 ## Exclusion rules
 
-Preregister before data inspection:
+Preregister before confirmatory data:
 
-- source episode lacks enough information for adjudication;
-- transcript failure prevents reliable reconstruction;
-- representation violates its frozen specification;
-- evaluator fails prespecified training/attention checks;
-- duplicate episode accidentally included.
+- source cannot support adjudication;
+- transcript/source failure;
+- representation violates frozen generation protocol;
+- evaluator fails frozen training/attention criteria;
+- duplicate episode.
 
-Clinical severity or unusual content is not itself an exclusion criterion.
+Unusual clinical content is not an exclusion criterion.
 
-## Statistical analysis
-
-### Primary model
+## Primary model
 
 A hierarchical logistic model for query-level correctness:
 
 [
-logit(P(correct_{ierq}=1)) =
-\beta_0 + \beta_{representation[r]} + \beta_{domain[q]}
-+ \beta_{representation\times domain}
-+ u_i + v_{episode} + z_{evaluator}
+logit(P(Y=1))=
+eta_0+eta_R+eta_D+eta_{R	imes D}
++u_{participant}+u_{episode}+u_{query}+u_{evaluator}
 ]
 
-Query-level random effects are added when supported by the design.
+where (R) is representation and (D) is domain.
 
-### Planned primary contrasts
+## Planned primary contrasts
 
-Freeze before data access, with candidates:
+Freeze after pilot calibration and before confirmatory access.
 
-- R2 vs R3;
-- R2 vs R4;
-- R1 vs R4;
+Candidate contrasts:
+
+- R2 vs R3P;
+- R2 vs R4P;
+- R1 vs R4P;
 - R0 vs R1.
 
-Other pairwise contrasts are secondary.
+R0 is a ceiling/reference condition, not expected to be burden-efficient.
 
-### Missing / indeterminate answers
+## Missingness and abstention
 
-Indeterminate is retained as a substantive outcome when ambiguity exists. It is never silently recoded as incorrect.
+"Cannot infer from this representation" is permitted.
 
-Sensitivity analyses compare strict accuracy, preregistered partial-credit scoring and probabilistic scoring.
+Report:
 
-## Power
+- coverage;
+- fidelity conditional on answer;
+- overall proper scoring loss.
 
-Use simulation-based power/precision after pilot variance components are available.
+Do not force guessing.
 
-The target is precision for the smallest scientifically meaningful representation contrast, not a conventional participant-count heuristic. A single-level formula that ignores episodes, queries and evaluators is not acceptable.
+## Power / precision
 
-## Pareto analysis
+Use the simulation framework in:
 
-Each representation receives:
+`process/POWER_PRECISION_009A.md`
+
+The final simulation must be recalibrated using pilot estimates of participant, episode, query and evaluator variance and query redundancy.
+
+## Intended-use validity
+
+009A1 measures source-reconstruction fidelity.
+
+It does not claim that the highest-fidelity representation is best for every use.
+
+Later analyses may estimate:
 
 [
-M(R)=\{F(R),V(R),U(R),C(R)\}
+V_{use}(R,u),quad U(R,u)
 ]
 
-where (F) is phenomenological fidelity, (V) independent validity, (U) predictive/intervention utility and (C) burden/cost.
+for screening, diagnosis, prediction, monitoring or mechanism.
 
-A representation is Pareto-dominated only if another is no worse on all relevant dimensions and strictly better on at least one. No universal “best representation” is declared.
+## Robustness
 
-## Robustness analyses
+At minimum:
 
 1. leave-one-participant-out;
 2. leave-one-evaluator-out;
 3. domain-specific effects;
-4. representation-length matched analysis;
-5. confidence-weighted vs unweighted scoring;
-6. specialist vs non-specialist evaluator strata;
-7. original-language vs translated cases where applicable;
-8. alternative adjudication for unresolved ambiguity.
+4. query-origin stratification;
+5. representation-rate matched comparison;
+6. evaluator-background interaction;
+7. original-language versus translated cases;
+8. alternative source adjudication under unresolved ambiguity.
 
-## Falsification thresholds
+## Strong falsification
 
-The central claim is weakened if:
+The central encoding thesis is weakened if:
 
-- coarse self-report or symptom representations show negligible fidelity loss at much lower burden;
-- apparent fidelity advantages disappear after matching representation length;
-- fidelity metrics cannot achieve acceptable independent-rater reliability;
-- participant checks systematically contradict supposedly source-faithful reconstructions;
-- relative representation performance is unstable across sites/evaluator panels;
-- richer phenomenological detail yields no reproducible scientific value beyond verbosity.
+- coarse projections preserve the same source information at much lower burden;
+- fidelity advantages vanish under rate-matched analyses;
+- query-bank reliability is inadequate;
+- representation ordering is determined by evaluator school;
+- results are driven by redundant paraphrased queries;
+- richer encodings add only verbosity.
 
 ## LLM policy
 
-If LLMs are used:
+If used:
 
-- model/version/date and prompt are frozen;
-- no identifying information is sent to non-approved services;
-- extraction and evaluation use independent pipelines;
-- human evaluation remains the initial primary endpoint;
-- repeated generations quantify stochastic variability;
-- outputs are labeled derived data, never source evidence.
-
-## Ethics and privacy
-
-“Preserve the source” means preserve provenance, not indiscriminately publish or permanently retain identifiable psychiatric records.
-
-Require ethics approval where applicable, explicit consent, de-identification, access control, data minimization, retention policy, separate passive-sensing consent and no automated clinical decision based on benchmark scores.
-
-## Confirmatory versus exploratory boundary
-
-### Confirmatory
-
-- frozen representation conditions;
-- frozen query bank;
-- primary endpoint;
-- primary contrasts;
-- blinding;
-- exclusion criteria;
-- hierarchical primary model.
-
-### Exploratory
-
-- LLM conditions;
-- neural/behavioral associations;
-- unsupervised latent representations;
-- alternative graph metrics;
-- transdiagnostic extension;
-- intervention forecasting.
+- freeze model/version/date/prompt;
+- use approved data handling;
+- separate generation and evaluation pipelines;
+- human evaluation remains primary initially;
+- quantify stochastic variability;
+- label outputs as derived representations, never source evidence.
 
 ## Registration gate
 
-This becomes preregistration-ready only after:
+009A1 becomes registration-ready only after:
 
-1. exact instruments are selected;
-2. evaluator training and acceptable reliability threshold are frozen;
-3. query-bank construction is piloted without tuning on confirmatory cases;
-4. simulation-based sample-size target is frozen;
+1. exact source interview/instruments and projection rules are frozen;
+2. query-bank construction is piloted independently;
+3. acceptable reliability thresholds are frozen;
+4. pilot variance/redundancy estimates calibrate the sample-size simulation;
 5. ethics/data-governance plan is approved.

@@ -1,247 +1,232 @@
 # ARIS4C009 · Model specification
 
-## 1. Objects being modeled
+## 1. Separate the unobserved state, acquisition process and encoding process
 
-Let (H_{it}) denote the lived mental state of person (i) at time (t). (H) is not directly observable and is not treated as a measurable ground truth.
+Let (H_{it}) denote the lived mental state of person (i) at time (t).
 
-Let (X_{it}) denote the richest ethically and practically obtainable evidential record:
+(H) is not directly observable and is never treated as empirical ground truth.
+
+For acquisition method (m):
 
 [
-X_{it} = (N_{it}, C_{it}, P_{it}, E_{it}, B_{it}, O_{it}, S_{it}, G_{it})
+X^{(m)}_{it}=A_m(H_{it},C_{it},I^{(m)}_{it})+epsilon^{(m)}_{it}
 ]
 
 where:
 
-- (N): narrative / interview material;
-- (C): contextual information;
-- (P): participant clarification or confirmation;
-- (E): ecological momentary assessment;
-- (B): behavior / task data;
-- (O): clinician or observer information;
-- (S): passive sensor streams;
-- (G): physiology / EEG / imaging, when available.
+- (A_m) = elicitation/acquisition method;
+- (C) = relevant context;
+- (I^{(m)}) = interaction/process features such as interviewer probing, item wording, response format and rapport;
+- (epsilon^{(m)}) = acquisition noise/omission.
 
-The central rule is:
+Examples of (m):
 
-[
-H 
-eq X
-]
+- phenomenological interview;
+- participant self-report;
+- conventional symptom interview;
+- EMA;
+- behavioral task;
+- passive sensing;
+- EEG/fMRI/physiology.
 
-and no analysis claims otherwise.
-
-## 2. Representation ladder
-
-Define a family of transformations:
+For representation method (k):
 
 [
-Z^{(k)} = f_k(X)
+Z^{(m,k)}_{it}=E_k(X^{(m)}_{it})+eta^{(m,k)}_{it}
 ]
 
-where (k) indexes representational schemes rather than an assumed ontological hierarchy.
+where (E_k) maps evidence into a coded/quantitative representation and (eta) denotes encoding error or omission.
 
-Candidate schemes:
-
-- **R0 — source archive:** transcript/audio-derived record + context + provenance;
-- **R1 — episode graph:** entities, experiential dimensions, relations, temporal order, uncertainty, contextual qualifiers and direct source pointers;
-- **R2 — phenomenological instrument representation:** EASE, EAWE, STEP and related trained-rater codes;
-- **R3 — conventional clinical / dimensional representation:** PANSS, symptom factors, HiTOP-like dimensions;
-- **R4 — computational representation:** model parameters and latent dynamical states;
-- **R5 — categorical representation:** DSM/ICD-style diagnosis or other coarse class.
-
-The ladder is not assumed to be strictly ordered in usefulness.
-
-## 3. Phenomenological fidelity vector
-
-No single scalar can certify fidelity. Report a vector:
+This decomposition is central:
 
 [
-F(Z) = (F_{sem}, F_{rel}, F_{ctx}, F_{temp}, F_{pers})
+	ext{observed difference} 
+eq 	ext{encoding loss alone}
 ]
 
-### 3.1 Semantic fidelity (F_{sem})
+when both (A_m) and (E_k) change.
 
-Construct a preregistered query bank (Q) over each source episode.
+## 2. Two distinct empirical benchmarks
+
+### 2.1 009A1 · Same-source encoding benchmark
+
+Fix one source record (X^{(m_0)}), initially a rich phenomenological interview record.
+
+Generate multiple encodings from that same source:
+
+- **R0:** rich source record;
+- **R1:** structured phenomenological episode graph;
+- **R2:** trained-rater phenomenological codes;
+- **R3P:** questionnaire-format projection from the same source;
+- **R4P:** conventional symptom-code projection from the same source;
+- **R5:** low-dimensional quantitative/latent representation;
+- **R6 exploratory:** frozen LLM-assisted structured representation.
+
+R3P and R4P are **projections**, not actual participant-completed measures.
+
+009A1 estimates encoding/representation loss conditional on one acquisition method.
+
+### 2.2 009A2 · Acquisition benchmark
+
+Collect genuinely different (X^{(m)}) from the same participant using multiple acquisition methods.
 
 Examples:
 
-- Did the participant experience a loss of agency?
-- Was the experience endorsed as literal, metaphorical or uncertain?
-- Did it occur before or after a specific event?
-- Was the experience frightening, neutral or compelling?
-- Was it attributed to medication, sleep deprivation, another person or no identified cause?
+- EASE/EAWE/STEP-style interview;
+- participant-completed self-report;
+- conventional symptom assessment;
+- EMA.
 
-Independent raters answer (Q) using either the source archive or a compressed representation.
+009A2 estimates acquisition/process divergence and cannot assume one method is a neutral readout of (H).
+
+Order, interval, symptom/state change, practice, priming and interviewer effects must be recorded and modeled.
+
+## 3. Source-grounded fidelity vector
+
+For 009A1, report:
+
+[
+F(Z)=(F_{sem},F_{rel},F_{ctx},F_{temp},F_{pers})
+]
+
+### 3.1 Semantic fidelity
+
+Use an independently constructed, preregistered query bank.
 
 For categorical questions:
 
 [
-F_{sem}=1-rac{1}{|Q|}sum_q mathbb{1}[a_q^{source}
-eq a_q^{repr}]
+F_{sem}^{strict}=rac{1}{|Q|}sum_q I(hat y_q=y_q)
 ]
 
-For probabilistic answers, use proper scoring rules such as Brier or log loss and normalize to ([0,1]).
+When adjudication is uncertain, use admissible answer sets or probability distributions and proper scoring rules.
 
-### 3.2 Relational fidelity (F_{rel})
+### 3.2 Relational fidelity
 
-Represent an episode as a labeled graph (G_X=(V,E)) containing phenomenological entities and relations:
+Represent source episodes as relation graphs and compare reconstruction using:
 
-- self ↔ thought;
-- self ↔ body;
-- self ↔ other;
-- event ↔ meaning;
-- temporal precedence;
-- causal attribution;
-- certainty;
-- context;
-- modality.
+- edge precision;
+- edge recall;
+- edge F1;
+- relation-type confusion.
 
-Compare source-derived and representation-derived graphs with a preregistered graph distance, weighted so that clinically meaningful relation types are not overwhelmed by trivial node counts.
+Graph-edit distance is secondary.
 
-Possible starting metrics:
+### 3.3 Context fidelity
 
-- normalized graph edit distance;
-- relation-level precision / recall / F1;
-- weighted edge Jaccard similarity.
-
-### 3.3 Context fidelity (F_{ctx})
-
-Context loss is operationalized as the increase in misclassification or interpretive disagreement after contextual qualifiers are removed.
-
-For an episode (j):
+Use context-ablation contrasts:
 
 [
-D_{ctx,j} = L(y_j,hat y_j^{compressed})-L(y_j,hat y_j^{context})
+D_{ctx}=L(hat y_{without context},y)-L(hat y_{with context},y)
 ]
 
-where (y_j) is an expert-adjudicated interpretation and (L) is a preregistered loss.
+### 3.4 Temporal fidelity
 
-This directly tests whether ordinary experiences, medication effects, psychotic phenomena and subtle self-disorders are conflated by compression.
+Measure event-order concordance, duration, recurrence and transition preservation.
 
-### 3.4 Temporal fidelity (F_{temp})
+### 3.5 Participant-endorsed fidelity
 
-Measure preservation of:
+Where feasible, participants evaluate whether blinded reconstructions preserve intended meaning.
 
-- event order;
-- duration;
-- recurrence;
-- state transitions;
-- lead/lag relationships;
-- episodic versus trait-like character.
-
-For repeated observations, compare transition matrices or event sequences rather than only marginal symptom totals.
-
-### 3.5 Participant fidelity (F_{pers})
-
-After blinded reconstruction, participants judge whether a representation preserves what they meant.
-
-Use structured ratings and discrepancy interviews.
-
-This is not treated as infallible ground truth. It is one indispensable constraint among several.
+Participant endorsement is a constraint, not infallible ground truth.
 
 ## 4. Reliability is separate from fidelity
 
-A measure can be highly reliable and faithfully reproduce the same distortion.
+A representation can reliably reproduce the same distortion.
 
-Therefore report separately:
+Report separately:
 
 - inter-rater reliability;
-- test-retest reliability when theoretically appropriate;
-- parameter recovery for computational models;
-- fidelity vector (F).
+- test-retest reliability where appropriate;
+- parameter recovery;
+- fidelity vector.
 
-Do not use reliability as a substitute for meaning preservation.
+## 5. Intended-use validity
 
-## 5. Construct and cross-modal validity
+Modern validity logic is use-dependent.
 
 Define:
 
 [
-V(Z) = (V_{conv},V_{disc},V_{beh},V_{neuro},V_{interv})
+V_{use}(Z,u)
 ]
 
-for convergent, discriminant, behavioral, neural and intervention validity.
+where (u) may be:
 
-These variables **must not** be folded into the definition of phenomenological fidelity.
+- rich description;
+- screening;
+- diagnosis;
+- mechanism;
+- prediction;
+- monitoring;
+- intervention selection.
 
-A neural correlate can constrain a model without proving that a compressed description captured the experience correctly.
+A measure is not declared invalid simply because it omits information irrelevant to its intended use.
 
-## 6. Predictive utility
+Therefore:
 
-For longitudinal data:
+- source-reconstruction fidelity is one empirical property;
+- intended-use validity is another;
+- omissions count as "distortion" only when preservation is part of the target representation claim or shared task.
+
+## 6. Purpose-conditioned utility
+
+For use (u):
 
 [
-U_{pred}(Z)= -L(Y_{t+h},hat Y_{t+h}|Z_{le t})
+U(Z,u)
 ]
 
-Evaluate with rolling-origin or forward-chaining validation.
+may include:
 
-Targets should include multiple clinically meaningful outcomes:
+- diagnostic discrimination;
+- future-state prediction;
+- relapse forecasting;
+- functional outcome prediction;
+- participant-valued outcomes;
+- intervention-response prediction.
 
-- future first-person states;
-- functional change;
-- relapse / crisis indicators;
-- intervention response;
-- participant-valued outcomes.
+Prediction of administrative labels alone is insufficient for broad mechanistic claims.
 
-Prediction of administrative diagnosis alone is insufficient.
+## 7. Burden / rate
 
-## 7. Burden / representation rate
-
-Define a burden vector rather than only file size:
+Define:
 
 [
 C(Z)=(C_{bits},C_{time},C_{participant},C_{expert},C_{compute})
 ]
 
-where components quantify:
+Keep acquisition burden and encoding burden distinct.
 
-- description length / dimensionality;
-- acquisition time;
-- participant burden;
-- expert annotation time;
-- computational cost.
+A 3-hour interview plus 5-minute coding is not cost-equivalent to a 5-minute questionnaire plus no expert coding.
 
-This prevents a 3-hour specialist interview and a 2-minute questionnaire from being treated as equally costly.
+## 8. Use-conditioned fidelity frontier
 
-## 8. Fidelity frontier
-
-For representation (Z), retain the multi-objective tuple:
+For representation (Z) and use (u):
 
 [
-M(Z)={F(Z),V(Z),U_{pred}(Z),C(Z)}
+M(Z,u)={F(Z),R(Z),V_{use}(Z,u),U(Z,u),C(Z)}
 ]
 
-A representation is dominated if another representation has:
+A representation is dominated only within an explicitly specified comparison set/use case.
 
-- no lower fidelity;
-- no worse validity;
-- no worse prediction;
-- no greater burden;
-
-with at least one strict improvement.
-
-The remaining representations form the empirical **fidelity frontier**.
-
-No overall winner should be declared unless a use case supplies explicit, preregistered utility weights.
+No universal winner is declared.
 
 ## 9. Rate-distortion formulation
 
-A restricted information-theoretic version can be studied as:
+For 009A1:
 
 [
 R(D)=min_{p(z|x):mathbb{E}[d(X,hat X)]le D} I(X;Z)
 ]
 
-But (d) must not default to generic token overlap or mean-squared error.
+The distortion function (d) is built from preregistered semantic, relational, contextual and temporal reconstruction losses.
 
-For psychopathology, (d) should be built from the preregistered fidelity components above.
-
-A perception-aware extension can compare source and reconstructed distributions, but distributional similarity must not replace person-level semantic fidelity.
+This formulation applies to **encoding of a fixed source**. It must not be used to claim that differences between independently acquired interview and self-report records are purely compression effects.
 
 ## 10. Dynamic generative layer
 
-For longitudinal modeling, define latent state (s_{it}):
+For later longitudinal work:
 
 [
 s_{i,t+1}=f_i(s_{it},e_{it},u_{it})+epsilon_{it}
@@ -251,23 +236,15 @@ s_{i,t+1}=f_i(s_{it},e_{it},u_{it})+epsilon_{it}
 y_{it}=g_i(s_{it})+eta_{it}
 ]
 
-where:
+Candidate models include:
 
-- (e): environmental/contextual input;
-- (u): intervention or perturbation;
-- (y): multimodal observations.
-
-Candidate models:
-
-- VAR / dynamic network baseline;
-- Kalman / switching state-space models;
+- VAR/dynamic networks;
+- switching state-space models;
 - hierarchical Bayesian state-space models;
-- PLRNN / nonlinear state-space models;
+- PLRNN/nonlinear state-space models;
 - Gaussian-process state-space models;
-- active-inference / POMDP models where justified;
+- active-inference/POMDP models where justified;
 - sequence models as predictive comparators.
-
-The mechanistic model is selected by predictive adequacy, parameter recovery, cross-level constraint and interpretability — not by theoretical fashion.
 
 ## 11. Idiographic + population hierarchy
 
@@ -277,34 +254,26 @@ Use partial pooling:
 	heta_i sim mathcal{N}(mu_	heta,Sigma_	heta)
 ]
 
-Each person receives individual parameters while the population informs priors.
+Compare fully pooled, diagnosis-stratified, hierarchical transdiagnostic and person-specific models.
 
-Compare:
+## 12. Strong falsification
 
-1. fully pooled;
-2. diagnosis-stratified;
-3. hierarchical transdiagnostic;
-4. person-specific models.
+The central program is weakened if:
 
-The empirical question is how much individual structure is lost by each pooling level.
-
-## 12. Falsification criteria
-
-The central proposal is weakened if:
-
-- coarse representations preserve source semantics and relations as well as richer ones at much lower burden;
-- participant-confirmed phenomenological detail adds no incremental prediction, construct validity or intervention information;
-- fidelity metrics fail to show acceptable inter-rater reliability;
-- the frontier is unstable across sites, languages or raters;
-- richer representations merely encode verbosity without preserving reproducible structure;
-- person-specific models do not outperform appropriately regularized population models in held-out longitudinal data.
+- coarse same-source projections preserve source semantics and relations as well as richer encodings at much lower burden;
+- richer representations add no reproducible value beyond verbosity;
+- fidelity metrics remain unreliable after calibration;
+- participant meaning checks systematically conflict with source-derived fidelity;
+- findings depend mainly on evaluator theoretical background;
+- the apparent "loss" disappears once acquisition and encoding are properly separated;
+- intended-use validity favors simpler tools for the use case despite their lower narrative fidelity.
 
 ## 13. Non-negotiable safeguards
 
-- immutable provenance pointers from every code back to source;
-- uncertainty stored explicitly;
-- no forced assignment when evidence is ambiguous;
-- no deletion of source layer after coding;
-- no diagnosis inferred from a single computational parameter;
-- no claim that brain data adjudicate subjective meaning on their own;
-- no synthetic or LLM-generated material presented as participant evidence.
+- every derived code retains source provenance where ethically possible;
+- uncertainty remains explicit;
+- no forced assignment under genuine ambiguity;
+- no synthetic/LLM output is presented as participant evidence;
+- brain data do not adjudicate subjective meaning by themselves;
+- diagnosis is not treated as a failed narrative representation;
+- actual self-report is not conflated with a source-derived questionnaire-format projection.
