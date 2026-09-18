@@ -4,10 +4,12 @@
   "title": "When Opposites Become Causes: A Cross-Domain Science of Oppositional Causal Inversion",
   "short_title": "Oppositional Causal Inversion",
   "year": 2026,
-  "status": "research-design",
+  "status": "pilot0a-feasibility-complete",
   "domain": "metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems",
-  "summary": "A cross-domain framework for testing when an increase in a construct causally increases a prespecified functional opposite after a change in actor, level, time, construct, feedback state, or capacity regime. Orwell's war-peace, freedom-slavery, and ignorance-strength triad is treated as a motivating stress test rather than as a conclusion.",
-  "authors": ["Cunyi Kang"],
+  "summary": "A falsification-first cross-domain framework for testing when an increase in a construct causally produces a prespecified functional opposite after actor, level, time, construct, environment, feedback, or capacity indices change. A 30-record Coder A feasibility pass is complete; independent coding and reproducible retrieval remain hard gates. Orwell's triad is a stress test, not a conclusion.",
+  "authors": [
+    "Cunyi Kang"
+  ],
   "aris": {
     "provenance": "ARIS4C guided design with live prior-art audit and falsification-first framing",
     "version": "v0.4.26",
