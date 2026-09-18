@@ -1,15 +1,17 @@
 {
   "schema_version": 1,
   "paper_id": "006",
-  "updated_on": "2026-09-18",
+  "updated_on": "2026-09-19",
   "stage": "preoutcome_research_design",
   "confirmatory_outcomes_unlocked": false,
   "primary_frame": {
     "unit": "authorship within eligible multi-author work",
     "population": "CN-affiliated authorships with high-confidence ChineseNames-mappable surnames; no nationality/ethnicity inference",
     "time_window": {
-      "status": "pending_gate",
-      "gate": "annual_coverage_sweep"
+      "status": "frozen",
+      "start": 2011,
+      "end": 2025,
+      "evidence": "process/PILOT16_RESULTS.md"
     },
     "field_scope": {
       "status": "frozen",
@@ -47,7 +49,12 @@
       "ambiguous_family_assignment"
     ],
     "chinese_population_baseline": "ChineseNames 2025.8; confirmatory reproduction required from pinned package",
-    "uniform_A_Z_null_forbidden": true
+    "uniform_A_Z_null_forbidden": true,
+    "canonical_map": "aris4c006-surname-map-v2-ccnc",
+    "pronunciation_authority": "Pinned CCNC surname-specific Romanization lexicon",
+    "population_authority": "ChineseNames 2025.8 population counts",
+    "primary_denominator": "ChineseNames × pinned CCNC direct Han-surname intersection, renormalized over mapped population mass",
+    "pypinyin_confirmatory_authority": false
   },
   "identity": {
     "longitudinal_join_key": "current canonical OpenAlex author ID after re-resolving embedded work author ID",
@@ -121,10 +128,11 @@
     "shuffled surname-rank placebo"
   ],
   "downstream_longitudinal": {
-    "status": "locked_pending_gates",
-    "cohort": "entry-based; late-year survivor seed forbidden",
-    "within_author_exposure_variation_gate": "running",
-    "distal_outcomes_max_confirmatory": 2
+    "status": "eligible_but_confirmatory_locked",
+    "cohort": "entry years 2014-2020; 3-year clean lookback; 5-year follow-up; see COHORT_DEFINITION.json",
+    "within_author_exposure_variation_gate": "pass",
+    "distal_outcomes_max_confirmatory": 2,
+    "distal_confirmatory_endpoint": "ObservedFiveYearPublicationPersistence"
   },
   "prohibited_adaptive_choices": [
     "choosing source-level exposure because it gives a larger surname interaction",
