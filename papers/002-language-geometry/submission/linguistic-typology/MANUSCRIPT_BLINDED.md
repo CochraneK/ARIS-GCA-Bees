@@ -3,13 +3,9 @@
 
 ## Abstract
 
-The idea that human languages might admit an organization analogous to a periodic table is scientifically attractive because it suggests that apparently diverse grammars could be generated from a recurrent, compact structural system. Yet a periodic-table metaphor is not itself a statistical model, and modern typological datasets make it possible to ask a sharper question: does a simple global periodic geometry predict structural relations among linguistic features better than non-periodic alternatives?
+The idea that human languages might admit a “periodic table” suggests that diverse grammars could reflect a compact recurrent organization. We test one strong, deliberately bounded version of that idea: a single global circular geometry over structural features. Models were trained on feature-feature normalized mutual information in one set of languages and evaluated against independently estimated associations in held-out languages. Across 20 TLI family-held-out splits, a hierarchical-tree benchmark achieved mean Spearman correlation 0.182 versus 0.109 for the optimized circle; the paired difference was 0.073 (split-bootstrap 95% CI 0.055–0.092), with the tree higher in all 20 splits. The same qualitative ordering appeared in GBI and separately processed WALS data. Direct circularity diagnostics also failed to show robust wrap-around closure, and no predefined TLI domain met the joint predictive-competitiveness and circular-stability criterion for local periodicity. These results do not establish a universal tree geometry or rule out all linguistic periodicity; they constrain the tested global-circle formulation.
 
-We operationalized one strong, deliberately bounded form of periodicity as a single circular geometry over structural features. Models were trained on feature–feature normalized mutual information (NMI) estimated from one set of languages and evaluated against independently estimated NMI in held-out languages. We compared circular models with low-rank, Euclidean, hierarchical-tree, graph and null representations, progressively adding top-level-family hold-outs, predefined structural domains, direct circular-Robinson-style diagnostics, geographic blocks, repeated split uncertainty, an alternative GBI curation, and a separately processed sparse WALS sanity representation.
-
-Across 20 TLI family-held-out splits, the hierarchical-tree benchmark achieved mean Spearman correlation 0.182 versus 0.109 for the optimized circular model; the paired difference was 0.073 (split-bootstrap 95% CI 0.055–0.092), with the tree higher in all 20 splits. The same qualitative ordering appeared in GBI (0.122 vs 0.073) and WALS (0.603 vs 0.410). Direct circularity diagnostics also failed to show robust wrap-around closure: at 60 TLI features, the circular closure/internal-adjacency ratio was 0.037. No predefined TLI domain met the joint predictive-competitiveness and circular-stability criterion for local periodicity.
-
-These analyses do not establish a universal tree geometry, nor do they exclude every possible form of linguistic periodicity. They instead constrain a specific global-circle formulation: reproducible structural order exists, but the tested periodic geometry is not the strongest held-out account of it. Geographic portability was representation-dependent, underscoring that conclusions about global linguistic geometry depend on dataset construction and sampling.
+**Keywords:** linguistic typology; circular seriation; typological databases; model comparison; language universals
 
 ## 1. Introduction
 
@@ -131,6 +127,24 @@ The analyses evolved iteratively. They should be read as a robustness ladder rat
 
 Because this sequence was adaptive, no family-wise confirmatory error rate is claimed across Stage 1–1I.
 
+## Table 6. Stage inventory and feature-selection rules
+
+| Stage | Representation | Languages | Feature scope | Selection / evaluation rule |
+|---|---|---:|---|---|
+| 0 compression | TLI | 644 | first 120 usable features | mode imputation → one-hot encoding → TruncatedSVD; column-wise shuffle null |
+| 0 association | TLI | 644 | first 80 usable features | jointly observed pairs; within-pair permutation null |
+| 1 | TLI | 644 | 60 | ≥180 observations, 2–15 states; rank by coverage then lower cardinality |
+| 1B | TLI | 644 | 40 and 60 | same eligible pool; direct circular-angle optimization |
+| 1C | TLI | 644 | predefined domains (14–40) | TLI published grouping metadata; no post-hoc domain selection |
+| 1D | TLI | 644 | 40 and 60 | family-held-out circularity/closure sensitivity |
+| 1E | TLI | 644 | 60 | macroarea / coordinate-cluster blocks, including geography+family variants |
+| 1F | TLI | 644 | 60 | 20 valid top-level-family-held-out splits |
+| 1G | TLI | 644 | 60 | geographic blocks vs matched-size random test sets |
+| 1H | GBI | 1,140 | 60 | ≥180 observations, 2–15 states; coverage/lower-cardinality ranking; 12 valid family splits |
+| 1I | WALS | 2,659 | 30 | ≥250 observations, 2–20 states; best-covered parameters; 8 valid family splits |
+
+The table summarizes manuscript-facing rules. Exact seeds, support thresholds and implementation details remain in the archived stage scripts and JSON outputs.
+
 ### 2.6 Predefined local-domain criterion
 
 Stage 1C used TLI's published feature grouping metadata to define five superdomains: Grammar linear order, Grammar other, Grammatical categories, Lexical and Phonology. A domain was considered a local periodic candidate only if the optimized circular model simultaneously achieved:
@@ -197,28 +211,57 @@ The most informative case was Grammar linear order. Its optimized circular model
 
 Grammatical categories was the only domain in which the optimized circular mean (0.252) exceeded the tree mean (0.229), but circular-order stability was 0.373, below the predeclared 0.40 threshold. Lexical, Grammar other and Phonology did not approach joint periodic competitiveness.
 
+## Table 4. Predefined TLI domains
+
+| Domain | Features | Tree | Low-rank | Optimized circle | Circle stability | Domain verdict |
+|---|---:|---:|---:|---:|---:|---|
+| Grammar linear order | 14 | **0.494** | 0.493 | 0.401 | **0.811** | non-periodic |
+| Grammar other | 38 | **0.313** | 0.243 | 0.253 | 0.274 | non-periodic |
+| Grammatical categories | 23 | 0.229 | 0.125 | **0.252** | 0.373 | ambiguous; below stability gate |
+| Lexical | 18 | **0.269** | 0.220 | 0.142 | 0.057 | non-periodic |
+| Phonology | 40 | **0.229** | 0.215 | 0.151 | 0.550 | non-periodic |
+
+Local-periodic candidate gate: circle Spearman ≥ 0.15, within 0.03 of best non-periodic baseline, stability ≥ 0.40.
+
 ### 3.5 Held-out circularity diagnostics did not support global closure
 
 In Stage 1D, lower row-unimodality deviation indicates closer circular-Robinson-style compatibility. At 40 features the circular order scored 0.222 ± 0.012, compared with 0.209 ± 0.011 for the tree leaf order and 0.237 ± 0.009 for random orders. At 60 features the corresponding values were 0.297 ± 0.009, 0.284 ± 0.010 and 0.307 ± 0.009.
 
 More directly, the mean circular wrap-around closure/internal-adjacency ratio was 0.608 at 40 features, but this estimate was highly unstable (SD = 0.764) and is not treated as informative evidence for closure. At 60 features the mean ratio was only **0.037** (SD = 0.091). The 60-feature result provides little support for the key edge that distinguishes a closed cycle from a stable open ordering.
 
-These diagnostics are noisy-data sensitivities, not formal rejection tests for all circular-Robinson structures. Their value is that the negative periodic interpretation no longer depends solely on a higher-capacity tree outperforming a circle.
+These diagnostics are noisy-data sensitivities, not formal rejection tests for all circular-Robinson structures. Their value is that the negative periodic interpretation no longer depends solely on a higher-capacity tree outperforming a circle. Figure 3 summarizes the held-out row-unimodality comparison across the 40- and 60-feature analyses.
+
+## Table 3. Direct circularity diagnostics
+
+| Feature count | Circular row-unimodality violation ↓ | Tree-order violation ↓ | Random-order violation ↓ | Circular closure/internal-adjacency |
+|---:|---:|---:|---:|---:|
+| 40 | 0.222 ± 0.012 | 0.209 ± 0.011 | 0.237 ± 0.009 | 0.608 ± 0.764 |
+| 60 | 0.297 ± 0.009 | 0.284 ± 0.010 | 0.307 ± 0.009 | **0.037 ± 0.091** |
+
+The row-unimodality statistic is a noisy-data sensitivity inspired by circular-Robinson structure, not an exact recognition test. Closure is interpreted only for the circular order.
+
+![Figure 3. Held-out circular-Robinson-style sensitivity.](figures/figure3_circular_diagnostics.svg)
 
 ### 3.6 Tree-over-circle ranking was stable across repeated TLI family hold-outs
 
 Across 20 valid Stage 1F family-held-out splits, mean Spearman correlation was:
 
-| Model | Spearman mean ± SD |
-|---|---:|
-| tree | **0.182 ± 0.047** |
-| low-rank (rank 2) | 0.155 ± 0.034 |
-| Euclidean connected | 0.110 ± 0.053 |
-| circular optimized | **0.109 ± 0.030** |
+## Table 1. Repeated TLI family-held-out model comparison
+
+| Model | Spearman mean ± SD | Paired contrast vs optimized circle | Split-bootstrap 95% CI | Win fraction vs circle |
+|---|---:|---:|---:|---:|
+| Tree | **0.182 ± 0.047** | **+0.073** | **[0.055, 0.092]** | **1.00** |
+| Low-rank (rank 2) | 0.155 ± 0.034 | +0.046 | [0.033, 0.061] | 0.95 |
+| Euclidean connected | 0.110 ± 0.053 | +0.001 | [−0.020, 0.021] | 0.65 |
+| Circular optimized | **0.109 ± 0.030** | reference | — | — |
+
+**Interpretation:** intervals bootstrap split-level paired contrasts; they quantify split sensitivity, not phylogenetic uncertainty.
 
 The paired tree-minus-circle difference was **+0.073**, with split-bootstrap 95% CI **[0.055, 0.092]**; the tree was higher in all 20 splits. The low-rank-minus-circle difference was +0.046 [0.033, 0.061] and favored low-rank in 95% of splits. Euclidean-versus-circle was effectively tied (+0.001 [−0.020, 0.021]).
 
-The bootstrap interval is a summary of split sensitivity, not phylogenetic uncertainty.
+The bootstrap interval is a summary of split sensitivity, not phylogenetic uncertainty. Figure 2 shows the paired split-level contrasts and their bootstrap intervals.
+
+![Figure 2. TLI repeated family-held-out paired contrasts.](figures/figure2_tli_paired_contrasts.svg)
 
 ### 3.7 TLI geography blocks weakened all models, but the pattern was not universal
 
@@ -240,15 +283,34 @@ The WALS sanity analysis used 2,659 languages and 30 best-covered parameters. Ac
 
 Unlike TLI/GBI, WALS exhibited high cross-macroarea association transfer: **0.634 ± 0.075** across six macroareas. This contradiction narrows the robust cross-source conclusion. The stable finding is the family-held-out advantage of non-circular/tree-like benchmarks over the tested circle; the apparent geographic portability of the full association geometry is dataset-dependent.
 
+## Table 5. Geographic transfer contradiction
+
+| Representation / test | Association transfer |
+|---|---:|
+| TLI macroarea geographic blocks | 0.088 |
+| TLI matched-random blocks | 0.363 |
+| TLI coordinate clusters | 0.106 |
+| TLI matched-random coordinate blocks | 0.351 |
+| GBI macroarea mean | 0.144 ± 0.043 |
+| WALS macroarea mean | **0.634 ± 0.075** |
+
+The WALS result prevents a universal claim that cross-linguistic association geometry necessarily collapses across regions.
+
 ### 3.10 Cross-dataset synthesis
 
-| Dataset / representation | Languages | Features | Tree Spearman | Circular Spearman | Tree > circle |
-|---|---:|---:|---:|---:|---:|
-| TLI repeated family hold-out | 644 | 60 | **0.182** | 0.109 | 20/20 |
-| GBI curation replication | 1,140 | 60 | **0.122** | 0.073 | all evaluated splits |
-| WALS sparse external sanity replication | 2,659 | 30 | **0.603** | 0.410 | 8/8 |
+## Table 2. Cross-representation family-held-out ranking
 
-Absolute Spearman magnitudes should not be compared directly across datasets because coverage, sparsity, feature definitions, feature selection and curation differ. The relevant replication is qualitative: in each representation, the optimized circle did not reverse the tree benchmark under family hold-out.
+| Representation | Languages | Features | Tree Spearman | Circular Spearman | Difference | Tree win fraction |
+|---|---:|---:|---:|---:|---:|---:|
+| TLI | 644 | 60 | **0.182** | 0.109 | +0.073 | 1.00 (20/20) |
+| GBI | 1,140 | 60 | **0.122** | 0.073 | +0.049 | 1.00 (12/12) |
+| WALS | 2,659 | 30 | **0.603** | 0.410 | +0.193 | 1.00 (8/8) |
+
+**Do not compare absolute effect magnitudes directly across rows.** Coverage, missingness, feature definitions and curation differ.
+
+Absolute Spearman magnitudes should not be compared directly across datasets because coverage, sparsity, feature definitions, feature selection and curation differ. The relevant replication is qualitative: in each representation, the optimized circle did not reverse the tree benchmark under family hold-out. Figure 1 provides a compact visual summary of this qualitative ranking.
+
+![Figure 1. Family-held-out predictive ranking across representations.](figures/figure1_cross_dataset.svg)
 
 ## 4. Discussion
 
@@ -342,6 +404,10 @@ All data analysed in this study are third-party public linguistic resources (TLI
 ### Artificial-intelligence disclosure
 
 Under the author's supervision, generative-AI systems were used as research-assistance tools for literature triage, analysis-code drafting and debugging, documentation, manuscript drafting and editing, and consistency checks. A separate non-OpenAI model-family system was used for an independent pre-submission manuscript audit. All research questions, decisions about analysis inclusion or exclusion, interpretation of results, claim boundaries, source verification, and final responsibility for the work remain with the human author. Numerical statements in the manuscript were checked against archived analysis scripts and machine-readable outputs. No AI system is listed as an author.
+
+## Funding
+
+Funding information is supplied separately on the title page for double-anonymised review and will be restored to the manuscript after peer review.
 
 ## References
 
