@@ -268,6 +268,19 @@
         "adjudicated_gold"
       ],
       "description": "Maturity of UCID-specific semantic labels. Imported source assertions alone do not imply gold status."
+    },
+    "source_ids": {
+      "type": "object",
+      "description": "Source-native identifiers such as OEWN synset/sense IDs or Wikidata QIDs.",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_assertions": {
+      "type": "object",
+      "description": "Unadjudicated source-native metadata preserved separately from UCID mappings.",
+      "additionalProperties": true
     }
   }
 }
