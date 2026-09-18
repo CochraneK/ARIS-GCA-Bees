@@ -484,7 +484,30 @@ def normalize_ocds_record_package(
 
     It does not carry fields across OCIDs and does not infer missing values.
     """
-    records = package.get("records") or []
+    if isinstance(package, dict):
+        records = package.get("records") or []
+    elif isinstance(package, list):
+        # Some legacy OCDS endpoints return either a bare list of records or a
+        # bare list of releases. Normalize both shapes without changing the
+        # downstream semantics.
+        if all(isinstance(x, dict) and "releases" in x for x in package):
+            records = package
+        else:
+            grouped: dict[str, list[dict[str, Any]]] = {}
+            for item in package:
+                if not isinstance(item, dict):
+                    continue
+                ocid = str(item.get("ocid") or "").strip()
+                if not ocid:
+                    continue
+                grouped.setdefault(ocid, []).append(item)
+            records = [
+                {"ocid": ocid, "releases": releases}
+                for ocid, releases in grouped.items()
+            ]
+    else:
+        raise TypeError("OCDS record package must be an object or list")
+
     all_cases: list[IntegrityCase] = []
     warnings: list[str] = []
     total_releases = 0
