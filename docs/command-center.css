@@ -177,6 +177,11 @@ a{color:inherit}
 .evidence-cell strong{display:block;font-size:9px;line-height:1.38}
 .blocker{margin-top:8px;color:var(--muted);font-size:8.8px;line-height:1.4}
 .blocker.is-clear{border-style:dashed;color:var(--green)}
+.output-strip{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.output-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border:1px solid var(--line);border-radius:999px;font-size:7.5px;color:var(--faint);background:var(--surface)}
+.output-badge b{font-size:7px;letter-spacing:.05em}
+.output-badge.ok{color:var(--green);border-color:color-mix(in srgb,var(--green) 26%,var(--line));background:color-mix(in srgb,var(--green) 6%,var(--surface))}
+.output-badge.open{color:var(--faint);border-style:dashed}
 .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;padding-top:12px;border-top:1px solid var(--line);color:var(--faint);font-size:7.5px}
 .tags{display:flex;gap:5px;flex-wrap:wrap;margin:11px 0}
 .tag{padding:4px 7px;border-radius:999px;background:var(--surface-3);color:var(--muted);font-size:7.5px}
