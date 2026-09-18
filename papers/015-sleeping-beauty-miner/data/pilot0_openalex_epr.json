@@ -1,0 +1,52 @@
+{
+  "case_id": "ke2015_06",
+  "target": {
+    "doi": "10.1103/PhysRev.47.777",
+    "openalex_id": "W1986407511",
+    "title": "Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?",
+    "publication_year": 1935,
+    "primary_topic": "Quantum Mechanics and Applications"
+  },
+  "source": {
+    "name": "OpenAlex live API",
+    "observation_end_year": 2011,
+    "query_semantics": "incoming works citing target with to_publication_date:2011-12-31",
+    "workflow_run_id": 35305355087,
+    "retrieved_at": "2026-09-18"
+  },
+  "trajectory": {
+    "publication_year": 1935,
+    "end_year": 2011,
+    "counts": [
+      6, 6, 2, 1, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 3, 1, 1, 3, 2, 0,
+      2, 1, 5, 0, 1, 3, 4, 5, 4, 2, 3, 4, 4, 8, 12, 5, 8, 13, 15, 11,
+      16, 24, 26, 25, 34, 34, 31, 37, 55, 52, 49, 57, 39, 99, 64, 110,
+      52, 71, 78, 90, 109, 138, 131, 154, 187, 245, 259, 313, 326, 329,
+      380, 428, 432, 485, 493, 486, 516
+    ],
+    "valid_edges": 6593,
+    "invalid_prepublication_edges": 0,
+    "total_citations": 6593
+  },
+  "reconstructed": {
+    "beauty_coefficient": 2458.7234032730785,
+    "peak_time": 76,
+    "awakening_time": 56,
+    "sleep_length": 56,
+    "peak_citations": 516.0,
+    "citations_at_publication_age_0": 6.0,
+    "awakening_year": 1991
+  },
+  "reference_ke2015": {
+    "beauty_coefficient": 2258.0,
+    "awakening_year": 1994,
+    "source_dataset": "Web of Science",
+    "reference_doi": "10.1073/pnas.1424329112"
+  },
+  "cross_source_difference": {
+    "beauty_coefficient_absolute": 200.72340327307847,
+    "beauty_coefficient_relative": 0.08889433271615521,
+    "awakening_year": -3
+  },
+  "interpretation": "Differences from Ke et al. are expected because OpenAlex and Web of Science have different citation coverage. The Beauty Coefficient is 8.9% higher and awakening is 3 years earlier in the OpenAlex reconstruction. This is a cross-source robustness result, not an exact WoS replication."
+}
