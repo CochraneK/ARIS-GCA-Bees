@@ -4,9 +4,9 @@
   "title": "When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion",
   "short_title": "Indexed Oppositional Causal Inversion",
   "year": 2026,
-  "status": "pilot0a-complete-retrieval-pass-coderb-gated",
+  "status": "retrieval-pass-priorart-audited-coderb-output-missing",
   "domain": "metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems",
-  "summary": "A falsification-first indexed framework for a restricted class of opposite-producing causal effects. It requires a prespecified functional opposite and explicit actor, level, time, construct, environment, feedback, or capacity indices. Pilot 0A and reproducible dual-source retrieval are complete; independent Coder B construct validation remains the decisive hard gate.",
+  "summary": "An indexed, falsification-first framework for a restricted class of functional-opposite-producing causal effects. Prior-art and retrieval-frame audits are complete; 165 reproducible candidates are available. A post-Gate-B orthogonal schema v2 is pre-specified, but the canonical ARIS4C012 Coder B output is still missing, so independent construct validation remains the decisive hard gate.",
   "authors": [
     "Cochrane Kang"
   ],
