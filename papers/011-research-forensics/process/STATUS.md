@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**METHODS MANUSCRIPT DRAFTED · REUSABLE AGENT SKILL IMPLEMENTED · BENCHMARK V0 REAL-DATA SEED MATERIALISED**
+**PILOT 1 DETERMINISTIC ADAPTERS IMPLEMENTED · HONEST-ERROR STRESS SEED MATERIALISED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -28,6 +28,9 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - Detector implementation/defect registry.
 - Known GRIMMER implementation warning recorded and prevented from silently entering confirmatory evidence.
 - Full English methods/benchmark manuscript draft in manuscript/DRAFT.md.
+- GT-B correction/corrigendum honest-error stress seed with figure-panel, scientific-figure, and ranked-table errors.
+- Pilot 1 deterministic detector adapters for F1/F2/F3/F5.
+- Record-level ABSTAIN semantics hardened in the orchestrator so one applicable detector can still abstain on individual records.
 
 ## Critical design findings already established
 
@@ -79,8 +82,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Build the correction/corrigendum seed and honest-error stress set.
+1. Pass Pilot 1 through dedicated CI and promote it.
 2. Materialise a pilot set of time-safe full texts and measure eligibility attrition.
-3. Implement the first production detector adapters: statcheck-like recomputation, GRIM, DEBIT, table arithmetic, DOI/reference validation.
-4. Add image/text/semantic modules only after deterministic pipeline validation.
-5. Run Pilot 1 before any learned evidence-fusion model is trained.
+3. Run deterministic adapters on real eligible manuscripts and correction controls.
+4. Quantify extraction error, applicability, alert yield, and human verification time.
+5. Add image/text/semantic modules only after deterministic real-manuscript validation.

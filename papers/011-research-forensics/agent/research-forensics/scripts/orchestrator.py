@@ -180,7 +180,12 @@ def run_detectors(
                 continue
 
             for finding in produced:
-                finding.applicable = True
+                # Preserve record-level ABSTAIN semantics inside a detector that
+                # is applicable to other records in the same artifact.
+                if finding.status == "ABSTAIN":
+                    finding.applicable = False
+                elif finding.status in {"FLAG", "PASS"}:
+                    finding.applicable = True
                 if not finding.applicability_reason:
                     finding.applicability_reason = decision.reason
                 findings.append(finding.finalize())
