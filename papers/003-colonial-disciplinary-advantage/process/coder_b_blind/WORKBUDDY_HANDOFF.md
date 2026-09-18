@@ -205,18 +205,29 @@ End with:
 
 `## BLINDING DECLARATION`
 
-The first line underneath must be exactly one of:
+The first two lines underneath must be exactly:
+
+`BUNDLE_ACCESS_STATUS: PASS`
 
 `INDEPENDENCE_STATUS: PASS`
 
-or
+Use `BUNDLE_ACCESS_STATUS: PASS` only if this context accessed **only** the
+files whitelisted in the blind bundle plus independently discovered historical
+scholarly evidence. If this context opened any ARIS4C003 file outside the blind
+bundle — including the paper-root README/STATUS or Coder A material — use:
+
+`BUNDLE_ACCESS_STATUS: FAIL`
+
+Use `INDEPENDENCE_STATUS: PASS` only if you did not encounter Coder A scores
+or contemporary confirmatory outcomes. Otherwise use:
 
 `INDEPENDENCE_STATUS: FAIL`
 
-Use PASS only if you did not encounter Coder A scores or contemporary
-confirmatory outcomes while doing this task.
+If either status is FAIL, stop after the declaration and do not present the
+result as confirmatory Coder B.
 
-After that line, state briefly what information you did and did not access.
+After the two status lines, state briefly what information you did and did not
+access.
 
 ## Critical constraint
 
