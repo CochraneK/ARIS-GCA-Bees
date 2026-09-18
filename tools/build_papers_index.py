@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ROOT / "papers"
 OUT = ROOT / "docs" / "index.html"
+REPO_URL = "https://github.com/CochraneK/ARIS4C"
 
 
 def load_papers() -> list[dict]:
@@ -32,14 +33,25 @@ def link(href: str, label: str, primary: bool = False) -> str:
     return f'<a class="{cls}" href="{esc(href)}">{esc(label)}</a>'
 
 
+def paper_repo_file_link(p: dict, href: str) -> str:
+    """Resolve paper-local process links to stable GitHub blob URLs."""
+    if not href:
+        return ""
+    if href.startswith(("https://", "http://", "#", "/")):
+        return href
+    clean = href.removeprefix("./")
+    return f"{REPO_URL}/blob/main/papers/{p['_folder']}/{clean}"
+
+
 def card(p: dict) -> str:
     links = p.get("links", {})
     aris = p.get("aris", {})
     tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in p.get("tags", [])[:6])
+    pipeline_href = paper_repo_file_link(p, links.get("pipeline", ""))
     buttons = "".join([
         link(links.get("paper_en", ""), "Paper", True),
         link(links.get("paper_zh", ""), "中文"),
-        link(links.get("pipeline", ""), "Pipeline"),
+        link(pipeline_href, "Pipeline"),
         link(links.get("source", ""), "Source"),
     ])
     return f"""
