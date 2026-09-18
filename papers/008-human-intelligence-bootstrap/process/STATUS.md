@@ -134,6 +134,20 @@ V2 recovery:
 
 The oracle row is an upper bound using latent architecture signatures and is not directly implementable before measurement.
 
+## Cell-level deep-coding execution queue
+
+Pilot 8 now materializes the A–F evidence gap as atomic taxon × module tasks rather than a taxon-level to-do list.
+
+Current queue:
+- **399 open A–F taxon × module cells**;
+- 150 highest-priority calibration cells (underrepresented-clade and matched-family controls);
+- 191 theory-candidate or retained-panel backfill cells;
+- 58 source-candidate cells;
+- open by module: A=70, B=63, C=68, D=71, E=69, F=58;
+- 128 open cells are in the retained 29; 271 are in the new Tier-1 50.
+
+Missingness remains explicitly distinct from tested absence. The queue is generated reproducibly by `code/build_deep_coding_cells.py`.
+
 ## What the v2 gate says
 
 1. **79 taxa can be enough in principle** for the primary static architecture question.
