@@ -34,11 +34,12 @@ def finite_float(x):
         return None
 
 def main():
+    base = Path(__file__).resolve().parents[1]
     ap = argparse.ArgumentParser()
     ap.add_argument("--observations", default=DEFAULT_URL)
-    ap.add_argument("--pilot", default="../data/pilot_taxa.csv")
-    ap.add_argument("--out-observations", default="../data/animaltraits_pilot_observations.csv")
-    ap.add_argument("--out-summary", default="../data/animaltraits_pilot_summary.csv")
+    ap.add_argument("--pilot", default=str(base / "data" / "pilot_taxa.csv"))
+    ap.add_argument("--out-observations", default=str(base / "data" / "animaltraits_pilot_observations.csv"))
+    ap.add_argument("--out-summary", default=str(base / "data" / "animaltraits_pilot_summary.csv"))
     args = ap.parse_args()
 
     pilot_rows = list(csv.DictReader(open(args.pilot, encoding="utf-8-sig")))
