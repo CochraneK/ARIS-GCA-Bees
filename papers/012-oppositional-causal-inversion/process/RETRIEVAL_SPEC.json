@@ -1,0 +1,92 @@
+{
+  "protocol_version": "0.1.0",
+  "frozen_date": "2026-09-18",
+  "purpose": "Reproducible retrieval stress test for ARIS4C012 Gate R. Results are candidate records, not OCI-positive labels.",
+  "providers": {
+    "openalex": {
+      "endpoint": "https://api.openalex.org/works",
+      "rows_per_query": 25,
+      "sort": "relevance_score:desc",
+      "select": [
+        "id",
+        "doi",
+        "display_name",
+        "publication_year",
+        "type",
+        "cited_by_count",
+        "primary_topic",
+        "ids"
+      ]
+    },
+    "crossref": {
+      "endpoint": "https://api.crossref.org/works",
+      "rows_per_query": 25,
+      "select": [
+        "DOI",
+        "title",
+        "published",
+        "type",
+        "container-title",
+        "URL",
+        "is-referenced-by-count"
+      ]
+    }
+  },
+  "selection": {
+    "merge_rule": "interleave_by_source_rank_openalex_then_crossref",
+    "dedupe_rule": "normalized DOI, otherwise normalized title + publication year",
+    "selected_per_stratum": 30,
+    "no_random_sampling": true,
+    "no_post_retrieval_relevance_reranking": true
+  },
+  "strata": [
+    {
+      "id": "conflict_security",
+      "queries": [
+        "intergroup competition intragroup cooperation",
+        "external threat internal cohesion rally around flag",
+        "security dilemma deterrence conflict prevention"
+      ]
+    },
+    {
+      "id": "autonomy_choice",
+      "queries": [
+        "choice overload too many options decision satisfaction",
+        "autonomy paradox flexibility constant connectivity",
+        "formal choice effective autonomy dependence"
+      ]
+    },
+    {
+      "id": "information_attention",
+      "queries": [
+        "less is more heuristic information decision accuracy",
+        "rational inattention deliberate ignorance information avoidance",
+        "public information social welfare coordination"
+      ]
+    },
+    {
+      "id": "backfire_iatrogenic",
+      "queries": [
+        "boomerang effect intervention opposite behavior",
+        "iatrogenic psychological intervention harm",
+        "backfire counterproductive intervention systematic review"
+      ]
+    },
+    {
+      "id": "economic_network_rebound",
+      "queries": [
+        "Jevons paradox rebound effect efficiency backfire",
+        "Braess paradox added capacity worse performance",
+        "safe development paradox protection increased risk"
+      ]
+    },
+    {
+      "id": "organization_measurement",
+      "queries": [
+        "organizational paradox core capability rigidity",
+        "Goodhart law metric target validity",
+        "control paradox optimization fragility unintended consequences"
+      ]
+    }
+  ]
+}
