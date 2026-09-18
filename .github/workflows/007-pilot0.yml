@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "papers/007-cross-species-age-equivalence/code/**"
+      - "papers/007-cross-species-age-equivalence/code/age_mappings.py"
+      - "papers/007-cross-species-age-equivalence/code/build_pilot0.py"
+      - "papers/007-cross-species-age-equivalence/code/summarize_pilot0.py"
       - ".github/workflows/007-pilot0.yml"
 
 permissions:
