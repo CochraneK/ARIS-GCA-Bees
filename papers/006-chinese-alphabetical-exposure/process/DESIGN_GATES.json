@@ -72,6 +72,11 @@
       "status": "draft",
       "evidence": "process/PREREGISTRATION_DRAFT.md",
       "note": "TBF fields remain; pre-outcome CI prevents advancement to preregistered/analysis while unresolved."
+    },
+    "all_field_scope": {
+      "status": "pass",
+      "evidence": "process/PILOT13_RESULTS.md",
+      "note": "All 26 current OpenAlex primary-topic fields passed the prospective output-volume and structured-order feasibility gate. Six anchor fields are validation anchors only."
     }
   },
   "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
