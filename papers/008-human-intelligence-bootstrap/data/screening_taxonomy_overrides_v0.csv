@@ -16,3 +16,5 @@ Parus leucomelas,synonym,Melaniparus leucomelas,4131693,species,accept_explicit_
 Physeter macrocephalus,synonym,Physeter catodon,276851,species,accept_explicit_synonym,preserve_source_name_with_ott_crosswalk,"Already explicit in the 29-taxon pilot."
 Serracutisoma proximum,opentree_unmatched,Acutisoma proximum,5097765,species,manual_legacy_ott_crosswalk,retain_valid_current_name,"Systematic revision recognizes Serracutisoma proximum; OpenTree lacks current combination and approximate-matches legacy Acutisoma proximum. Do not label this an automatic approximate match."
 Thryothorus eisenmanni,synonym,Pheugopedius eisenmanni,3599099,species,accept_explicit_synonym,preserve_source_name_with_ott_crosswalk,"EltonTraits older genus."
+Hyla versicolor,synonym,Dryophytes versicolor,386095,species,accept_explicit_synonym,preserve_source_name_with_ott_crosswalk,"AnimalTraits uses the older Hyla combination; OpenTree preferred genus is Dryophytes."
+Nephila clavipes,synonym,Trichonephila clavipes,201922,species,accept_explicit_synonym,preserve_source_name_with_ott_crosswalk,"AnimalTraits uses the older Nephila combination; OpenTree preferred genus is Trichonephila."
