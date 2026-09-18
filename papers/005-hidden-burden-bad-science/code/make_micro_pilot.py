@@ -56,13 +56,44 @@ def select_micro_pilot(
 
     rng = random.Random(seed)
     selected: list[dict[str, str]] = []
+    canonical_domains = [
+        "Health Sciences",
+        "Life Sciences",
+        "Physical Sciences",
+        "Social Sciences",
+    ]
+
     for group, n in quotas.items():
         population = groups.get(group, [])
         if len(population) < n:
             raise ValueError(
                 f"Micro-pilot quota {group}={n} exceeds available {len(population)}"
             )
-        selected.extend(rng.sample(population, n))
+
+        chosen: list[dict[str, str]] = []
+        chosen_ids: set[str] = set()
+
+        # Protocol stress-test: where possible, force at least one work from
+        # each broad OpenAlex domain inside every signal group.
+        for domain in canonical_domains:
+            candidates = [
+                row
+                for row in population
+                if (row.get("primary_domain") or "") == domain
+                and row["paper_id"] not in chosen_ids
+            ]
+            if candidates and len(chosen) < n:
+                pick = rng.choice(candidates)
+                chosen.append(pick)
+                chosen_ids.add(pick["paper_id"])
+
+        remaining = [
+            row for row in population if row["paper_id"] not in chosen_ids
+        ]
+        needed = n - len(chosen)
+        if needed:
+            chosen.extend(rng.sample(remaining, needed))
+        selected.extend(chosen)
 
     selected.sort(key=lambda row: (group_key(row), row["paper_id"]))
     return selected
@@ -94,12 +125,20 @@ def main() -> int:
     write_csv(args.micro_csv, selected)
 
     counts = collections.Counter(group_key(row) for row in selected)
+    domain_counts = collections.Counter(
+        (row.get("primary_domain") or "missing") for row in selected
+    )
     summary: dict[str, Any] = {
         "classification": "BALANCED_ADJUDICATION_MICROPILOT_NOT_PREVALENCE_SAMPLE",
         "seed": args.seed,
         "works": len(selected),
         "quotas": quotas,
         "realized_counts": dict(counts),
+        "realized_domain_counts": dict(domain_counts),
+        "domain_coverage_rule": (
+            "Within each quota group, select one work from each available broad "
+            "OpenAlex domain before random fill."
+        ),
         "purpose": [
             "test adjudication label usability",
             "estimate disagreement/indeterminate rates",
