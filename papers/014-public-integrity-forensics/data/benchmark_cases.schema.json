@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CochraneK/ARIS4C/papers/014-public-integrity-forensics/data/benchmark_cases.schema.json",
+  "title": "ARIS4C014 Benchmark Case Registry",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "case_id",
+      "unit_type",
+      "jurisdiction",
+      "source_cutoff",
+      "outcome_class",
+      "feature_sources",
+      "leakage_audit",
+      "notes"
+    ],
+    "properties": {
+      "case_id": {"type": "string", "minLength": 1},
+      "unit_type": {
+        "type": "string",
+        "enum": [
+          "procurement_award",
+          "procurement_process",
+          "supplier_authority_pair",
+          "entity_time_window",
+          "documented_issue"
+        ]
+      },
+      "jurisdiction": {"type": "string"},
+      "source_cutoff": {"type": "string", "format": "date"},
+      "outcome_class": {
+        "type": "string",
+        "enum": [
+          "criminal_conviction",
+          "civil_or_administrative_enforcement",
+          "debarment_or_sanction",
+          "official_audit_finding",
+          "documented_procurement_rule_breach",
+          "disclosed_conflict_of_interest",
+          "investigative_allegation_unadjudicated",
+          "model_only_anomaly",
+          "no_known_adverse_finding"
+        ]
+      },
+      "outcome_date": {"type": ["string", "null"], "format": "date"},
+      "outcome_source": {
+        "type": ["object", "null"],
+        "properties": {
+          "source_name": {"type": "string"},
+          "record_id": {"type": "string"},
+          "url": {"type": "string"}
+        },
+        "required": ["source_name", "record_id"],
+        "additionalProperties": false
+      },
+      "feature_sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_name",
+            "record_id",
+            "first_public_at",
+            "track_a_allowed"
+          ],
+          "properties": {
+            "source_name": {"type": "string"},
+            "record_id": {"type": "string"},
+            "url": {"type": "string"},
+            "first_public_at": {"type": ["string", "null"], "format": "date"},
+            "valid_from": {"type": ["string", "null"], "format": "date"},
+            "valid_to": {"type": ["string", "null"], "format": "date"},
+            "track_a_allowed": {"type": "boolean"},
+            "exclusion_reason": {"type": ["string", "null"]}
+          }
+        }
+      },
+      "matching_stratum": {
+        "type": "object",
+        "properties": {
+          "agency_or_authority": {"type": ["string", "null"]},
+          "sector": {"type": ["string", "null"]},
+          "year": {"type": ["integer", "null"]},
+          "procurement_method": {"type": ["string", "null"]},
+          "value_band": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      },
+      "leakage_audit": {
+        "type": "object",
+        "required": [
+          "future_outcome_sources_excluded",
+          "historical_ownership_checked",
+          "outcome_label_removed_from_features",
+          "reviewed"
+        ],
+        "properties": {
+          "future_outcome_sources_excluded": {"type": "boolean"},
+          "historical_ownership_checked": {"type": "boolean"},
+          "outcome_label_removed_from_features": {"type": "boolean"},
+          "reviewed": {"type": "boolean"},
+          "review_notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      },
+      "notes": {"type": "string"}
+    }
+  }
+}
