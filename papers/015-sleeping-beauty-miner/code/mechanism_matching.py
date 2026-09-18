@@ -390,6 +390,7 @@ def build_priority_contrasts(
     controls_per_case: int = 1,
     year_tolerance: int = 0,
     early_percentile_caliper: float = 0.15,
+    max_abs_smd: float = 0.10,
 ) -> dict:
     """Construct the two primary SB mechanism contrasts."""
     rows = list(papers)
@@ -419,11 +420,13 @@ def build_priority_contrasts(
         forgotten_matches,
         rows,
         include_early_attention=True,
+        max_abs_smd=max_abs_smd,
     )
     immediate_balance = match_balance_diagnostics(
         immediate_matches,
         rows,
         include_early_attention=False,
+        max_abs_smd=max_abs_smd,
     )
 
     return {
@@ -463,5 +466,6 @@ def build_priority_contrasts(
             ),
             "early_percentile_caliper_SB_vs_IMMEDIATE_HIT": 1.0,
             "replacement": False,
+            "max_abs_smd": max_abs_smd,
         },
     }
