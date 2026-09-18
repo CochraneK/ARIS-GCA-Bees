@@ -1,0 +1,37 @@
+{
+  "dataset": "UCID constructed semantic seed v0",
+  "warning": "Engineering split only. Synthetic seed; not publication test data.",
+  "grouping_rules": [
+    "Aliases/senses from the same surface form must stay in one split.",
+    "Generated compositional variants from one base concept must stay in one split in future benchmark builds.",
+    "Locked publication test data will be rebuilt from Benchmark v0, not inherited automatically from this synthetic seed."
+  ],
+  "development": [
+    "seed-dog",
+    "seed-water",
+    "seed-running",
+    "seed-teacher",
+    "seed-unicorn",
+    "seed-and"
+  ],
+  "calibration": [
+    "seed-red",
+    "seed-tall",
+    "seed-justice",
+    "seed-here"
+  ],
+  "test": [
+    "seed-current-king-france",
+    "seed-round-square",
+    "seed-bank-financial",
+    "seed-bank-river",
+    "seed-liar",
+    "seed-halting-set"
+  ],
+  "forced_groups": {
+    "surface-bank": [
+      "seed-bank-financial",
+      "seed-bank-river"
+    ]
+  }
+}
