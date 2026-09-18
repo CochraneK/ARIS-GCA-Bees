@@ -5,7 +5,7 @@
   "working_title": "Testing the Periodic-Table Hypothesis of Human Language: Predictive Evidence Favors Non-Circular Structure",
   "alternate_title": "Beyond the Periodic Table: Stress-Testing the Geometry of Cross-Linguistic Structural Space",
   "paper_id": null,
-  "promotion_target": "next available paper ID after formal ARIS secondary review",
+  "promotion_target": "formal Paper 002 after independent ARIS secondary review",
   "core_question": "Does an explicitly circular/periodic geometry provide reproducible out-of-sample organization of cross-linguistic structural relations beyond non-periodic alternatives?",
   "aris": {
     "recommended_release": "v0.4.26",
@@ -51,8 +51,11 @@
       "tree_spearman": 0.182,
       "circular_spearman": 0.109,
       "tree_minus_circular": 0.073,
-      "bootstrap_ci95": [0.055, 0.092],
-      "tree_win_fraction": 1.0
+      "bootstrap_ci95": [
+        0.055,
+        0.092
+      ],
+      "tree_win_fraction": 1
     },
     "stage1g": {
       "verdict": "GEOGRAPHIC_HETEROGENEITY_CONFIRMED_WITHIN_TLI",
@@ -64,7 +67,7 @@
       "n_languages": 1140,
       "tree_spearman": 0.122,
       "circular_spearman": 0.073,
-      "tree_win_fraction": 1.0,
+      "tree_win_fraction": 1,
       "macroarea_transfer": 0.144
     },
     "stage1i": {
@@ -73,8 +76,8 @@
       "n_languages": 2659,
       "n_features": 30,
       "tree_spearman": 0.603,
-      "circular_spearman": 0.410,
-      "tree_win_fraction": 1.0,
+      "circular_spearman": 0.41,
+      "tree_win_fraction": 1,
       "macroarea_transfer": 0.634
     }
   },
@@ -92,5 +95,8 @@
     "formal identity-bearing ARIS secondary reviewer receipt",
     "no fatal prior-art collision",
     "reviewer acceptance or tractable revision of model-fairness and claim-boundary logic"
-  ]
+  ],
+  "review_slot": "002",
+  "formal_paper_id": null,
+  "review_pointer": "papers/002-REVIEW-CANDIDATE.md"
 }
