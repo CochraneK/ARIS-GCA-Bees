@@ -123,6 +123,38 @@ def main() -> None:
         assert f["IKES"].notna().all()
         assert prov.exists() and prov.stat().st_size > 0
 
+        # Unflagged A/B agreements are immutable means. A manual override must
+        # be rejected even when a note is supplied.
+        illegal_adj = pd.read_csv(adj_dir / "IKES_DISAGREEMENTS.csv")
+        target = (
+            illegal_adj["score_A"].notna()
+            & illegal_adj["score_B"].notna()
+            & ((illegal_adj["score_A"] - illegal_adj["score_B"]).abs() < 2)
+        )
+        idx = illegal_adj.index[target][0]
+        illegal_adj.loc[idx, "adjudicated_score"] = 3.0
+        illegal_adj.loc[idx, "adjudication_note"] = "Synthetic illegal override"
+        illegal_path = root / "illegal_override.csv"
+        illegal_adj.to_csv(illegal_path, index=False)
+        illegal = subprocess.run(
+            [
+                sys.executable,
+                str(HERE / "freeze_ikes.py"),
+                str(illegal_path),
+                "--output",
+                str(root / "illegal_frozen.csv"),
+                "--coder-a",
+                str(a_path),
+                "--coder-b",
+                str(b_path),
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if illegal.returncode == 0:
+            raise AssertionError("Unflagged IKES manual override was incorrectly accepted")
+
         contaminated = raw.replace(
             "INDEPENDENCE_STATUS: PASS", "INDEPENDENCE_STATUS: FAIL"
         )
@@ -151,6 +183,7 @@ def main() -> None:
                 "pipeline": "raw -> ingest -> adjudicate -> freeze",
                 "synthetic_only": True,
                 "contamination_rejection": True,
+                "unflagged_override_rejection": True,
             }
         )
 
