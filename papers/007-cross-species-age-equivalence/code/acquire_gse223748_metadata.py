@@ -331,36 +331,25 @@ def main() -> None:
     attempts=[]
     payload=None
     route=""
-    try:
-        body, final, ctype=get(BRIEF_URL)
-        text=body.decode("utf-8", errors="replace")
-        parsed=parse_soft_lines(io.StringIO(text))
-        if len(parsed)<1000:
-            raise RuntimeError(f"metadata-only query returned only {len(parsed)} samples")
-        payload=body
-        route="GEO accession metadata-only SOFT query"
-        attempts.append({
-            "url": BRIEF_URL, "final_url": final, "content_type": ctype,
-            "bytes": len(body), "sha256": sha256_bytes(body),
-            "parsed_samples": len(parsed), "success": True,
-        })
-        raw_samples=parsed
-    except Exception as exc:
-        attempts.append({"url": BRIEF_URL, "success": False, "error": f"{type(exc).__name__}: {exc}"})
-        body, final, ctype=get(FAMILY_SOFT_URL)
-        if not body.startswith(b"\x1f\x8b"):
-            raise RuntimeError("GEO family SOFT fallback was not gzip")
-        text=gzip.decompress(body).decode("utf-8", errors="replace")
-        raw_samples=parse_soft_lines(io.StringIO(text))
-        if len(raw_samples)<1000:
-            raise RuntimeError(f"family SOFT returned only {len(raw_samples)} samples")
-        payload=body
-        route="GEO compressed family SOFT fallback"
-        attempts.append({
-            "url": FAMILY_SOFT_URL, "final_url": final, "content_type": ctype,
-            "bytes": len(body), "sha256": sha256_bytes(body),
-            "parsed_samples": len(raw_samples), "success": True,
-        })
+
+    # The metadata-only CGI endpoint intermittently returns 502 for this very
+    # large series. The official compressed family SOFT is only ~9 MB and has
+    # already been validated to contain all 15,043 SAMPLE metadata records, so
+    # use it as the canonical metadata source rather than waiting on CGI.
+    body, final, ctype=get(FAMILY_SOFT_URL)
+    if not body.startswith(b"\x1f\x8b"):
+        raise RuntimeError("GEO family SOFT was not gzip")
+    text=gzip.decompress(body).decode("utf-8", errors="replace")
+    raw_samples=parse_soft_lines(io.StringIO(text))
+    if len(raw_samples)<1000:
+        raise RuntimeError(f"family SOFT returned only {len(raw_samples)} samples")
+    payload=body
+    route="GEO compressed family SOFT"
+    attempts.append({
+        "url": FAMILY_SOFT_URL, "final_url": final, "content_type": ctype,
+        "bytes": len(body), "sha256": sha256_bytes(body),
+        "parsed_samples": len(raw_samples), "success": True,
+    })
 
     normalized=[]
     key_counts=Counter()
