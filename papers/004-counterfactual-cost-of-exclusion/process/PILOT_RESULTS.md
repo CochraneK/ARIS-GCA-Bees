@@ -221,3 +221,112 @@ The major bottleneck has shifted from general data availability to:
 9. Decide final sample expansion and simulation-based precision target.
 
 No mental-health outcome or CPE comparison should be run before step 6–7 is frozen.
+
+## Pilot v5 — lifetime-aware fragment evidence and conservative guard
+
+The fragment audit was upgraded from raw overlap counting to candidate-lifetime-aware evidence.
+
+For 11 fragmentation candidates:
+
+- candidate Author IDs fetched: **44**
+- pairwise fragment comparisons: **82**
+- Author profiles with >50% works outside the candidate-specific plausible career window: **17/44 = 38.6%**
+
+Raw lifetime-aware pair labels:
+
+- support: 1
+- conflict: 45
+- needs review: 36
+
+The remaining raw support was a false-positive-like case driven by a small number of shared contextual links. A separate conservative evidence guard was therefore frozen. It never promotes a pair; it can only retain or downgrade support.
+
+Guarded labels:
+
+- **support: 0**
+- **conflict: 45**
+- **needs review: 37**
+- weak contextual support pairs downgraded: 1
+
+This means no fragment pair in the first 30 is allowed to auto-merge solely from OpenAlex overlap evidence.
+
+## Pilot30 identity adjudication freeze
+
+A unified identity packet combined:
+
+- candidate-frame metadata;
+- lifetime-aware OpenAlex representative works;
+- fragment evidence;
+- Wikidata occupation/field/employer/education data;
+- VIAF/ISNI/GND/LoC authority identifiers where available;
+- external bibliographic/official-source checks for difficult cases.
+
+Wikidata authority retrieval for the first 30 yielded:
+
+- entities found: 30/30
+- occupation/field evidence: 28/30
+- employer/education evidence: 21/30
+- at least one external authority ID: 24/30
+- mental-health fields requested: **false**
+
+After evidence review, the first 30 now have **zero provisional identity states**:
+
+- VERIFIED_SINGLE: **11**
+- VERIFIED_CLUSTER: **7**
+- NO_GRAPH_RECORD: **9**
+- AMBIGUOUS_COLLISION: **2**
+- EXCLUDED_IDENTITY_ERROR: **1**
+
+Thus **18/30 = 60%** have a verified person ↔ OpenAlex mapping after first review.
+
+Currently **9/30 = 30%** satisfy the present identity + minimum-work release rule and are marked network-observable:
+
+- Mary Alice McWhinnie
+- Hilario Hernández Gurruchaga
+- Hannah Gavron
+- Dan Laksov
+- James S. Albus
+- Ottomar Rosenbach
+- Willy Oelsen
+- Carl Föhl
+- Friedrich Hoeth
+
+The other verified identities remain held for one of three reasons:
+
+1. fewer than five usable works under the pilot gate;
+2. OpenAlex represents modern/posthumous editions rather than historical production;
+3. work-level duplicate/mixed-author contamination remains after identity verification.
+
+### Illustrative failure modes discovered before exposure coding
+
+- **John I. Yellott:** one OpenAlex author record mixes solar-engineering work with a large vision/perception literature; final state is collision rather than forced match.
+- **Fred Casey:** apparent OpenAlex hits were Maine alien-registration/namesake records, not the intended British socialist educationalist; excluded identity error.
+- **Fritz Strassmann:** true nuclear-chemistry fragments coexist with medical/forensic namesakes and contamination inside a large author record; identity can be verified but work-level filtering is still required.
+- **Ahmad Kasravi:** OpenAlex records match real Kasravi titles but largely encode modern posthumous editions, so identity is verified while historical network observability remains false.
+
+These examples show why identity accuracy and network usability are separate quantities.
+
+## Data-integrity corrections converted into permanent gates
+
+Two repository/data failures were caught during adjudication and converted into CI invariants:
+
+1. An early manually assembled decision table contained incorrect person_id/QID transcriptions for many rows. The table was repaired from the canonical frozen frame, and `validate_identity.py --candidate-frame` now requires exact person_id/name/birth/death agreement.
+2. Free-text notes containing commas were initially serialized without CSV quoting. The table was rewritten as valid quoted CSV and the validator now rejects malformed rows with unexpected extra fields.
+
+No downstream mental-health analysis had begun when either issue was detected.
+
+## Next empirical gate — verified-person work corpus
+
+Identity resolution is no longer the only blocker. The next stage rebuilds all works for accepted OpenAlex IDs at the **person** level and will:
+
+1. preserve source Author-ID provenance;
+2. apply candidate-specific temporal flags;
+3. deduplicate repeated DOI or normalized-title/year records across fragments;
+4. separate out-of-window works;
+5. flag mixed-author contamination for manual work review;
+6. compute clean usable-work counts;
+7. update network observability only after explicit review.
+
+Mechanical cleanup is not allowed to automatically release a previously held person into the confirmatory network frame.
+
+Only after this work-level gate is characterized should the project decide whether to scale identity resolution from the first 30 to all 100 frozen candidates. Mental-health exposure coding remains locked.
+
