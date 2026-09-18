@@ -71,6 +71,7 @@ def main() -> None:
     print(args.output_csv)
     if len(unresolved):
         print(f"Review required: {unresolved_path}")
+        print(unresolved.to_string(index=False))
         raise SystemExit(2)
 
 
