@@ -65,7 +65,7 @@ class OrchestratorTests(unittest.TestCase):
             ["later"],
         )
 
-    def test_cutoff_safe_quarantine_overrides_state(self):
+    def test_two_independent_strong_flags_quarantine(self):
         card = run(
             {
                 "paper_id": "p4",
@@ -78,10 +78,19 @@ class OrchestratorTests(unittest.TestCase):
                     {
                         "finding_id": "deterministic",
                         "detector_id": "d1",
+                        "dependency_group": "g1",
                         "applicable": True,
                         "status": "FLAG",
-                        "evidence_class": "E0",
-                        "reproducible": "yes",
+                        "evidence_class": "E1",
+                        "available_year": 2004
+                    },
+                    {
+                        "finding_id": "provenance",
+                        "detector_id": "d2",
+                        "dependency_group": "g2",
+                        "applicable": True,
+                        "status": "FLAG",
+                        "evidence_class": "E2",
                         "available_year": 2004
                     }
                 ],
