@@ -1,0 +1,42 @@
+name: ARIS4C006 annual coverage sweep
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-annual-coverage.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/11_annual_coverage_sweep.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  annual-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run outcome-blind annual coverage sweep
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/11_annual_coverage_sweep.py \
+            --start 2010 \
+            --end 2025 \
+            --per-cell 20 \
+            --outdir data/pilot/annual_coverage
+      - name: Upload aggregate coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-annual-coverage
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/annual_coverage/coverage_by_field_year.csv
+            ${{ env.PAPER_DIR }}/data/pilot/annual_coverage/coverage_by_year.csv
+            ${{ env.PAPER_DIR }}/data/pilot/annual_coverage/manifest.json
+          if-no-files-found: error
+          retention-days: 30
