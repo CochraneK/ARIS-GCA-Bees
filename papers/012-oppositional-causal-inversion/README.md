@@ -5,7 +5,7 @@
 
 ## Working title
 
-**When Opposites Become Causes: A Cross-Domain Science of Oppositional Causal Inversion**
+**When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion**
 
 ## Motivating puzzle
 
@@ -130,7 +130,7 @@ OCI must establish incremental value relative to:
 - deliberate ignorance;
 - externality and equilibrium feedback models.
 
-The provisional novelty is **not** any one paradox. It is a common, indexed causal representation plus a cross-domain evidence map that makes superficially contradictory claims directly comparable and falsifiable.
+The broad idea that interventions can backfire is **not novel**. After explicit audit against Merton, Boudon, complex-systems intervention work, rebound typologies, paradox theory, and related literatures, the remaining provisional novelty is narrower: a **prespecified functional-opposition test + indexed causal representation + independent construct-validation protocol** for distinguishing opposite-producing effects from generic unintended consequences.
 
 ## Primary empirical program
 
@@ -163,3 +163,7 @@ A null result is informative: it would show that rhetorical paradoxes are better
 **DESIGN INITIALISED / NOVELTY PROVISIONAL.**
 
 A live seed search confirms strong adjacent literatures and several credible conditional mechanisms, but no claim of a new general theory is locked yet. The next gate is a systematic closest-prior-work audit plus a reproducible evidence-map search.
+
+## Novelty narrowed after umbrella-theory audit
+
+The project explicitly rejects any claim to have discovered a general science of unintended consequences. See `process/NOVELTY_AUDIT.md`. OCI survives only if its narrower indexed representation is independently reliable and adds value beyond existing paradox/backfire/unintended-consequence frameworks.
