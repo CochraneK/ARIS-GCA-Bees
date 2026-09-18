@@ -18,6 +18,11 @@ Routing unresolved integrity/provenance concerns through the 011 quarantine laye
 ### H4 — Cross-field robustness
 Performance will vary by field and era. A credible model should retain some value under leave-field-out and leave-era-out validation rather than depending entirely on one domain.
 
+### H5 — Cross-source robustness
+Delayed-recognition geometry should be distinguishable from bibliographic-database coverage. Absolute Beauty Coefficient values may shift across Web of Science, OpenAlex, SciSciNet and other graphs, but a useful agent should characterize which parts of the signal are stable (for example awakening timing or rank ordering), report source sensitivity explicitly, and avoid treating one source-specific B threshold as universal.
+
+Initial Pilot 0B evidence motivates this hypothesis: three selected classic cases reconstructed from OpenAlex through the 2011 observation endpoint retain the delayed-recognition pattern; absolute B values differ from the published WoS values while awakening timing is much closer. This is a small implementation probe, not yet a general test of H5.
+
 ## Non-hypotheses
 
 The project will not test or claim that:
