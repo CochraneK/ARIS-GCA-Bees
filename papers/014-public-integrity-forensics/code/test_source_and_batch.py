@@ -203,3 +203,45 @@ def test_offshore_context_alone_is_not_promoted_by_any_core_detector():
     result = OpenIntegrityAgent().run(case)
     assert result["review_priority"] != "HIGH"
     assert result["corruption_inference"] is False
+
+
+def test_usaspending_adapter_uses_uei_and_does_not_invent_bid_count():
+    from source_adapters import normalize_usaspending_award
+
+    row = {
+        "Award ID": "CONT_AWD_123",
+        "Recipient Name": "Example Federal Supplier",
+        "Recipient UEI": "ABC123XYZ789",
+        "Awarding Agency": "Example Agency",
+        "Awarding Agency Code": "999",
+        "Award Amount": 125000.0,
+        "Base Obligation Date": "2026-01-12",
+        "Last Modified Date": "2026-01-13",
+        "Contract Award Type": "Definitive Contract",
+    }
+    result = normalize_usaspending_award(row)
+    case = result.case
+    assert case.contract.contract_id == "USAspending:CONT_AWD_123"
+    assert case.contract.supplier_ids == ("US-UEI:ABC123XYZ789",)
+    assert case.contract.authority_id == "US-FED-AGENCY:999"
+    assert case.contract.bid_count is None
+    assert case.contract.legal_threshold is None
+    assert result.warnings == []
+
+
+def test_usaspending_missing_uei_downgrades_identity_with_warning():
+    from source_adapters import normalize_usaspending_award
+
+    row = {
+        "Award ID": "CONT_AWD_456",
+        "Recipient Name": "Name Only Supplier",
+        "recipient_id": "recipient-hash-L",
+        "Awarding Agency": "Example Agency",
+        "Awarding Agency Code": "999",
+        "Award Amount": 10,
+    }
+    result = normalize_usaspending_award(row)
+    supplier_id = result.case.contract.supplier_ids[0]
+    assert supplier_id.startswith("USAspending-recipient:")
+    assert "recipient_uei_missing" in result.warnings
+    assert result.case.entities[supplier_id].stable_ids == ()
