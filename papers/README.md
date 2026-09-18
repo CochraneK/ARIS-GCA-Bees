@@ -13,6 +13,9 @@ This directory is the canonical registry of research projects produced with ARIS
 | 005 | formal paper | papers/005-hidden-burden-bad-science/ |
 | 006 | formal paper | papers/006-chinese-alphabetical-exposure/ |
 | 007 | formal research design | papers/007-cross-species-age-equivalence/ |
+| 008 | formal research design | papers/008-human-intelligence-bootstrap/ |
+| 009 | formal research design | papers/009-phenomenology-preserving-computational-psychiatry/ |
+| 010 | formal research design | papers/010-universal-concept-identification/ |
 
 Paper 002 passed independent cross-family ARIS secondary review and has been formally promoted.
 
