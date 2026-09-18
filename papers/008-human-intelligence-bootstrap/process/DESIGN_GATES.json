@@ -19,8 +19,8 @@
     },
     {
       "id": "phylogeny",
-      "status": "open",
-      "requirement": "Species-level panel v2 removes genus/family terminals; next choose compatible phylogenies and define reconciliation for all 29 taxa plus later calibration taxa."
+      "status": "provisional_pass",
+      "requirement": "All 29 species-level v2 taxa resolve exactly in OpenTree and a synthetic induced topology was generated. Confirmatory PGLS/rate models still require a dated within-clade tree or an explicitly justified branch-length strategy."
     },
     {
       "id": "pilot_matrix",
