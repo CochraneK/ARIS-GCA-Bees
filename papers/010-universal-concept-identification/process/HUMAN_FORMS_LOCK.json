@@ -1,0 +1,38 @@
+{
+  "lock_version": 1,
+  "dataset_id": "ucid-human-calibration-forms-v0",
+  "verified_ci": {
+    "workflow": "ARIS4C010 CI",
+    "run_id": 35406457235,
+    "run_number": 43,
+    "head_sha": "9632c2992e951463fe8e75829cd3781122af6acf",
+    "conclusion": "success",
+    "artifact_id": 10572466809,
+    "artifact_name": "aris4c010-human-forms",
+    "artifact_sha256": "44b15795ccd000dc47140620a6f0f82af1265f5c736370e73291310c98091aa3",
+    "forms_json": {
+      "sha256": "9d721b37d33b0fdcedc999932e424571de0fcbac131dcfecbb85b76ec9fc8a64",
+      "bytes": 5214493,
+      "forms": 72,
+      "p2_forms": 36,
+      "p6_forms": 36,
+      "trials_per_form": 92,
+      "main_trials_per_form": 84,
+      "retests_per_form": 8
+    },
+    "csv_export": {
+      "form_csv_files": 72,
+      "index_csv_files": 1
+    },
+    "dryrun": {
+      "conclusion": "success",
+      "retest_matches": 32,
+      "protocols_analyzed": [
+        "P2",
+        "P6"
+      ],
+      "note": "Synthetic plumbing check only; no scientific evidence."
+    }
+  },
+  "design_warning": "One 72-form cycle is a balanced assignment cycle, not a powered sample-size recommendation."
+}
