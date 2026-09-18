@@ -10,6 +10,10 @@
     "time_window": {
       "status": "pending_gate",
       "gate": "annual_coverage_sweep"
+    },
+    "field_scope": {
+      "status": "pending_all_field_gate",
+      "rule": "All current OpenAlex fields passing prospective primary-field data-volume and structured-order coverage thresholds; six anchor fields are feasibility anchors only."
     }
   },
   "surname_measurement": {
@@ -33,7 +37,7 @@
   },
   "primary_exposure": {
     "name": "PriorFieldAlphabetizationExposure",
-    "context": "OpenAlex field",
+    "context": "OpenAlex primary_topic field",
     "lag_window_years": 3,
     "formula": "sum(I_alpha - p_chance) / sum(1 - p_chance)",
     "p_chance": "prod(tie_group_factorials) / team_size_factorial",
@@ -42,7 +46,8 @@
     "primary_source_level_exposure_forbidden": true,
     "mandatory_robustness": [
       "re-estimate convention using 3+ author works only"
-    ]
+    ],
+    "field_assignment_rule": "primary_topic.field.id only; topics.field.id is forbidden for primary context because works may have topics spanning multiple fields"
   },
   "secondary_exposure": {
     "source_field_lagged": {
