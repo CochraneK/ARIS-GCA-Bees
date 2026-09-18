@@ -93,3 +93,52 @@ def test_central_notice_three_section_schema():
     assert n.lots[0].supplier_name == "北京医惠科技有限公司"
     assert n.lots[0].award_value_yuan == 846000.0
     assert n.lots[0].pricing_basis == "currency"
+
+
+def test_local_simple_award_heading_and_unit_in_label():
+    html = """
+    <table><tr><td>采购单位</td><td>蒙自市某学校</td></tr></table>
+    <p>一、项目编号:HHZC2025-G3-02322-YNWM-0049</p>
+    <p>二、项目名称：综合保障责任保险采购项目</p>
+    <p>三、中标信息</p>
+    <p>供应商名称：中国平安财产保险股份有限公司云南分公司</p>
+    <p>中标金额(万元)：259.071</p>
+    <p>四、主要标的信息</p>
+    """
+    n = parse_ccgp_award_detail(
+        html,
+        source_url="https://www.ccgp.gov.cn/local-simple.htm",
+        retrieved_at="2026-09-18T00:00:00Z",
+    )
+    assert n.project_id == "HHZC2025-G3-02322-YNWM-0049"
+    assert len(n.lots) == 1
+    assert n.lots[0].supplier_name == "中国平安财产保险股份有限公司云南分公司"
+    assert n.lots[0].award_value_yuan == 2590710.0
+    assert n.lots[0].result_status == "awarded"
+    assert n.lots[0].candidate_rank is None
+
+
+def test_ranked_bid_candidates_are_not_final_awards():
+    html = """
+    <table><tr><td>采购单位</td><td>东北师范大学</td></tr></table>
+    <p>一、项目编号：SYZX2026-093</p>
+    <p>二、项目名称：监理服务</p>
+    <p>三、中标（成交）信息</p>
+    <p>供应商名称：第一中标候选人：吉林建院工程建设监理咨询有限公司</p>
+    <p>中标（成交）金额：158.33（万元）</p>
+    <p>供应商名称：第二中标候选人：长春一汽建设监理有限责任公司</p>
+    <p>中标（成交）金额：157（万元）</p>
+    <p>四、主要标的信息</p>
+    """
+    n = parse_ccgp_award_detail(
+        html,
+        source_url="https://www.ccgp.gov.cn/candidates.htm",
+        retrieved_at="2026-09-18T00:00:00Z",
+    )
+    assert len(n.lots) == 2
+    assert n.lots[0].supplier_name == "吉林建院工程建设监理咨询有限公司"
+    assert n.lots[0].result_status == "candidate"
+    assert n.lots[0].candidate_rank == 1
+    assert n.lots[1].supplier_name == "长春一汽建设监理有限责任公司"
+    assert n.lots[1].result_status == "candidate"
+    assert n.lots[1].candidate_rank == 2
