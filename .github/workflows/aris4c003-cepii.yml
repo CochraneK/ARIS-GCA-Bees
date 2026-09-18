@@ -109,6 +109,15 @@ jobs:
             echo "CEPII dyads already current."
           else
             git commit -m "ARIS4C003 refresh CEPII historical dyads"
-            git pull --rebase origin main
-            git push
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              echo "Push attempt $attempt"
+              git pull --rebase origin main
+              if git push; then
+                pushed=1
+                break
+              fi
+              sleep $((attempt * 2))
+            done
+            test "$pushed" -eq 1
           fi
