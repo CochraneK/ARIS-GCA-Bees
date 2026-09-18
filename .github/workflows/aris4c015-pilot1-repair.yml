@@ -1,0 +1,68 @@
+name: ARIS4C015 Pilot 1 Repair
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilot1-repair.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  physics-1990-seed31590:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Repair failed stratum with hardened OpenAlex adapter
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilot1_openalex_cohort.py \
+            --sample-size 20 \
+            --seed 31590 \
+            --filters "publication_year:1990,type:article,primary_topic.field.id:31" \
+            --cutoff-year 2000 \
+            --observation-end-year 2011 \
+            --beauty-fraction 0.20 \
+            --acceleration-fraction 0.20 \
+            --uptake-fraction 0.50 \
+            --awakening-horizon-years 10 \
+            --review-budget-k 5 \
+            --output ../data/pilot1_physics_1990_s1.json
+
+      - name: Validate repaired artifact
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilot1_physics_1990_s1.json"
+          )
+          result = json.loads(path.read_text(encoding="utf-8"))
+          assert result["sampling"]["seed"] == 31590
+          assert result["sampling"]["sample_size_analyzed"] >= 15
+          assert len(result["sampling"]["sample_id_sha256"]) == 64
+          assert len(result["outcome_baseline_matrix"]) == 7
+          print(json.dumps({
+              "n": result["sampling"]["sample_size_analyzed"],
+              "sample_id_sha256": result["sampling"]["sample_id_sha256"],
+              "outcome_summary": result["outcome_summary"],
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilot1-repair-physics_1990_s1
+          path: papers/015-sleeping-beauty-miner/data/pilot1_physics_1990_s1.json
+          if-no-files-found: error
+          retention-days: 30
