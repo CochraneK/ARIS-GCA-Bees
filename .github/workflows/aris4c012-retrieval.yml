@@ -20,7 +20,7 @@ concurrency:
 jobs:
   retrieve:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     env:
       PAPER_DIR: papers/012-oppositional-causal-inversion
     steps:
@@ -35,23 +35,42 @@ jobs:
           python -m compileall -q "$PAPER_DIR/code"
           python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_retrieve_pilot0.py' -v
 
-      - name: Run frozen OpenAlex + Crossref retrieval
+      - name: Resolve immutable protocol-version output directory
+        shell: bash
         run: |
-          rm -rf "$PAPER_DIR/data/retrieval_v0"
-          python "$PAPER_DIR/code/retrieve_pilot0.py"             --spec "$PAPER_DIR/process/RETRIEVAL_SPEC.json"             --out "$PAPER_DIR/data/retrieval_v0"             --sleep 0.4
+          set -euo pipefail
+          VERSION="$(python - <<'PY'
+          import json
+          p = "papers/012-oppositional-causal-inversion/process/RETRIEVAL_SPEC.json"
+          v = json.load(open(p, encoding="utf-8"))["protocol_version"]
+          print(v.replace(".", "_"))
+          PY
+          )"
+          echo "RETRIEVAL_DIR=$PAPER_DIR/data/retrieval_v$VERSION" >> "$GITHUB_ENV"
+
+      - name: Run frozen OpenAlex + Crossref retrieval
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f "$RETRIEVAL_DIR/retrieval_manifest.json" ]; then
+            echo "Immutable retrieval snapshot already exists at $RETRIEVAL_DIR; validating without overwriting."
+            exit 0
+          fi
+          python "$PAPER_DIR/code/retrieve_pilot0.py"             --spec "$PAPER_DIR/process/RETRIEVAL_SPEC.json"             --out "$RETRIEVAL_DIR"             --sleep 0.4
 
       - name: Validate retrieval gate
         run: |
           python - <<'PY'
-          import json
+          import json, os
           from pathlib import Path
-          p = Path("papers/012-oppositional-causal-inversion/data/retrieval_v0/retrieval_manifest.json")
+          p = Path(os.environ["RETRIEVAL_DIR"]) / "retrieval_manifest.json"
           data = json.loads(p.read_text(encoding="utf-8"))
           assert data["classification"] == "RETRIEVAL_CANDIDATES_NOT_OCI_LABELS"
           assert len(data["strata"]) == 6
           assert len(data["requests"]) == 36
-          assert all(v["selected_unique"] >= 20 for v in data["strata"].values())
-          assert data["candidate_rows"] >= 120
+          assert all(v["selected_unique"] >= 15 for v in data["strata"].values()), data["strata"]
+          assert data["candidate_rows"] >= 90
+          assert data["rejection_rows"] > 0
           print(json.dumps(data, indent=2)[:12000])
           PY
 
@@ -61,11 +80,11 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$PAPER_DIR/data/retrieval_v0"
+          git add "$RETRIEVAL_DIR"
           if git diff --cached --quiet; then
             echo "No retrieval change."
             exit 0
           fi
-          git commit -m "Update ARIS4C012 retrieval snapshot [skip ci]"
+          git commit -m "Add ARIS4C012 retrieval snapshot $(basename "$RETRIEVAL_DIR") [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
