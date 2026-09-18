@@ -1,0 +1,42 @@
+name: ARIS4C006 within-author exposure variation pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-exposure-switch.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/12_within_author_exposure_variation.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exposure-switch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run within-author exposure variation pilot
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/12_within_author_exposure_variation.py \
+            --start 2018 \
+            --end 2024 \
+            --per-field-window 30 \
+            --authors 100 \
+            --outdir data/pilot/exposure_switch
+      - name: Upload aggregate exposure-switch artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-exposure-switch-pilot
+          path: |
+            ${{ env.PAPER_DIR }}/data/pilot/exposure_switch/field_window_exposure.csv
+            ${{ env.PAPER_DIR }}/data/pilot/exposure_switch/manifest.json
+          if-no-files-found: error
+          retention-days: 30
