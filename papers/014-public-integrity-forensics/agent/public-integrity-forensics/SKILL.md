@@ -17,6 +17,37 @@ Use this skill to assemble and audit lawful public records for public-integrity 
 
 The skill is a **forensic triage system**, not a guilt classifier. A procurement red flag, a politically exposed/public-office connection, an offshore relationship, a sanctions match, unusual supplier concentration, or a graph anomaly can each have lawful explanations. The output must preserve that distinction.
 
+## China-first multi-institution mode
+
+For China-facing work, OpenIntegrity is not government-only. Treat the following as first-class institution types:
+
+- government and public agencies;
+- public institutions / 事业单位;
+- public hospitals and medical institutions;
+- central/local SOEs and subsidiaries;
+- research institutes;
+- universities and affiliated entities;
+- foundations, charities, associations and other social organizations / NGOs;
+- state-owned financial institutions where public records permit;
+- procurement agencies and private suppliers.
+
+China discovery is web-native: combine official structured platforms with institution websites, PDFs, audit/enforcement pages, research-funding records, annual reports, reputable journalism and public-web lead discovery.
+
+Use `process/CHINA_EXPANSION.md`, `data/CHINA_SOURCES.md`, and `data/china_source_registry.json`.
+
+China source tiers:
+
+- CN-A official structured;
+- CN-B official institution web/document;
+- CN-C official audit/enforcement/disciplinary outcome;
+- CN-D reputable journalism;
+- CN-E licensed commercial enrichment;
+- CN-F public web/social lead.
+
+CN-F is lead-generation only and defaults to E5. Social/web content cannot by itself create a strong or consequential integrity conclusion.
+
+Research-publication forensics can delegate to ARIS4C011.
+
 ## Core invariants
 
 1. Never output a binary corrupt/not-corrupt verdict.
@@ -261,3 +292,8 @@ Use assets/finding.schema.json and assets/report.schema.json for machine-readabl
 - code/report_builder.py — standard portable report construction.
 - process/PILOT1_PROTOCOL.md — locked UK identifier-first Pilot 1 protocol.
 - process/PILOT1_RESULTS.md — frozen UK Pilot 1A source-feasibility result.
+- process/CHINA_EXPANSION.md — China-first multi-institution scope and graph design.
+- data/CHINA_SOURCES.md — China public/open-web source map.
+- data/china_source_registry.json — machine-readable China source registry.
+- code/china_scope.py — China institution/source-tier policy.
+- code/china_web_leads.py — web-lead evidence contract and Track A gate.
