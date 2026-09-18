@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**PILOT 1 DETERMINISTIC ADAPTERS IMPLEMENTED · HONEST-ERROR STRESS SEED MATERIALISED**
+**TIME-SAFE ARTIFACT GATE IMPLEMENTED · PILOT 1 PROMOTED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -31,6 +31,9 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - GT-B correction/corrigendum honest-error stress seed with figure-panel, scientific-figure, and ranked-table errors.
 - Pilot 1 deterministic detector adapters for F1/F2/F3/F5.
 - Record-level ABSTAIN semantics hardened in the orchestrator so one applicable detector can still abstain on individual records.
+- Pilot 1 passed dedicated CI and was promoted to main.
+- Time-safe artifact qualification implemented with SAFE_EXACT / PROXY_ONLY / BLOCKED states.
+- Six-record current-artifact seed audit added; no current representation is assumed Track-A-safe without historical proof.
 
 ## Critical design findings already established
 
@@ -64,8 +67,9 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - freeze target metadata completeness criteria.
 
 ### Gate 2 — time-safe Track A corpus
-- acquire and verify historical-equivalent full texts;
-- strip/avoid outcome-bearing paths and banners;
+- qualification rules and code: COMPLETE;
+- acquire and verify historical-equivalent full texts: IN PROGRESS;
+- quantify SAFE_EXACT vs PROXY_ONLY vs BLOCKED attrition;
 - build grouped and temporal split manifests;
 - verify no label-bearing metadata reaches model features.
 
@@ -82,8 +86,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Pass Pilot 1 through dedicated CI and promote it.
-2. Materialise a pilot set of time-safe full texts and measure eligibility attrition.
+1. Scale historical-artifact qualification beyond the six-record source-anatomy seed.
+2. Acquire SAFE_EXACT artifacts for a pilot subset and freeze hashes/provenance.
 3. Run deterministic adapters on real eligible manuscripts and correction controls.
 4. Quantify extraction error, applicability, alert yield, and human verification time.
 5. Add image/text/semantic modules only after deterministic real-manuscript validation.
