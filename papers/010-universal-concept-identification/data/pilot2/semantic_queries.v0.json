@@ -1,0 +1,523 @@
+{
+  "dataset": "UCID Pilot 2 · exploratory semantic-query matrix v0",
+  "evidence_class": "source_derived_plus_unreviewed_semantic_mapping",
+  "created_on": "2026-09-18",
+  "mapping_status": "machine_mapped_unreviewed",
+  "warning": "YES/NO labels are derived from OEWN gloss inspection and have not been human calibrated. They are engineering evidence only.",
+  "queries": [
+    {
+      "query_id": "p2-natural",
+      "text": "Is the sense primarily about a naturally occurring physical feature or phenomenon?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-water",
+      "text": "Is water central to the sense?",
+      "query_kind": "physical_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-institution",
+      "text": "Does the sense denote an institution or organization?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-money",
+      "text": "Is money or banking central to the sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-resource",
+      "text": "Does the sense denote a stock, supply, or funds held as a resource?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-gambling",
+      "text": "Is gambling central to the sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-artifact",
+      "text": "Does the sense denote a human-made artifact or device?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-container",
+      "text": "Does the sense denote a container?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-building",
+      "text": "Does the sense denote a building or built structure?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-action",
+      "text": "Does the sense denote an action, maneuver, or movement event?",
+      "query_kind": "event_or_temporal",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-aircraft",
+      "text": "Is aircraft motion central to the sense?",
+      "query_kind": "functional_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-upward",
+      "text": "Does the sense denote a self-propelled upward or forward movement?",
+      "query_kind": "event_or_temporal",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-elastic",
+      "text": "Is elasticity central to the sense?",
+      "query_kind": "physical_property",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-property",
+      "text": "Does the sense denote an abstract property or attribute?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-location",
+      "text": "Does the sense primarily denote a location or point?",
+      "query_kind": "ontological_kind",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-flow",
+      "text": "Does the sense denote a flow of material?",
+      "query_kind": "event_or_temporal",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-time",
+      "text": "Does the sense denote a time period or season?",
+      "query_kind": "event_or_temporal",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    },
+    {
+      "query_id": "p2-arrangement",
+      "text": "Does the sense denote an arrangement of multiple similar objects?",
+      "query_kind": "relation",
+      "answer_protocols": [
+        "P2",
+        "P6"
+      ],
+      "direct_guess": false,
+      "target_string_leakage": false,
+      "applicable_target_levels": [
+        "sense"
+      ],
+      "context_requirements": [
+        "none"
+      ],
+      "base_cost": 1,
+      "notes": "Pilot 2 exploratory semantic query. Response labels were audited against OEWN glosses but are not human calibrated.",
+      "provenance": {
+        "source_type": "llm_generated_then_validated",
+        "source": "OEWN Pilot 2 gloss audit, 2026-09-18",
+        "license": null,
+        "notes": "Researcher/model-authored query wording; unit-cost exploratory benchmark."
+      }
+    }
+  ],
+  "target_yes_features": {
+    "oewn-bank-flight-maneuver": [
+      "action",
+      "aircraft"
+    ],
+    "oewn-bank-building": [
+      "money",
+      "artifact",
+      "building"
+    ],
+    "oewn-bank-money-container": [
+      "money",
+      "artifact",
+      "container"
+    ],
+    "oewn-bank-financial-institution": [
+      "institution",
+      "money"
+    ],
+    "oewn-bank-arrangement": [
+      "arrangement"
+    ],
+    "oewn-bank-ridge-pile": [
+      "natural"
+    ],
+    "oewn-bank-river-slope": [
+      "natural",
+      "water"
+    ],
+    "oewn-bank-gambling-funds": [
+      "money",
+      "resource",
+      "gambling"
+    ],
+    "oewn-bank-reserve-stock": [
+      "resource"
+    ],
+    "oewn-spring-leap": [
+      "action",
+      "upward"
+    ],
+    "oewn-spring-elastic-device": [
+      "artifact",
+      "elastic"
+    ],
+    "oewn-spring-elasticity": [
+      "elastic",
+      "property"
+    ],
+    "oewn-spring-water-point": [
+      "natural",
+      "water",
+      "location"
+    ],
+    "oewn-spring-groundwater-flow": [
+      "natural",
+      "water",
+      "flow"
+    ],
+    "oewn-spring-season": [
+      "time"
+    ]
+  },
+  "default_response": "NO"
+}
