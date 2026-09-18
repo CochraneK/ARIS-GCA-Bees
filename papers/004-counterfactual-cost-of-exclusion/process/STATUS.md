@@ -2,6 +2,27 @@
 
 Last updated: 2026-09-18
 
+## Identity100 first-review freeze · 2026-09-19
+
+The full frozen 100-person pre-exposure identity frame has now completed first review with **zero provisional states** and no mental-health information used.
+
+- 100 candidates;
+- 52 verified identities: 31 VERIFIED_SINGLE + 21 VERIFIED_CLUSTER;
+- 38 NO_GRAPH_RECORD;
+- 8 AMBIGUOUS_COLLISION;
+- 2 EXCLUDED_IDENTITY_ERROR;
+- first-review `identity_decisions_100.csv` committed and invariant-checked.
+
+A deterministic independent second-review set is also frozen:
+- **40/100** cases selected;
+- all 21 verified clusters;
+- all 8 collisions;
+- all 2 identity errors;
+- deterministic 9/31 verified singles;
+- blind assignment omits first-review status and selection reason.
+
+The independent reviewer has **not** yet supplied second-review judgments. This remains a scientific gate before exposure coding.
+
 ## Current state
 
 **RUNNING — pre-exposure scale-up / identity100 expansion**
