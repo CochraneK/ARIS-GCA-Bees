@@ -4,7 +4,7 @@ Updated: 2026-09-18
 
 ## State
 
-**OBJECT-LEVEL TIME SAFETY IMPLEMENTED · FIRST HISTORICAL SNAPSHOT VERIFIED**
+**PILOT 1B TABLE SEMANTICS HARDENED · ARCHIVE DISCOVERY AUTOMATED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -37,6 +37,10 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - First pre-outcome historical publisher-page snapshot verified for PLOS target 10.1371/journal.pone.0161231 (Wayback 2022-05-20).
 - Object/modality-level eligibility added: historical HTML is SAFE_EXACT for text/caption roles, while Figure 1 remains BLOCKED because no independent pre-correction image capture was found.
 - Track A eligibility is now defined at paper × issue × required artifact role, not paper alone.
+- Real SAGE correction case revealed that rank presence is insufficient: row 14 existed conceptually but its article-information cell was the documented omission.
+- F3 table checks now include row_completeness in addition to rank_sequence.
+- Wayback/CDX candidate discovery helper added with strict pre-event filtering.
+- PLOS SAFE_EXACT body-text smoke test correctly abstained for F1/GRIM because required recomputation inputs were absent.
 
 ## Critical design findings already established
 
@@ -70,7 +74,7 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - freeze target metadata completeness criteria.
 
 ### Gate 2 — time-safe Track A corpus
-- paper-level qualification rules and code: COMPLETE;\n- object/modality-level role qualification: COMPLETE;
+- paper-level qualification rules and code: COMPLETE;\n- object/modality-level role qualification: COMPLETE;\n- archive candidate discovery utility: COMPLETE;
 - acquire and verify historical-equivalent full texts: IN PROGRESS;
 - quantify SAFE_EXACT vs PROXY_ONLY vs BLOCKED attrition;
 - build grouped and temporal split manifests;
@@ -91,6 +95,6 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 1. Scale object-level historical-artifact qualification beyond the six-record source-anatomy seed.
 2. Acquire SAFE_EXACT body/table/reference/image objects for a pilot subset and freeze hashes/provenance.
-3. Run deterministic adapters only where their required artifact roles are SAFE_EXACT.
+3. Run deterministic adapters only where their required artifact roles are SAFE_EXACT; treat missing inputs as ABSTAIN rather than failures.
 4. Quantify extraction error, applicability, alert yield, and human verification time.
 5. Add image/text/semantic modules only after deterministic real-manuscript validation.
