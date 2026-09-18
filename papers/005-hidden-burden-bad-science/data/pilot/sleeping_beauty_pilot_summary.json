@@ -1,0 +1,57 @@
+{
+  "classification": "MATURE_RANDOM_DELAYED_RECOGNITION_PILOT_NOT_LOST_DISCOVERY_COUNT",
+  "generated_at_utc": "2026-09-18T06:35:57.697915+00:00",
+  "sampling": {
+    "database": "OpenAlex",
+    "corpus": "core",
+    "types": [
+      "article",
+      "review"
+    ],
+    "publication_years": [
+      1990,
+      2005
+    ],
+    "filter_requires_cited_by_count_gt_zero": true,
+    "sample_n_requested": 200,
+    "sample_n_realized": 200,
+    "seed": 20260918,
+    "observation_end_year": 2025
+  },
+  "citation_history_method": "live incoming-citation works grouped by publication_year for each source; nested Work counts_by_year is not used",
+  "domain_counts": {
+    "Physical Sciences": 72,
+    "Life Sciences": 35,
+    "Health Sciences": 51,
+    "Social Sciences": 41,
+    "missing": 1
+  },
+  "beauty_coefficient": {
+    "min": -6.777562724603118,
+    "q25": 0.6972222222222221,
+    "median": 2.9999999999999996,
+    "q75": 9.705357142857142,
+    "q90": 20.07513784461153,
+    "q95": 28.14999999999995,
+    "q99": 65.37577665130551,
+    "max": 85.0
+  },
+  "peak_citation_age": {
+    "median": 6.0,
+    "q90": 21.0,
+    "max": 33.0
+  },
+  "awakening_age": {
+    "median": 5.0,
+    "q90": 17.0,
+    "max": 31.0
+  },
+  "warnings": [
+    "This is a small engineering pilot, not a global Sleeping Beauty prevalence estimate.",
+    "Sampling conditions on having at least one matched citation.",
+    "Beauty Coefficient is continuous; no natural universal threshold is inferred.",
+    "OpenAlex citation links depend on reference matching and can miss printed citations.",
+    "Citation graph and counts can drift across database snapshots.",
+    "Historical delayed recognition does not establish integrity-related suppression."
+  ]
+}
