@@ -1,5 +1,7 @@
 """Tier-1 recoverability stress test for ARIS4C008.
 
+Zero third-party dependencies: Python standard library only.
+
 Design diagnostic only -- not a biological power analysis.
 
 Scenarios:
@@ -8,109 +10,131 @@ Scenarios:
 3) Tier-1 after deep-coding A-F for the 50 new taxa.
 4) Tier-1 after deep-coding A-F for all 79 taxa.
 5) Tier-1 complete 79 x 10 benchmark.
-
-The simulation uses the same simplified architecture family as the Pilot-7
-recoverability diagnostic, so differences among scenarios are interpretable
-as design/missingness effects rather than a change of model family.
 """
 from __future__ import annotations
-import argparse, csv
+import argparse, csv, math, random, statistics
 from collections import Counter, defaultdict
 from pathlib import Path
-import numpy as np
 
 SEED=20260918
 MODULES=list("ABCDEFGHIJ")
 MODELS=("additive","weakest","threshold","interaction")
-
 OBSERVED_STATES={
-    "measured","partial_measured","measured_multi_axis","measured_ecology",
-    "measured_network_proxy","measured_multi_source_proxy",
-    "measured_social_demography","measured_cultural_context",
-    "positive","positive_with_uncertainty","tested_negative","ambiguous"
+ "measured","partial_measured","measured_multi_axis","measured_ecology",
+ "measured_network_proxy","measured_multi_source_proxy","measured_social_demography",
+ "measured_cultural_context","positive","positive_with_uncertainty",
+ "tested_negative","ambiguous"
 }
 
-def feature(X,model):
-    if model=="additive":
-        return X.mean(1)[:,None]
-    if model=="weakest":
-        return X.min(1)[:,None]
-    if model=="threshold":
-        return np.c_[(X>=0.6).mean(1),X.min(1)]
-    if model=="interaction":
-        return np.c_[X.mean(1),X.min(1),(X**2).mean(1)]
+def model_features(row,model):
+    mean=sum(row)/len(row); mn=min(row)
+    if model=="additive": return [mean]
+    if model=="weakest": return [mn]
+    if model=="threshold": return [sum(x>=0.6 for x in row)/len(row),mn]
+    if model=="interaction": return [mean,mn,sum(x*x for x in row)/len(row)]
     raise ValueError(model)
 
 def outcome(X,true_model,rng):
-    if true_model=="additive":
-        z=X.mean(1)
-    elif true_model=="weakest":
-        z=X.min(1)
-    elif true_model=="threshold":
-        k=(X>=0.6).sum(1)
-        z=0.15*X.mean(1)+0.85/(1+np.exp(-(k-6.5)*2))
-    else:
-        raise ValueError(true_model)
-    return z+rng.normal(0,0.07,len(X))
+    y=[]
+    for row in X:
+        mean=sum(row)/len(row); mn=min(row)
+        if true_model=="additive": z=mean
+        elif true_model=="weakest": z=mn
+        elif true_model=="threshold":
+            k=sum(x>=0.6 for x in row)
+            z=0.15*mean+0.85/(1+math.exp(-(k-6.5)*2))
+        else: raise ValueError(true_model)
+        y.append(z+rng.gauss(0,0.07))
+    return y
 
-def impute_mean(Z):
-    Z=Z.copy()
-    for j in range(Z.shape[1]):
-        miss=np.isnan(Z[:,j])
-        if miss.all():
-            Z[:,j]=0.5
-        elif miss.any():
-            Z[miss,j]=np.nanmean(Z[:,j])
-    return Z
+def solve(A,b):
+    n=len(b)
+    M=[list(A[i])+[b[i]] for i in range(n)]
+    for i in range(n):
+        p=max(range(i,n),key=lambda r:abs(M[r][i]))
+        M[i],M[p]=M[p],M[i]
+        if abs(M[i][i])<1e-10: M[i][i]+=1e-8
+        q=M[i][i]
+        for j in range(i,n+1): M[i][j]/=q
+        for r in range(n):
+            if r==i: continue
+            q=M[r][i]
+            for j in range(i,n+1): M[r][j]-=q*M[i][j]
+    return [M[i][n] for i in range(n)]
+
+def ols_fit(F,y):
+    X=[[1.0]+list(r) for r in F]
+    p=len(X[0])
+    xtx=[[0.0]*p for _ in range(p)]
+    xty=[0.0]*p
+    for row,yy in zip(X,y):
+        for i in range(p):
+            xty[i]+=row[i]*yy
+            for j in range(p): xtx[i][j]+=row[i]*row[j]
+    for i in range(p): xtx[i][i]+=1e-9
+    return solve(xtx,xty)
+
+def predict(F,beta):
+    return [beta[0]+sum(b*x for b,x in zip(beta[1:],r)) for r in F]
 
 def cv_rmse(F,y,folds):
-    errs=[]
-    idx=np.arange(len(y))
+    n=len(y); allidx=set(range(n)); errs=[]
     for te in folds:
-        tr=np.setdiff1d(idx,te)
-        A=np.c_[np.ones(len(tr)),F[tr]]
-        B=np.c_[np.ones(len(te)),F[te]]
-        beta=np.linalg.lstsq(A,y[tr],rcond=None)[0]
-        pred=B@beta
-        errs.append(np.sqrt(np.mean((y[te]-pred)**2)))
-    return float(np.mean(errs))
+        teset=set(te); tr=sorted(allidx-teset)
+        beta=ols_fit([F[i] for i in tr],[y[i] for i in tr])
+        pred=predict([F[i] for i in te],beta)
+        errs.append(math.sqrt(sum((y[i]-p)**2 for i,p in zip(te,pred))/len(te)))
+    return sum(errs)/len(errs)
 
 def make_latent(n,rng):
-    shared=rng.beta(2,2,(n,1))
-    raw=rng.beta(1.5,1.5,(n,len(MODULES)))
-    return np.clip(0.25*shared+0.75*raw,0,1)
+    X=[]
+    for _ in range(n):
+        shared=rng.betavariate(2,2)
+        row=[]
+        for _ in MODULES:
+            raw=rng.betavariate(1.5,1.5)
+            row.append(max(0,min(1,0.25*shared+0.75*raw)))
+        X.append(row)
+    return X
+
+def noisy_observed(X,mask,rng):
+    Z=[]
+    for row,mrow in zip(X,mask):
+        Z.append([max(0,min(1,x+rng.gauss(0,0.08))) if obs else None for x,obs in zip(row,mrow)])
+    means=[]
+    for j in range(len(MODULES)):
+        xs=[row[j] for row in Z if row[j] is not None]
+        means.append(sum(xs)/len(xs) if xs else 0.5)
+    return [[means[j] if x is None else x for j,x in enumerate(row)] for row in Z]
+
+def make_folds(n,rng,k=4):
+    idx=list(range(n)); rng.shuffle(idx)
+    return [idx[i::k] for i in range(k)]
 
 def evaluate_once(mask,rng):
-    n=mask.shape[0]
-    X=make_latent(n,rng)
-    Z=np.clip(X+rng.normal(0,0.08,X.shape),0,1)
-    Z[~mask]=np.nan
-    Z=impute_mean(Z)
-    folds=np.array_split(rng.permutation(n),4)
-    F={m:feature(Z,m) for m in MODELS}
-    rows=[]
+    n=len(mask)
+    X=make_latent(n,rng); Z=noisy_observed(X,mask,rng)
+    folds=make_folds(n,rng)
+    Fs={m:[model_features(row,m) for row in Z] for m in MODELS}
+    ans=[]
     for true in ("additive","weakest","threshold"):
         y=outcome(X,true,rng)
-        scores={m:cv_rmse(F[m],y,folds) for m in MODELS}
+        scores={m:cv_rmse(Fs[m],y,folds) for m in MODELS}
         ordered=sorted(scores.items(),key=lambda kv:kv[1])
-        rows.append((true,ordered[0][0],ordered[0][1],ordered[1][1]-ordered[0][1]))
-    return rows
+        ans.append((true,ordered[0][0],ordered[1][1]-ordered[0][1]))
+    return ans
 
 def run(mask,reps,seed):
-    rng=np.random.default_rng(seed)
-    wins=Counter()
-    confusion=Counter()
-    margins=defaultdict(list)
+    rng=random.Random(seed); wins=Counter(); confusion=Counter(); margins=defaultdict(list)
     for _ in range(reps):
-        for true,pred,rmse,margin in evaluate_once(mask,rng):
+        for true,pred,margin in evaluate_once(mask,rng):
             confusion[(true,pred)]+=1
-            if true==pred:
-                wins[true]+=1
+            if true==pred:wins[true]+=1
             margins[true].append(margin)
     return {
-        "recovery":{m:wins[m]/reps for m in ("additive","weakest","threshold")},
-        "confusion":confusion,
-        "margin":{m:float(np.median(margins[m])) for m in margins},
+      "recovery":{m:wins[m]/reps for m in ("additive","weakest","threshold")},
+      "confusion":confusion,
+      "margin":{m:statistics.median(margins[m]) for m in margins}
     }
 
 def read_pilot7(path):
@@ -119,77 +143,73 @@ def read_pilot7(path):
     by={(r["scientific_name"],r["module_id"]):r for r in rows}
     mask=[]
     for sp in taxa:
-        row=[]
+        rr=[]
         for m in MODULES:
             r=by[(sp,m)]
-            observed=(r["evidence_state"] in OBSERVED_STATES or bool((r.get("measurement_coverage") or "").strip()))
-            row.append(observed)
-        mask.append(row)
-    return taxa,np.asarray(mask,dtype=bool)
+            rr.append(r["evidence_state"] in OBSERVED_STATES or bool((r.get("measurement_coverage") or "").strip()))
+        mask.append(rr)
+    return taxa,mask
 
 def read_tier1(path):
     rows=list(csv.DictReader(open(path,encoding="utf-8-sig")))
     taxa=list(dict.fromkeys(r["scientific_name"] for r in rows))
     by={(r["scientific_name"],r["module_id"]):r for r in rows}
     segment={sp:next(r["matrix_segment"] for r in rows if r["scientific_name"]==sp) for sp in taxa}
-    mask=np.asarray([[str(by[(sp,m)]["observed_now"]).strip()=="1" for m in MODULES] for sp in taxa],dtype=bool)
+    mask=[[str(by[(sp,m)]["observed_now"]).strip()=="1" for m in MODULES] for sp in taxa]
     return taxa,segment,mask
 
+def clone(mask): return [list(r) for r in mask]
+
 def scenarios(base):
-    taxa29,m29=read_pilot7(base/"data"/"module_evidence_state_v2.csv")
+    _,m29=read_pilot7(base/"data"/"module_evidence_state_v2.csv")
     taxa79,seg,m79=read_tier1(base/"data"/"module_evidence_state_tier1_v0.csv")
 
-    new50_af=m79.copy()
+    new50=clone(m79)
     for i,sp in enumerate(taxa79):
         if seg[sp]=="tier1_new50":
-            new50_af[i,:6]=True
+            for j in range(6):new50[i][j]=True
 
-    all79_af=m79.copy()
-    all79_af[:,:6]=True
+    allaf=clone(m79)
+    for row in allaf:
+        for j in range(6):row[j]=True
 
-    complete=np.ones_like(m79,dtype=bool)
+    complete=[[True]*len(MODULES) for _ in m79]
     return {
       "pilot7_current29":m29,
       "tier1_empirical79":m79,
-      "tier1_new50_AF_complete":new50_af,
-      "tier1_all79_AF_complete":all79_af,
+      "tier1_new50_AF_complete":new50,
+      "tier1_all79_AF_complete":allaf,
       "tier1_complete79":complete,
     }
 
 def main():
     base=Path(__file__).resolve().parents[1]
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--reps",type=int,default=500)
-    args=ap.parse_args()
-
-    allsc=scenarios(base)
-    summary=[]
-    confusion=[]
+    ap=argparse.ArgumentParser();ap.add_argument("--reps",type=int,default=500);args=ap.parse_args()
+    allsc=scenarios(base);summary=[];confusion=[]
     for si,(name,mask) in enumerate(allsc.items()):
         res=run(mask,args.reps,SEED+si*10000)
-        coverage=mask.mean()
-        permod=mask.sum(0)
+        n=len(mask); total=n*len(MODULES); observed=sum(sum(r) for r in mask)
+        permod=[sum(row[j] for row in mask) for j in range(len(MODULES))]
         for true,rate in res["recovery"].items():
-            summary.append({
-              "scenario":name,"n_taxa":mask.shape[0],"observed_cells":int(mask.sum()),
-              "total_cells":int(mask.size),"coverage":coverage,"true_model":true,
-              "recovery_rate":rate,"median_winner_margin_rmse":res["margin"][true],
-              **{f"coverage_{m}":int(permod[j]) for j,m in enumerate(MODULES)}
-            })
-        for (true,pred),n in res["confusion"].items():
-            confusion.append({"scenario":name,"true_model":true,"selected_model":pred,"count":n,"reps":args.reps})
-
+            row={"scenario":name,"n_taxa":n,"observed_cells":observed,"total_cells":total,
+                 "coverage":observed/total,"true_model":true,"recovery_rate":rate,
+                 "median_winner_margin_rmse":res["margin"][true]}
+            row.update({f"coverage_{m}":permod[j] for j,m in enumerate(MODULES)})
+            summary.append(row)
+        for (true,pred),count in res["confusion"].items():
+            confusion.append({"scenario":name,"true_model":true,"selected_model":pred,"count":count,"reps":args.reps})
     fields=list(summary[0])
     with open(base/"data"/"tier1_recoverability_v0.csv","w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(summary)
     fields2=["scenario","true_model","selected_model","count","reps"]
     with open(base/"data"/"tier1_recoverability_confusion_v0.csv","w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=fields2);w.writeheader();w.writerows(confusion)
-
     print("SCENARIOS")
     for name,mask in allsc.items():
-        print(name,"n",mask.shape[0],"coverage",round(float(mask.mean()),4),"per_module",dict(zip(MODULES,mask.sum(0).tolist())))
+        observed=sum(sum(r) for r in mask);total=len(mask)*len(MODULES)
+        permod=[sum(row[j] for row in mask) for j in range(len(MODULES))]
         rr={r["true_model"]:r["recovery_rate"] for r in summary if r["scenario"]==name}
+        print(name,"n",len(mask),"coverage",round(observed/total,4),"per_module",dict(zip(MODULES,permod)))
         print(" recovery",rr)
 
 if __name__=="__main__":
