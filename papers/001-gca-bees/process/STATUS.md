@@ -27,7 +27,10 @@ ARIS4C001 is complete at the repository/submission-package level. It does **not*
 
 ## Canonical outputs
 
-- manuscript/MAIN.md — final submission-facing manuscript
+- manuscript/MAIN.md — final English submission-facing manuscript
+- manuscript/MAIN.zh-CN.md — complete Chinese mirror manuscript
+- figures/ — three evidence-linked SVG figures + captions
+- tables/TABLES.md — three canonical tables
 - submission/TARGET_JOURNAL.md — primary/fallback journal rationale and current requirements
 - submission/COVER_LETTER.md — cover letter
 - submission/TITLE_PAGE.md — public-safe title-page template
@@ -41,4 +44,5 @@ ARIS4C001 is complete at the repository/submission-package level. It does **not*
 
 Current affiliation and corresponding email are intentionally **not stored in the public repository**. Funding, conflict-of-interest, simultaneous-submission, optional ORCID and reviewer fields require direct author confirmation in the journal portal. These are submission-account fields, not scientific or manuscript blockers.
 
+**ARIS4C output gate:** PASS — English full paper + Chinese full paper + 3 figures + 3 tables.  
 **Portfolio maturity:** 100%.
