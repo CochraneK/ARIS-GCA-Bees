@@ -1,0 +1,614 @@
+{
+  "dataset": "DAIS-C",
+  "source_record": "UK Data Service ReShare 855021",
+  "doi": "10.5255/UKDA-SN-855021",
+  "generated_utc": "2026-09-18T23:36:33.188241+00:00",
+  "privacy_rule": "No transcript content emitted by this inventory.",
+  "archive_sha256": "2f8418a1d466cb41f8fb4deadd8aa12f1f4085766f5c811a69e52885fbe32721",
+  "file_count": 123,
+  "extension_counts": {
+    ".docx": 42,
+    ".pdf": 6,
+    ".rtf": 15,
+    ".sav": 1,
+    ".txt": 58,
+    ".xlsx": 1
+  },
+  "size_bins": {
+    "10-100KB": 88,
+    "100KB-1MB": 9,
+    "<10KB": 25,
+    ">=1MB": 1
+  },
+  "readable_text_files": 73,
+  "likely_transcript_files": 72,
+  "aggregate_text_words": 409380,
+  "aggregate_text_lines": 12829,
+  "aggregate_xml_like_tags": 7555,
+  "text_file_structural_records": [
+    {
+      "extension": ".txt",
+      "bytes": 1525,
+      "words": 213,
+      "lines": 35,
+      "xml_like_tags": 4,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 5436,
+      "words": 1109,
+      "lines": 63,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 898,
+      "words": 174,
+      "lines": 30,
+      "xml_like_tags": 0,
+      "likely_transcript": false
+    },
+    {
+      "extension": ".txt",
+      "bytes": 19914,
+      "words": 4102,
+      "lines": 92,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 29184,
+      "words": 6031,
+      "lines": 96,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 10317,
+      "words": 2149,
+      "lines": 61,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 17559,
+      "words": 3559,
+      "lines": 64,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 10624,
+      "words": 2141,
+      "lines": 103,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 26692,
+      "words": 5597,
+      "lines": 39,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 15522,
+      "words": 2900,
+      "lines": 62,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 272359,
+      "words": 55492,
+      "lines": 1152,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 71893,
+      "words": 14816,
+      "lines": 105,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 18546,
+      "words": 3847,
+      "lines": 109,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 5083,
+      "words": 993,
+      "lines": 77,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 9945,
+      "words": 1941,
+      "lines": 68,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 18975,
+      "words": 3871,
+      "lines": 91,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 11741,
+      "words": 2262,
+      "lines": 91,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 64263,
+      "words": 7030,
+      "lines": 395,
+      "xml_like_tags": 155,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 65276,
+      "words": 7875,
+      "lines": 417,
+      "xml_like_tags": 182,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 68904,
+      "words": 8562,
+      "lines": 455,
+      "xml_like_tags": 221,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 58295,
+      "words": 6622,
+      "lines": 352,
+      "xml_like_tags": 120,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 50656,
+      "words": 5263,
+      "lines": 284,
+      "xml_like_tags": 64,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 96172,
+      "words": 13517,
+      "lines": 722,
+      "xml_like_tags": 475,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 65542,
+      "words": 8019,
+      "lines": 431,
+      "xml_like_tags": 207,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 88593,
+      "words": 12076,
+      "lines": 502,
+      "xml_like_tags": 237,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 93372,
+      "words": 12724,
+      "lines": 544,
+      "xml_like_tags": 299,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 77501,
+      "words": 9245,
+      "lines": 445,
+      "xml_like_tags": 178,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 78821,
+      "words": 10201,
+      "lines": 445,
+      "xml_like_tags": 188,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 106076,
+      "words": 15273,
+      "lines": 606,
+      "xml_like_tags": 338,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 253583,
+      "words": 40388,
+      "lines": 1397,
+      "xml_like_tags": 1043,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 53697,
+      "words": 5739,
+      "lines": 299,
+      "xml_like_tags": 66,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".rtf",
+      "bytes": 112882,
+      "words": 16694,
+      "lines": 625,
+      "xml_like_tags": 278,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 11824,
+      "words": 2364,
+      "lines": 61,
+      "xml_like_tags": 68,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 6791,
+      "words": 1291,
+      "lines": 63,
+      "xml_like_tags": 56,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 10448,
+      "words": 1950,
+      "lines": 87,
+      "xml_like_tags": 138,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 12797,
+      "words": 2435,
+      "lines": 103,
+      "xml_like_tags": 88,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 11783,
+      "words": 2213,
+      "lines": 68,
+      "xml_like_tags": 136,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 6540,
+      "words": 1175,
+      "lines": 77,
+      "xml_like_tags": 26,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 30128,
+      "words": 6233,
+      "lines": 39,
+      "xml_like_tags": 558,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 20938,
+      "words": 4175,
+      "lines": 109,
+      "xml_like_tags": 110,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 21518,
+      "words": 4255,
+      "lines": 91,
+      "xml_like_tags": 202,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 19389,
+      "words": 3844,
+      "lines": 64,
+      "xml_like_tags": 152,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 1417,
+      "words": 236,
+      "lines": 30,
+      "xml_like_tags": 2,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 21861,
+      "words": 4367,
+      "lines": 92,
+      "xml_like_tags": 79,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 63138,
+      "words": 12734,
+      "lines": 241,
+      "xml_like_tags": 525,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 76006,
+      "words": 15472,
+      "lines": 105,
+      "xml_like_tags": 446,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 13559,
+      "words": 2495,
+      "lines": 91,
+      "xml_like_tags": 46,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 8290,
+      "words": 1626,
+      "lines": 52,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 4415,
+      "words": 895,
+      "lines": 37,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 2414,
+      "words": 450,
+      "lines": 29,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 4339,
+      "words": 795,
+      "lines": 31,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 8993,
+      "words": 1785,
+      "lines": 57,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 6183,
+      "words": 1250,
+      "lines": 30,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 6528,
+      "words": 1280,
+      "lines": 33,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 16134,
+      "words": 3240,
+      "lines": 46,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 6020,
+      "words": 1173,
+      "lines": 45,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 15522,
+      "words": 2900,
+      "lines": 62,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 10453,
+      "words": 2132,
+      "lines": 58,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 8404,
+      "words": 1616,
+      "lines": 108,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 33181,
+      "words": 6651,
+      "lines": 38,
+      "xml_like_tags": 0,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 4944,
+      "words": 873,
+      "lines": 31,
+      "xml_like_tags": 16,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 7228,
+      "words": 1376,
+      "lines": 33,
+      "xml_like_tags": 30,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 16957,
+      "words": 3105,
+      "lines": 62,
+      "xml_like_tags": 80,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 11551,
+      "words": 2272,
+      "lines": 58,
+      "xml_like_tags": 24,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 17237,
+      "words": 3400,
+      "lines": 46,
+      "xml_like_tags": 68,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 9757,
+      "words": 1854,
+      "lines": 52,
+      "xml_like_tags": 116,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 10295,
+      "words": 1967,
+      "lines": 57,
+      "xml_like_tags": 64,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 34903,
+      "words": 6958,
+      "lines": 37,
+      "xml_like_tags": 234,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 5252,
+      "words": 1013,
+      "lines": 37,
+      "xml_like_tags": 44,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 10575,
+      "words": 1902,
+      "lines": 108,
+      "xml_like_tags": 70,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 2972,
+      "words": 522,
+      "lines": 29,
+      "xml_like_tags": 14,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 7084,
+      "words": 1329,
+      "lines": 45,
+      "xml_like_tags": 66,
+      "likely_transcript": true
+    },
+    {
+      "extension": ".txt",
+      "bytes": 6886,
+      "words": 1352,
+      "lines": 30,
+      "xml_like_tags": 42,
+      "likely_transcript": true
+    }
+  ]
+}
