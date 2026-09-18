@@ -122,6 +122,14 @@
       "evidence": "200-paper 10-stratum benchmark + seed sensitivity + lexical ablation + robust-SB/matched-control mechanism code",
       "next_gate": "Populate empirical robust-SB mechanism cohort from SciSciNet-v2",
       "blocker": "Reproducible SciSciNet-v2 slice/query and mechanism match yield"
+    },
+    "016": {
+      "progress": 20,
+      "stage": "Research design + prior-art audit",
+      "activity": "active",
+      "evidence": "Open 13-language/17-country dataset identified + falsification-first design",
+      "next_gate": "Materialize and reproduce the Sulpizio et al. Phase-0 dataset",
+      "blocker": "Phase-0 data not yet materialized; ontology/reliability audit pending"
     }
   }
 }
