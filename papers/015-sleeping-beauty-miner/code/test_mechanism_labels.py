@@ -92,6 +92,16 @@ class MechanismLabelTests(unittest.TestCase):
             "LOW_EARLY_HIGH_LATE_UNCONFIRMED",
         )
 
+    def test_zero_late_count_is_low_even_with_tied_percentile(self):
+        result = classify_mechanism_state(
+            early_percentile=0.10,
+            late_percentile=0.35,
+            early_count=0,
+            late_count=0,
+            robust_sb=False,
+        )
+        self.assertEqual(result.state, "FORGOTTEN")
+
     def test_middle_zone_is_ambiguous(self):
         result = classify_mechanism_state(
             early_percentile=0.50,
