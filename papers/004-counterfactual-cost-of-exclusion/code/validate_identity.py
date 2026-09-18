@@ -85,6 +85,11 @@ def validate(path: Path) -> list[str]:
             pid = (row.get("person_id") or "").strip()
             name = (row.get("canonical_name") or "").strip() or "<unnamed>"
             prefix = f"line {lineno} ({pid or name})"
+            extra = row.get(None)
+            if extra:
+                errors.append(
+                    f"{prefix}: malformed CSV row has {len(extra)} unexpected extra field(s); quote fields containing commas"
+                )
             status = (row.get("identity_status") or "").strip()
 
             if not pid:
@@ -156,6 +161,11 @@ def validate_against_candidate_frame(decision_path: Path, candidate_path: Path) 
     with decision_path.open("r", encoding="utf-8-sig", newline="") as handle:
         for lineno, row in enumerate(csv.DictReader(handle), start=2):
             pid = (row.get("person_id") or "").strip()
+            if row.get(None):
+                errors.append(
+                    f"line {lineno} ({pid or '<unnamed>'}): malformed CSV row contains unexpected extra fields"
+                )
+                continue
             candidate = candidates.get(pid)
             prefix = f"line {lineno} ({pid or row.get('canonical_name') or '<unnamed>'})"
             if candidate is None:
