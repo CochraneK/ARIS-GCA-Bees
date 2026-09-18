@@ -8,7 +8,7 @@
 
 **Article type:** Research paper
 
-**Approximate manuscript word count:** 5,434 words
+**Approximate manuscript word count:** 5,905 words
 
 **Figures:** 3
 
@@ -36,3 +36,10 @@
 Cochrane Kang: Conceptualization; Methodology; Software; Formal analysis; Investigation; Data curation; Visualization; Writing – original draft; Writing – review & editing; Project administration.
 
 > Confirm this CRediT list before submission. Remove any role that does not accurately describe the author's contribution.
+
+
+## Funding and conflict disclosures
+
+**Funding:** [AUTHOR TO COMPLETE OR CONFIRM “None declared.”]
+
+**Conflict of interest:** [AUTHOR TO CONFIRM “The author declares no conflict of interest.” OR PROVIDE DISCLOSURE]
