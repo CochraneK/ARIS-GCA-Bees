@@ -6,6 +6,12 @@
 
 ARIS4C treats a research project as complete only when the scientific work and the public-facing output package are both explicit. A project may be scientifically mature before it is publication-ready, but `submission-ready` / `final` status requires the output contract below.
 
+## 0. Alignment with upstream ARIS
+
+This contract strengthens, rather than replaces, the upstream ARIS paper workflow. The current ARIS `paper-writing` pipeline explicitly chains `paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop`; its planning stage includes figure/table placement and its writing/review stages require figures and tables to be described, referenced, and checked. ARIS4C therefore treats figures/tables as first-class paper artifacts.
+
+The **bilingual full-paper requirement** and the **article-type-specific minimum visual package** below are ARIS4C-specific completion rules. They are not claimed to be universal journal rules or verbatim upstream ARIS requirements.
+
 ## 1. Bilingual paper contract
 
 Every final project should provide:
