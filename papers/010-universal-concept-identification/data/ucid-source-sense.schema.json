@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UCID OEWN source sense record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_record_id",
+    "group_id",
+    "lemma",
+    "part_of_speech",
+    "sense_id",
+    "synset_id",
+    "lexname",
+    "definition",
+    "examples",
+    "source_release",
+    "provenance"
+  ],
+  "properties": {
+    "source_record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "group_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lemma": {
+      "type": "string",
+      "minLength": 1
+    },
+    "part_of_speech": {
+      "const": "n"
+    },
+    "sense_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "synset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lexname": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ili": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "selection_rank": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_release": {
+      "const": "oewn:2025"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource",
+        "license",
+        "builder",
+        "retrieved_by"
+      ],
+      "properties": {
+        "resource": {
+          "const": "Open English WordNet 2025"
+        },
+        "license": {
+          "type": "string"
+        },
+        "builder": {
+          "type": "string"
+        },
+        "retrieved_by": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
