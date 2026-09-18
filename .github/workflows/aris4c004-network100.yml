@@ -9,10 +9,6 @@ on:
     branches: [main]
     paths:
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
-      - "papers/004-counterfactual-cost-of-exclusion/code/network/build_verified_work_corpus.py"
-      - "papers/004-counterfactual-cost-of-exclusion/code/validate_identity.py"
-      - "papers/004-counterfactual-cost-of-exclusion/code/review/select_identity_second_review.py"
-      - "papers/004-counterfactual-cost-of-exclusion/data/derived/science_candidates_frozen.csv"
   workflow_dispatch:
 
 permissions:
