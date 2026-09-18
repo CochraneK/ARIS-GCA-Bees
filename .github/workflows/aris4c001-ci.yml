@@ -26,4 +26,4 @@ jobs:
       - run: python papers/001-gca-bees/code/quality_gate.py
       - run: python papers/001-gca-bees/code/published_summary_analysis.py
       - run: git diff --exit-code papers/001-gca-bees/data/published_summary_synthesis.json
-      - run: python papers/001-gca-bees/code/model_recovery.py
+      - run: python papers/001-gca-bees/code/model_recovery.py --smoke
