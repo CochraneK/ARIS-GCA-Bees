@@ -37,3 +37,10 @@
 - Long inactivity is detected relative to the day's normal checkpoint cadence, not by one fixed arbitrary threshold.
 - Compressed gaps retain explicit dashed break markers, `//`, real idle duration, and real-time tooltip provenance.
 - Added CI audit tokens so accidental removal of the compression/disclosure mechanism fails the command-center audit.
+
+## 2026-09-19 · Adaptive vertical progress range
+
+- Added an adaptive Y-axis to the daily progress chart so unused percentage ranges no longer flatten meaningful movement.
+- Kept at least a 20-point visible range as an anti-exaggeration guard.
+- Added Y-axis break marks plus an explicit visible Y-range in the chart summary whenever 0–100% is truncated.
+- Extended command-center CI audit to require the adaptive-axis safeguards.
