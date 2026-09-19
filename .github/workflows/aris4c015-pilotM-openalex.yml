@@ -1,4 +1,4 @@
-name: ARIS4C015 Pilot M OpenAlex Smoke
+name: ARIS4C015 Pilot M OpenAlex Smoke v2
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run 1980 Physics mechanism smoke
+      - name: Run 1980 Physics mechanism smoke with variable-sleep gate
         working-directory: papers/015-sleeping-beauty-miner/code
         run: |
           python pilotM_openalex_smoke.py             --sample-size 100             --seed 15015             --filters "publication_year:1980,type:article,primary_topic.field.id:31"             --observation-end-year 2011             --output ../data/pilotM_openalex_1980_physics_seed15015.json
@@ -73,7 +73,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilotM-openalex-1980-physics
+          name: aris4c015-pilotM-openalex-1980-physics-v2
           path: papers/015-sleeping-beauty-miner/data/pilotM_openalex_1980_physics_seed15015.json
           if-no-files-found: error
           retention-days: 30
