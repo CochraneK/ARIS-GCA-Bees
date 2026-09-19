@@ -26,6 +26,7 @@ from mechanism_labels import (
     SourceBCalibration,
     classify_mechanism_state,
     percentile_ranks,
+    post_awakening_fate,
     robust_sleeping_beauty_gate,
 )
 from mechanism_matching import MechanismPaper, build_priority_contrasts
@@ -191,6 +192,17 @@ def build_mechanism_cohort(
                 require_robust_sb_for_sleeping_beauty=True,
             )
 
+            post_fate = (
+                post_awakening_fate(
+                    counts,
+                    sleep_years=robust.van_raan.sleep_years,
+                    wake_years=robust.van_raan.wake_years,
+                    terminal_years=late_years,
+                ).as_dict()
+                if robust.robust_sb
+                else None
+            )
+
             record = {
                 **paper.as_dict(),
                 "stratum": {
@@ -204,6 +216,7 @@ def build_mechanism_cohort(
                 "late_citation_count": late_count,
                 "mechanism_state": state.as_dict(),
                 "robust_sb_gate": robust.as_dict(),
+                "post_awakening_fate": post_fate,
                 "state": state.state,
             }
             records.append(record)
