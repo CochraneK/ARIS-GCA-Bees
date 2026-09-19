@@ -15,6 +15,7 @@ from merge_calibration_reference_reviews import (  # noqa: E402
 
 def candidate(queue="P_REVIEW"):
     return {
+        "assignment_id": f"{reviewer}_A1",
         "candidate_id": "CALC_abc",
         "paper_id": "P1",
         "doi": "10.1/x",
