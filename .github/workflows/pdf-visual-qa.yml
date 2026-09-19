@@ -1,0 +1,75 @@
+name: PDF visual QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/paper/001/en/main.pdf'
+      - 'docs/paper/001/zh/main.pdf'
+      - 'docs/paper/002/en/main.pdf'
+      - 'docs/paper/002/zh/main.pdf'
+      - '.github/workflows/pdf-visual-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils
+          python -m pip install 'Pillow>=11,<13'
+
+      - name: Render all pages and make contact sheets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pdfqa/render /tmp/pdfqa/contact
+          for spec in             "001-en docs/paper/001/en/main.pdf"             "001-zh docs/paper/001/zh/main.pdf"             "002-en docs/paper/002/en/main.pdf"             "002-zh docs/paper/002/zh/main.pdf"; do
+            name="${spec%% *}"
+            pdf="${spec#* }"
+            mkdir -p "/tmp/pdfqa/render/$name"
+            pdftoppm -png -r 96 "$pdf" "/tmp/pdfqa/render/$name/page" >/dev/null
+          done
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps, ImageDraw
+
+          root = Path('/tmp/pdfqa/render')
+          out = Path('/tmp/pdfqa/contact')
+          out.mkdir(parents=True, exist_ok=True)
+
+          for folder in sorted(p for p in root.iterdir() if p.is_dir()):
+              pages = sorted(folder.glob('page-*.png'))
+              if not pages:
+                  raise SystemExit(f'No rendered pages for {folder.name}')
+              thumbs = []
+              for i, p in enumerate(pages, start=1):
+                  im = Image.open(p).convert('RGB')
+                  im.thumbnail((360, 510))
+                  canvas = Image.new('RGB', (380, 550), 'white')
+                  x = (380 - im.width) // 2
+                  canvas.paste(im, (x, 20))
+                  draw = ImageDraw.Draw(canvas)
+                  draw.text((12, 525), f'{folder.name} · p{i}', fill='black')
+                  thumbs.append(canvas)
+              cols = 3
+              rows = (len(thumbs) + cols - 1) // cols
+              sheet = Image.new('RGB', (cols * 380, rows * 550), '#d9d9d9')
+              for i, im in enumerate(thumbs):
+                  sheet.paste(im, ((i % cols) * 380, (i // cols) * 550))
+              sheet.save(out / f'{folder.name}-contact.png', optimize=True)
+              print(folder.name, len(pages), out / f'{folder.name}-contact.png')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pdf-visual-qa
+          path: /tmp/pdfqa/contact/*.png
+          if-no-files-found: error
+          retention-days: 3
