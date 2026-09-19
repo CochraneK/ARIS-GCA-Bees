@@ -10,6 +10,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -35,6 +36,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -60,6 +62,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -85,6 +88,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -110,6 +114,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -135,6 +140,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -160,6 +166,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -185,6 +192,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -210,6 +218,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -235,6 +244,7 @@
       "query_kind": "event_or_temporal",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -260,6 +270,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -285,6 +296,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -310,6 +322,7 @@
       "query_kind": "lexical_metalinguistic",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -335,6 +348,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -360,6 +374,7 @@
       "query_kind": "event_or_temporal",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -385,6 +400,7 @@
       "query_kind": "ontological_kind",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -410,6 +426,7 @@
       "query_kind": "relation",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -435,6 +452,7 @@
       "query_kind": "functional_property",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -460,6 +478,7 @@
       "query_kind": "functional_property",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -485,6 +504,7 @@
       "query_kind": "physical_property",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -510,6 +530,7 @@
       "query_kind": "functional_property",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -535,6 +556,7 @@
       "query_kind": "lexical_metalinguistic",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -560,6 +582,7 @@
       "query_kind": "functional_property",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
@@ -585,6 +608,7 @@
       "query_kind": "functional_property",
       "answer_protocols": [
         "P2",
+        "P3",
         "P6"
       ],
       "direct_guess": false,
