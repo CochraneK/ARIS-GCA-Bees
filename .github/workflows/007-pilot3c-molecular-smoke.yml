@@ -12,6 +12,10 @@ permissions:
   contents: read
   actions: read
 
+concurrency:
+  group: aris4c007-pilot3c-smoke
+  cancel-in-progress: true
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -59,7 +63,7 @@ jobs:
           test -s data/upstream/pilot3b/bounded_independent_panclock_holdout.csv
           test -s data/upstream/pilot0/pilot0/life_history_mapping_grid.csv
 
-      - name: Prepare deterministic 12-sample smoke set
+      - name: Prepare deterministic 10-sample smoke set
         working-directory: papers/007-cross-species-age-equivalence
         run: |
           rm -rf data/pilot3c_smoke
@@ -80,7 +84,10 @@ jobs:
 
           echo "Expanding gzip-compressed IDATs for deterministic SeSAMe input"
           find data/pilot3c_smoke/idats -type f -name '*.idat.gz' -print0 | xargs -0 -r gzip -d
-          test "$(find data/pilot3c_smoke/idats -type f -name '*.idat' | wc -l)" -eq "$(($(tail -n +2 data/pilot3c_smoke/download_manifest.tsv | wc -l)))"
+          EXPECTED="$(tail -n +2 data/pilot3c_smoke/download_manifest.tsv | wc -l)"
+          ACTUAL="$(find data/pilot3c_smoke/idats -type f -name '*.idat' | wc -l)"
+          test "$ACTUAL" -eq "$EXPECTED"
+          echo "Expanded IDAT files: $ACTUAL"
           du -sh data/pilot3c_smoke/idats
 
       - name: Fetch canonical MMC v3.0.0 Clock 2/3 coefficients
@@ -96,7 +103,8 @@ jobs:
         working-directory: papers/007-cross-species-age-equivalence
         run: |
           cd data/pilot3c_smoke
-          Rscript ../../code/run_pilot3c_sesame_clocks.R             idats smoke_sample.csv species_traits.csv mmc/clock2.csv mmc/clock3.csv
+          Rscript ../../code/run_pilot3c_sesame_clocks.R \
+            idats smoke_sample.csv species_traits.csv mmc/clock2.csv mmc/clock3.csv download_manifest.tsv
           cat pilot3c_summary.csv
 
       - name: Record environment
