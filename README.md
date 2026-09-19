@@ -1,6 +1,6 @@
 <p align="right">
-  <a href="./README.md"><img src="https://img.shields.io/badge/Language-English-2563eb" alt="English"></a>
-  <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/语言-中文-dc2626" alt="中文"></a>
+  <a href="./README.en.md"><img src="https://img.shields.io/badge/Language-English-2563eb" alt="English"></a>
+  <a href="./README.md"><img src="https://img.shields.io/badge/语言-中文（默认）-dc2626" alt="中文"></a>
 </p>
 
 <p align="center">
