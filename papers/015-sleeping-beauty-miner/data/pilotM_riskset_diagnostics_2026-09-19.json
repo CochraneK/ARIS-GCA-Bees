@@ -1,0 +1,106 @@
+{
+  "as_of": "2026-09-19",
+  "analysis": "Pilot M risk-set design hardening and common-support diagnostic",
+  "canonical_claim_boundary": "Mechanism pilot only; not prospective prevalence or predictive performance.",
+  "acquisition": {
+    "source_run_id": 35435974241,
+    "source_head_sha": "9d498b424f2c5f75a5c05e9991cbc13f26d430a1",
+    "source_artifact": "aris4c015-pilotM-known-cases-v7",
+    "source_records": 603,
+    "controls_per_known_case_acquired": 200,
+    "acquisition_method": "deterministic multi-seed OpenAlex reservoir"
+  },
+  "design_corrections": {
+    "control_reuse_across_case_risk_sets": true,
+    "controls_unique_within_one_case_risk_set": true,
+    "primary_cases": "frozen to 3 literature-known Sleeping Beauties",
+    "provisional_robust_candidates": "recorded but excluded from the primary risk-set case set until cross-source trajectory/B validation",
+    "balance_threshold_abs_smd": 0.1,
+    "threshold_relaxed": false
+  },
+  "run_comparison": {
+    "v3_50_random_all_robust_1to1": {
+      "max_abs_smd": 0.949546820948398,
+      "n_matches": 5
+    },
+    "v4_100_random_all_robust_1to1": {
+      "max_abs_smd": 2.172313668040724,
+      "n_matches": 5
+    },
+    "v5_200_nested_all_robust_1to1": {
+      "max_abs_smd": 2.1189712086564834,
+      "n_matches": 5
+    },
+    "v6_200_nested_all_robust_reuse_1to1": {
+      "max_abs_smd": 1.7855075154575337,
+      "n_matches": 5
+    },
+    "v7_200_nested_all_robust_reuse_1to4": {
+      "max_abs_smd": 3.1115579539909843,
+      "n_matches": 20
+    },
+    "offline_v7_frozen_known_1to1": {
+      "source_reanalysis_run_id": 35436185652,
+      "match_rate": 1,
+      "n_matches": 3,
+      "max_abs_smd": 1.632993161855452,
+      "covariate_abs_smd": {
+        "sleep_rate_to_case_event": 1.4828292600078086,
+        "reference_count": 1.632993161855452,
+        "author_count": 0.8164965809277261
+      }
+    },
+    "offline_v7_frozen_known_1to4": {
+      "source_reanalysis_run_id": 35436185652,
+      "match_rate": 1,
+      "n_matches": 12,
+      "max_abs_smd": 2.417155058912233,
+      "covariate_abs_smd": {
+        "sleep_rate_to_case_event": 2.417155058912233,
+        "reference_count": 0.8288919246904753,
+        "author_count": 0.6504436355879909
+      }
+    }
+  },
+  "common_support": {
+    "W1986407511": {
+      "label": "EPR 1935",
+      "event_age": 32,
+      "case_sleep_rate": 1.96875,
+      "eligible_controls": 197,
+      "min_sleep_rate_gap": 0.4375,
+      "p10_sleep_rate_gap": 1.6875
+    },
+    "W2058046601": {
+      "label": "Washburn 1921",
+      "event_age": 61,
+      "case_sleep_rate": 1.9508196721311475,
+      "eligible_controls": 198,
+      "min_sleep_rate_gap": 1.180327868852459,
+      "p10_sleep_rate_gap": 1.8524590163934427
+    },
+    "W4233194460": {
+      "label": "Hummers 1958",
+      "event_age": 48,
+      "case_sleep_rate": 1.8541666666666667,
+      "eligible_controls": 195,
+      "min_sleep_rate_gap": 0.0625,
+      "p10_sleep_rate_gap": 1.5
+    }
+  },
+  "interpretation": [
+    "OpenAlex sample=N is not nested as N changes, so v3/v4 reservoir-size comparisons were confounded by control-pool replacement.",
+    "Deterministic multi-seed acquisition creates nested support sets larger than the one-page 100-work API limit.",
+    "Standard incidence-density reuse across distinct risk sets improves the 1:1 all-robust diagnostic but does not solve balance.",
+    "Increasing to four controls per case worsens balance because weakly comparable additional controls are forced into sparse historical risk sets.",
+    "The fixed literature-known case analysis still fails the abs-SMD < 0.10 gate.",
+    "Washburn 1921 shows the clearest common-support shortage in the acquired reservoir."
+  ],
+  "next_gate": [
+    "Enumerate the complete same-field same-publication-year OpenAlex frame for the three known cases rather than draw another random reservoir.",
+    "Reconstruct only the full-frame candidates needed for event-time eligibility and rerun frozen 1:1 support diagnostics without relaxing abs-SMD < 0.10.",
+    "If complete-frame overlap still fails, freeze an overlap-limited estimand / unmatched-case rule before any mechanism inference rather than force a match.",
+    "Independently validate OpenAlex annual citation trajectory / Beauty Coefficient against SciSciNet-v2 or another bibliographic source."
+  ],
+  "current_external_constraint": "OpenAlex API rate limit reached during v8 live reacquisition; offline reanalysis remains functional."
+}
