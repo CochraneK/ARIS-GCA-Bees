@@ -9,7 +9,7 @@ Updated: 2026-09-19
 - Working title: **The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity**
 - ARIS route: ARIS4C guided design / Phase 0 empirical audit
 - ARIS version: v0.4.26
-- Current portfolio state: **65% · block**
+- Current portfolio state: **68% · block**
 - Block reason: genuinely independent Coder A/B plus native-language review is required for the frozen ontology-reliability gate.
 
 Git is the canonical source of truth. Do not reconstruct state from chat memory when these files are available.
@@ -154,17 +154,38 @@ See `figures/README.md`.
 
 ## Phonology track
 
-The source `transcription` field is not globally usable; coverage is
-essentially limited to Chinese varieties.
+The source `transcription` field is not a common global IPA layer, but the
+pronunciation-engineering track has now been executed end-to-end.
 
-The confirmatory phonology plan therefore requires a new pronunciation layer:
-- language-specific G2P / Epitran where feasible;
-- PHOIBLE for inventory/features;
-- native-language validation;
-- matched neutral controls.
+Frozen runtime:
+- Epitran 1.35.2;
+- Flite source commit
+  `6c9f20dc915b17f5619340069889db0aa007fcdc`;
+- English via `eng-Latn` + compiled `lex_lookup`;
+- Cantonese via source transcription → `yue-Latn`;
+- Mandarin via source transcription → `cmn-Latn`;
+- remaining languages via language/script-specific Epitran routes.
+
+Full-route result:
+- **8,187 / 8,190 rows = 99.9634% technical success**;
+- 2 English (SG) rows returned empty/non-letter output;
+- 1 Mandarin row lacked source transcription;
+- no backend exceptions in the full-route audit.
+
+This establishes engineering feasibility only. It does **not** establish
+pronunciation accuracy. The next phonology gate is a stratified
+native/source-language pronunciation-validity audit, followed by matched
+neutral controls and frozen segment/approximant coding.
 
 Primary prior hypothesis:
-replicate Lev-Ari & McKay’s approximant effect. Do not claim it as a new 016 discovery.
+replicate Lev-Ari & McKay’s approximant effect. Do not claim it as a new 016
+discovery.
+
+Canonical files:
+- `process/G2P_FULL_ROUTE_AUDIT.md`
+- `process/CHINESE_ROMANIZATION_PILOT.md`
+- `data/phonology_runtime_lock.json`
+- `code/g2p_full_route_audit.py`.
 
 ## Immediate TODO after handoff
 
@@ -183,8 +204,9 @@ replicate Lev-Ari & McKay’s approximant effect. Do not claim it as a new 016 d
 3. Add missing/unresolved sensitivity bounds.
 4. Run ontology-domain × community repeated-item models.
 5. Build a purpose-designed matched taboo/neutral interaction test.
-6. Continue G2P/approximant replication.
-7. Design a crossed language × country expansion with broader family diversity.
+6. Freeze and run pronunciation-validity audit; technical G2P coverage is already complete.
+7. Build matched neutral controls and continue the preregistered approximant replication.
+8. Design a crossed language × country expansion with broader family diversity.
 
 ## Claims that are currently allowed
 
