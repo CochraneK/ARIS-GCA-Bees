@@ -88,10 +88,24 @@ jobs:
           assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["final_h3_authors"] == 750
           assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["entry_years_required"] == 7
           assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["entry_fields_required"] == 20
-          assert analysis_spec["confirmatory_outcomes_unlocked"] is False
-          if not gates.get("confirmatory_outcomes_unlocked", False):
-              assert manifest["status"] not in {"analysis", "manuscript"}, "analysis/manuscript status forbidden while outcome gate is locked"
-          if manifest["status"] in {"preregistered", "analysis", "manuscript"}:
-              assert "TBF" not in prereg, "cannot advance to confirmatory analysis with unresolved TBF fields"
+          spec_unlocked = bool(analysis_spec.get("confirmatory_outcomes_unlocked", False))
+          gate_unlocked = bool(gates.get("confirmatory_outcomes_unlocked", False))
+          assert spec_unlocked == gate_unlocked, "DESIGN_GATES and ANALYSIS_SPEC unlock flags must match"
+
+          lock_path = root / "process" / "PREREGISTRATION_LOCK.json"
+          status = manifest["status"]
+
+          if not spec_unlocked:
+              assert status not in {"analysis", "manuscript"}, "analysis/manuscript status forbidden while outcome gate is locked"
+              if status == "preregistered":
+                  assert lock_path.exists(), "preregistered status requires PREREGISTRATION_LOCK.json"
+          else:
+              assert lock_path.exists(), "confirmatory unlock requires PREREGISTRATION_LOCK.json"
+              lock = json.loads(lock_path.read_text(encoding="utf-8"))
+              assert lock.get("confirmatory_outcomes_unlocked_at_lock_creation") is False, "prereg lock must have been created while outcomes were locked"
+              assert status in {"analysis", "manuscript"}, "unlocked outcomes require analysis/manuscript status"
+
+          if status in {"preregistered", "analysis", "manuscript"}:
+              assert "TBF" not in prereg, "cannot advance with unresolved TBF fields"
           print("ARIS4C006 pre-outcome contract OK")
           PY
