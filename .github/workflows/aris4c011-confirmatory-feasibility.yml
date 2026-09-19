@@ -1,0 +1,92 @@
+name: ARIS4C011 confirmatory feasibility frame
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-confirmatory-feasibility.yml"
+      - "papers/011-research-forensics/code/confirmatory_feasibility_frame.py"
+      - "papers/011-research-forensics/code/test_confirmatory_feasibility_frame.py"
+      - "papers/011-research-forensics/data/protocol/development_exclusion_registry.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-confirmatory-feasibility
+  cancel-in-progress: true
+
+jobs:
+  frame:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test feasibility-frame safeguards
+        run: python -m unittest -q code/test_confirmatory_feasibility_frame.py
+
+      - name: Build blinded feasibility frame
+        run: |
+          python code/confirmatory_feasibility_frame.py \
+            --output data/results/confirmatory_feasibility_frame_v0.json \
+            --start-year 2016 \
+            --end-year 2025 \
+            --per-year-type 4 \
+            --query-rows 100
+
+      - name: Audit no-performance-peeking contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/results/confirmatory_feasibility_frame_v0.json")
+          x=json.loads(p.read_text(encoding="utf-8"))
+          assert x["state"]=="FEASIBILITY_ONLY_NOT_CONFIRMATORY"
+          assert x["candidate_count"]==80, x["candidate_count"]
+          assert len(x["counts_by_stratum"])==20
+          assert all(v==4 for v in x["counts_by_stratum"].values())
+          assert "detector performance estimation" in x["forbidden_uses"]
+          assert all(r["detector_output_visible"] is False for r in x["rows"])
+          assert all(r["artifact_state"]=="UNASSESSED" for r in x["rows"])
+          print(json.dumps({
+              "candidate_count":x["candidate_count"],
+              "strata":len(x["counts_by_stratum"]),
+              "development_exclusion_count":x["development_exclusion_count"],
+          },indent=2))
+          PY
+
+      - name: Commit feasibility frame
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/confirmatory_feasibility_frame_v0.json
+          if git diff --cached --quiet; then
+            echo "Feasibility frame already current."
+          else
+            git commit -m "ARIS4C011 freeze blinded feasibility candidate frame"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-confirmatory-feasibility-frame
+          path: papers/011-research-forensics/data/results/confirmatory_feasibility_frame_v0.json
+          retention-days: 30
