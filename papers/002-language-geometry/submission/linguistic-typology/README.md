@@ -3,7 +3,8 @@
 **Primary target:** *Linguistic Typology* (De Gruyter Brill)  
 **Package date:** 2026-09-18  
 **Scientific status:** independent manuscript-stage review = `PASS_SUBMISSION_PREP`  
-**Submission authorization:** AUTHORIZED
+**Submission authorization:** AUTHORIZED  
+**Current package state:** **SIX-FIGURE REFRESH REQUIRED before ScholarOne**
 
 ## Why this target
 
@@ -34,3 +35,21 @@ Canonical scientific source remains `../../manuscript/DRAFT.md`. Submission edit
 ## Backup target
 
 *Journal of Language Evolution* is the backup venue. It explicitly welcomes computational/database-driven research articles, including solid negative results, but the current paper is typology-first rather than evolution-first, so *Linguistic Typology* is the cleaner first submission target.
+
+
+## Current canonical warning · 2026-09-19
+
+The historical 31-page technical QA artifact (workflow run `35412714647`, artifact `10575195098`) passed visual and anonymisation QA, but it was generated when the journal package contained **3 figures**.
+
+The canonical English and Chinese manuscripts now contain **6 figures**. Therefore the historical artifact is provenance only and must not be treated as the final ScholarOne upload.
+
+Before submission:
+
+1. refresh the blinded manuscript and figure bundle from the canonical six-figure manuscript;
+2. rebuild with `.github/workflows/paper002-build-submission.yml`;
+3. re-run full visual/anonymisation/text-parity QA;
+4. update `SUBMISSION_QA.md` and `paper.json` with the new build;
+5. then complete author metadata and submit.
+
+Canonical recovery instructions:
+`../../process/HANDOFF.md`
