@@ -1,0 +1,79 @@
+name: ARIS4C011 Pilot 3 formatting control
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-pilot3-format-control.yml"
+      - "papers/011-research-forensics/code/pilot3_format_control.py"
+      - "papers/011-research-forensics/data/pilot/plos_aceh_2022_format_control_safe_exact.json"
+      - "papers/011-research-forensics/agent/research-forensics/scripts/orchestrator.py"
+      - "papers/011-research-forensics/agent/research-forensics/scripts/detectors/deterministic.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-pilot3-format-control
+  cancel-in-progress: true
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Execute Track-A formatting control
+        run: |
+          python code/pilot3_format_control.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/results/pilot3_format_control_evaluation.json")
+          x=json.loads(p.read_text(encoding="utf-8"))
+          assert x["status"]=="PASS"
+          assert x["review_priority"]=="NONE"
+          assert x["flag_count"]==0
+          assert x["misconduct_inference"] is False
+          assert x["correction_metadata_visible_to_detector"] is False
+          print(json.dumps(x,indent=2))
+          PY
+
+      - name: Commit compact control evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/pilot3_format_control_report.json
+          git add data/results/pilot3_format_control_evaluation.json
+          if git diff --cached --quiet; then
+            echo "Control outputs already current."
+          else
+            git commit -m "ARIS4C011 record formatting-control non-escalation"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-pilot3-format-control
+          path: |
+            papers/011-research-forensics/data/results/pilot3_format_control_report.json
+            papers/011-research-forensics/data/results/pilot3_format_control_evaluation.json
+          retention-days: 30
