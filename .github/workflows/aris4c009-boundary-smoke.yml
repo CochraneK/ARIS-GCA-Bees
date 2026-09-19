@@ -106,6 +106,18 @@ jobs:
           for field, stats in x["agreement"].items():
               assert stats["agreement"] == 1.0, (field, stats)
               assert stats["ac1"] == 1.0, (field, stats)
+          # A uniformly approving mock ensemble must show no failing judgement and full usability.
+          for cond, data in x["by_condition"].items():
+              assert data["majority_usable_rate"] == 1.0, (cond, data)
+              assert data["majority_modified_rate"] == 0.0, (cond, data)
+              assert set(data["majority_flag_rate"]) == {
+                  "coherent_boundary", "sufficient_nontrivial", "mixed_unrelated_topics"}
+              assert data["realised_participant_words"]["median"] is not None, cond
+          assert set(x["stress_descriptive"]) == {"A", "B"}
+          assert len(x["sensitivity_leave_one_out"]) == 3
+          for label, stats in x["judge_response_stats"].items():
+              assert stats["mean_confidence_1_5"] == 4, (label, stats)
+              assert stats["note_rate"] == 0.0, (label, stats)
           PY
 
       - name: Delete private packet and assert clean repository

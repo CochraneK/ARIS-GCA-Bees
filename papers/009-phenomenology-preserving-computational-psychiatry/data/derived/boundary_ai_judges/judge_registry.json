@@ -1,0 +1,145 @@
+{
+  "warning": "Aggregate execution provenance only. Contains no interview text.",
+  "run_date": "2026-09-19",
+  "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+  "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+  "endpoint_base_url": "http://127.0.0.1:18080/v1",
+  "packet_seed": 20260919,
+  "packet": {
+    "items_per_judge": 140,
+    "regular_items_scored": 120,
+    "strata": "primary regular + stress windows; a disjoint training set was used for dry runs only"
+  },
+  "judges": [
+    {
+      "judge_file": "rated_judge_04__gpt-oss-120b.tsv",
+      "packet_file": "judge_04.tsv",
+      "provider": "http://127.0.0.1:18080/v1",
+      "model_family": "gpt-oss-120b",
+      "model_version": "gpt-oss-120b",
+      "endpoint_reported_models": [
+        "@cf/openai/gpt-oss-120b",
+        "gpt-oss:120b"
+      ],
+      "execution_date": "2026-09-19T06:31:07+00:00",
+      "temperature_or_determinism": "temperature=0.0",
+      "data_handling_mode": "local loopback OpenAI-compatible gateway (127.0.0.1); packet and judge TSVs stay local; upstream retention terms are those of each provider",
+      "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+      "items_total": 140,
+      "items_rated": 140,
+      "items_failed": 0,
+      "judge_label": "rated_judge_04__gpt-oss-120b",
+      "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+      "endpoint_base_url": "http://127.0.0.1:18080/v1"
+    },
+    {
+      "judge_file": "rated_judge_05__nemotron-3-ultra.tsv",
+      "packet_file": "judge_05.tsv",
+      "provider": "http://127.0.0.1:18080/v1",
+      "model_family": "nemotron-3-ultra",
+      "model_version": "nemotron-3-ultra",
+      "endpoint_reported_models": [
+        "nemotron-3-ultra"
+      ],
+      "execution_date": "2026-09-19T06:57:35+00:00",
+      "temperature_or_determinism": "temperature=0.0",
+      "data_handling_mode": "local loopback OpenAI-compatible gateway (127.0.0.1); packet and judge TSVs stay local; upstream retention terms are those of each provider",
+      "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+      "items_total": 140,
+      "items_rated": 140,
+      "items_failed": 0,
+      "judge_label": "rated_judge_05__nemotron-3-ultra",
+      "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+      "endpoint_base_url": "http://127.0.0.1:18080/v1"
+    },
+    {
+      "judge_file": "rated_judge_06__stepfun-3.7-flash.tsv",
+      "packet_file": "judge_06.tsv",
+      "provider": "http://127.0.0.1:18080/v1",
+      "model_family": "stepfun-3.7-flash",
+      "model_version": "stepfun-3.7-flash",
+      "endpoint_reported_models": [
+        "stepfun-3.7-flash"
+      ],
+      "execution_date": "2026-09-19T08:05:01+00:00",
+      "temperature_or_determinism": "temperature=0.0",
+      "data_handling_mode": "local loopback OpenAI-compatible gateway (127.0.0.1); packet and judge TSVs stay local; upstream retention terms are those of each provider",
+      "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+      "items_total": 140,
+      "items_rated": 140,
+      "items_failed": 0,
+      "judge_label": "rated_judge_06__stepfun-3.7-flash",
+      "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+      "endpoint_base_url": "http://127.0.0.1:18080/v1"
+    }
+  ],
+  "independence": [
+    "Each judge received only its own independently shuffled item file and the frozen prompt; no judge saw another judge's output or the private key."
+  ],
+  "excluded_runs": [
+    {
+      "judge_file": "rated_judge_01__deepseek-v4-pro.tsv",
+      "packet_file": "judge_01.tsv",
+      "provider": "http://127.0.0.1:18080/v1",
+      "model_family": "deepseek-v4-pro",
+      "model_version": "deepseek-v4-pro",
+      "endpoint_reported_models": [],
+      "execution_date": "",
+      "temperature_or_determinism": "temperature=0.0",
+      "data_handling_mode": "local loopback OpenAI-compatible gateway (127.0.0.1); packet and judge TSVs stay local; upstream retention terms are those of each provider",
+      "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+      "items_total": 140,
+      "items_rated": 53,
+      "items_failed": 87,
+      "judge_label": "rated_judge_01__deepseek-v4-pro",
+      "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+      "endpoint_base_url": "http://127.0.0.1:18080/v1",
+      "manifest_note": "reconstructed from the checkpointed rated TSV after the process was interrupted before it wrote its own manifest"
+    },
+    {
+      "judge_file": "rated_judge_02__glm-5.2.tsv",
+      "packet_file": "judge_02.tsv",
+      "provider": "http://127.0.0.1:18080/v1",
+      "model_family": "glm-5.2",
+      "model_version": "glm-5.2",
+      "endpoint_reported_models": [],
+      "execution_date": "2026-09-19T07:40:09+00:00",
+      "temperature_or_determinism": "temperature=0.0",
+      "data_handling_mode": "local loopback OpenAI-compatible gateway (127.0.0.1); packet and judge TSVs stay local; upstream retention terms are those of each provider",
+      "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+      "items_total": 140,
+      "items_rated": 80,
+      "items_failed": 60,
+      "judge_label": "rated_judge_02__glm-5.2",
+      "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+      "endpoint_base_url": "http://127.0.0.1:18080/v1"
+    },
+    {
+      "judge_file": "rated_judge_03__minimax-m2.7.tsv",
+      "packet_file": "judge_03.tsv",
+      "provider": "http://127.0.0.1:18080/v1",
+      "model_family": "minimax-m2.7",
+      "model_version": "minimax-m2.7",
+      "endpoint_reported_models": [],
+      "execution_date": "",
+      "temperature_or_determinism": "temperature=0.0",
+      "data_handling_mode": "local loopback OpenAI-compatible gateway (127.0.0.1); packet and judge TSVs stay local; upstream retention terms are those of each provider",
+      "prompt_file": "papers/009-phenomenology-preserving-computational-psychiatry/process/AI_JUDGE_PROMPT_BOUNDARY.md",
+      "items_total": 140,
+      "items_rated": 14,
+      "items_failed": 126,
+      "judge_label": "rated_judge_03__minimax-m2.7",
+      "prompt_sha256": "ec443063ad6a5aa3eb9e5cd8705023a8044cc163cc4f6fa7b32c8acc6f1cb30d",
+      "endpoint_base_url": "http://127.0.0.1:18080/v1",
+      "manifest_note": "reconstructed from the checkpointed rated TSV after the process was interrupted before it wrote its own manifest"
+    }
+  ],
+  "exclusion_reason": [
+    "Three further model families were started on the same frozen packet but never completed all 140 items: the shared local gateway returned sustained HTTP 429",
+    "quota exhaustion and two routes disappeared mid-run (HTTP 404). Inclusion was frozen before unblinding as items_rated == items_total with items_failed == 0, so",
+    "partial runs were excluded rather than scored on an item subset."
+  ],
+  "interpretation_boundary": [
+    "Cross-model AI-judge agreement is an engineering calibration signal, not human inter-rater reliability."
+  ]
+}
