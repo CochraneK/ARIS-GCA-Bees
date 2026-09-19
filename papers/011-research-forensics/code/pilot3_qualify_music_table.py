@@ -1,110 +1,198 @@
 """Qualify the exact historical PLOS Table 1 object for ARIS4C011 Pilot 3.
 
-This is intentionally case-specific. It upgrades only if:
-- exact t001 publisher object has a pre-correction Wayback capture;
-- replay bytes are retrievable;
-- target DOI/table identity is visible;
-- expected table content markers are present;
-- the generic Track-A historical-safety gate returns SAFE_EXACT.
+Two gates are deliberately separated:
+1. artifact provenance/time-safety (SAFE_EXACT / BLOCKED);
+2. scientific-content extraction/detection (a later F3 step).
+
+A historical table image can therefore be SAFE_EXACT even before its cells have
+been parsed. This avoids confusing "not yet extracted" with "not historical".
 """
 from __future__ import annotations
 
-import argparse, hashlib, json, time, unicodedata
+import argparse
+import hashlib
+import json
+import time
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
-from urllib.error import URLError, HTTPError
 
 from artifact_safety import assess_track_a_artifact
+from wayback_discovery import discover
 
 
-def fetch(url: str, retries: int=3) -> bytes:
+DOI="10.1371/journal.pone.0293412"
+CORRECTION_DATE="2025-01-03"
+WRAPPER_URL=f"https://journals.plos.org/plosone/article/figure?id={DOI}.t001"
+WRAPPER_TIMESTAMP="20240520012147"
+WRAPPER_DIGEST="JLJFGD45MKV3MXK5F65FHV3MNXYNBD7Y"
+
+IMAGE_CANDIDATES=(
+    f"https://journals.plos.org/plosone/article/figure/image?size=inline&id={DOI}.t001",
+    f"https://journals.plos.org/plosone/article/figure/image?size=large&id={DOI}.t001",
+    f"https://journals.plos.org/plosone/article/figure/image?download&size=original&id={DOI}.t001",
+)
+
+
+def fetch(url: str, retries: int=4, timeout: int=30) -> bytes:
     last=None
     for i in range(retries):
         try:
-            req=Request(url,headers={"User-Agent":"ARIS4C011-Research-Forensics/0.3"})
-            with urlopen(req,timeout=30) as r:
+            req=Request(url,headers={"User-Agent":"ARIS4C011-Research-Forensics/0.4"})
+            with urlopen(req,timeout=timeout) as r:
                 return r.read()
         except (URLError,HTTPError,TimeoutError) as exc:
             last=exc
-            time.sleep(2**i)
+            time.sleep(min(2**i,8))
     raise RuntimeError(str(last))
+
+
+def discover_retry(url: str, retries: int=4):
+    last=None
+    for i in range(retries):
+        try:
+            return discover(
+                url,
+                event_date=CORRECTION_DATE,
+                identity_marker=f"{DOI}.t001",
+                timeout=30,
+            )
+        except Exception as exc:
+            last=exc
+            time.sleep(min(2**i,8))
+    return [], f"{type(last).__name__}:{last}"
+
+
+def image_kind(data: bytes) -> str | None:
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "image/png"
+    if data.startswith((b"II*\x00",b"MM\x00*")):
+        return "image/tiff"
+    if data[:3]==b"\xff\xd8\xff":
+        return "image/jpeg"
+    return None
 
 
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--output",type=Path,required=True)
-    a=p.parse_args()
+    args=p.parse_args()
 
-    doi="10.1371/journal.pone.0293412"
-    correction_date="2025-01-03"
-    original=f"https://journals.plos.org/plosone/article/figure?id={doi}.t001"
-    frozen_timestamp="20240520012147"
-    frozen_digest="JLJFGD45MKV3MXK5F65FHV3MNXYNBD7Y"
+    wrapper_replay=f"https://web.archive.org/web/{WRAPPER_TIMESTAMP}id_/{WRAPPER_URL}"
     result={
-        "target_doi":doi,
+        "target_doi":DOI,
         "required_role":"table",
         "object_id":"t001",
-        "original_url":original,
-        "correction_date":correction_date,
-        "discovery_capture_n":1,
+        "correction_date":CORRECTION_DATE,
         "qualification":"BLOCKED",
         "track_a_eligible":False,
+        "content_extraction_status":"NOT_STARTED",
         "reason":[],
-        "capture_source":"frozen from successful Pilot 3 CDX discovery run 35407336466",
+        "wrapper":{
+            "url":WRAPPER_URL,
+            "timestamp":WRAPPER_TIMESTAMP,
+            "cdx_digest":WRAPPER_DIGEST,
+            "source_run":35407336466,
+        },
+        "image_candidate_queries":[],
     }
-    replay=f"https://web.archive.org/web/{frozen_timestamp}id_/{original}"
-    try:
-            body=fetch(replay)
-            text=body.decode("utf-8","replace")
-            low=text.lower()
-            folded="".join(
-                ch for ch in unicodedata.normalize("NFKD", low)
-                if not unicodedata.combining(ch)
-            )
-            identity_ok=(doi.lower() in folded or f"journal.pone.0293412.t001" in folded)
-            content_markers={
-                "table_title":"countries of residence" in folded,
-                "survey_1":"survey 1" in folded,
-                "mexico":"mexico" in folded,
-                "other":"other" in folded,
-            }
-            content_ok=all(content_markers.values())
-            q=assess_track_a_artifact(
-                artifact_version_date=f"{frozen_timestamp[0:4]}-{frozen_timestamp[4:6]}-{frozen_timestamp[6:8]}",
-                outcome_date=correction_date,
-                immutable_or_historical_snapshot=True,
-                historical_equivalence="archive_snapshot_of_published_version",
-                provenance_source="Internet Archive Wayback CDX + replay",
-                title="",
-                filename_or_path=original,
-                leading_text=text[:6000],
-                current_metadata_has_update_relation=True,
-            )
-            safe=(q.status=="SAFE_EXACT" and identity_ok and content_ok)
-            result.update({
-                "capture_timestamp":frozen_timestamp,
-                "capture_digest_cdx":frozen_digest,
-                "replay_url":replay,
-                "retrieved_sha256":hashlib.sha256(body).hexdigest(),
-                "retrieved_bytes":len(body),
-                "identity_ok":identity_ok,
-                "content_markers":content_markers,
-                "generic_artifact_qualification":q.to_dict(),
-                "qualification":"SAFE_EXACT" if safe else "BLOCKED",
-                "track_a_eligible":safe,
-            })
-            if not identity_ok:
-                result["reason"].append("target DOI/table identity not verified in replay content")
-            if not content_ok:
-                result["reason"].append("expected Table 1 identity/content markers not all present")
-            if q.status!="SAFE_EXACT":
-                result["reason"].extend(q.reasons)
-    except Exception as exc:
-        result["reason"].append(f"replay_retrieval_failed:{type(exc).__name__}:{exc}")
 
-    a.output.parent.mkdir(parents=True,exist_ok=True)
-    a.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps(result,ensure_ascii=False,indent=2))
+    try:
+        wrapper=fetch(wrapper_replay)
+        wq=assess_track_a_artifact(
+            artifact_version_date="2024-05-20",
+            outcome_date=CORRECTION_DATE,
+            immutable_or_historical_snapshot=True,
+            historical_equivalence="archive_snapshot_of_published_version",
+            provenance_source="Internet Archive Wayback CDX + replay",
+            title="",
+            filename_or_path=WRAPPER_URL,
+            leading_text=wrapper[:6000].decode("utf-8","replace"),
+            current_metadata_has_update_relation=True,
+        )
+        result["wrapper"].update({
+            "replay_url":wrapper_replay,
+            "retrieved_sha256":hashlib.sha256(wrapper).hexdigest(),
+            "retrieved_bytes":len(wrapper),
+            "qualification":wq.to_dict(),
+        })
+        if wq.status!="SAFE_EXACT":
+            result["reason"].append("historical table wrapper failed generic time-safety gate")
+    except Exception as exc:
+        result["reason"].append(f"wrapper_replay_failed:{type(exc).__name__}:{exc}")
+        wq=None
+
+    safe_images=[]
+    for original in IMAGE_CANDIDATES:
+        records,error=discover_retry(original)
+        qrow={
+            "original_url":original,
+            "capture_n":len(records),
+            "discovery_error":error if isinstance(error,str) else "",
+            "captures":[],
+        }
+        for rec in records:
+            replay=f"https://web.archive.org/web/{rec.timestamp}id_/{rec.original}"
+            item={
+                "timestamp":rec.timestamp,
+                "cdx_digest":rec.digest,
+                "mimetype":rec.mimetype,
+                "original":rec.original,
+                "replay_url":replay,
+            }
+            try:
+                data=fetch(replay)
+                kind=image_kind(data)
+                aq=assess_track_a_artifact(
+                    artifact_version_date=f"{rec.timestamp[:4]}-{rec.timestamp[4:6]}-{rec.timestamp[6:8]}",
+                    outcome_date=CORRECTION_DATE,
+                    immutable_or_historical_snapshot=True,
+                    historical_equivalence="archive_snapshot_of_published_version",
+                    provenance_source="Internet Archive Wayback CDX + replay",
+                    title="",
+                    filename_or_path=rec.original,
+                    leading_text="",
+                    current_metadata_has_update_relation=True,
+                )
+                identity_ok=(f"{DOI}.t001" in rec.original)
+                image_ok=(kind is not None and len(data)>=1000)
+                safe=(aq.status=="SAFE_EXACT" and identity_ok and image_ok)
+                item.update({
+                    "retrieved_sha256":hashlib.sha256(data).hexdigest(),
+                    "retrieved_bytes":len(data),
+                    "detected_mime":kind,
+                    "identity_ok":identity_ok,
+                    "generic_artifact_qualification":aq.to_dict(),
+                    "safe_exact_table_image":safe,
+                })
+                if safe:
+                    safe_images.append(item)
+            except Exception as exc:
+                item["replay_error"]=f"{type(exc).__name__}:{exc}"
+            qrow["captures"].append(item)
+        result["image_candidate_queries"].append(qrow)
+
+    if wq is not None and wq.status=="SAFE_EXACT" and safe_images:
+        chosen=sorted(safe_images,key=lambda x:x["timestamp"])[0]
+        result.update({
+            "qualification":"SAFE_EXACT",
+            "track_a_eligible":True,
+            "content_extraction_status":"PENDING_IMAGE_TABLE_EXTRACTION",
+            "selected_table_image":chosen,
+        })
+    else:
+        if not safe_images:
+            result["reason"].append("no independently verified pre-correction table image object found")
+
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(json.dumps({
+        "qualification":result["qualification"],
+        "track_a_eligible":result["track_a_eligible"],
+        "content_extraction_status":result["content_extraction_status"],
+        "safe_image_n":len(safe_images),
+        "reasons":result["reason"],
+    },indent=2))
 
 
 if __name__=="__main__":
