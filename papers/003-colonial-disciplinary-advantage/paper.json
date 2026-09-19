@@ -4,10 +4,12 @@
   "title": "Colonial Legacies and the Global Geography of Disciplinary Advantage",
   "short_title": "Colonial Legacies × Disciplinary Advantage",
   "year": 2026,
-  "status": "research-design",
+  "status": "analysis-running",
   "domain": "science of science / historical sociology / scientometrics",
-  "summary": "A cross-national, cross-disciplinary study testing whether imperial and colonial histories predict persistent discipline-specific advantages in contemporary knowledge production, impact, prestige, and international collaboration networks.",
-  "authors": ["Cochrane Kang"],
+  "summary": "A locked, outcome-unblinded cross-national and cross-disciplinary test of whether historical colonial exposure interacts with independently coded discipline-level imperial/colonial knowledge entanglement to predict contemporary scientific output, normalized impact, and former-colonial collaboration networks.",
+  "authors": [
+    "Cochrane Kang"
+  ],
   "aris": {
     "provenance": "ARIS4C guided run; GPTPage/web handoff for API-gated LLM/reviewer steps",
     "version": "v0.4.26",
