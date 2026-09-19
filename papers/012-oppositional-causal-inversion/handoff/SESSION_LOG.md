@@ -46,3 +46,11 @@ Append substantial execution sessions in chronological order.
 - Added exact allowed tokens, uncertainty rules, blinding rules, a blank v2 coding template, and prespecified reliability gates.
 - Preserved Pilot 0B raw labels/statistics unchanged.
 - Next bounded unit is fresh balanced validation-sample construction; independent A2/B2 coding remains a later separate execution gate.
+
+## 2026-09-19 · Fresh v2 validation sample freeze
+
+- Re-read the 165-record reproducible retrieval frame and Pilot 0B coder-A identifiers.
+- Excluded all Pilot 0B records by stable identifier/title, leaving 155 fresh candidates.
+- Froze a deterministic 30-record validation sample with 5 records in each of six strata and zero Pilot 0B overlap.
+- Added a reproducible draw script, manifest, freeze contract, and audit note.
+- Next bounded unit is to materialize identical blind evidence packets and hash them before independent A2/B2 coding.
