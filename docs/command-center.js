@@ -1,6 +1,7 @@
 (() => {
   const $ = id => document.getElementById(id);
   let currentFilter = "all";
+  let refreshShowcase = () => {};
 
   function setTheme(theme){
     document.documentElement.dataset.theme = theme;
@@ -69,6 +70,7 @@
     cards.forEach(c=>grid.appendChild(c));
     $("resultCount").textContent = visible.length + " / " + cards.length + " projects";
     $("emptyState").classList.toggle("hidden", visible.length !== 0);
+    refreshShowcase();
   }
 
   function counts(){
@@ -89,60 +91,111 @@
     if(!viewport || !track) return;
 
     const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let timer=null;
+    let raf=0;
+    let lastTs=0;
     let paused=false;
+    let loopWidth=0;
+    let resizeTimer=0;
+    const speedPxPerSecond=22;
+
+    const originals=()=>[...track.querySelectorAll('.paper-card[data-showcase-original="true"]:not(.hidden)')];
+
+    const removeClones=()=>{
+      track.querySelectorAll(".showcase-clone").forEach(x=>x.remove());
+    };
+
+    const rebuild=()=>{
+      const keepPaused=paused;
+      if(raf){ cancelAnimationFrame(raf); raf=0; }
+      removeClones();
+      viewport.scrollLeft=0;
+      loopWidth=0;
+
+      const cards=originals();
+      if(!cards.length || prefersReduced){
+        document.querySelector(".showcase")?.classList.toggle("is-paused",prefersReduced || keepPaused);
+        return;
+      }
+
+      cards.forEach(card=>{
+        const clone=card.cloneNode(true);
+        clone.classList.remove("paper-card");
+        clone.classList.add("showcase-clone");
+        clone.removeAttribute("data-showcase-original");
+        clone.setAttribute("aria-hidden","true");
+        clone.querySelectorAll("a,button,[tabindex]").forEach(el=>el.tabIndex=-1);
+        track.appendChild(clone);
+      });
+
+      loopWidth=track.scrollWidth/2;
+      lastTs=0;
+      if(!keepPaused) startLoop();
+    };
+
+    const frame=ts=>{
+      if(paused || prefersReduced){ raf=0; return; }
+      if(!lastTs) lastTs=ts;
+      const dt=Math.min(50,ts-lastTs);
+      lastTs=ts;
+      viewport.scrollLeft += speedPxPerSecond*dt/1000;
+      if(loopWidth>0 && viewport.scrollLeft>=loopWidth){
+        viewport.scrollLeft -= loopWidth;
+      }
+      raf=requestAnimationFrame(frame);
+    };
+
+    function startLoop(){
+      paused=false;
+      document.querySelector(".showcase")?.classList.remove("is-paused");
+      if(prefersReduced || raf) return;
+      lastTs=0;
+      raf=requestAnimationFrame(frame);
+    }
+
+    const stopLoop=()=>{
+      paused=true;
+      document.querySelector(".showcase")?.classList.add("is-paused");
+      if(raf){ cancelAnimationFrame(raf); raf=0; }
+    };
 
     const stepSize=()=>{
-      const card=track.querySelector(".showcase-card");
+      const card=originals()[0];
       if(!card) return Math.min(viewport.clientWidth*.85,320);
       const gap=parseFloat(getComputedStyle(track).gap||"12")||12;
       return card.getBoundingClientRect().width+gap;
     };
 
-    const go=dir=>{
-      const max=viewport.scrollWidth-viewport.clientWidth;
-      if(max<=2) return;
-      const next=viewport.scrollLeft + dir*stepSize();
-      if(dir>0 && next>=max-4){
-        viewport.scrollTo({left:0,behavior:"auto"});
-      }else if(dir<0 && next<=0){
-        viewport.scrollTo({left:max,behavior:"auto"});
-      }else{
-        viewport.scrollBy({left:dir*stepSize(),behavior:prefersReduced?"auto":"smooth"});
-      }
-    };
-
-    const stop=()=>{
-      if(timer){ clearInterval(timer); timer=null; }
-      paused=true;
-      document.querySelector(".showcase")?.classList.add("is-paused");
-    };
-    const start=()=>{
-      paused=false;
-      document.querySelector(".showcase")?.classList.remove("is-paused");
-      if(prefersReduced || timer) return;
-      timer=setInterval(()=>go(1),4200);
-    };
-
     const nudge=dir=>{
-      stop();
-      go(dir);
-      window.setTimeout(start,1800);
+      stopLoop();
+      viewport.scrollBy({left:dir*stepSize(),behavior:prefersReduced?"auto":"smooth"});
+      window.setTimeout(startLoop,1600);
     };
+
     $("showcasePrev")?.addEventListener("click",()=>nudge(-1));
     $("showcaseNext")?.addEventListener("click",()=>nudge(1));
-    viewport.addEventListener("mouseenter",stop);
-    viewport.addEventListener("mouseleave",start);
-    viewport.addEventListener("focusin",stop);
-    viewport.addEventListener("focusout",start);
-    viewport.addEventListener("pointerdown",stop,{passive:true});
-    viewport.addEventListener("pointerup",()=>setTimeout(start,900),{passive:true});
-    viewport.addEventListener("pointercancel",()=>setTimeout(start,900),{passive:true});
-    viewport.addEventListener("touchstart",stop,{passive:true});
-    viewport.addEventListener("touchend",()=>setTimeout(start,900),{passive:true});
-    document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
+    viewport.addEventListener("mouseenter",stopLoop);
+    viewport.addEventListener("mouseleave",startLoop);
+    viewport.addEventListener("focusin",stopLoop);
+    viewport.addEventListener("focusout",startLoop);
+    viewport.addEventListener("pointerdown",stopLoop,{passive:true});
+    viewport.addEventListener("pointerup",()=>window.setTimeout(startLoop,800),{passive:true});
+    viewport.addEventListener("pointercancel",()=>window.setTimeout(startLoop,800),{passive:true});
+    document.addEventListener("visibilitychange",()=>document.hidden?stopLoop():startLoop());
+    window.addEventListener("resize",()=>{
+      window.clearTimeout(resizeTimer);
+      resizeTimer=window.setTimeout(rebuild,180);
+    });
 
-    start();
+    refreshShowcase=()=>{
+      const wasPaused=paused;
+      paused=true;
+      rebuild();
+      paused=wasPaused;
+      if(!wasPaused) startLoop();
+    };
+
+    paused=false;
+    rebuild();
   }
 
   function wire(){
