@@ -11,6 +11,7 @@ from __future__ import annotations
 import math
 import sys
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
@@ -125,7 +126,53 @@ def assert_finite(fit, param: str, label: str) -> float:
     return coef
 
 
+def test_demeaner_fallback_contract() -> None:
+    """Only FE demeaning non-convergence may trigger the LSMR retry."""
+    spec = r.model_specs()["output_primary"]
+    dummy = pd.DataFrame({"stub": [1]})
+
+    class DummyFit:
+        pass
+
+    fit2 = DummyFit()
+    with patch.object(
+        r.pf,
+        "fepois",
+        side_effect=[
+            ValueError("Demeaning failed after 10000 iterations."),
+            fit2,
+        ],
+    ) as mocked:
+        got = r.fit_ppml(spec, dummy)
+
+    if got is not fit2:
+        raise AssertionError("LSMR fallback did not return retry fit")
+    if mocked.call_count != 2:
+        raise AssertionError("Expected exactly one MAP attempt and one LSMR retry")
+    second_kwargs = mocked.call_args_list[1].kwargs
+    if "demeaner" not in second_kwargs:
+        raise AssertionError("LSMR retry did not pass an explicit demeaner")
+    if getattr(got, "_aris4c_demeaner_route", None) != "lsmr_within_additive_fallback":
+        raise AssertionError("Fallback route provenance was not recorded")
+
+    with patch.object(
+        r.pf,
+        "fepois",
+        side_effect=ValueError("some unrelated model failure"),
+    ) as mocked:
+        try:
+            r.fit_ppml(spec, dummy)
+        except ValueError as exc:
+            if "unrelated model failure" not in str(exc):
+                raise
+        else:
+            raise AssertionError("Non-demeaning ValueError was incorrectly repaired")
+        if mocked.call_count != 1:
+            raise AssertionError("Non-demeaning failures must not be retried")
+
+
 def main() -> None:
+    test_demeaner_fallback_contract()
     specs = r.model_specs()
     country = synthetic_country()
     dyad = synthetic_dyad()
