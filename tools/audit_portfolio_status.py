@@ -44,9 +44,18 @@ def main() -> int:
         errors.append("dashboard.scheduling.canonical_state must be 'git'")
     if scheduling.get("default_active_wip") != 1:
         errors.append("dashboard.scheduling.default_active_wip must be 1")
+    if scheduling.get("active_wip_policy") != "adaptive":
+        errors.append("dashboard.scheduling.active_wip_policy must be 'adaptive'")
+    soft_wip = scheduling.get("soft_active_wip_reference")
+    if not isinstance(soft_wip, int) or soft_wip < 1:
+        errors.append(
+            "dashboard.scheduling.soft_active_wip_reference must be a positive integer"
+        )
     max_wip = scheduling.get("max_active_wip")
-    if max_wip != 3:
-        errors.append("dashboard.scheduling.max_active_wip must be 3")
+    if max_wip is not None:
+        errors.append(
+            "dashboard.scheduling.max_active_wip must be null under adaptive WIP"
+        )
 
     # Generated public surfaces must not reintroduce the legacy activity taxonomy.
     checks = [
@@ -80,7 +89,8 @@ def main() -> int:
     counts = {state: sum(v == state for v in values.values()) for state in sorted(ALLOWED)}
     if sum(counts.values()) != len(values):
         errors.append("activity states are not MECE")
-    if counts["active"] > dashboard.get("scheduling", {}).get("max_active_wip", 3):
+    configured_max = dashboard.get("scheduling", {}).get("max_active_wip")
+    if configured_max is not None and counts["active"] > int(configured_max):
         errors.append(f"active WIP exceeds configured max: {counts['active']}")
 
     if errors:
