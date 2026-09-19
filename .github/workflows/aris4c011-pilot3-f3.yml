@@ -1,5 +1,7 @@
 name: ARIS4C011 Pilot 3 F3 Content-Only
 
+# Track-A object may be committed by a prior workflow; manual/file-change triggers remain deterministic.
+
 on:
   workflow_dispatch:
   push:
