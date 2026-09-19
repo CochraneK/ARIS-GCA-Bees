@@ -80,6 +80,16 @@ class CalibrationReferenceTests(unittest.TestCase):
             self.assertEqual(row["reference_reviewer_id"], reviewer)
             self.assertEqual(row["prompt_version"], "CAL-REF-V1")
 
+
+    def test_error_negative_candidate_is_packetized_but_queue_is_blinded(self):
+        packets = build_packets([candidate(queue="N_ERROR_REVIEW")])
+        self.assertEqual(len(packets["REF_A"]), 1)
+        self.assertEqual(len(packets["REF_B"]), 1)
+        for rows in packets.values():
+            self.assertNotIn("candidate_queue", rows[0])
+            self.assertNotIn("candidate_basis", rows[0])
+            self.assertNotIn("reasons", rows[0])
+
     def test_unresolved_queue_is_not_packetized(self):
         packets = build_packets([candidate(queue="U_REVIEW")])
         self.assertEqual(packets["REF_A"], [])
