@@ -1,0 +1,3 @@
+estimand,term,estimate,std_error,conf_low,conf_high,p_value_raw
+H1_beta2_listed_position,rel_alpha_rank:loao_exposure,0.647980813354972,0.122891332833449,0.407118226989287,0.888843399720657,1.34361570965402e-07
+H2_beta2_first_listed,rel_alpha_rank:loao_exposure,-0.628006604948961,0.140853711122356,-0.904074805837588,-0.351938404060334,8.25069570823856e-06
