@@ -20,3 +20,16 @@ For every future material conversation, append:
 - important user correction/constraint;
 - decision/result;
 - affected files/commits where known.
+
+
+## 2026-09-19 · Submission packaging and deletion handoff
+
+- **Surface:** ChatGPT ARIS4C001 thread
+- **Participants:** Cochrane Kang + ChatGPT
+- **Request sequence:** Continue the submission-packaging layer; prepare manuscript files without author/affiliation details; verify whether figures, tables, Chinese full text, Git synchronization, and ARIS4C 000 requirements were satisfied; then persist all useful context before deleting this chat.
+- **Key correction:** A temporary locally generated anonymous DOCX/PDF contained the manuscript body and Table 1 but did not yet mirror the later canonical Git visual package. It must **not** be treated as the canonical submission artifact.
+- **Canonical repository state at handoff:** project is 100% / `submission-package-ready` / activity `finish`; English and Chinese full manuscripts and public PDFs are recorded complete; current metadata records **5 figures and 3 tables**; journal package is present.
+- **Primary journal packaging:** Frontiers in Psychology → Comparative Psychology → Hypothesis and Theory. Fallback: Journal of Comparative Psychology (APA).
+- **Author privacy constraint:** do not infer or publicly commit current affiliation or corresponding email. Those remain author-only portal fields.
+- **Scientific boundary preserved:** learning covariance and uncertainty-sensitive opt-out behavior are separate evidence streams; no same-individual GCA × opt-out mechanism has been established.
+- **Deletion readiness rule:** future agents should resume from Git, especially `handoff/AGENT_HANDOFF.md`, not from memory of this conversation.

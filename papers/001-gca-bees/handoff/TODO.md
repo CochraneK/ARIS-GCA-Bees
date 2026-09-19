@@ -12,4 +12,6 @@
 
 ## P2 · Packaging / optional
 
+- [ ] If actual journal upload is initiated, regenerate journal-upload DOCX/PDF from the current canonical Git manuscript + full figure/table package; do not reuse the earlier conversation-local anonymous export.
+
 - [ ] Keep public outputs, figures/tables, bilingual delivery, and repository links consistent with the current ARIS4C output standard when applicable.
