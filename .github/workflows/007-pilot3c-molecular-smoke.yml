@@ -1,0 +1,119 @@
+name: ARIS4C007 Pilot 3C molecular smoke
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/007-pilot3c-molecular-smoke.yml"
+      - "papers/007-cross-species-age-equivalence/code/prepare_pilot3c_smoke.py"
+      - "papers/007-cross-species-age-equivalence/code/run_pilot3c_sesame_clocks.R"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5.1"
+
+      - name: Install SeSAMe
+        shell: Rscript {0}
+        run: |
+          install.packages("BiocManager", repos="https://cloud.r-project.org")
+          BiocManager::install(version="3.21", ask=FALSE)
+          BiocManager::install(c("sesame","sesameData"), ask=FALSE, update=FALSE)
+          stopifnot(requireNamespace("sesame", quietly=TRUE))
+          stopifnot(requireNamespace("sesameData", quietly=TRUE))
+          cat("sesame=", as.character(packageVersion("sesame")), "\n")
+          cat("sesameData=", as.character(packageVersion("sesameData")), "\n")
+
+      - name: Resolve canonical Pilot 0 and latest successful Pilot 3B artifacts
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot0 data/upstream/pilot3b
+
+          P0="$(gh run list --workflow 007-pilot0.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$P0"
+          gh run download "$P0" --name aris4c007-pilot0 --dir data/upstream/pilot0
+
+          P3B="$(gh run list --workflow 007-pilot3b-geo-metadata.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$P3B"
+          gh run view "$P3B" --json databaseId,headSha,createdAt,url,conclusion,workflowName > data/upstream/pilot3b_run.json
+          gh run download "$P3B" --name aris4c007-pilot3b-geo-metadata --dir data/upstream/pilot3b
+
+          test -s data/upstream/pilot3b/bounded_independent_panclock_holdout.csv
+          test -s data/upstream/pilot0/pilot0/life_history_mapping_grid.csv
+
+      - name: Prepare deterministic 12-sample smoke set
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          rm -rf data/pilot3c_smoke
+          python code/prepare_pilot3c_smoke.py             --holdout data/upstream/pilot3b/bounded_independent_panclock_holdout.csv             --pilot0-grid data/upstream/pilot0/pilot0/life_history_mapping_grid.csv             --pilot0-coverage data/upstream/pilot0/pilot0/coverage_summary.json             --out data/pilot3c_smoke             --per-species 2
+          cat data/pilot3c_smoke/prep_summary.json
+
+      - name: Download bounded raw IDAT pairs
+        working-directory: papers/007-cross-species-age-equivalence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/pilot3c_smoke/idats
+          tail -n +2 data/pilot3c_smoke/download_manifest.tsv | while IFS=$'\t' read -r gsm species url filename; do
+            echo "Downloading $gsm $filename"
+            curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30               "$url" -o "data/pilot3c_smoke/idats/$filename"
+            test -s "data/pilot3c_smoke/idats/$filename"
+          done
+          du -sh data/pilot3c_smoke/idats
+
+      - name: Fetch canonical MMC v3.0.0 Clock 2/3 coefficients
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          mkdir -p data/pilot3c_smoke/mmc
+          curl -fL             https://raw.githubusercontent.com/shorvath/MammalianMethylationConsortium/44f3329fd593b472c2b6d021d764c9d7e5681f88/UniversalPanMammalianClock/ClockParameters/clock2.csv             -o data/pilot3c_smoke/mmc/clock2.csv
+          curl -fL             https://raw.githubusercontent.com/shorvath/MammalianMethylationConsortium/44f3329fd593b472c2b6d021d764c9d7e5681f88/UniversalPanMammalianClock/ClockParameters/clock3.csv             -o data/pilot3c_smoke/mmc/clock3.csv
+          sha256sum data/pilot3c_smoke/mmc/*.csv > data/pilot3c_smoke/mmc/sha256.txt
+          cat data/pilot3c_smoke/mmc/sha256.txt
+
+      - name: SeSAMe normalize and predict Universal Clock 2/3
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          cd data/pilot3c_smoke
+          Rscript ../../code/run_pilot3c_sesame_clocks.R             idats smoke_sample.csv species_traits.csv mmc/clock2.csv mmc/clock3.csv
+          cat pilot3c_summary.csv
+
+      - name: Record environment
+        working-directory: papers/007-cross-species-age-equivalence
+        shell: bash
+        run: |
+          Rscript -e 'writeLines(capture.output(sessionInfo()), "data/pilot3c_smoke/R_sessionInfo.txt")'
+          cp data/upstream/pilot3b_run.json data/pilot3c_smoke/upstream_pilot3b_run.json
+
+      - name: Upload Pilot 3C smoke artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot3c-molecular-smoke
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/prep_summary.json
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/smoke_sample.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/species_traits.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/mmc/sha256.txt
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/pilot3c_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/pilot3c_summary.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/R_sessionInfo.txt
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/upstream_pilot3b_run.json
+          if-no-files-found: error
+          retention-days: 30
