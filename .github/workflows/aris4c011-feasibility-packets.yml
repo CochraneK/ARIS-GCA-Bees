@@ -1,0 +1,95 @@
+name: ARIS4C011 feasibility manager packets
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-feasibility-packets.yml"
+      - "papers/011-research-forensics/code/build_feasibility_adjudication_packets.py"
+      - "papers/011-research-forensics/code/test_build_feasibility_adjudication_packets.py"
+      - "papers/011-research-forensics/data/results/confirmatory_feasibility_frame_v0.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-feasibility-packets
+  cancel-in-progress: true
+
+jobs:
+  packets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test manager-only separation
+        run: python code/test_build_feasibility_adjudication_packets.py -q
+
+      - name: Build adjudication and acquisition packets
+        run: |
+          python code/build_feasibility_adjudication_packets.py \
+            --manager-output data/results/confirmatory_feasibility_manager_packets.csv \
+            --acquisition-output data/results/confirmatory_feasibility_acquisition_packets.csv \
+            --summary-output data/results/confirmatory_feasibility_packet_summary.json
+
+      - name: Audit packet boundary
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          root=Path("data/results")
+          s=json.loads((root/"confirmatory_feasibility_packet_summary.json").read_text())
+          with (root/"confirmatory_feasibility_manager_packets.csv").open(newline="",encoding="utf-8") as f:
+              m=list(csv.DictReader(f))
+          with (root/"confirmatory_feasibility_acquisition_packets.csv").open(newline="",encoding="utf-8") as f:
+              a=list(csv.DictReader(f))
+          assert s["records"]==80
+          assert len(m)==80 and len(a)==80
+          assert s["detector_visible_records"]==0
+          assert all(x["issue_family"]=="UNADJUDICATED" for x in m)
+          assert all(x["required_artifact_role"]=="UNADJUDICATED" for x in m)
+          assert all(x["artifact_state"]=="UNASSESSED" for x in a)
+          assert all(x["detector_visible"]=="False" for x in m+a)
+          print(json.dumps(s,indent=2))
+          PY
+
+      - name: Commit manager-only feasibility packets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/confirmatory_feasibility_manager_packets.csv
+          git add data/results/confirmatory_feasibility_acquisition_packets.csv
+          git add data/results/confirmatory_feasibility_packet_summary.json
+          if git diff --cached --quiet; then
+            echo "Packet outputs already current."
+          else
+            git commit -m "ARIS4C011 materialize manager-only feasibility packets"
+            pushed=0
+            for attempt in 1 2 3 4 5 6; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-feasibility-manager-packets
+          path: |
+            papers/011-research-forensics/data/results/confirmatory_feasibility_manager_packets.csv
+            papers/011-research-forensics/data/results/confirmatory_feasibility_acquisition_packets.csv
+            papers/011-research-forensics/data/results/confirmatory_feasibility_packet_summary.json
+          retention-days: 30
