@@ -32,6 +32,28 @@ def _round_half_up(value: float, decimals: int) -> Decimal:
     return Decimal(str(value)).quantize(q, rounding=ROUND_HALF_UP)
 
 
+def _parse_locale_decimal(value: Any) -> Tuple[float, str]:
+    """Parse a simple decimal token without treating locale style as an anomaly.
+
+    Accepted forms include ordinary point decimals (0.943), comma decimals
+    (0,943), optional surrounding whitespace and a leading sign. Thousands
+    separators or mixed comma/point tokens are intentionally rejected because
+    their interpretation is ambiguous without an explicit locale.
+    """
+    token = unicodedata.normalize("NFKC", str(value or "")).strip()
+    if not token:
+        raise ValueError("empty numeric token")
+    if "," in token and "." in token:
+        raise ValueError("mixed comma/point numeric token is ambiguous")
+    if token.count(",") > 1 or token.count(".") > 1:
+        raise ValueError("numeric token contains multiple decimal separators")
+
+    normalized = token.replace(",", ".")
+    if not re.fullmatch(r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)", normalized):
+        raise ValueError(f"unsupported numeric token: {value!r}")
+    return float(normalized), normalized
+
+
 def _rounded_equal(computed: float, reported: str) -> bool:
     target = Decimal(str(reported).strip())
     dp = _decimal_places(str(reported))
@@ -464,6 +486,40 @@ class TableArithmeticDetector:
                     }
                     claim_pass = "Reported total is compatible with the displayed components."
                     claim_flag = "Reported total is not compatible with the displayed components."
+
+                elif kind == "numeric_range":
+                    raw_value = record["reported_value"]
+                    parsed, normalized = _parse_locale_decimal(raw_value)
+                    lower = float(record["min_value"])
+                    upper = float(record["max_value"])
+                    if lower > upper:
+                        raise ValueError("min_value exceeds max_value")
+                    lower_inclusive = bool(record.get("lower_inclusive", True))
+                    upper_inclusive = bool(record.get("upper_inclusive", True))
+                    lower_ok = parsed >= lower if lower_inclusive else parsed > lower
+                    upper_ok = parsed <= upper if upper_inclusive else parsed < upper
+                    ok = lower_ok and upper_ok
+                    evidence = {
+                        "reported_value": str(raw_value),
+                        "normalized_numeric_token": normalized,
+                        "parsed_value": parsed,
+                        "min_value": lower,
+                        "max_value": upper,
+                        "lower_inclusive": lower_inclusive,
+                        "upper_inclusive": upper_inclusive,
+                        "decimal_separator_style": (
+                            "comma" if "," in str(raw_value) else "point"
+                        ),
+                    }
+                    claim_pass = (
+                        "Reported numeric token is unambiguously parseable under a "
+                        "standard decimal-separator convention and lies within the "
+                        "prespecified valid range."
+                    )
+                    claim_flag = (
+                        "Reported numeric token is parseable but lies outside the "
+                        "prespecified valid range."
+                    )
 
                 elif kind == "rank_sequence":
                     ranks = sorted(int(x) for x in record["observed_ranks"])
