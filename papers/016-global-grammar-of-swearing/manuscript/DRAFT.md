@@ -85,6 +85,12 @@ modulation** model: some properties should be strongly constrained by lexical
 identity and recurrent taboo domains, while other properties should vary
 across communities, contexts and historical settings.
 
+![Figure 1. Measurement-first path from raw multi-lab taboo data to a reliability-gated atlas.](../figures/Figure1_measurement_pipeline.svg)
+
+**Figure 1.** Measurement-first workflow. Annotation, ontology reliability,
+lexical identity and genealogy are treated as inferential gates before a
+cross-community atlas is interpreted.
+
 ---
 
 ## 2. Prior work and novelty boundary
@@ -224,6 +230,12 @@ subset cannot yet be interpreted as a global cultural pattern. The failure is
 substantive: a valid Taboo Fingerprint requires independent re-coding of
 lexical items onto orthogonal axes.
 
+![Figure 2. High-confidence semantic-source row coverage across the 18 community samples.](../figures/Figure2_semantic_coverage.svg)
+
+**Figure 2.** Recoverable semantic-source coverage under the conservative
+ontology-v0 mapping. The large cross-site range is itself a measurement result
+and prevents naïve comparison of raw semantic proportions.
+
 ---
 
 ## 6. Study 2: repeated-language community variation
@@ -303,6 +315,12 @@ sampling and other site-level factors can generate community-associated
 variation in both taboo and neutral items. A stronger confirmatory design
 therefore requires matched taboo/neutral items with comparable community
 coverage and an explicit taboo-status × community interaction.
+
+![Figure 3. Item-fixed-effects community partial R-squared for shared taboo items and sparse filler controls.](../figures/Figure3_community_control.svg)
+
+**Figure 3.** Community-associated residual variation after controlling lexical
+item identity. The sparse filler control shows that community effects are not
+yet demonstrably taboo-specific; its uncertainty is correspondingly large.
 
 ---
 
