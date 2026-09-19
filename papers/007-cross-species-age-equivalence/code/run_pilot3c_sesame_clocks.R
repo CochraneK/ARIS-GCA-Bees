@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 
 args <- commandArgs(trailingOnly=TRUE)
-if (length(args) != 6) {
-  stop("Usage: Rscript run_pilot3c_sesame_clocks.R <idat_dir> <smoke.csv> <traits.csv> <clock2.csv> <clock3.csv> <download_manifest.tsv>")
+if (!(length(args) %in% c(6, 7))) {
+  stop("Usage: Rscript run_pilot3c_sesame_clocks.R <idat_dir> <smoke.csv> <traits.csv> <clock2.csv> <clock3.csv> <download_manifest.tsv> [prep_code]")
 }
 
 idat_dir <- args[[1]]
@@ -11,6 +11,7 @@ traits_path <- args[[3]]
 clock2_path <- args[[4]]
 clock3_path <- args[[5]]
 manifest_path <- args[[6]]
+prep_code <- if (length(args) >= 7) args[[7]] else "SHCDPB"
 
 suppressPackageStartupMessages({
   library(sesame)
@@ -137,7 +138,7 @@ for (i in seq_len(nrow(smoke))) {
 
   raw_sdf <- readIDATpair(prefix)
   species_imputable_ids <- species_structural_mask(raw_sdf)
-  prepped_sdf <- prepSesame(raw_sdf, prep="SHCDPB")
+  prepped_sdf <- prepSesame(raw_sdf, prep=prep_code)
   betas <- getBetas(prepped_sdf, collapseToPfx=TRUE)
 
   tr <- traits[traits$species == row$organism, , drop=FALSE]
@@ -245,7 +246,8 @@ write.csv(summary, "pilot3c_summary.csv", row.names=FALSE)
 cat(
   paste(
     "Clock-input convention:",
-    "SHCDPB observed betas plus beta=0.5 only for CpGs newly masked by",
+    prep_code,
+    "observed betas plus beta=0.5 only for CpGs newly masked by",
     "SeSAMe species inference; pOOBAH/QC missingness remains missing.\n"
   )
 )
