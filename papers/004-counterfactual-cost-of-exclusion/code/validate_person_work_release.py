@@ -30,10 +30,12 @@ def main():
     errors=[]
 
     held={pid for pid,r in ids.items() if r.get("identity_status") in VERIFIED and not truthy(r.get("network_observable"))}
+    released_by_table={r["person_id"] for r in decisions if r.get("person_work_decision")=="RELEASE_SAMPLE_PASS"}
+    expected=held | released_by_table
     seen=[r["person_id"] for r in decisions]
     if len(seen)!=len(set(seen)): errors.append("duplicate person_id in person work decisions")
-    if set(seen)!=held:
-        errors.append(f"decision coverage mismatch: expected held={len(held)}, observed={len(set(seen))}, missing={sorted(held-set(seen))}, extra={sorted(set(seen)-held)}")
+    if set(seen)!=expected:
+        errors.append(f"decision coverage mismatch: expected={len(expected)}, observed={len(set(seen))}, missing={sorted(expected-set(seen))}, extra={sorted(set(seen)-expected)}")
 
     sample_by={}
     for r in sample: sample_by.setdefault(r["person_id"],[]).append(r)
