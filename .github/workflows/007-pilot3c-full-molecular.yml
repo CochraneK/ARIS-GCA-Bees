@@ -141,6 +141,7 @@ jobs:
           cat data/pilot3c_full/results/molecular_summary.json
 
       - name: Record provenance and software environment
+        if: always()
         working-directory: papers/007-cross-species-age-equivalence
         run: |
           Rscript -e 'writeLines(capture.output(sessionInfo()), "data/pilot3c_full/results/R_sessionInfo.txt")'
@@ -149,6 +150,7 @@ jobs:
           cp data/upstream/smoke_run.json data/pilot3c_full/results/upstream_smoke_run.json
 
       - name: Upload full independent molecular holdout
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: aris4c007-pilot3c-full-molecular-holdout
@@ -158,6 +160,7 @@ jobs:
             papers/007-cross-species-age-equivalence/data/pilot3c_full/species_traits_vintages.csv
             papers/007-cross-species-age-equivalence/data/pilot3c_full/mmc/sha256.txt
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/normalization_qc.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/probe_coverage_diagnostics.csv
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/molecular_linear_predictors.csv
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/clock_probe_betas.csv.gz
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/enriched_molecular_predictions.csv
@@ -166,5 +169,5 @@ jobs:
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/upstream_pilot0_run.json
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/upstream_pilot3b_run.json
             papers/007-cross-species-age-equivalence/data/pilot3c_full/results/upstream_smoke_run.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
