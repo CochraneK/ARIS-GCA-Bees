@@ -202,7 +202,7 @@ def main():
     ap=argparse.ArgumentParser();ap.add_argument("--reps",type=int,default=500);ap.add_argument("--oracle-reps",type=int,default=200);args=ap.parse_args()
     summary=[];confrows=[]
     for name,mask in scenarios(base).items():
-        rec,margin,conf=run_mask(mask,args.reps,SEED+si*10000)
+        rec,margin,conf=run_mask(mask,args.reps,SEED)
         per=[sum(row[j] for row in mask) for j in range(10)];obs=sum(per);total=len(mask)*10
         for true in MODELS:
             row={"scenario":name,"sampling":"fixed_mask_random_latent","n_taxa":len(mask),"observed_cells":obs,"total_cells":total,"coverage":obs/total,"true_model":true,"recovery_rate":rec[true],"median_winner_margin_rmse":margin[true]}
