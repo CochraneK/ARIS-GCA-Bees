@@ -70,5 +70,16 @@ jobs:
             exit 0
           fi
           git commit -m "docs: rebuild bilingual publication PDFs"
-          git pull --rebase origin main
-          git push origin HEAD:main
+
+          for attempt in 1 2 3 4 5; do
+            echo "Publish attempt $attempt"
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+
+          echo "Failed to publish refreshed PDFs after 5 attempts." >&2
+          exit 1
