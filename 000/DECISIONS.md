@@ -86,3 +86,13 @@ Only the **Today's progress time curve** is filtered:
 - Progress percentages, chronological order, and real timestamps are never changed.
 
 **Why:** Multi-hour periods when the user is away from the computer should not dominate the chart as long flat lines, while the visualization must still disclose that real elapsed time was compressed.
+
+## 2026-09-19 · Adaptive percentage window on today's progress chart
+
+**Decision:** The daily progress chart no longer reserves the full 0–100% vertical range when most of it is unused.
+
+- Compute the minimum and maximum progress actually plotted today.
+- Add proportional padding and round the visible bounds to 5-point boundaries.
+- Preserve a minimum visible vertical span of 20 percentage points to avoid visually exaggerating tiny changes.
+- If the visible range omits 0% or 100%, disclose the truncation with axis-break marks and a summary such as `Y 55–85%`.
+- Underlying progress values are never transformed.
