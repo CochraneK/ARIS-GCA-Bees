@@ -1,0 +1,203 @@
+name: ARIS4C006 H3 missing-shard recovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-h3-recovery.yml"
+      - "papers/006-chinese-alphabetical-exposure/process/H3_RECOVERY_PLAN.md"
+      - "papers/006-chinese-alphabetical-exposure/code/34_build_h3_preoutcome_cohort.py"
+      - "papers/006-chinese-alphabetical-exposure/code/35_aggregate_h3_preoutcome.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: aris4c006-h3-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover-shard:
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: [7, 11, 14, 17, 35, 47, 49, 50, 57, 60, 63]
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+      SOURCE_RUN_ID: "35424125236"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify committed preregistration lock
+        working-directory: ${{ env.PAPER_DIR }}
+        run: python code/31_verify_prereg_lock.py
+
+      - name: Download frozen convention aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c006-final-convention-aggregate-repaired
+          path: frozen/convention
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Download frozen primary-frame aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c006-primary-frame-aggregate-repaired
+          path: frozen/frame
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Recover outcome-blind H3 shard with current engineering-optimized builder
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          mkdir -p data/confirmatory/h3_preoutcome/shard_${{ matrix.shard }}
+          python code/34_build_h3_preoutcome_cohort.py \
+            --primary-focal-rows "../../frozen/frame/primary_focal_rows_all_fields.csv" \
+            --rolling-exposure "../../frozen/convention/rolling_exposure_all_fields.csv" \
+            --convention-contributions "../../frozen/convention/convention_work_contributions_all_fields.csv" \
+            --shard-index ${{ matrix.shard }} \
+            --shard-count 64 \
+            --author-batch-size 20 \
+            --out data/confirmatory/h3_preoutcome/shard_${{ matrix.shard }}/h3_preoutcome_cohort.csv \
+            --manifest data/confirmatory/h3_preoutcome/shard_${{ matrix.shard }}/manifest.json
+
+      - name: Upload recovered H3 shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-h3-preoutcome-shard-${{ matrix.shard }}
+          path: ${{ env.PAPER_DIR }}/data/confirmatory/h3_preoutcome/shard_${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: recover-shard
+    if: ${{ always() && !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+      ORIGINAL_H3_RUN_ID: "35424798137"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Require all 11 recovery jobs to succeed
+        shell: bash
+        run: |
+          test "${{ needs.recover-shard.result }}" = "success"
+
+      - name: Download 53 successful original H3 shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c006-h3-preoutcome-shard-*
+          path: h3_shards
+          merge-multiple: false
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.ORIGINAL_H3_RUN_ID }}
+
+      - name: Download 11 recovered H3 shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c006-h3-preoutcome-shard-*
+          path: h3_shards
+          merge-multiple: false
+
+      - name: Verify exact 64-shard identity before aggregation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("h3_shards")
+          mans=[]
+          shard_ids=[]
+          for p in root.rglob("manifest.json"):
+              try:
+                  x=json.loads(p.read_text(encoding="utf-8"))
+              except Exception:
+                  continue
+              if x.get("script")!="34_build_h3_preoutcome_cohort.py":
+                  continue
+              mans.append(p)
+              sid=x.get("shard_index")
+              if sid is None:
+                  # Directory name is still an auditable fallback if the old manifest omits shard_index.
+                  for part in p.parts:
+                      if "shard-" in part:
+                          try: sid=int(part.rsplit("-",1)[1])
+                          except Exception: pass
+              shard_ids.append(sid)
+          print(json.dumps({"manifest_count":len(mans),"shard_ids":sorted(x for x in shard_ids if isinstance(x,int))},indent=2))
+          assert len(mans)==64, f"expected 64 shard manifests, found {len(mans)}"
+          PY
+
+      - name: Aggregate complete frozen H3 structural cohort
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          rm -rf data/confirmatory/h3_preoutcome/recovery_aggregate
+          python code/35_aggregate_h3_preoutcome.py \
+            "../../h3_shards" \
+            --outdir data/confirmatory/h3_preoutcome/recovery_aggregate
+
+      - name: Enforce complete-manifest and frozen structural gates
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/confirmatory/h3_preoutcome/recovery_aggregate/manifest.json")
+          x=json.loads(p.read_text(encoding="utf-8"))
+          assert x["shard_manifests"]==64, x
+          assert x["h3_structural_gate_pass"] is True, x["decision"]
+          summary={
+            "classification":"ARIS4C006_H3_COMPLETE_STRUCTURAL_GATE",
+            "source_original_run_id":35424798137,
+            "recovered_shards":[7,11,14,17,35,47,49,50,57,60,63],
+            **x,
+          }
+          Path("process/H3_STRUCTURAL_GATE_RESULT.json").write_text(
+            json.dumps(summary,indent=2,ensure_ascii=False)+"\n",encoding="utf-8"
+          )
+          print(json.dumps(summary,indent=2,ensure_ascii=False))
+          PY
+
+      - name: Commit small H3 structural-gate result
+        working-directory: ${{ env.PAPER_DIR }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add process/H3_STRUCTURAL_GATE_RESULT.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ARIS4C006 record complete H3 structural gate [skip ci]"
+          pushed=0
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then pushed=1; break; fi
+            sleep $((attempt*2))
+          done
+          test "$pushed" -eq 1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-h3-preoutcome-complete-aggregate
+          path: |
+            papers/006-chinese-alphabetical-exposure/data/confirmatory/h3_preoutcome/recovery_aggregate/h3_preoutcome_cohort_all.csv
+            papers/006-chinese-alphabetical-exposure/data/confirmatory/h3_preoutcome/recovery_aggregate/manifest.json
+          retention-days: 90
