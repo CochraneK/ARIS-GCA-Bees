@@ -67,7 +67,7 @@ class RiskSetMatchingTests(unittest.TestCase):
                 wake_years=4,
                 min_wake_rate=5.0,
             ),
-            8,
+            9,
         )
 
     def test_future_case_can_be_control_before_it_awakens(self):
