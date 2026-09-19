@@ -32,3 +32,10 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 
 **Evidence state at this checkpoint:** five pre-outcome development true-positive detector evaluations across four target papers (F5 cited-source consistency; F3 raw-data recomputation; F8 scope coherence; F3 table-schema structure; F1 significance/p-direction).
 
+## 2026-09-19 · Formatting-control non-escalation passed
+
+**Decision:** Count DOI `10.1371/journal.pone.0263337` only as a development-stage formatting/honest-error control. The SAFE_EXACT pre-correction Table 2 fixture was run through the real Track-A orchestrator with correction metadata excluded.
+
+**Observed control result:** 10/10 numeric-range findings PASS, 0 FLAG, review priority NONE, decimal-comma parsing preserved, and no misconduct inference.
+
+**Claim boundary:** This single enriched control demonstrates that the current reporting stack can conservatively non-escalate this locale-formatting case. It is **not** a specificity, false-positive-rate, or clean-control estimate. The next negative-side development unit must use the term **no-known-integrity-concern comparator** and keep selection independent of detector output.
