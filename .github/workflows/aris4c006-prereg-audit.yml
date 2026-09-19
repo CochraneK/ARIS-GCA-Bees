@@ -1,0 +1,37 @@
+name: ARIS4C006 preregistration prelock audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-prereg-audit.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/27_prereg_lock.py"
+      - "papers/006-chinese-alphabetical-exposure/process/**"
+      - "papers/006-chinese-alphabetical-exposure/paper.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prelock-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run consistency audit without creating lock
+        working-directory: ${{ env.PAPER_DIR }}
+        run: python code/27_prereg_lock.py
+      - name: Upload audit manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-prereg-prelock-audit
+          path: ${{ env.PAPER_DIR }}/data/qa/prereg_audit/manifest.json
+          if-no-files-found: warn
+          retention-days: 30
