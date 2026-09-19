@@ -8,18 +8,18 @@ An indexed, falsification-first framework for a restricted class of functional-o
 
 ## Current state
 
-- Activity: **gated**
-- Progress: **63%**
-- Stage: **Pilot 0A complete · Coder B gate**
-- Evidence: 165-record reproducible retrieval + Coder A + prior-art saturation audit + methods/schema work
+- Activity: **active**
+- Progress: **66%**
+- Stage: **Pilot 0B complete · adjudication gate**
+- Evidence: 165-record reproducible retrieval + Coder A + genuinely independent 30-record Coder B; reliability summary READY_FOR_ADJUDICATION with 141 disagreement cells
 
 ## Immediate next action
 
-**Ingest genuinely independent WorkBuddy Coder B and adjudicate reliability**
+**Adjudicate disagreements, reconcile mechanism taxonomy, and freeze post-adjudication reliability before broader claims**
 
 ## Current blocker / gate
 
-Independent Coder B output missing
+No missing independent coder; current gate is substantive adjudication, especially low-agreement mechanism/causal-strength fields
 
 ## Canonical files / entry points
 
