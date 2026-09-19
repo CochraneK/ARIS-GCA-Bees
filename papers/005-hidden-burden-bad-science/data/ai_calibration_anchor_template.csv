@@ -1,0 +1,3 @@
+anchor_id,paper_id,anchor_family,reference_binary_state,reference_scientific_state,anchor_quality,evidence_type,evidence_source,evidence_locator,materiality_basis,publication_year,primary_domain,work_type,doi_present,fulltext_access,cluster_id,adjudication_blinded,notes
+CAL001,,P+,1,SEVERE_SUPPORTED,A,FORMAL_FINDING,,,,,,,,,,1,
+CAL002,,N+,0,NO_MATERIAL_PROBLEM_FOUND,A,PUBLISHER_NOTICE,,,,,,,,,,1,
