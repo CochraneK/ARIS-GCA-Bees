@@ -56,17 +56,19 @@ def main() -> int:
         handoff_ok = all((handoff_dir / name).is_file() and (handoff_dir / name).read_text(encoding="utf-8").strip() for name in HANDOFF_REQUIRED)
         one_page = outputs.get("one_page_visual", {}) if isinstance(outputs.get("one_page_visual"), dict) else {}
         one_page_path = str(one_page.get("repo_path", "") or "").strip()
+        thumb_path = str(one_page.get("thumbnail_path", "") or "").strip()
         one_page_ok = bool(one_page_path) and (ROOT / one_page_path).is_file()
-        finish_visual_ok = one_page_ok if activity == "finish" else True
+        thumbnail_ok = bool(thumb_path) and (ROOT / thumb_path).is_file()
+        finish_visual_ok = (one_page_ok and thumbnail_ok) if activity == "finish" else True
         complete = en and zh and visuals_ok and pdf_ok and handoff_ok and finish_visual_ok
-        rows.append((p['id'], status, activity, en, zh, en_pdf, zh_pdf, fig_count, tab_count, handoff_ok, one_page_ok, complete, exception))
+        rows.append((p['id'], status, activity, en, zh, en_pdf, zh_pdf, fig_count, tab_count, handoff_ok, one_page_ok, thumbnail_ok, complete, exception))
 
-    print('| ID | status | activity | EN | ZH | EN PDF | ZH PDF | figures | tables | handoff | one-page visual | output gate |')
-    print('|---|---|---|---:|---:|---:|---:|---:|---:|---|---|---|')
+    print('| ID | status | activity | EN | ZH | EN PDF | ZH PDF | figures | tables | handoff | one-page visual | crisp thumb | output gate |')
+    print('|---|---|---|---:|---:|---:|---:|---:|---:|---|---|---|---|')
     failures = []
-    for pid,status,activity,en,zh,en_pdf,zh_pdf,figs,tabs,handoff_ok,one_page_ok,complete,exception in rows:
+    for pid,status,activity,en,zh,en_pdf,zh_pdf,figs,tabs,handoff_ok,one_page_ok,thumbnail_ok,complete,exception in rows:
         gate = 'PASS' if complete else ('OPEN' if not FINAL_RE.search(status) and activity != "finish" else 'FAIL')
-        print(f'| {pid} | {status} | {activity} | {"Y" if en else "N"} | {"Y" if zh else "N"} | {"Y" if en_pdf else "N"} | {"Y" if zh_pdf else "N"} | {figs} | {tabs} | {"Y" if handoff_ok else "N"} | {"Y" if one_page_ok else "N"} | {gate} |')
+        print(f'| {pid} | {status} | {activity} | {"Y" if en else "N"} | {"Y" if zh else "N"} | {"Y" if en_pdf else "N"} | {"Y" if zh_pdf else "N"} | {figs} | {tabs} | {"Y" if handoff_ok else "N"} | {"Y" if one_page_ok else "N"} | {"Y" if thumbnail_ok else "N"} | {gate} |')
         if (FINAL_RE.search(status) or activity == "finish") and not complete:
             failures.append(pid)
     if failures:
