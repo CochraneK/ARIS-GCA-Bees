@@ -111,6 +111,11 @@ Questions that literally contain a unique target string or synonym need a separa
 ### P2
 YES / NO only.
 
+### P3
+YES / NO / MAYBE.
+
+P3 is the coarse non-binary mechanism control. MAYBE intentionally collapses all reasons that a confident binary answer may be inappropriate.
+
 ### P6
 YES / NO / BORDERLINE / UNKNOWN / UNDEFINED / BOTH.
 
@@ -157,7 +162,8 @@ Before returning UNDEFINED for context-sensitive questions, the oracle may reque
 - remove representation-level axis;
 - remove logical operators;
 - remove context variables;
-- force P6 responses into binary;
+- compare P2 versus P3 versus P6;
+- collapse P6 fine-grained states into P3 MAYBE;
 - replace multi-axis graph with single taxonomy;
 - remove open-world state;
 - remove lexical-frequency prior;
