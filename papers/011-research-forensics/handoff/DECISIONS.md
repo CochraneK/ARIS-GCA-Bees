@@ -52,3 +52,14 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Decision:** Close the enriched Pilot 2/3 acquisition-development loop at six pre-outcome FLAG evaluations across five target papers, one SAFE_EXACT formatting/honest-error non-escalation control, four matched development comparators, and a descriptive complementarity/abstention summary. Remaining low-yield Pilot 3 candidates are DEFER; the next work is broader time-safe corpus construction and confirmatory protocol freeze.
 
 **Claim boundary:** The enriched development set remains non-confirmatory. No sensitivity, precision, specificity, false-positive-rate, prevalence, superiority, intent, guilt, or misconduct estimate is authorized from this checkpoint.
+
+
+## 2026-09-19 · Blinded 80-record confirmatory-feasibility frame
+
+**Decision:** Freeze an 80-record **feasibility-only** frame before issue/artifact adjudication: 2016–2025 × correction/retraction, four records per stratum. Selection excludes every DOI in the 42-entry development-contamination registry and uses deterministic provenance hashing rather than detector output, review priority, or anomaly score.
+
+**Decision:** The frame is not yet the confirmatory benchmark sample. Its permitted uses are acquisition workload, adjudication workload, time-safe artifact missingness/attrition, and sample-size planning without detector-effect peeking. It may not be used for detector performance, threshold tuning, sensitivity/specificity estimation, or confirmatory hypothesis testing.
+
+**Observation / design implication:** 25/80 current target titles contain a post-publication status marker and all 80 have current Crossref update relations. These are leakage-risk observations, not model features or performance signals. Track A therefore continues to require historical object qualification and the frozen content-only allowlist.
+
+**Next gate:** Manager-only issue adjudication assigns issue family, ground-truth tier, and required artifact role for the frozen frame before historical artifact qualification and SAFE_EXACT / PROXY_ONLY / BLOCKED attrition are frozen.
