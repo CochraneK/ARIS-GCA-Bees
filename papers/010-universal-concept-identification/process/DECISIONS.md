@@ -49,3 +49,24 @@
 
 ## D012 — Canonical source of truth is the numbered paper folder
 **Decision:** `paper.json`, `process/STATUS.md`, schemas and code are authoritative. Public portfolio pages are generated views and may temporarily lag during concurrent ARIS4C updates.
+
+
+## 2026-09-19 · D013 — Add P3 as the mechanism baseline
+**Decision:** compare P2 = YES/NO, P3 = YES/NO/MAYBE, and P6 = YES/NO/BORDERLINE/UNKNOWN/UNDEFINED/BOTH.
+
+**Reason:** 2025–2026 prior art already uses coarse non-binary answers in adaptive elicitation/Twenty Questions. Therefore "allow non-binary answers" is not a defensible novelty claim.
+
+**Mechanistic interpretation:**
+- P2→P3 estimates the value of any coarse escape from binary forcing;
+- P3→P6 estimates the incremental value of distinguishing *why* a binary answer fails;
+- P2→P6 is the total protocol effect but cannot isolate the mechanism.
+
+## 2026-09-19 · D014 — Do not substitute models for the human calibration gate
+**Decision:** LLM, synthetic, or researcher-generated answers may be used only as separate oracle/baseline classes and engineering dry-runs.
+
+**Reason:** the next scientific claim depends on whether humans can reproducibly use the P3/P6 response semantics. Model-generated labels cannot establish that.
+
+## 2026-09-19 · D015 — Stop expanding ontology prose before Stage A
+**Decision:** further ontology elaboration is not the default next step.
+
+**Reason:** the engineering and conceptual framework is sufficiently mature; the current bottleneck is empirical response-protocol validation and ethics/recruitment setup. Resume ontology changes only if human calibration or new prior art forces revision.
