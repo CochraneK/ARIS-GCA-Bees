@@ -10,7 +10,7 @@ No misconduct inference is made.
 
 ## Descriptive evidence
 
-- Five pre-outcome FLAG evaluations across four target papers; family counts: F1=1, F3=2, F5=1, F8=1.
+- Six pre-outcome FLAG evaluations across five target papers; family counts: F1=1, F3=3, F5=1, F8=1.
 - Complementarity: the music-country case passes internal arithmetic while deposited-data recomputation flags; the Toxoplasma case has separate F8 and F3 routes.
 - Abstention: one SAFE_EXACT J-STAGE review yields five genuine ABSTAIN checks and review priority NONE.
 - Conservative non-escalation: formatting control gives 10 PASS, 0 FLAG, review priority NONE.
