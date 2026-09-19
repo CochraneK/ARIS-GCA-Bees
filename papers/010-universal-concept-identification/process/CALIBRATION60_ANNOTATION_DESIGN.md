@@ -46,6 +46,13 @@ Every pair is compatible with both protocols.
 - YES
 - NO
 
+### P3
+- YES
+- NO
+- MAYBE
+
+P3 is the **coarse non-binary control**. It tests whether gains over P2 arise simply because participants receive an escape option when binary forcing is inappropriate.
+
 ### P6
 - YES
 - NO
@@ -54,7 +61,7 @@ Every pair is compatible with both protocols.
 - UNDEFINED
 - BOTH
 
-The same target-query pair must be used across protocol conditions. Protocol assignment/counterbalancing occurs at participant/session level, not by changing the question set.
+The same target-query pair must be used across all protocol conditions. Protocol assignment/counterbalancing occurs at participant/session level, not by changing the question set.
 
 ## Primary calibration outcomes
 
@@ -72,3 +79,16 @@ The same target-query pair must be used across protocol conditions. Protocol ass
 This lexical calibration primarily tests **semantic separability and oracle reliability for ordinary polysemy**.
 
 It is not expected to generate many BORDERLINE/UNDEFINED/BOTH responses. Those states are tested more strongly in the mixed stress calibration containing vague, contextual, empty, contradictory and pathological targets.
+
+
+## Why P3 is essential
+
+ICML 2025 adaptive Twenty Questions work already uses a coarse multi-valued response style (e.g. no / maybe / yes). Therefore “more than two answer labels” is not a 010 novelty claim.
+
+The mechanistic comparison is:
+
+- **P2 → P3:** value of allowing any coarse uncertainty/escape response;
+- **P3 → P6:** value of distinguishing *why* a binary answer fails;
+- **P2 → P6:** total effect of the fine-grained semantic protocol.
+
+A P6 advantage that disappears relative to P3 would imply that fine-grained semantic state distinctions add little beyond a generic MAYBE option.
