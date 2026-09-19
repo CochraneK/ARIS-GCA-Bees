@@ -1,0 +1,106 @@
+{
+  "pilot": "ARIS4C015 Pilot M known-SB case enrichment v2",
+  "workflow_run_id": 35427270139,
+  "source": "OpenAlex live API",
+  "observation_end_year": 2011,
+  "n_input_papers": 153,
+  "n_robust_sb": 5,
+  "state_counts": {
+    "AMBIGUOUS": 14,
+    "FADING": 18,
+    "FORGOTTEN": 94,
+    "IMMEDIATE_HIT": 14,
+    "LOW_EARLY_HIGH_LATE_UNCONFIRMED": 8,
+    "SLEEPING_BEAUTY": 5
+  },
+  "known_reference_cases": [
+    {
+      "case_id": "ke2015_02_hummers",
+      "openalex_id": "W4233194460",
+      "title": "Preparation of Graphitic Oxide",
+      "field_id": "25",
+      "state": "SLEEPING_BEAUTY",
+      "beauty_coefficient": 12679.32561276233,
+      "variable_sleep_years": 48
+    },
+    {
+      "case_id": "ke2015_06_epr",
+      "openalex_id": "W1986407511",
+      "title": "Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?",
+      "field_id": "31",
+      "state": "SLEEPING_BEAUTY",
+      "beauty_coefficient": 2458.7234032730785,
+      "variable_sleep_years": 32
+    },
+    {
+      "case_id": "ke2015_07_washburn",
+      "openalex_id": "W2058046601",
+      "title": "The Dynamics of Capillary Flow",
+      "field_id": "25",
+      "state": "SLEEPING_BEAUTY",
+      "beauty_coefficient": 2472.077704420081,
+      "variable_sleep_years": 61
+    }
+  ],
+  "additional_provisional_robust_candidates": [
+    {
+      "openalex_id": "W2018826127",
+      "title": "An Experimental Study of the Reflection of X-Rays from Calcite",
+      "doi": "10.1103/PhysRev.17.608",
+      "publication_year": 1921,
+      "beauty_coefficient": 938.829268292683,
+      "variable_sleep_years": 82,
+      "sleep_rate": 0.4634146341463415,
+      "awakening_rate": 6,
+      "citations_through_2011": 63,
+      "status": "PROVISIONAL_OPENALEX_ROBUST_SB"
+    },
+    {
+      "openalex_id": "W2006869700",
+      "title": "Some Studies Concerning Rotating Axes and Polyatomic Molecules",
+      "doi": "10.1103/PhysRev.47.552",
+      "publication_year": 1935,
+      "beauty_coefficient": 270.41723301211414,
+      "variable_sleep_years": 39,
+      "sleep_rate": 2,
+      "awakening_rate": 6.5,
+      "citations_through_2011": 701,
+      "status": "PROVISIONAL_OPENALEX_ROBUST_SB"
+    }
+  ],
+  "matching": {
+    "SB_vs_FORGOTTEN": {
+      "match_rate": 1,
+      "n_matches": 5,
+      "balance_pass": false,
+      "abs_smd": {
+        "reference_count": 0.15811388300841892,
+        "author_count": 0.894427190999916,
+        "matched_sleep_window_rate": 3.3169377905473816
+      }
+    },
+    "SB_vs_IMMEDIATE_HIT": {
+      "match_rate": 1,
+      "n_matches": 5,
+      "balance_pass": false,
+      "abs_smd": {
+        "reference_count": 0.7993360076321755,
+        "author_count": 0.28284271247461895
+      }
+    }
+  },
+  "mechanism_ready": true,
+  "mechanism_analysis_ready": false,
+  "mechanism_analysis_block_reasons": [
+    "SB-vs-Forgotten observed covariates remain imbalanced",
+    "Beauty Coefficient threshold is not validated for this source"
+  ],
+  "methodological_findings": [
+    "Robust SB identity must be separated from cohort-relative early/late quadrants; all three literature-reference cases passed the robust gate despite high relative early percentiles in sparse historical cohorts.",
+    "Case enrichment solved the zero-case problem seen in random 100- and 497-paper cohorts.",
+    "A small random control pool can achieve 100% match yield while remaining badly imbalanced, so match yield alone is not sufficient.",
+    "The two additional robust cases are discovery candidates only until cross-source validation and source-specific B calibration."
+  ],
+  "next_gate": "Expand and optimize same-year/same-field control pools, then validate robust cases and B calibration in SciSciNet-v2 before substantive mechanism inference.",
+  "computed_at": "2026-09-19"
+}
