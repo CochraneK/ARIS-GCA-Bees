@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ROOT / "papers"
 
 FINAL_RE = re.compile(r"(^|[-_])(final|final-manuscript|submission-ready|submission-package-ready)($|[-_])", re.I)
+HANDOFF_REQUIRED = [
+    "README.md", "STATUS.md", "TODO.md", "DECISIONS.md",
+    "CONTEXT.md", "CHATLOG.md", "AGENT_HANDOFF.md", "SESSION_LOG.md",
+]
 
 def main() -> int:
     rows = []
@@ -45,15 +49,17 @@ def main() -> int:
         status = p.get('status','')
         pdf_required = bool(FINAL_RE.search(status))
         pdf_ok = (en_pdf and zh_pdf) if pdf_required else True
-        complete = en and zh and visuals_ok and pdf_ok
-        rows.append((p['id'], status, en, zh, en_pdf, zh_pdf, fig_count, tab_count, complete, exception))
+        handoff_dir = manifest.parent / "handoff"
+        handoff_ok = all((handoff_dir / name).is_file() and (handoff_dir / name).read_text(encoding="utf-8").strip() for name in HANDOFF_REQUIRED)
+        complete = en and zh and visuals_ok and pdf_ok and handoff_ok
+        rows.append((p['id'], status, en, zh, en_pdf, zh_pdf, fig_count, tab_count, handoff_ok, complete, exception))
 
-    print('| ID | status | EN | ZH | EN PDF | ZH PDF | figures | tables | output gate |')
-    print('|---|---|---:|---:|---:|---:|---:|---:|---|')
+    print('| ID | status | EN | ZH | EN PDF | ZH PDF | figures | tables | handoff | output gate |')
+    print('|---|---|---:|---:|---:|---:|---:|---:|---|---|')
     failures = []
-    for pid,status,en,zh,en_pdf,zh_pdf,figs,tabs,complete,exception in rows:
+    for pid,status,en,zh,en_pdf,zh_pdf,figs,tabs,handoff_ok,complete,exception in rows:
         gate = 'PASS' if complete else ('OPEN' if not FINAL_RE.search(status) else 'FAIL')
-        print(f'| {pid} | {status} | {"Y" if en else "N"} | {"Y" if zh else "N"} | {"Y" if en_pdf else "N"} | {"Y" if zh_pdf else "N"} | {figs} | {tabs} | {gate} |')
+        print(f'| {pid} | {status} | {"Y" if en else "N"} | {"Y" if zh else "N"} | {"Y" if en_pdf else "N"} | {"Y" if zh_pdf else "N"} | {figs} | {tabs} | {"Y" if handoff_ok else "N"} | {gate} |')
         if FINAL_RE.search(status) and not complete:
             failures.append(pid)
     if failures:
