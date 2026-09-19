@@ -253,6 +253,7 @@ ARIS4C/
 ├── tools/                         # generators and audits
 ├── ARIS4C_OUTPUT_STANDARD.md
 ├── ARIS4C_CONTINUITY_STANDARD.md
+├── ARIS4C_STATUS_MODEL.md
 └── aris.lock.json                 # pinned ARIS lineage
 ```
 
@@ -433,6 +434,7 @@ ARIS4C/
 ├── tools/                         # generators + audits
 ├── ARIS4C_OUTPUT_STANDARD.md
 ├── ARIS4C_CONTINUITY_STANDARD.md
+├── ARIS4C_STATUS_MODEL.md
 └── aris.lock.json
 ```
 
