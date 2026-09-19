@@ -38,7 +38,12 @@
     "repeated_item_model": "process/REPEATED_ITEM_MODEL.md",
     "repeated_item_sensitivity": "process/REPEATED_ITEM_SENSITIVITY.md",
     "audit_sample_freeze": "process/AUDIT_SAMPLE_FREEZE.md",
-    "figures": "figures/README.md"
+    "figures": "figures/README.md",
+    "g2p_feasibility": "process/G2P_FEASIBILITY.md",
+    "g2p_technical_audit": "process/G2P_TECHNICAL_AUDIT.md",
+    "handoff": "process/HANDOFF.md",
+    "chatlog_summary": "process/CHATLOG_SUMMARY.md",
+    "coder_handoff": "process/CODER_HANDOFF.md"
   },
   "tags": [
     "ARIS",
