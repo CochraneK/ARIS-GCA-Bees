@@ -131,5 +131,15 @@
       "next_gate": "Independent dual-coder ontology audit and end-to-end variance decomposition",
       "blocker": "Independent/native-speaker annotation and Phase-0 reliability"
     }
+  },
+  "scheduling": {
+    "policy": "completion-first",
+    "control_chat": "000",
+    "canonical_state": "git",
+    "default_active_wip": 1,
+    "max_active_wip": 3,
+    "selection_rule": "continue active first; when a slot is free, choose the highest-progress wait paper; exclude block and finish unless explicitly overridden",
+    "checkpoint_rule": "commit each bounded substantive work unit and sync handoff before intentionally switching papers",
+    "active_recency_default_hours": 2
   }
 }
