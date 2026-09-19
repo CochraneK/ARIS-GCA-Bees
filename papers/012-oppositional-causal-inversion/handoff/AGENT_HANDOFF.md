@@ -11,7 +11,7 @@ Pilot 0B raw v1 reliability remains a failed immutable instrument-validation res
 - Activity: **active**
 - Progress: **66%**
 - Stage: **Schema v2 frozen · fresh 30-record validation sample frozen**
-- Evidence: Raw v1 Pilot 0B preserved; 141-cell disagreement diagnosis complete; controlled-vocabulary Schema v2 frozen; fresh deterministic 30-record balanced sample frozen with zero Pilot 0B overlap
+- Evidence: Raw v1 Pilot 0B preserved; all 141 disagreement cells diagnostically partitioned (30 lexical/token, 24 schema-overlap, 26 source/metadata, 61 genuine conceptual); orthogonal controlled-vocabulary Schema v2 frozen; fresh deterministic 30-record sample frozen across 6 strata with zero Pilot 0B overlap
 
 ## Immediate next action
 
