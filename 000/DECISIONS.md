@@ -39,3 +39,12 @@
 **Public card action rule:** expose exactly two paper actions: **English** and **中文**. Prefer PDF targets when available. Do not expose Figures, Tables, Pipeline, Source, or output-readiness badges on project cards.
 
 **Why:** The top-level view is for portfolio discovery and visual scanning; status subviews are operational work surfaces and need denser evidence/gate/blocker detail.
+
+
+## 2026-09-19 · Adaptive capability-aware Active WIP
+
+**Decision:** Remove the fixed three-paper Active ceiling. Keep 1 as the default WIP and 3 only as a conservative soft reference for ordinary single-controller execution.
+
+**Why:** The useful degree of parallelism depends on the execution environment. Stronger future models, multi-agent orchestration, parallel compute, or better tooling may be able to advance more than three papers simultaneously without sacrificing scientific quality or continuity.
+
+**Guardrail:** Additional Active papers are justified only when they are genuinely moving and paper-level context isolation, bounded Git checkpointing, supervision, and truthful live-state tracking remain intact. If those degrade, WIP should contract rather than preserve a target count.
