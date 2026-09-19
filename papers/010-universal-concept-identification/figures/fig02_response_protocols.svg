@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img">
+<style>
+text{font-family:Inter,Arial,sans-serif;fill:#171717}
+.title{font-size:34px;font-weight:700}.h{font-size:23px;font-weight:650}.body{font-size:18px}.small{font-size:15px;fill:#666}
+.box{fill:#fff;stroke:#222;stroke-width:2}.soft{fill:#f5f4f1;stroke:#777;stroke-width:1.5}
+.arrow{stroke:#333;stroke-width:2.2;fill:none;marker-end:url(#arr)}.dash{stroke:#777;stroke-width:2;stroke-dasharray:8 7;fill:none;marker-end:url(#arr)}
+</style>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/></marker></defs>
+<title>P2 P3 P6 response protocol relationship</title>
+<text class="title" x="50" y="55">Response protocols: coarse escape versus semantic fine-graining</text>
+<text class="h" x="55" y="122">P6 · fine-grained semantic states</text>
+<rect class="box" x="55" y="150" rx="12" width="160" height="60"/><text class="body" x="80" y="187">YES</text><rect class="box" x="240" y="150" rx="12" width="160" height="60"/><text class="body" x="265" y="187">NO</text><rect class="box" x="425" y="150" rx="12" width="160" height="60"/><text class="body" x="450" y="187">BORDERLINE</text><rect class="box" x="610" y="150" rx="12" width="160" height="60"/><text class="body" x="635" y="187">UNKNOWN</text><rect class="box" x="795" y="150" rx="12" width="160" height="60"/><text class="body" x="820" y="187">UNDEFINED</text><rect class="box" x="980" y="150" rx="12" width="160" height="60"/><text class="body" x="1005" y="187">BOTH</text>
+<text class="h" x="55" y="310">P3 · coarse non-binary control</text>
+<rect class="box" x="190" y="335" rx="12" width="190" height="65"/><text class="body" x="255" y="375">YES</text>
+<rect class="box" x="505" y="335" rx="12" width="190" height="65"/><text class="body" x="575" y="375">NO</text>
+<rect class="box" x="820" y="335" rx="12" width="190" height="65"/><text class="body" x="875" y="375">MAYBE</text>
+<path class="arrow" d="M135 210 L285 335"/><path class="arrow" d="M320 210 L600 335"/>
+<path class="arrow" d="M505 210 L905 335"/><path class="arrow" d="M690 210 L915 335"/><path class="arrow" d="M875 210 L925 335"/><path class="arrow" d="M1060 210 L935 335"/>
+<text class="small" x="815" y="430">BORDERLINE / UNKNOWN / UNDEFINED / BOTH → MAYBE</text>
+
+<text class="h" x="55" y="500">P2 · forced binary</text>
+<rect class="box" x="350" y="525" rx="12" width="190" height="65"/><text class="body" x="415" y="565">YES</text>
+<rect class="box" x="660" y="525" rx="12" width="190" height="65"/><text class="body" x="730" y="565">NO</text>
+<path class="arrow" d="M285 400 L445 525"/><path class="arrow" d="M600 400 L755 525"/>
+<path class="dash" d="M915 400 L600 500"/>
+<text class="small" x="760" y="485">No neutral deterministic map:</text>
+<text class="small" x="760" y="506">MAYBE must be forced to YES or NO.</text>
+
+<text class="body" x="70" y="650">Mechanism A: P2→P3 = escape from binary forcing</text>
+<text class="body" x="650" y="650">Mechanism B: P3→P6 = value of semantic fine-graining</text>
+</svg>
