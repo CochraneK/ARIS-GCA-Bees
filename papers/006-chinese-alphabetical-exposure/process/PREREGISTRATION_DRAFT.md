@@ -53,6 +53,31 @@ All **26 current OpenAlex fields** passed the prospectively frozen all-field fea
 
 A particular focal observation still requires sufficient LOAO field-window information.
 
+## 5A. Primary field-year sampling design
+
+The primary work-level mechanism is **not a publication-volume census**.
+
+Frozen strata:
+
+**26 primary-topic fields × 15 focal years (2011–2025) = 390 field-year cells.**
+
+Per field-year:
+- reproducible deterministic OpenAlex random blocks;
+- target **40 informative eligible works**;
+- maximum 5 random blocks;
+- retain 20–39 if target is not reached;
+- exclude the cell if <20 informative works remain after 5 blocks.
+
+Target full frame:
+- 15,600 informative work clusters;
+- at least 31,200 focal authorship rows.
+
+The primary estimand is therefore approximately **field-year balanced**: the average within-work alphabetical-order mechanism across eligible field-year contexts, not the publication-volume-weighted average paper in China.
+
+A publication-volume-weighted specification may be reported only as a secondary sensitivity and cannot replace the primary because it is larger or more significant.
+
+Full rule: `PRIMARY_FRAME_SAMPLING_RULE.md`.
+
 ## 6. Primary work types
 
 Primary:
@@ -408,10 +433,10 @@ The study does not establish:
 
 No focal surname × outcome estimate may be opened until all are complete:
 
-- [ ] reproduce the ChineseNames baseline from the pinned 2025.8 R package, not only the engineering mirror;
+- [x] reproduce the ChineseNames baseline from the pinned 2025.8 R package, not only the engineering mirror (Pilot 18 PASS);
 - [ ] materialize the final primary-field convention/exposure build under article+conference-paper types;
-- [ ] validate the LOAO implementation against hand/synthetic checks;
-- [ ] run a synthetic-only model smoke test for work FE + interaction + frozen multiway clustering;
+- [x] validate the LOAO implementation against hand/synthetic checks (PASS);
+- [x] run a synthetic-only model smoke test for work FE + interaction + frozen multiway clustering (PASS);
 - [ ] materialize the primary work frame and report sample/cluster counts **without calculating H1/H2 coefficients**;
 - [ ] finalize deterministic identity-risk QA flags for the longitudinal secondary and report only their prevalence;
 - [ ] generate a preregistration lock/hash and switch the gate only after those outcome-blind checks pass.
