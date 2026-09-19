@@ -1,6 +1,6 @@
 # ARIS4C003 STATUS
 
-**Canonical state:** `DESIGN_LOCKED / OUTCOME_LOCKED`  
+**Canonical state:** `DESIGN_LOCKED / OUTCOME_UNLOCKED`  
 **Updated:** 2026-09-18  
 **Contemporary confirmatory outcomes opened:** **NO**
 
@@ -74,10 +74,55 @@ The retry contract now requires two independent machine-checked declarations:
 - `BUNDLE_ACCESS_STATUS: PASS`
 - `INDEPENDENCE_STATUS: PASS`
 
-## Remaining integrity gate
+## Confirmatory Coder B — completed
 
-The only irreducible pre-outcome step is a **fresh confirmatory Coder B retry**
-in a new WorkBuddy/GPTPage/model context that has not seen:
+A fresh Qoder run using the user-reported Qwen Flash 3.8 model completed the
+strict blind-bundle pass on 2026-09-19 with both required declarations:
+
+- `BUNDLE_ACCESS_STATUS: PASS`
+- `INDEPENDENCE_STATUS: PASS`
+
+The untouched raw response is preserved at
+`process/gptpage/2026-09-19_ikes-coder-b-qoder-raw.md`.
+Canonical validated outputs are `process/IKES_CODER_B.csv` and
+`process/IKES_CODER_B.md`.
+
+A/B agreement across 231 rubric cells produced 12 automatically flagged
+missing/absolute-difference>=2 cells. Those 12 and only those 12 were
+adjudicated outcome-blind against historical evidence. All unflagged cells
+remain immutable A/B means.
+
+Final artifacts:
+
+- `process/IKES_FROZEN.csv`
+- `process/IKES_FROZEN.provenance.json`
+- `process/ikes_adjudication/ADJUDICATION_MEMO.md`
+- `process/PREOUTCOME_GATE_UNLOCKED.json`
+
+The strict gate now reports:
+
+- `DESIGN_LOCKED`
+- `OUTCOME_UNLOCKED`
+- zero design problems
+- zero outcome problems
+
+## Current execution stage
+
+The first modern OpenAlex outcome materialization has started under the frozen
+design. Country and dyad extraction run in parallel from the pinned public
+Parquet snapshot. No confirmatory effect estimate was inspected before the
+final IKES freeze or the implementation correction to the dyad all-country
+denominator.
+
+Once materialization succeeds, the distributed model workflow auto-chains:
+core PPML fits, complete D01-D21 LOO, fixed-seed 999 IKES permutations for all
+three headline models, temporal profiles, and the small-N imperial-center
+corroboration. The first result package must be hash-locked before human
+inspection.
+
+## Former remaining integrity gate — CLOSED
+
+This gate is now closed. The confirmatory Coder B run did not see:
 
 - Coder A scores;
 - contemporary country×discipline outcomes;
