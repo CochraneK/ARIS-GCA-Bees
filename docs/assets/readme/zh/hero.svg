@@ -13,13 +13,13 @@
 <text x="392" y="255" class="metric">2</text>
 <text x="392" y="288" class="b">完成</text>
 <rect x="670" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
-<text x="692" y="255" class="metric">3</text>
+<text x="692" y="255" class="metric">2</text>
 <text x="692" y="288" class="b">正在推进</text>
 <rect x="970" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
 <text x="992" y="255" class="metric">7</text>
 <text x="992" y="288" class="b">待推进</text>
 <rect x="1270" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
-<text x="1292" y="255" class="metric">5</text>
+<text x="1292" y="255" class="metric">6</text>
 <text x="1292" y="288" class="b">阻塞</text>
 <text x="70" y="455" class="m">当前 2 个项目已提供 EN + ZH PDF · continuity 17/17</text>
 </svg>
