@@ -83,3 +83,37 @@ Within China's research system, does an author's relative alphabetical surname p
 ## Next checkpoint
 
 Confirmatory execution may now proceed only through lock-verifying runners. Locked design files remain byte-for-byte unchanged.
+
+
+## Confirmatory results opened
+
+### H1 primary mechanism — PASS
+
+GitHub Actions run: `35424741506`
+
+- exact-LOAO focal rows: 75,205
+- works: 15,410
+- canonical authors: 68,176
+- primary-field × year clusters: 386
+- interaction `RelAlphaRank × LOAOExposure`:
+  - beta = **+0.6479808**
+  - SE = **0.1228913**
+  - 95% CI = **[0.4071182, 0.8888434]**
+  - two-sided p = **1.3436e-07**
+
+Direction matches the preregistered institutional alphabetical-order mechanism.
+
+### H2 first-listed authorship — raw confirmatory result opened
+
+- interaction beta = **−0.6280066**
+- SE = **0.1408537**
+- 95% CI = **[−0.9040748, −0.3519384]**
+- raw two-sided p = **8.2507e-06**
+
+H2 final multiplicity status remains pending the frozen joint Holm adjustment with H3.
+
+### H3
+
+Outcome-blind full nested entry-cohort materialization is currently running in deterministic author-hash shards. Persistence5 remains unopened until the frozen H3 structural adequacy gate passes.
+
+Full H1/H2 provenance: `process/CONFIRMATORY_H1_H2_RESULTS.md`.
