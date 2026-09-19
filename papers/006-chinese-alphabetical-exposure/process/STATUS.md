@@ -4,9 +4,9 @@ Last updated: 2026-09-19
 
 ## Current state
 
-**RESEARCH-DESIGN — all outcome-blind execution gates passed; preregistration lock ready**
+**PREREGISTERED — deterministic design lock committed; confirmatory analysis still locked pending separate unlock record**
 
-The scientific design has passed feasibility/identification gates and `paper.json` is now `research-design`.
+The scientific design and all outcome-blind execution gates passed. `PREREGISTRATION_LOCK.json` is committed and `paper.json` is now `preregistered`.
 
 **Confirmatory outcomes remain locked.** No focal surname × outcome coefficient may be inspected until the remaining outcome-blind implementation gates pass and the preregistration lock/hash is created.
 
@@ -66,7 +66,7 @@ Within China's research system, does an author's relative alphabetical surname p
 4. [x] run a synthetic-only work-FE + interaction + frozen multiway-cluster smoke test (PASS);
 5. [x] materialize the primary work frame and report only sample/cluster/exclusion counts, **without estimating H1/H2** (PASS under frozen execution thresholds);
 6. [x] finalize deterministic longitudinal identity-risk QA flags and report prevalence only (120/120 hard-QA pass; low-risk=91; ORCID-anchored=92; no persistence/effect opened);
-7. [ ] run the now-unblocked preregistration consistency audit, generate lock/hash, then explicitly unlock confirmatory outcomes.
+7. [x] preregistration consistency audit passed and deterministic lock/hash committed; separate confirmatory unlock remains pending.
 
 ## Hard rules
 
@@ -82,4 +82,4 @@ Within China's research system, does an author's relative alphabetical surname p
 
 ## Next checkpoint
 
-When all remaining execution gates pass, create a deterministic preregistration lock/hash, update `DESIGN_GATES.json` and `ANALYSIS_SPEC.json`, then promote the project to `preregistered` and only then allow confirmatory H1/H2/H3 execution.
+Preregistration lock is committed. Next state transition is a separate `CONFIRMATORY_UNLOCK.json` referencing the committed lock, followed by promotion to `analysis`; locked design files themselves remain unchanged.
