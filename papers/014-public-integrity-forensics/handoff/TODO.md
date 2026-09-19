@@ -5,7 +5,8 @@
 - [ ] Bootstrap a standalone `OpenIntegrity` repository from the reusable ARIS4C014 implementation.
 - [ ] Migrate reusable core, China adapters, identity resolver, graph, detectors, tests and relevant workflows without changing scientific semantics.
 - [ ] Verify parity under CI before deleting or delegating any working ARIS4C014 implementation.
-- [ ] Continue cross-source enrichment using exact stable IDs; route name-only matches to review.
+- [x] Implement and CI-validate the exact-stable-ID enrichment layer: exact CN-USCC may auto-attach allowlisted factual attributes; name-only matches route to review; same-name disjoint IDs become conflicts; inaccessible sources remain coverage gaps.
+- [ ] Run the first bounded **real second-source** enrichment with an official/public source that exposes exact CN-USCC without bypassing CAPTCHA/authentication/access controls.
 
 ## P1 · China institution universe
 
