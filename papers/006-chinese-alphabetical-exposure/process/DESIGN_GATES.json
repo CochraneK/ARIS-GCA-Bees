@@ -118,6 +118,11 @@
         ".github/workflows/aris4c006-model-smoke.yml"
       ],
       "note": "Synthetic-only fixest work-FE model with frozen three-way clustering passed. True interaction 0.55 recovered as 0.6121 (SE 0.0631) over 2,962 rows, 600 works, 869 authors and 174 field-year clusters."
+    },
+    "longitudinal_sampling": {
+      "status": "frozen-preoutcome",
+      "evidence": "process/LONGITUDINAL_SAMPLING_RULE.md",
+      "note": "H3 is nested in the balanced primary work frame: only authors sampled in their validated entry year 2014-2020 can enter; no later-survivor seeding or second-stage author subsampling. Structural adequacy thresholds are frozen before persistence is opened."
     }
   },
   "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
