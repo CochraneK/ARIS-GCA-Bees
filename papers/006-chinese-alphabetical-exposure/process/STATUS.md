@@ -4,7 +4,7 @@ Last updated: 2026-09-19
 
 ## Current state
 
-**RESEARCH-DESIGN — two materialization gates remain before preregistration lock**
+**RESEARCH-DESIGN — all outcome-blind execution gates passed; preregistration lock ready**
 
 The scientific design has passed feasibility/identification gates and `paper.json` is now `research-design`.
 
@@ -61,12 +61,12 @@ Within China's research system, does an author's relative alphabetical surname p
 ## Remaining outcome-blind execution gates
 
 1. [x] reproduce ChineseNames baseline from the official **2025.8 R-universe source package** (Pilot 18 PASS);
-2. [ ] materialize final 26-field primary convention/exposure build under article+conference-paper types (25/26 field artifacts complete; field 36 running/repairing under unchanged rules);
+2. [x] materialize final 26-field primary convention/exposure build under article+conference-paper types (PASS under frozen execution thresholds);
 3. [x] validate LOAO implementation against synthetic/hand-computed cases (PASS);
 4. [x] run a synthetic-only work-FE + interaction + frozen multiway-cluster smoke test (PASS);
-5. [ ] materialize the primary work frame and report only sample/cluster/exclusion counts, **without estimating H1/H2** (25/26 field artifacts complete; field 36 running/repairing under unchanged rules);
+5. [x] materialize the primary work frame and report only sample/cluster/exclusion counts, **without estimating H1/H2** (PASS under frozen execution thresholds);
 6. [x] finalize deterministic longitudinal identity-risk QA flags and report prevalence only (120/120 hard-QA pass; low-risk=91; ORCID-anchored=92; no persistence/effect opened);
-7. [ ] finish preregistration consistency audit, generate lock/hash, then explicitly unlock confirmatory outcomes.
+7. [ ] run the now-unblocked preregistration consistency audit, generate lock/hash, then explicitly unlock confirmatory outcomes.
 
 ## Hard rules
 
