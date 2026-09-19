@@ -30,6 +30,7 @@ from mechanism_labels import (
     robust_sleeping_beauty_gate,
 )
 from mechanism_matching import MechanismPaper, build_priority_contrasts
+from risk_set_matching import build_awakening_risk_set_contrast
 
 
 @dataclass(frozen=True)
@@ -260,9 +261,19 @@ def build_mechanism_cohort(
         early_percentile_caliper=matching_early_percentile_caliper,
         max_abs_smd=matching_max_abs_smd,
     )
+    contrasts["SB_vs_AT_RISK_DORMANT"] = (
+        build_awakening_risk_set_contrast(
+            matching_rows,
+            controls_per_case=controls_per_case,
+            max_sleep_rate=sb_max_sleep_rate,
+            wake_years=sb_wake_years,
+            min_wake_rate=sb_min_wake_rate,
+            max_abs_smd=matching_max_abs_smd,
+        )
+    )
 
     n_sb = state_counts.get("SLEEPING_BEAUTY", 0)
-    primary = contrasts["SB_vs_FORGOTTEN"]
+    primary = contrasts["SB_vs_AT_RISK_DORMANT"]
     primary_balance = primary["balance"]
     primary_match_ok = primary["match_rate"] >= min_primary_match_rate
     primary_balance_ok = primary_balance["balance_pass"] is True
@@ -284,15 +295,15 @@ def build_mechanism_cohort(
         analysis_block_reasons.append("no robust Sleeping Beauty cases")
     if n_sb > 0 and not primary_match_ok:
         analysis_block_reasons.append(
-            "SB-vs-Forgotten match rate below required minimum"
+            "SB-vs-at-risk-dormant match rate below required minimum"
         )
     if n_sb > 0 and primary_balance["balance_pass"] is None:
         analysis_block_reasons.append(
-            "SB-vs-Forgotten balance not assessable"
+            "SB-vs-at-risk-dormant balance not assessable"
         )
     elif n_sb > 0 and primary_balance["balance_pass"] is False:
         analysis_block_reasons.append(
-            "SB-vs-Forgotten observed covariates remain imbalanced"
+            "SB-vs-at-risk-dormant observed covariates remain imbalanced"
         )
     if n_sb > 0 and not b_calibration_ok:
         analysis_block_reasons.append(
@@ -342,7 +353,7 @@ def build_mechanism_cohort(
         "mechanism_analysis_ready": mechanism_analysis_ready,
         "mechanism_analysis_block_reasons": analysis_block_reasons,
         "analysis_readiness_rule": {
-            "primary_contrast": "SB_vs_FORGOTTEN",
+            "primary_contrast": "SB_vs_AT_RISK_DORMANT",
             "min_match_rate": min_primary_match_rate,
             "max_abs_smd": matching_max_abs_smd,
             "requires_assessable_balance": True,
