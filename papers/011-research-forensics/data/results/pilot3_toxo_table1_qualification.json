@@ -1,0 +1,51 @@
+{
+  "target_doi": "10.1371/journal.pone.0180906",
+  "original_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5521765/",
+  "correction_url_manager_only": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5798843/",
+  "artifact_version_date": "2017-07-21",
+  "outcome_date": "2018-02-05",
+  "original_html_sha256": "22dc0a59d774e78c525957352c1acb278e02b9f64e6e07cf8d9bdfff999ff3c2",
+  "correction_html_sha256": "0cc499d254b922020f0c8e59d9f706c5079e51017694c646ea3c07211bbb3a90",
+  "original_structure": {
+    "A": {
+      "household_variables": true,
+      "yes_total": true,
+      "or": true,
+      "ci95": true,
+      "p_value": true
+    },
+    "B": {
+      "adjusted_or": true,
+      "ci95": false,
+      "p_value": true
+    }
+  },
+  "original_A_detected_columns_n": 5,
+  "original_B_detected_columns_n": 2,
+  "defect_state_preserved": true,
+  "correction_confirms_two_missing_columns": true,
+  "generic_artifact_qualification": {
+    "status": "SAFE_EXACT",
+    "track_a_eligible": true,
+    "proxy_eligible": false,
+    "reasons": [],
+    "warnings": [
+      "Current bibliographic metadata contains an update relation; keep it outside Track A model-visible inputs."
+    ],
+    "evidence": {
+      "artifact_version_date": "2017-07-21",
+      "outcome_date": "2018-02-05",
+      "immutable_or_historical_snapshot": true,
+      "historical_equivalence": "preserved_original_published_version",
+      "provenance_source": "PubMed Central original article record PMC5521765; correction stored separately as PMC5798843",
+      "current_metadata_has_update_relation": true,
+      "title_status_hits": [],
+      "leading_banner_hits": [],
+      "path_label_hits": []
+    }
+  },
+  "qualification": "SAFE_EXACT",
+  "track_a_eligible": true,
+  "manager_used_outcome_metadata": true,
+  "detector_may_see_outcome_metadata": false
+}
