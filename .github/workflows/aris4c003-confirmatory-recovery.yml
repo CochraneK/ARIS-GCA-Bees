@@ -70,6 +70,58 @@ jobs:
           retention-days: 30
           compression-level: 1
 
+  loo-dyad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: papers/003-colonial-disciplinary-advantage
+          run-id: ${{ env.MATERIALIZATION_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Re-run dyad LOO with latest numerical fallback
+        run: |
+          out="data/results/components/loo-dyad-recovery"
+          mkdir -p "$out"
+          python code/run_confirmatory_component.py \
+            --country-panel data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet \
+            --dyad-panel data/analysis/DYAD_DISCIPLINE_PANEL.parquet \
+            --output-dir "$out" \
+            --component loo \
+            --model dyad
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/results/components/loo-dyad-recovery/B1_dyad_2019_2022__LOO_STATUS.json")
+          x=json.loads(p.read_text(encoding="utf-8"))
+          assert x["status"]=="VALID", x
+          assert int(x["failed_refits"])==0, x
+          print(json.dumps(x,indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-model-loo-dyad-recovery
+          path: papers/003-colonial-disciplinary-advantage/data/results/components/loo-dyad-recovery
+          retention-days: 30
+          compression-level: 1
+
   permutation-shard3:
     runs-on: ubuntu-latest
     timeout-minutes: 360
@@ -120,7 +172,7 @@ jobs:
           compression-level: 1
 
   aggregate:
-    needs: [core, permutation-shard3]
+    needs: [core, permutation-shard3, loo-dyad]
     runs-on: ubuntu-latest
     timeout-minutes: 360
     defaults:
@@ -160,6 +212,19 @@ jobs:
           merge-multiple: true
           run-id: ${{ env.DISTRIBUTED_SENSITIVITY_RUN_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Replace dyad LOO with latest-code recovery output
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f data/results/distributed/B1_dyad_2019_2022__LOO_DISCIPLINE.csv
+          rm -f data/results/distributed/B1_dyad_2019_2022__LOO_STATUS.json
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-model-loo-dyad-recovery
+          path: papers/003-colonial-disciplinary-advantage/data/results/distributed
+          merge-multiple: true
 
       - uses: actions/download-artifact@v4
         with:
@@ -208,10 +273,11 @@ jobs:
             "materialization_run_id":os.environ["MATERIALIZATION_RUN_ID"],
             "distributed_sensitivity_run_id":os.environ["DISTRIBUTED_SENSITIVITY_RUN_ID"],
             "recovered_permutation_range":"151-200 for all three headline models",
+            "recovered_dyad_loo":"D01-D21 rerun with latest numerical fallback; original dyad LOO contained at least one undefined refit",
             "core_recovery_run_id":"${{ github.run_id }}",
             "core_recovery_head_sha":"${{ github.sha }}",
             "core_numerical_rule":"default MAP first; LSMR-within additive fallback only for explicit demeaning non-convergence",
-            "aggregation_rule":"original completeness gates; exactly D01-D21 LOO and reps 1-999 with no failed refits; old shard 151-200 is removed before adding latest-code recovery shard; shard/core observed headline estimates must agree",
+            "aggregation_rule":"original completeness gates; exactly D01-D21 LOO and reps 1-999 with no failed refits; old dyad LOO and old shard 151-200 are removed before adding latest-code recovery artifacts; shard/core observed headline estimates must agree",
           }
           Path("data/results/confirmatory/RECOVERY_PROVENANCE.json").write_text(
             json.dumps(payload,indent=2)+"\n",encoding="utf-8")
@@ -247,6 +313,7 @@ jobs:
             "source_materialization_run_id":"${{ env.MATERIALIZATION_RUN_ID }}",
             "source_distributed_sensitivity_run_id":"${{ env.DISTRIBUTED_SENSITIVITY_RUN_ID }}",
             "recovered_permutation_range":"151-200",
+            "recovered_dyad_loo":"D01-D21 latest-code recovery",
             "core_recovery_run_id":"${{ github.run_id }}",
             "core_recovery_head_sha":"${{ github.sha }}",
             "human_inspection_before_lock":False,
