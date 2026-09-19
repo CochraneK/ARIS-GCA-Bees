@@ -82,13 +82,14 @@ def paper_display_link(p: dict, href: str) -> str:
 
 
 def activity_label(value: str) -> tuple[str, str]:
-    key = (value or "quiet").lower()
+    key = (value or "waiting").lower()
     labels = {
+        "finish": ("Finish", "finish"),
         "active": ("Active", "active"),
         "waiting": ("Waiting", "waiting"),
-        "quiet": ("Quiet", "quiet"),
+        "block": ("Block", "block"),
     }
-    return labels.get(key, ("Tracked", "quiet"))
+    return labels.get(key, ("Waiting", "waiting"))
 
 
 def card(p: dict, dashboard: dict) -> str:
@@ -187,9 +188,10 @@ def build(papers: list[dict], dashboard: dict) -> str:
     showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
+    finish = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "finish")
     active = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "active")
     waiting = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "waiting")
-    quiet = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "quiet")
+    block = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "block")
     mature = sum(1 for v in progresses if v >= 45)
 
     return f"""<!doctype html>
@@ -209,16 +211,18 @@ def build(papers: list[dict], dashboard: dict) -> str:
       <div class="identity"><span class="avatar">A4</span><div class="identity-copy"><strong>ARIS4C</strong><span>Research command center</span></div></div>
       <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">{len(papers)}</span></button>
+        <button class="nav-item" type="button" data-filter="finish" data-label="Finish"><span class="nav-icon">✓</span><span>Finish</span><span id="navFinishCount" class="nav-count">{finish}</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">{active}</span></button>
         <button class="nav-item" type="button" data-filter="waiting" data-label="Waiting"><span class="nav-icon">◇</span><span>Waiting</span><span id="navWaitingCount" class="nav-count">{waiting}</span></button>
-        <button class="nav-item" type="button" data-filter="quiet" data-label="Quiet"><span class="nav-icon">○</span><span>Quiet</span><span id="navQuietCount" class="nav-count">{quiet}</span></button>
+        <button class="nav-item" type="button" data-filter="block" data-label="Block"><span class="nav-icon">×</span><span>Block</span><span id="navBlockCount" class="nav-count">{block}</span></button>
       </nav>
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
-          <div class="legend-row"><i class="dot active"></i><span>Can execute next step now</span></div>
-          <div class="legend-row"><i class="dot waiting"></i><span>Waiting on a dependency</span></div>
-          <div class="legend-row"><i class="dot quiet"></i><span>Complete or intentionally parked</span></div>
+          <div class="legend-row"><i class="dot finish"></i><span>Final/output contract complete</span></div>
+          <div class="legend-row"><i class="dot active"></i><span>Meaningful work is moving now</span></div>
+          <div class="legend-row"><i class="dot waiting"></i><span>Can continue, but not moving now</span></div>
+          <div class="legend-row"><i class="dot block"></i><span>External dependency prevents progress</span></div>
         </div>
       </div>
       <div class="sidebar-spacer"></div>
@@ -243,14 +247,14 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, next actions and dependencies. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but waiting, or externally blocked. Each project exposes PDF-first English and Chinese paper entrances when available.</p>
           <div class="overview">
-            <div class="metric"><strong>{len(papers)}</strong><span>tracked projects</span></div>
-            <div class="metric"><strong>{active}</strong><span>active</span></div>
+            <div class="metric"><strong>{finish}</strong><span>finish</span></div>
+            <div class="metric"><strong>{active}</strong><span>active now</span></div>
             <div class="metric"><strong>{waiting}</strong><span>waiting</span></div>
-            <div class="metric"><strong>{quiet}</strong><span>quiet</span></div>
+            <div class="metric"><strong>{block}</strong><span>block</span></div>
           </div>
-          <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · {mature} projects at ≥45% · {waiting} waiting on dependencies</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
+          <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {waiting} waiting · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
         </section>
 
         <div class="control-bar">
