@@ -44,7 +44,10 @@ jobs:
           assert s["auto_release_rows"]==0
           assert s["auto_exclusion_rows"]==0
           assert s["mental_health_information_used"] is False
-          assert all(r["work_belongs_to_focal_person"]=="" for r in rows)
+          assert all(r["machine_verdict"]=="NONE" for r in rows)
+# Human review columns may be populated; this workflow must preserve them and never overwrite them.
+reviewed=[r for r in rows if (r.get("work_belongs_to_focal_person") or "").strip()]
+assert all((r.get("reviewer") or "").strip() and (r.get("mh_blinded_at_work_audit") or "").strip().lower()=="true" for r in reviewed)
           print(json.dumps(s,indent=2))
           PY
       - name: Commit review-ordering queue
