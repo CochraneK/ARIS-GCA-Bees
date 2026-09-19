@@ -93,6 +93,12 @@
       "english": true,
       "chinese": true,
       "builder": "tools/build_public_pdfs.py"
+    },
+    "one_page_visual": {
+      "status": "complete",
+      "repo_path": "docs/assets/paper-at-a-glance/002.webp",
+      "language": "zh-CN",
+      "purpose": "one-page visual explanation of the complete paper for the portfolio table"
     }
   },
   "portfolio_id": "ARIS4C-002",
