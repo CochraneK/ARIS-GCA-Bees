@@ -9,13 +9,13 @@
   },
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35406060244,
-    "run_number": 30,
-    "head_sha": "f5ab0973ba588ce13de2e3f82a849797e589459c",
+    "run_id": 35424073432,
+    "run_number": 61,
+    "head_sha": "28f81b871ae46666ed0386ed50ad779c18f051ee",
     "conclusion": "success",
-    "artifact_id": 10572531318,
+    "artifact_id": 10578472520,
     "artifact_name": "aris4c010-calibration60",
-    "artifact_sha256": "bc8b7121832f4b36f40ac17c6d692f73964d6ca904e4ec2741290a327b2b9282",
+    "artifact_sha256": "84f59e593c34884f7ae6612bcaefbcd94fe78f00e8fe385805912aa4da64d4ae",
     "generated_files": {
       "oewn_source_pool.generated.json": {
         "sha256": "c515b0a57f4853dc4972dfb2c9fbecf3677674022ff6a09a3a064216a45dafe6",
@@ -23,14 +23,24 @@
         "records": 60
       },
       "full_matrix.generated.json": {
-        "sha256": "57462abcc2647eb591a93cac09e0dd9165a1870576290515e6828c57e2fc0a68",
-        "bytes": 1010843,
-        "pairs": 1440
+        "sha256": "713261256e1905a0ffe8f8ea1c2d5d5b4520aa8e5950903de15973b0bce2c4e3",
+        "bytes": 1031013,
+        "pairs": 1440,
+        "protocols": [
+          "P2",
+          "P3",
+          "P6"
+        ]
       },
       "calibration_subset.generated.json": {
-        "sha256": "acd65aeb91233d2dda6bc5951011edd7ae3ebe1010395181e0755d0cda128e70",
-        "bytes": 506258,
+        "sha256": "8935d34b9ec701e160e26ed79327323710b57ea762226061f0c013d951218710",
+        "bytes": 516348,
         "pairs": 720,
+        "protocols": [
+          "P2",
+          "P3",
+          "P6"
+        ],
         "blank_responses": 720,
         "query_exposure_min": 29,
         "query_exposure_max": 31
