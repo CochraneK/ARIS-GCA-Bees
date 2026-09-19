@@ -284,10 +284,60 @@
 
     const W=1000,H=330,L=50,R=20,T=20,B=36;
     const innerW=W-L-R, innerH=H-T-B;
-    const times=points.map(p=>new Date(p.timestamp).getTime()).filter(Number.isFinite);
-    let minT=Math.min(...times), maxT=Math.max(...times);
-    if(minT===maxT) maxT=minT+1;
-    const x=t=>L+(new Date(t).getTime()-minT)/(maxT-minT)*innerW;
+    const parsedPoints=points
+      .map((p,index)=>({p,index,time:new Date(p.timestamp).getTime()}))
+      .filter(row=>Number.isFinite(row.time))
+      .sort((a,b)=>a.time-b.time || a.index-b.index);
+
+    const fmtDuration=ms=>{
+      const totalMin=Math.max(1,Math.round(ms/60000));
+      if(totalMin<60) return totalMin+"m";
+      const h=Math.floor(totalMin/60);
+      const m=totalMin%60;
+      return m ? h+"h "+m+"m" : h+"h";
+    };
+
+    // Discontinuous time axis:
+    // normal checkpoint intervals preserve their real duration;
+    // unusually long idle gaps are compressed but marked explicitly.
+    const rawGaps=[];
+    for(let i=1;i<parsedPoints.length;i++) rawGaps.push(Math.max(0,parsedPoints[i].time-parsedPoints[i-1].time));
+    const positiveGaps=rawGaps.filter(v=>v>0).sort((a,b)=>a-b);
+    const medianGap=positiveGaps.length
+      ? positiveGaps[Math.floor((positiveGaps.length-1)/2)]
+      : 15*60*1000;
+    const idleThreshold=Math.max(25*60*1000,Math.min(60*60*1000,medianGap*3));
+    const compressedIdleSpan=Math.max(9*60*1000,Math.min(18*60*1000,medianGap*1.25));
+
+    const visualTimes=[0];
+    const idleBreaks=[];
+    for(let i=1;i<parsedPoints.length;i++){
+      const gap=Math.max(0,parsedPoints[i].time-parsedPoints[i-1].time);
+      let visualGap=gap;
+      if(gap>idleThreshold){
+        // Give every long idle period a small, bounded visual span. A mild
+        // logarithmic term preserves the fact that 5h > 2h without letting
+        // either dominate the chart.
+        const ratio=Math.max(1,gap/idleThreshold);
+        visualGap=Math.min(
+          idleThreshold*.62,
+          compressedIdleSpan*(1+Math.log2(ratio)*.16)
+        );
+        idleBreaks.push({
+          from:parsedPoints[i-1],
+          to:parsedPoints[i],
+          realGap:gap,
+          visualStart:visualTimes[i-1],
+          visualEnd:visualTimes[i-1]+visualGap
+        });
+      }
+      visualTimes.push(visualTimes[i-1]+Math.max(1,visualGap));
+    }
+
+    const visualMax=Math.max(1,visualTimes[visualTimes.length-1]||1);
+    const pointX=new Map();
+    parsedPoints.forEach((row,i)=>pointX.set(row.p,L+visualTimes[i]/visualMax*innerW));
+    const xPoint=p=>pointX.get(p) ?? L;
     const y=v=>T+(100-v)/100*innerH;
 
     const grid=[0,25,50,75,100].map(v=>`
@@ -295,24 +345,37 @@
       <text x="${L-9}" y="${y(v)+4}" text-anchor="end" class="history-axis-label">${v}%</text>
     `).join("");
 
+    const breakMarks=idleBreaks.map(gap=>{
+      const x1=xPoint(gap.from.p), x2=xPoint(gap.to.p);
+      const mid=(x1+x2)/2;
+      const label=fmtDuration(gap.realGap)+" idle";
+      return `
+        <g class="history-idle-break" aria-label="${escHtml(label)}">
+          <line x1="${mid}" y1="${T}" x2="${mid}" y2="${H-B}" class="history-idle-break-line"/>
+          <path d="M ${mid-7} ${H-B+3} l 5 -7 M ${mid+1} ${H-B+3} l 5 -7" class="history-idle-break-slash"/>
+          <text x="${mid}" y="${H-8}" text-anchor="middle" class="history-idle-break-label">${escHtml(label)}</text>
+          <title>Compressed inactive gap: ${escHtml(label)} · ${escHtml(fmtTime(gap.from.p.timestamp))} → ${escHtml(fmtTime(gap.to.p.timestamp))}</title>
+        </g>`;
+    }).join("");
+
     const tickIndexes=[0,Math.floor((points.length-1)/3),Math.floor((points.length-1)*2/3),points.length-1]
       .filter((v,i,a)=>a.indexOf(v)===i);
     const labels=tickIndexes.map((idx,i)=>{
       const p=points[idx];
       const anchor=i===0?"start":i===tickIndexes.length-1?"end":"middle";
-      return `<text x="${x(p.timestamp)}" y="${H-11}" text-anchor="${anchor}" class="history-axis-label">${escHtml(fmtTime(p.timestamp))}</text>`;
+      return `<text x="${xPoint(p)}" y="${H-24}" text-anchor="${anchor}" class="history-axis-label">${escHtml(fmtTime(p.timestamp))}</text>`;
     }).join("");
 
     const paths=ids.map(id=>{
       const sp=points.map(p=>({p,value:Number(p.projects?.[id])})).filter(row=>Number.isFinite(row.value));
       if(!sp.length) return "";
-      const d=sp.map((row,i)=>`${i?"L":"M"} ${x(row.p.timestamp).toFixed(1)} ${y(row.value).toFixed(1)}`).join(" ");
+      const d=sp.map((row,i)=>`${i?"L":"M"} ${xPoint(row.p).toFixed(1)} ${y(row.value).toFixed(1)}`).join(" ");
       const changed=sp.filter((row,i)=>i===0 || i===sp.length-1 || row.value!==sp[i-1].value);
-      const dots=changed.map(row=>`<circle cx="${x(row.p.timestamp)}" cy="${y(row.value)}" r="2.8" fill="${colorFor(id)}" class="history-series-dot"><title>#${id} · ${row.value}% · ${escHtml(fmtTime(row.p.timestamp))}</title></circle>`).join("");
+      const dots=changed.map(row=>`<circle cx="${xPoint(row.p)}" cy="${y(row.value)}" r="2.8" fill="${colorFor(id)}" class="history-series-dot"><title>#${id} · ${row.value}% · ${escHtml(fmtTime(row.p.timestamp))}</title></circle>`).join("");
       return `<g data-history-series="${id}"><path d="${d}" class="history-series-line" stroke="${colorFor(id)}"><title>#${id}</title></path>${dots}</g>`;
     }).join("");
 
-    svg.innerHTML=`<g>${grid}</g><g>${paths}</g><g>${labels}</g>`;
+    svg.innerHTML=`<g>${grid}</g><g>${breakMarks}</g><g>${paths}</g><g>${labels}</g>`;
 
     const latest=(points[points.length-1]||{}).projects||{};
     legend.innerHTML=ids.map(id=>`
@@ -332,7 +395,8 @@
     });
 
     if(summary){
-      summary.textContent=`${data.date||"Today"} · ${points.length} checkpoints · ${ids.length} papers on one chart`;
+      const compression=idleBreaks.length ? ` · ${idleBreaks.length} idle gap${idleBreaks.length===1?"":"s"} compressed` : "";
+      summary.textContent=`${data.date||"Today"} · ${points.length} checkpoints · ${ids.length} papers${compression}`;
     }
   }
 
