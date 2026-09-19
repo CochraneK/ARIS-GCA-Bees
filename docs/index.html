@@ -16,17 +16,15 @@
       <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">16</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">11</span></button>
-        <button class="nav-item" type="button" data-filter="gated" data-label="At gate"><span class="nav-icon">◇</span><span>At gate</span><span id="navGatedCount" class="nav-count">0</span></button>
+        <button class="nav-item" type="button" data-filter="waiting" data-label="Waiting"><span class="nav-icon">◇</span><span>Waiting</span><span id="navWaitingCount" class="nav-count">3</span></button>
         <button class="nav-item" type="button" data-filter="quiet" data-label="Quiet"><span class="nav-icon">○</span><span>Quiet</span><span id="navQuietCount" class="nav-count">2</span></button>
-        <button class="nav-item" type="button" data-filter="blocked" data-label="Blocked"><span class="nav-icon">×</span><span>Blocked</span><span id="navBlockedCount" class="nav-count">0</span></button>
       </nav>
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
-          <div class="legend-row"><i class="dot active"></i><span>Active execution</span></div>
-          <div class="legend-row"><i class="dot gated"></i><span>Scientific / review gate</span></div>
-          <div class="legend-row"><i class="dot quiet"></i><span>Submission-ready / complete</span></div>
-          <div class="legend-row"><i class="dot blocked"></i><span>Hard blocker</span></div>
+          <div class="legend-row"><i class="dot active"></i><span>Can execute next step now</span></div>
+          <div class="legend-row"><i class="dot waiting"></i><span>Waiting on a dependency</span></div>
+          <div class="legend-row"><i class="dot quiet"></i><span>Complete or intentionally parked</span></div>
         </div>
       </div>
       <div class="sidebar-spacer"></div>
@@ -51,14 +49,14 @@
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, gates and blockers. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, next actions and dependencies. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
           <div class="overview">
             <div class="metric"><strong>16</strong><span>tracked projects</span></div>
-            <div class="metric"><strong>71%</strong><span>mean portfolio maturity</span></div>
-            <div class="metric"><strong>11</strong><span>active execution tracks</span></div>
-            <div class="metric"><strong>2</strong><span>quiet tracks</span></div>
+            <div class="metric"><strong>11</strong><span>active</span></div>
+            <div class="metric"><strong>3</strong><span>waiting</span></div>
+            <div class="metric"><strong>2</strong><span>quiet</span></div>
           </div>
-          <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · 16 projects at ≥45% · 0 at gate/blocker</span><strong>71%</strong></div><div class="progress-track"><span style="width:71%"></span></div></div>
+          <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · 16 projects at ≥45% · 3 waiting on dependencies</span><strong>71%</strong></div><div class="progress-track"><span style="width:71%"></span></div></div>
         </section>
 
         <div class="control-bar">
@@ -140,10 +138,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="005" data-progress="68" data-activity="quiet" data-last-commit="2026-09-19T06:45:38Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
+      <article class="showcase-card" data-showcase-original="true" data-id="005" data-progress="68" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
         <div class="showcase-top">
           <span class="showcase-id">#005</span>
-          <span class="showcase-state"><i></i>Tracked</span>
+          <span class="showcase-state"><i></i>Waiting</span>
         </div>
         <h3>Global Burden of Bad Science</h3>
         <p>Confirmatory adjudication ready · independent dual-AI gate</p>
@@ -252,10 +250,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="013" data-progress="50" data-activity="quiet" data-last-commit="2026-09-19T06:45:38Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
+      <article class="showcase-card" data-showcase-original="true" data-id="013" data-progress="50" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
         <div class="showcase-top">
           <span class="showcase-id">#013</span>
-          <span class="showcase-state"><i></i>Tracked</span>
+          <span class="showcase-state"><i></i>Waiting</span>
         </div>
         <h3>Birth–Death Temporal Coupling</h3>
         <p>Public NUMIDENT transfer · Pilot 1 ready</p>
@@ -280,7 +278,7 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="015" data-progress="83" data-activity="active" data-last-commit="2026-09-19T14:45:37+08:00" data-search="015 Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work Sleeping Beauty Miner metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity pilot1-historical-benchmark-mechanism-track Track M · case-definition harmonization rerun ARIS ARIS4C sleeping beauty delayed recognition beauty coefficient scientometrics science of science citation dynamics citation networks semantic novelty Prince paper research integrity evidence graph time-safe benchmark human-in-the-loop agent skill mechanism cohort matched controls prospective rediscovery">
+      <article class="showcase-card" data-showcase-original="true" data-id="015" data-progress="83" data-activity="active" data-last-commit="2026-09-19T14:45:51+08:00" data-search="015 Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work Sleeping Beauty Miner metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity pilot1-historical-benchmark-mechanism-track Track M · case-definition harmonization rerun ARIS ARIS4C sleeping beauty delayed recognition beauty coefficient scientometrics science of science citation dynamics citation networks semantic novelty Prince paper research integrity evidence graph time-safe benchmark human-in-the-loop agent skill mechanism cohort matched controls prospective rediscovery">
         <div class="showcase-top">
           <span class="showcase-id">#015</span>
           <span class="showcase-state"><i></i>Active</span>
@@ -294,10 +292,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="016" data-progress="55" data-activity="quiet" data-last-commit="2026-09-19T06:45:38Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
+      <article class="showcase-card" data-showcase-original="true" data-id="016" data-progress="55" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
         <div class="showcase-top">
           <span class="showcase-id">#016</span>
-          <span class="showcase-state"><i></i>Tracked</span>
+          <span class="showcase-state"><i></i>Waiting</span>
         </div>
         <h3>Global Grammar of Swearing</h3>
         <p>Empirical Phase 0 working manuscript</p>
@@ -400,10 +398,10 @@
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="005" data-progress="68" data-activity="quiet" data-last-commit="2026-09-19T06:45:38Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
+    <article class="paper-card" data-id="005" data-progress="68" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
       <div class="paper-topline">
         <span class="paper-id">#005</span>
-        <span class="heartbeat"><i></i>Tracked</span>
+        <span class="heartbeat"><i></i>Waiting</span>
       </div>
       <div class="statusline">pilot-b-adjudication-ready</div>
       <h3>The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures</h3>
@@ -560,10 +558,10 @@
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="013" data-progress="50" data-activity="quiet" data-last-commit="2026-09-19T06:45:38Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
+    <article class="paper-card" data-id="013" data-progress="50" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
       <div class="paper-topline">
         <span class="paper-id">#013</span>
-        <span class="heartbeat"><i></i>Tracked</span>
+        <span class="heartbeat"><i></i>Waiting</span>
       </div>
       <div class="statusline">research-design</div>
       <h3>Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems</h3>
@@ -600,7 +598,7 @@
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="015" data-progress="83" data-activity="active" data-last-commit="2026-09-19T14:45:37+08:00" data-search="015 Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work Sleeping Beauty Miner metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity pilot1-historical-benchmark-mechanism-track Track M · case-definition harmonization rerun ARIS ARIS4C sleeping beauty delayed recognition beauty coefficient scientometrics science of science citation dynamics citation networks semantic novelty Prince paper research integrity evidence graph time-safe benchmark human-in-the-loop agent skill mechanism cohort matched controls prospective rediscovery">
+    <article class="paper-card" data-id="015" data-progress="83" data-activity="active" data-last-commit="2026-09-19T14:45:51+08:00" data-search="015 Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work Sleeping Beauty Miner metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity pilot1-historical-benchmark-mechanism-track Track M · case-definition harmonization rerun ARIS ARIS4C sleeping beauty delayed recognition beauty coefficient scientometrics science of science citation dynamics citation networks semantic novelty Prince paper research integrity evidence graph time-safe benchmark human-in-the-loop agent skill mechanism cohort matched controls prospective rediscovery">
       <div class="paper-topline">
         <span class="paper-id">#015</span>
         <span class="heartbeat"><i></i>Active</span>
@@ -615,15 +613,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Complete corrected canonical-state rerun; only then assess control-support expansion</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Absolute robust gate and cohort-relative mechanism state must agree before substantive matching</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T14:45:37+08:00">Last commit · —</span><span>2026</span><span>metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T14:45:51+08:00">Last commit · —</span><span>2026</span><span>metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">sleeping beauty</span><span class="tag">delayed recognition</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="016" data-progress="55" data-activity="quiet" data-last-commit="2026-09-19T06:45:38Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
+    <article class="paper-card" data-id="016" data-progress="55" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
       <div class="paper-topline">
         <span class="paper-id">#016</span>
-        <span class="heartbeat"><i></i>Tracked</span>
+        <span class="heartbeat"><i></i>Waiting</span>
       </div>
       <div class="statusline">working-manuscript-phase0</div>
       <h3>The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity</h3>
