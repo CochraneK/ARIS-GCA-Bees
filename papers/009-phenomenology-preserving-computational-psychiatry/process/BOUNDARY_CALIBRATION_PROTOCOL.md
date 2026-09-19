@@ -1,9 +1,8 @@
-# ARIS4C009 Pilot-0 · Boundary calibration protocol
+# ARIS4C009 Pilot-0 · AI boundary-calibration protocol
 
 ## Why this gate exists
 
-The first machine rule produced 1,908 interviewer-anchored microepisodes, but many were
-too short to support nontrivial reconstruction:
+The first machine rule produced 1,908 interviewer-anchored microepisodes, but many were too short to support nontrivial reconstruction:
 
 - participant-response median = 14 words;
 - 25th percentile = 2 words.
@@ -16,24 +15,50 @@ Structural accumulation improved the unit size:
 | 40 | 745 | 79 | 2 | 61 |
 | 80 | 550 | 116 | 3 | 66 |
 
-The 80-word strategy is not advanced to primary calibration because it mixes more
-question-answer units while increasing long-window burden.
+The 80-word strategy is not advanced to primary calibration because it mixes more question-answer units while increasing long-window burden.
 
-The human calibration therefore compares **20 versus 40 participant-word targets**.
+The primary calibration compares **20 versus 40 participant-word targets** using multiple blinded AI judges.
+
+## Judge architecture
+
+Pilot-0 uses **at least three materially different AI model families/providers where feasible**.
+
+A valid judge run must satisfy all of the following:
+
+- same frozen task prompt and answer schema;
+- no access to the target word count;
+- no access to cohort, participant identifier or source file;
+- no access to other judges' answers;
+- no web browsing or retrieval augmentation;
+- fresh context per item or an equivalently isolated batch protocol;
+- deterministic or near-deterministic decoding where supported;
+- model/provider/version/date recorded;
+- no post-hoc prompt changes after primary scoring begins.
+
+Using several aliases or checkpoints from the same model family is not treated as strong independence. Cross-model agreement is a robustness check, not evidence of human inter-rater reliability.
+
+## Prompt-development phase
+
+Synthetic practice cases may be used to debug the prompt and output parser.
+
+The 20 disjoint real-data training windows are a **private dry run** for refusal, formatting, context-length and obvious instruction-following failures. They never enter the primary agreement estimate.
+
+AI judges do not discuss training cases with one another and do not see one another's outputs. Once the prompt is frozen, it is not modified using primary-item results.
 
 ## Blinding
 
 The packet generator randomizes the two strategies to labels A/B.
 
-Raters do not see:
+Judges do not see:
 
 - target word count;
 - clinical/comparison cohort;
 - participant identifier;
 - source file name;
-- the other rater's decisions.
+- another judge's decision;
+- the private condition key.
 
-The private key remains sealed until both ratings are frozen.
+The private key remains sealed until all primary judge outputs are frozen.
 
 ## Calibration sample
 
@@ -44,33 +69,32 @@ Default packet:
 - within each condition: 30 clinical-source and 30 comparison-source windows;
 - 10 stress windows per condition sampled from below-target tails or >250-word windows.
 
-Total = 140 items.
+Total = 140 primary/stress items.
 
 Stress items are excluded from the primary strategy comparison.
 
-The packet builder prevents selected A/B windows from sharing the same source
-microepisode region where possible.
-
-## Rater questions
+## Judge questions
 
 For each window:
 
-1. **coherent_boundary** — does this look like one interpretable conversational unit?
-2. **sufficient_nontrivial** — is there enough information to support at least one
-   nontrivial semantic/relational/context question?
-3. **mixed_unrelated_topics** — does the window appear to combine unrelated topics?
+1. **coherent_boundary** — does this form one interpretable conversational unit?
+2. **sufficient_nontrivial** — is there enough information for at least one nontrivial source-grounded question?
+3. **mixed_unrelated_topics** — are unrelated topics combined?
 4. **recommended_action** — keep / merge / split / reject.
 5. **confidence_1_5**.
-6. optional note.
+6. optional brief note.
 
 ## Primary engineering outputs
 
-- percent agreement;
-- Gwet AC1;
-- usable-without-modification rate;
-- merge/split/reject profile by blinded strategy.
+- multi-judge percent agreement;
+- multi-rater Gwet AC1 applied to AI judges;
+- every pairwise Gwet AC1;
+- usable-without-modification rate for each judge;
+- majority-usable and unanimous-usable rates;
+- merge/split/reject profile by blinded strategy;
+- judge-specific outlier patterns.
 
-A window is operationally "usable" only when a rater marks:
+A window is operationally "usable" for a judge only when:
 
 - coherent = yes;
 - sufficient = yes;
@@ -83,51 +107,59 @@ These are engineering rules, not confirmatory clinical thresholds.
 
 ### Revise segmentation if
 
-- primary-item AC1 is clearly inadequate after rater training;
-- >25% of regular windows require merge/split/reject;
+- cross-model AC1 is clearly inadequate after the prompt is frozen;
+- >25% of regular windows require merge/split/reject across the judge ensemble;
 - "insufficient" dominates the shorter strategy;
-- "mixed unrelated topics" materially increases in the longer strategy.
+- "mixed unrelated topics" materially increases in the longer strategy;
+- one model family behaves as a systematic outlier and the result depends on including it.
 
 ### Candidate strategy selection
 
-Prefer a strategy that improves query-sufficiency without materially increasing
-mixed-topic judgments.
+Prefer a strategy that improves query-sufficiency without materially increasing mixed-topic judgments.
 
-If 20- and 40-word strategies perform similarly, prefer the lower-bandwidth 20-word
-strategy and let the later query-bank pilot test whether additional context is needed.
+If 20- and 40-word strategies perform similarly, prefer the lower-bandwidth 20-word strategy and let the later query-bank pilot test whether extra context is needed.
 
 If both are inadequate, reopen the 80-word or semantic-boundary strategy.
 
-## Privacy
+## What AI agreement can and cannot establish
 
-The packet contains source interview text.
+It can establish whether the segmentation decision is robust across different automated judges under a frozen rubric.
+
+It does **not** establish:
+
+- human interpretability;
+- clinician agreement;
+- participant-meaning fidelity;
+- EASE validity;
+- clinical validity;
+- schizophrenia effects;
+- representation fidelity.
+
+Any later claim requiring human/clinical judgment must be validated in a separate study.
+
+## Privacy and data governance
+
+The packet contains psychiatric interview text.
 
 Therefore:
 
-- output defaults to `data/raw/boundary_calibration/`;
-- this location is ignored by Git;
-- do not upload the packet as a GitHub Actions artifact;
-- do not commit rater files or the private key;
+- output defaults to a gitignored private directory;
+- do not upload source packets as GitHub Actions artifacts;
+- do not commit judge inputs or private keys;
+- use only local models or external endpoints whose retention/training terms are compatible with the source-data governance;
+- record the execution environment and provider data-handling mode;
 - only aggregate scorer outputs may be published after review.
 
 ## Commands
 
 After locally extracting DAIS-C:
 
-`python code/build_private_boundary_packet.py --root /path/to/daisc`
+`python code/build_private_boundary_packet.py --root /path/to/daisc --judge-count 3`
 
-After two independent raters finish:
+After all AI judges finish:
 
-`python code/score_boundary_ratings.py --rater-a ... --rater-b ... --key ... --json-out ... --md-out ...`
+`python code/score_boundary_ratings.py --judge judge_01.tsv --judge judge_02.tsv --judge judge_03.tsv --key private_key.json --json-out boundary_score.json --md-out boundary_score.md`
 
-## What this gate does not answer
+## Interpretation boundary
 
-Boundary calibration does not establish:
-
-- EASE validity;
-- participant-meaning fidelity;
-- representation fidelity;
-- schizophrenia effects;
-- clinical utility.
-
-It only determines whether Pilot-0 has a defensible unit of analysis.
+This gate only determines whether Pilot-0 has a defensible automated unit of analysis. It is explicitly an **AI-judge calibration**, not a substitute claim for human rating reliability.
