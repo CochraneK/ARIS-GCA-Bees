@@ -29,6 +29,19 @@ def main() -> int:
     if len(values) != 16:
         errors.append(f"expected 16 dashboard projects, found {len(values)}")
 
+    scheduling = dashboard.get("scheduling", {})
+    if scheduling.get("policy") != "completion-first":
+        errors.append("dashboard.scheduling.policy must be 'completion-first'")
+    if scheduling.get("control_chat") != "000":
+        errors.append("dashboard.scheduling.control_chat must be '000'")
+    if scheduling.get("canonical_state") != "git":
+        errors.append("dashboard.scheduling.canonical_state must be 'git'")
+    if scheduling.get("default_active_wip") != 1:
+        errors.append("dashboard.scheduling.default_active_wip must be 1")
+    max_wip = scheduling.get("max_active_wip")
+    if max_wip != 3:
+        errors.append("dashboard.scheduling.max_active_wip must be 3")
+
     # Generated public surfaces must not reintroduce the legacy activity taxonomy.
     checks = [
         ROOT / "README.md",
@@ -61,6 +74,8 @@ def main() -> int:
     counts = {state: sum(v == state for v in values.values()) for state in sorted(ALLOWED)}
     if sum(counts.values()) != len(values):
         errors.append("activity states are not MECE")
+    if counts["active"] > dashboard.get("scheduling", {}).get("max_active_wip", 3):
+        errors.append(f"active WIP exceeds configured max: {counts['active']}")
 
     if errors:
         print("Portfolio status audit FAIL", file=sys.stderr)
