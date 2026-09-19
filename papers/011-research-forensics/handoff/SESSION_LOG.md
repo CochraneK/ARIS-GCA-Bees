@@ -46,3 +46,13 @@ Append substantial execution sessions in reverse chronological order or chronolo
 - Refreshed the Pilot 3 acquisition queue. Voxel and formatting-control cases are COMPLETE; all previously completed positive cases remain COMPLETE; the only remaining candidates are low-priority DEFER entries with no active rank.
 - Advanced canonical portfolio state from 80% to 84%, stage `Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition`.
 - Updated `paper.json`, `papers/dashboard.json`, generated development artifacts, process status, TODO, decisions, and handoff snapshots. Confirmatory scoring remains locked pending broader corpus scale-up and protocol freeze.
+
+
+## 2026-09-19 · 80-record blinded confirmatory-feasibility frame
+
+- Inherited and audited the PRE_FREEZE confirmatory contract, development-exclusion registry, split/cluster leakage preflight, temporal holdout rule, and Track-A allowlists.
+- Added/validated the blinded feasibility-frame execution path. Fixed two CI engineering defects before allowing acquisition to proceed: the workflow test invocation conflicted with Python's standard-library `code` module, and test-only exclusion paths outside the repository broke `Path.relative_to`; both were repaired without changing the scientific selection contract.
+- Successful workflow froze 80 journal-article targets across all 20 calendar-year × update-type strata (2016–2025 × correction/retraction; 4 per stratum), with all 42 development-exposed DOIs excluded and no detector output visible to selection.
+- Workload/leakage signals only: 79/80 Crossref full-text links, 33/80 abstracts, 70 distinct journals, 25/80 current-title status markers, and 80/80 current update relations.
+- Added `process/CONFIRMATORY_FEASIBILITY_V0.md` documenting allowed/forbidden uses and the next manager-only adjudication gate.
+- Advanced portfolio maturity to 86%. Confirmatory scoring remains explicitly disabled.
