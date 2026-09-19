@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-09-19",
-  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the current repository-level final output contract is satisfied (English + Chinese full papers, bilingual public PDFs when final/submission-ready, appropriate adaptive figures/tables, required review/reproducibility gates, and continuity/handoff readiness). Activity is a MECE management state: active, gated, quiet, or blocked. Quiet includes submission-ready/completed tracks that do not need active execution.",
+  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the current repository-level final output contract is satisfied (English + Chinese full papers, bilingual public PDFs when final/submission-ready, appropriate adaptive figures/tables, required review/reproducibility gates, and continuity/handoff readiness). Activity is a MECE management state with exactly three values: active, waiting, or quiet. Active means the next meaningful step is executable now; waiting means progress depends on an external, human, independent-review, data-transfer, permission, or similar dependency; quiet means intentionally not under active execution, including submission-ready/completed or deliberately parked tracks. Freshness and running CI are separate signals, not activity states.",
   "projects": {
     "001": {
       "progress": 100,
@@ -38,7 +38,7 @@
     "005": {
       "progress": 68,
       "stage": "Confirmatory adjudication ready · independent dual-AI gate",
-      "activity": "gated",
+      "activity": "waiting",
       "evidence": "10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds",
       "next_gate": "Run genuinely independent dual-AI adjudication + arbitration + calibration",
       "blocker": "Second independent adjudicator execution surface is not available in the current control thread; do not duplicate one model as two."
@@ -102,7 +102,7 @@
     "013": {
       "progress": 50,
       "stage": "Public NUMIDENT transfer · Pilot 1 ready",
-      "activity": "gated",
+      "activity": "waiting",
       "evidence": "Raw NUMIDENT parser/tests + locked 1988–1996 discovery + public OpenICPSR V3 death-file provenance manifest",
       "next_gate": "Transfer two public-use NUMIDENT V3 death archives, verify layout/hashes, run frozen Pilot 1",
       "blocker": "~1.88 GB file transfer into execution environment; no identity/permission blocker"
@@ -126,7 +126,7 @@
     "016": {
       "progress": 55,
       "stage": "Empirical Phase 0 working manuscript",
-      "activity": "gated",
+      "activity": "waiting",
       "evidence": "Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript",
       "next_gate": "Independent dual-coder ontology audit and end-to-end variance decomposition",
       "blocker": "Independent/native-speaker annotation and Phase-0 reliability"
