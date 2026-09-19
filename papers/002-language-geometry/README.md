@@ -65,3 +65,11 @@ Future manuscript-facing artifacts should be developed inside this Paper 002 dir
 - Draft audit: `process/MANUSCRIPT_AUDIT.md`
 
 Draft v1 implements all manuscript-level boundaries required by the independent Hy3 secondary review. The next hard quality gate is an independent **manuscript-stage** review, not another idea-stage promotion review.
+
+
+## Bilingual manuscript
+
+- English canonical manuscript: `manuscript/DRAFT.md`
+- Chinese complete version: `manuscript/DRAFT.zh-CN.md`
+
+The Chinese version preserves the same numerical results, claim boundaries, and limitations as the independently reviewed English manuscript. It is an ARIS4C bilingual-delivery artifact; the journal submission remains the blinded English package under `submission/linguistic-typology/`.
