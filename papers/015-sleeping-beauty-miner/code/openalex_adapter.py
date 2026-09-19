@@ -177,6 +177,82 @@ def fetch_work(identifier: str, *, api_key: str | None = None) -> OpenAlexWork:
     return OpenAlexWork.from_payload(payload)
 
 
+WORK_METADATA_SELECT = (
+    "id,display_name,publication_year,doi,cited_by_count,"
+    "primary_topic,referenced_works_count,authorships"
+)
+
+
+def count_works(
+    *,
+    filters: str,
+    api_key: str | None = None,
+) -> int:
+    """Return the OpenAlex result count for a filtered Works frame."""
+    payload = _request_json(
+        "/works",
+        params={
+            "filter": filters,
+            "per_page": 1,
+            "select": "id",
+        },
+        api_key=api_key,
+    )
+    count = (payload.get("meta") or {}).get("count")
+    if count is None:
+        raise OpenAlexError("OpenAlex response did not include meta.count")
+    return int(count)
+
+
+def iter_works(
+    *,
+    filters: str,
+    api_key: str | None = None,
+    max_records: int | None = None,
+    per_page: int = 100,
+    polite_sleep_seconds: float = 0.05,
+) -> Iterator[OpenAlexWork]:
+    """Yield a complete filtered Works frame using cursor pagination.
+
+    This is the non-random counterpart to sample_works and is intended for
+    bounded exact frames such as publication_year x primary field. It does not
+    reconstruct citation histories; callers should persist metadata first and
+    perform expensive edge reconstruction as a separate resumable stage.
+    """
+    if not filters:
+        raise ValueError("filters is required")
+    if per_page < 1 or per_page > 100:
+        raise ValueError("per_page must be between 1 and 100")
+    if max_records is not None and max_records < 1:
+        raise ValueError("max_records must be >= 1 when provided")
+
+    cursor = "*"
+    yielded = 0
+    while cursor:
+        payload = _request_json(
+            "/works",
+            params={
+                "filter": filters,
+                "per_page": per_page,
+                "cursor": cursor,
+                "select": WORK_METADATA_SELECT,
+            },
+            api_key=api_key,
+        )
+        results = payload.get("results") or []
+        for row in results:
+            yield OpenAlexWork.from_payload(row)
+            yielded += 1
+            if max_records is not None and yielded >= max_records:
+                return
+
+        cursor = (payload.get("meta") or {}).get("next_cursor")
+        if not results:
+            return
+        if polite_sleep_seconds:
+            time.sleep(polite_sleep_seconds)
+
+
 def iter_citing_works(
     work_id: str,
     *,
@@ -325,10 +401,7 @@ def sample_works(
             "sample": int(sample_size),
             "seed": int(seed),
             "per_page": int(sample_size),
-            "select": (
-                "id,display_name,publication_year,doi,cited_by_count,"
-                "primary_topic,referenced_works_count,authorships"
-            ),
+            "select": WORK_METADATA_SELECT,
         },
         api_key=api_key,
     )
