@@ -3,7 +3,7 @@ name: ARIS4C006 aggregate field36 repair
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["ARIS4C006 field36 repair build"]
+    workflows: ["ARIS4C006 field36 repair build", "ARIS4C006 field36 chunked fallback"]
     types: [completed]
   push:
     branches: [main]
@@ -21,6 +21,7 @@ jobs:
     timeout-minutes: 20
     env:
       PAPER_DIR: papers/006-chinese-alphabetical-exposure
+      FIELD36_RUN_ID: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.id || 35421412480 }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,7 +38,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           repository: CochraneK/ARIS4C
-          run-id: 35421412480
+          run-id: ${{ env.FIELD36_RUN_ID }}
           name: aris4c006-field36-repair-convention
           path: ${{ env.PAPER_DIR }}/data/repair_aggregate/convention/field36_repair
 
