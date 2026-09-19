@@ -6,7 +6,7 @@
   "year": 2026,
   "status": "working-manuscript-phase0",
   "domain": "linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution",
-  "summary": "A measurement-first cross-linguistic study of taboo language using an open 18-community/13-language dataset. Phase 0 now includes a reproducible annotation audit, orthogonal ontology, Glottolog linkage, item-fixed-effects English comparisons, balanced and filler negative controls, a frozen 300-row independent-coder sample, three public-safe figures, and parallel English/Chinese working manuscripts. Confirmatory semantic fingerprints remain gated on genuinely independent/native-language reliability.",
+  "summary": "A measurement-first cross-linguistic study of taboo language using an open 18-community/13-language dataset. Phase 0 includes a reproducible annotation audit, orthogonal ontology, Glottolog linkage, item-fixed-effects English comparisons, balanced/filler controls, a frozen 300-row independent-coder sample, bilingual working manuscripts, and an executed 13-language pronunciation pipeline with 8,187/8,190 (99.9634%) technical row coverage. Confirmatory semantic fingerprints remain gated on independent/native-language ontology reliability; phonological inference remains gated on pronunciation validity and matched controls.",
   "authors": [
     "Cochrane Kang"
   ],
@@ -43,7 +43,11 @@
     "g2p_technical_audit": "process/G2P_TECHNICAL_AUDIT.md",
     "handoff": "process/HANDOFF.md",
     "chatlog_summary": "process/CHATLOG_SUMMARY.md",
-    "coder_handoff": "process/CODER_HANDOFF.md"
+    "coder_handoff": "process/CODER_HANDOFF.md",
+    "g2p_full_route_audit": "process/G2P_FULL_ROUTE_AUDIT.md",
+    "chinese_romanization_pilot": "process/CHINESE_ROMANIZATION_PILOT.md",
+    "phonology_runtime_lock": "data/phonology_runtime_lock.json",
+    "full_route_g2p_code": "code/g2p_full_route_audit.py"
   },
   "tags": [
     "ARIS",
