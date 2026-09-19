@@ -35,7 +35,7 @@ jobs:
           python-version: "3.12"
 
       - name: Test feasibility-frame safeguards
-        run: python -m unittest -q code/test_confirmatory_feasibility_frame.py
+        run: python code/test_confirmatory_feasibility_frame.py -q
 
       - name: Build blinded feasibility frame
         run: |
