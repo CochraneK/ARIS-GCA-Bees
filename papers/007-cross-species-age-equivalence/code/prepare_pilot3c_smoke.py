@@ -112,7 +112,7 @@ def main() -> None:
 
     manifest=args.out/"download_manifest.tsv"
     with manifest.open("w",encoding="utf-8",newline="") as f:
-        w=csv.DictWriter(f,fieldnames=list(downloads[0]),delimiter="\t")
+        w=csv.DictWriter(f,fieldnames=list(downloads[0]),delimiter="\t",lineterminator="\n")
         w.writeheader();w.writerows(downloads)
 
     summary={
