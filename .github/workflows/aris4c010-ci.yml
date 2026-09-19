@@ -87,6 +87,9 @@ jobs:
       - name: Validate standalone annotation HTML
         run: python validate_annotation_html.py
 
+      - name: Dry-run standalone response ingestion
+        run: python dryrun_standalone_ingestion.py
+
       - name: Upload calibration60 artifacts
         uses: actions/upload-artifact@v4
         with:
