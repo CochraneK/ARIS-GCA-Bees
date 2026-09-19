@@ -56,3 +56,7 @@ Scientific “gates” can still appear in `stage`, `next_gate`, or project proc
 - **Block:** 005, 013, 016
 
 This mapping is a snapshot. Active/Wait may change as real research execution starts or stops.
+
+## Scheduling
+
+State definition and execution order are separate. The canonical 000 scheduling, WIP, checkpoint-before-switch, and completion-first rules are defined in `ARIS4C_OPERATING_MODEL.md`.
