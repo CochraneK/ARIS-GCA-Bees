@@ -29,8 +29,10 @@ This wording may be narrowed during manuscript review but must not be broadened 
 
 - [ ] Increase family-held-out splits to 50–100.
 - [ ] Consider phylogenetic/spatiophylogenetic sensitivity model.
-- [ ] Annotate Stage-1D closure-ratio interpretation.
+- [x] Annotate Stage-1D closure-ratio interpretation.
 - [ ] Consider permutation/p-value supplement.
+
+Reviewer-listed non-scientific cleanups already closed: the title uses the narrower “does not support a global circular organization” wording; the Stage-1 0.35 vs Stage-1C 0.40 threshold distinction is commented in source; and the 40-feature closure-ratio SD is explicitly described as unstable/non-informative in the manuscript.
 
 ## Provenance
 
@@ -100,7 +102,9 @@ A fresh different-family reviewer wrote `MANUSCRIPT_REVIEW_RECEIPT.md`. Verdict 
 
 ### Next step
 
-**Target-journal formatting / submission preparation (editorial only).** The maximum permitted claim is frozen at the bounded wording in §Scientific freeze; it may be narrowed during formatting but not broadened without a new review cycle. No further primary-executor scientific expansion should be added merely to keep the project moving. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
+~~**Target-journal formatting / submission preparation (editorial only).**~~ **COMPLETE (2026-09-19).** The Linguistic Typology technical package passed final QA. The maximum permitted claim remains frozen at the bounded wording in §Scientific freeze and must not be broadened without a new review cycle. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
+
+**Current remaining gate:** author-supplied metadata/declarations, then actual ScholarOne upload/submit.
 
 
 ## Submission-package gate · 2026-09-19
