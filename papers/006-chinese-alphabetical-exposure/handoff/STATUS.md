@@ -2,7 +2,7 @@
 
 - **Title:** Alphabetical Exposure and Scholarly Credit in China's Research System
 - **Project status:** analysis
-- **Activity:** active
+- **Activity:** waiting
 - **Portfolio progress:** 62%
 - **Current stage:** Identification feasibility · historical window frozen
 - **Evidence established:** CCNC Romanization audit + 26-field OpenAlex historical coverage PASS; focal window 2011–2025

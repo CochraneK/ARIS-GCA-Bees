@@ -2,7 +2,7 @@
 
 - **Title:** From General Learning Ability to Uncertainty Monitoring in Honey Bees
 - **Project status:** submission-package-ready
-- **Activity:** quiet
+- **Activity:** finish
 - **Portfolio progress:** 100%
 - **Current stage:** Submission package ready · output gate PASS
 - **Evidence established:** Final EN + ZH manuscripts and PDFs, reproducible synthesis, 5 figures, 3 tables, journal package

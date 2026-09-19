@@ -8,7 +8,7 @@ A falsification-first cross-linguistic program testing which properties of taboo
 
 ## Current state
 
-- Activity: **waiting**
+- Activity: **block**
 - Progress: **55%**
 - Stage: **Empirical Phase 0 working manuscript**
 - Evidence: Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript

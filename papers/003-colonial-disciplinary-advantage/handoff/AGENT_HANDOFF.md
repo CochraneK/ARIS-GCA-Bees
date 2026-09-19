@@ -8,7 +8,7 @@ A locked, outcome-unblinded cross-national and cross-disciplinary test of whethe
 
 ## Current state
 
-- Activity: **active**
+- Activity: **waiting**
 - Progress: **70%**
 - Stage: **Outcome materialization · locked first confirmatory run**
 - Evidence: COLDAT + CEPII audited · blind Coder A/B + adjudicated IKES frozen · strict gate unlocked · OpenAlex scan running

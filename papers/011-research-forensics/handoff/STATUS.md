@@ -2,7 +2,7 @@
 
 - **Title:** Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening
 - **Project status:** methods-draft-agent-skill-benchmark-seed
-- **Activity:** active
+- **Activity:** waiting
 - **Portfolio progress:** 72%
 - **Current stage:** Pilot 3 · object-level historical table qualification
 - **Evidence established:** Priority PLOS case has frozen pre-correction t001 wrapper provenance; table-image object qualification is now separated from F3 value extraction

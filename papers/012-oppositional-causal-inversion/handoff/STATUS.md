@@ -2,7 +2,7 @@
 
 - **Title:** When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion
 - **Project status:** coderb-complete-ready-for-adjudication
-- **Activity:** active
+- **Activity:** waiting
 - **Portfolio progress:** 66%
 - **Current stage:** Pilot 0B complete · adjudication gate
 - **Evidence established:** 165-record reproducible retrieval + Coder A + genuinely independent 30-record Coder B; reliability summary READY_FOR_ADJUDICATION with 141 disagreement cells

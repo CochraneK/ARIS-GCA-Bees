@@ -8,7 +8,7 @@ A predictive stress test of the simple global-circle form of the language period
 
 ## Current state
 
-- Activity: **quiet**
+- Activity: **finish**
 - Progress: **100%**
 - Stage: **Submission package ready · output gate PASS**
 - Evidence: Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS

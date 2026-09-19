@@ -8,7 +8,7 @@ A sign-neutral counterfactual network study of how scientific, intellectual, and
 
 ## Current state
 
-- Activity: **active**
+- Activity: **waiting**
 - Progress: **74%**
 - Stage: **Network100 acquired · work audit + independent second review**
 - Evidence: Identity100: 52 verified; second-review blind set 40. Network100: 2,956 unique works, 0 fetch errors; 334-work deterministic triage sample across 37 held people.

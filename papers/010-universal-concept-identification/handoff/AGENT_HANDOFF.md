@@ -8,7 +8,7 @@ A formal and empirical research program measuring the query cost imposed by sema
 
 ## Current state
 
-- Activity: **active**
+- Activity: **waiting**
 - Progress: **72%**
 - Stage: **Source-derived Pilot 2 + calibration60**
 - Evidence: Formal model + Pilots 0–2 + pinned OEWN 60-target calibration build; current CI PASS

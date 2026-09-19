@@ -2,7 +2,7 @@
 
 - **Title:** The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures
 - **Project status:** pilot-b-adjudication-ready
-- **Activity:** waiting
+- **Activity:** block
 - **Portfolio progress:** 68%
 - **Current stage:** Confirmatory adjudication ready · independent dual-AI gate
 - **Evidence established:** 10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds

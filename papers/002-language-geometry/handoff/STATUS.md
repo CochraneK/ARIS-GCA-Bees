@@ -2,7 +2,7 @@
 
 - **Title:** Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization
 - **Project status:** submission-ready-author-metadata-pending
-- **Activity:** quiet
+- **Activity:** finish
 - **Portfolio progress:** 100%
 - **Current stage:** Submission package ready · output gate PASS
 - **Evidence established:** Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS

@@ -8,7 +8,7 @@ A cross-disciplinary, auditable framework that routes scientific manuscripts to 
 
 ## Current state
 
-- Activity: **active**
+- Activity: **waiting**
 - Progress: **72%**
 - Stage: **Pilot 3 · object-level historical table qualification**
 - Evidence: Priority PLOS case has frozen pre-correction t001 wrapper provenance; table-image object qualification is now separated from F3 value extraction

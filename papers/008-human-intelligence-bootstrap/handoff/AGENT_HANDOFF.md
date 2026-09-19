@@ -8,7 +8,7 @@ A comparative, phylogenetically informed research program testing which combinat
 
 ## Current state
 
-- Activity: **active**
+- Activity: **waiting**
 - Progress: **60%**
 - Stage: **Pilot 8 · atomic A–F deep-coding queue**
 - Evidence: 238-taxa screen + 79 Tier-1 panel + architecture-balanced recoverability + 399 explicit open A–F cells

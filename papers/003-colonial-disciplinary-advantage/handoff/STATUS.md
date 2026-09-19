@@ -2,7 +2,7 @@
 
 - **Title:** Colonial Legacies and the Global Geography of Disciplinary Advantage
 - **Project status:** analysis-running
-- **Activity:** active
+- **Activity:** waiting
 - **Portfolio progress:** 70%
 - **Current stage:** Outcome materialization · locked first confirmatory run
 - **Evidence established:** COLDAT + CEPII audited · blind Coder A/B + adjudicated IKES frozen · strict gate unlocked · OpenAlex scan running

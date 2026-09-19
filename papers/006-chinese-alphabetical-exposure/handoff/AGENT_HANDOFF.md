@@ -8,7 +8,7 @@ A population-calibrated, all-field study of whether validated Chinese surname po
 
 ## Current state
 
-- Activity: **active**
+- Activity: **waiting**
 - Progress: **62%**
 - Stage: **Identification feasibility · historical window frozen**
 - Evidence: CCNC Romanization audit + 26-field OpenAlex historical coverage PASS; focal window 2011–2025

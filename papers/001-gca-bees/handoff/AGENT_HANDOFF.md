@@ -8,7 +8,7 @@ A submission-ready quantitative synthesis and theory paper showing reproducible 
 
 ## Current state
 
-- Activity: **quiet**
+- Activity: **finish**
 - Progress: **100%**
 - Stage: **Submission package ready · output gate PASS**
 - Evidence: Final EN + ZH manuscripts and PDFs, reproducible synthesis, 5 figures, 3 tables, journal package
