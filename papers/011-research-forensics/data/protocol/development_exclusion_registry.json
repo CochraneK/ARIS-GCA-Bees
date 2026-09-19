@@ -1,0 +1,522 @@
+{
+  "registry_version": "0.1.0",
+  "state": "FROZEN_DEVELOPMENT_EXPOSURE_SNAPSHOT",
+  "generated_from": "structured seed/pilot artifacts plus data/results/pilot*",
+  "exclusion_count": 42,
+  "policy": "Any DOI exposed during method development, pilot acquisition, comparator discovery/screening, control construction, or development evaluation is excluded from confirmatory performance manifests.",
+  "entries": [
+    {
+      "doi": "10.1007/s11277-021-09072-0",
+      "source_files": [
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2_seed_issue_readiness.csv",
+        "data/seed/artifact_safety_seed_audit.csv",
+        "data/seed/artifact_source_candidates.csv",
+        "data/seed/benchmark_v0_seed.csv",
+        "data/seed/issue_artifact_requirements.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41929-026-01569-w",
+      "source_files": [
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2_seed_issue_readiness.csv",
+        "data/seed/artifact_safety_seed_audit.csv",
+        "data/seed/artifact_source_candidates.csv",
+        "data/seed/correction_honest_error_seed.csv",
+        "data/seed/issue_artifact_requirements.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41929-026-01591-y",
+      "source_files": [
+        "data/seed/correction_honest_error_seed.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1111/bjso.12452",
+      "source_files": [
+        "data/pilot/plos_morality_2021_cross_source_safe_exact.json",
+        "data/results/pilot2b_first_true_positive.json"
+      ],
+      "source_fields": [
+        "comparison_source_doi",
+        "doi",
+        "source_doi"
+      ]
+    },
+    {
+      "doi": "10.1177/1758573221989669",
+      "source_files": [
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2_seed_issue_readiness.csv",
+        "data/seed/artifact_safety_seed_audit.csv",
+        "data/seed/artifact_source_candidates.csv",
+        "data/seed/correction_honest_error_seed.csv",
+        "data/seed/issue_artifact_requirements.csv",
+        "data/seed/table_row14_omission_fixture.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1177/17585732221124203",
+      "source_files": [
+        "data/seed/correction_honest_error_seed.csv",
+        "data/seed/table_row14_omission_fixture.json"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1177/1758835919874651",
+      "source_files": [
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2_seed_issue_readiness.csv",
+        "data/seed/artifact_safety_seed_audit.csv",
+        "data/seed/artifact_source_candidates.csv",
+        "data/seed/benchmark_v0_seed.csv",
+        "data/seed/issue_artifact_requirements.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1177/17588359211061903",
+      "source_files": [
+        "data/seed/benchmark_v0_seed.csv"
+      ],
+      "source_fields": [
+        "notice_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0075637",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0134773",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0142234",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0144482",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0161231",
+      "source_files": [
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2_seed_issue_readiness.csv",
+        "data/seed/artifact_safety_seed_audit.csv",
+        "data/seed/artifact_source_candidates.csv",
+        "data/seed/correction_honest_error_seed.csv",
+        "data/seed/historical_artifact_objects.csv",
+        "data/seed/issue_artifact_requirements.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0163749",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/plos_voxel_ba_preserved_original_safe_exact.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_development_summary.json",
+        "data/results/pilot3_voxel_ba_evaluation.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0170146",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_voxel_ba_evaluation.json"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0180395",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_adaptive_body_qualification.json",
+        "data/results/pilot3_adaptive_body_trackA_object.json",
+        "data/results/pilot3_adaptive_f1_detection.json",
+        "data/results/pilot3_adaptive_f1_evaluation.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json"
+      ],
+      "source_fields": [
+        "paper_id",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0180490",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0180906",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/pilot3c_issue_decomposition.csv",
+        "data/pilot/plos_toxoplasma_2017_caption_safe_exact.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json",
+        "data/results/pilot3_toxo_f3_detection.json",
+        "data/results/pilot3_toxo_f3_evaluation.json",
+        "data/results/pilot3_toxo_table1_qualification.json",
+        "data/results/pilot3_toxo_table1_trackA_object.json",
+        "data/results/pilot3c_third_true_positive.json",
+        "data/seed/historical_artifact_objects.csv"
+      ],
+      "source_fields": [
+        "paper_id",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0181169",
+      "source_files": [
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0181428",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0181621",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0181889",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0182291",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0182339",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0192570",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/pilot3c_issue_decomposition.csv",
+        "data/pilot/plos_toxoplasma_2017_caption_safe_exact.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3c_third_true_positive.json"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0196489",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0257671",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0258161",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0258720",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0258910",
+      "source_files": [
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/plos_morality_2021_cross_source_safe_exact.json",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2b_first_true_positive.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json",
+        "data/seed/historical_artifact_objects.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0262972",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0263337",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/plos_aceh_2022_format_control_safe_exact.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_development_summary.json",
+        "data/results/pilot3_format_control_evaluation.json",
+        "data/seed/historical_artifact_objects.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0290551",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0293342",
+      "source_files": [
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_notice_screen.json"
+      ],
+      "source_fields": [
+        "candidate_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0293412",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/plos_music_2023_rawdata_safe_exact.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3_comparator_candidates.json",
+        "data/results/pilot3_comparator_fulltext_freeze.json",
+        "data/results/pilot3_comparator_notice_screen.json",
+        "data/results/pilot3_development_summary.json",
+        "data/results/pilot3b_second_true_positive.json",
+        "data/seed/historical_artifact_objects.csv"
+      ],
+      "source_fields": [
+        "publisher_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0301214",
+      "source_files": [
+        "data/seed/correction_honest_error_seed.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0303714",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/plos_morality_2021_cross_source_safe_exact.json",
+        "data/results/pilot2b_first_true_positive.json",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0317174",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/pilot/plos_music_2023_rawdata_safe_exact.json",
+        "data/results/pilot3_candidate_queue.csv",
+        "data/results/pilot3b_second_true_positive.json"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0329775",
+      "source_files": [
+        "data/pilot/pilot3_correction_candidates.csv",
+        "data/results/pilot3_candidate_queue.csv"
+      ],
+      "source_fields": [
+        "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1538/expanim.54.1",
+      "source_files": [
+        "data/pilot/jstage_2005_safe_exact.json",
+        "data/pilot/pilot2_expanded_issue_artifact_requirements.csv",
+        "data/results/pilot2_expanded_issue_readiness.csv",
+        "data/results/pilot2_seed_issue_readiness.csv",
+        "data/results/pilot3_development_summary.json",
+        "data/seed/artifact_safety_seed_audit.csv",
+        "data/seed/artifact_source_candidates.csv",
+        "data/seed/benchmark_v0_seed.csv",
+        "data/seed/historical_artifact_objects.csv",
+        "data/seed/issue_artifact_requirements.csv"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1538/expanim.54.1.r1",
+      "source_files": [
+        "data/seed/benchmark_v0_seed.csv"
+      ],
+      "source_fields": [
+        "notice_doi"
+      ]
+    },
+    {
+      "doi": "10.18452/33744",
+      "source_files": [
+        "data/pilot/plos_music_2023_rawdata_safe_exact.json",
+        "data/results/pilot3b_second_true_positive.json"
+      ],
+      "source_fields": [
+        "repository_doi"
+      ]
+    }
+  ]
+}

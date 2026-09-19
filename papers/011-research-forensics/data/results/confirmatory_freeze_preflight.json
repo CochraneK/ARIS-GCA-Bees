@@ -1,0 +1,42 @@
+{
+  "analysis": "ARIS4C011 confirmatory freeze preflight",
+  "protocol_version": "0.1.0",
+  "protocol_state": "PRE_FREEZE",
+  "development_exclusion_count": 42,
+  "manifest_rows": 0,
+  "checks": {
+    "freeze_gates_closed": false,
+    "confirmatory_manifest_present": false,
+    "track_a_manifest_inspected": false
+  },
+  "open_freeze_gates": [
+    "applicability_rules_frozen",
+    "broader_time_safe_corpus_complete",
+    "detector_versions_frozen",
+    "grouped_split_manifest_frozen",
+    "human_review_protocol_frozen",
+    "known_defect_policy_frozen",
+    "label_leakage_audit_passed",
+    "reviewer_burden_measure_frozen",
+    "safe_exact_proxy_blocked_attrition_frozen",
+    "temporal_cutoff_frozen",
+    "thresholds_frozen"
+  ],
+  "blockers": [
+    "confirmatory_manifest_missing",
+    "confirmatory_scoring_not_authorized",
+    "freeze_gate:applicability_rules_frozen",
+    "freeze_gate:broader_time_safe_corpus_complete",
+    "freeze_gate:detector_versions_frozen",
+    "freeze_gate:grouped_split_manifest_frozen",
+    "freeze_gate:human_review_protocol_frozen",
+    "freeze_gate:known_defect_policy_frozen",
+    "freeze_gate:label_leakage_audit_passed",
+    "freeze_gate:reviewer_burden_measure_frozen",
+    "freeze_gate:safe_exact_proxy_blocked_attrition_frozen",
+    "freeze_gate:temporal_cutoff_frozen",
+    "freeze_gate:thresholds_frozen"
+  ],
+  "ready_for_confirmatory_scoring": false,
+  "claim_boundary": "PRE_FREEZE is a design/readiness state only. No confirmatory performance estimate is authorized until every freeze gate is true and the preflight report is PASS."
+}
