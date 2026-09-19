@@ -1,0 +1,79 @@
+name: ARIS4C015 Pilot M offline frozen-case reanalysis
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilotM-offline-reanalysis.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  reanalyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download v7 acquired cohort artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c015-pilotM-known-cases-v7
+          path: tmp/pilotM-v7
+          github-token: ${{ github.token }}
+          repository: CochraneK/ARIS4C
+          run-id: 35435974241
+
+      - name: Reanalyze fixed literature-known cases without OpenAlex calls
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python reanalyze_pilotM_artifact.py \
+            --input ../../../tmp/pilotM-v7/pilotM_known_cases_openalex.json \
+            --ratios 1,4 \
+            --output ../data/pilotM_v7_frozen_known_case_reanalysis.json
+
+      - name: Audit frozen-case outputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilotM_v7_frozen_known_case_reanalysis.json"
+          )
+          x = json.loads(p.read_text(encoding="utf-8"))
+          assert len(x["frozen_primary_case_ids"]) == 3
+          assert x["contrasts"]["1:1"]["n_cases"] == 3
+          assert x["contrasts"]["1:4"]["n_cases"] == 3
+          assert x["contrasts"]["1:1"]["rules"][
+              "control_reuse_across_case_risk_sets"
+          ] is True
+          print(json.dumps({
+              "frozen_primary_case_ids": x["frozen_primary_case_ids"],
+              "one_to_one": {
+                  "match_rate": x["contrasts"]["1:1"]["match_rate"],
+                  "n_matches": len(x["contrasts"]["1:1"]["matches"]),
+                  "balance": x["contrasts"]["1:1"]["balance"],
+              },
+              "one_to_four": {
+                  "match_rate": x["contrasts"]["1:4"]["match_rate"],
+                  "n_matches": len(x["contrasts"]["1:4"]["matches"]),
+                  "balance": x["contrasts"]["1:4"]["balance"],
+              },
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-v7-frozen-known-case-reanalysis
+          path: papers/015-sleeping-beauty-miner/data/pilotM_v7_frozen_known_case_reanalysis.json
+          if-no-files-found: error
+          retention-days: 30
