@@ -1,0 +1,38 @@
+{
+  "pilot": "ARIS4C015 Pilot M 500-paper merged OpenAlex mechanism cohort",
+  "workflow_run_id": 35426686178,
+  "source": "OpenAlex live API",
+  "cohort": {
+    "publication_year": 1980,
+    "field": "Physics & Astronomy (OpenAlex primary field 31)",
+    "shards": 5,
+    "requested_per_shard": 100,
+    "unique_papers": 497,
+    "duplicate_rows_removed": 3,
+    "observation_end_year": 2011,
+    "selection_on_future_citation_count": false
+  },
+  "robust_sb": 0,
+  "state_counts": {
+    "AMBIGUOUS": 140,
+    "FADING": 43,
+    "FORGOTTEN": 207,
+    "IMMEDIATE_HIT": 85,
+    "LOW_EARLY_HIGH_LATE_UNCONFIRMED": 22
+  },
+  "mechanism_ready": false,
+  "mechanism_analysis_ready": false,
+  "mechanism_analysis_block_reasons": [
+    "no robust Sleeping Beauty cases"
+  ],
+  "sb_vs_forgotten_match_rate": 0,
+  "interpretation": [
+    "Merging five reproducible random shards before normalization yielded 497 unique historical papers and zero robust Sleeping Beauty cases.",
+    "Twenty-two papers showed low-early/high-late trajectories but failed at least one robust retrospective SB component.",
+    "The random cohort already contains abundant Forgotten and Immediate-Hit controls; the limiting resource is robust SB case yield.",
+    "Random sampling should therefore not be scaled merely to wait for rare Sleeping Beauties. The mechanism track should switch to case-enriched retrospective extraction, then sample matched controls from the population."
+  ],
+  "design_decision": "Stop scaling random mechanism sampling. Use SciSciNet-v2 case enrichment for Track M; retain random cohorts only for Track B prospective evaluation.",
+  "claim_boundary": "Yield diagnostic from one field/year and five random shards; not an estimate of global Sleeping Beauty prevalence.",
+  "computed_at": "2026-09-19"
+}
