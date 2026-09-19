@@ -57,6 +57,10 @@ def main()->None:
         if token not in js:
             fail(f"idle-gap compression invariant missing from JS: {token}")
 
+    for token in ("minVisibleSpan=20","plottedValues","yBreakMarks","Y ${yMin}–${yMax}%"):
+        if token not in js:
+            fail(f"adaptive percentage-axis invariant missing from JS: {token}")
+
     m=re.search(r'<script id="progressHistoryData" type="application/json">(.*?)</script>',html,re.S)
     if not m:
         fail("progressHistoryData payload missing")
