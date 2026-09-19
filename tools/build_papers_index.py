@@ -50,6 +50,21 @@ def load_progress_history() -> dict:
     return json.loads(PROGRESS_HISTORY.read_text(encoding="utf-8"))
 
 
+def latest_day_history(history: dict) -> dict:
+    """Return only checkpoints from the local date encoded by the latest Git timestamp."""
+    points = list(history.get("points", []) or [])
+    if not points:
+        return {"schema_version": history.get("schema_version", 1), "date": "", "points": []}
+    latest = str(points[-1].get("timestamp", ""))
+    day = latest[:10]
+    return {
+        "schema_version": history.get("schema_version", 1),
+        "source": history.get("source", ""),
+        "date": day,
+        "points": [p for p in points if str(p.get("timestamp", ""))[:10] == day],
+    }
+
+
 def esc(value: object) -> str:
     return html.escape(str(value or ""), quote=True)
 
@@ -203,7 +218,8 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     wait = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "wait")
     block = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "block")
     mature = sum(1 for v in progresses if v >= 45)
-    history_json = json.dumps(history, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    day_history = latest_day_history(history)
+    history_json = json.dumps(day_history, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
     return f"""<!doctype html>
 <html lang="en" data-theme="light">
@@ -271,22 +287,17 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
         <section id="progressHistorySection" class="progress-history-panel" aria-labelledby="progressHistoryTitle">
           <div class="progress-history-head">
             <div>
-              <p class="eyebrow">GIT-DERIVED HISTORY</p>
-              <h2 id="progressHistoryTitle">Progress over time</h2>
-              <p>Historical maturity checkpoints reconstructed from <code>papers/dashboard.json</code> commits.</p>
+              <p class="eyebrow">TODAY · GIT-DERIVED</p>
+              <h2 id="progressHistoryTitle">Today's progress · all papers</h2>
+              <p>All tracked papers on one chart; only today's <code>papers/dashboard.json</code> checkpoints are shown.</p>
             </div>
-            <label class="progress-history-select">Series
-              <select id="progressHistorySeries" aria-label="Progress history series">
-                <option value="__mean__">Portfolio mean</option>
-                {"".join(f'<option value="{esc(p.get("id"))}">#{esc(p.get("id"))} · {esc(p.get("short_title") or p.get("title"))}</option>' for p in papers)}
-              </select>
-            </label>
+            <strong class="progress-history-day">{esc(day_history.get("date", ""))}</strong>
           </div>
           <div class="progress-history-chart-wrap">
-            <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 260" role="img" aria-label="ARIS4C progress history chart"></svg>
-            <div id="progressHistoryTooltip" class="progress-history-tooltip hidden"></div>
+            <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 330" role="img" aria-label="Today's ARIS4C progress for all papers"></svg>
           </div>
-          <div class="progress-history-foot"><span id="progressHistorySummary">Loading history…</span><span>Git checkpoints · management estimate, not a scientific result</span></div>
+          <div id="progressHistoryLegend" class="progress-history-legend" aria-label="Paper legend"></div>
+          <div class="progress-history-foot"><span id="progressHistorySummary">Loading today's history…</span><span>Git checkpoints · management estimate, not a scientific result</span></div>
         </section>
 
         <div class="control-bar">
