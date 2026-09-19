@@ -55,3 +55,13 @@ For every future material conversation, append:
 - **Execution outcome for ARIS4C011:** completed the matched development comparator freeze, produced the descriptive complementarity/abstention summary, executed the preserved-original voxel/Brodmann-area case, and reconciled the Pilot 3 queue.
 - **Current evidence boundary:** six pre-outcome development FLAG evaluations across five target papers; one SAFE_EXACT formatting/honest-error non-escalation control; four matched no-known-integrity-concern development comparators; no confirmatory performance or misconduct inference.
 - **Next:** expand the broader time-safe corpus and freeze the confirmatory protocol rather than continuing low-yield development candidate chasing.
+
+
+## 2026-09-19 · Blinded broader-corpus feasibility continuation
+
+- **Surface:** ChatGPT / ARIS4C01 000 controller continuation.
+- **Participants:** Cochrane Kang + ChatGPT.
+- **User request:** Continue autonomously after the prior controller chat limit.
+- **Execution:** After closing Pilot 3 development work, advanced ARIS4C011 into the confirmatory-transition layer without inspecting detector effects. A balanced 80-record Crossref update-event frame was frozen across 2016–2025 correction/retraction strata after excluding all development-exposed DOIs.
+- **Boundary:** The frame is feasibility-only, not a confirmatory performance sample. Current metadata/status markers are manager-side leakage diagnostics and cannot enter Track-A model-visible inputs.
+- **Next:** Build manager-only issue/required-artifact-role adjudication packets, then quantify time-safe artifact attrition before freezing splits and scoring rules.
