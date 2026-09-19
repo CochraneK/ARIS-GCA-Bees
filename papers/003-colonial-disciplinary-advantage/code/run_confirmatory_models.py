@@ -34,6 +34,7 @@ import duckdb
 import numpy as np
 import pandas as pd
 import pyfixest as pf
+from pyfixest.demeaners import LsmrDemeaner
 
 PAPER = Path(__file__).resolve().parents[1]
 CODE = PAPER / "code"
@@ -101,6 +102,14 @@ def validate_concepts(df: pd.DataFrame, label: str) -> None:
 
 
 def fit_ppml(spec: ModelSpec, df: pd.DataFrame):
+    """Fit the frozen PPML estimand with a deterministic numerical fallback.
+
+    The default PyFixest MAP demeaner is retained first. If and only if fixed-
+    effect demeaning fails to converge, retry the identical estimand with the
+    LSMR within backend, which PyFixest recommends for sparse / weakly
+    connected multi-way fixed-effect structures. No sample, formula, offset,
+    cluster, separation rule, or inferential target is changed.
+    """
     if len(df) == 0:
         raise ValueError(f"{spec.name}: empty estimation sample")
     kwargs: dict[str, object] = {
@@ -113,7 +122,26 @@ def fit_ppml(spec: ModelSpec, df: pd.DataFrame):
     }
     if spec.offset:
         kwargs["offset"] = spec.offset
-    return pf.fepois(**kwargs)
+
+    try:
+        fit = pf.fepois(**kwargs)
+        setattr(fit, "_aris4c_demeaner_route", "default_map")
+        return fit
+    except ValueError as exc:
+        if "Demeaning failed after" not in str(exc):
+            raise
+
+    # Numerical fallback only: same PPML target, different FE solver.
+    kwargs["demeaner"] = LsmrDemeaner(
+        backend="within",
+        preconditioner="additive",
+        fixef_atol=1e-8,
+        fixef_btol=1e-8,
+        fixef_maxiter=10000,
+    )
+    fit = pf.fepois(**kwargs)
+    setattr(fit, "_aris4c_demeaner_route", "lsmr_within_additive_fallback")
+    return fit
 
 
 def extract_result(
@@ -153,6 +181,9 @@ def extract_result(
         "formula": spec.formula,
         "offset": spec.offset or "",
         "cluster": next(iter(spec.cluster.values())),
+        "demeaner_route": getattr(
+            fit, "_aris4c_demeaner_route", "unknown"
+        ),
     }
 
 
