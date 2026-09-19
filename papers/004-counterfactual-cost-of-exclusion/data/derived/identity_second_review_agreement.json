@@ -1,0 +1,52 @@
+{
+  "classification": "IDENTITY_SECOND_REVIEW_AGREEMENT",
+  "n_second_reviewed": 40,
+  "exact_state_agreement": 0.6,
+  "exact_author_id_set_agreement_where_state_matches_and_verified": 0.6818,
+  "first_review_state_counts": {
+    "VERIFIED_CLUSTER": 21,
+    "AMBIGUOUS_COLLISION": 8,
+    "VERIFIED_SINGLE": 9,
+    "EXCLUDED_IDENTITY_ERROR": 2
+  },
+  "second_review_state_counts": {
+    "VERIFIED_CLUSTER": 16,
+    "AMBIGUOUS_COLLISION": 3,
+    "VERIFIED_SINGLE": 15,
+    "NO_GRAPH_RECORD": 4,
+    "EXCLUDED_IDENTITY_ERROR": 2
+  },
+  "false_positive_identity_mapping_count": 1,
+  "missed_fragment_count": 12,
+  "first_only_fragment_count": 18,
+  "collision_or_error_reversals": 1,
+  "agreement_by_first_state": {
+    "VERIFIED_SINGLE": {
+      "n": 9,
+      "state_agreement": 0.8889,
+      "id_set_agreement": 1.0
+    },
+    "VERIFIED_CLUSTER": {
+      "n": 21,
+      "state_agreement": 0.6667,
+      "id_set_agreement": 0.5
+    },
+    "AMBIGUOUS_COLLISION": {
+      "n": 8,
+      "state_agreement": 0.25,
+      "id_set_agreement": null
+    },
+    "NO_GRAPH_RECORD": {
+      "n": 0,
+      "state_agreement": null,
+      "id_set_agreement": null
+    },
+    "EXCLUDED_IDENTITY_ERROR": {
+      "n": 2,
+      "state_agreement": 0.0,
+      "id_set_agreement": null
+    }
+  },
+  "disagreement_count": 16,
+  "note": "Second review produced on a separate AI execution surface from scripted public-evidence retrieval; it is an independent machine review, not a second human identity curator."
+}

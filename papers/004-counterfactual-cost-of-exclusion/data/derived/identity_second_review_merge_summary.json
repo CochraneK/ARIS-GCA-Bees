@@ -1,0 +1,431 @@
+{
+  "source_identity_table": "repo/papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv",
+  "candidate_output": "out/004/identity_decisions_100_second_review_adjudicated.csv",
+  "canonical_table_overwritten": false,
+  "rows": 100,
+  "adjudicated_rows_applied": 23,
+  "status_distribution_before": {
+    "AMBIGUOUS_COLLISION": 6,
+    "EXCLUDED_IDENTITY_ERROR": 2,
+    "VERIFIED_CLUSTER": 14,
+    "VERIFIED_SINGLE": 1
+  },
+  "status_distribution_after": {
+    "AMBIGUOUS_COLLISION": 3,
+    "EXCLUDED_IDENTITY_ERROR": 2,
+    "NO_GRAPH_RECORD": 2,
+    "VERIFIED_CLUSTER": 14,
+    "VERIFIED_SINGLE": 2
+  },
+  "status_changes": 8,
+  "id_set_changes": 15,
+  "author_ids_added": 10,
+  "author_ids_removed": 11,
+  "cases_still_flagged_for_retrieval": [
+    "cv_Q1577507",
+    "cv_Q6213800",
+    "cv_Q7416679"
+  ],
+  "changes": [
+    {
+      "person_id": "cv_Q24287044",
+      "canonical_name": "Hilario Hern\u00e1ndez Gurruchaga",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5031000107",
+        "A5077518778"
+      ],
+      "after_ids": [
+        "A5031000107",
+        "A5077518778"
+      ],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q1354374",
+      "canonical_name": "Erika Greber",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5067191806",
+        "A5093308260",
+        "A5127108224"
+      ],
+      "after_ids": [
+        "A5067191806",
+        "A5093308260",
+        "A5127108224"
+      ],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q6213800",
+      "canonical_name": "Joel Olson",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5014962549",
+        "A5136923364",
+        "A5014404041"
+      ],
+      "after_ids": [
+        "A5014404041",
+        "A5014962549"
+      ],
+      "ids_added": [],
+      "ids_removed": [
+        "A5136923364"
+      ],
+      "retrieval_needed": true
+    },
+    {
+      "person_id": "cv_Q7659879",
+      "canonical_name": "Sydney Copeman",
+      "before_status": "AMBIGUOUS_COLLISION",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [],
+      "after_ids": [
+        "A5098192254",
+        "A5099768349",
+        "A5104522501"
+      ],
+      "ids_added": [
+        "A5098192254",
+        "A5099768349",
+        "A5104522501"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q72927",
+      "canonical_name": "Ottomar Rosenbach",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5076990306",
+        "A5071187168"
+      ],
+      "after_ids": [
+        "A5070702468",
+        "A5071187168",
+        "A5076990306"
+      ],
+      "ids_added": [
+        "A5070702468"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q20031320",
+      "canonical_name": "Fred Casey",
+      "before_status": "EXCLUDED_IDENTITY_ERROR",
+      "after_status": "NO_GRAPH_RECORD",
+      "before_ids": [],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q124897",
+      "canonical_name": "Anton Moortgat",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5018704554",
+        "A5004074646",
+        "A5013225685",
+        "A5104414231",
+        "A5104397241"
+      ],
+      "after_ids": [
+        "A5004074646",
+        "A5013225685",
+        "A5018704554",
+        "A5104397241",
+        "A5104414231"
+      ],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q15994329",
+      "canonical_name": "Cecil Joslin Brooks",
+      "before_status": "AMBIGUOUS_COLLISION",
+      "after_status": "VERIFIED_SINGLE",
+      "before_ids": [],
+      "after_ids": [
+        "A5081875897"
+      ],
+      "ids_added": [
+        "A5081875897"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q1577507",
+      "canonical_name": "Hans-Joachim Weimann",
+      "before_status": "AMBIGUOUS_COLLISION",
+      "after_status": "AMBIGUOUS_COLLISION",
+      "before_ids": [],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": true
+    },
+    {
+      "person_id": "cv_Q6947701",
+      "canonical_name": "Itzhak Ilan",
+      "before_status": "AMBIGUOUS_COLLISION",
+      "after_status": "EXCLUDED_IDENTITY_ERROR",
+      "before_ids": [],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q23059458",
+      "canonical_name": "Minoo Lenarz",
+      "before_status": "VERIFIED_SINGLE",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5073627948"
+      ],
+      "after_ids": [
+        "A5073627948",
+        "A5106979614"
+      ],
+      "ids_added": [
+        "A5106979614"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q19850025",
+      "canonical_name": "Oskar Simony",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5012920577",
+        "A5071357435"
+      ],
+      "after_ids": [
+        "A5012920577",
+        "A5071357435",
+        "A5149748217"
+      ],
+      "ids_added": [
+        "A5149748217"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q3385700",
+      "canonical_name": "Pierre L. G. Benoit",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5063335980",
+        "A5133441731"
+      ],
+      "after_ids": [
+        "A5063335980",
+        "A5072950904",
+        "A5133441731"
+      ],
+      "ids_added": [
+        "A5072950904"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q2641681",
+      "canonical_name": "Alexander Aigner",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "AMBIGUOUS_COLLISION",
+      "before_ids": [
+        "A5100268971",
+        "A5103302324",
+        "A5104375058",
+        "A5104740538",
+        "A5104676356",
+        "A5104793263",
+        "A5035950863"
+      ],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [
+        "A5035950863",
+        "A5100268971",
+        "A5103302324",
+        "A5104375058",
+        "A5104676356",
+        "A5104740538",
+        "A5104793263"
+      ],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q7416679",
+      "canonical_name": "Sandra Leiblum",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_SINGLE",
+      "before_ids": [
+        "A5075417166",
+        "A5006728685"
+      ],
+      "after_ids": [
+        "A5075417166"
+      ],
+      "ids_added": [],
+      "ids_removed": [
+        "A5006728685"
+      ],
+      "retrieval_needed": true
+    },
+    {
+      "person_id": "cv_Q104271",
+      "canonical_name": "Michael Theunissen",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5067845805",
+        "A5005844820"
+      ],
+      "after_ids": [
+        "A5005844820",
+        "A5067845805"
+      ],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q47216729",
+      "canonical_name": "Alfonso W. Quiroz",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5096507866",
+        "A5073210039",
+        "A5110164869"
+      ],
+      "after_ids": [
+        "A5073210039",
+        "A5110164869"
+      ],
+      "ids_added": [],
+      "ids_removed": [
+        "A5096507866"
+      ],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q1912572",
+      "canonical_name": "Max Gerlach",
+      "before_status": "AMBIGUOUS_COLLISION",
+      "after_status": "AMBIGUOUS_COLLISION",
+      "before_ids": [],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q16945536",
+      "canonical_name": "Algot Werin",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5040398759",
+        "A5076154763"
+      ],
+      "after_ids": [
+        "A5040398759",
+        "A5076154763",
+        "A5148273427"
+      ],
+      "ids_added": [
+        "A5148273427"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q594723",
+      "canonical_name": "Anton Tautscher",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5028266044",
+        "A5074476770",
+        "A5081201328"
+      ],
+      "after_ids": [
+        "A5028266044",
+        "A5074476770"
+      ],
+      "ids_added": [],
+      "ids_removed": [
+        "A5081201328"
+      ],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q5294283",
+      "canonical_name": "Donald E. Graves",
+      "before_status": "EXCLUDED_IDENTITY_ERROR",
+      "after_status": "EXCLUDED_IDENTITY_ERROR",
+      "before_ids": [],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q1393663",
+      "canonical_name": "Peter Rice",
+      "before_status": "AMBIGUOUS_COLLISION",
+      "after_status": "NO_GRAPH_RECORD",
+      "before_ids": [],
+      "after_ids": [],
+      "ids_added": [],
+      "ids_removed": [],
+      "retrieval_needed": false
+    },
+    {
+      "person_id": "cv_Q15440160",
+      "canonical_name": "Hans Arnsperger",
+      "before_status": "VERIFIED_CLUSTER",
+      "after_status": "VERIFIED_CLUSTER",
+      "before_ids": [
+        "A5011649383",
+        "A5098595922"
+      ],
+      "after_ids": [
+        "A5011649383",
+        "A5014453695",
+        "A5098595922"
+      ],
+      "ids_added": [
+        "A5014453695"
+      ],
+      "ids_removed": [],
+      "retrieval_needed": false
+    }
+  ],
+  "downstream_note": "Changing an included Author-ID set invalidates the verified-work corpus and the network100 frame; this candidate table is not the confirmatory frame until PREEXPOSURE_FRAME_FREEZE.md is re-derived and signed."
+}
