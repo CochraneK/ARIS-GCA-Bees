@@ -1,25 +1,49 @@
-# Tier-1 79-taxon module matrix · Pilot 8
+# Tier-1 79-taxon module matrix · Pilot 9
 
-This matrix joins the retained 29-taxon Pilot-7 evidence states to the 50 new Tier-1 screening taxa.
+Updated: 2026-09-19
+
+Canonical current matrix: data/module_evidence_state_tier1_v2.csv.
 
 ## Current observed coverage
 
-- **A · generative_cognition:** 9/79 observed now; 5/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **B · social_transmission:** 16/79 observed now; 5/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **C · communication:** 11/79 observed now; 3/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **D · manipulation_embodiment:** 8/79 observed now; 1/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **E · externalization:** 10/79 observed now; 3/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **F · social_architecture:** 21/79 observed now; 12/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **G · life_history_learning_opportunity:** 60/79 observed now; 36/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **H · energetics_neural_budget:** 55/79 observed now; 37/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **I · ecological_challenge_opportunity:** 53/79 observed now; 27/50 new-wave taxa already have an exact seed or low-cost screening proxy.
-- **J · demography_cultural_population:** 41/79 observed now; 22/50 new-wave taxa already have an exact seed or low-cost screening proxy.
+| Module | Observed / 79 | Missing |
+|---|---:|---:|
+| A · generative cognition | **21** | 58 |
+| B · social transmission | **22** | 57 |
+| C · communication | **34** | 45 |
+| D · manipulation / embodiment | **18** | 61 |
+| E · persistent externalization | **17** | 62 |
+| F · social architecture | **32** | 47 |
+| G · life history / learning opportunity | **60** | 19 |
+| H · energetics / neural budget | **55** | 24 |
+| I · ecological challenge / opportunity | **53** | 26 |
+| J · demography / cultural population | **41** | 38 |
 
-## Interpretation
+## A–F cohort split
 
-- A–F for new taxa are observed only where exact-species seed evidence exists or an ASNR F proxy is available.
-- G–J can be marked measured_screening_proxy from standardized low-cost sources.
-- Screening proxies are not confirmatory A–J scores.
-- not_systematically_coded is missingness, not biological absence.
+### Retained 29
+- observed: 46 / 174
+- missing: **128**
 
-This is the empirical starting mask for Tier-1 deep coding.
+By module: A 4/29, B 11/29, C 8/29, D 7/29, E 7/29, F 9/29.
+
+### Added 50
+- observed: 98 / 300
+- missing: **202**
+
+By module: A 17/50, B 11/50, C 26/50, D 11/50, E 10/50, F 23/50.
+
+All 50 additions have completed standardized first-pass A–F coding. Missing new50 cells now mean not_located_first_pass or otherwise unobserved after first pass; they are candidates for targeted second-pass work, not pending first-pass cells.
+
+## Interpretation rules
+
+- observed means evidence/proxy/context is available under the current codebook; it is not a normalized ability score.
+- not_tested, not_located_first_pass, and other unobserved states are missingness.
+- missingness must never be interpreted as biological absence.
+- tested-negative evidence applies to named subindicators/tasks and can coexist with positive evidence elsewhere in the same module.
+- exact-species evidence is preferred; documented synonyms/current-name crosswalks are allowed.
+- low-cost G–J screening proxies are feasibility/data layers, not confirmatory A–J values.
+
+## Next matrix operation
+
+Use data/deep_coding_cell_queue_v2.csv to reduce the remaining 330 A–F gaps in balanced batches, then regenerate the matrix and rerun recoverability.
