@@ -1,0 +1,48 @@
+name: ARIS4C011 validate confirmatory adjudication
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-confirmatory-adjudication-validate.yml"
+      - "papers/011-research-forensics/code/validate_confirmatory_adjudication.py"
+      - "papers/011-research-forensics/code/test_validate_confirmatory_adjudication.py"
+      - "papers/011-research-forensics/data/protocol/confirmatory_adjudication_packet_v0.csv"
+      - "papers/011-research-forensics/data/protocol/confirmatory_adjudication_protocol_v0.json"
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test validator
+        run: python code/test_validate_confirmatory_adjudication.py -q
+      - name: Validate current packet structure
+        run: |
+          python code/validate_confirmatory_adjudication.py \
+            --packet data/protocol/confirmatory_adjudication_packet_v0.csv \
+            --protocol data/protocol/confirmatory_adjudication_protocol_v0.json \
+            --output data/results/confirmatory_adjudication_validation_v0.json
+      - name: Commit validation report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/confirmatory_adjudication_validation_v0.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ARIS4C011 validate adjudication packet structure"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git pull --rebase origin main
+            if git push; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
