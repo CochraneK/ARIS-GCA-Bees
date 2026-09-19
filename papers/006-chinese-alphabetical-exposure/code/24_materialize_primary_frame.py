@@ -147,6 +147,8 @@ def main():
     ap.add_argument("--target-works",type=int,default=40)
     ap.add_argument("--min-cell-works",type=int,default=20)
     ap.add_argument("--max-blocks",type=int,default=5)
+    ap.add_argument("--start-year",type=int,default=2011)
+    ap.add_argument("--end-year",type=int,default=2025)
     ap.add_argument("--outdir",required=True)
     a=ap.parse_args()
 
@@ -154,7 +156,7 @@ def main():
     fname=field_name(a.field_id)
     summaries=[];focal_rows=[];work_rows=[];all_excl=Counter()
 
-    for year in range(2011,2026):
+    for year in range(a.start_year,a.end_year+1):
         seen=set();accepted=[];excl=Counter();raw_sampled=0
         for block in range(1,a.max_blocks+1):
             works=sample_block(a.field_id,year,block);raw_sampled+=len(works)
@@ -269,7 +271,7 @@ def main():
         "script":"24_materialize_primary_frame.py",
         "confirmatory_effect_estimation_allowed":False,
         "field_id":a.field_id,"field_name":fname,
-        "focal_years":[2011,2025],
+        "focal_years":[a.start_year,a.end_year],
         "target_works_per_field_year":a.target_works,
         "minimum_works_per_field_year":a.min_cell_works,
         "max_blocks":a.max_blocks,
