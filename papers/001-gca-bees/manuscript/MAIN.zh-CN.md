@@ -83,10 +83,6 @@ Perry and Barron (2013) 表明蜜蜂会根据试次难度调整 opt-out 使用�
 
 这说明因子可以非常紧凑地概括协方差，但并不能唯一说明协方差的生物学来源。
 
-![图 4：两条证据链之间的边界](../figures/figure4_evidence_boundary.svg)
-
-**图 4｜两条证据链之间的边界。** 现有研究分别支持结构化学习协变和难度敏感的 opt-out 行为，但缺少“同一只蜜蜂身上两类表型如何耦合”的直接证据。因此，不能仅凭物种层面的共存推断单一机制、元认知、意识或共享的 precision/confidence 变量。
-
 ---
 
 ## 4. 竞争模型
@@ -116,6 +112,10 @@ Perry and Barron (2013) 表明蜜蜂会根据试次难度调整 opt-out 使用�
 在设定场景下，两个相关因子模型的选择率从 N=60 时约 49%，提升到 N=90 时 59.5%、N=120 时 62.5%、N=160 时 79.5%。因此二三十只个体虽然可能足以观察某些 pairwise correlation，却不太可能稳定区分细微的 latent coupling。
 
 ![Figure 3. Synthetic model-recovery diagnostic](../figures/figure3_model_recovery.svg)
+
+![图 4：两条证据链之间的边界](../figures/figure4_evidence_boundary.svg)
+
+**图 4｜两条证据链之间的边界。** 现有研究分别支持结构化学习协变和难度敏感的 opt-out 行为，但缺少“同一只蜜蜂身上两类表型如何耦合”的直接证据。因此，不能仅凭物种层面的共存推断单一机制、元认知、意识或共享的 precision/confidence 变量。
 
 ---
 
