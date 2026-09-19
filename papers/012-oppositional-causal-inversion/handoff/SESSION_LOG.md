@@ -1,10 +1,32 @@
 # ARIS4C012 · Session log
 
-Append substantial execution sessions in reverse chronological order or chronological order, but remain consistent.
+Append substantial execution sessions in chronological order.
 
 ## 2026-09-19 · Continuity retrofit
 
 - Added the standardized ARIS4C per-paper handoff package.
 - Bootstrapped project context, current state, TODO, decision history, and a public-safe conversation record.
 - Established Git as the cross-device / cross-account / cross-agent continuity surface.
-- Future material sessions must append execution results and validation here.
+
+## 2026-09-19 · Pre-deletion reconciliation
+
+- Re-read the live Git state rather than relying on chat memory.
+- Detected and resolved a status conflict:
+  - older `process/STATUS.md` said Coder B was missing;
+  - `paper.json`, handoff files, completed B data, and reliability outputs showed that Coder B had since completed.
+- Verified independent WorkBuddy Coder B commit:
+  `8f9ec0dd99e25ae0411fd4e06d2b4dbd1ef219d9`.
+- Verified P01–P30 core B fields are complete.
+- Verified reliability workflow output is `READY_FOR_ADJUDICATION`.
+- Reinterpreted that workflow state correctly: mechanical completeness, not a scientific reliability pass.
+- Recorded key raw reliability:
+  - opposition_valid kappa 0.466;
+  - OCI candidacy kappa 0.592;
+  - primary_mechanism kappa 0;
+  - 141 disagreement cells.
+- Identified a measurement/instrument issue: A and B used inconsistent value vocabularies in several fields, so exact-string nominal agreement confounds lexical encoding with substantive disagreement.
+- Added `process/PILOT0B_RELIABILITY_AUDIT.md`.
+- Updated canonical `process/STATUS.md`.
+- Updated the handoff package to make the next scientific step unambiguous:
+  diagnostic adjudication -> controlled-vocabulary Schema v2 -> fresh A2/B2 Pilot -> only then full evidence-map screening.
+- Prepared the repository so the current chat can be deleted without losing necessary project state.
