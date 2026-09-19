@@ -1,6 +1,6 @@
 # ARIS4C016 Status
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## Stage
 
@@ -28,6 +28,8 @@ The project has entered empirical Phase 0 using the public Sulpizio et al. datas
 - 18 community samples linked to 13 Glottolog language IDs / 5 top-level families;
 - genealogy/identification limits documented;
 - English repeated-item community-variation diagnostic and item-fixed-effects model completed;
+- balanced all-five-English-item sensitivity completed;
+- shared-filler negative-control analysis completed, showing community effects are not yet demonstrably taboo-specific;
 - stratified dual-coder reliability protocol and deterministic audit sampler implemented;
 - phonology feasibility audit completed and external G2P/PHOIBLE replication plan specified;
 - naïve semantic-fingerprint construction tested and rejected as measurement-biased.
@@ -37,7 +39,7 @@ The project has entered empirical Phase 0 using the public Sulpizio et al. datas
 1. Execute independent dual coding on the deterministic stratified ontology audit sample.
 2. Estimate axis- and label-level reliability; adjudicate only after freezing A/B labels.
 3. Re-code enough lexical items to construct the first measurement-corrected semantic fingerprints.
-4. Extend the repeated-item model with ontology interactions and non-taboo dimension controls.
+4. After ontology reliability passes, extend the repeated-item model with ontology-domain interactions and a purpose-built matched taboo/neutral interaction test.
 5. Build the external pronunciation/G2P validation layer for the preregistered approximant replication.
 6. Freeze confirmatory semantic and phonological hypotheses.
 7. Design the expanded crossed language × country sample to repair Phase-0 identification limits.
