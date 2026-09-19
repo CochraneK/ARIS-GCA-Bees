@@ -10,7 +10,7 @@ Applies thresholds frozen in process/EXECUTION_ACCEPTANCE_RULE.md.
 Does not read or estimate H1/H2/H3 coefficients or predictor-outcome relations.
 """
 from __future__ import annotations
-import argparse,json
+import argparse,csv,json
 from pathlib import Path
 
 EXPECTED_FIELDS=list(range(11,37))
@@ -19,9 +19,14 @@ EXPECTED_YEARS=list(range(2011,2026))
 def load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
-def truth(x): return bool(x)
+def truth(x):
+    return str(x).strip().lower()=="true" if isinstance(x,str) else bool(x)
 
-def convention_gate(m):
+def read_csv(path):
+    with Path(path).open(encoding="utf-8",newline="") as h:
+        return list(csv.DictReader(h))
+
+def convention_gate(m,rolling_rows):
     errors=[]
     if m.get("confirmatory_use_allowed") not in {False,None}:
         errors.append("convention artifact unexpectedly marked confirmatory-use allowed")
@@ -43,29 +48,27 @@ def convention_gate(m):
     if robust_share < .80:
         errors.append(f"3+ rolling support {robust_share:.4f} < 0.80")
 
-    # Aggregate manifest alone cannot prove per-field supported-year minima.
-    # Require evaluator sidecar fields if aggregator has been upgraded to include them.
-    pf=m.get("primary_supported_years_by_field")
-    p3=m.get("robustness_3plus_supported_years_by_field")
-    if not isinstance(pf,dict):
-        errors.append("missing primary_supported_years_by_field")
-    else:
-        bad={k:v for k,v in pf.items() if int(v)<10}
-        if bad:errors.append(f"fields with <10 primary supported years: {bad}")
-    if not isinstance(p3,dict):
-        errors.append("missing robustness_3plus_supported_years_by_field")
-    else:
-        bad={k:v for k,v in p3.items() if int(v)<8}
-        if bad:errors.append(f"fields with <8 3+ supported years: {bad}")
+    pf={str(fid):0 for fid in EXPECTED_FIELDS}
+    p3={str(fid):0 for fid in EXPECTED_FIELDS}
+    for r in rolling_rows:
+        fid=str(int(r["field_id"]))
+        if truth(r.get("primary_full_field_supported")):pf[fid]=pf.get(fid,0)+1
+        if truth(r.get("robustness_3plus_supported")):p3[fid]=p3.get(fid,0)+1
+    bad={k:v for k,v in pf.items() if int(v)<10}
+    if bad:errors.append(f"fields with <10 primary supported years: {bad}")
+    bad3={k:v for k,v in p3.items() if int(v)<8}
+    if bad3:errors.append(f"fields with <8 3+ supported years: {bad3}")
 
     return {
         "status":"pass" if not errors else "fail",
         "errors":errors,
         "primary_supported_share":primary_share,
         "robustness_3plus_supported_share":robust_share,
+        "primary_supported_years_by_field":pf,
+        "robustness_3plus_supported_years_by_field":p3,
     }
 
-def primary_frame_gate(m):
+def primary_frame_gate(m,count_rows):
     errors=[]
     if m.get("confirmatory_effect_estimation_allowed") not in {False,None}:
         errors.append("primary-frame artifact unexpectedly allows confirmatory estimation")
@@ -79,17 +82,18 @@ def primary_frame_gate(m):
         errors.append("field-year cells != 390")
 
     status=m.get("cell_status_counts") or {}
-    retained_ge20=int(status.get("target_met",0))+int(status.get("retained_below_target",0))
+    retained_ge20=int(status.get("target_met",0))+int(status.get("retain_below_target",0))
     retained_share=retained_ge20/390
     if retained_share < .90:
         errors.append(f"retained >=20-work cells share {retained_share:.4f} < 0.90")
 
-    per_field=m.get("retained_years_by_field")
-    if not isinstance(per_field,dict):
-        errors.append("missing retained_years_by_field")
-    else:
-        bad={k:v for k,v in per_field.items() if int(v)<10}
-        if bad:errors.append(f"fields with <10 retained years: {bad}")
+    per_field={str(fid):0 for fid in EXPECTED_FIELDS}
+    for r in count_rows:
+        fid=str(int(r["field_id"]))
+        if r.get("cell_status") in {"target_met","retain_below_target"}:
+            per_field[fid]=per_field.get(fid,0)+1
+    bad={k:v for k,v in per_field.items() if int(v)<10}
+    if bad:errors.append(f"fields with <10 retained years: {bad}")
 
     if int(m.get("works_retained") or 0)<10000:
         errors.append("works_retained < 10000")
@@ -104,6 +108,7 @@ def primary_frame_gate(m):
         "status":"pass" if not errors else "fail",
         "errors":errors,
         "retained_cell_share":retained_share,
+        "retained_years_by_field":per_field,
     }
 
 def identity_gate(m):
@@ -141,19 +146,23 @@ def main():
     ap.add_argument("--convention-manifest",required=True)
     ap.add_argument("--primary-frame-manifest",required=True)
     ap.add_argument("--identity-manifest",required=True)
+    ap.add_argument("--convention-rolling-csv",required=True)
+    ap.add_argument("--primary-frame-counts-csv",required=True)
     ap.add_argument("--out",required=True)
     a=ap.parse_args()
 
     cm=load(a.convention_manifest)
     pm=load(a.primary_frame_manifest)
     im=load(a.identity_manifest)
+    rolling_rows=read_csv(a.convention_rolling_csv)
+    count_rows=read_csv(a.primary_frame_counts_csv)
 
     result={
         "script":"28_evaluate_execution_gates.py",
         "effect_estimation_performed":False,
         "acceptance_rule":"process/EXECUTION_ACCEPTANCE_RULE.md",
-        "convention":convention_gate(cm),
-        "primary_frame":primary_frame_gate(pm),
+        "convention":convention_gate(cm,rolling_rows),
+        "primary_frame":primary_frame_gate(pm,count_rows),
         "identity_risk":identity_gate(im),
     }
     result["all_execution_gates_pass"]=all(
