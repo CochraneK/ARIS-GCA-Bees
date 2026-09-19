@@ -12,7 +12,7 @@ DASHBOARD = PAPERS / "dashboard.json"
 
 ZH_TITLES = {
     "001": "蜜蜂 GCA × 不确定性",
-    "002": "语言周期性检验",
+    "002": "LING-01 · 语言周期性检验",
     "003": "殖民遗产 × 学科优势",
     "004": "排斥的反事实知识网络成本",
     "005": "坏科学的全球隐性负担",
@@ -27,6 +27,7 @@ ZH_TITLES = {
     "014": "Public Integrity Forensics",
     "015": "Sleeping Beauty Miner",
     "016": "全球脏话 / 禁忌语言语法",
+    "017": "LING-02 · 预测性语言空间",
 }
 
 STATE = {
