@@ -80,3 +80,15 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Canonical artifacts:** `data/reliability/pilot0_disagreement_diagnosis.csv`, `data/reliability/pilot0_disagreement_diagnosis_summary.json`, `process/PILOT0B_DISAGREEMENT_DIAGNOSIS.md`, `code/diagnose_pilot0_disagreements.py`.
 
 **Next gate:** freeze controlled-vocabulary Schema v2, then draw a fresh balanced validation sample for independent A2/B2 coding.
+
+## 2026-09-19 · Controlled-vocabulary Schema v2 frozen
+
+**Decision:** Freeze v2 as an orthogonal coding instrument for a fresh independent A2/B2 validation sample; do not use it to retroactively recode Pilot 0B.
+
+**Structure:** entry gate; five opposition-relation indicators; five index-switch indicators; eight generative-mechanism indicators; ten evidence-mode indicators; controlled evidence strength; controlled result direction; controlled normative valence. Multi-label axes are binary/uncertain rather than forced single categories.
+
+**Reliability gate:** opposition-valid κ >= 0.70; informative secondary axes require κ >= 0.60 and raw agreement >= 0.80, with median informative-axis κ >= 0.70. Undefined κ from degenerate sparse axes is reported rather than treated as a pass.
+
+**Canonical artifacts:** `process/SCHEMA_V2_FROZEN.md`, `process/SCHEMA_V2_FREEZE.json`, `data/v2_validation_coding_template.csv`.
+
+**Next gate:** draw a fresh balanced sample and freeze blind A2/B2 packets before any new reliability scoring.
