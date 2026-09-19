@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "paper_id": "006",
+  "unlocked": true,
+  "prereg_lock_label": "ARIS4C006-prereg-v1",
+  "prereg_lock_sha256": "c416b84523d30346a46e5779fb55393af63bae0f578ca71a19c4671325e21ffd",
+  "provenance_note": "All frozen outcome-blind execution gates passed, preregistration consistency audit passed, and the deterministic preregistration lock was committed before confirmatory outcome access."
+}
