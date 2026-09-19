@@ -33,9 +33,17 @@ def review(
     reviewer,
     *,
     state="SEVERE_SUPPORTED",
+    detail=None,
     quality="A",
     materiality="MATERIAL",
 ):
+    if detail is None:
+        if state == "SEVERE_SUPPORTED":
+            detail = "SEVERE_SUPPORTED"
+        elif state == "NON_SEVERE_SUPPORTED":
+            detail = "NO_MATERIAL_PROBLEM_FOUND"
+        else:
+            detail = "INDETERMINATE"
     return {
         "candidate_id": "CALC_abc",
         "paper_id": "P1",
@@ -46,6 +54,7 @@ def review(
         "prompt_version": "CAL-REF-V1",
         "run_id": "run1",
         "reference_state": state,
+        "reference_scientific_state_detail": detail,
         "anchor_quality": quality,
         "materiality_assessment": materiality,
         "evidence_type": "FORMAL_FINDING",
@@ -102,6 +111,45 @@ class CalibrationReferenceTests(unittest.TestCase):
         self.assertEqual(len(anchors), 1)
         self.assertEqual(anchors[0]["anchor_family"], "N+")
         self.assertEqual(anchors[0]["reference_binary_state"], 0)
+
+
+    def test_honest_major_error_is_valid_negative_anchor(self):
+        a = review(
+            "REF_A",
+            state="NON_SEVERE_SUPPORTED",
+            detail="HONEST_MAJOR_ERROR",
+            materiality="MATERIAL",
+        )
+        b = review(
+            "REF_B",
+            state="NON_SEVERE_SUPPORTED",
+            detail="HONEST_MAJOR_ERROR",
+            materiality="MATERIAL",
+        )
+        anchors, _ = merge_reference_reviews([a], [b])
+        self.assertEqual(len(anchors), 1)
+        self.assertEqual(anchors[0]["anchor_family"], "N+")
+        self.assertEqual(
+            anchors[0]["reference_scientific_state"],
+            "HONEST_MAJOR_ERROR",
+        )
+
+    def test_negative_detail_disagreement_is_excluded(self):
+        a = review(
+            "REF_A",
+            state="NON_SEVERE_SUPPORTED",
+            detail="MINOR_OR_IMMATERIAL",
+            materiality="IMMATERIAL",
+        )
+        b = review(
+            "REF_B",
+            state="NON_SEVERE_SUPPORTED",
+            detail="NO_MATERIAL_PROBLEM_FOUND",
+            materiality="SCIENTIFICALLY_UNAFFECTED",
+        )
+        anchors, summary = merge_reference_reviews([a], [b])
+        self.assertEqual(anchors, [])
+        self.assertEqual(summary["status_counts"]["DETAIL_DISAGREEMENT"], 1)
 
     def test_state_disagreement_is_excluded(self):
         a = review("REF_A")
