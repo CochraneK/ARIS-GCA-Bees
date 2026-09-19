@@ -1,41 +1,58 @@
-# ARIS4C Portfolio Status Model · v1
+# ARIS4C Portfolio Status Model · v2
 
 **Effective:** 2026-09-19  
-**Scope:** the primary activity state of every numbered ARIS4C paper
+**Scope:** the primary live execution state of every numbered ARIS4C paper
 
-ARIS4C uses exactly three mutually exclusive primary activity states.
+ARIS4C uses exactly four mutually exclusive primary states.
 
 | State | 中文 | Meaning |
 |---|---|---|
-| `active` | 进行中 | The next meaningful research step is known and executable now with the currently available environment/resources. |
-| `waiting` | 等待中 | The next step is known, but meaningful progress depends on an external condition such as human/independent review, native-speaker annotation, data transfer/acquisition, permission, another execution surface, or similar dependency. |
-| `quiet` | 静默 | The project is intentionally not under active execution. This includes submission-ready/completed work and deliberately parked work. |
+| `finish` | 完成 | The current final/output contract is complete. No further execution is required unless the paper is deliberately reopened. |
+| `active` | 正在推进 | Meaningful research work is running now, or the project has produced a recent substantive paper-folder update. |
+| `waiting` | 待推进 | The next meaningful step is executable with available resources, but the project is not currently being advanced. |
+| `block` | 阻塞 | Meaningful progress depends on an external condition such as human/independent review, native-speaker annotation, data transfer/acquisition, permission, another execution surface, or similar dependency. |
 
-## What is not a primary state
+## Active is a live signal
 
-The following are orthogonal signals and must not become new top-level categories:
+`active` is intentionally stricter than “this project can continue.”
 
-- **Freshness / last meaningful update** — how long since scientific work changed.
-- **Running** — whether a CI, compute, or research job is executing right now.
-- **Blocker / dependency reason** — why a project is waiting or what constrains the next step.
-- **Scientific/review gate** — a research-process checkpoint; it does not itself define portfolio activity.
+A project is Active when there is evidence that it is actually moving now, for example:
 
-Therefore:
+- a research-specific CI/compute job is currently running;
+- a recent substantive commit changes scientific code, data, analysis, results, manuscript content, figures/tables, or research design.
 
-- an `active` project can be stale;
-- a `waiting` project can receive frequent metadata/CI commits while still waiting;
-- a `quiet` project may remain unchanged indefinitely without being considered stale in a problematic sense.
+The following do **not** by themselves make a paper Active:
+
+- README/index regeneration;
+- GitHub Pages deployment;
+- handoff synchronization;
+- dashboard/status-only metadata edits;
+- formatting-only or repository-maintenance commits.
+
+If a project can be continued but has no current/recent meaningful execution, classify it as `waiting`.
 
 ## Canonical rule
 
-`papers/dashboard.json -> projects -> <id> -> activity` is the canonical portfolio activity field.
+`papers/dashboard.json -> projects -> <id> -> activity` is the canonical portfolio state.
 
 Only these values are valid:
 
 ```text
+finish
 active
 waiting
-quiet
+block
 ```
 
-Legacy values such as `gated` and `blocked` are invalid as primary activity states. Their underlying meaning belongs in `next_gate`, `blocker`, handoff status, or freshness/running metadata instead.
+The old portfolio values `quiet`, `gated`, and `blocked` are invalid.
+
+Scientific “gates” can still appear in `stage`, `next_gate`, or project process files. They describe the research workflow, not the portfolio execution state.
+
+## Current mapping after v2 migration
+
+- **Finish:** 001, 002
+- **Active:** 015
+- **Waiting:** 003, 004, 006, 007, 008, 009, 010, 011, 012, 014
+- **Block:** 005, 013, 016
+
+This mapping is a snapshot. Active/Waiting may change as real research execution starts or stops.
