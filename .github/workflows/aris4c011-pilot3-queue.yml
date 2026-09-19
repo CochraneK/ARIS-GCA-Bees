@@ -1,0 +1,54 @@
+name: ARIS4C011 Pilot 3 Queue Refresh
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/data/pilot/pilot3_correction_candidates.csv"
+      - "papers/011-research-forensics/code/pilot3_candidate_queue.py"
+      - ".github/workflows/aris4c011-pilot3-queue.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild candidate queue
+        run: |
+          python "$PAPER_DIR/code/pilot3_candidate_queue.py" \
+            --input "$PAPER_DIR/data/pilot/pilot3_correction_candidates.csv" \
+            --output "$PAPER_DIR/data/results/pilot3_candidate_queue.csv"
+      - name: Validate completed cases and active ordering
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path("papers/011-research-forensics/data/results/pilot3_candidate_queue.csv")
+          rows=list(csv.DictReader(p.open(encoding="utf-8")))
+          by={r["candidate_id"]:r for r in rows}
+          assert by["p3-toxo-missing-columns"]["queue_status"]=="COMPLETE"
+          assert by["p3-music-country-table"]["artifact_state"]=="NO_PRE_EVENT_OBJECT"
+          active=[r for r in rows if r["active_rank"]]
+          assert active[0]["candidate_id"]=="p3-adaptive-pvalues"
+          print([(r["candidate_id"],r["priority_score"],r["queue_status"],r["active_rank"]) for r in rows])
+          PY
+      - name: Commit refreshed queue
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$PAPER_DIR/data/results/pilot3_candidate_queue.csv"
+          if ! git diff --cached --quiet; then
+            git commit -m "011: refresh Pilot 3 candidate queue"
+            git pull --rebase origin main
+            git push
+          fi
