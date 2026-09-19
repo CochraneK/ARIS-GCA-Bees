@@ -92,6 +92,7 @@ def build_mechanism_cohort(
     matching_early_percentile_caliper: float = 0.15,
     matching_max_abs_smd: float = 0.10,
     min_primary_match_rate: float = 0.50,
+    require_validated_b_calibration_for_analysis: bool = True,
 ) -> dict[str, Any]:
     """Create four mechanism states and primary matched contrasts.
 
@@ -242,10 +243,16 @@ def build_mechanism_cohort(
     primary_match_ok = primary["match_rate"] >= min_primary_match_rate
     primary_balance_ok = primary_balance["balance_pass"] is True
 
+    b_calibration_ok = (
+        b_calibration.validated_for_source
+        or not require_validated_b_calibration_for_analysis
+    )
+
     mechanism_analysis_ready = (
         n_sb > 0
         and primary_match_ok
         and primary_balance_ok
+        and b_calibration_ok
     )
 
     analysis_block_reasons = []
@@ -262,6 +269,10 @@ def build_mechanism_cohort(
     elif n_sb > 0 and primary_balance["balance_pass"] is False:
         analysis_block_reasons.append(
             "SB-vs-Forgotten observed covariates remain imbalanced"
+        )
+    if n_sb > 0 and not b_calibration_ok:
+        analysis_block_reasons.append(
+            "Beauty Coefficient threshold is not validated for this source"
         )
 
     return {
@@ -311,6 +322,12 @@ def build_mechanism_cohort(
             "min_match_rate": min_primary_match_rate,
             "max_abs_smd": matching_max_abs_smd,
             "requires_assessable_balance": True,
+            "requires_validated_b_calibration": (
+                require_validated_b_calibration_for_analysis
+            ),
+            "b_calibration_validated_for_source": (
+                b_calibration.validated_for_source
+            ),
         },
         "contrasts": contrasts,
         "records": records,
