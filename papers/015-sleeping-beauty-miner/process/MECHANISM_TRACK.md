@@ -217,12 +217,18 @@ For an SB with sleep length s:
   regime;
 - require no qualifying awakening burst at or before the case event time;
 - allow the control to awaken later;
+- allow the same eligible paper to serve in more than one distinct case risk
+  set when it remains at risk at each event time;
+- keep controls unique within a single case risk set;
 - match on sleep-rate distance, reference count and author count;
 - do not use the control's post-event future outcome to select the match.
 
 A paper that later becomes an SB is therefore allowed to serve as a control at
-an earlier case's awakening time if it was still dormant then. This naturally
-supports later survival / time-to-awakening analysis.
+an earlier case's awakening time if it was still dormant then. Likewise, the
+same at-risk paper may appear in multiple case risk sets. This follows
+incidence-density/risk-set sampling semantics and avoids arbitrary depletion
+caused by case processing order. Later inference must account for repeated
+controls when applicable.
 
 This is now the primary readiness contrast because it aligns the comparison
 time and avoids defining controls as papers that must remain forgotten forever.
