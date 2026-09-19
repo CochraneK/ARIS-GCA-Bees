@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import subprocess
@@ -14,6 +15,14 @@ OUT = ROOT / "docs" / "index.html"
 DASHBOARD = PAPERS / "dashboard.json"
 PROGRESS_HISTORY = PAPERS / "progress_history.json"
 REPO_URL = "https://github.com/CochraneK/ARIS4C"
+
+
+def asset_version(path: Path) -> str:
+    """Short content hash for cache-busting public static assets."""
+    try:
+        return hashlib.sha256(path.read_bytes()).hexdigest()[:12]
+    except OSError:
+        return "missing"
 
 
 def last_commit_iso(folder: Path) -> str:
@@ -220,6 +229,12 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     mature = sum(1 for v in progresses if v >= 45)
     day_history = latest_day_history(history)
     history_json = json.dumps(day_history, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    css_version = asset_version(DOCS / "command-center.css")
+    js_version = asset_version(DOCS / "command-center.js")
+    history_summary = (
+        f"{day_history.get('date') or 'Today'} · {len(day_history.get('points', []))} checkpoints · "
+        f"{len(papers)} papers on one chart"
+    )
 
     return f"""<!doctype html>
 <html lang="en" data-theme="light">
@@ -230,7 +245,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
   <meta name="description" content="ARIS4C — Cochrane Kang's living research command center.">
   <meta name="theme-color" content="#f3f1ea">
   <title>ARIS4C · Research Command Center</title>
-  <link rel="stylesheet" href="./command-center.css">
+  <link rel="stylesheet" href="./command-center.css?v={css_version}">
 </head>
 <body>
   <div class="app">
@@ -297,7 +312,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
             <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 330" role="img" aria-label="Today's ARIS4C progress for all papers"></svg>
           </div>
           <div id="progressHistoryLegend" class="progress-history-legend" aria-label="Paper legend"></div>
-          <div class="progress-history-foot"><span id="progressHistorySummary">Loading today's history…</span><span>Git checkpoints · management estimate, not a scientific result</span></div>
+          <div class="progress-history-foot"><span id="progressHistorySummary">{esc(history_summary)}</span><span>Git checkpoints · management estimate, not a scientific result</span></div>
         </section>
 
         <div class="control-bar">
@@ -344,7 +359,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     </section>
   </div>
   <script id="progressHistoryData" type="application/json">{history_json}</script>
-  <script src="./command-center.js" defer></script>
+  <script src="./command-center.js?v={js_version}" defer></script>
 </body>
 </html>
 """
