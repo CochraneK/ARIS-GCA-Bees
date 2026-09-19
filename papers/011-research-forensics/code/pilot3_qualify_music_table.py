@@ -9,7 +9,7 @@ This is intentionally case-specific. It upgrades only if:
 """
 from __future__ import annotations
 
-import argparse, hashlib, json, time
+import argparse, hashlib, json, time, unicodedata
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
@@ -65,10 +65,16 @@ def main():
             body=fetch(replay)
             text=body.decode("utf-8","replace")
             low=text.lower()
-            identity_ok=(doi.lower() in low or f"journal.pone.0293412.t001" in low)
+            folded="".join(
+                ch for ch in unicodedata.normalize("NFKD", low)
+                if not unicodedata.combining(ch)
+            )
+            identity_ok=(doi.lower() in folded or f"journal.pone.0293412.t001" in folded)
             content_markers={
-                "mexico":"mexico" in low,
-                "other":"other" in low,
+                "table_title":"countries of residence" in folded,
+                "survey_1":"survey 1" in folded,
+                "mexico":"mexico" in folded,
+                "other":"other" in folded,
             }
             content_ok=all(content_markers.values())
             q=assess_track_a_artifact(
