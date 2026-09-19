@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "authorized": false,
+  "pilot1_lock_version": "v2",
+  "pilot1_lock_blob_sha": "6dfb5502a408a5c098e6cd0169b37a783b8912d5",
+  "discovery_result_blob_sha": "",
+  "discovery_years": [
+    1988,
+    1996
+  ],
+  "holdout_years": [
+    1997,
+    2005
+  ],
+  "note": "This file is intentionally NOT authorized. After discovery is committed, create a separate decision commit binding the discovery blob before changing HOLDOUT_RELEASE.json."
+}

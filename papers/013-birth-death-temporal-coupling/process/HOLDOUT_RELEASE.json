@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "released": false,
+  "pilot1_lock_version": "v2",
+  "discovery_years": [
+    1988,
+    1996
+  ],
+  "holdout_years": [
+    1997,
+    2005
+  ],
+  "pilot1_lock_blob_sha": "6dfb5502a408a5c098e6cd0169b37a783b8912d5",
+  "discovery_result_path": "",
+  "discovery_result_blob_sha": "",
+  "discovery_commit_sha": "",
+  "release_decision_commit_sha": "",
+  "note": "Default state is intentionally locked. Fill only after Pilot 1 discovery results and the release decision are committed."
+}

@@ -63,3 +63,31 @@ The Pilot 1 primary marginal-independence strata are now:
 - sex category.
 
 The earlier birth-decade × death-year × sex null is retained as a prespecified sensitivity analysis. This change was locked before BUNMD/raw-NUMIDENT coupling outcomes were accessible.
+
+## D014 · Practical-null margin is ±1%
+
+Before administrative discovery results are available, the primary ordinary birthday-coupling SESOI is frozen at O/E 0.99–1.01.
+
+A huge sample may make smaller deviations statistically detectable, but such deviations are not promoted to a substantively meaningful birthday effect.
+
+## D015 · Holdout interpretation is effect-size first
+
+A replicated candidate birthday effect requires:
+
+- same pooled direction in discovery and holdout;
+- holdout classified substantive beyond the ±1% margin with its fixed-margin 95% interval excluding 1;
+- at least 7 of 9 holdout annual point estimates in the pooled direction.
+
+A 90% interval fully inside 0.99–1.01 is treated as practically-null-equivalent.
+
+## D016 · Temporal holdout requires a two-step repository release
+
+The 1997–2005 holdout cannot be opened by merely editing a boolean.
+
+Release requires:
+
+1. committed discovery result under Pilot 1 v2;
+2. a later explicit release-decision commit binding the v2 lock and discovery-result blobs;
+3. a still-later release-manifest commit referencing both commits.
+
+The holdout runner validates this chain before opening any data archive.

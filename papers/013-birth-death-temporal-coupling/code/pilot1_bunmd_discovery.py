@@ -7,6 +7,7 @@ Untouched holdout: 1997-2005 (read only to discard; never summarized here).
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import calendar
 import json
 import math
@@ -16,6 +17,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+from effect_size import infer_offset
 
 DISCOVERY_YEARS = tuple(range(1988, 1997))
 BIRTH_HEAP_DAYS = {1, 15}
@@ -133,6 +136,8 @@ class PhaseAccumulator:
         exp_decade = self.expected(strata=decade_strata)
         obs = self.observed.astype(float)
         ratio = np.divide(obs, exp, out=np.full(365, np.nan), where=exp > 0)
+        primary_inf = infer_offset(int(obs[0]), self.strata, offset=0)
+        decade_inf = infer_offset(int(obs[0]), decade_strata, offset=0)
         by_year = {}
         for y in DISCOVERY_YEARS:
             ey = self.expected(y)
@@ -157,10 +162,12 @@ class PhaseAccumulator:
             "observed_offset0": int(obs[0]),
             "expected_offset0": float(exp[0]),
             "oe_offset0": float(ratio[0]),
+            "offset0_inference": asdict(primary_inf),
             "null_model": "exact birth year × death year × sex",
             "birth_decade_null_sensitivity": {
                 "expected_offset0": float(exp_decade[0]),
                 "oe_offset0": float(obs[0] / exp_decade[0]) if exp_decade[0] else math.nan,
+                "offset0_inference": asdict(decade_inf),
                 "by_death_year": decade_by_year,
             },
             "offset_window": [
@@ -322,6 +329,8 @@ def main():
         f"- raw O/E under birth-decade sensitivity null: **{r['birth_decade_null_sensitivity']['oe_offset0']:.4f}**",
         f"- strict observed / expected: {s['observed_offset0']:,} / {s['expected_offset0']:.1f}",
         f"- strict O/E under primary exact-birth-year null: **{s['oe_offset0']:.4f}**",
+        f"- strict fixed-margin 95% interval: **[{s['offset0_inference']['ci95_lower']:.4f}, {s['offset0_inference']['ci95_upper']:.4f}]**",
+        f"- strict practical class: **{s['offset0_inference']['practical_class']}**",
         f"- strict O/E under birth-decade sensitivity null: **{s['birth_decade_null_sensitivity']['oe_offset0']:.4f}**",
         "",
         "## Prespecified heaping dates",
