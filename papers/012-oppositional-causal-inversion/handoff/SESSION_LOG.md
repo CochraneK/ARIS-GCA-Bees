@@ -30,3 +30,11 @@ Append substantial execution sessions in chronological order.
 - Updated the handoff package to make the next scientific step unambiguous:
   diagnostic adjudication -> controlled-vocabulary Schema v2 -> fresh A2/B2 Pilot -> only then full evidence-map screening.
 - Prepared the repository so the current chat can be deleted without losing necessary project state.
+
+## 2026-09-19 · Exhaustive Pilot 0B disagreement diagnosis
+
+- Read the frozen raw Pilot 0B disagreement packet without modifying coder labels or raw reliability statistics.
+- Classified all 141 disagreement cells into four diagnostic failure modes: lexical/token-vocabulary mismatch (30), schema-category overlap (24), source/metadata disagreement (26), and genuine conceptual disagreement (61).
+- Added a reproducible diagnostic script plus row-level CSV, JSON summary, and process audit artifact.
+- Kept `adjudicated_value` blank and preserved Pilot 0B as a failed v1 reliability gate rather than retroactively normalizing it into a pass.
+- Next bounded unit: freeze the Schema v2 controlled vocabulary and validation form before drawing a fresh A2/B2 sample.
