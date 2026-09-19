@@ -1,275 +1,191 @@
 # ARIS4C004 STATUS
 
-Last updated: 2026-09-18
-
-## Identity100 first-review freeze · 2026-09-19
-
-The full frozen 100-person pre-exposure identity frame has now completed first review with **zero provisional states** and no mental-health information used.
-
-- 100 candidates;
-- 52 verified identities: 31 VERIFIED_SINGLE + 21 VERIFIED_CLUSTER;
-- 38 NO_GRAPH_RECORD;
-- 8 AMBIGUOUS_COLLISION;
-- 2 EXCLUDED_IDENTITY_ERROR;
-- first-review `identity_decisions_100.csv` committed and invariant-checked.
-
-A deterministic independent second-review set is also frozen:
-- **40/100** cases selected;
-- all 21 verified clusters;
-- all 8 collisions;
-- all 2 identity errors;
-- deterministic 9/31 verified singles;
-- blind assignment omits first-review status and selection reason.
-
-The independent reviewer has **not** yet supplied second-review judgments. This remains a scientific gate before exposure coding.
+Last updated: 2026-09-19
 
 ## Current state
 
-**RUNNING — pre-exposure scale-up / work-network audit + independent identity second review**
+**RUNNING — P4 pre-exposure audit / independent identity second-review gate**
 
-The first-30 science pilot has passed identity, work-cleaning, and bounded downstream-network feasibility. The project is now expanding the same mental-health-blind identity/network pipeline to the full frozen 100-person science frame.
+P0 concept/causal architecture, P1 pilot30 feasibility, P2 frozen-100 identity expansion, and P3 frozen-100 work/network release are complete.
 
-No mental-health exposure sample has yet been selected and no confirmatory CPE comparison has been run.
+Mental-health exposure coding remains locked. The only scientific blocker to the final pre-exposure freeze is the independently executed identity second review and adjudication of any disagreements.
 
 ## Canonical question
 
 Among historically realized knowledge contributors, how does scientific/intellectual/cultural development change when productive participation is counterfactually reduced, after allowing substitution, delays, and network rewiring — and what does that imply for exclusion risks faced by people with strong surviving mental-health evidence?
 
-## Completed
+## Frozen 100-person identity frame
 
-- [x] Stable paper ID `004` and canonical folder created.
-- [x] ARIS v0.4.26 provenance pinned to commit `951654847b015585385b2448c5667dcd04e7b56b`.
-- [x] Core question reframed away from "mental illness causes genius."
-- [x] Counterfactual changed from existence deletion to temporal participation attenuation.
-- [x] Sign-neutral `CPE` estimand frozen; modeled effects may be positive, zero, or negative.
-- [x] Naïve deletion demoted to a stress test; adaptive substitution/rewiring made mandatory.
-- [x] Invisible-node / never-observed-excluded-person limitation explicitly bounded.
-- [x] Causal/estimand audit added in `CAUSAL_MODEL.md`.
-- [x] Mental-health evidence codebook frozen for later use: A1/A2/B1/B2/C/U; `Unknown != healthy`.
-- [x] Deceased-only primary analysis rule frozen.
-- [x] Historical celebrity examples separated from candidate-frame construction.
-- [x] Three-domain portability concept specified; science/mathematics chosen as the primary quantitative route.
-- [x] Data/licensing feasibility matrix completed.
-- [x] GPTPage reviewer handoff packets and adversarial auto-review completed.
-- [x] Minimal temporal M0/M1/M2 counterfactual simulator implemented.
-- [x] GitHub CI smoke gate implemented and passing.
-- [x] 108,626 eligible Discovery/Science source candidates identified.
-- [x] Fixed-seed 100-person cohort × visibility frame frozen before mental-health search.
-- [x] Mixed/legacy source-text encoding corrected with reversible cell-level repair.
-- [x] Candidate-frame coverage and analytic-frame identity precision separated.
-- [x] Pilot30 author fragmentation / identity protocol stabilized.
-- [x] Pilot30 identity table frozen with zero provisional states.
-- [x] Canonical-frame identity join validation added to CI.
-- [x] Work-level codebook frozen before work cleanup.
-- [x] 200/200 held-work decisions validated against regenerated OpenAlex review queue.
-- [x] Pilot30 verified-person work corpus built: 18 verified people, 838 unique works, 0 fetch errors.
-- [x] Four cleaned held identities released after work audit: Erika Greber, Joel Olson, Anton Moortgat, Fritz Strassmann.
-- [x] Clean pre-exposure network frame built: 13 people / 693 clean works.
-- [x] Time-reversed OpenAlex citation relations quarantined from the temporal graph.
-- [x] Person-specific temporal ego-network architecture frozen in `NETWORK_MODEL.md`.
-- [x] Bounded downstream citation feasibility passed for all 13 network-observable pilot people.
-- [x] Citation-rich / citation-sparse network observability strata frozen before exposure coding.
-- [x] Dedicated clean-network workflow split from the slower identity-discovery workflow.
-- [x] MH-blind identity100 expansion workflow started.
+Canonical table: `data/derived/identity_decisions_100.csv`.
 
-## Current real-data evidence
+First-review states:
 
-### Frozen pre-exposure frame
-
-- eligible Discovery/Science source candidates: **108,626**
-- frozen science frame: **100**
-- seed: `20260918`
-- first intensive identity/network pilot: **30**
-
-### Pilot30 identity freeze
-
-Final first-review states:
-
-- `VERIFIED_SINGLE`: **11**
-- `VERIFIED_CLUSTER`: **7**
-- `NO_GRAPH_RECORD`: **9**
-- `AMBIGUOUS_COLLISION`: **2**
-- `EXCLUDED_IDENTITY_ERROR`: **1**
+- candidates: **100**
+- `VERIFIED_SINGLE`: **31**
+- `VERIFIED_CLUSTER`: **21**
+- verified total: **52**
+- `NO_GRAPH_RECORD`: **38**
+- `AMBIGUOUS_COLLISION`: **8**
+- `EXCLUDED_IDENTITY_ERROR`: **2**
 - `PROVISIONAL_*`: **0**
 
-Thus **18/30 = 60%** have a verified person ↔ OpenAlex mapping after first review.
+No mental-health information was used to construct or adjudicate this frame.
 
-### Network100 acquisition
+## P3 work/network gate — complete
 
-Successful workflow run: `35407424125`.
+Network100 acquisition successfully reconstructed the 52 verified identities:
 
-- verified people: **52**;
-- unique person-work records after deduplication: **2,956**;
-- fetch errors: **0**;
-- work shards: **8**;
-- held verified people requiring work-level review: **39**;
-- deterministic held-work audit sample: **334 works across 37 people**;
-- independent identity second-review set: **40 people**.
+- unique person-work records after deduplication: **2,956**
+- fetch errors: **0**
+- work shards: **8**
 
-These numbers are acquisition/triage outputs, not final network-release counts. No held person is auto-released from work-count thresholds alone.
+Every VERIFIED person now has a terminal work/network decision.
 
-### Work-audit review compression
+Final network-release state:
 
-The held-work audit is now organized without making any automatic authorship decision:
+- **25/100 network-observable**
+- **27 verified but network-unobservable**
+  - 13 `HOLD_INSUFFICIENT_CLEAN_WORKS`
+  - 14 `HOLD_UNRESOLVED_WORK_CONTAMINATION`
 
-- raw held-work review rows in the full network100 corpus: **2,230**;
-- deterministic audit sample: **334 rows / 37 people**;
-- row-level review priorities: **135 P1, 71 P2, 128 P3**;
-- person-level review priorities: **20 P1, 6 P2, 11 P3**;
-- machine verdicts: **NONE for all 334 rows / all 37 people**;
-- automatic releases: **0**;
-- automatic exclusions: **0**.
+The unresolved-contamination hold is intentionally terminal for the pre-exposure frame. These people are not excluded as historical contributors; they are withheld from the confirmatory network frame because the person-level work corpus cannot be released at the frozen precision threshold without further attribution uncertainty.
 
-Priority signals only determine review order (e.g. pre-existing namesake/mixed-fragment notes, posthumous boundary, container-like titles, multi-fragment clusters). They do not override `WORK_CODEBOOK.md`.
+No identity/work threshold was relaxed to increase N.
 
-### Pilot30 work/network release
+Canonical work decision table:
+`data/derived/network100_person_work_decisions_v1.csv`.
 
-After work-level cleaning:
+## P4 observability audit — complete except independent second review
 
-- network-observable identities: **13/30 = 43.3%**
-- clean focal works: **693**
-- reference metadata coverage: **44.6%**
-- external-coauthor metadata coverage: **63.1%**
-- unique external coauthors: **395**
-- institution metadata coverage: **48.1%**
-- topic metadata coverage: **99.0%**
-- build errors: **0**
+Frozen overall observability:
 
-Focal-only clean citation graph:
+- verified identity rate: **52/100**
+- network-observable rate: **25/100**
+- no-graph: **38/100**
+- collision: **8/100**
+- identity error: **2/100**
+- provisional: **0**
 
-- valid temporal edges: **638**
-- within-person edges: **638**
-- cross-person focal edges: **0**
-- quarantined time-reversed edges: **28**
+Frozen FORD network-observable rates:
 
-The zero cross-person focal count is not treated as failure; the primary graph object is a person-specific temporal ego network.
+| FORD broad field | N | Verified | Network-observable | Rate |
+|---|---:|---:|---:|---:|
+| Natural sciences | 27 | 15 | 8 | 29.6% |
+| Engineering and technology | 7 | 2 | 1 | 14.3% |
+| Medical and health sciences | 13 | 6 | 1 | 7.7% |
+| Social sciences | 20 | 9 | 7 | 35.0% |
+| Humanities and the arts | 16 | 10 | 2 | 12.5% |
+| Unclassified | 17 | 10 | 6 | 35.3% |
 
-### Bounded downstream ego-network pilot
+These are **database/network observability differences**, not knowledge-importance differences.
 
-Fixed pilot protocol:
+Frozen audit outputs:
 
-- up to 6 deterministic anchors per person;
-- earliest + temporal median + latest + highest-cited remaining;
-- 20-year downstream horizon;
-- max 50 citing works per anchor;
-- earliest citing works acquired first.
+- `data/derived/observability_by_stratum.csv`
+- `data/derived/observability_summary.json`
+- `data/derived/ford_observability.csv`
+- `data/derived/ford_observability_summary.json`
+- `data/derived/ford_domains_frozen.csv`
 
-Observed result:
+## Independent identity second review — blocking gate
 
-- people: **13**
-- anchors: **76**
-- anchors with >=1 downstream citer: **52/76 = 68.4%**
-- downstream edges: **897**
-- unique downstream person-work pairs: **817**
-- people with >=1 downstream work: **13/13**
-- people with >=10 downstream works: **8/13**
-- downstream temporal anomalies: **0**
-- API errors: **0**
+A deterministic blind second-review sample is frozen:
 
-Citation-rich (>=10 downstream works): Albus, Olson, McWhinnie, Strassmann, Laksov, Gavron, Greber, Oelsen.
+- selected: **40/100**
+- all 21 `VERIFIED_CLUSTER`
+- all 8 `AMBIGUOUS_COLLISION`
+- all 2 `EXCLUDED_IDENTITY_ERROR`
+- deterministic 9/31 `VERIFIED_SINGLE`
 
-Citation-sparse (1–9): Carl Föhl, Ottomar Rosenbach, Friedrich Hoeth, Anton Moortgat, Hilario Hernández Gurruchaga.
+Blind assignment:
+`data/derived/identity_second_review_blind_assignment.csv`
 
-Citation-sparse status is an observability label, **not an importance judgment**. These cases remain in the pre-exposure frame for multiplex/sensitivity analysis.
+The independent reviewer has **not yet returned judgments**. The current assistant's own re-review cannot count as independent.
 
-See:
-- `IDENTITY_FREEZE_PILOT30.md`
-- `WORK_CODEBOOK.md`
-- `NETWORK_MODEL.md`
-- `NETWORK_FEASIBILITY_PILOT30.md`
+Exposure coding must not begin until the required external/independent review is returned and disagreements are adjudicated.
 
-## In progress
+## Pilot30 network feasibility — passed
 
-- [x] Complete first-review identity adjudication on the first 30 with zero provisional states.
-- [x] Build/audit verified-person work corpus and work-decision validator.
-- [x] Decontaminate sufficient held identities to expand pilot network frame from 9 to 13.
-- [x] Demonstrate bounded downstream citation neighborhoods for all 13.
-- [x] Resolve/triage the remaining 70 frozen candidates under the same MH-blind protocol.
-- [x] Produce and validate `identity_decisions_100_draft.csv` and freeze `identity_decisions_100.csv`.
-- [x] Adjudicate new provisional single/cluster identities at first review with zero provisional states.
-- [x] Acquire the 52 verified identities' network100 work corpus: 2,956 unique works, 0 fetch errors.
-- [ ] Audit held work corpora and release additional identities only under the frozen work codebook.
-- [ ] Measure final pre-exposure network observability by cohort, visibility, geography, gender and subdomain.
-- [ ] Run independent second-review audit of accepted identities / difficult clusters.
-- [ ] Decide whether an alternate region/subdomain sensitivity frame is required.
-- [ ] Freeze the full network-observable analytic frame **before** mental-health coding.
-- [ ] Pilot exposure coding and inter-rater reliability.
-- [ ] Measure Tier-A / Tier-A+B exposure yield.
-- [ ] Calibrate adaptive simulator against star-loss empirical benchmarks.
-- [ ] Run simulation-based N / precision design.
-- [ ] Run dedicated closest-prior-work novelty packet and final preregistration adversary.
-- [ ] Audit humanities/arts portability only after the science frame is stable.
+The pilot30 established the network architecture:
 
-## Revised feasibility gates
+- 13 network-observable people
+- 693 clean focal works
+- 13/13 had downstream citation neighborhoods
+- 897 temporally valid downstream edges
+- 817 unique downstream person-work pairs
+- 0 downstream temporal anomalies
+- 0 API errors
 
-### Candidate-frame coverage gate
+The canonical graph object is a **person-specific temporal ego network**, not a pooled cross-field citation graph.
 
-Do not require 95% of the broad historical frame to appear in OpenAlex.
+## Domain model
 
-Instead:
+The upstream `Discovery/Science` source category is heterogeneous. OECD FORD stratification is frozen before exposure:
 
-- report graph observability and missingness by pre-exposure frame variables;
-- require enough observable candidates in each retained stratum to support exposed/comparison analysis;
-- do not improve coverage by loosening identity rules after seeing mental-health evidence.
+- Natural sciences: 27
+- Engineering and technology: 7
+- Medical and health sciences: 13
+- Social sciences: 20
+- Humanities and the arts: 16
+- Unclassified: 17
 
-### Analytic-frame identity gate
+Cross-domain raw citations/centrality are not interpreted as comparable impact.
 
-- every final included person must have an externally auditable identity decision;
-- multiple plausible OpenAlex Author IDs require cluster review;
-- conflicting ORCID/authority evidence blocks blind merging;
-- final identity precision is prioritized over broad-frame coverage;
-- a single automated top hit is never, by itself, confirmatory identity evidence.
+## Alternate-frame decision
 
-### Work gate
+The canonical seed-20260918 frame will **not** be replaced before exposure coding.
 
-- raw OpenAlex `works_count` never releases a person;
-- explicit work decisions override raw author attribution;
-- time-reversed citation edges are excluded from the temporal graph;
-- modern reprints/container fragments/namesake works do not create historical production nodes.
+A region- or FORD-balanced alternative frame is deferred as a versioned sensitivity/generalizability analysis only if exposure yield or common-support diagnostics later require it. This decision is pre-exposure and avoids outcome-driven frame repair.
 
-### Network gate
+## Completed
 
-Science-first feasibility has passed at pilot30.
+- [x] P0 concept / causal architecture.
+- [x] P1 pilot30 identity/work/network feasibility.
+- [x] P2 frozen-100 identity first review with zero provisional states.
+- [x] Full network100 work acquisition: 2,956 unique works, 0 fetch errors.
+- [x] P3 person-level work/network decisions for every VERIFIED identity.
+- [x] Precision-first terminal holds for insufficient/contaminated work corpora.
+- [x] Overall observability audit by cohort, visibility, region, gender and source subdomain.
+- [x] OECD FORD domain stratification and observability audit.
+- [x] Identity second-review sample and blind assignment frozen.
+- [x] CI work/identity/data-integrity gates repaired and passing after dynamic-queue drift fix.
+- [x] Decision made not to replace the canonical 100-person frame before exposure.
 
-For final scale-up:
+## Remaining before exposure coding
 
-- build person-specific temporal ego networks, not a pooled cross-field focal graph;
-- retain citation-sparse people rather than deleting them for database undercoverage;
-- standardize person-level CPE/network effects before cross-person comparison;
-- characterize observability bias before exposure coding.
+- [ ] Independent reviewer completes the frozen 40-person blind identity second review.
+- [ ] Adjudicate any identity-state / Author-ID-set disagreements.
+- [ ] Write and hash `PREEXPOSURE_FRAME_FREEZE.md`.
 
-### Exposure gate
+## Work that can proceed while the independent review is outstanding
 
-- candidate/network frame must be frozen before exposure search;
-- at least 15 Tier-A/Tier-B exposed focal cases in the eventual domain frame to justify confirmatory expansion;
-- strict primary exposure remains Tier A if final precision permits;
-- `U` / unknown is never treated as healthy.
+- [ ] Simulator calibration/validation plan against empirical star-loss shocks.
+- [ ] Simulation-based precision/N design.
+- [ ] Closest-prior-work / novelty review packet.
+- [ ] Preregistration/adversarial methods audit.
+- [ ] Manuscript methods/limitations skeleton.
 
-### Simulation gate
+## Exposure gate
 
-- M0/M1/M2 results stable over seeds and prespecified parameter ranges;
-- no look-ahead substitute selection;
-- strong null/random-subset benchmark required;
-- negative CPE outcomes must remain reportable.
+After P4 passes:
+
+1. apply the frozen A1/A2/B1/B2/C/U exposure codebook;
+2. independently review exposure classification / reliability;
+3. quantify Tier-A and Tier-A+B yield;
+4. treat U/unknown as unknown, never as healthy;
+5. only then decide whether expansion beyond 100 is needed.
 
 ## Hard prohibitions
 
 1. Do not hand-build a sample of famous people known to have psychiatric histories.
-2. Do not start exposure coding before the network-observable frame is frozen.
-3. Do not call unknown historical candidates "healthy controls."
-4. Do not silently merge fragmented OpenAlex author records.
-5. Do not lower identity/work thresholds merely to improve coverage.
-6. Do not treat a participation simulation as proof of historical mental-health discrimination.
-7. Do not pool raw science, philosophy/literature and arts network metrics into one universal importance score.
-8. Do not compare raw citation centrality across unrelated fields as if it were intrinsic importance.
-9. Do not claim to estimate contributions of people excluded before leaving observable historical traces.
+2. Do not start exposure coding before the independent identity gate and pre-exposure freeze.
+3. Do not call unknown historical candidates healthy controls.
+4. Do not lower identity/work thresholds to improve coverage.
+5. Do not treat citation sparsity as low importance.
+6. Do not compare raw cross-field citation centrality as intrinsic importance.
+7. Do not treat participation simulations as direct proof of historical discrimination.
+8. Do not claim contributions of people who left no observable historical trace are estimated by this design.
 
-## Next checkpoint
+## Immediate next step
 
-Advance from `feasibility-pilot` to `research-design` only when:
-
-1. the full frozen science frame has a stable pre-exposure identity/network decision state;
-2. observability bias is characterized across frame variables;
-3. Tier-A/Tier-B exposure-yield pilot is completed under the frozen codebook;
-4. simulator calibration/validation plan has passed red-team review;
-5. final confirmatory outcomes, matching families, intervention timing, and precision target are preregisterable without unresolved critical blockers.
+Complete all non-blocked P4/P6-method preparation while the frozen 40-person blind second review is handed to an independent reviewer. Once that file returns, adjudicate disagreements, freeze the pre-exposure frame, and move directly to exposure coding.
