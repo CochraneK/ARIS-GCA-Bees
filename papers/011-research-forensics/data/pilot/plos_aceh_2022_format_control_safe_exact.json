@@ -1,0 +1,130 @@
+{
+  "artifact_id": "plos_aceh_2022_table2_original",
+  "target_doi": "10.1371/journal.pone.0263337",
+  "title": "Causes of delays in construction projects in the Province of Aceh, Indonesia",
+  "publication_date": "2022-01-28",
+  "mode": "track_a",
+  "provenance": {
+    "source": "PLOS ONE original article",
+    "object_role": "original publication Table 2",
+    "time_safe": true,
+    "document_safe": true,
+    "title_safe": true,
+    "outcome_metadata_in_detector_input": false,
+    "note": "Detector-visible fixture contains only source-verified original-table numeric tokens and prespecified Cronbach-alpha validity bounds. Later correction metadata is intentionally excluded."
+  },
+  "structured_detector_inputs": {
+    "table_checks": [
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,943",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 1",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,819",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 2",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,916",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 3",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,903",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 4",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,944",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 5",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,787",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 6",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,937",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 7",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,638",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 8",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,913",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 9",
+        "provenance_verified": true
+      },
+      {
+        "check_type": "numeric_range",
+        "reported_value": "0,902",
+        "min_value": 0,
+        "max_value": 1,
+        "lower_inclusive": true,
+        "upper_inclusive": true,
+        "source_locator": "Table 2 · Cronbach Alpha row 10",
+        "provenance_verified": true
+      }
+    ]
+  },
+  "expected_result": {
+    "detector_id": "table_arithmetic",
+    "finding_count": 10,
+    "statuses": [
+      "PASS"
+    ],
+    "review_priority": "NONE",
+    "decimal_separator_style": "comma",
+    "misconduct_inference": false
+  }
+}
