@@ -1,0 +1,113 @@
+name: ARIS4C009 boundary calibration smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/build_private_boundary_packet.py'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/score_boundary_ratings.py'
+      - '.github/workflows/aris4c009-boundary-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install 7z
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full
+
+      - name: Download DAIS-C to transient workspace
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/daisc"
+          curl -L --fail --retry 3 \
+            "https://reshare.ukdataservice.ac.uk/855021/1/DAIS-C-Annotated-Upload.7z" \
+            -o "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z"
+          7z x -y "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z" \
+            -o"$RUNNER_TEMP/daisc" >/dev/null
+
+      - name: Build private blinded packet
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/build_private_boundary_packet.py \
+            --root "$RUNNER_TEMP/daisc" \
+            --out "$RUNNER_TEMP/boundary_packet"
+
+      - name: Validate packet and create mock completed ratings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"]) / "boundary_packet"
+          key = json.loads((root / "private_key.json").read_text(encoding="utf-8"))
+
+          assert len(key["items"]) == 140, len(key["items"])
+          assert set(key["condition_map"]) == {"A", "B"}
+          assert sorted(key["condition_map"].values()) == [20, 40]
+
+          for src_name, dst_name in [
+              ("rater_A.tsv", "mock_A.tsv"),
+              ("rater_B.tsv", "mock_B.tsv"),
+          ]:
+              src = root / src_name
+              dst = root / dst_name
+              with src.open("r", encoding="utf-8", newline="") as f:
+                  rows = list(csv.DictReader(f, delimiter="\t"))
+                  fields = rows[0].keys()
+              assert len(rows) == 140, len(rows)
+              for row in rows:
+                  row["coherent_boundary"] = "yes"
+                  row["sufficient_nontrivial"] = "yes"
+                  row["mixed_unrelated_topics"] = "no"
+                  row["recommended_action"] = "keep"
+                  row["confidence_1_5"] = "4"
+              with dst.open("w", encoding="utf-8", newline="") as f:
+                  w = csv.DictWriter(f, fields, delimiter="\t")
+                  w.writeheader()
+                  w.writerows(rows)
+          PY
+
+      - name: Run aggregate scorer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/score_boundary_ratings.py \
+            --rater-a "$RUNNER_TEMP/boundary_packet/mock_A.tsv" \
+            --rater-b "$RUNNER_TEMP/boundary_packet/mock_B.tsv" \
+            --key "$RUNNER_TEMP/boundary_packet/private_key.json" \
+            --json-out "$RUNNER_TEMP/boundary_score.json" \
+            --md-out "$RUNNER_TEMP/boundary_score.md"
+
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          p = Path(os.environ["RUNNER_TEMP"]) / "boundary_score.json"
+          x = json.loads(p.read_text(encoding="utf-8"))
+          assert x["regular_items_scored"] == 120
+          assert set(x["by_condition"]) == {"A", "B"}
+          for field, stats in x["agreement"].items():
+              assert stats["agreement"] == 1.0, (field, stats)
+          PY
+
+      - name: Delete private packet and assert clean repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/boundary_packet"
+          rm -f "$RUNNER_TEMP/boundary_score.json" "$RUNNER_TEMP/boundary_score.md"
+          test -z "$(git status --porcelain)"
