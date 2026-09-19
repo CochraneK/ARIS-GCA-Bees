@@ -470,7 +470,7 @@ No focal surname × outcome estimate may be opened until all are complete:
 - [x] validate the LOAO implementation against hand/synthetic checks (PASS);
 - [x] run a synthetic-only model smoke test for work FE + interaction + frozen multiway clustering (PASS);
 - [ ] materialize the primary work frame and report sample/cluster counts **without calculating H1/H2 coefficients**;
-- [ ] finalize deterministic identity-risk QA flags for the longitudinal secondary and report only their prevalence;
+- [x] finalize deterministic identity-risk QA flags for the longitudinal secondary and report only their prevalence (120/120 hard-QA pass; no persistence/effect opened);
 - [ ] generate a preregistration lock/hash and switch the gate only after those outcome-blind checks pass.
 
 Until then:
