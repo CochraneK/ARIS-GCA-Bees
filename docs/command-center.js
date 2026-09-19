@@ -3,6 +3,16 @@
   let currentFilter = "all";
   let refreshShowcase = () => {};
 
+  function removeLegacyNearFinal(){
+    document.querySelectorAll("[data-filter=\"near-final\"], #navNearCount").forEach(el=>{
+      const button=el.closest("button");
+      (button || el).remove();
+    });
+    document.querySelectorAll(".legend-row, .metric, .filter-chip").forEach(el=>{
+      if(/near[- ]?final/i.test(el.textContent || "")) el.remove();
+    });
+  }
+
   function setTheme(theme){
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("aris4c-theme", theme);
@@ -250,6 +260,7 @@
     });
   }
 
+  removeLegacyNearFinal();
   initTheme();
   wire();
   counts();
