@@ -12,6 +12,7 @@ import argparse
 import csv
 import json
 import math
+import hashlib
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -47,6 +48,26 @@ def parse_bool(value: str | None) -> bool | None:
     if raw in {"0", "false", "no", "n"}:
         return False
     return None
+
+
+def manifest_sha256(rows: dict[str, dict[str, str]]) -> str:
+    manifest_rows = []
+    for row in rows.values():
+        sample = (row.get("sample") or "").strip()
+        row_index = (row.get("source_row_index") or "").strip()
+        row_hash = (row.get("row_hash") or "").strip()
+        stratum = (row.get("selection_stratum") or "").strip()
+        if not all((sample, row_index, row_hash, stratum)):
+            raise ValueError(
+                "Coder file must retain sample, source_row_index, row_hash, "
+                "and selection_stratum to verify the frozen sample."
+            )
+        manifest_rows.append((sample, int(row_index), row_hash, stratum))
+    manifest_rows.sort(key=lambda x: (x[0], x[1]))
+    lines = ["sample,row_index,row_hash,stratum"]
+    lines.extend(f"{s},{i},{h},{t}" for s, i, h, t in manifest_rows)
+    payload = "\n".join(lines) + "\n"
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
 def load(path: Path) -> dict[str, dict[str, str]]:
@@ -144,6 +165,14 @@ def main() -> None:
 
     a = load(args.coder_a)
     b = load(args.coder_b)
+
+    for label, rows in (("Coder A", a), ("Coder B", b)):
+        digest = manifest_sha256(rows)
+        if digest != EXPECTED_MANIFEST_SHA256:
+            raise ValueError(
+                f"{label} does not match the frozen audit sample: "
+                f"expected {EXPECTED_MANIFEST_SHA256}, got {digest}"
+            )
     if set(a) != set(b):
         only_a = sorted(set(a) - set(b))
         only_b = sorted(set(b) - set(a))
