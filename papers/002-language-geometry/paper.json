@@ -4,7 +4,7 @@
   "title": "Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization",
   "short_title": "Testing linguistic periodicity",
   "year": 2026,
-  "status": "submission-preparation",
+  "status": "submission-ready-author-metadata-pending",
   "domain": "linguistic typology / quantitative linguistics / language universals / model comparison",
   "summary": "A predictive stress test of the simple global-circle form of the language periodic-table hypothesis across TLI, GBI, and WALS. Family-held-out evidence and direct circularity diagnostics do not support the tested global circular geometry; hierarchical/non-circular models provide stronger predictive benchmarks without establishing one universal tree geometry.",
   "authors": [
@@ -30,7 +30,8 @@
     "staging_provenance": "https://github.com/CochraneK/ARIS4C/tree/main/ideas/language-periodic-system",
     "figures": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry/figures",
     "tables": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/manuscript/TABLES.md",
-    "submission_package": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry/submission/linguistic-typology"
+    "submission_package": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry/submission/linguistic-typology",
+    "submission_qa": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/submission/linguistic-typology/SUBMISSION_QA.md"
   },
   "tags": [
     "ARIS",
@@ -43,5 +44,17 @@
     "Grambank",
     "TLI",
     "GBI"
-  ]
+  ],
+  "submission": {
+    "target_journal": "Linguistic Typology",
+    "manuscript_review_verdict": "PASS_SUBMISSION_PREP",
+    "technical_package_verdict": "TECHNICAL_SUBMISSION_PACKAGE_PASS",
+    "final_reviewed_workflow_run": 35412714647,
+    "final_artifact_id": 10575195098,
+    "artifact_digest": "sha256:d43a6c0e3a136ff71d918a8ce07df05f2a22dead5c38789457b9c3710007d192",
+    "blocking_items": [
+      "author metadata/declarations",
+      "actual ScholarOne submission"
+    ]
+  }
 }
