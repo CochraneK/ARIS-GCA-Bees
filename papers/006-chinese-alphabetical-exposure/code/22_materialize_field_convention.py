@@ -11,7 +11,7 @@ Per one OpenAlex primary-topic field:
 NO focal surname/outcome coefficients are computed.
 """
 from __future__ import annotations
-import argparse,csv,json,math,os,re,time,unicodedata,urllib.parse,urllib.request
+import argparse,csv,json,math,os,re,time,unicodedata,urllib.error,urllib.parse,urllib.request
 from collections import Counter,defaultdict
 from pathlib import Path
 
@@ -25,7 +25,15 @@ def get_json(url,retries=5):
         try:
             with urllib.request.urlopen(req,timeout=75) as r:
                 return json.loads(r.read().decode("utf-8"))
-        except Exception:
+        except urllib.error.HTTPError as e:
+            if e.code in {400,404,410,422}:
+                return None
+            if i+1==retries:return None
+            retry_after=e.headers.get("Retry-After") if e.headers else None
+            try:delay=float(retry_after) if retry_after else min(8.0,.8*(2**i))
+            except:delay=min(8.0,.8*(2**i))
+            time.sleep(delay)
+        except (urllib.error.URLError,TimeoutError,OSError):
             if i+1==retries:return None
             time.sleep(min(8.0,.8*(2**i)))
     return None
