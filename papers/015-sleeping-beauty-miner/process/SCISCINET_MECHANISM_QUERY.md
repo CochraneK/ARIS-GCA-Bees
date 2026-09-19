@@ -167,16 +167,27 @@ Then run:
 Only after this step can a primary mechanism case be labeled
 SLEEPING_BEAUTY.
 
-## Step 5 — Normalize trajectory state within field/cohort
+## Step 5 — Separate robust identity from relative trajectory quadrant
 
 For each field × publication-year stratum:
 
 - early attention = first 5-year citation total percentile;
 - late attention = final 5-year citation total percentile.
 
-Default states:
+Keep two variables separate:
 
-- low early / high late + robust SB -> SLEEPING_BEAUTY;
+1. **robust SB identity** — determined by the full retrospective trajectory
+   gate from Step 4;
+2. **relative trajectory quadrant** — descriptive field × year early/late
+   position.
+
+A robust SB remains a robust SB even when sparse historical cohorts place it
+outside the low-early/high-late quadrant. The quadrant must not veto robust
+identity.
+
+Relative quadrants:
+
+- low early / high late -> LOW_EARLY_HIGH_LATE;
 - low early / low late -> FORGOTTEN;
 - high early / high late -> IMMEDIATE_HIT;
 - high early / low late -> FADING;
@@ -189,22 +200,34 @@ LOW_EARLY_HIGH_LATE_UNCONFIRMED.
 
 Primary match:
 
-SLEEPING_BEAUTY vs FORGOTTEN
+**SLEEPING_BEAUTY vs AT_RISK_DORMANT at the SB awakening time**
 
 Default:
-- same field;
-- same publication year;
-- early citation percentile caliper;
-- nearest reference count;
-- nearest author count;
-- nearest early citation count;
-- no replacement.
+- exact same field;
+- exact same publication year;
+- inspect control covariates only through the case event age;
+- control citation rate through the event must remain inside the configured
+  sleep regime;
+- control must not already have a qualifying awakening burst;
+- a control may awaken later;
+- nearest pre-event sleep-rate, reference-count, and author-count profile;
+- no post-event control outcome is used for selection.
 
-Secondary match:
+The primary readiness gate remains observed-covariate balance at
+**absolute SMD < 0.10**. Increasing the control reservoir must not relax this
+threshold.
 
-SLEEPING_BEAUTY vs IMMEDIATE_HIT
+Secondary/extreme contrasts:
 
-Same field/year, but do not match away the early-attention contrast.
+1. **SLEEPING_BEAUTY vs FORGOTTEN** — useful for descriptive mechanism
+   contrasts but not the primary readiness gate because permanently forgotten
+   controls can be much more deeply uncited.
+2. **SLEEPING_BEAUTY vs IMMEDIATE_HIT** — same field/year, without matching
+   away the defining early-attention contrast.
+
+For the risk-set reservoir, deterministic multi-seed OpenAlex pages may be
+unioned to create nested support sets larger than the one-page 100-work API
+limit. Record every seed/page and deduplicate by OpenAlex ID.
 
 ## Step 7 — Audit before mechanism analysis
 
