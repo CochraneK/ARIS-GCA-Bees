@@ -8,18 +8,18 @@ An open-data-first Sleeping Beauty discovery agent with three separated tracks: 
 
 ## Current state
 
-- Activity: **active**
+- Activity: **block**
 - Progress: **88%**
 - Stage: **Track M · frozen-case common-support gate**
-- Evidence: 603-paper deterministic multi-seed acquisition + frozen 3 literature-known primary cases + standard risk-set control reuse + offline reanalysis; 1:1 match rate 1.0 but max abs SMD 1.633; 1:4 worsens to 2.417; Washburn-1921 minimum observed sleep-rate gap 1.180; latest design tests/CI PASS
+- Evidence: 603-paper deterministic multi-seed acquisition + frozen 3 literature-known primary cases + standard risk-set control reuse + offline reanalysis; 1:1 match rate 1.0 but max abs SMD 1.633; 1:4 worsens to 2.417; Washburn-1921 minimum observed sleep-rate gap 1.180; exact complete-frame cursor inventory + resumable history reconstruction are now implemented and CI-tested
 
 ## Immediate next action
 
-**Enumerate the complete same-field/same-year control frame for the 3 known cases without relaxing SMD<0.10; if overlap still fails, freeze an overlap-limited estimand/unmatched-case rule; independently validate OpenAlex trajectory/B against SciSciNet-v2 or another source**
+**After the OpenAlex rate window resets, execute the complete same-field/same-year frame inventory and resumable histories for the 3 frozen known cases; rerun frozen 1:1 SMD diagnostics without relaxing 0.10; independently validate OpenAlex trajectory/B**
 
 ## Current blocker / gate
 
-Primary risk-set common support remains inadequate, especially Washburn 1921; OpenAlex API live acquisition hit its current rate limit; OpenAlex Beauty-Coefficient calibration remains provisional
+External acquisition gate: current OpenAlex API rate window is exhausted; complete-frame tooling is ready. Scientific blockers remain inadequate common support (especially Washburn 1921) and provisional OpenAlex Beauty-Coefficient calibration.
 
 ## Canonical files / entry points
 
