@@ -1,6 +1,6 @@
 # EXECUTION PHASES — ARIS4C004
 
-Last updated: 2026-09-18
+Last updated: 2026-09-19
 
 This file answers one operational question: **what remains before ARIS4C004 is finished?**
 
@@ -20,86 +20,93 @@ This file answers one operational question: **what remains before ARIS4C004 is f
 - 30/30 identity states adjudicated
 - 18 verified identities
 - 13 network-observable
-- 693 clean works
+- 693 clean focal works
 - person-specific temporal ego-network architecture frozen
 - 13/13 have downstream citation neighborhoods
-- citation-rich / citation-sparse rules frozen
 
 ## P2 — Frozen-100 identity expansion
-**RUNNING**
+**COMPLETE**
 
-Exit condition:
-
-- 100/100 have a non-provisional identity state
-- positive mappings have auditable evidence
-- identity table validates against canonical frame
-
-Current blocking operation:
-
-- MH-blind OpenAlex/authority identity evidence acquisition for the full 100-person frame
+- 100/100 have terminal non-provisional identity states
+- 52 verified identities
+- 38 no-graph
+- 8 collisions
+- 2 identity errors
+- canonical `identity_decisions_100.csv` frozen and invariant-checked
 
 ## P3 — Frozen-100 work/network release
-**PENDING P2**
+**COMPLETE**
 
-For every newly VERIFIED person:
-
-- rebuild full person-level work corpus
-- work-level decontamination where required
-- set network-observable decision
-- acquire bounded downstream network
-- assign citation-rich / citation-sparse / no-downstream
+- 52 verified identities rebuilt into 2,956 deduplicated person-work records
+- 0 work-fetch errors
+- every VERIFIED person has a terminal work/network decision
+- 25 network-observable
+- 13 held for insufficient clean works
+- 14 held for unresolved work contamination
+- precision prioritized over coverage
 
 ## P4 — Pre-exposure audit and freeze
-**PENDING P3**
+**RUNNING — one external gate remains**
 
-- required independent identity second review
+Complete:
+- observability audit by cohort, visibility, region, gender and subdomain
+- FORD broad-field audit
+- alternate-frame decision frozen
+- deterministic 40-person identity second-review selection frozen
+- blind assignment frozen
+- CI/data-integrity gates passing
+
+Remaining:
+- independent reviewer completes the 40-person blind identity review
 - adjudicate disagreements
-- observability audit by era, visibility, region, gender and FORD domain
-- resolve defensible FORD assignments / retain unclassified where needed
-- freeze hashes/versions of pre-exposure analytic frame
+- write/version `PREEXPOSURE_FRAME_FREEZE.md`
 
-Completion of P4 triggers `PREEXPOSURE_FRAME_FREEZE.md`.
+P4 is the only phase currently blocking mental-health exposure coding.
 
 ## P5 — Mental-health exposure coding
 **LOCKED UNTIL P4**
 
-Apply the already frozen exposure codebook:
+After the independent identity gate passes:
 
-- A1 / A2 / B1 / B2 / C / U
-- independent review / reliability
-- no unknown-as-healthy coding
-- quantify strict and broader exposure yield
-
-At the end of P5 decide, using yield/precision rather than intuition, whether 100 candidates are enough or a larger pre-exposure sample is required.
+- apply A1 / A2 / B1 / B2 / C / U
+- independent exposure review / reliability
+- unknown remains unknown
+- quantify Tier-A and Tier-A+B yield
+- decide whether the 100-person frame is sufficient
 
 ## P6 — Counterfactual analysis
-**PENDING P5**
+**METHOD PREPARATION MAY PROCEED; RESULTS PENDING P5**
 
-- matched exposed/comparison sets
-- M0 / M1 / M2 simulation
-- substitution / rewiring calibration
-- CPE and recovery/rediscovery metrics
-- null/random-removal controls
-- field/era standardized comparisons
-- robustness and sensitivity analyses
+Can proceed now:
+- simulator calibration/validation plan
+- null/random-removal design
+- precision/N simulation architecture
+- preregistered metric definitions
+
+Requires P5:
+- exposed/comparison matching
+- exposure-linked CPE estimates
+- M0/M1/M2 confirmatory simulations
+- field/era standardized exposure contrasts
 
 ## P7 — Paper / final ARIS package
 **PENDING P6**
 
-- results tables/figures
-- limitations and bias audit
-- manuscript
+- final results/tables/figures
+- English manuscript
+- Chinese manuscript
+- limitations/bias audit
 - reproducibility bundle
 - final adversarial review
-- GitHub Pages integration
+- GitHub Pages/PDF integration
 - final-paper freeze
 
 ## Stop rule
 
 Do not invent extra infrastructure after a phase exit condition is satisfied.
 
-The immediate path is:
+Current critical path:
 
-`P2 identity100 -> P3 work/network100 -> P4 frame freeze -> P5 exposure -> P6 CPE -> P7 paper`
+`P4 independent identity review -> pre-exposure freeze -> P5 exposure -> P6 CPE -> P7 final paper`
 
-No mental-health lookup is allowed to shortcut P2–P4.
+In parallel, only non-exposure-dependent P6 methods and P7 skeleton work should proceed.
