@@ -2,12 +2,12 @@
 
 - **Title:** When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion
 - **Project status:** schema-v2-frozen-fresh-validation-sample-frozen
-- **Activity:** wait
+- **Activity:** active
 - **Portfolio progress:** 66%
-- **Current stage:** Pilot 0B complete · v1 reliability revision gate
-- **Evidence established:** 165-record reproducible retrieval + genuinely independent 30-record Coder B; raw opposition-valid κ=0.466, OCI-candidacy κ=0.592, primary-mechanism κ=0 with 141 disagreement cells; instrument vocabulary mismatch documented
-- **Next gate:** Diagnose/adjudicate disagreement types, freeze controlled-vocabulary Schema v2, then run a fresh independent A2/B2 reliability Pilot
-- **Blocker:** v1 coding instrument did not meet the prespecified reliability threshold; full evidence-map screening remains gated until revised independent validation
+- **Current stage:** Schema v2 frozen · fresh 30-record validation sample frozen
+- **Evidence established:** Raw v1 Pilot 0B preserved; all 141 disagreement cells diagnostically partitioned (30 lexical/token, 24 schema-overlap, 26 source/metadata, 61 genuine conceptual); controlled-vocabulary Schema v2 frozen; fresh deterministic 30-record balanced sample frozen with zero Pilot 0B overlap
+- **Next gate:** Materialize identical blinded evidence packets for the frozen v2 sample, freeze packet hashes, then run genuinely independent A2/B2 coding and reliability scoring
+- **Blocker:** No immediate engineering blocker; full 165-record evidence-map screening remains gated on fresh independent v2 reliability validation
 
 ## Source of truth
 
