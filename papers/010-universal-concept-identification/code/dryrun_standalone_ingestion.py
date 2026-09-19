@@ -14,7 +14,7 @@ from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parent
-FORMS=ROOT/"data"/"human_forms"/"forms.generated.json"
+FORMS=ROOT/"data"/"human_forms"/"forms.generated.json"\nTRAINING=ROOT/"data"/"human_forms"/"protocol_training.v1.json"
 
 
 def h(text):
@@ -46,12 +46,34 @@ def fake_export(form, participant, out_path):
             "response_time_ms":1000+(h(participant+item["query_id"])%1000),
             "occurrence_index":sum(r["pair_id"]==item["pair_id"] for r in rows)+1
         })
+    training_attempts=[]
+    allowed=form["items"][0]["allowed_responses"]
+    for i,item in enumerate(training[form["protocol"]]):
+        if i==0:
+            wrong=next(x for x in allowed if x!=item["correct"])
+            training_attempts.append({
+                "practice_id":item["practice_id"],
+                "attempt":1,
+                "selected":wrong,
+                "correct":False,
+            })
+            attempt=2
+        else:
+            attempt=1
+        training_attempts.append({
+            "practice_id":item["practice_id"],
+            "attempt":attempt,
+            "selected":item["correct"],
+            "correct":True,
+        })
+
     payload={
         "study":"ARIS4C010-UCID-calibration",
         "form_id":form["form_id"],
         "protocol":form["protocol"],
         "participant_id":participant,
         "completed_at":"2099-01-01T00:00:00Z",
+        "training_attempts":training_attempts,
         "rows":rows
     }
     Path(out_path).write_text(json.dumps(payload),encoding="utf-8")
@@ -59,6 +81,7 @@ def fake_export(form, participant, out_path):
 
 def main():
     forms=json.loads(FORMS.read_text(encoding="utf-8"))["forms"]
+    training=json.loads(TRAINING.read_text(encoding="utf-8"))["protocols"]
     selected=[
         next(f for f in forms if f["form_id"]=="P2-F01"),
         next(f for f in forms if f["form_id"]=="P3-F01"),
@@ -70,7 +93,7 @@ def main():
         files=[]
         for i,form in enumerate(selected,1):
             path=td/f"response_{i}.json"
-            fake_export(form,f"PIPE-{i:02d}",path)
+            fake_export(form,f"PIPE-{i:02d}",path,training)
             files.append(str(path))
 
         combined=td/"combined.json"
@@ -80,6 +103,10 @@ def main():
             text=True,capture_output=True,check=True
         )
         assert "PASS standalone response ingestion" in ingest.stdout
+        combined_payload=json.loads(combined.read_text(encoding="utf-8"))
+        assert len(combined_payload["sessions"])==3
+        assert all(s["training_completed"] for s in combined_payload["sessions"])
+        assert all(s["training_errors"]==1 for s in combined_payload["sessions"])
 
         proc=subprocess.run(
             [sys.executable,str(HERE/"analyze_human_calibration.py"),str(combined)],
@@ -111,12 +138,29 @@ def main():
         )
         assert rejected.returncode!=0
 
+        bad_training=json.loads(Path(files[0]).read_text(encoding="utf-8"))
+        first_id=training["P2"][0]["practice_id"]
+        bad_training["training_attempts"]=[
+            x for x in bad_training["training_attempts"]
+            if not (x["practice_id"]==first_id and x.get("correct") is True)
+        ]
+        bad_training_file=td/"tampered_training.json"
+        bad_training_file.write_text(json.dumps(bad_training),encoding="utf-8")
+        rejected_training=subprocess.run(
+            [sys.executable,str(HERE/"ingest_standalone_responses.py"),
+             str(bad_training_file),"-o",str(td/"badtrainingout.json")],
+            text=True,capture_output=True
+        )
+        assert rejected_training.returncode!=0
+
     print("PASS end-to-end standalone ingestion dry-run")
     print("protocols: P2/P3/P6")
     print("synthetic participants: 3")
     print("retest matches: 24")
+    print("training errors reconstructed from canonical key: PASS")
     print("P3/coarsened-P6 comparison: PASS")
     print("tampered trial metadata rejected: yes")
+    print("incomplete/tampered training rejected: yes")
 
 
 if __name__=="__main__":
