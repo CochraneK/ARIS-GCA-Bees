@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
+  <img src="./docs/assets/readme/zh/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
 </p>
 
 <p align="center">
@@ -40,15 +40,15 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 ## 当前研究组合
 
 <p align="center">
-  <img src="./docs/assets/readme/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
+  <img src="./docs/assets/readme/zh/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
+  <img src="./docs/assets/readme/zh/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
+  <img src="./docs/assets/readme/zh/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
 > Progress 是**项目管理估计**，不是科学结果。\`100%\` 表示仓库层面的最终输出契约已经满足。**Quiet** 表示 submission-ready / completed、当前不再需要主动执行的项目。
@@ -82,7 +82,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 ## ARIS4C 如何运作
 
 <p align="center">
-  <img src="./docs/assets/readme/architecture.svg" width="100%" alt="ARIS4C research system architecture">
+  <img src="./docs/assets/readme/zh/architecture.svg" width="100%" alt="ARIS4C research system architecture">
 </p>
 
 关键分工：
@@ -92,6 +92,20 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 - **ARIS4C 000 / dashboard** 管 portfolio，但不成为第二套科学真相。
 - **\`handoff/\`** 保存跨对话、跨账号、跨 Agent 继续研究所需的上下文。
 - **Git history** 保存被替代的旧版本，而不是抹掉研究如何演化。
+
+## 每篇 Paper 的通用结构
+
+<p align="center">
+  <img src="./docs/assets/readme/zh/paper-structure.svg" width="100%" alt="ARIS4C 单篇 Paper 项目的通用结构">
+</p>
+
+所有编号项目遵循同一套仓库结构与交付契约；真正的研究设计、数据、分析、图表和审查门则由各自科学问题决定。
+
+## 一篇 Paper 的生命周期
+
+<p align="center">
+  <img src="./docs/assets/readme/zh/paper-lifecycle.svg" width="100%" alt="ARIS4C 单篇 Paper 的生命周期">
+</p>
 
 ## Final Paper 标准
 
@@ -110,6 +124,10 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 详见 [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md)。
 
 ## 跨电脑 / 账号 / Agent 连续性
+
+<p align="center">
+  <img src="./docs/assets/readme/zh/handoff-package.svg" width="100%" alt="ARIS4C 跨 Agent 接管包">
+</p>
 
 每一个编号项目现在都有统一目录：
 
