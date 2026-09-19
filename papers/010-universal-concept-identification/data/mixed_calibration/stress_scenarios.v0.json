@@ -1,5 +1,5 @@
 {
-  "dataset_id": "ucid-mixed-p6-stress-calibration-v0",
+  "dataset_id": "ucid-mixed-response-stress-calibration-v1",
   "evidence_class": "constructed_response_state_calibration",
   "created_on": "2026-09-19",
   "purpose": "Calibrate P2, coarse P3 (YES/NO/MAYBE), and fine-grained P6 semantic response states on deliberately heterogeneous cases; not an identification-performance benchmark.",
@@ -459,5 +459,6 @@
       "text": "Does the designated oracle have direct access to the information needed for the judgment?",
       "kind": "grounding"
     }
-  ]
+  ],
+  "version_note": "v1 introduces P3 (YES/NO/MAYBE) as a coarse non-binary mechanism control between P2 and P6."
 }
