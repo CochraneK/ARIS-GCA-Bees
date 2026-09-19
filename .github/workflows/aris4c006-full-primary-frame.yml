@@ -1,0 +1,84 @@
+name: ARIS4C006 full primary frame build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  primary-frame-field:
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        field_id: [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download frozen surname inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv"             -o "$PAPER_DIR/data/raw/familyname.csv"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/jaaack-wang/ccnc/a14520b9cc8bd6b251aeb4a7453ab1a45f23aa15/Ch-Last-Names-Dict/ChineseLastNamesNoTones.json"             -o "$PAPER_DIR/data/raw/ccnc_lastnames.json"
+      - name: Materialize outcome-locked field frame
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/24_materialize_primary_frame.py \
+            --field-id ${{ matrix.field_id }} \
+            --familyname-csv data/raw/familyname.csv \
+            --ccnc-json data/raw/ccnc_lastnames.json \
+            --target-works 40 \
+            --min-cell-works 20 \
+            --max-blocks 5 \
+            --outdir data/primary_frame/field_${{ matrix.field_id }}
+      - name: Remove raw surname inputs
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        run: rm -rf data/raw
+      - name: Upload field frame artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-primary-frame-field-${{ matrix.field_id }}
+          path: ${{ env.PAPER_DIR }}/data/primary_frame/field_${{ matrix.field_id }}/
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate-primary-frame:
+    needs: primary-frame-field
+    if: ${{ always() && !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all field artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c006-primary-frame-field-*
+          path: ${{ env.PAPER_DIR }}/data/primary_frame_artifacts
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Aggregate structural frame counts
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/25_aggregate_primary_frame.py \
+            data/primary_frame_artifacts \
+            --outdir data/primary_frame_aggregate
+      - name: Upload aggregate primary-frame artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-primary-frame-aggregate
+          path: ${{ env.PAPER_DIR }}/data/primary_frame_aggregate/
+          if-no-files-found: error
+          retention-days: 30
