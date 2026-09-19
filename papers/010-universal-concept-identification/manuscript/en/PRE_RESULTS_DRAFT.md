@@ -67,12 +67,14 @@ The empirical claim is not that these axes are uniquely correct, but that explic
 
 The strict protocol P2 provides YES/NO only.
 
+P3 provides YES / NO / MAYBE. It is a coarse non-binary mechanism control: MAYBE intentionally collapses every reason that a confident binary judgment may be inappropriate.
+
 P6 distinguishes:
 YES, NO, BORDERLINE, UNKNOWN, UNDEFINED, and BOTH.
 
 A P6+context extension additionally permits CONTEXT_REQUEST.
 
-The richer alphabet has greater potential information capacity, but may also impose cognitive and reliability costs. Its value is therefore empirical rather than assumed.
+The central mechanism test is not merely P2 versus P6. P2→P3 estimates the value of any non-binary escape response; P3→P6 estimates the incremental value of distinguishing why a binary judgment fails. The richer alphabet has greater potential information capacity, but may also impose cognitive and reliability costs.
 
 ## 5. Prior-art boundary
 
@@ -110,7 +112,7 @@ No response is predeclared as gold.
 
 ### 6.4 Human form design
 
-Thirty-six balanced base forms are duplicated across P2 and P6.
+Thirty-six balanced base forms are duplicated across P2, P3, and P6.
 
 Each form contains 84 unique main trials and 8 covert retests. One full form cycle provides equalized pair exposure but is not itself a powered sample-size recommendation.
 
@@ -145,7 +147,7 @@ Primary outcomes:
 - expected and worst-case semantic query cost;
 - Semantic Query Overhead;
 - invalid/type-error question rate;
-- P2/P6 response reliability and retest consistency;
+- P2/P3/P6 response reliability and retest consistency;
 - open-world calibration.
 
 ## 9. Discussion — precommitted interpretation boundaries
@@ -154,7 +156,7 @@ A positive result would not establish a final ontology of human thought. It woul
 
 A null result in which simpler lexical graphs or embeddings match the multi-axis ontology would narrow the contribution and be reported directly.
 
-If P6 categories cannot be used reproducibly, the response protocol should be simplified rather than preserved for theoretical elegance.
+If P6 does not outperform the coarse P3 MAYBE control enough to justify its added complexity, the response protocol should be simplified rather than preserved for theoretical elegance.
 
 Strong ineffability remains a boundary of ordinary target representation rather than an empirically instantiated row in the benchmark.
 
