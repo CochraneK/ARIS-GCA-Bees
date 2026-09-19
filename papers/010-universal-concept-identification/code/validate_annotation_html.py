@@ -10,7 +10,7 @@ OUT=ROOT/"data"/"human_forms"/"html"
 
 def main():
     pages=sorted(p for p in OUT.glob("*.html") if p.name!="index.html")
-    assert len(pages)==72
+    assert len(pages)==108
     assert (OUT/"index.html").exists()
     for page in pages:
         text=page.read_text(encoding="utf-8")
@@ -21,7 +21,7 @@ def main():
         assert "download()" in text
         assert "response_time_ms" in text
     print("PASS standalone HTML validation")
-    print("participant pages: 72")
+    print("participant pages: 108")
     print("network submission code: none")
 
 
