@@ -37,7 +37,7 @@ jobs:
           from pathlib import Path
           p = json.loads(Path('papers/002-language-geometry/paper.json').read_text())
           assert p['id'] == '002'
-          assert p['status'] in {'manuscript-draft-v1', 'manuscript-preparation', 'submission-preparation'}
+          assert p['status'] in {'manuscript-draft-v1', 'manuscript-preparation', 'submission-preparation', 'submission-ready-author-metadata-pending'}
           assert p['links']['paper_en']
           print(p['title'])
           PY
