@@ -268,6 +268,45 @@
         "large-scale historical precedent"
       ],
       "limitations": "Web of Science/APS historical citation corpora; citation coverage and field composition differ from OpenAlex. The study argues against a natural binary Sleeping Beauty threshold."
+    },
+    {
+      "id": "SRC_SONG_2013",
+      "tier": "T1",
+      "type": "research_time_survey",
+      "title": "How Many Work Hours Are Requisite to Publish a Manuscript?",
+      "doi": "10.1097/GOX.0b013e31828e9f51",
+      "year": 2013,
+      "use": [
+        "narrow production-time calibration anchor",
+        "retrospective-study researcher-hour benchmark"
+      ],
+      "limitations": "Survey of 13 surgeons covering 171 published retrospective studies, with retrospective recall and a highly specific clinical/surgical research setting. The 177-hour median is team-hours per publication and is not a universal paper-time constant."
+    },
+    {
+      "id": "SRC_LEBLANC_2019",
+      "tier": "T1",
+      "type": "manuscript_formatting_time_survey",
+      "title": "Scientific sinkhole: The pernicious price of formatting",
+      "doi": "10.1371/journal.pone.0223116",
+      "year": 2019,
+      "use": [
+        "author formatting-time burden anchor",
+        "publication-process labor context"
+      ],
+      "limitations": "Internet self-report survey of 372 respondents from 41 countries, with 60% from Canada. Formatting time is publication-process burden, not total research production time and not automatically attributable to integrity failures."
+    },
+    {
+      "id": "SRC_HUISMAN_2017",
+      "tier": "T1/T2",
+      "type": "peer_review_process_study",
+      "title": "Duration and quality of the peer review process: the author’s perspective",
+      "doi": "10.1007/s11192-017-2310-5",
+      "year": 2017,
+      "use": [
+        "peer-review duration/labor context",
+        "field heterogeneity warning"
+      ],
+      "limitations": "SciRev self-selected author reports emphasize review-process experience; the paper notes 4–8 hours to write a peer review but this should be treated as contextual labor range rather than a global calibrated per-review distribution."
     }
   ],
   "optional_tool_layers": {
