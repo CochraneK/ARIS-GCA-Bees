@@ -55,8 +55,9 @@ Treat one paper as `CURRENT PAPER` at a time in 000. Do not carry scientific ass
 When modifying the public dashboard, preserve these user-approved rules unless explicitly changed later:
 
 - **All projects** → rolling research marquee/showcase.
-- Public project visibility is **in-progress only**: include only `0 < progress < 100`; keep 0% and 100% projects in canonical Git state but omit them from public cards/showcase/history.
-- **Active / Wait / Block** → detailed project-card panel.
+- Public project visibility is **complete**: all projects remain available in normal navigation, counts, cards, search, and the All-projects rolling showcase.
+- **Today's progress curve only** hides current `Finish` projects and projects whose progress percentage did not change today.
+- **Finish / Active / Wait / Block** → detailed project-card panel.
 - Non-empty search → detailed project-card panel.
 - Portfolio Hero/overview → top-level All only.
 - Every public project card exposes exactly **English** and **中文** paper actions.
