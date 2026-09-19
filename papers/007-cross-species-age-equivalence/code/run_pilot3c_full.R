@@ -77,7 +77,7 @@ for (i in seq_len(nrow(samples))) {
   mf <- manifest[trimws(manifest$geo_accession) == gsm, , drop=FALSE]
   if (nrow(mf) != 2) stop(sprintf("%s: manifest expected two IDAT files, got %d", gsm, nrow(mf)))
 
-  local_names <- mf$filename
+  local_names <- trimws(as.character(mf$filename))
   files <- file.path(idat_dir, local_names)
   if (!all(file.exists(files))) {
     stop(sprintf("%s: missing local IDAT(s): %s", gsm, paste(files[!file.exists(files)], collapse=", ")))
