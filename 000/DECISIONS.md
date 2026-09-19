@@ -25,3 +25,17 @@
 **Decision:** A bounded substantive unit must be committed and its handoff synchronized before 000 intentionally switches to another paper.
 
 **Why:** Git, not chat context, is the recoverable source of truth.
+
+
+## 2026-09-19 · Research Command Center split-view UI
+
+**Decision:** Keep two distinct public portfolio presentations.
+
+- `All projects` uses the rolling horizontal research marquee/showcase.
+- `Finish / Active / Wait / Block` use the detailed project-card panel.
+- Non-empty search results use the detailed card panel.
+- The top portfolio Hero/overview is shown only on `All projects`.
+
+**Public card action rule:** expose exactly two paper actions: **English** and **中文**. Prefer PDF targets when available. Do not expose Figures, Tables, Pipeline, Source, or output-readiness badges on project cards.
+
+**Why:** The top-level view is for portfolio discovery and visual scanning; status subviews are operational work surfaces and need denser evidence/gate/blocker detail.
