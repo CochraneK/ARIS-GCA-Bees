@@ -8,7 +8,7 @@
 
 ## Abstract
 
-Twenty Questions provides a simple information-theoretic picture of identification: with unrestricted noiseless binary partitions, a finite set of (N) equiprobable targets can be separated in roughly (log_2 N) questions. Human semantic questioning is more constrained. Questions must be interpretable, applicable to the target type, answerable under a specified context and oracle, and robust to lexical ambiguity, vagueness, nonexistence, contradiction, epistemic uncertainty, and open-world targets. We formalize **semantic concept identification** as adaptive search over an explicit target universe under an admissible semantic query family, and define **Semantic Query Overhead** as the additional identification cost relative to unrestricted partitions. We distinguish static separating bases from adaptive decision trees, connect the former to Test Cover, and specify a typed multi-axis representation that does not assume all concepts form one inheritance tree. An exploratory source-derived pilot using 15 Open English WordNet senses finds measurable but small expected semantic overhead under an uncalibrated query matrix. The confirmatory program will calibrate binary versus richer semantic response protocols in humans and evaluate single-taxonomy, graph, multi-axis, embedding, and hybrid representations across ordinary and adversarial concept regimes.
+Twenty Questions provides a simple information-theoretic picture of identification: with unrestricted noiseless binary partitions, a finite set of (N) equiprobable targets can be separated in roughly (log_2 N) questions. Human semantic questioning is more constrained. Questions must be interpretable, applicable to the target type, answerable under a specified context and oracle, and robust to lexical ambiguity, vagueness, nonexistence, contradiction, epistemic uncertainty, and open-world targets. We formalize **semantic concept identification** as adaptive search over an explicit target universe under an admissible semantic query family, and define **Semantic Query Overhead** as the additional identification cost relative to unrestricted partitions. We distinguish static separating bases from adaptive decision trees, connect the former to Test Cover, and specify a typed multi-axis representation that does not assume all concepts form one inheritance tree. An exploratory source-derived pilot using 15 Open English WordNet senses finds measurable but small expected semantic overhead under an uncalibrated query matrix. The confirmatory program will calibrate P2, P3, and P6 response protocols in humans and evaluate single-taxonomy, graph, multi-axis, embedding, and hybrid representations across ordinary and adversarial concept regimes.
 
 ## 1. Introduction
 
@@ -20,7 +20,7 @@ This gap motivates the central question:
 
 The problem is not equivalent to building a complete taxonomy of everything. Exact identification requires a query family capable of separating candidate targets relative to an explicit universe. A single `is-a` tree may be useful for ordinary object categories, but lexical senses, relations, negation, context-sensitive predicates, fictional or empty descriptions, higher-order constructions, and semantic pathologies cross-cut taxonomic inheritance.
 
-We therefore treat universal concept identification as a **relative** problem: relative to a target universe, query language, response protocol, context model, and oracle.
+We therefore treat universal concept identification as a **relative** problem: relative to a target universe, query language, response protocol, context model, and oracle.\n\n![Figure 1. Unrestricted versus semantically admissible identification.](../../figures/fig01_semantic_query_overhead.svg)
 
 ## 2. Formal framework
 
@@ -74,7 +74,7 @@ YES, NO, BORDERLINE, UNKNOWN, UNDEFINED, and BOTH.
 
 A P6+context extension additionally permits CONTEXT_REQUEST.
 
-The central mechanism test is not merely P2 versus P6. P2→P3 estimates the value of any non-binary escape response; P3→P6 estimates the incremental value of distinguishing why a binary judgment fails. The richer alphabet has greater potential information capacity, but may also impose cognitive and reliability costs.
+The central mechanism test is not merely P2 versus P6. P2→P3 estimates the value of any non-binary escape response; P3→P6 estimates the incremental value of distinguishing why a binary judgment fails. The richer alphabet has greater potential information capacity, but may also impose cognitive and reliability costs.\n\n![Figure 2. P2, P3 and P6 as binary forcing, coarse escape and semantic fine-graining.](../../figures/fig02_response_protocols.svg)
 
 ## 5. Prior-art boundary
 
