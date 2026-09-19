@@ -6,237 +6,86 @@
     "expected_records": 30,
     "present_records": 30,
     "missing_records": [],
-    "records_missing_core_fields": {
-      "P01": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P02": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P03": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P04": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P05": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P06": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P07": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P08": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P09": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P10": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P11": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P12": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P13": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P14": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P15": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P16": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P17": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P18": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P19": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P20": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P21": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P22": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P23": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P24": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P25": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P26": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P27": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P28": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P29": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ],
-      "P30": [
-        "opposition_valid",
-        "oci_candidate",
-        "primary_mechanism"
-      ]
-    },
-    "complete": false
+    "records_missing_core_fields": {},
+    "complete": true
   },
   "fields": {
     "opposition_valid": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.7666666666666667,
+      "cohen_kappa": 0.4656488549618323,
+      "krippendorff_alpha_nominal": 0.46293888166449926
     },
     "oci_candidate": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.8333333333333334,
+      "cohen_kappa": 0.5923913043478263,
+      "krippendorff_alpha_nominal": 0.5969945355191257
     },
     "primary_mechanism": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.0,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": -0.0417892878163626
     },
     "actor_switch": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 4,
+      "n_missing_either": 26,
+      "raw_agreement": 0.75,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": 0.0
     },
     "level_switch": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 9,
+      "n_missing_either": 21,
+      "raw_agreement": 1.0,
+      "cohen_kappa": 1.0,
+      "krippendorff_alpha_nominal": 1.0
     },
     "time_switch": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 7,
+      "n_missing_either": 23,
+      "raw_agreement": 0.8571428571428571,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": 3.3306690738754696e-16
     },
     "construct_switch": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 5,
+      "n_missing_either": 25,
+      "raw_agreement": 1.0,
+      "cohen_kappa": 1.0,
+      "krippendorff_alpha_nominal": 1.0
     },
     "environment_switch": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 8,
+      "n_missing_either": 22,
+      "raw_agreement": 1.0,
+      "cohen_kappa": 1.0,
+      "krippendorff_alpha_nominal": 1.0
     },
     "feedback": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 13,
+      "n_missing_either": 17,
+      "raw_agreement": 0.9230769230769231,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": -6.661338147750939e-16
     },
     "nonlinearity": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 5,
+      "n_missing_either": 25,
+      "raw_agreement": 0.6,
+      "cohen_kappa": -0.11111111111111156,
+      "krippendorff_alpha_nominal": -0.05882352941176472
     },
     "selection_filtering": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 3,
+      "n_missing_either": 27,
+      "raw_agreement": 0.6666666666666666,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": 1.1102230246251565e-16
     },
     "power_asymmetry": {
       "n_pairwise_complete": 0,
@@ -246,35 +95,57 @@
       "krippendorff_alpha_nominal": null
     },
     "evidence_mode": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.6,
+      "cohen_kappa": 0.5219123505976095,
+      "krippendorff_alpha_nominal": 0.5190217391304348
     },
     "evidence_tier": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.26666666666666666,
+      "cohen_kappa": 0.2226148409893993,
+      "krippendorff_alpha_nominal": 0.179000632511069
     },
     "causal_claim_strength": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.0,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": -0.08256880733944949
     },
     "result_support": {
-      "n_pairwise_complete": 0,
-      "n_missing_either": 30,
-      "raw_agreement": null,
-      "cohen_kappa": null,
-      "krippendorff_alpha_nominal": null
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.03333333333333333,
+      "cohen_kappa": 0.02247191011235955,
+      "krippendorff_alpha_nominal": -0.06471686372121965
     }
   },
-  "status": "BLOCKED_INCOMPLETE_CODER_B",
-  "key_gate_metrics": {},
-  "disagreement_cells": 0
+  "status": "READY_FOR_ADJUDICATION",
+  "key_gate_metrics": {
+    "opposition_valid": {
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.7666666666666667,
+      "cohen_kappa": 0.4656488549618323,
+      "krippendorff_alpha_nominal": 0.46293888166449926
+    },
+    "oci_candidate": {
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.8333333333333334,
+      "cohen_kappa": 0.5923913043478263,
+      "krippendorff_alpha_nominal": 0.5969945355191257
+    },
+    "primary_mechanism": {
+      "n_pairwise_complete": 30,
+      "n_missing_either": 0,
+      "raw_agreement": 0.0,
+      "cohen_kappa": 0.0,
+      "krippendorff_alpha_nominal": -0.0417892878163626
+    }
+  },
+  "disagreement_cells": 141
 }
