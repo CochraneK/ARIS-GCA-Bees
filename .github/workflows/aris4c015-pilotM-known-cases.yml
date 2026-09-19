@@ -1,4 +1,4 @@
-name: ARIS4C015 Pilot M known-SB case enrichment v2
+name: ARIS4C015 Pilot M known-SB case enrichment v3
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run known-SB case-enriched pilot with robust identity separation
+      - name: Run known-SB case-enriched pilot with event-time risk sets
         working-directory: papers/015-sleeping-beauty-miner/code
         run: |
           python pilotM_known_case_enrichment.py             --controls-per-case-pool 50             --observation-end-year 2011             --output ../data/pilotM_known_cases_openalex.json
@@ -75,9 +75,28 @@ jobs:
                           if x["robust_sb_gate"]
                           else None
                       ),
+                      "quadrant": x["relative_quadrant"],
+                      "post_awakening_fate": (
+                          x["post_awakening_fate"]["state"]
+                          if x["post_awakening_fate"]
+                          else None
+                      ),
                   }
                   for x in result["known_case_assessment"]
               ],
+              "SB_vs_AT_RISK_DORMANT": {
+                  "match_rate": result["contrasts"][
+                      "SB_vs_AT_RISK_DORMANT"
+                  ]["match_rate"],
+                  "n_matches": len(
+                      result["contrasts"][
+                          "SB_vs_AT_RISK_DORMANT"
+                      ]["matches"]
+                  ),
+                  "balance": result["contrasts"][
+                      "SB_vs_AT_RISK_DORMANT"
+                  ]["balance"],
+              },
               "SB_vs_FORGOTTEN": {
                   "match_rate": result["contrasts"][
                       "SB_vs_FORGOTTEN"
@@ -106,7 +125,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilotM-known-cases-v2
+          name: aris4c015-pilotM-known-cases-v3
           path: papers/015-sleeping-beauty-miner/data/pilotM_known_cases_openalex.json
           if-no-files-found: error
           retention-days: 30
