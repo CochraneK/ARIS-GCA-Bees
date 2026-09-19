@@ -39,7 +39,8 @@
     "paper_zh": "complete",
     "figures": {
       "status": "complete",
-      "count": 3
+      "count": 5,
+      "strategy": "adaptive visual narrative; no fixed figure quota"
     },
     "tables": {
       "status": "complete",
