@@ -256,6 +256,11 @@ def run_known_case_enrichment(
             )
 
     min_stratum_size = max(20, min(40, controls_per_case_pool - 5))
+    primary_case_ids = {
+        str(meta["openalex_id"])
+        for meta in known_case_meta
+        if meta.get("openalex_id")
+    }
     result = build_mechanism_cohort(
         papers,
         min_stratum_size=min_stratum_size,
@@ -267,6 +272,7 @@ def run_known_case_enrichment(
         sb_min_wake_rate=5.0,
         sb_min_total_citations=50,
         controls_per_case=matched_controls_per_case,
+        primary_risk_set_case_ids=primary_case_ids,
         matching_early_percentile_caliper=0.15,
         matching_max_abs_smd=0.10,
         min_primary_match_rate=0.50,
@@ -315,6 +321,8 @@ def run_known_case_enrichment(
         "type": "literature-known case-enriched matched-control smoke",
         "known_case_source": "Ke et al. 2015 PNAS",
         "n_known_cases": len(KNOWN_CASES),
+        "primary_risk_set_case_policy": "literature-known cases only",
+        "primary_risk_set_case_ids": sorted(primary_case_ids),
         "controls_per_case_pool_requested": controls_per_case_pool,
         "matched_controls_per_case": matched_controls_per_case,
         "control_sampling": control_sampling_meta,
