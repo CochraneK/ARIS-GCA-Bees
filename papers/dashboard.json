@@ -28,20 +28,20 @@
       "blocker": "No current engineering blocker; confirmatory model matrix is executing. Interpretation remains procedurally blocked until FIRST_RESULT_LOCK.json exists."
     },
     "004": {
-      "progress": 74,
-      "stage": "P4 pre-exposure audit · independent identity second-review gate",
-      "activity": "block",
-      "evidence": "P0–P3 complete. Identity100: 52 verified / 38 no-graph / 8 collision / 2 identity error / 0 provisional. Network100: 2,956 unique works, 0 fetch errors, 25/100 network-observable; 40-case blind second-review set frozen.",
-      "next_gate": "Independent reviewer completes 40 blind identity cases; adjudicate disagreements; write/hash PREEXPOSURE_FRAME_FREEZE.md; then begin exposure coding.",
-      "blocker": "Genuinely independent identity second review is required by the frozen protocol; current assistant self-review cannot count as independent."
+      "progress": 78,
+      "stage": "P4 pre-exposure audit · second review + adjudication executed, frame re-derivation pending",
+      "activity": "wait",
+      "evidence": "Second review 40/40 on an isolated AI surface (gpt-oss:120b, temp 0) scored 0.600 exact state agreement and 0.500 cluster-level Author-ID-set agreement; all 23 disagreements adjudicated by a different family (nemotron-3-super-120b) with 0 ungrounded or invented Author IDs, 0 verdicts broader than both reviews and net -1 included fragment; adjudicated candidate identity table merged without touching the frozen canonical table.",
+      "next_gate": "Re-derive verified-work corpus + network100 + observability from data/derived/identity_decisions_100_second_review_adjudicated.csv, close the 4 open identity cases, log the AI-surface independence decision, then write and hash PREEXPOSURE_FRAME_FREEZE.md.",
+      "blocker": "No human curator is expected and none is required; what blocks the freeze is now local work plus a frame-tightening decision (cluster ID-set agreement 0.500 is an over-merge signature), not a waiting reviewer."
     },
     "005": {
       "progress": 68,
-      "stage": "Confirmatory adjudication ready · independent dual-AI gate",
+      "stage": "Confirmatory adjudication still gated - evidence layer measured, database-coverage re-probe in flight",
       "activity": "block",
-      "evidence": "10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds",
-      "next_gate": "Run genuinely independent dual-AI adjudication + arbitration + calibration",
-      "blocker": "Second independent adjudicator execution surface is not available in the current control thread; do not duplicate one model as two."
+      "evidence": "10,000-work evidence census: 62.4% have an OpenAlex abstract, 24.4% an OA PDF, and 3,506 (35.1%) have neither; the frozen batch packets themselves carry no title, abstract or full text at all, so no AI adjudicator can be shown article text under the current packet schema. Missingness is time- and domain-graded (abstract coverage 51.6% in 2000-2009 vs 78.5% in 2025+; Physical Sciences lowest at 58.6%), which is the band the paper's hidden-burden and Sleeping-Beauty quantities concentrate in. Alternate researcher-facing sources are being measured on all 3,506 gap works (1,627 DOI-bearing, 1,879 title-only). An first pass reported Europe PMC at 0.0%; that number is retracted - the probe was sending Europe PMC the https://doi.org/ URL form, which silently returns zero hits, while Crossref and Unpaywall accept it. With the bare DOI, 17 of 25 sampled biomedicine gap works resolve in Europe PMC. The corrected full-sample probe is still running, so no per-source coverage rate from it is quotable yet.",
+      "next_gate": "Finish the corrected alt-database probe, publish per-source coverage with a verified-match rule, then decide among: abstract-retrieval packets plus recorded EVIDENCE_UNAVAILABLE abstentions, a full-text pipeline, or a narrowed post-2015/OA subframe; only then run the dual-AI adjudication, arbitration and calibration.",
+      "blocker": "Not an idle AI surface. 35.1% of the probability sample has no machine-readable text and the packets retrieve none. Free-keyed sources can partially close it - Europe PMC for biomedicine looks real and Crossref's DOI resolution is high - but the corrected yield is not yet measured, and title-only matching against Crossref's fuzzy bibliographic search cannot be trusted without an exact-title gate. Decide the evidence policy on the corrected numbers before any adjudication run."
     },
     "006": {
       "progress": 62,
@@ -92,12 +92,12 @@
       "blocker": "No immediate engineering blocker. Confirmatory scoring remains disabled until a fresh post-feasibility corpus is built and frozen with attrition, grouped/temporal splits, detector/applicability/threshold freeze, leakage audit, and human-review protocol."
     },
     "012": {
-      "progress": 66,
-      "stage": "Schema v2 · final blind bundle frozen · independent A2/B2 gate",
+      "progress": 68,
+      "stage": "Schema v2 gate executed and failed · instrument revision (v3) required",
       "activity": "block",
-      "evidence": "Raw v1 Pilot 0B preserved; 141 disagreements exhaustively diagnosed; controlled-vocabulary Schema v2 frozen; final 30-record blind packet has 30/30 abstract excerpts after six pre-coding deterministic same-stratum evidence-availability replacements; A2/B2 inputs are byte-identical under bundle SHA-256 9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51; coder-freeze/reliability tooling and partial-integration CI guard are ready",
-      "next_gate": "Run genuinely independent A2/B2 on separate isolated execution surfaces; freeze each completed coder file; integrate only after both freezes, then run the frozen v2 reliability scorer",
-      "blocker": "Genuinely independent dual coding is required by the frozen protocol. The current controller cannot count itself twice, and no independent coding execution surface is available in this thread."
+      "evidence": "Independent A2/B2 v2 coding executed and frozen on two separate AI surfaces (nemotron-3-super-120b and gpt-oss:120b, temp 0, identical bundle SHA-256 9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51). Gate result REVISE_V2_INSTRUMENT: opposition_valid kappa 0.481 vs >=0.70, median informative kappa 0.372, 1/32 secondary axes passing, 380 disagreement cells of which 259 (68%) are the single 0-vs-uncertain rule conflict; AC1 0.471 shows the failure is not a base-rate artifact.",
+      "next_gate": "Draft and freeze a v3 schema amendment targeting diagnosed root causes RC1-RC4, then re-validate on a fresh 30-record independent sample that does not overlap V201..V230.",
+      "blocker": "The v2 instrument failed its own gate; proceeding to the 165-record screen on v2 is not permitted and the controller must not silently rewrite a frozen schema. Handed to a separate reviewer/AI via the GitHub issue on this branch."
     },
     "013": {
       "progress": 50,
@@ -125,11 +125,11 @@
     },
     "016": {
       "progress": 68,
-      "stage": "Phase 0 bilingual working paper · semantic reliability gate + pronunciation validity gate",
+      "stage": "Phase 0 bilingual working paper · semantic reliability gate blocked by an unreproducible freeze digest",
       "activity": "block",
-      "evidence": "EN+ZH drafts + 3 figures + OSF/ontology/genealogy audits + FWL repeated-item controls + frozen 300-row coder sample + 8,187/8,190 full-route technical pronunciation success",
-      "next_gate": "Independent Coder A/B + native ontology review; in parallel, stratified pronunciation-validity audit then matched-control approximant replication",
-      "blocker": "External independence/native-language validation is now the limiting factor; technical G2P coverage itself is no longer a blocker"
+      "evidence": "Frozen 300-row coder sample cannot be reproduced: the committed sampler is deterministic across fresh OSF runs and returns the frozen structure exactly (300 rows, 16x15 + Setswana 30 + Spanish 30, strata 42/116/61/81) but digest 910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751, and none of 86 tested serialisations yields the cited canonical 48c58f91901e8c2a1aab01958e95ea28afaf0f33e7a98677f98e58b8a412c9b4. Both the private-sheet exporter and the reliability scorer fail closed. 8,187/8,190 full-route technical pronunciation success unchanged.",
+      "next_gate": "Maintainer/reviewing AI decides between recovering the artifact behind 48c58f91... and superseding the freeze with a new versioned manifest digest under the freeze document's own replacement rule; only then export Coder A/B sheets.",
+      "blocker": "Record/tooling defect in the repository, not missing AI capacity and not a research finding; see papers/016-global-grammar-of-swearing/process/MANIFEST_DIGEST_MISMATCH.md."
     },
     "017": {
       "progress": 20,

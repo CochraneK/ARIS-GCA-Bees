@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-09-19T14:29:55Z",
+  "sample_rows_in_census": 10000,
+  "not_found_in_openalex": 0,
+  "counts": {
+    "resolved": 10000,
+    "has_title": 9984,
+    "has_abstract": 6242,
+    "has_content": 10000,
+    "is_oa": 3911,
+    "has_pdf_url": 2444,
+    "has_landing_page": 10000,
+    "is_retracted": 1,
+    "abstract_and_pdf": 2192,
+    "no_text_at_all": 3506
+  },
+  "rates": {
+    "has_title": 0.9984,
+    "has_abstract": 0.6242,
+    "has_content": 1.0,
+    "is_oa": 0.3911,
+    "has_pdf_url": 0.2444,
+    "has_landing_page": 1.0,
+    "is_retracted": 0.0001,
+    "abstract_and_pdf": 0.2192,
+    "no_text_at_all": 0.3506
+  },
+  "abstract_word_median": 66,
+  "abstract_p10": 0,
+  "oa_color": {
+    "gold": 695,
+    "closed": 6089,
+    "bronze": 581,
+    "diamond": 987,
+    "hybrid": 548,
+    "green": 1100
+  },
+  "adjudication_implication": "Works with neither an abstract nor an OA PDF cannot be given any article text to an AI adjudicator under the current packet design; they must abstain with abstain_reason=EVIDENCE_UNAVAILABLE rather than be judged from metadata."
+}
