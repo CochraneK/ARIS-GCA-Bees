@@ -4,9 +4,9 @@
   "title": "Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work",
   "short_title": "Sleeping Beauty Miner",
   "year": 2026,
-  "status": "pilot1-benchmark-mechanism-riskset-validation",
+  "status": "pilot1-benchmark-mechanism-common-support-validation",
   "domain": "metascience / scientometrics / delayed recognition / science of science / machine learning / citation networks / research integrity",
-  "summary": "An open-data-first Sleeping Beauty discovery agent with three separated tracks: retrospective robust-SB identification, case-enriched mechanism analysis, and time-safe prospective rediscovery. Track M now separates robust SB identity from relative citation quadrants and post-awakening fate, uses event-time at-risk-dormant risk-set matching as its primary contrast, and has a real 153-paper known-case pilot with 5 robust SB and 5/5 matches. Mechanism inference remains blocked because observed-covariate balance fails and OpenAlex B calibration is provisional. Track B contains a 200-paper historical benchmark with multiple outcomes, transparent citation baselines, sensitivity analyses, and a negative lexical-novelty ablation.",
+  "summary": "An open-data-first Sleeping Beauty discovery agent with three separated tracks: retrospective robust-SB identification, case-enriched mechanism analysis, and time-safe prospective rediscovery. Track M now uses a frozen three-paper literature-known primary case set, standard event-time incidence-density risk-set semantics, deterministic multi-seed control acquisition, and offline artifact reanalysis. A 603-paper/200-controls-per-known-case acquisition shows full match coverage but persistent observed-covariate imbalance; frozen-case 1:1 max abs SMD is 1.633 and 1:4 worsens to 2.417. Common-support diagnostics isolate the 1921 Washburn stratum as the clearest overlap problem. Mechanism inference remains blocked until complete-frame overlap is assessed and OpenAlex Beauty-Coefficient trajectories are independently calibrated.",
   "authors": [
     "Cochrane Kang"
   ],
@@ -38,7 +38,10 @@
     "lexical_ablation": "data/pilot1_lexical_summary.json",
     "handoff": "process/HANDOFF.md",
     "conversation_log": "process/CONVERSATION_LOG.md",
-    "pilotM_v3": "data/pilotM_known_cases_v3_summary.json"
+    "pilotM_v3": "data/pilotM_known_cases_v3_summary.json",
+    "pilotM_riskset_diagnostics": "data/pilotM_riskset_diagnostics_2026-09-19.json",
+    "provisional_candidate_validation": "process/PILOTM_PROVISIONAL_CANDIDATE_VALIDATION.md",
+    "offline_reanalysis_workflow": ".github/workflows/aris4c015-pilotM-offline-reanalysis.yml"
   },
   "tags": [
     "ARIS",
