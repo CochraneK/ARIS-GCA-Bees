@@ -4,13 +4,13 @@
 
 - [x] Complete genuinely independent WorkBuddy Coder B on P01–P30.
 - [x] Generate raw agreement / Cohen kappa / Krippendorff alpha and disagreement packet.
-- [ ] Diagnose all 141 disagreement cells by:
+- [x] Diagnose all 141 disagreement cells by:
   - lexical/token-vocabulary mismatch;
   - overlapping v1 categories;
   - genuine conceptual disagreement;
   - source/metadata disagreement.
-- [ ] Preserve raw v1 reliability outputs unchanged.
-- [ ] Convert `SCHEMA_V2_PROPOSAL.md` into a frozen controlled-vocabulary v2 coding specification.
+- [x] Preserve raw v1 reliability outputs unchanged.
+- [ ] Convert `SCHEMA_V2_PROPOSAL.md` into a frozen controlled-vocabulary v2 coding specification. **NEXT: use the exhaustive 141-cell diagnostic partition to define one allowed vocabulary per axis; do not retroactively recode Pilot 0B.**
 - [ ] Draw a fresh balanced validation sample.
 - [ ] Run genuinely independent A2/B2 coding under v2.
 - [ ] Require revised reliability to pass before full evidence-map screening.
