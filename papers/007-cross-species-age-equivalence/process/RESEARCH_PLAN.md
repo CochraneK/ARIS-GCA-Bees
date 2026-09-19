@@ -1,6 +1,6 @@
 # ARIS4C007 · Executable research plan
 
-Last updated: 2026-09-18
+Last updated: 2026-09-19
 
 ## 1. Target question
 
@@ -202,6 +202,8 @@ One row per species:
 - body mass;
 - typical/median lifespan if defensible;
 - maximum lifespan + evidence quality;
+- longevity-record sample-size class / sampling effort;
+- captive vs wild origin of longevity record where available;
 - data-source provenance.
 
 ### Table B — events
@@ -341,7 +343,11 @@ The output should be an interval or distribution, not only a single "human-equiv
 
 Minimum set:
 - maximum lifespan vs alternative longevity denominator;
+- raw vs Lu-style 1.3× corrected non-human/non-mouse maximum lifespan;
 - raw vs quality-filtered longevity records;
+- stratify/exclude weak longevity records by AnAge confidence and sample-size class;
+- model longevity-record sampling effort explicitly where available;
+- compare current AnAge traits with the exact clock-era AnAge snapshot for molecular-clock inverse transforms;
 - male/female demographic curves where available;
 - captive vs wild populations where separable;
 - exclude domestic species;
