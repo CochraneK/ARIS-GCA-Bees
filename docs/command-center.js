@@ -72,7 +72,7 @@
     const grid = $("paperGrid");
     const showcaseTrack = $("showcaseTrack");
     const showcaseSection = $("showcaseSection");
-    const portfolioSection = $("portfolioSection");
+    const detailSection = $("detailSection");
     const hero = document.querySelector(".hero");
     const cards = [...grid.querySelectorAll(".paper-card")];
 
@@ -91,20 +91,26 @@
 
     const useShowcase = currentFilter === "all" && !q;
     showcaseSection?.classList.toggle("hidden", !useShowcase);
-    portfolioSection?.classList.toggle("hidden", useShowcase);
+    detailSection?.classList.toggle("hidden", useShowcase);
 
     if(useShowcase && showcaseTrack){
       const showcaseCards=[...showcaseTrack.querySelectorAll('.showcase-card[data-showcase-original="true"]')];
       sortCards(showcaseCards, sort).forEach(c=>showcaseTrack.appendChild(c));
     }
 
+    const detailTitle=$("detailTitle");
+    if(detailTitle && !useShowcase){
+      detailTitle.textContent = q
+        ? "Search results"
+        : (document.querySelector("[data-filter].is-active")?.dataset.label || "Filtered projects");
+    }
     $("resultCount").textContent = (useShowcase ? cards.length : visible.length) + " / " + cards.length + " projects";
     $("emptyState").classList.toggle("hidden", useShowcase || visible.length !== 0);
     refreshShowcase();
   }
 
   function counts(){
-    const cards=[...document.querySelectorAll(".paper-card")];
+    const cards=[...document.querySelectorAll("#paperGrid > .paper-card")];
     const count = activity => cards.filter(c=>c.dataset.activity===activity).length;
     const statusCounts={
       finish:count("finish"),
