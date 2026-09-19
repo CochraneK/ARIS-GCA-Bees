@@ -15,7 +15,7 @@ from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parent
-SRC=ROOT/"data"/"mixed_calibration"/"stress_scenarios.v0.json"
+SRC=ROOT/"data"/"mixed_calibration"/"stress_scenarios.v1.json"
 OUT=ROOT/"data"/"mixed_calibration"/"annotation_packet.generated.json"
 
 
