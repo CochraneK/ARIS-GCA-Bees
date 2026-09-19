@@ -1,0 +1,72 @@
+name: ARIS4C011 Pilot 3 voxel BA preserved-original case
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-pilot3-voxel-ba.yml"
+      - "papers/011-research-forensics/code/pilot3_voxel_ba_table.py"
+      - "papers/011-research-forensics/code/test_pilot3_voxel_ba_table.py"
+      - "papers/011-research-forensics/data/pilot/plos_voxel_ba_preserved_original_safe_exact.json"
+      - "papers/011-research-forensics/agent/research-forensics/scripts/orchestrator.py"
+      - "papers/011-research-forensics/agent/research-forensics/scripts/detectors/deterministic.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-pilot3-voxel-ba
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test preserved-original voxel BA case
+        run: python code/test_pilot3_voxel_ba_table.py -q
+      - name: Execute correction-blind F3 evaluation
+        run: python code/pilot3_voxel_ba_table.py
+      - name: Audit issue decomposition
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("data/results/pilot3_voxel_ba_evaluation.json").read_text(encoding="utf-8"))
+          assert x["status"]=="PASS"
+          assert x["artifact_safety_class"]=="SAFE_EXACT_PRESERVED_ORIGINAL"
+          assert x["detector_visible_correction_metadata"] is False
+          assert x["finding_count"]==6
+          assert x["pass_count"]==5
+          assert x["flag_count"]==1
+          assert x["checks"]["malformed_original_token_flagged"] is True
+          assert x["manager_only_later_outcome"]["used_by_detector"] is False
+          print(json.dumps({"status":"PASS","findings":6,"pass":5,"flag":1,"correction_visible":False},indent=2))
+          PY
+      - name: Commit compact evaluation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/pilot3_voxel_ba_report.json data/results/pilot3_voxel_ba_evaluation.json
+          if git diff --cached --quiet; then
+            echo "Voxel BA outputs current."
+          else
+            git commit -m "ARIS4C011 evaluate preserved-original voxel BA token"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
