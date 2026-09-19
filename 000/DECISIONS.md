@@ -74,3 +74,15 @@ Only the **Today's progress time curve** is filtered:
 - show non-Finish projects only when at least two checkpoints establish a real percentage change today.
 
 **Why:** The user's intent was to reduce visual noise in the time-series chart, not to remove completed or untouched projects from the rest of the portfolio UI.
+
+## 2026-09-19 · Compress long inactive gaps on the daily progress axis
+
+**Decision:** Today's progress curve uses a disclosed discontinuous time axis.
+
+- Normal checkpoint intervals retain proportional real-time spacing.
+- A gap is treated as idle only when it is clearly longer than the day's normal Git-checkpoint rhythm; the threshold is adaptive, bounded between roughly 25 and 60 minutes.
+- Long idle gaps are compressed to a small bounded horizontal span.
+- Every compressed gap remains visible via a dashed break line, `//` marker, real idle-duration label, and tooltip with the real start/end times.
+- Progress percentages, chronological order, and real timestamps are never changed.
+
+**Why:** Multi-hour periods when the user is away from the computer should not dominate the chart as long flat lines, while the visualization must still disclose that real elapsed time was compressed.
