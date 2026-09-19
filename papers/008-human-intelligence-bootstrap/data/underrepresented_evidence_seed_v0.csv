@@ -9,3 +9,4 @@ Paraponera clavata,F,positive,doi:10.1101/2022.07.03.498617,colony relocation an
 Periplaneta americana,A,positive_proxy,pmid:14668320,associative learning and retention,Learning/memory proxy only; not generative problem solving.
 Periplaneta americana,C,positive,pmid:26313978,aggregation pheromone communication,Direct chemical communication; not symbolic/compositional signalling.
 Periplaneta americana,F,positive_proxy,pmcid:PMC10325095,collective shelter-choice memory,Group-level collective-memory dynamics; not evidence of distributed cultural knowledge across generations.
+Porcellio laevis,A,positive_proxy,pmid:24954552,predator-cue-dependent change in turn alternation,Direct context-sensitive navigational adjustment; not generative problem solving or social learning.
