@@ -1,7 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img">
 <title>ARIS4C maturity by paper</title>
 <rect width="1200" height="690" rx="24" fill="#0b1220"/>
-<style>text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.title{font-size:28px;font-weight:700;fill:#f8fafc}.sub{font-size:15px;fill:#9fb0c8}.label{font-size:14px;fill:#d8e2ef}.small{font-size:12px;fill:#9fb0c8}.metric{font-size:34px;font-weight:750;fill:#f8fafc}</style>
+<style>
+text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.title{font-size:28px;font-weight:700;fill:#f8fafc}.sub{font-size:15px;fill:#9fb0c8}.label{font-size:14px;fill:#d8e2ef}.small{font-size:12px;fill:#9fb0c8}.metric{font-size:34px;font-weight:750;fill:#f8fafc}
+</style>
 <text x="50" y="55" class="title">Portfolio maturity by paper</text>
 <text x="50" y="82" class="sub">Management estimate, not a scientific result. 100% means the repository-level final output contract is satisfied.</text>
 <text x="50" y="125" class="label">001 · Bee GCA × Uncertainty</text>
@@ -16,15 +19,15 @@
 <text x="550" y="257" text-anchor="end" class="small">70%</text>
 <rect x="50" y="270" width="500" height="14" rx="7" fill="#20304b"/>
 <rect x="50" y="270" width="350" height="14" rx="7" fill="#48c78e"/>
-<text x="50" y="323" class="label">004 · Counterfactual Cost of Exclusion</text>
+<text x="50" y="323" class="label">004 · Mental Health × Knowledge-Network…</text>
 <text x="550" y="323" text-anchor="end" class="small">74%</text>
 <rect x="50" y="336" width="500" height="14" rx="7" fill="#20304b"/>
 <rect x="50" y="336" width="370" height="14" rx="7" fill="#48c78e"/>
-<text x="50" y="389" class="label">005 · Hidden Burden of Bad Science</text>
+<text x="50" y="389" class="label">005 · Global Burden of Bad Science</text>
 <text x="550" y="389" text-anchor="end" class="small">68%</text>
 <rect x="50" y="402" width="500" height="14" rx="7" fill="#20304b"/>
 <rect x="50" y="402" width="340" height="14" rx="7" fill="#f2c14e"/>
-<text x="50" y="455" class="label">006 · Chinese Alphabetical Exposure</text>
+<text x="50" y="455" class="label">006 · Chinese Surnames × Alphabetical E…</text>
 <text x="550" y="455" text-anchor="end" class="small">62%</text>
 <rect x="50" y="468" width="500" height="14" rx="7" fill="#20304b"/>
 <rect x="50" y="468" width="310" height="14" rx="7" fill="#48c78e"/>
@@ -48,7 +51,7 @@
 <text x="1120" y="257" text-anchor="end" class="small">72%</text>
 <rect x="620" y="270" width="500" height="14" rx="7" fill="#20304b"/>
 <rect x="620" y="270" width="360" height="14" rx="7" fill="#48c78e"/>
-<text x="620" y="323" class="label">012 · Oppositional Causal Inversion</text>
+<text x="620" y="323" class="label">012 · Indexed Oppositional Causal Inver…</text>
 <text x="1120" y="323" text-anchor="end" class="small">63%</text>
 <rect x="620" y="336" width="500" height="14" rx="7" fill="#20304b"/>
 <rect x="620" y="336" width="315" height="14" rx="7" fill="#f2c14e"/>

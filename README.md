@@ -1,66 +1,178 @@
 <p align="right">
-  <a href="./README.md"><img src="https://img.shields.io/badge/Language-English-blue" alt="English"></a>
-  <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/语言-中文-red" alt="中文"></a>
+  <a href="./README.md"><img src="https://img.shields.io/badge/Language-English-2563eb" alt="English"></a>
+  <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/语言-中文-dc2626" alt="中文"></a>
 </p>
 
-<div align="center">
+<p align="center">
+  <img src="./docs/assets/readme/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
+</p>
+
+<p align="center">
+  <a href="https://cochranek.github.io/ARIS4C/"><img src="https://img.shields.io/badge/Open-Research_Command_Center-0f766e?style=for-the-badge" alt="Open Research Command Center"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/CochraneK/ARIS4C/actions/workflows/build-paper-index.yml"><img src="https://github.com/CochraneK/ARIS4C/actions/workflows/build-paper-index.yml/badge.svg" alt="Paper index"></a>
+  <a href="https://github.com/CochraneK/ARIS4C/actions/workflows/build-public-pdfs.yml"><img src="https://github.com/CochraneK/ARIS4C/actions/workflows/build-public-pdfs.yml/badge.svg" alt="Bilingual PDFs"></a>
+  <a href="https://github.com/CochraneK/ARIS4C/actions/workflows/sync-paper-handoffs.yml"><img src="https://github.com/CochraneK/ARIS4C/actions/workflows/sync-paper-handoffs.yml/badge.svg" alt="Continuity handoffs"></a>
+  <img src="https://img.shields.io/badge/ARIS-v0.4.26-475569" alt="ARIS v0.4.26">
+</p>
 
 # ARIS4C
 
-**ARIS for Cochrane · a living research hub for papers developed with ARIS**
+**ARIS for Cochrane** is a living research portfolio for papers developed through the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) workflow.
 
-[**Paper Hub**](docs/index.html) · [**Papers Registry**](papers/) · [**Paper 001**](docs/paper/en/main.html) · [**中文**](README.zh-CN.md)
+ARIS is the research engine. **ARIS4C is the canonical research system around it:** numbered papers, evidence, code, bilingual manuscripts, adaptive figures and tables, review gates, public PDFs, portfolio state, and enough handoff context for another computer, account, agent, or collaborator to continue the work from Git.
 
-</div>
+> **One repository, one canonical state, many research threads.**
 
-## What is ARIS4C?
+## Start here
 
-**ARIS4C = ARIS for Cochrane.** It is the long-lived research repository for papers developed with the [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) methodology.
+| I want to… | Go to |
+|---|---|
+| See the whole portfolio visually | **[Research Command Center](https://cochranek.github.io/ARIS4C/)** |
+| Read completed papers | See **Publication-ready outputs** below |
+| Continue one paper on another machine / account / agent | Open that paper's **\`handoff/README.md\`** |
+| Check current portfolio state | [\`papers/dashboard.json\`](papers/dashboard.json) |
+| Understand final-output requirements | [\`ARIS4C_OUTPUT_STANDARD.md\`](ARIS4C_OUTPUT_STANDARD.md) |
+| Understand continuity requirements | [\`ARIS4C_CONTINUITY_STANDARD.md\`](ARIS4C_CONTINUITY_STANDARD.md) |
 
-ARIS is the research engine; ARIS4C is the paper registry, evidence trail and public portfolio. Each promoted paper owns its manuscript, code, data notes and process records under one numbered folder and records the exact ARIS version used.
+## Portfolio at a glance
 
-## Repository model
+<p align="center">
+  <img src="./docs/assets/readme/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
+</p>
 
-    ARIS4C/
-    ├── papers/
-    │   ├── 001-gca-bees/
-    │   │   ├── paper.json
-    │   │   ├── README.md
-    │   │   ├── code/
-    │   │   ├── data/
-    │   │   ├── manuscript/
-    │   │   └── process/
-    │   ├── 003-...
-    │   └── ...
-    ├── docs/
-    │   └── index.html
-    ├── tools/
-    │   ├── new_paper.py
-    │   ├── build_papers_index.py
-    │   └── sync_aris.ps1
-    └── aris.lock.json
+<p align="center">
+  <img src="./docs/assets/readme/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
+</p>
 
-## Paper 001 · reconstructed
+<p align="center">
+  <img src="./docs/assets/readme/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
+</p>
 
-**Uncertainty Monitoring and Cross-Task Cognitive Covariation in Honey Bees**
+> Progress is a **portfolio-management estimate**, not a scientific result. \`100%\` means the repository-level final output contract is satisfied. **Quiet** includes submission-ready/completed tracks that do not need active execution.
 
-Paper 001 was fully reconstructed on 2026-09-18 with ARIS v0.4.26. The earlier single-precision/self-awareness simulation is no longer canonical. The new project compares domain-general, two-factor, associative and hybrid explanations and requires same-individual empirical evidence before making mechanistic claims.
+## Publication-ready outputs
 
-- [English research-design page](docs/paper/en/main.html)
-- [中文研究设计页](docs/paper/zh/main.html)
-- [Canonical Paper 001 folder](papers/001-gca-bees/)
-- [Status and gates](papers/001-gca-bees/process/STATUS.md)
+- **001 · Bee GCA × Uncertainty** — [English PDF](https://cochranek.github.io/ARIS4C/paper/001/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/001/zh/main.pdf)
+- **002 · Testing linguistic periodicity** — [English PDF](https://cochranek.github.io/ARIS4C/paper/002/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/002/zh/main.pdf)
 
-## Final output contract
+## The 16-paper portfolio
 
-ARIS4C final papers now follow [ARIS4C_OUTPUT_STANDARD.md](ARIS4C_OUTPUT_STANDARD.md): English full paper + Chinese full paper + an article-type-appropriate figure/table package, with reproducible provenance where applicable. Final/submission-ready projects should expose these outputs on the public Research Command Center.
+| ID | Project | State | Progress | Continue from |
+|---|---|---:|---:|---|
+| **001** | [Bee GCA × Uncertainty](papers/001-gca-bees/) | ⚪ Quiet | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) |
+| **002** | [Testing linguistic periodicity](papers/002-language-geometry/) | ⚪ Quiet | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) |
+| **003** | [Colonial Legacies × Disciplinary Advantage](papers/003-colonial-disciplinary-advantage/) | 🟢 Active | 70% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) |
+| **004** | [Mental Health × Knowledge-Network Exclusion](papers/004-counterfactual-cost-of-exclusion/) | 🟢 Active | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
+| **005** | [Global Burden of Bad Science](papers/005-hidden-burden-bad-science/) | 🟡 At gate | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
+| **006** | [Chinese Surnames × Alphabetical Exposure](papers/006-chinese-alphabetical-exposure/) | 🟢 Active | 62% | [handoff](papers/006-chinese-alphabetical-exposure/handoff/AGENT_HANDOFF.md) |
+| **007** | [Cross-Species Age Equivalence](papers/007-cross-species-age-equivalence/) | 🟢 Active | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
+| **008** | [Human Intelligence Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟢 Active | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) |
+| **009** | [Phenomenology-Preserving Computational Psychiatry](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟢 Active | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) |
+| **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🟢 Active | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |
+| **011** | [Research Forensics](papers/011-research-forensics/) | 🟢 Active | 72% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) |
+| **012** | [Indexed Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟡 At gate | 63% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) |
+| **013** | [Birth–Death Temporal Coupling](papers/013-birth-death-temporal-coupling/) | 🟡 At gate | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) |
+| **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟢 Active | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
+| **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 Active | 83% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
+| **016** | [Global Grammar of Swearing](papers/016-global-grammar-of-swearing/) | 🟡 At gate | 55% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
 
-## Keep ARIS current
+## How ARIS4C works
 
-The repository currently recommends **ARIS v0.4.26** in aris.lock.json. New work records the exact tag/commit used; prior research history remains available through Git.
+<p align="center">
+  <img src="./docs/assets/readme/architecture.svg" width="100%" alt="ARIS4C research system architecture">
+</p>
 
-## Principle
+The key distinction is intentional:
 
-> Upgrade the research engine, and allow stronger methods to replace weaker canonical claims when a paper is explicitly reconstructed.
+- **ARIS** supplies the research workflow.
+- **Each numbered paper** owns its scientific evidence and decisions.
+- **ARIS4C 000 / dashboard** manages the portfolio without becoming a second scientific truth.
+- **\`handoff/\`** preserves the context needed to resume work across sessions and agents.
+- **Git history** preserves superseded states rather than erasing how a paper evolved.
 
-Maintainer: **Cochrane Kang**
+## Final-paper contract
+
+A submission-ready/final ARIS4C paper is expected to provide:
+
+| Layer | Requirement |
+|---|---|
+| Manuscript | English full paper + Chinese full paper |
+| Public delivery | English PDF + Chinese PDF |
+| Visuals | Figure/table package chosen for the actual inferential structure — **no fixed “3 figures” quota** |
+| Evidence | Traceable empirical / synthetic / conceptual provenance |
+| Review | Required scientific / reproducibility / independent-review gates |
+| Continuity | \`handoff/\` package with status, TODO, decisions, context, chat log, agent handoff, and session log |
+| Public surface | Current links on the Research Command Center |
+
+See [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md).
+
+## Cross-agent continuity
+
+Every numbered paper has the same cold-start package:
+
+\`\`\`text
+papers/00X-project/
+└── handoff/
+    ├── README.md
+    ├── STATUS.md
+    ├── TODO.md
+    ├── DECISIONS.md
+    ├── CONTEXT.md
+    ├── CHATLOG.md
+    ├── AGENT_HANDOFF.md
+    └── SESSION_LOG.md
+\`\`\`
+
+A new executor should be able to start with:
+
+> **Read \`papers/00X-.../handoff/README.md\` and continue from the current repository state.**
+
+The public repository stores **public-safe conversation summaries**, not credentials, private personal material, or hidden model chain-of-thought.
+
+## Repository anatomy
+
+\`\`\`text
+ARIS4C/
+├── papers/
+│   ├── dashboard.json             # portfolio source of truth
+│   └── 00X-project/
+│       ├── paper.json             # paper metadata
+│       ├── manuscript/            # EN / ZH manuscripts
+│       ├── figures/ + tables/     # scientific visuals
+│       ├── code/ + data/          # analysis / provenance
+│       ├── process/               # design, gates, frozen decisions
+│       └── handoff/               # cross-agent continuity
+├── docs/                          # GitHub Pages + public PDFs
+├── tools/                         # generators and audits
+├── ARIS4C_OUTPUT_STANDARD.md
+├── ARIS4C_CONTINUITY_STANDARD.md
+└── aris.lock.json                 # pinned ARIS lineage
+\`\`\`
+
+## Rebuild and audit
+
+\`\`\`bash
+python tools/build_papers_index.py
+python tools/build_readme_assets.py
+python tools/build_readme.py
+python tools/audit_paper_outputs.py
+python tools/audit_paper_handoffs.py
+python tools/sync_paper_handoffs.py
+\`\`\`
+
+## Design principles
+
+1. **One canonical source of truth.** Parallel chats and agents can explore; Git decides what became canonical.
+2. **Falsification before narrative.** Stronger methods are allowed to replace weaker claims.
+3. **Visualize the evidence, not a quota.** Figures are chosen for information gain, not template compliance.
+4. **Bilingual by default at completion.** Final public delivery is English + Chinese and PDF-first.
+5. **Research must be resumable.** A project that another agent cannot safely continue is operationally incomplete.
+6. **Anomalies are not verdicts.** Forensics-oriented projects preserve human review and explicit uncertainty.
+
+---
+
+Maintainer: **Cochrane Kang**  
+Research hub: **https://cochranek.github.io/ARIS4C/**
