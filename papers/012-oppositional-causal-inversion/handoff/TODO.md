@@ -12,8 +12,11 @@
 - [x] Preserve raw v1 reliability outputs unchanged.
 - [x] Convert `SCHEMA_V2_PROPOSAL.md` into a frozen controlled-vocabulary v2 coding specification (`process/SCHEMA_V2_FROZEN.md` + freeze JSON + blank coding template).
 - [x] Draw and freeze a fresh 30-record balanced validation sample (5 per stratum; zero Pilot 0B overlap).
-- [ ] Materialize identical blinded evidence packets for the frozen 30-record v2 sample, freeze packet hashes, then run genuinely independent A2/B2 coding under v2.
-- [ ] Require revised reliability to pass before full evidence-map screening.
+- [x] Materialize and freeze the final blind v2 evidence bundle. The initial packet had 24/30 abstract excerpts; evidence-only Amendment 01 recovered 0/6; frozen Amendment 02 deterministically replaced the six unavailable slots within the same strata, yielding 30/30 abstract excerpts. Final A2/B2 input bundle SHA-256: `9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51`.
+- [ ] Run **genuinely independent** A2 and B2 on separate isolated execution surfaces using `A2_INPUT_AMENDMENT_02_FREEZE.json` / `B2_INPUT_AMENDMENT_02_FREEZE.json`; the current controller must not count itself twice.
+- [ ] Freeze each completed coder file separately with `freeze_v2_coder.py`; integrate labels only after both completion freezes exist.
+- [ ] Run `score_v2_agreement.py` and require the frozen v2 reliability gate to pass before full evidence-map screening.
+- [ ] Require revised reliability to pass before full evidence-map screening (remains locked).
 
 ## P1 · Evidence-map expansion after schema validation
 
