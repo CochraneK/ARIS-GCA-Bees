@@ -1,0 +1,81 @@
+name: ARIS4C012 v2 evidence Amendment 01
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c012-v2-evidence-amendment.yml"
+      - "papers/012-oppositional-causal-inversion/code/amend_v2_blind_packet.py"
+      - "papers/012-oppositional-causal-inversion/code/materialize_v2_blind_packet.py"
+      - "papers/012-oppositional-causal-inversion/process/V2_EVIDENCE_AVAILABILITY_AMENDMENT_01.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c012-v2-evidence-amendment-01
+  cancel-in-progress: true
+
+jobs:
+  amend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      PAPER_DIR: papers/012-oppositional-causal-inversion
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and test evidence tooling
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_materialize_v2_blind_packet.py' -v
+      - name: Create immutable Amendment 01
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f "$PAPER_DIR/process/V2_BLIND_PACKET_AMENDMENT_01_FREEZE.json" ]; then
+            echo "Amendment 01 already frozen; validating only."
+          else
+            python "$PAPER_DIR/code/amend_v2_blind_packet.py" \
+              --packet "$PAPER_DIR/data/v2_blind/common_evidence_packet.jsonl" \
+              --prior-freeze "$PAPER_DIR/process/V2_BLIND_PACKET_FREEZE.json" \
+              --schema "$PAPER_DIR/process/SCHEMA_V2_FROZEN.md" \
+              --template "$PAPER_DIR/data/v2_validation_coding_template.csv" \
+              --out-dir "$PAPER_DIR/data/v2_blind_amendment_01" \
+              --freeze-dir "$PAPER_DIR/process"
+          fi
+      - name: Validate amended freeze
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path("papers/012-oppositional-causal-inversion")
+          f=json.loads((p/"process/V2_BLIND_PACKET_AMENDMENT_01_FREEZE.json").read_text())
+          a=json.loads((p/"process/A2_INPUT_AMENDMENT_01_FREEZE.json").read_text())
+          b=json.loads((p/"process/B2_INPUT_AMENDMENT_01_FREEZE.json").read_text())
+          packet=p/"data/v2_blind_amendment_01/common_evidence_packet_amendment_01.jsonl"
+          sha=lambda x:hashlib.sha256(x.read_bytes()).hexdigest()
+          assert sha(packet)==f["evidence_packet_sha256"]
+          assert a["bundle_sha256"]==b["bundle_sha256"]==f["bundle_sha256"]
+          assert f["sample_count"]==30 and f["byte_identical_coder_inputs"] is True
+          print(json.dumps({"bundle_sha256":f["bundle_sha256"],"ready":f["ready_for_independent_coding"]},indent=2))
+          PY
+      - name: Persist Amendment 01
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/v2_blind_amendment_01" \
+                  "$PAPER_DIR/process/V2_BLIND_PACKET_AMENDMENT_01_FREEZE.json" \
+                  "$PAPER_DIR/process/A2_INPUT_AMENDMENT_01_FREEZE.json" \
+                  "$PAPER_DIR/process/B2_INPUT_AMENDMENT_01_FREEZE.json"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ARIS4C012 freeze v2 evidence Amendment 01 [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
