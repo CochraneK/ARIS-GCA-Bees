@@ -53,6 +53,9 @@ def main():
         approved=truthy(r.get("network_release_approved"))
         if approved != (dec=="RELEASE_SAMPLE_PASS"):
             errors.append(f"{pid}: network_release_approved inconsistent with decision")
+        identity_observable=truthy((ids.get(pid) or {}).get("network_observable"))
+        if identity_observable != approved:
+            errors.append(f"{pid}: canonical identity network_observable={identity_observable} disagrees with approved={approved}")
         if not truthy(r.get("mh_blinded_at_work_lock")):
             errors.append(f"{pid}: MH-blind lock required")
         if not (r.get("reviewer") or "").strip() or not (r.get("decision_evidence") or "").strip():
