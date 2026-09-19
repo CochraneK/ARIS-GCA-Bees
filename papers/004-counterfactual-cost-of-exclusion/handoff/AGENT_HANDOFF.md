@@ -8,18 +8,18 @@ A sign-neutral counterfactual network study of how scientific, intellectual, and
 
 ## Current state
 
-- Activity: **wait**
+- Activity: **block**
 - Progress: **74%**
-- Stage: **Network100 acquired · work audit + independent second review**
-- Evidence: Identity100: 52 verified; second-review blind set 40. Network100: 2,956 unique works, 0 fetch errors; 334-work deterministic triage sample across 37 held people.
+- Stage: **P4 pre-exposure audit · independent identity second-review gate**
+- Evidence: P0–P3 complete. Identity100: 52 verified / 38 no-graph / 8 collision / 2 identity error / 0 provisional. Network100: 2,956 unique works, 0 fetch errors, 25/100 network-observable; 40-case blind second-review set frozen.
 
 ## Immediate next action
 
-**Prioritize and audit the 334 held-work sample; complete independent 40-case identity second review**
+**Independent reviewer completes 40 blind identity cases; adjudicate disagreements; write/hash PREEXPOSURE_FRAME_FREEZE.md; then begin exposure coding.**
 
 ## Current blocker / gate
 
-Independent identity judgments and work-level contamination decisions are still required before exposure coding
+Genuinely independent identity second review is required by the frozen protocol; current assistant self-review cannot count as independent.
 
 ## Canonical files / entry points
 
