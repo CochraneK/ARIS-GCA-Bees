@@ -1,0 +1,24 @@
+scientific_name,outcome_id,outcome_state,source_id,evidence_summary,confidence,claim_limit
+Aldabrachelys gigantea,O1,ambiguous,pmid:31720927,"operant conditioning, visual discrimination and long-term memory",medium,"Learning/memory is demonstrated, but the outcome codebook explicitly does not treat one trained discrimination paradigm as sufficient O1 generative problem solving."
+Aphelocoma californica,O1,positive,pmid:17314979,future-need planning,high,Direct future-oriented planning evidence.
+Aphelocoma californica,O2,ambiguous,pmcid:PMC8847367,wild social learning / use of social information,medium,"California scrub-jays socially learned in the wild experiment, but stable population-level persistence beyond the experimental episode was not established."
+Aphelocoma californica,O6,positive,pmcid:PMC1810099,persistent food caches and cache relocation,high,Caches are persistent externalized environmental traces.
+Atta cephalotes,O5,ambiguous,pmcid:PMC13118808,division of labor across polymorphic workers,medium,"Strong complementary specialization, but the study does not show culturally learned distributed knowledge; kept ambiguous under O5."
+Atta cephalotes,O6,positive,pmcid:PMC3037820,persistent fungus cultivation and colony infrastructure,high,Externalized cultivated resource system persists outside individual nervous systems.
+Canis lupus,O1,positive,pmcid:PMC4614426,independent problem solving in wolves,high,Direct comparative problem-solving evidence.
+Castor canadensis,O6,positive,pmid:28547281,persistent dam construction / ecosystem engineering,high,Dams are durable environmental modifications.
+Enhydra lutris,O6,positive,pmcid:PMC6418163,reused stone-anvil sites with archaeological traces,high,Habitual tool use leaves persistent recoverable physical traces.
+Heterocephalus glaber,O2,positive,pmid:33510025,culturally transmitted colony vocal dialect,high,Direct evidence for socially maintained vocal tradition.
+Heterocephalus glaber,O6,ambiguous,pmcid:PMC3434143,coordinated soil distribution / burrow work,medium,External modification is directly studied in a simulated burrow; wild persistence and informational carry-over were not quantified.
+Labroides dimidiatus,O1,positive,pmid:27016339,generalized rule application,high,Direct flexible rule generalization across social contexts.
+Portia fimbriata,O1,ambiguous,pmid:12357287,opportunistic cognitive-smokescreen predatory tactic,medium,"Shows context-sensitive tactical flexibility, but not a novel-task generative problem-solving paradigm."
+Ptilonorhynchus violaceus,O1,ambiguous,pmid:17216428,compensatory adjustment after sexual-signal loss,medium,Flexible compensation is demonstrated but is not equivalent to novel generative problem solving.
+Ptilonorhynchus violaceus,O2,ambiguous,pmid:17551758,bowerbird culture review / learned display variation,low,"Suggestive culture evidence, but direct exact-species social-transmission and persistence criteria are not isolated strongly enough for positive O2."
+Ptilonorhynchus violaceus,O6,positive,pmcid:PMC1691511,constructed and decorated bowers,high,Bowers are persistent externalized display structures.
+Rattus norvegicus,O1,positive,pmid:22428983,reversal learning / behavioral flexibility,high,Reversal learning is an admissible O1 flexibility indicator.
+Rattus norvegicus,O2,positive,pmid:24896467,social transmission of foraging information along chains,high,"Information was experimentally transmitted along a chain of Norway rats, satisfying supra-dyadic transmission."
+Rattus norvegicus,O6,positive,pmid:31333052,nest building,high,Rats construct persistent nests; this does not imply cumulative construction.
+Saccopteryx bilineata,O2,ambiguous,pmcid:PMC12074634,socially influenced vocal practice and learning,medium,"Socially structured vocal learning is direct, but stable population tradition across cohorts is not established here."
+Taeniopygia guttata,O1,positive,pmcid:PMC12602269,trap-gap problem solving,high,Direct problem-solving task.
+Taeniopygia guttata,O2,positive,pmcid:PMC8105409,sustained colony song culture via imitation,high,Direct evidence for socially sustained song culture.
+Taeniopygia guttata,O6,positive,pmcid:PMC4043081,learned nest-material selection and nest construction,high,Persistent constructed nests with experience-dependent material choice.
