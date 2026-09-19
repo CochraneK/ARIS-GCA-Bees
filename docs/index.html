@@ -13,13 +13,12 @@
   <div class="app">
     <aside class="sidebar" aria-label="Research portfolio navigation">
       <div class="identity"><span class="avatar">A4</span><div class="identity-copy"><strong>ARIS4C</strong><span>Research command center</span></div></div>
-      <nav class="nav" aria-label="Project views">
+      <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">16</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">10</span></button>
         <button class="nav-item" type="button" data-filter="gated" data-label="At gate"><span class="nav-icon">◇</span><span>At gate</span><span id="navGatedCount" class="nav-count">5</span></button>
         <button class="nav-item" type="button" data-filter="quiet" data-label="Quiet"><span class="nav-icon">○</span><span>Quiet</span><span id="navQuietCount" class="nav-count">1</span></button>
         <button class="nav-item" type="button" data-filter="blocked" data-label="Blocked"><span class="nav-icon">×</span><span>Blocked</span><span id="navBlockedCount" class="nav-count">0</span></button>
-        <button class="nav-item" type="button" data-filter="near-final" data-label="Near final"><span class="nav-icon">✓</span><span>Near final</span><span id="navNearCount" class="nav-count">2</span></button>
       </nav>
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
@@ -65,6 +64,7 @@
         <div class="control-bar">
           <div class="control-left"><span id="resultCount" class="result-count">16 / 16 projects</span></div>
           <div class="control-right">
+            <button class="filter-chip lens-chip" type="button" data-filter="near-final" data-label="Near final" title="Maturity lens — overlaps the MECE status categories"><span>Near final</span><span id="navNearCount" class="lens-count">2</span></button>
             <select id="sortFilter" aria-label="Sort projects"><option value="id">ID order</option><option value="progress-desc">Maturity high → low</option><option value="progress-asc">Maturity low → high</option><option value="activity">Activity state</option><option value="recent">Recent commit</option></select>
             <button id="clearFilters" class="filter-chip" type="button">Reset</button>
           </div>
