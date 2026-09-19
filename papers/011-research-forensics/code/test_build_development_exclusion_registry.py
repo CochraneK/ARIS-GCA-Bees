@@ -9,6 +9,9 @@ class T(unittest.TestCase):
    root=Path(td); (root/"data"/"seed").mkdir(parents=True); (root/"data"/"pilot").mkdir(); (root/"data"/"results").mkdir()
    (root/"data"/"seed"/"a.json").write_text(json.dumps({"target_doi":"https://doi.org/10.1234/ABC","note":"10.9999/not-a-field"}))
    (root/"data"/"pilot"/"b.csv").write_text("candidate_doi,x\n10.5678/DEF,1\n")
+   (root/"data"/"results"/"confirmatory_feasibility_frame_v0.json").write_text(
+       json.dumps({"rows":[{"target_doi":"10.7777/FEASIBILITY"}]})
+   )
    rows=m.collect(root)
-   self.assertEqual(set(rows),{"10.1234/abc","10.5678/def"})
+   self.assertEqual(set(rows),{"10.1234/abc","10.5678/def","10.7777/feasibility"})
 if __name__=="__main__": unittest.main()
