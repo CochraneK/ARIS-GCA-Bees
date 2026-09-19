@@ -92,3 +92,15 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Canonical artifacts:** `process/SCHEMA_V2_FROZEN.md`, `process/SCHEMA_V2_FREEZE.json`, `data/v2_validation_coding_template.csv`.
 
 **Next gate:** draw a fresh balanced sample and freeze blind A2/B2 packets before any new reliability scoring.
+
+## 2026-09-19 · Fresh v2 validation sample frozen
+
+**Decision:** Freeze a fresh 30-record validation sample from the 165-record reproducible frame using a deterministic fixed-seed draw, after excluding all Pilot 0B records by stable identifier/title.
+
+**Design:** 6 retrieval strata × 5 records each; fixed seed `ARIS4C012-V2-A2B2-20260919`; FNV-1a 32-bit score over seed + dedupe key; ascending score within stratum; zero overlap with Pilot 0B. Provider mix is 14 OpenAlex / 16 Crossref.
+
+**Why:** v2 requires fresh validation rather than retroactive recoding. The frozen sample is balanced across the existing retrieval strata while remaining reproducible.
+
+**Boundary:** the manifest is not yet a coder packet. Identical blinded evidence packets must be materialized and hashed before independent A2/B2 coding.
+
+**Canonical artifacts:** `data/v2_validation_sample_manifest.csv`, `process/V2_VALIDATION_SAMPLE_FREEZE.json`, `process/V2_VALIDATION_SAMPLE_AUDIT.md`, `code/draw_v2_validation_sample.py`.
