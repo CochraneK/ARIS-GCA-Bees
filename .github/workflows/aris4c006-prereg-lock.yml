@@ -1,0 +1,41 @@
+name: ARIS4C006 preregistration lock generator
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  create-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create deterministic preregistration lock while outcomes remain locked
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/27_prereg_lock.py --lock
+          test -f process/PREREGISTRATION_LOCK.json
+          python - <<'PY'
+          import json
+          p="process/PREREGISTRATION_LOCK.json"
+          x=json.load(open(p,encoding="utf-8"))
+          assert x["confirmatory_outcomes_unlocked_at_lock_creation"] is False
+          assert x["effect_estimation_performed"] is False
+          print(x["combined_sha256"])
+          PY
+      - name: Upload preregistration lock and audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-preregistration-lock
+          path: |
+            ${{ env.PAPER_DIR }}/process/PREREGISTRATION_LOCK.json
+            ${{ env.PAPER_DIR }}/data/qa/prereg_audit/manifest.json
+          if-no-files-found: error
+          retention-days: 30
