@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import itertools
 import json
 import subprocess
@@ -170,6 +171,30 @@ def community_counts(rows: list[dict]) -> dict:
     return dict(sorted(out.items()))
 
 
+def scorer_function_digest(rows: list[dict]) -> str | None:
+    """Digest produced by the gate's own hasher, not by this reimplementation.
+
+    `score_coder_reliability.manifest_sha256` is the function that enforces the
+    frozen sample before scoring agreement. If it returns something other than
+    the frozen constant for the sampler's own output, the defect is in the record
+    and not in how this script renders the manifest.
+    """
+    path = CODE / "score_coder_reliability.py"
+    spec = importlib.util.spec_from_file_location("_scr", path)
+    if spec is None or spec.loader is None:
+        return None
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+        keyed = {str(r["row_index"]): dict(r) for r in rows}
+        for row in keyed.values():
+            row.setdefault("source_row_index", str(row["row_index"]))
+        return module.manifest_sha256(keyed)
+    except Exception as exc:  # noqa: BLE001
+        print(f"scorer-function check unavailable: {type(exc).__name__}: {exc}")
+        return None
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
@@ -188,6 +213,7 @@ def main() -> None:
     rows = payload.get("rows", [])
     canonical_text = exporter_manifest(rows)
     observed = digest(canonical_text)
+    scorer_digest = scorer_function_digest(rows)
 
     matches = [vid for vid, body in serialisations(rows) if digest(body) == EXPECTED_MANIFEST_SHA256]
     observed_variants = {
@@ -200,8 +226,10 @@ def main() -> None:
         "project": "ARIS4C016",
         "expected_frozen_manifest_sha256": EXPECTED_MANIFEST_SHA256,
         "observed_manifest_sha256": observed,
+        "gate_function_manifest_sha256": scorer_digest,
         "observed_manifest_sha256_variants": observed_variants,
         "reproducible": observed == EXPECTED_MANIFEST_SHA256,
+        "gate_function_agrees_with_observed": scorer_digest == observed,
         "n_rows": len(rows),
         "n_rows_expected": EXPECTED_N,
         "source_sha256_claimed_by_sampler": payload.get("source_sha256"),

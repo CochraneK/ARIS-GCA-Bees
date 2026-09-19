@@ -2,12 +2,14 @@
   "project": "ARIS4C016",
   "expected_frozen_manifest_sha256": "48c58f91901e8c2a1aab01958e95ea28afaf0f33e7a98677f98e58b8a412c9b4",
   "observed_manifest_sha256": "910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751",
+  "gate_function_manifest_sha256": "910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751",
   "observed_manifest_sha256_variants": {
     "utf8_lf": "910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751",
     "utf8_bom_lf": "bc4813c0e470e8956bd401f6e6331d789536653f42b2207ec044b228c2e63811",
     "utf8_crlf": "a7e0eef62a4e575fd24989b6574c95748234ffa5e069ff20434228b4268ca526"
   },
   "reproducible": false,
+  "gate_function_agrees_with_observed": true,
   "n_rows": 300,
   "n_rows_expected": 300,
   "source_sha256_claimed_by_sampler": "c725a30913e604e8344f4990c8d63990dcf0271e3a65765ddc3fa591b8cb1387",
