@@ -136,21 +136,6 @@ def query_window(
             ]
         ),
         "rows": str(rows),
-        "select": ",".join(
-            [
-                "DOI",
-                "title",
-                "published",
-                "published-online",
-                "published-print",
-                "issued",
-                "type",
-                "subtype",
-                "reference-count",
-                "is-referenced-by-count",
-                "URL",
-            ]
-        ),
     }
     url = (
         f"https://api.crossref.org/journals/{PLOS_ONE_ISSN}/works?"
