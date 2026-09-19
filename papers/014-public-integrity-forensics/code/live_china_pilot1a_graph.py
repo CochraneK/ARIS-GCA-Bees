@@ -23,8 +23,18 @@ FIXED_USCC_URL=(
 
 def main():
     retrieved=datetime.now().astimezone().isoformat()
-    discovery=discover_live(per_page_limit=8)
     urls=[]
+    graphs=[]
+    failures=[]
+    try:
+        discovery=discover_live(per_page_limit=8)
+    except Exception as exc:
+        discovery=[]
+        failures.append({
+            "source_url":"CCGP_DISCOVERY",
+            "error_class":type(exc).__name__,
+            "stage":"discovery",
+        })
     for result in discovery:
         for lead in result.leads:
             if lead.url not in urls:
@@ -32,9 +42,6 @@ def main():
     urls=urls[:12]
     if FIXED_USCC_URL not in urls:
         urls.append(FIXED_USCC_URL)
-
-    graphs=[]
-    failures=[]
     for url in urls:
         try:
             html=fetch_text(url)
@@ -46,6 +53,7 @@ def main():
             failures.append({
                 "source_url":url,
                 "error_class":type(exc).__name__,
+                "stage":"detail",
             })
 
     all_nodes=[]
