@@ -75,8 +75,8 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | **008** | [人类高级智力演化 Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟡 待推进 | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) | — |
 | **009** | [现象学保持型计算精神病学](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟡 待推进 | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) | — |
 | **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🔴 阻塞 | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) | — |
-| **011** | [Research Forensics](papers/011-research-forensics/) | 🟢 正在推进 | 80% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) | — |
-| **012** | [Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟢 正在推进 | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) | — |
+| **011** | [Research Forensics](papers/011-research-forensics/) | 🟢 正在推进 | 84% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) | — |
+| **012** | [Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🔴 阻塞 | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) | — |
 | **013** | [出生—死亡时间耦合](papers/013-birth-death-temporal-coupling/) | 🔴 阻塞 | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) | — |
 | **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 待推进 | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) | — |
 | **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🔴 阻塞 | 88% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) | — |

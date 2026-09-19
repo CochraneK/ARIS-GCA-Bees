@@ -75,8 +75,8 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 | **008** | [Human Intelligence Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟡 Wait | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) | — |
 | **009** | [Phenomenology-Preserving Computational Psychiatry](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟡 Wait | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) | — |
 | **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🔴 Block | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) | — |
-| **011** | [Research Forensics](papers/011-research-forensics/) | 🟢 Active | 80% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) | — |
-| **012** | [Indexed Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟢 Active | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) | — |
+| **011** | [Research Forensics](papers/011-research-forensics/) | 🟢 Active | 84% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) | — |
+| **012** | [Indexed Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🔴 Block | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) | — |
 | **013** | [Birth–Death Temporal Coupling](papers/013-birth-death-temporal-coupling/) | 🔴 Block | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) | — |
 | **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 Wait | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) | — |
 | **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🔴 Block | 88% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) | — |
