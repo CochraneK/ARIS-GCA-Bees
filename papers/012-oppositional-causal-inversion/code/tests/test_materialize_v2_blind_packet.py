@@ -39,7 +39,7 @@ class BlindPacketTests(unittest.TestCase):
             records=[{"sample_id":"V201","title":"A"},{"sample_id":"V202","title":"B"}]
             for id_field in ("sample_id","record_id"):
                 p=Path(td)/f"{id_field}.csv"
-                p.write_text(f"{id_field},title,opposition_valid,coder_note\\n",encoding="utf-8")
+                p.write_text(f"{id_field},title,opposition_valid,coder_note\n",encoding="utf-8")
                 a=m.build_response_csv(p,records)
                 b=m.build_response_csv(p,list(reversed(records)))
                 self.assertEqual(a,b)
