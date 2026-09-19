@@ -62,11 +62,6 @@ def load():
                 if isinstance(p.get("outputs", {}).get("one_page_visual", {}), dict)
                 else ""
             ),
-            "one_page_thumbnail": (
-                (p.get("outputs", {}).get("one_page_visual", {}) or {}).get("thumbnail_path", "")
-                if isinstance(p.get("outputs", {}).get("one_page_visual", {}), dict)
-                else ""
-            ),
         })
     return dashboard, rows
 
@@ -85,12 +80,15 @@ def paper_rows(rows: list[dict], zh: bool = False) -> str:
         state = STATE.get(r["activity"], (r["activity"], r["activity"]))[1 if zh else 0]
         title = ZH_TITLES.get(r["id"], r["short_title"]) if zh else r["short_title"]
         visual = r.get("one_page_visual", "")
-        thumb = r.get("one_page_thumbnail", "") or visual
         if visual:
             alt = ("一图读懂 " if zh else "One-page visual ") + r["id"]
             visual_href = "./" + visual.lstrip("./")
-            thumb_href = "./" + thumb.lstrip("./")
-            visual_cell = f'<a href="{visual_href}"><img src="{thumb_href}" height="56" alt="{alt}" title="Click to open the full one-page visual"></a>'
+            visual_cell = (
+                f'<a href="{visual_href}">'
+                f'<img src="{visual_href}" height="80" loading="lazy" decoding="async" '
+                f'alt="{alt}" title="Click to open the full one-page visual">'
+                f'</a>'
+            )
         else:
             visual_cell = "—"
         lines.append(
