@@ -93,7 +93,7 @@ Prefer, in order:
 
 Return exactly one structured row:
 
-`candidate_id,paper_id,doi,reference_reviewer_id,model_name,model_version_or_snapshot,prompt_version,run_id,reference_state,reference_scientific_state_detail,anchor_quality,materiality_assessment,evidence_type,evidence_source,evidence_locator,evidence_access,brief_evidence_rationale,abstain_reason`
+`assignment_id,candidate_id,paper_id,doi,reference_reviewer_id,model_name,model_version_or_snapshot,prompt_version,run_id,reference_state,reference_scientific_state_detail,anchor_quality,materiality_assessment,evidence_type,evidence_source,evidence_locator,evidence_access,brief_evidence_rationale,abstain_reason`
 
 `prompt_version` must be `CAL-REF-V1`.
 
