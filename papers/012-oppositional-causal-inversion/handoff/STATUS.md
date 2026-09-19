@@ -1,7 +1,7 @@
 # ARIS4C012 · Current status
 
 - **Title:** When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion
-- **Project status:** pilot0b-complete-v1-reliability-revision-required
+- **Project status:** schema-v2-frozen-fresh-validation-sample-frozen
 - **Activity:** wait
 - **Portfolio progress:** 66%
 - **Current stage:** Pilot 0B complete · v1 reliability revision gate

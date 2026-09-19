@@ -4,7 +4,7 @@
 
 **When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion**
 
-A falsification-first indexed framework for a restricted class of functional-opposite-producing causal effects. Reproducible retrieval and a genuinely independent 30-record Coder B are complete. Raw v1 reliability did not meet the prespecified gate (opposition-valid kappa 0.466; OCI-candidacy kappa 0.592; primary-mechanism kappa 0), with substantial controlled-vocabulary mismatch plus genuine conceptual disagreements. The next gate is diagnostic adjudication, controlled-vocabulary Schema v2, and a fresh independent A2/B2 Pilot before full evidence-map screening.
+Pilot 0B raw v1 reliability remains a failed immutable instrument-validation result. All 141 disagreement cells have been diagnostically partitioned (30 lexical/token, 24 schema-overlap, 26 source/metadata, 61 genuine conceptual); controlled-vocabulary Schema v2 is frozen; and a fresh deterministic 30-record balanced validation sample with zero Pilot 0B overlap is frozen. Next gate: materialize identical blind evidence packets, then run genuinely independent A2/B2 coding before full evidence-map screening.
 
 ## Current state
 
