@@ -14,7 +14,7 @@ permissions:
 jobs:
   identity-risk:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     env:
       PAPER_DIR: papers/006-chinese-alphabetical-exposure
     steps:
@@ -40,7 +40,7 @@ jobs:
             --familyname-csv data/raw/familyname.csv \
             --ccnc-json data/raw/ccnc_lastnames.json \
             --seed-works-per-year 15 \
-            --max-authors 180 \
+            --max-authors 120 \
             --outdir data/pilot/identity_risk
       - name: Remove raw surname inputs
         if: always()
