@@ -2,6 +2,9 @@ name: ARIS4C011 merge manager first-pass adjudication
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["ARIS4C011 confirmatory adjudication packet"]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -17,6 +20,7 @@ permissions:
 
 jobs:
   merge:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     defaults:
       run:
