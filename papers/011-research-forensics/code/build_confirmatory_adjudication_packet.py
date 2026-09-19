@@ -31,6 +31,7 @@ FIELDS=SOURCE_FIELDS+ADJUDICATION_FIELDS
 
 ISSUE_FAMILY_VOCAB=[
     "statistical_reporting",
+    "table_numerical_reporting",
     "data_fabrication_falsification",
     "image_integrity",
     "plagiarism_text_duplication",
