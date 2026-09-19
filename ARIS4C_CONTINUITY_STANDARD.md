@@ -1,7 +1,7 @@
 # ARIS4C Research Continuity & Agent Handoff Standard · v1
 
 **Effective:** 2026-09-19  
-**Owner:** Cochrane Kang  
+**Owner:** CochraneK  
 **Scope:** every numbered ARIS4C paper project, regardless of maturity
 
 ARIS4C treats the Git repository as the canonical cross-session, cross-device, cross-account, and cross-agent source of truth. A paper is not operationally reproducible if a new collaborator or AI agent can see the manuscript but cannot reconstruct the current state, pending work, important decisions, and the conversation context that produced them.
