@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img">
+<style>
+text{font-family:Inter,Arial,sans-serif;fill:#171717}
+.title{font-size:34px;font-weight:700}.h{font-size:23px;font-weight:650}.body{font-size:18px}.small{font-size:15px;fill:#666}
+.box{fill:#fff;stroke:#222;stroke-width:2}.soft{fill:#f5f4f1;stroke:#777;stroke-width:1.5}
+.arrow{stroke:#333;stroke-width:2.2;fill:none;marker-end:url(#arr)}.dash{stroke:#777;stroke-width:2;stroke-dasharray:8 7;fill:none;marker-end:url(#arr)}
+</style>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/></marker></defs>
+<title>ARIS4C010 evidence ladder</title>
+<text class="title" x="50" y="55">Evidence ladder: keep engineering validation separate from semantic evidence</text>
+<text class="body" x="50" y="105">Every stage raises the maximum defensible claim; later stages cannot be replaced by synthetic or model-generated answers.</text>
+<rect class="box"  x="35" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="47" y="285">Pilot 0</text>
+ <text class="small" x="47" y="320">synthetic</text>
+ <text class="small" x="47" y="350">code sanity</text><rect class="box"  x="200" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="212" y="285">Pilot 1</text>
+ <text class="small" x="212" y="320">constructed</text>
+ <text class="small" x="212" y="350">design validation</text><rect class="box"  x="365" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="377" y="285">Pilot 2</text>
+ <text class="small" x="377" y="320">OEWN source-derived</text>
+ <text class="small" x="377" y="350">exploratory</text><rect class="box"  x="530" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="542" y="285">Calibration60</text>
+ <text class="small" x="542" y="320">source-locked</text>
+ <text class="small" x="542" y="350">human packet</text><rect class="box"  x="695" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="707" y="285">Mixed response</text>
+ <text class="small" x="707" y="320">constructed stress</text>
+ <text class="small" x="707" y="350">response-state test</text><rect class="box" stroke-width="4" x="860" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="872" y="285">Stage A</text>
+ <text class="small" x="872" y="320">REAL HUMANS</text>
+ <text class="small" x="872" y="350">NEXT GATE</text><rect class="box"  x="1025" y="250" rx="14" width="145" height="140"/>
+ <text class="h" x="1037" y="285">Benchmark v0</text>
+ <text class="small" x="1037" y="320">adjudicated</text>
+ <text class="small" x="1037" y="350">confirmatory</text><path class="arrow" d="M180 320 L198 320"/><path class="arrow" d="M345 320 L363 320"/><path class="arrow" d="M510 320 L528 320"/><path class="arrow" d="M675 320 L693 320"/><path class="arrow" d="M840 320 L858 320"/><path class="arrow" d="M1005 320 L1023 320"/>
+<rect class="soft" x="240" y="470" rx="14" width="720" height="120"/>
+<text class="h" x="280" y="510">Claim ceiling before Stage A</text>
+<text class="body" x="280" y="545">Formal theory + source-locked architecture + exploratory pilots + human-ready protocol.</text>
+<text class="body" x="280" y="574">Not yet: validated P6 benefit, ontology superiority, or final semantic gold.</text>
+</svg>
