@@ -4,22 +4,22 @@
 
 **Sleeping Beauty Miner: An Integrity-Aware, Time-Safe Agent for Discovering Delayed and Under-Recognized Scientific Work**
 
-An open-data-first Sleeping Beauty discovery agent with three separated tracks: robust retrospective SB identification, case-enriched matched-control mechanism analysis, and time-safe prospective rediscovery. Pilot 1 currently includes 200 random historical papers across 10 field/era/seed strata, multiple delayed-recognition outcomes, citation baselines, seed/recognition-floor sensitivity, and a negative lexical-novelty ablation. Mechanism infrastructure now blocks inference when no robust SB cases exist.
+An open-data-first Sleeping Beauty discovery agent with three separated tracks: retrospective robust-SB identification, case-enriched mechanism analysis, and time-safe prospective rediscovery. Track M now separates robust SB identity from relative citation quadrants and post-awakening fate, uses event-time at-risk-dormant risk-set matching as its primary contrast, and has a real 153-paper known-case pilot with 5 robust SB and 5/5 matches. Mechanism inference remains blocked because observed-covariate balance fails and OpenAlex B calibration is provisional. Track B contains a 200-paper historical benchmark with multiple outcomes, transparent citation baselines, sensitivity analyses, and a negative lexical-novelty ablation.
 
 ## Current state
 
 - Activity: **active**
-- Progress: **83%**
-- Stage: **Track M · case-definition harmonization rerun**
-- Evidence: Track A: 13 retrospective robust-gate candidates/150. Artifact audit found some have high early-attention percentiles; canonical SB now requires robust gate + early-low + late-high versus unselected field/year reference.
+- Progress: **86%**
+- Stage: **Track M · event-time risk-set balance gate**
+- Evidence: Pilot M v3: 153 real OpenAlex papers, 5 robust SB, all 3 literature-reference cases recovered, 5/5 at-risk-dormant matches; risk-set max abs SMD 0.950; latest code CI PASS
 
 ## Immediate next action
 
-**Complete corrected canonical-state rerun; only then assess control-support expansion**
+**Expand at-risk control reservoir without relaxing SMD<0.10; then validate OpenAlex B against SciSciNet-v2/independent source**
 
 ## Current blocker / gate
 
-Absolute robust gate and cohort-relative mechanism state must agree before substantive matching
+Observed-covariate balance still fails and OpenAlex B calibration remains provisional
 
 ## Canonical files / entry points
 
