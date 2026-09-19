@@ -68,3 +68,15 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Why:** Retrieval is reproducible, but construct reliability is not yet sufficient.
 
 **Next gate:** diagnostic adjudication -> frozen controlled-vocabulary v2 -> fresh independent A2/B2 reliability Pilot.
+
+## 2026-09-19 · Exhaustive v1 disagreement diagnosis completed
+
+**Decision:** Treat the 141-cell Pilot 0B diagnosis as a failure-mode partition, not as post-hoc adjudication or a replacement reliability analysis.
+
+**Result:** 30 lexical/token-vocabulary mismatches; 24 schema-category overlaps; 26 source/metadata disagreements; 61 genuine conceptual disagreements.
+
+**Why:** This preserves the frozen raw v1 reliability result while separating instrument-design failure from disagreements that still require source-level or conceptual review. The 24 mechanism schema-overlap cells strengthen the rationale for orthogonal Schema v2 axes, but the 61 genuine conceptual cells show that string normalization alone cannot solve reliability.
+
+**Canonical artifacts:** `data/reliability/pilot0_disagreement_diagnosis.csv`, `data/reliability/pilot0_disagreement_diagnosis_summary.json`, `process/PILOT0B_DISAGREEMENT_DIAGNOSIS.md`, `code/diagnose_pilot0_disagreements.py`.
+
+**Next gate:** freeze controlled-vocabulary Schema v2, then draw a fresh balanced validation sample for independent A2/B2 coding.
