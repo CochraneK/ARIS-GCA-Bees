@@ -67,20 +67,20 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 |---|---|---:|---:|---|
 | **001** | [Bee GCA × Uncertainty](papers/001-gca-bees/) | 🔵 Finish | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) |
 | **002** | [Testing linguistic periodicity](papers/002-language-geometry/) | 🔵 Finish | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) |
-| **003** | [Colonial Legacies × Disciplinary Advantage](papers/003-colonial-disciplinary-advantage/) | 🟡 Wait | 70% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) |
+| **003** | [Colonial Legacies × Disciplinary Advantage](papers/003-colonial-disciplinary-advantage/) | 🟢 Active | 70% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) |
 | **004** | [Mental Health × Knowledge-Network Exclusion](papers/004-counterfactual-cost-of-exclusion/) | 🔴 Block | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
 | **005** | [Global Burden of Bad Science](papers/005-hidden-burden-bad-science/) | 🔴 Block | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
 | **006** | [Chinese Surnames × Alphabetical Exposure](papers/006-chinese-alphabetical-exposure/) | 🟡 Wait | 62% | [handoff](papers/006-chinese-alphabetical-exposure/handoff/AGENT_HANDOFF.md) |
 | **007** | [Cross-Species Age Equivalence](papers/007-cross-species-age-equivalence/) | 🟡 Wait | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
 | **008** | [Human Intelligence Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟡 Wait | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) |
 | **009** | [Phenomenology-Preserving Computational Psychiatry](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟡 Wait | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) |
-| **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🟡 Wait | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |
+| **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🔴 Block | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |
 | **011** | [Research Forensics](papers/011-research-forensics/) | 🟡 Wait | 78% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) |
 | **012** | [Indexed Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟡 Wait | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) |
 | **013** | [Birth–Death Temporal Coupling](papers/013-birth-death-temporal-coupling/) | 🔴 Block | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) |
 | **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 Wait | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
 | **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 Active | 86% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
-| **016** | [Global Grammar of Swearing](papers/016-global-grammar-of-swearing/) | 🔴 Block | 60% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
+| **016** | [Global Grammar of Swearing](papers/016-global-grammar-of-swearing/) | 🔴 Block | 65% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
 | **017** | [LING-02 · Predictive Language Space](papers/017-predictive-language-space/) | 🟡 Wait | 20% | [handoff](papers/017-predictive-language-space/handoff/AGENT_HANDOFF.md) |
 
 ## How ARIS4C works
