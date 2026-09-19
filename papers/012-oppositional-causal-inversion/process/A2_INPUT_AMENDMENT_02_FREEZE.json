@@ -1,0 +1,13 @@
+{
+  "classification": "V2_INDEPENDENT_CODER_INPUT_AMENDMENT_02_FREEZE",
+  "coder": "A2",
+  "frozen_at": "2026-09-19T12:39:02.410020+00:00",
+  "evidence_packet_sha256": "8eb9fd3782d480ce7412f378b422296047f5190e1208675e767ddcf7fc114ccf",
+  "schema_sha256": "066f3e42aeda4fc5842abd2d44310a3da45588ecc41e466282b93af1e960f681",
+  "response_form": "papers/012-oppositional-causal-inversion/data/v2_blind_amendment_02/A2_response_amendment_02.csv",
+  "response_form_sha256": "1e57bfb2c8e52e296eb6b6d938683780b84ce4250de19cd899a83d99ff7d6398",
+  "bundle_sha256": "9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51",
+  "must_remain_blind_to_other_coder": true,
+  "must_remain_blind_to_pilot0_labels_and_adjudication": true,
+  "ready_for_independent_coding": true
+}

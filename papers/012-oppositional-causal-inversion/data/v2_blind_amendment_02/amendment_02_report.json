@@ -1,0 +1,22 @@
+{
+  "classification": "V2_BLIND_EVIDENCE_AMENDMENT_02_DETERMINISTIC_REPLACEMENT",
+  "frozen_at": "2026-09-19T12:39:02.410020+00:00",
+  "original_missing_ids": [
+    "V215",
+    "V216",
+    "V219",
+    "V224",
+    "V225",
+    "V227"
+  ],
+  "replacement_count": 6,
+  "remaining_bibliographic_only_ids": [],
+  "evidence_state_counts": {
+    "ABSTRACT_EXCERPT": 30
+  },
+  "sample_changed": true,
+  "replacement_selection": "same-stratum fixed-hash order; first evidence-materializable candidate",
+  "labels_or_adjudication_inspected": false,
+  "pre_coding": true,
+  "ready_for_independent_coding": true
+}

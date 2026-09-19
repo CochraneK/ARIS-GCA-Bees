@@ -1,0 +1,11 @@
+target_sample_id,stratum,candidate_dedupe_key,candidate_doi,candidate_title,draw_score,evidence_state,evidence_source,accepted
+V215,conflict_security,doi:10.1515/9780691186955-008,10.1515/9780691186955-008,Chapter 6. The Security Dilemma and Ethnic Conflict,819666278,BIBLIOGRAPHIC_ONLY,,no
+V215,conflict_security,doi:10.31235/osf.io/pu47c,10.31235/osf.io/pu47c,Political trust during the Covid-19 pandemic: Rally around the flag or lockdown effects?,854522243,ABSTRACT_EXCERPT,openalex,yes
+V216,economic_network_rebound,ty:energy efficiency policies and the jevons paradox|2015,,Energy Efficiency Policies and the Jevons Paradox,1717220213,BIBLIOGRAPHIC_ONLY,,no
+V216,economic_network_rebound,doi:10.3390/su142416955,10.3390/su142416955,The Safe Development Paradox in Flood Risk Management: A Critical Review,1764845667,ABSTRACT_EXCERPT,openalex,yes
+V219,economic_network_rebound,ty:energy efficiency policies and the jevons paradox|2015,,Energy Efficiency Policies and the Jevons Paradox,1717220213,BIBLIOGRAPHIC_ONLY,,no
+V219,economic_network_rebound,doi:10.3389/fenrg.2018.00026,10.3389/fenrg.2018.00026,"Unraveling the Complexity of the Jevons Paradox: The Link Between Innovation, Efficiency, and Sustainability",1776643609,ABSTRACT_EXCERPT,openalex,yes
+V224,information_attention,doi:10.1037/0033-295x.109.1.75,10.1037/0033-295x.109.1.75,Models of ecological rationality: The recognition heuristic.,1016190718,ABSTRACT_EXCERPT,openalex,yes
+V225,information_attention,doi:10.1016/j.jesp.2024.104661,10.1016/j.jesp.2024.104661,Choosing not to see: Visual inattention as a method of information avoidance,1273323805,ABSTRACT_EXCERPT,openalex,yes
+V227,organization_measurement,doi:10.1016/j.telpol.2016.11.004,10.1016/j.telpol.2016.11.004,Scanning and updating failure: How AT&amp;T turned its political capability into a core rigidity,2596993198,BIBLIOGRAPHIC_ONLY,,no
+V227,organization_measurement,doi:10.13140/rg.2.2.20305.68967,10.13140/rg.2.2.20305.68967,Building Less Flawed Metrics: Dodging Goodhart and Campbell's Laws,2789169171,ABSTRACT_EXCERPT,openalex,yes
