@@ -38,7 +38,24 @@ jobs:
           d=json.loads((root/"pilot3_toxo_table1_trackA_object.json").read_text())
           assert q["qualification"] in {"SAFE_EXACT","BLOCKED"}
           assert d["outcome_or_correction_metadata_included"] is False
-          assert "correction" not in json.dumps(d).lower()
+          forbidden_keys={
+              "correction_url_manager_only",
+              "correction_confirms_two_missing_columns",
+              "outcome_date",
+              "frozen_manager_label",
+              "true_positive",
+              "false_negative",
+          }
+          def all_keys(x):
+              if isinstance(x, dict):
+                  for k,v in x.items():
+                      yield k
+                      yield from all_keys(v)
+              elif isinstance(x, list):
+                  for v in x:
+                      yield from all_keys(v)
+          assert forbidden_keys.isdisjoint(set(all_keys(d)))
+          assert d["track"]=="A_CONTENT_ONLY"
           if q["qualification"]=="SAFE_EXACT":
               assert q["track_a_eligible"] is True
               assert q["defect_state_preserved"] is True
