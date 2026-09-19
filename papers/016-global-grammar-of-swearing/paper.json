@@ -35,7 +35,8 @@
     "phonology": "process/PHONOLOGY_PLAN.md",
     "semantic_fingerprint_pilot": "process/SEMANTIC_FINGERPRINT_PILOT.md",
     "paper_architecture": "process/PAPER_ARCHITECTURE.md",
-    "repeated_item_model": "process/REPEATED_ITEM_MODEL.md"
+    "repeated_item_model": "process/REPEATED_ITEM_MODEL.md",
+    "repeated_item_sensitivity": "process/REPEATED_ITEM_SENSITIVITY.md"
   },
   "tags": [
     "ARIS",
