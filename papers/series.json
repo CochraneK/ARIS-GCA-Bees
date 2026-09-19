@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "note": "Global ARIS4C paper IDs are permanent. Optional domain-series IDs provide thematic sequencing without renumbering or changing stable paper paths.",
+  "series": {
+    "LING": {
+      "name": "Language Systems",
+      "description": "Research on language-space structure, typological geometry, and predictive constraints over observed and unobserved language configurations.",
+      "papers": [
+        {
+          "series_id": "LING-01",
+          "paper_id": "002",
+          "slug": "language-geometry",
+          "role": "predecessor",
+          "relation": "Tests and rejects the simple global-circle form of the language-periodic-table hypothesis."
+        },
+        {
+          "series_id": "LING-02",
+          "paper_id": "017",
+          "slug": "predictive-language-space",
+          "role": "conceptual-successor",
+          "relation": "Moves from testing a global geometry to predicting missing, held-out, extinct-proxy, and unrealized typological configurations."
+        }
+      ]
+    }
+  }
+}
