@@ -27,6 +27,8 @@ def main():
     chosen=[
         next(f for f in payload["forms"] if f["form_id"]=="P2-F01"),
         next(f for f in payload["forms"] if f["form_id"]=="P2-F02"),
+        next(f for f in payload["forms"] if f["form_id"]=="P3-F01"),
+        next(f for f in payload["forms"] if f["form_id"]=="P3-F02"),
         next(f for f in payload["forms"] if f["form_id"]=="P6-F01"),
         next(f for f in payload["forms"] if f["form_id"]=="P6-F02"),
     ]
@@ -64,13 +66,13 @@ def main():
     )
     summary=json.loads(proc.stdout)
     assert summary["rows"]==len(rows)
-    assert set(summary["protocols"])=={"P2","P6"}
+    assert set(summary["protocols"])=={"P2","P3","P6"}
     assert summary["retest"]["matched"]>0
     assert summary["retest"]["exact_consistency"]==1.0
     print("PASS synthetic human-analysis dry-run")
     print("rows:",summary["rows"])
     print("retest matched:",summary["retest"]["matched"])
-    print("P2/P6 analyzed")
+    print("P2/P3/P6 analyzed")
 
 
 if __name__=="__main__":
