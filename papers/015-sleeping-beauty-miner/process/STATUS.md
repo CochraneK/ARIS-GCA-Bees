@@ -1,271 +1,353 @@
 # ARIS4C015 Status
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## Stage
 
-**Pilot 1 historical benchmark + Mechanism Track implementation.**
+**Pilot 1 historical benchmark + Mechanism Track risk-set validation.**
 
-ARIS4C015 now has three separate research tracks:
+ARIS4C015 has three distinct tracks:
 
-- Track A: retrospective robust Sleeping Beauty identification;
-- Track M: case-enriched mechanism discovery with matched controls;
-- Track B: random/time-safe prospective rediscovery benchmark.
+- Track A — retrospective robust Sleeping Beauty identification;
+- Track M — case-enriched mechanism discovery;
+- Track B — random, historical-cutoff-safe prospective rediscovery.
 
 A validated prospective Sleeping Beauty prediction model does not yet exist.
+A substantive mechanism model is also not yet analysis-ready.
 
-## Pilot M multi-stratum yield diagnostic
+Canonical recovery note: process/HANDOFF.md
 
-A bounded real-data mechanism-yield benchmark was run across five reproducible OpenAlex strata (Physics 1980, Medicine 1980, Social Sciences 1980, Physics 1990, Computer Science 1990), 100 papers per stratum.
+## Current scientific definition
 
-Result:
-- papers analyzed: **500**;
-- robust Sleeping Beauties under the current strict gate: **0**;
-- mechanism-ready strata: **0/5**;
-- mechanism-analysis-ready strata: **0/5**;
-- selection on future citation count: **false**.
+The current mechanism definition supersedes older percentile-gated notes.
 
-Interpretation: this is a scientifically useful negative yield result, not evidence that Sleeping Beauties do not exist. It demonstrates that small random historical cohorts cannot be assumed to contain robust SB cases and therefore cannot support mechanism analysis. Track M must now receive cases from a larger retrospective Track-A discovery corpus rather than forcing positives in random samples.
+### Robust SB identity
 
-Workflow: `ARIS4C015 Pilot M Multi-Stratum` run `35406774616`.
+A retrospective mechanism case is defined from the complete citation
+trajectory by converging components:
 
-## Track A retrospective discovery · successful throttled run
+1. variable sleep/depth + awakening-intensity gate;
+2. Beauty Coefficient gate;
+3. later-recognition floor.
 
-The public-API-safe serial Track-A workflow completed across three outcome-enriched strata:
+OpenAlex B thresholds are currently provisional references borrowed from
+SciSciNet-v1 calibration and are not yet source-validated for OpenAlex.
 
-- Physics 1980: 50 screened, **4 robust SB**, 16 near-gate;
-- Medicine 1980: 50 screened, **3 robust SB**, 5 near-gate;
-- Computer Science 1990: 50 screened, **6 robust SB**, 11 near-gate;
-- total: **150 screened, 13 unique retrospective robust-gate candidates**.
+### Relative trajectory quadrant
 
-This cohort is deliberately enriched using present-day citation count to reduce retrospective case-discovery cost. Therefore:
-- **prevalence estimation is forbidden** from this sample;
-- **prospective predictive-performance claims are forbidden** from this sample.
+Field x publication-year early/late percentiles are retained as a separate
+descriptive variable.
 
-This result complements the unselected 500-paper mechanism-yield diagnostic (0 robust-gate cases): random small cohorts are suitable for prospective benchmarking, whereas Track A requires retrospective enrichment to efficiently find candidates. **Passing the absolute robust gate does not by itself make a paper a canonical Track-M SLEEPING_BEAUTY.** Track M additionally requires early-low and late-high attention relative to an unselected same-field/year reference distribution.
+They do **not** determine whether a robust case is an SB.
 
-Successful workflow run: `35407583375`.
+This separation became necessary because classic literature cases such as EPR
+and Washburn can rank high in early citation percentile in sparse historical
+cohorts while still showing decades-long low-rate sleep.
 
-### Definition-harmonization correction
+### Post-awakening fate
 
-Inspection of the first matched-control artifacts revealed that several absolute robust-gate candidates had **high**, not low, first-5-year citation percentiles relative to the unselected field/year pool. For example, the six Computer Science 1990 robust-gate candidates had early percentiles approximately **0.71–0.94**.
+A third, separate descriptor records what happens after awakening:
 
-Therefore the Track-M script is being corrected so that a mechanism case is promoted to canonical `SLEEPING_BEAUTY` only when it satisfies both:
+- TRANSIENT_OR_FADED;
+- ROUGHLY_SUSTAINED;
+- EXPANDED_AFTER_AWAKENING.
 
-1. the retrospective absolute robust gate; and
-2. early attention <= 25th percentile **and** late attention >= 75th percentile versus the unselected same-field/year reference pool.
+It is not part of SB identity.
 
-This correction is stricter than simply expanding controls and prevents the mechanism analysis from silently changing its own case definition after seeing the data.
+## Pilot M random-yield diagnostics
 
-## Track M matched-control gate · first empirical pass
+### 100-paper OpenAlex smoke
 
-A same-field/year matched-control mechanism pilot was completed using:
-- retrospectively outcome-enriched strict SB cases;
-- independently sampled **unselected** control pools;
-- exact field/year matching;
-- prespecified early-attention caliper = 0.15;
-- no control replacement.
+1980 Physics random sample:
+- n = 100;
+- robust SB = 0;
+- mechanism_ready = false.
 
-Result across three strata:
-- robust SB cases: **13**;
-- Forgotten controls available: **67**;
-- matched SB cases: **1/13**;
-- analysis-ready strata: **0/3**.
+### 497-paper merged random cohort
 
-By stratum:
-- Computer Science 1990: 6 SB, 23 Forgotten, 0 matched;
-- Medicine 1980: 3 SB, 22 Forgotten, 0 matched;
-- Physics 1980: 4 SB, 22 Forgotten, 1 matched (25%).
+Five deterministic 100-paper shards were merged before normalization:
+- requested rows = 500;
+- unique papers = 497;
+- duplicate rows removed = 3;
+- robust SB = 0;
+- Forgotten = 207;
+- Immediate Hit = 85;
+- low-early/high-late unconfirmed = 22.
 
-Interpretation: the current **50-paper unselected control reservoir per stratum is insufficient under the frozen matching rule**. This is a matching-support failure, not evidence against an SB mechanism. The next step is to enlarge the unselected control reservoir while holding the caliper and matching variables fixed; the gate must not be rescued by outcome-driven relaxation.
+Only one of the 22 unconfirmed papers was a near-miss that passed sleep/wake
+and provisional B but had only 29 citations through 2011, below the
+prespecified recognition floor of 50.
 
-Workflow run: `35412163832`.
+Decision:
+**do not scale random mechanism cohorts merely to wait for rare SB events.**
+Random cohorts belong primarily to Track B. Track M should be case-enriched.
 
-## Completed
+Canonical result:
+data/pilotM_openalex_500_summary.json
 
-### Core agent / engineering
+## Pilot M known-case enrichment v3
 
-- reusable sleeping-beauty-miner Skill;
-- deterministic orchestrator and Candidate Evidence Card;
-- complete yearly citation-history reconstruction;
-- Beauty Coefficient and awakening time;
-- OpenAlex and local SciSciNet-style cutoff-safe adapters;
-- OpenAlex retry/backoff and request-volume hardening;
-- ARIS4C011 integrity routing;
-- transparent citation baselines;
-- ranking / calibration metrics;
-- local discovery scan;
-- CI and live empirical workflows.
+Three literature-reference cases were injected as known delayed-recognition
+cases and surrounded with same-year/same-OpenAlex-field controls:
 
-### Pilot 0 cross-source metric validation
+- Hummers & Offeman 1958 — DOI 10.1021/ja01539a017;
+- Einstein-Podolsky-Rosen 1935 — DOI 10.1103/PhysRev.47.777;
+- Washburn 1921 — DOI 10.1103/PhysRev.17.273.
 
-Three classic delayed-recognition cases were reconstructed from OpenAlex through
-the 2011 observation endpoint and compared with Ke et al. / WoS values.
+Workflow:
+- ARIS4C015 Pilot M known-SB case enrichment v3;
+- run 35427591815;
+- head SHA 3ce9f09975f2858fd362ac4cfe727b815df047c3;
+- conclusion: success.
 
 Result:
-- exact awakening-year match in 2/3 cases;
-- all within 3 years;
-- mean absolute awakening-year difference: 1 year;
-- B values differed by about 13.3% on average.
+- papers = 153;
+- robust SB = 5;
+- all 3 literature-reference cases pass the robust SB gate;
+- 2 additional provisional OpenAlex robust-SB candidates were found.
+
+Additional provisional candidates:
+- W2018826127 — *An Experimental Study of the Reflection of X-Rays from
+  Calcite* — DOI 10.1103/PhysRev.17.608;
+- W2006869700 — *Some Studies Concerning Rotating Axes and Polyatomic
+  Molecules* — DOI 10.1103/PhysRev.47.552.
+
+These two remain discovery candidates until cross-source validation and
+source-specific B calibration.
+
+Canonical result:
+data/pilotM_known_cases_v3_summary.json
+
+## Primary mechanism contrast
+
+The primary comparison is now **event-time risk-set matching**:
+
+> At the case SB's awakening time, compare it with a paper from the same field
+> and publication year that is still dormant at that event time.
+
+Rules:
+- exact field and publication year;
+- matching information measured no later than the case event time;
+- control must still satisfy the sleep regime at that time;
+- control must not already have a qualifying awakening burst;
+- a control may awaken later;
+- post-event control outcomes are not used to select the match.
+
+Forgotten and Immediate-Hit comparisons remain secondary/extreme contrasts.
+
+### Pilot M v3 risk-set result
+
+Primary SB-vs-at-risk-dormant contrast:
+- 5/5 robust SB cases matched;
+- match rate = 1.0;
+- balance threshold = abs SMD < 0.10;
+- sleep-rate-to-event abs SMD ~= 0.950;
+- reference-count abs SMD ~= 0.562;
+- author-count abs SMD ~= 0.566;
+- balance_pass = false.
+
+For comparison, the older SB-vs-Forgotten sleep-rate SMD was ~= 3.317.
 
 Interpretation:
-- awakening geometry appears more cross-source stable than absolute B in this
-  tiny selected probe;
-- this is implementation validation, not general evidence.
+- event-time risk-set matching is directionally better than permanent-Forgotten
+  matching;
+- the current 50-control-per-known-case reservoir is still too small / too
+  weakly supported for acceptable observed-covariate balance;
+- match yield alone is not evidence of a valid mechanism comparison.
 
-### Pilot 1 citation-baseline benchmark
+Current state:
+- mechanism_ready = true;
+- mechanism_analysis_ready = false.
+
+Current block reasons:
+1. SB-vs-at-risk-dormant observed covariates remain imbalanced;
+2. Beauty Coefficient threshold is not validated for OpenAlex.
+
+Do **not** run or report a substantive mechanism regression yet.
+
+## Temporal mechanism evidence
+
+Mechanism evidence is partitioned by time:
+
+- M0 — publication-state evidence;
+- M1 — sleep-period evidence;
+- M2 — awakening-window evidence;
+- M3 — post-awakening evidence.
+
+Anti-time-reversal rule:
+a later Prince/event can help explain awakening, but cannot be used as evidence
+for why the paper was initially neglected without a separate longitudinal or
+causal design.
+
+See:
+agent/sleeping-beauty-miner/references/SIGNAL_CONTRACT.md
+
+## Track A retrospective discovery
+
+Earlier outcome-enriched Track-A runs found multiple strict robust-gate
+candidates, including a 150-paper / 13-candidate run.
+
+Important correction:
+older notes that required robust gate **plus** early-low/late-high percentile
+for SB identity are superseded by the current identity/quadrant separation.
+
+Track-A enriched samples:
+- may efficiently acquire cases;
+- may not estimate SB prevalence;
+- may not support prospective predictive-performance claims.
+
+## Pilot 0 cross-source validation
+
+Three classic delayed-recognition cases were reconstructed from OpenAlex
+through the 2011 endpoint and compared with Ke et al. / WoS reference values.
+
+Observed:
+- exact awakening-year match in 2/3 cases;
+- all within 3 years;
+- mean absolute awakening-year difference = 1 year;
+- B differed by about 13.3% on average.
+
+Interpretation:
+awakening timing may be more cross-source stable than absolute B in this tiny
+selected probe. This is implementation evidence, not a general source-robustness
+claim.
+
+## Track B prospective Pilot 1
 
 Current benchmark:
 - 5 field/era groups;
-- 2 fixed random seeds each;
+- 2 fixed seeds each;
 - 10 strata;
 - 20 papers per stratum;
-- 200 target papers total;
+- 200 target papers;
 - 7 future outcome definitions;
 - 5 transparent citation baselines.
 
-Key result:
-- partial B strongly predicts future B-defined outcomes;
-- current citations / momentum strongly predict future citation uptake;
-- no citation-only baseline consistently dominates awakening or
-  delayed-recognition-consensus outcomes.
-
-For delayed-recognition consensus, macro NDCG@5 across 10 strata was roughly:
+Delayed-recognition-consensus macro NDCG@5 was approximately:
 - partial B: 0.357;
 - acceleration: 0.341;
 - current citations: 0.216;
 - momentum: 0.214;
 - dormancy: 0.204.
 
-Cross-stratum variance remains large.
+Interpretation:
+- partial B is strong for future B-defined outcomes;
+- current citations / momentum are strong for future citation uptake;
+- no citation-only baseline consistently dominates the harder awakening /
+  delayed-recognition-consensus outcomes;
+- cross-stratum variance remains large.
 
 ### Recognition-floor sensitivity
 
-A top-50% future-uptake floor was too weak to change the consensus label.
+A top-50% future-uptake floor was weak.
+A stricter top-25% sensitivity reduced positives in several strata.
 
-A stricter top-25% uptake sensitivity reduced positive cases in several strata,
-showing that delayed geometry and substantial later recognition should remain
-distinct outcome dimensions.
+Delayed geometry and substantial later recognition therefore remain separate
+outcome dimensions.
 
 ### First non-citation ablation
 
-Historical title lexical novelty was evaluated across the same 10 strata.
-
-Signals:
+Historical title lexical novelty:
 - nearest-1 prior-title distance;
 - nearest-3 prior-title distance;
 - OOV token share.
 
 Result:
-- no stable improvement over the strongest citation-only baseline for
-  delayed-recognition consensus;
-- nearest-3 distance roughly tied citation acceleration on awakening in this
-  exploratory sample;
-- target vocabulary coverage from the 100-title prior corpus was limited.
+no stable improvement over the strongest citation-only baseline for the
+delayed-recognition consensus outcome.
 
-Current interpretation:
-- simple small-corpus lexical novelty is a negative / insufficient ablation;
-- this does not establish that semantic novelty in general is uninformative.
+This is a negative / insufficient result for this small lexical baseline, not
+evidence that semantic novelty in general is uninformative.
 
-## Mechanism Track correction
+## Core implementation completed
 
-A random prospective cohort may contain zero genuine Sleeping Beauties.
+- reusable sleeping-beauty-miner Agent Skill;
+- Candidate Evidence Card;
+- complete annual citation-history reconstruction;
+- Beauty Coefficient and awakening time;
+- OpenAlex adapter with retry/backoff and reproducible sampling;
+- cutoff-safe local SciSciNet-style adapter;
+- transparent citation baselines;
+- historical backtest and ranking/calibration metrics;
+- semantic/network proxy contract;
+- Prince candidate extraction;
+- ARIS4C011 integrity routing;
+- robust SB gate;
+- identity/quadrant separation;
+- post-awakening fate;
+- deterministic secondary matching;
+- event-time risk-set matching;
+- hard mechanism_ready and mechanism_analysis_ready gates;
+- CI and live empirical workflows.
 
-Therefore cohort-relative top-q outcomes are no longer allowed to function as
-mechanism labels.
+## SciSciNet-v2 route
 
-Implemented mechanism infrastructure:
+Preferred large-corpus Track-A / Track-M route:
 
-- literature-style sleep/depth/wake gate;
-- source-calibrated B gate;
-- later-recognition floor;
-- robust-SB convergence rule;
-- field x publication-year early/late normalization;
-- canonical trajectory states:
-  - SLEEPING_BEAUTY;
-  - FORGOTTEN;
-  - IMMEDIATE_HIT;
-  - FADING;
-  - AMBIGUOUS;
-  - LOW_EARLY_HIGH_LATE_UNCONFIRMED;
-- deterministic matched controls;
-- primary contrasts:
-  - SB vs Forgotten;
-  - SB vs Immediate Hit;
-- mechanism_ready hard gate.
+1. schema discovery;
+2. cheap B-based candidate prefilter;
+3. complete annual trajectory reconstruction;
+4. robust gate;
+5. source-specific B calibration / sensitivity;
+6. event-time risk-set controls;
+7. mechanism features.
 
-If zero robust SBs pass:
-- mechanism_ready=false;
-- mechanism claims are blocked;
-- relative top-q benchmark positives cannot be renamed as SBs.
+Executable SQL templates:
+- sql/sciscinet_v2_schema_discovery.sql;
+- sql/sciscinet_v2_sb_candidate_counts.sql;
+- sql/sciscinet_v2_sb_prefilter.sql.
 
-See process/MECHANISM_TRACK.md.
-
-## Data strategy for true mechanism cases
-
-Preferred large-scale route:
-
-1. use SciSciNet / SciSciNet-v2 precomputed SB_B as a cheap candidate prefilter;
-2. require sufficient later citation uptake;
-3. reconstruct complete annual trajectories for candidates;
-4. apply the robust SB gate;
-5. construct field/cohort-matched Forgotten / Immediate-Hit controls;
-6. analyze semantic/network/Prince/technology mechanisms.
-
-SciSciNet v1 reports:
-- B > 33 as approximately its top 2% SB group;
-- B > 307.55 as its top-10,000 high-B group.
-
-These thresholds are source-specific calibration references and must not be
-treated as universal constants.
+On 2026-09-19 the ChatGPT BigQuery plugin was present but disabled by admin.
+That is an execution-environment constraint, not a scientific blocker.
 
 ## Immediate next gates
 
-1. Freeze the 13 current robust Track-A cases with provenance and threshold sensitivity.
-2. Build an **unselected** same-field/year control reservoir with the same 2025 endpoint.
-3. Quantify match yield and balance for SB vs Forgotten and SB vs Immediate Hit.
-4. Expand retrospective discovery beyond the current 150 enriched candidates only after the matching gate is characterized.
-5. Add reference-combination / citation-network mechanism features.
-6. Run Prince / awakening-path analysis on confirmed cases.
-7. Expand prospective Pilot 1 beyond citation baselines and simple lexical
-   novelty.
-8. Connect real ARIS4C011 findings to the same papers.
-9. Only then consider learned prospective ranking models.
+1. Expand the at-risk control reservoir for confirmed SB cases.
+   - first try 100 controls/case;
+   - then deterministic multi-seed 200–300 control pools if needed.
+2. Keep abs SMD < 0.10 fixed; do not rescue the design by post-hoc relaxation.
+3. Cross-validate the two additional provisional OpenAlex SB candidates.
+4. Execute SciSciNet-v2 schema discovery and source-specific B calibration when
+   BigQuery/GCS access is available.
+5. Re-run event-time matching on a larger confirmed SB cohort.
+6. Only after acceptable balance, add mechanism families:
+   - reference combinations;
+   - network/core-periphery position;
+   - field readiness / semantic neighborhood;
+   - Prince / awakening path;
+   - optional patent / technology transfer.
+7. Connect real ARIS4C011 findings for the same cases.
+8. Continue Track B independently with chronological and field/era holdouts.
+9. Train learned prospective models only after independent feature families
+   show stable value over transparent baselines.
 
 ## Current blockers / constraints
 
-- no canonical SciSciNet-v2 query/slice is yet attached to the project;
-- Mechanism Track is implemented but not yet populated with a large empirical
-  robust-SB cohort;
-- current field/topic assignments may use modern classifications;
-- bibliographic-source coverage affects B;
-- prospective predictive validity remains unknown.
+- primary risk-set balance still fails;
+- OpenAlex B calibration is provisional;
+- SciSciNet-v2 execution awaits an available BigQuery/GCS route;
+- modern field/topic classifications may back-project imperfectly onto old
+  papers;
+- bibliographic-source coverage affects B and awakening geometry;
+- prospective predictive validity remains unestablished.
 
-## Promotion gates
+## CI / reproducibility checkpoint
 
-### Mechanism Track ready for substantive analysis when
+Latest checked code CI after identity / fate / risk-set work:
+- workflow: ARIS4C015 Sleeping Beauty Miner CI;
+- run: 35427583429;
+- head SHA: 8589012e4bc59f9f0d2eef8d9f2f47647026f0d4;
+- conclusion: success.
 
-- a large retrospective corpus yields a non-trivial number of robust SBs;
-- threshold sensitivity is reported;
-- matched-control yield is acceptable;
-- covariate balance is audited;
-- mechanism features are computed without contaminating matching variables.
+Pilot M v3 also completed successfully.
 
-### Prospective model-development gate
+## Recovery
 
-Do not train a serious model until:
-- multiple delayed-recognition outcomes remain non-trivial across strata;
-- independent feature families are tested;
-- simple baselines are not sufficient;
-- chronological and field/era holdouts are specified;
-- no known post-cutoff leakage remains.
+For a new chat / agent / computer:
 
-### Prospective validation gate
+1. read process/HANDOFF.md;
+2. read this STATUS.md;
+3. inspect latest ARIS4C015 GitHub Actions;
+4. continue the Immediate next gates above.
 
-Requires:
-- chronological train/validation/test;
-- leave-field / leave-era evaluation;
-- calibrated probabilities if emitted;
-- human-review utility;
-- shortcut/prestige audits;
-- independent replication where feasible.
+The original ChatGPT thread is not required for scientific continuity.
