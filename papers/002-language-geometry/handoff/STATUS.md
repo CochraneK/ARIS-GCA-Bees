@@ -5,7 +5,7 @@
 - **Activity:** quiet
 - **Portfolio progress:** 100%
 - **Current stage:** Submission package ready · output gate PASS
-- **Evidence established:** Final EN + ZH manuscripts; independent PASS_SUBMISSION_PREP; 3 figures; 6 tables; Linguistic Typology technical package PASS
+- **Evidence established:** Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS
 - **Next gate:** Author metadata/declarations + ScholarOne submission
 - **Blocker:** None scientific; author-only metadata/declarations and portal submission
 

@@ -5,7 +5,7 @@
 - **Activity:** quiet
 - **Portfolio progress:** 100%
 - **Current stage:** Submission package ready · output gate PASS
-- **Evidence established:** Final EN + ZH manuscripts, reproducible synthesis, 3 figures, 3 tables, journal package
+- **Evidence established:** Final EN + ZH manuscripts and PDFs, reproducible synthesis, 5 figures, 3 tables, journal package
 - **Next gate:** Author portal submission
 - **Blocker:** None scientific; author-only portal/contact fields
 
