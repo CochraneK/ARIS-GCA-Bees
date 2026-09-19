@@ -1,0 +1,47 @@
+name: ARIS4C013 traditional feature gate CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/process/TRADITIONAL_FEATURE_SCHEMA.json'
+      - 'papers/013-birth-death-temporal-coupling/code/traditional_feature_gate.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_traditional_feature_gate.py'
+      - '.github/workflows/aris4c013-traditional-feature-gate.yml'
+  pull_request:
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/process/TRADITIONAL_FEATURE*'
+      - 'papers/013-birth-death-temporal-coupling/code/traditional_feature_gate.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_traditional_feature_gate.py'
+      - '.github/workflows/aris4c013-traditional-feature-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test gate
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        run: |
+          python -m py_compile traditional_feature_gate.py
+          python -m unittest -v test_traditional_feature_gate.py
+      - name: Assert H3/H4 remains locked
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        shell: bash
+        run: |
+          set +e
+          python traditional_feature_gate.py --schema ../process/TRADITIONAL_FEATURE_SCHEMA.json
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then
+            echo "Expected traditional-feature gate to remain locked; got $code"
+            exit 1
+          fi
+          echo "H3/H4 feature gate correctly remains locked."
