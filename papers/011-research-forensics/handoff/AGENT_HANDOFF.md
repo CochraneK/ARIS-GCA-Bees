@@ -11,7 +11,7 @@ A cross-disciplinary, auditable framework that routes scientific manuscripts to 
 - Activity: **active**
 - Progress: **84%**
 - Stage: **Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition**
-- Evidence: Six time-safe pre-outcome development FLAG evaluations across five target papers (F5/F3/F8/F3/F1/F3); SAFE_EXACT formatting/honest-error control remains 10 PASS, 0 FLAG, review priority NONE; four matched no-known-integrity-concern development comparators selected independently of detector output passed notice screening and had retrieved full-text versions frozen by SHA-256. The descriptive development summary records complementarity and five real ABSTAIN checks without confirmatory performance claims.
+- Evidence: Six time-safe pre-outcome development FLAG evaluations across five target papers (F5/F3/F8/F3/F1/F3), including the preserved-original voxel/Brodmann-area case with 5 PASS + 1 correction-blind FLAG; SAFE_EXACT formatting/honest-error control remains 10 PASS, 0 FLAG, review priority NONE; four matched no-known-integrity-concern development comparators selected independently of detector output passed notice screening and had retrieved full-text versions frozen by SHA-256. The descriptive development summary records complementarity and five real ABSTAIN checks without confirmatory performance claims.
 
 ## Immediate next action
 
