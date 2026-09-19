@@ -1,0 +1,79 @@
+{
+  "project": "ARIS4C016",
+  "expected_frozen_manifest_sha256": "48c58f91901e8c2a1aab01958e95ea28afaf0f33e7a98677f98e58b8a412c9b4",
+  "observed_manifest_sha256": "910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751",
+  "gate_function_manifest_sha256": "910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751",
+  "observed_manifest_sha256_variants": {
+    "utf8_lf": "910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751",
+    "utf8_bom_lf": "bc4813c0e470e8956bd401f6e6331d789536653f42b2207ec044b228c2e63811",
+    "utf8_crlf": "a7e0eef62a4e575fd24989b6574c95748234ffa5e069ff20434228b4268ca526"
+  },
+  "reproducible": false,
+  "gate_function_agrees_with_observed": true,
+  "n_rows": 300,
+  "n_rows_expected": 300,
+  "source_sha256_claimed_by_sampler": "c725a30913e604e8344f4990c8d63990dcf0271e3a65765ddc3fa591b8cb1387",
+  "target_policy": {
+    "default_per_sample": 15,
+    "low_coverage_per_sample": 30,
+    "low_coverage_samples": [
+      "Setswana (BW)",
+      "Spanish (ES)"
+    ]
+  },
+  "community_counts": {
+    "Cantonese (CN)": 15,
+    "Dutch (BE)": 15,
+    "English (AU)": 15,
+    "English (CA)": 15,
+    "English (GB)": 15,
+    "English (SG)": 15,
+    "English (US)": 15,
+    "Finnish (FI)": 15,
+    "French (FR)": 15,
+    "German (DE)": 15,
+    "Italian (IT)": 15,
+    "Mandarin (CN)": 15,
+    "Serbian (RS)": 15,
+    "Setswana (BW)": 30,
+    "Slovenian (SI)": 15,
+    "Spanish (CL)": 15,
+    "Spanish (ES)": 30,
+    "Thai (TH)": 15
+  },
+  "stratum_counts": {
+    "missing_primary": 42,
+    "multi_label": 61,
+    "random": 81,
+    "unresolved": 116
+  },
+  "serialization_variants_tested": 86,
+  "serialization_variants_matching_frozen_digest": [],
+  "partial_digests_for_cross_check": {
+    "sha256_of_sample_row_index_column_order": "7af2015f18bdd42c49052c43e4532e3c9af1546c7cad902435ded57467d3c918",
+    "sha256_of_row_hash_column_only": "8f865e8d1cb889627d9d1058b1b3a024839c04bd20fd22cb43ed1b172d681819",
+    "sha256_of_row_index_row_hash_pairs": "731181bf5f036949d9788d0a8d2663e118aabaed8d14d39133f043b4115dbb93",
+    "sha256_of_json_rows_canonical": "49d47292421a4701097d3087dbcd823fe7afe08546fa69006b0f2745b4eebc16"
+  },
+  "per_sample_digests_for_cross_check": {
+    "Cantonese (CN)": "46ba4721f436aa44d855cc0a5d584e7045d2d900e3e51dea9bc194f2945ff0a2",
+    "Dutch (BE)": "6fb82594a3e0d73d62b1ea097f1f054f2e6244c3295ae93fb3452ae93c584bd5",
+    "English (AU)": "4568a5798087358f9f216f3e064f240a0466e3b44a9b748ca7f198b5741e43d1",
+    "English (CA)": "92a4f594366ff9f74b2a1bc2d5a3e20afb0f1118e30fb51a7e1ec24309a0242e",
+    "English (GB)": "06e323216224ddc0a6a5d51897bf1ef5a070c94b3666856b53c82ef12c8af1ea",
+    "English (SG)": "ebddc9ea5078408a58f08a4c2b1d19a74689bc22ffa101accf7176f9d33e095e",
+    "English (US)": "4628b119cc833ba77931281f60786b6823afab89e490157fb62895839a0b50cd",
+    "Finnish (FI)": "b41980c94c24ba275b3724c3aaf3b6daa9e2714f76f1af762410f2e9f5f6f14c",
+    "French (FR)": "177f58833d2528782e18f024733586c1715d6df82e3d9cdaaf2f8b71aa42ec70",
+    "German (DE)": "c474fbd8cd3fa532e3c80b512e2033a18aeaced93706d416689c31fb6222f05e",
+    "Italian (IT)": "26e53c6e0a72c0df7000ea1829ce3114c3ddbc9a8add17073401b8bef57e89d4",
+    "Mandarin (CN)": "95bd56e2e730e25b3812085a544041ca7eec12b8fd4fde0d64c2e86bf7921769",
+    "Serbian (RS)": "ebf85002c2b38aedf52b5129d1e5bc395205057c791ae72c34c4b27fd4fde4fb",
+    "Setswana (BW)": "8b1fd7459713155127a4650b323a3fa07ec047f53f8895a08adbe494babcdac1",
+    "Slovenian (SI)": "fd9417cc3b497208b355c75a0bd946eca43dc73bad7991cc7be0f07aa2c1af65",
+    "Spanish (CL)": "2ee0daa963376fb6295a6c827028fbb241e51b0f193c05a8993600ff4b316965",
+    "Spanish (ES)": "93253a9191521eb76f5243d07f9d43ab5abe0cb670ce8e0e38663638e54f6b4b",
+    "Thai (TH)": "90e36702b313e883b927c7da4eb059ea1543eacefa5a073ba3813d447e70b2fb"
+  },
+  "privacy_note": "Row indices, hashes and strata only; no lexical item or translation."
+}

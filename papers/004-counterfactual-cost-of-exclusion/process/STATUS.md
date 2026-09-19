@@ -4,11 +4,11 @@ Last updated: 2026-09-19
 
 ## Current state
 
-**RUNNING — P4 pre-exposure audit / independent identity second-review gate**
+**RUNNING — P4 pre-exposure audit / frame re-derivation after identity second review**
 
 P0 concept/causal architecture, P1 pilot30 feasibility, P2 frozen-100 identity expansion, and P3 frozen-100 work/network release are complete.
 
-Mental-health exposure coding remains locked. The only scientific blocker to the final pre-exposure freeze is the independently executed identity second review and adjudication of any disagreements.
+Mental-health exposure coding remains locked. The 40-case blind identity second review and the adjudication of all 23 disagreements are now executed (AI surfaces — see `process/IDENTITY_SECOND_REVIEW_RESULTS.md`); the remaining blocker before the pre-exposure freeze is re-deriving the verified-work corpus, network100 frame and observability summaries from the adjudicated candidate identity table, plus 3 cases that need additional retrieval.
 
 ## Canonical question
 
@@ -100,9 +100,29 @@ A deterministic blind second-review sample is frozen:
 Blind assignment:
 `data/derived/identity_second_review_blind_assignment.csv`
 
-The independent reviewer has **not yet returned judgments**. The current assistant's own re-review cannot count as independent.
+**Executed 2026-09-19 as an AI second review.** 40/40 cases judged on an isolated
+surface (`gpt-oss:120b`, temperature 0, 11 calls, one retry for one silently
+omitted case), scored against the first review, and all 23 disagreements
+adjudicated on evidence by a different family
+(`nvidia/nemotron-3-super-120b-a12b`). Full numbers, the independence claim and
+its limits, and the structural audit are in
+`process/IDENTITY_SECOND_REVIEW_RESULTS.md`; artifacts live under
+`data/derived/identity_second_review_*`.
 
-Exposure coding must not begin until the required external/independent review is returned and disagreements are adjudicated.
+Headline: state agreement **0.600**, cluster-level Author-ID-set agreement
+**0.500**, singles **0.889 / 1.000**. The disagreement is directional
+(18 unreproduced first-review fragments vs 12 new ones), which is an over-merge
+signature, and over-merging inflates exactly the quantities the counterfactual
+removal estimand depends on. Adjudication produced **0** verdicts broader than both
+reviews and a net **−1** included fragment; 3 cases still require additional
+retrieval and one (`cv_Q24287044`) has a rationale whose citation is not
+retrievable from the packet.
+
+Exposure coding remains locked. The merged table
+`data/derived/identity_decisions_100_second_review_adjudicated.csv` is a
+**candidate**: the canonical first-review table is unchanged, and the verified-work
+corpus, network100 frame and observability summaries must be re-derived from the
+candidate before `PREEXPOSURE_FRAME_FREEZE.md` can be written and hashed.
 
 ## Pilot30 network feasibility — passed
 
@@ -153,8 +173,11 @@ A region- or FORD-balanced alternative frame is deferred as a versioned sensitiv
 
 ## Remaining before exposure coding
 
-- [ ] Independent reviewer completes the frozen 40-person blind identity second review.
-- [ ] Adjudicate any identity-state / Author-ID-set disagreements.
+- [x] Frozen 40-person blind identity second review executed (AI surface, `gpt-oss:120b`, temp 0, 40/40).
+- [x] All 23 state / Author-ID-set disagreements adjudicated on evidence (isolated AI surface, `nemotron-3-super-120b`, temp 0, 23/23; 0 ungrounded or invented Author IDs).
+- [ ] Resolve the 3 `retrieval_needed` cases and re-open `cv_Q24287044`, whose deciding rationale cites an authority record that is not retrievable from the packet.
+- [ ] Re-derive the verified-work corpus, network100 frame and observability summaries from `data/derived/identity_decisions_100_second_review_adjudicated.csv`.
+- [ ] Record in `DECISIONS.md` that review 2 and adjudication are AI surfaces and that independence is procedural plus family-separated from review 2 onward.
 - [ ] Write and hash `PREEXPOSURE_FRAME_FREEZE.md`.
 
 ## Work that can proceed while the independent review is outstanding
@@ -188,4 +211,12 @@ After P4 passes:
 
 ## Immediate next step
 
-Complete all non-blocked P4/P6-method preparation while the frozen 40-person blind second review is handed to an independent reviewer. Once that file returns, adjudicate disagreements, freeze the pre-exposure frame, and move directly to exposure coding.
+The second review and adjudication are done, so the queue is no longer waiting on a
+reviewer. Next: re-derive the work corpus and network frame from the adjudicated
+candidate identity table, close the 4 open identity cases, log the AI-surface
+independence decision, and only then write and hash
+`PREEXPOSURE_FRAME_FREEZE.md`. In parallel, keep pushing the non-blocked
+P4/P6-method preparation. If the cluster-level ID-set agreement of 0.500 survives
+re-derivation, act on it the way the protocol allows — tighten the
+`VERIFIED_CLUSTER` evidence requirement or narrow the frame — rather than lowering
+the identity gate to preserve sample size.

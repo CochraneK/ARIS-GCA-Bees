@@ -4,7 +4,7 @@ Updated: 2026-09-19
 
 ## State
 
-**SCHEMA V2 FROZEN · FINAL 30-RECORD BLIND BUNDLE READY · GENUINELY INDEPENDENT A2/B2 REQUIRED**
+**SCHEMA V2 TESTED AND FAILED · INSTRUMENT REVISION (v3) REQUIRED · 165-RECORD SCREEN STILL LOCKED**
 
 ## Canonical identity
 
@@ -93,7 +93,9 @@ Final hashes:
 
 `.github/workflows/aris4c012-v2-agreement.yml` rejects partial one-coder integration on `main`.
 
-The current controller does not have a genuinely independent second coding surface, so **ARIS4C012 is Blocked at this gate rather than simulating independence**.
+An independent coding surface has since executed both A2 and B2 against this
+frozen bundle, so the requirement for two independent judges is met; the gate
+itself returned **REVISE_V2_INSTRUMENT** (see below).
 
 ## Current hard gate
 
@@ -101,21 +103,54 @@ The current controller does not have a genuinely independent second coding surfa
 
 - Schema: **FROZEN**
 - Fresh validation evidence: **READY (30/30)**
-- A2/B2 input equality: **PASS**
-- Independent A2 coding: **NOT YET RUN**
-- Independent B2 coding: **NOT YET RUN**
-- Reliability decision: **LOCKED**
+- A2/B2 input equality: **PASS** (identical `input_bundle_sha256` on both completion freezes)
+- Independent A2 coding: **RUN** — 30/30, `data/v2_coding/A2_completed.csv`, frozen
+- Independent B2 coding: **RUN** — 30/30, `data/v2_coding/B2_completed.csv`, frozen
+- Reliability decision: **REVISE_V2_INSTRUMENT** (see `process/V2_AGREEMENT_DIAGNOSIS.md`)
 - Full 165-record screen: **LOCKED**
+
+## v2 executed result (2026-09-19)
+
+Two coders were run against the same frozen bundle by one driver script
+(`code/run_v2_coders.py`), at temperature 0, by explicit model id, from two
+different provider families. Each coder's request contained only the frozen
+schema and its batch of packet records; the two judges never received each
+other's labels, and both files were frozen before any comparison. What is
+independent is the *judge*; the prompt and the field list were deliberately held
+constant, because in a reliability test the instrument must not vary. See
+`process/V2_AGREEMENT_DIAGNOSIS.md` section 8 for the full provenance record.
+
+| metric | value | threshold |
+| --- | --- | --- |
+| `opposition_valid` Cohen's kappa | 0.481 | >= 0.70 |
+| median kappa across 33 informative axes | 0.372 | >= 0.70 |
+| secondary axes passing | 1 / 32 | all |
+| disagreement cells | 380 | — |
+
+The primary gate failure is not a base-rate artifact: raw agreement 0.733 against
+a Cohen chance expectation of 0.487 gives kappa 0.481 and nominal alpha 0.471.
+68.2% of
+all cells are a single `0` vs `uncertain` conflict created by schema precedence
+rule 4, and `oci_candidate` duplicates `opposition_valid` on 30/30 records.
+Diagnosis, root causes and the proposed v3 amendment are in
+`process/V2_AGREEMENT_DIAGNOSIS.md`.
+
+This is a failure of the instrument, not evidence about the phenomenon: v2
+cannot yet measure oppositional causal inversion reliably, and nothing in this
+result supports or refutes the framework's substantive claim.
 
 ## Next execution queue for this paper
 
-1. Execute A2 and B2 in genuinely independent isolated contexts.
-2. Freeze each completed response with `code/freeze_v2_coder.py`.
-3. Only after both freezes exist, integrate both completed files.
-4. Run `code/score_v2_agreement.py`.
-5. If PASS, unlock the 165-record evidence-map screen.
-6. If FAIL, revise only failing v2 axes under an explicit new amendment and validate again on a fresh sample.
+1. Do not re-score or harmonize the v2 labels; the result is final.
+2. Draft a v3 amendment against the four root causes in the diagnosis, the
+   highest-value change being removal of `uncertain` from the vector axes.
+3. Draw a fresh validation sample that does not overlap V201..V230.
+4. Re-run independent A3/B3 coding, freeze both, then re-run the scorer.
+5. Only a PASS unlocks the 165-record evidence-map screen.
 
 ## Handoff sentence
 
-**ARIS4C012 has finished everything the current controller can validly do before independent coding. Resume only with genuinely independent A2/B2 execution; do not duplicate the same controller as two coders.**
+**ARIS4C012's v2 instrument has now been genuinely tested by two independent
+coding surfaces and failed (primary kappa 0.481 against a 0.70 gate). The
+remaining work is instrument revision under a v3 amendment plus a fresh,
+non-overlapping validation sample — not more coding against the v2 form.**

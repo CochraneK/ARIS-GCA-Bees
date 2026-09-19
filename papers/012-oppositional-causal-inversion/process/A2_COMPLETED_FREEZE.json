@@ -1,0 +1,19 @@
+{
+  "classification": "V2_COMPLETED_CODER_FREEZE",
+  "coder": "A2",
+  "frozen_at": "2026-09-19T14:11:20.540585+00:00",
+  "input_bundle_sha256": "9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51",
+  "input_evidence_packet_sha256": "8eb9fd3782d480ce7412f378b422296047f5190e1208675e767ddcf7fc114ccf",
+  "schema_sha256": "066f3e42aeda4fc5842abd2d44310a3da45588ecc41e466282b93af1e960f681",
+  "completed_response_sha256": "5256b8a64f1a4d11276fa3ffcbfc4c5859b510f9ac08c8d2bde9c8e8c082bd86",
+  "row_count": 30,
+  "ids": "V201..V230",
+  "labels_frozen": true,
+  "comparison_performed": false,
+  "validation": {
+    "complete": true,
+    "row_count": 30,
+    "id_field": "record_id",
+    "errors": []
+  }
+}

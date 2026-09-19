@@ -1,0 +1,33 @@
+{
+  "cases_in_dossier": 23,
+  "adjudicated": 23,
+  "outstanding": [],
+  "final_status_distribution": {
+    "VERIFIED_CLUSTER": 14,
+    "NO_GRAPH_RECORD": 2,
+    "VERIFIED_SINGLE": 2,
+    "AMBIGUOUS_COLLISION": 3,
+    "EXCLUDED_IDENTITY_ERROR": 2
+  },
+  "set_relation_distribution": {
+    "union_of_both": 8,
+    "within_union_mixed": 3,
+    "not_applicable": 9,
+    "narrower_than_both": 3
+  },
+  "adopted_first_verdict_exactly": 7,
+  "adopted_second_verdict_exactly": 13,
+  "blend_or_novel_verdict": 3,
+  "broader_than_both_reviews": 0,
+  "narrower_than_both_reviews": 3,
+  "union_of_both_reviews": 8,
+  "ungrounded_included_ids": {},
+  "invented_ids_dropped": {},
+  "flagged_for_additional_retrieval": [
+    "cv_Q1577507",
+    "cv_Q6213800",
+    "cv_Q7416679"
+  ],
+  "normalization_notes": {},
+  "total_included_ids": 40
+}

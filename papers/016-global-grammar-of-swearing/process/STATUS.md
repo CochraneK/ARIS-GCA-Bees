@@ -60,6 +60,22 @@ matched controls, and confirmatory freezing rather than tool coverage.
 - aggregate reliability scorer implemented;
 - scorer enforces identity of the frozen manifest before computing agreement.
 
+**2026-09-19 defect found: the frozen manifest digest is not reproducible from
+the committed sampler.** Re-running
+`code/build_audit_sample.py` against the checksum-verified OSF source is
+deterministic across fresh runs and reproduces the frozen *structure* exactly
+(300 rows; 16 × 15 + Setswana 30 + Spanish 30; strata 42 / 116 / 61 / 81), but
+yields
+`910a47c353a7ebbe0ccbe48c0001fea536c9f24e9cb6242dcec46d9e3e541751`, and none of 86
+tested serialisations gives `48c58f91…`. The private-sheet exporter and the
+reliability scorer therefore fail closed, so the Coder A/B gate cannot start. This
+is a record/tooling defect, not evidence about the phenomenon, and no coding may
+begin on the unreproducible draw. See
+`process/MANIFEST_DIGEST_MISMATCH.md` and
+`data/manifest_digest_diagnosis.json` for the ranked explanations (recover the
+original artifact, or supersede the freeze with a new versioned manifest hash under
+the freeze document's own replacement rule) and the cross-check digests.
+
 ### Manuscript / figures
 - English working manuscript established;
 - Chinese working manuscript established;
@@ -86,6 +102,8 @@ Technical G2P success is explicitly **not** treated as pronunciation validity.
 ## Immediate next gates
 
 ### Semantic / ontology gate — external and independent
+0. Resolve the frozen-manifest digest mismatch (recover `48c58f91…` or record a
+   superseding versioned manifest). Until then no private sheet can be exported.
 1. Generate private Coder A and Coder B sheets from the frozen sample.
 2. Complete genuinely independent coding; neither coder sees the other's
    output before freezing.
@@ -114,6 +132,10 @@ Technical G2P success is explicitly **not** treated as pronunciation validity.
 
 ## Current blockers
 
+- the frozen 300-row manifest digest cannot be reproduced from the committed
+  sampler, so the private coder sheets cannot be exported and the Coder A/B gate
+  cannot start (maintainer decision required, see
+  `process/MANIFEST_DIGEST_MISMATCH.md`);
 - genuinely independent/native-speaker ontology coding has not yet been
   executed;
 - pronunciation technical coverage is high, but pronunciation validity has not
