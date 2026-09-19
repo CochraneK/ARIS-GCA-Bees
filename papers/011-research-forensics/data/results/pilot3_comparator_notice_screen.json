@@ -1,0 +1,652 @@
+{
+  "analysis": "ARIS4C011 comparator secondary notice screen",
+  "claim_boundary": "A negative Crossref/PubMed notice screen means no indexed correction/retraction/expression-of-concern/update was found in these sources at retrieval time. It does not prove that the article is error-free or free of integrity concerns and does not support a specificity estimate.",
+  "notice_ref_types_checked": [
+    "CorrectedandRepublishedIn",
+    "ErratumIn",
+    "ExpressionOfConcernIn",
+    "RetractedandRepublishedIn",
+    "RetractionIn",
+    "UpdateIn"
+  ],
+  "notice_publication_types_checked": [
+    "Retracted Publication"
+  ],
+  "input_candidate_count": 12,
+  "screen_pass_count": 12,
+  "selected_count": 4,
+  "selected_target_ids": [
+    "p2b-plos-morality",
+    "p3-music-country-table",
+    "p3-toxo-missing-columns",
+    "p3-adaptive-pvalues"
+  ],
+  "artifact_qualification_required": true,
+  "screened_candidates": [
+    {
+      "target_id": "p2b-plos-morality",
+      "target_doi": "10.1371/journal.pone.0258910",
+      "target_published": "2021-10-22",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0257671",
+      "candidate_title": "Cat owners’ perception on having a pet cat during the COVID-19 pandemic",
+      "candidate_published": "2021-10-20",
+      "date_distance_days": 2,
+      "crossref_type": "journal-article",
+      "reference_count": 34,
+      "is_referenced_by_count": 17,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "34669699"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "34669699",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p2b-plos-morality",
+      "target_doi": "10.1371/journal.pone.0258910",
+      "target_published": "2021-10-22",
+      "match_rank": 2,
+      "candidate_doi": "10.1371/journal.pone.0258161",
+      "candidate_title": "Rise of the war machines: Charting the evolution of military technologies from the Neolithic to the Industrial Revolution",
+      "candidate_published": "2021-10-20",
+      "date_distance_days": 2,
+      "crossref_type": "journal-article",
+      "reference_count": 83,
+      "is_referenced_by_count": 35,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "34669706"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "34669706",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article",
+          "Research Support, Non-U.S. Gov't"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p2b-plos-morality",
+      "target_doi": "10.1371/journal.pone.0258910",
+      "target_published": "2021-10-22",
+      "match_rank": 3,
+      "candidate_doi": "10.1371/journal.pone.0258720",
+      "candidate_title": "Grip power test: A new valid and reliable method for assessing muscle power in healthy adolescents",
+      "candidate_published": "2021-10-20",
+      "date_distance_days": 2,
+      "crossref_type": "journal-article",
+      "reference_count": 32,
+      "is_referenced_by_count": 17,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "34669739"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "34669739",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Comparative Study",
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-music-country-table",
+      "target_doi": "10.1371/journal.pone.0293412",
+      "target_published": "2023-10-26",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0262972",
+      "candidate_title": "Consumer-driven nutrient recycling of freshwater decapods: Linking ecological theories and application in integrated multitrophic aquaculture",
+      "candidate_published": "2023-10-26",
+      "date_distance_days": 0,
+      "crossref_type": "journal-article",
+      "reference_count": 112,
+      "is_referenced_by_count": 4,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "37883508"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "37883508",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article",
+          "Research Support, Non-U.S. Gov't"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-music-country-table",
+      "target_doi": "10.1371/journal.pone.0293412",
+      "target_published": "2023-10-26",
+      "match_rank": 2,
+      "candidate_doi": "10.1371/journal.pone.0290551",
+      "candidate_title": "Hepatic metabolism of grazing cows of two Holstein strains under two feeding strategies with different levels of pasture inclusion",
+      "candidate_published": "2023-10-26",
+      "date_distance_days": 0,
+      "crossref_type": "journal-article",
+      "reference_count": 58,
+      "is_referenced_by_count": 4,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "37883506"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "37883506",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article",
+          "Randomized Controlled Trial, Veterinary",
+          "Research Support, Non-U.S. Gov't"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-music-country-table",
+      "target_doi": "10.1371/journal.pone.0293412",
+      "target_published": "2023-10-26",
+      "match_rank": 3,
+      "candidate_doi": "10.1371/journal.pone.0293342",
+      "candidate_title": "Health-related quality of life and its associated factors in patients with chronic obstructive pulmonary disease",
+      "candidate_published": "2023-10-26",
+      "date_distance_days": 0,
+      "crossref_type": "journal-article",
+      "reference_count": 74,
+      "is_referenced_by_count": 12,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "37883370"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "37883370",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article",
+          "Research Support, Non-U.S. Gov't"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-toxo-missing-columns",
+      "target_doi": "10.1371/journal.pone.0180906",
+      "target_published": "2017-07-21",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0180490",
+      "candidate_title": "Dysregulation of microRNAs and renin-angiotensin system in high salt diet-induced cardiac dysfunction in uninephrectomized rats",
+      "candidate_published": "2017-07-20",
+      "date_distance_days": 1,
+      "crossref_type": "journal-article",
+      "reference_count": 57,
+      "is_referenced_by_count": 14,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28727756"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28727756",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-toxo-missing-columns",
+      "target_doi": "10.1371/journal.pone.0180906",
+      "target_published": "2017-07-21",
+      "match_rank": 2,
+      "candidate_doi": "10.1371/journal.pone.0181621",
+      "candidate_title": "Development of organic fertilizers from food market waste and urban gardening by composting in Ecuador",
+      "candidate_published": "2017-07-20",
+      "date_distance_days": 1,
+      "crossref_type": "journal-article",
+      "reference_count": 54,
+      "is_referenced_by_count": 44,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28727757"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28727757",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-toxo-missing-columns",
+      "target_doi": "10.1371/journal.pone.0180906",
+      "target_published": "2017-07-21",
+      "match_rank": 3,
+      "candidate_doi": "10.1371/journal.pone.0181169",
+      "candidate_title": "CT pattern analysis of necrotizing and nonnecrotizing lymph nodes in Kikuchi disease",
+      "candidate_published": "2017-07-24",
+      "date_distance_days": 3,
+      "crossref_type": "journal-article",
+      "reference_count": 15,
+      "is_referenced_by_count": 18,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28742156"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28742156",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-adaptive-pvalues",
+      "target_doi": "10.1371/journal.pone.0180395",
+      "target_published": "2017-08-01",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0181889",
+      "candidate_title": "Antiretroviral resistance following immunological monitoring in a resource-limited setting of western India: A cross-sectional study",
+      "candidate_published": "2017-08-01",
+      "date_distance_days": 0,
+      "crossref_type": "journal-article",
+      "reference_count": 28,
+      "is_referenced_by_count": 1,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28763465"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28763465",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-adaptive-pvalues",
+      "target_doi": "10.1371/journal.pone.0180395",
+      "target_published": "2017-08-01",
+      "match_rank": 2,
+      "candidate_doi": "10.1371/journal.pone.0182291",
+      "candidate_title": "Histone deacetylase inhibition prevents cell death induced by loss of tricellular tight junction proteins in temperature-sensitive mouse cochlear cells",
+      "candidate_published": "2017-08-02",
+      "date_distance_days": 1,
+      "crossref_type": "journal-article",
+      "reference_count": 35,
+      "is_referenced_by_count": 8,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28767685"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28767685",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    },
+    {
+      "target_id": "p3-adaptive-pvalues",
+      "target_doi": "10.1371/journal.pone.0180395",
+      "target_published": "2017-08-01",
+      "match_rank": 3,
+      "candidate_doi": "10.1371/journal.pone.0182339",
+      "candidate_title": "Neural stem cell mediated recovery is enhanced by Chondroitinase ABC pretreatment in chronic cervical spinal cord injury",
+      "candidate_published": "2017-08-03",
+      "date_distance_days": 2,
+      "crossref_type": "journal-article",
+      "reference_count": 50,
+      "is_referenced_by_count": 94,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28771534"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28771534",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true
+    }
+  ],
+  "selected_development_comparators": [
+    {
+      "target_id": "p2b-plos-morality",
+      "target_doi": "10.1371/journal.pone.0258910",
+      "target_published": "2021-10-22",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0257671",
+      "candidate_title": "Cat owners’ perception on having a pet cat during the COVID-19 pandemic",
+      "candidate_published": "2021-10-20",
+      "date_distance_days": 2,
+      "crossref_type": "journal-article",
+      "reference_count": 34,
+      "is_referenced_by_count": 17,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "34669699"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "34669699",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true,
+      "development_comparator_role": "NO_KNOWN_INTEGRITY_CONCERN_COMPARATOR",
+      "artifact_qualification_required": true
+    },
+    {
+      "target_id": "p3-music-country-table",
+      "target_doi": "10.1371/journal.pone.0293412",
+      "target_published": "2023-10-26",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0262972",
+      "candidate_title": "Consumer-driven nutrient recycling of freshwater decapods: Linking ecological theories and application in integrated multitrophic aquaculture",
+      "candidate_published": "2023-10-26",
+      "date_distance_days": 0,
+      "crossref_type": "journal-article",
+      "reference_count": 112,
+      "is_referenced_by_count": 4,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "37883508"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "37883508",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article",
+          "Research Support, Non-U.S. Gov't"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true,
+      "development_comparator_role": "NO_KNOWN_INTEGRITY_CONCERN_COMPARATOR",
+      "artifact_qualification_required": true
+    },
+    {
+      "target_id": "p3-toxo-missing-columns",
+      "target_doi": "10.1371/journal.pone.0180906",
+      "target_published": "2017-07-21",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0180490",
+      "candidate_title": "Dysregulation of microRNAs and renin-angiotensin system in high salt diet-induced cardiac dysfunction in uninephrectomized rats",
+      "candidate_published": "2017-07-20",
+      "date_distance_days": 1,
+      "crossref_type": "journal-article",
+      "reference_count": 57,
+      "is_referenced_by_count": 14,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28727756"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28727756",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true,
+      "development_comparator_role": "NO_KNOWN_INTEGRITY_CONCERN_COMPARATOR",
+      "artifact_qualification_required": true
+    },
+    {
+      "target_id": "p3-adaptive-pvalues",
+      "target_doi": "10.1371/journal.pone.0180395",
+      "target_published": "2017-08-01",
+      "match_rank": 1,
+      "candidate_doi": "10.1371/journal.pone.0181889",
+      "candidate_title": "Antiretroviral resistance following immunological monitoring in a resource-limited setting of western India: A cross-sectional study",
+      "candidate_published": "2017-08-01",
+      "date_distance_days": 0,
+      "crossref_type": "journal-article",
+      "reference_count": 28,
+      "is_referenced_by_count": 1,
+      "crossref_has_update_filter": false,
+      "status_marker_in_title": false,
+      "screen_state": "NOTICE_NEGATIVE_SCREEN_PASS_ARTIFACT_PENDING",
+      "required_next_screen": "PLOS/PubMed notice screen + full-text/artifact qualification",
+      "crossref_update_screen": {
+        "query": "Crossref works filter=updates:<candidate_doi>",
+        "total_results": 0,
+        "update_records": []
+      },
+      "pubmed_exact_doi_pmids": [
+        "28763465"
+      ],
+      "pubmed_notice_screen": {
+        "pmid": "28763465",
+        "comments_corrections": [],
+        "notice_relations": [],
+        "publication_types": [
+          "Journal Article"
+        ],
+        "notice_publication_types": []
+      },
+      "crossref_notice_negative": true,
+      "pubmed_resolved_exactly_once": true,
+      "pubmed_notice_negative": true,
+      "notice_negative_screen_pass": true,
+      "development_comparator_role": "NO_KNOWN_INTEGRITY_CONCERN_COMPARATOR",
+      "artifact_qualification_required": true
+    }
+  ]
+}
