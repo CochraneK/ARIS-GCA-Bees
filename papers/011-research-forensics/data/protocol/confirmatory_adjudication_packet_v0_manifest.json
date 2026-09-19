@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.1.0",
+  "state": "MANAGER_ONLY_UNADJUDICATED",
+  "row_count": 80,
+  "packet_visibility": "LABEL_SIDE_MANAGER_ONLY_NEVER_TRACK_A_INPUT",
+  "source_frame_state": "FEASIBILITY_ONLY_NOT_CONFIRMATORY",
+  "source_frame_candidate_count": 80,
+  "selection_used_detector_output": false,
+  "adjudication_fields": [
+    "issue_family_codes",
+    "ground_truth_tier",
+    "required_artifact_roles",
+    "content_detectability",
+    "adjudication_state",
+    "adjudication_notes"
+  ],
+  "issue_family_vocab": [
+    "statistical_reporting",
+    "data_fabrication_falsification",
+    "image_integrity",
+    "plagiarism_text_duplication",
+    "paper_mill",
+    "authorship_peer_review",
+    "citation_reference",
+    "registration_ethics_provenance",
+    "methods_results_coherence",
+    "other_unclear"
+  ],
+  "ground_truth_tier_vocab": [
+    "GT-A",
+    "GT-B",
+    "GT-C",
+    "GT-D",
+    "GT-E"
+  ],
+  "artifact_role_vocab": [
+    "body_text",
+    "table",
+    "figure_image",
+    "references",
+    "raw_data",
+    "supplement",
+    "registration_protocol",
+    "metadata_timeline",
+    "cross_source_reference",
+    "none_content_detectable",
+    "other"
+  ],
+  "content_detectability_vocab": [
+    "CONTENT_ASSESSABLE",
+    "PROCESS_ONLY",
+    "MIXED",
+    "UNCLEAR"
+  ],
+  "multi_value_separator": ";",
+  "forbidden_input_fields": [
+    "detector_output",
+    "review_priority",
+    "artifact_state",
+    "confirmatory_eligible",
+    "finding_count",
+    "flag_count",
+    "anomaly_score",
+    "model_score"
+  ],
+  "instructions": [
+    "Adjudicate from notice/source evidence, never detector output.",
+    "issue_family_codes and required_artifact_roles may contain semicolon-separated controlled values.",
+    "Use none_content_detectable when the official issue is process-only and no manuscript artifact can directly represent the labelled issue.",
+    "Do not run detector scoring on this packet or expose adjudicated label-side fields to Track A."
+  ],
+  "source_frame_file": "confirmatory_feasibility_frame_v0.json",
+  "source_frame_sha256": "92f04b58718997866d637b82f48c54c4358c3ad6006e405eb5b2f59603065350",
+  "packet_csv_sha256": "4a0127cd7b3b85bbd81f220489a21003c34a5f109f1249898122334c01398134"
+}
