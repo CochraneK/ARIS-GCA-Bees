@@ -37,10 +37,32 @@ jobs:
           install.packages("BiocManager", repos="https://cloud.r-project.org")
           BiocManager::install(version="3.21", ask=FALSE)
           BiocManager::install(c("sesame","sesameData"), ask=FALSE, update=FALSE)
+
+          # preprocessCore's pthread quantile-normalization path is known to
+          # fail on some Linux/BLAS CI combinations with pthread_create()=22.
+          # Rebuild the same Bioconductor package from source with threading
+          # disabled; this changes execution only, not SeSAMe normalization.
+          BiocManager::install(
+            "preprocessCore",
+            ask=FALSE,
+            update=FALSE,
+            force=TRUE,
+            type="source",
+            configure.args="--disable-threading"
+          )
+
           stopifnot(requireNamespace("sesame", quietly=TRUE))
           stopifnot(requireNamespace("sesameData", quietly=TRUE))
+          stopifnot(requireNamespace("preprocessCore", quietly=TRUE))
           cat("sesame=", as.character(packageVersion("sesame")), "\n")
           cat("sesameData=", as.character(packageVersion("sesameData")), "\n")
+          cat("preprocessCore=", as.character(packageVersion("preprocessCore")), "\n")
+
+          # Fail fast here instead of after the expensive IDAT download.
+          probe <- matrix(seq_len(200), nrow=20, ncol=10)
+          target <- sort(rowMeans(probe))
+          invisible(preprocessCore::normalize.quantiles.use.target(probe, target))
+          cat("preprocessCore single-thread quantile smoke PASS\n")
 
       - name: Resolve canonical Pilot 0 and latest successful Pilot 3B artifacts
         working-directory: papers/007-cross-species-age-equivalence
