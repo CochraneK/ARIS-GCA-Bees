@@ -9,8 +9,8 @@
 # remain auditable as separate layers.
 
 args <- commandArgs(trailingOnly=TRUE)
-if (length(args) != 5) {
-  stop("Usage: Rscript run_pilot3c_full.R <idat_dir> <samples.csv> <clock2.csv> <clock3.csv> <out_dir>")
+if (length(args) != 6) {
+  stop("Usage: Rscript run_pilot3c_full.R <idat_dir> <samples.csv> <clock2.csv> <clock3.csv> <out_dir> <download_manifest.tsv>")
 }
 
 idat_dir <- args[[1]]
@@ -18,6 +18,7 @@ sample_path <- args[[2]]
 clock2_path <- args[[3]]
 clock3_path <- args[[4]]
 out_dir <- args[[5]]
+manifest_path <- args[[6]]
 dir.create(out_dir, recursive=TRUE, showWarnings=FALSE)
 
 suppressPackageStartupMessages({
@@ -30,6 +31,7 @@ sesameDataCache()
 samples <- read.csv(sample_path, stringsAsFactors=FALSE, check.names=FALSE)
 clock2 <- read.csv(clock2_path, stringsAsFactors=FALSE, check.names=FALSE)
 clock3 <- read.csv(clock3_path, stringsAsFactors=FALSE, check.names=FALSE)
+manifest <- read.delim(manifest_path, stringsAsFactors=FALSE, check.names=FALSE)
 
 coef_map <- function(tab, beta_col) {
   x <- tab[, c("var", beta_col)]
@@ -71,19 +73,20 @@ probe_matrix <- matrix(
 out <- vector("list", nrow(samples))
 for (i in seq_len(nrow(samples))) {
   row <- samples[i,]
-  gsm <- row$geo_accession
-  files <- list.files(
-    idat_dir,
-    pattern=paste0("^", gsm, ".*_(Grn|Red)\\.idat(\\.gz)?$"),
-    full.names=TRUE
-  )
-  if (length(files)!=2) {
-    stop(sprintf("%s: expected two IDAT files, got %d", gsm, length(files)))
+  gsm <- trimws(as.character(row$geo_accession))
+  mf <- manifest[trimws(manifest$geo_accession) == gsm, , drop=FALSE]
+  if (nrow(mf) != 2) stop(sprintf("%s: manifest expected two IDAT files, got %d", gsm, nrow(mf)))
+
+  local_names <- sub("\\.gz$", "", mf$filename)
+  files <- file.path(idat_dir, local_names)
+  if (!all(file.exists(files))) {
+    stop(sprintf("%s: missing local IDAT(s): %s", gsm, paste(files[!file.exists(files)], collapse=", ")))
   }
 
-  grn <- files[grepl("_Grn\\.idat", files)]
-  if (length(grn)!=1) stop(sprintf("%s: expected one green IDAT", gsm))
-  prefix <- sub("_Grn\\.idat(\\.gz)?$", "", grn)
+  grn <- files[grepl("_Grn\\.idat$", files)]
+  red <- files[grepl("_Red\\.idat$", files)]
+  if (length(grn)!=1 || length(red)!=1) stop(sprintf("%s: expected one green and one red IDAT", gsm))
+  prefix <- sub("_Grn\\.idat$", "", grn)
 
   message(sprintf("[%d/%d] %s %s age=%s tissue=%s",
     i, nrow(samples), gsm, row$organism, row$age_years, row$tissue_raw))
