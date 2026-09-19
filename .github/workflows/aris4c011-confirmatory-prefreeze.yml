@@ -1,0 +1,74 @@
+name: ARIS4C011 confirmatory pre-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-confirmatory-prefreeze.yml"
+      - "papers/011-research-forensics/code/build_development_exclusion_registry.py"
+      - "papers/011-research-forensics/code/confirmatory_preflight.py"
+      - "papers/011-research-forensics/code/test_build_development_exclusion_registry.py"
+      - "papers/011-research-forensics/code/test_confirmatory_preflight.py"
+      - "papers/011-research-forensics/data/protocol/confirmatory_freeze_v0.json"
+      - "papers/011-research-forensics/data/seed/**"
+      - "papers/011-research-forensics/data/pilot/**"
+      - "papers/011-research-forensics/data/results/pilot*"
+permissions:
+  contents: write
+concurrency:
+  group: aris4c011-confirmatory-prefreeze
+  cancel-in-progress: true
+jobs:
+  prefreeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: |
+          python code/test_build_development_exclusion_registry.py -q
+          python code/test_confirmatory_preflight.py -q
+      - name: Freeze current development exposure registry
+        run: python code/build_development_exclusion_registry.py
+      - name: Generate PRE_FREEZE readiness report
+        run: python code/confirmatory_preflight.py
+      - name: Audit expected pre-freeze state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          e=json.loads(Path("data/protocol/development_exclusion_registry.json").read_text())
+          p=json.loads(Path("data/results/confirmatory_freeze_preflight.json").read_text())
+          assert e["exclusion_count"] >= 10
+          assert p["development_exclusion_count"] == e["exclusion_count"]
+          assert p["ready_for_confirmatory_scoring"] is False
+          assert "confirmatory_scoring_not_authorized" in p["blockers"]
+          assert "confirmatory_manifest_missing" in p["blockers"]
+          print({"development_exclusions":e["exclusion_count"],"ready":False,"blockers":len(p["blockers"])})
+          PY
+      - name: Commit pre-freeze artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/protocol/development_exclusion_registry.json data/results/confirmatory_freeze_preflight.json
+          if git diff --cached --quiet; then
+            echo "Pre-freeze artifacts current."
+          else
+            git commit -m "ARIS4C011 refresh confirmatory pre-freeze artifacts"
+            pushed=0
+            for attempt in 1 2 3 4 5 6; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
