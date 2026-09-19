@@ -132,6 +132,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 
 | I want to… | Go to |
 |---|---|
+| Take over portfolio control as another agent/account/computer | **[`000/README.md`](000/README.md)** |
 | See the whole portfolio visually | **[Research Command Center](https://cochranek.github.io/ARIS4C/)** |
 | Read completed papers | See **Publication-ready outputs** below |
 | Continue one paper on another machine / account / agent | Open that paper's **`handoff/README.md`** |
@@ -242,6 +243,7 @@ The public repository stores **public-safe conversation summaries**, not credent
 
 ```text
 ARIS4C/
+├── 000/                           # Git-resident portfolio controller handoff
 ├── papers/
 │   ├── dashboard.json             # portfolio source of truth
 │   └── 00X-project/
@@ -317,6 +319,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 
 | 你想做什么 | 入口 |
 |---|---|
+| 让另一个 Agent / 账号 / 电脑接管总控 | **[`000/README.md`](000/README.md)** |
 | 可视化查看全部项目 | **[Research Command Center](https://cochranek.github.io/ARIS4C/)** |
 | 阅读已完成论文 | 见下方 **已达到公开交付状态的论文** |
 | 换电脑 / 账号 / Agent 继续某篇论文 | 打开该项目的 **`handoff/README.md`** |
