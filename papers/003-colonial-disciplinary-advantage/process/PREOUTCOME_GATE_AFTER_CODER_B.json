@@ -1,0 +1,9 @@
+{
+  "design_status": "DESIGN_LOCKED",
+  "outcome_status": "OUTCOME_LOCKED",
+  "design_problems": [],
+  "outcome_problems": [
+    "missing: adjudicated IKES_FROZEN -> /home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/IKES_FROZEN.csv",
+    "missing: IKES freeze provenance -> /home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/IKES_FROZEN.provenance.json"
+  ]
+}

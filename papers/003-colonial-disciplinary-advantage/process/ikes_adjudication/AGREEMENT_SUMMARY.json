@@ -1,0 +1,23 @@
+{
+  "n_disciplines": 21,
+  "n_cells": 231,
+  "n_missing_pairs": 2,
+  "n_large_or_missing_disagreements": 12,
+  "mean_absolute_difference": 0.5676855895196506,
+  "dimension_quadratic_weighted_kappa": {
+    "D1": 0.42622950819672123,
+    "D2": 0.49244712990936546,
+    "D3": 0.6158536585365852,
+    "D4": 0.6573426573426573,
+    "D5": 0.6704035874439462,
+    "D6": 0.6751054852320675,
+    "D7": 0.6597014925373135,
+    "D8": 0.43497757847533625,
+    "D9": 0.6345381526104417,
+    "D10": 0.8058124174372523,
+    "D11": 0.48
+  },
+  "ikes_mean_icc_2_1": 0.6593084418384063,
+  "display_label_mismatch_concept_ids": [],
+  "freeze_rule": "all NA and abs-difference>=2 cells require documented outcome-blind adjudication"
+}
