@@ -22,9 +22,14 @@ def build():
     records=[]
     for fid,fname,filename,doi_key,detector_key in sources:
         x=load(filename)
-        result=x.get("result",x.get("detector_output"))
+        if filename=="pilot3_voxel_ba_evaluation.json":
+            result="FLAG" if x.get("status")=="PASS" and x.get("flag_count")==1 else x.get("status")
+            if x.get("detector_visible_correction_metadata") is not False:
+                raise ValueError("correction metadata visible: %s" % filename)
+        else:
+            result=x.get("result",x.get("detector_output"))
         if result!="FLAG":
-            raise ValueError("expected FLAG: %s" % filename)
+            raise ValueError("expected detector FLAG: %s" % filename)
         if x.get("correction_used_as_detector_input") is True or x.get("label_visible_to_detector") is True:
             raise ValueError("outcome-label leakage: %s" % filename)
         records.append({
