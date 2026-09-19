@@ -15,6 +15,8 @@
 
 The scientific manuscript had already received independent `PASS_SUBMISSION_PREP`. This QA verifies the generated submission files rather than re-reviewing the science.
 
+> **Scope warning (added 2026-09-19):** this PASS applies to build commit `608bc871fd4a634a0906b93aeabcd47675e8cb08`, whose journal package contained 3 figures. The canonical EN/ZH manuscripts were later expanded to a 6-figure visual narrative. Therefore this historical PASS must **not** be treated as technical QA of the current six-figure journal package. Rebuild and repeat technical/visual/anonymisation QA before ScholarOne submission.
+
 ## Generated files checked
 
 - `Paper002_MANUSCRIPT_BLINDED.docx`
@@ -99,4 +101,4 @@ Before submission the author must provide or confirm:
 12. CRediT roles;
 13. originality / not-under-consideration-elsewhere declaration.
 
-After those fields are filled, the only remaining operation is the actual ScholarOne submission workflow.
+Before those fields are used for submission, first rebuild/re-QA the journal package against the canonical six-figure manuscript. After package refresh and the fields above are confirmed, the remaining operation is the actual ScholarOne submission workflow.
