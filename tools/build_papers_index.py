@@ -221,7 +221,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <div class="legend">
           <div class="legend-row"><i class="dot active"></i><span>Active execution</span></div>
           <div class="legend-row"><i class="dot gated"></i><span>Scientific / review gate</span></div>
-          <div class="legend-row"><i class="dot quiet"></i><span>Near-final / complete</span></div>
+          <div class="legend-row"><i class="dot quiet"></i><span>Submission-ready / complete</span></div>
           <div class="legend-row"><i class="dot blocked"></i><span>Hard blocker</span></div>
         </div>
       </div>
