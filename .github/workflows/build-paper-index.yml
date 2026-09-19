@@ -7,6 +7,8 @@ on:
       - 'papers/**/paper.json'
       - 'papers/dashboard.json'
       - 'tools/build_papers_index.py'
+      - 'tools/build_readme.py'
+      - 'tools/build_readme_assets.py'
       - 'tools/audit_paper_outputs.py'
       - 'ARIS4C_OUTPUT_STANDARD.md'
       - 'tools/migrate_aris4c.py'
@@ -45,6 +47,8 @@ jobs:
             python tools/migrate_aris4c.py
             python tools/audit_paper_outputs.py
             python tools/build_papers_index.py
+            python tools/build_readme_assets.py
+            python tools/build_readme.py
 
             if git diff --quiet; then
               echo "No generated or migration changes"
