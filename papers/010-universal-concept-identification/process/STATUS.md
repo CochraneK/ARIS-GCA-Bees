@@ -10,7 +10,7 @@
 - [x] 2025 proactive information-gathering and 2026 group-elicitation neighbors added to novelty boundary
 - [x] 2026 nearest-neighbor re-audit: ICAART ontology-guided Bayesian active querying added as major structural collision
 - [x] all Python tools compile successfully; full pipeline + power sensitivity verified in CI run #49
-- [x] standalone no-backend 72-form annotation UI generated and validated in CI run #47
+- [x] standalone no-backend three-protocol annotation UI implemented; current design contains 108 participant forms
 - [x] finite/infinite/open-world problem separation
 - [x] formal separability criterion
 - [x] static Test-Cover connection
@@ -32,10 +32,10 @@
 - [x] English + Chinese pre-results manuscript scaffolds
 - [x] annotation adjudication policy + review triage tool
 - [x] staged human precision/stopping plan
-- [x] human-form validation, CSV export and synthetic analysis dry-run verified in CI run #43
-- [x] balanced human forms built: 72 forms (36 P2 + 36 P6), 92 presented trials/form
+- [x] human-form validation, CSV export and synthetic analysis dry-run extended to P2/P3/P6 and verified in the current three-protocol chain
+- [x] balanced human forms built: 108 forms (36 P2 + 36 P3 + 36 P6), 92 presented formal trials/form
 - [x] complete calibration chain verified in ARIS4C010 CI run #30
-- [x] mixed P6 packet built: 24 scenarios × 9 probes = 216 blank pairs
+- [x] mixed response-state packet built: 24 scenarios × 9 probes = 216 blank pairs, shared across P2/P3/P6
 - [x] lexical human packet built: 1,440 full pairs + 720 answer-blind calibration pairs
 - [x] Calibration60 built from pinned oewn:2025 and CI-verified: 60 targets, 10 lemma groups × 6 senses
 - [x] calibration60 builder + validator + artifact upload configured
@@ -132,7 +132,7 @@ Pause or split the project if:
 
 **Empirical evidence:** Pilot 2 is source-derived but still exploratory because semantic responses are not human calibrated. Pilots 0–1 remain synthetic/combinatorial.
 
-**Next real evidence step:** collect Stage-A real human P2/P3/P6 calibration responses; analyze reliability/category use; then decide whether P6 survives and which cells require additional ratings/adjudication before Benchmark v0 expansion.
+**Next real evidence step:** complete the ethics/recruitment gate, collect Stage-A real human P2/P3/P6 calibration responses, test P2→P3 and especially P3→P6, then decide which response protocol survives before Benchmark v0 expansion.
 
 The project should not spend more time expanding ontology prose before that evidence step unless a literature collision forces redesign.
 
@@ -215,7 +215,7 @@ CI run #43 confirms:
 - 84 unique main trials + 8 retests = 92 presented trials/form;
 - lexical pair main exposure = 3 per protocol per complete form cycle;
 - mixed-stress pair main exposure = 4 per protocol per complete form cycle;
-- 72 per-form CSVs + one index;
+- 108 per-form CSVs + one index;
 - synthetic analyzer dry-run passes, including retest matching.
 
 The one failed CI attempt before run #43 exposed an immediate main/retest adjacency in one form; the ordering algorithm was changed to deterministic reshuffling until no adjacent duplicate remains. Run #43 verifies the fix.
@@ -283,8 +283,8 @@ It verifies:
 - all Python tools compile with `py_compile`;
 - Pilots and source validators;
 - pinned OEWN Calibration60;
-- mixed P6 packet;
-- 72 balanced participant forms;
+- mixed P2/P3/P6 response-state packet;
+- 108 balanced participant forms;
 - CSV export;
 - synthetic analysis dry-run;
 - standalone no-backend annotation HTML;
