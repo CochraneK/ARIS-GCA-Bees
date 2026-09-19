@@ -4,15 +4,15 @@
   "title": "Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening",
   "short_title": "Research Forensics",
   "year": 2026,
-  "status": "methods-draft-agent-skill-pilot3-development-summary",
+  "status": "confirmatory-feasibility-frame-v0",
   "domain": "metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication",
-  "summary": "A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now has six time-safe pre-outcome development FLAG evaluations across five target papers, a SAFE_EXACT formatting/honest-error control with zero flags, and four matched no-known-integrity-concern development comparators frozen by full-text hash; confirmatory performance inference remains frozen pending a broader time-safe corpus and protocol lock.",
+  "summary": "An auditable multi-evidence research-forensics framework with six time-safe pre-outcome development FLAG evaluations across five papers, conservative non-escalation and abstention controls, four hashed no-known-integrity-concern development comparators, and a detector-output-blind 80-record confirmatory-feasibility frame spanning 2016–2025 correction/retraction strata. Confirmatory scoring remains locked pending issue/artifact adjudication, time-safe attrition and full protocol freeze.",
   "authors": [
     "Cochrane Kang"
   ],
   "aris": {
     "provenance": "ARIS4C guided design with live prior-art and source-anatomy audits; benchmark protocol and evidence semantics frozen before confirmatory corpus construction",
-    "version": "v0.4.27",
+    "version": "v0.4.28",
     "commit": ""
   },
   "links": {
@@ -24,7 +24,9 @@
     "pilot3_format_control": "data/results/pilot3_format_control_evaluation.json",
     "pilot3_development_summary": "process/PILOT3_DEVELOPMENT_SUMMARY.md",
     "pilot3_comparator_freeze": "data/results/pilot3_comparator_fulltext_freeze.json",
-    "pilot3_voxel_ba": "data/results/pilot3_voxel_ba_evaluation.json"
+    "pilot3_voxel_ba": "data/results/pilot3_voxel_ba_evaluation.json",
+    "confirmatory_feasibility": "process/CONFIRMATORY_FEASIBILITY_V0.md",
+    "confirmatory_freeze_protocol": "process/CONFIRMATORY_FREEZE_PROTOCOL.md"
   },
   "tags": [
     "ARIS",
