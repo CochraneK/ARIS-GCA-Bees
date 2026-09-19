@@ -1,0 +1,109 @@
+{
+  "paper": "ARIS4C003",
+  "created_utc": "2026-09-19T13:38:35+00:00",
+  "execution_mode": "distributed components; canonical frozen model functions imported",
+  "primary_period": "2019-2022",
+  "confirmatory_periods": [
+    "2007-2010",
+    "2011-2014",
+    "2015-2018",
+    "2019-2022"
+  ],
+  "recent_output_only_period": "2023-2025",
+  "permutation_reps": 999,
+  "permutation_seed": 20260918,
+  "headline_models": [
+    "A1_output_2019_2022",
+    "A2_top10_2019_2022",
+    "B1_dyad_2019_2022"
+  ],
+  "pyfixest_version": "0.60.0",
+  "input_sha256": {
+    "data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet": "113d872cf3ca25182f1795626156d13c96bfba669d0cef76c7f8b7e8f0565043",
+    "data/analysis/DYAD_DISCIPLINE_PANEL.parquet": "0443aa6b3f03ca89d01e5ee19b218b81456188d9425fa90f9139617ce2193889",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/IKES_FROZEN.csv": "be83c7186b6dec5d784a4dd2f0581021fb31cd52f947aa61b439da979dae60d6",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/IKES_FROZEN.provenance.json": "06df1cc5a2654db30db44a83f70383ae11b76a32a9934d1dcb3544a9c7ce9c4d",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/DISCIPLINE_CROSSWALK.csv": "d07dd662d93a95c46876db0bd1d59f7b521842dedd02726489fb98b9e9b8f847",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/PREREGISTRATION_DRAFT.md": "1fb01013c3233a3a6b3a04ac62ed8450e321867ca3b9c9dc44e0665cbdef0976",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/PREREGISTRATION_AMENDMENT_001.md": "4fcaef29ec4c2fc7dddc0acbb9ba3cd39cc3989bdce3d6441681ac7ab9f890c5",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/PREREGISTRATION_AMENDMENT_002.md": "18a25aa25eff51749e958618621783e27124fe5b8a9cc5609cc270cf23c104b7",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/PREREGISTRATION_AMENDMENT_003.md": "8276b78cd14d29be72dbce38d57e7478c10994f1fbaf6ed6d8ac206df90dfcb0",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/MODEL_SPEC_LOCK.json": "dd05c0ab9f8516f9422f18e1658611d26a5d85a47f8e1f9e4609bea89c268284",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/process/IMPLEMENTATION_CORRECTION_001.md": "59db3d266549b6b6514afcfdd045336df963a14bdc89edf3699c3dda2abe87a3",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/data/derived/COLDAT_FORMER_COLONY_EXPOSURE.csv": "0e40369df1c0a6c1346bd4785aa94802fd2105093a408c69e3097a31f1f02a3b",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/data/derived/COUNTRY_CROSSWALK.csv": "f4e3d35e8d7e304d5c52ff58e955f8a0a8394305f9e745b4a11462fc5a2ede6c",
+    "/home/runner/work/ARIS4C/ARIS4C/papers/003-colonial-disciplinary-advantage/data/derived/CEPII_DYADS.csv": "cf5075320f6372237e8b6487a6449d97eaaa852b81edf92d032dec099c5823a6"
+  },
+  "sensitivity_status": {
+    "A1_output_2019_2022": {
+      "leave_one_discipline_out": {
+        "status": "VALID",
+        "failed_refits": 0,
+        "min_estimate_log_scale": 0.2242859653329779,
+        "max_estimate_log_scale": 0.5791589013687921,
+        "sign_all_same": true
+      },
+      "ikes_label_permutation": {
+        "status": "VALID",
+        "seed": 20260918,
+        "reps_requested": 999,
+        "reps_successful": 999,
+        "failed_refits": 0,
+        "extreme_abs_count": 315,
+        "p_two_sided": 0.316,
+        "observed_estimate_log_scale": 0.3108747583478629,
+        "null_mean": -0.007093431998493834,
+        "null_sd": 0.30721776619852725,
+        "null_q025": -0.6392305482546793,
+        "null_q975": 0.5750949527179375
+      }
+    },
+    "A2_top10_2019_2022": {
+      "leave_one_discipline_out": {
+        "status": "VALID",
+        "failed_refits": 0,
+        "min_estimate_log_scale": -0.079424867935487,
+        "max_estimate_log_scale": -0.0100523371119433,
+        "sign_all_same": true
+      },
+      "ikes_label_permutation": {
+        "status": "VALID",
+        "seed": 20260918,
+        "reps_requested": 999,
+        "reps_successful": 999,
+        "failed_refits": 0,
+        "extreme_abs_count": 690,
+        "p_two_sided": 0.691,
+        "observed_estimate_log_scale": -0.0317064753636807,
+        "null_mean": -0.0007935329594293148,
+        "null_sd": 0.07615168814457417,
+        "null_q025": -0.1438972320502351,
+        "null_q975": 0.15140113146751416
+      }
+    },
+    "B1_dyad_2019_2022": {
+      "leave_one_discipline_out": {
+        "status": "VALID",
+        "failed_refits": 0,
+        "min_estimate_log_scale": 0.1108235519792794,
+        "max_estimate_log_scale": 0.1815155048587636,
+        "sign_all_same": true
+      },
+      "ikes_label_permutation": {
+        "status": "VALID",
+        "seed": 20260918,
+        "reps_requested": 999,
+        "reps_successful": 999,
+        "failed_refits": 0,
+        "extreme_abs_count": 148,
+        "p_two_sided": 0.149,
+        "observed_estimate_log_scale": 0.1305872925624691,
+        "null_mean": 0.0016932877883641781,
+        "null_sd": 0.08996591100683016,
+        "null_q025": -0.15955952943535726,
+        "null_q975": 0.16879737499176048
+      }
+    }
+  },
+  "integrity_rule": "Aggregation aborts unless each headline has complete D01-D21 LOO and exactly reps 1-999 once each with no failed permutation fit."
+}

@@ -1,0 +1,71 @@
+{
+  "A1_output_2019_2022": {
+    "leave_one_discipline_out": {
+      "status": "VALID",
+      "failed_refits": 0,
+      "min_estimate_log_scale": 0.2242859653329779,
+      "max_estimate_log_scale": 0.5791589013687921,
+      "sign_all_same": true
+    },
+    "ikes_label_permutation": {
+      "status": "VALID",
+      "seed": 20260918,
+      "reps_requested": 999,
+      "reps_successful": 999,
+      "failed_refits": 0,
+      "extreme_abs_count": 315,
+      "p_two_sided": 0.316,
+      "observed_estimate_log_scale": 0.3108747583478629,
+      "null_mean": -0.007093431998493834,
+      "null_sd": 0.30721776619852725,
+      "null_q025": -0.6392305482546793,
+      "null_q975": 0.5750949527179375
+    }
+  },
+  "A2_top10_2019_2022": {
+    "leave_one_discipline_out": {
+      "status": "VALID",
+      "failed_refits": 0,
+      "min_estimate_log_scale": -0.079424867935487,
+      "max_estimate_log_scale": -0.0100523371119433,
+      "sign_all_same": true
+    },
+    "ikes_label_permutation": {
+      "status": "VALID",
+      "seed": 20260918,
+      "reps_requested": 999,
+      "reps_successful": 999,
+      "failed_refits": 0,
+      "extreme_abs_count": 690,
+      "p_two_sided": 0.691,
+      "observed_estimate_log_scale": -0.0317064753636807,
+      "null_mean": -0.0007935329594293148,
+      "null_sd": 0.07615168814457417,
+      "null_q025": -0.1438972320502351,
+      "null_q975": 0.15140113146751416
+    }
+  },
+  "B1_dyad_2019_2022": {
+    "leave_one_discipline_out": {
+      "status": "VALID",
+      "failed_refits": 0,
+      "min_estimate_log_scale": 0.1108235519792794,
+      "max_estimate_log_scale": 0.1815155048587636,
+      "sign_all_same": true
+    },
+    "ikes_label_permutation": {
+      "status": "VALID",
+      "seed": 20260918,
+      "reps_requested": 999,
+      "reps_successful": 999,
+      "failed_refits": 0,
+      "extreme_abs_count": 148,
+      "p_two_sided": 0.149,
+      "observed_estimate_log_scale": 0.1305872925624691,
+      "null_mean": 0.0016932877883641781,
+      "null_sd": 0.08996591100683016,
+      "null_q025": -0.15955952943535726,
+      "null_q975": 0.16879737499176048
+    }
+  }
+}

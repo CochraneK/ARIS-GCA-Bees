@@ -1,0 +1,14 @@
+{
+  "paper": "ARIS4C003",
+  "created_utc": "2026-09-19T13:38:35+00:00",
+  "recovery_reason": "original distributed core failed only on fixed-effect demeaning convergence",
+  "design_changed": false,
+  "materialization_run_id": "35436625005",
+  "distributed_sensitivity_run_id": "35438449846",
+  "recovered_permutation_range": "151-200 for all three headline models",
+  "recovered_dyad_loo": "D01-D21 rerun with latest numerical fallback; original dyad LOO contained at least one undefined refit",
+  "core_recovery_run_id": "35444812485",
+  "core_recovery_head_sha": "f84374f2079822cd5c961a54c84d228eccb717a0",
+  "core_numerical_rule": "default MAP first; LSMR-within additive fallback only for explicit demeaning non-convergence",
+  "aggregation_rule": "original completeness gates; exactly D01-D21 LOO and reps 1-999 with no failed refits; old dyad LOO and old shard 151-200 are removed before adding latest-code recovery artifacts; shard/core observed headline estimates must agree"
+}

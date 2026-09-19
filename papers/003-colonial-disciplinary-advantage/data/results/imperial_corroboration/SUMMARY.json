@@ -1,0 +1,18 @@
+{
+  "period": "2019-2022",
+  "n_imperial_centers": 8,
+  "n_disciplines": 21,
+  "across_empire": {
+    "slope_profile_on_log1p_colony_years": 0.03565712319736043,
+    "pearson": 0.5749492149578429,
+    "spearman": 0.5952380952380953
+  },
+  "permutation": {
+    "status": "VALID",
+    "reps": 999,
+    "seed": 20260918,
+    "extreme_abs_count": 78,
+    "p_two_sided": 0.079
+  },
+  "interpretation": "small-N corroboration; not large-N causal inference"
+}
