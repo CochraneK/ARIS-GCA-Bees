@@ -36,15 +36,26 @@ The public-API-safe serial Track-A workflow completed across three outcome-enric
 - Physics 1980: 50 screened, **4 robust SB**, 16 near-gate;
 - Medicine 1980: 50 screened, **3 robust SB**, 5 near-gate;
 - Computer Science 1990: 50 screened, **6 robust SB**, 11 near-gate;
-- total: **150 screened, 13 unique strict robust SB**.
+- total: **150 screened, 13 unique retrospective robust-gate candidates**.
 
 This cohort is deliberately enriched using present-day citation count to reduce retrospective case-discovery cost. Therefore:
 - **prevalence estimation is forbidden** from this sample;
 - **prospective predictive-performance claims are forbidden** from this sample.
 
-This result complements the unselected 500-paper mechanism-yield diagnostic (0 robust SB): random small cohorts are suitable for prospective benchmarking, whereas Track A requires retrospective enrichment to efficiently find mechanism cases.
+This result complements the unselected 500-paper mechanism-yield diagnostic (0 robust-gate cases): random small cohorts are suitable for prospective benchmarking, whereas Track A requires retrospective enrichment to efficiently find candidates. **Passing the absolute robust gate does not by itself make a paper a canonical Track-M SLEEPING_BEAUTY.** Track M additionally requires early-low and late-high attention relative to an unselected same-field/year reference distribution.
 
 Successful workflow run: `35407583375`.
+
+### Definition-harmonization correction
+
+Inspection of the first matched-control artifacts revealed that several absolute robust-gate candidates had **high**, not low, first-5-year citation percentiles relative to the unselected field/year pool. For example, the six Computer Science 1990 robust-gate candidates had early percentiles approximately **0.71–0.94**.
+
+Therefore the Track-M script is being corrected so that a mechanism case is promoted to canonical `SLEEPING_BEAUTY` only when it satisfies both:
+
+1. the retrospective absolute robust gate; and
+2. early attention <= 25th percentile **and** late attention >= 75th percentile versus the unselected same-field/year reference pool.
+
+This correction is stricter than simply expanding controls and prevents the mechanism analysis from silently changing its own case definition after seeing the data.
 
 ## Track M matched-control gate · first empirical pass
 
