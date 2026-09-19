@@ -54,6 +54,14 @@ def link(href: str, label: str, primary: bool = False) -> str:
     return f'<a class="{cls}" href="{esc(href)}">{esc(label)}</a>'
 
 
+def paper_button(href: str, label: str, primary: bool = False) -> str:
+    if href:
+        cls = "btn primary" if primary else "btn"
+        return f'<a class="{cls}" href="{esc(href)}">{esc(label)}</a>'
+    cls = "btn disabled primary" if primary else "btn disabled"
+    return f'<span class="{cls}" aria-disabled="true" title="Full text not ready yet">{esc(label)}</span>'
+
+
 def paper_repo_file_link(p: dict, href: str) -> str:
     if not href:
         return ""
@@ -108,8 +116,8 @@ def card(p: dict, dashboard: dict) -> str:
     en_href = links.get("paper_en_full") or links.get("paper_en", "")
     zh_href = links.get("paper_zh_full") or links.get("paper_zh", "")
     buttons = "".join([
-        link(paper_display_link(p, en_href), "English", True),
-        link(paper_display_link(p, zh_href), "中文"),
+        paper_button(paper_display_link(p, en_href) if en_href else "", "English", True),
+        paper_button(paper_display_link(p, zh_href) if zh_href else "", "中文"),
     ])
     blocker_class = "blocker is-clear" if str(blocker).lower().startswith("none") else "blocker"
     last_commit = p.get("_last_commit", "")
