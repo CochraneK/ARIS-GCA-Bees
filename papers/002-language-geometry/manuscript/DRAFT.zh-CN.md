@@ -279,6 +279,11 @@ Grammatical categories 是唯一一个 optimized circle 均值（0.252）略高�
 
 60 特征时，圆环“最后一个点连回第一个点”的相似关系几乎不存在。这与“存在稳定开放顺序，但并不真正闭环”的解释更一致。
 
+
+![图 3：留出 circular-Robinson 风格敏感性](../figures/figure3_circular_diagnostics.svg)
+
+**图 3｜留出 circular-Robinson 风格敏感性。** 比较 40 与 60 个 TLI 特征下圆环排序、树叶排序和随机排序的 row-unimodality violation（越低越好）。圆环优于随机排序，但没有优于树叶排序。
+
 ### 3.6 TLI 重复家族留出中 tree-over-circle 非常稳定
 
 | 模型 | Spearman mean ± SD | 相对 optimized circle 的配对差异 | split-bootstrap 95% CI | 胜 circle 比例 |
@@ -291,6 +296,11 @@ Grammatical categories 是唯一一个 optimized circle 均值（0.252）略高�
 tree 在 20/20 个 split 都超过 optimized circle。
 
 但 bootstrap CI 只是划分敏感性区间，不等于谱系不确定性区间。
+
+
+![图 2：TLI 重复家族留出配对比较](../figures/figure2_tli_paired_contrasts.svg)
+
+**图 2｜TLI 重复家族留出配对比较。** 展示 20 个顶层家族留出 split 中各模型相对 optimized circle 的 held-out Spearman 配对差异；误差线是 split-level 配对差异 bootstrap 的 95% 区间，不代表系统发育不确定性。
 
 ### 3.7 TLI 跨地理区域迁移显著下降，但不能推广为普遍规律
 
@@ -352,6 +362,11 @@ tree-minus-circle = +0.193，8/8 次 tree 都更高。
 | separately processed WALS | 2,659 | 30 | **0.603** | 0.410 | 8/8 |
 
 不同数据表示的覆盖率、缺失率、特征定义、筛选策略和清理方法不同，绝对 Spearman 大小不能直接跨行比较。可比较的是定性排序：在三个表示中，optimized circle 都没有超过 tree 基线。
+
+
+![图 1：跨表示的家族留出预测排序](../figures/figure1_cross_dataset.svg)
+
+**图 1｜跨表示的家族留出预测排序。** 比较 TLI、GBI 与 WALS 中模型预测与独立 held-out feature-association matrix 的平均 Spearman 相关。在三个表示中，hierarchical-tree 基准都高于直接优化的 circular model；不同数据集的绝对数值不应直接比较。
 
 ## 4. 讨论
 
