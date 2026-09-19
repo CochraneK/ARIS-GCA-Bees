@@ -147,6 +147,14 @@
         "orcid_anchored_authors": 100,
         "low_identity_risk_authors": 500
       }
+    },
+    "model": {
+      "formula": "logit(Persistence5_i) = alpha + beta1*InitialRankNorm_i + beta2*MeanEarlyExposure_i + beta3*(InitialRankNorm_i*MeanEarlyExposure_i) + EntryYearFE + EntryPrimaryFieldFE + log1p(EntryWorkCount_i)",
+      "primary_estimand": "beta3",
+      "entry_work_count_transform": "log1p",
+      "vcov_cluster": "entry_primary_field_x_entry_year",
+      "test": "two-sided",
+      "secondary_family_adjustment": "Holm jointly with H2"
     }
   },
   "prohibited_adaptive_choices": [
@@ -155,5 +163,12 @@
     "changing the primary outcome to citations after seeing the position result",
     "using a 2024-active survivor sample as the confirmatory career cohort",
     "opening focal surname × career effects before preregistration freeze"
-  ]
+  ],
+  "unlock_protocol": {
+    "locked_flag_semantics": "confirmatory_outcomes_unlocked remains false in this hashed design snapshot",
+    "mutable_unlock_record": "process/CONFIRMATORY_UNLOCK.json",
+    "protocol": "process/UNLOCK_PROTOCOL.md",
+    "integrity_verifier": "code/31_verify_prereg_lock.py",
+    "rule": "Every confirmatory runner must verify byte-for-byte prereg lock integrity and a matching external unlock record."
+  }
 }
