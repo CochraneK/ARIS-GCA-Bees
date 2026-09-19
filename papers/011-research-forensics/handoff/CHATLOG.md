@@ -20,3 +20,20 @@ For every future material conversation, append:
 - important user correction/constraint;
 - decision/result;
 - affected files/commits where known.
+
+## 2026-09-19 · Main ARIS4C011 GO session before chat deletion
+
+- **Surface:** ChatGPT / ARIS4C011
+- **Participants:** Cochrane Kang + ChatGPT
+- **User request:** Continue autonomously in GO mode, explain the acquisition “funnel” when requested, execute Git-backed work rather than leaving progress only in chat, and finally synchronize Git before deleting the chat.
+- **Core clarification:** The acquisition funnel separates documented issue → historical artifact discovery → object identity/time qualification → issue-specific required-role readiness → extraction verification → detector applicability → PASS/FLAG/ABSTAIN → human adjudication. Archive failure, inapplicability and detector failure must not be collapsed.
+- **Major development outcomes:** 
+  - time-safe / object-level artifact safety and extraction provenance were hardened;
+  - the first real cited-source pre-outcome FLAG was established;
+  - the second real deposited-data→table FLAG demonstrated compensating errors that ordinary within-table arithmetic can miss;
+  - Pilot 3 candidate selection became code-driven;
+  - later Git work established additional Toxoplasma F8 and F3 true-positive evaluations and an Adaptive Interaction F1 significance-direction true positive.
+- **Critical user-facing decision:** Assistant owns routine execution; user intervention is only needed for genuinely external permissions/data or indispensable human/independent review.
+- **Deletion handoff:** Before this chat is deleted, Git is being reconciled so a new chat/account/agent can recover the project from `handoff/`, `process/STATUS.md`, machine-readable results and the manuscript without relying on chat memory.
+- **Claim boundary:** Development true positives are not confirmatory performance estimates.
+
