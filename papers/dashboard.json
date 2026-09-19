@@ -93,11 +93,11 @@
     },
     "012": {
       "progress": 66,
-      "stage": "Pilot 0B complete · v1 reliability revision gate",
-      "activity": "wait",
-      "evidence": "165-record reproducible retrieval + genuinely independent 30-record Coder B; raw opposition-valid κ=0.466, OCI-candidacy κ=0.592, primary-mechanism κ=0 with 141 disagreement cells; instrument vocabulary mismatch documented",
-      "next_gate": "Diagnose/adjudicate disagreement types, freeze controlled-vocabulary Schema v2, then run a fresh independent A2/B2 reliability Pilot",
-      "blocker": "v1 coding instrument did not meet the prespecified reliability threshold; full evidence-map screening remains gated until revised independent validation"
+      "stage": "Schema v2 frozen · fresh 30-record validation sample frozen",
+      "activity": "active",
+      "evidence": "Raw v1 Pilot 0B preserved; all 141 disagreement cells diagnostically partitioned (30 lexical/token, 24 schema-overlap, 26 source/metadata, 61 genuine conceptual); orthogonal controlled-vocabulary Schema v2 frozen; fresh deterministic 30-record sample frozen across 6 strata with zero Pilot 0B overlap",
+      "next_gate": "Materialize identical blinded evidence packets for the frozen v2 sample, freeze packet hashes, then run genuinely independent A2/B2 coding and reliability scoring",
+      "blocker": "No immediate engineering blocker; full 165-record evidence-map screening remains gated on fresh independent v2 reliability validation"
     },
     "013": {
       "progress": 50,
