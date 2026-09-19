@@ -18,7 +18,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-FORMS = ROOT / "data" / "human_forms" / "forms.generated.json"
+FORMS = ROOT / "data" / "human_forms" / "forms.generated.json"\nTRAINING = ROOT / "data" / "human_forms" / "protocol_training.v1.json"
 
 
 def load_forms():
@@ -26,7 +26,58 @@ def load_forms():
     return {f["form_id"]:f for f in payload["forms"]}
 
 
-def ingest_file(path: Path, forms):
+def load_training():
+    return json.loads(TRAINING.read_text(encoding="utf-8"))["protocols"]
+
+
+def validate_training_attempts(path: Path, payload, protocol, training):
+    expected=training[protocol]
+    expected_by_id={x["practice_id"]:x for x in expected}
+    attempts=payload.get("training_attempts")
+    if not isinstance(attempts,list):
+        raise ValueError(f"{path}: missing training_attempts")
+
+    seen={pid:[] for pid in expected_by_id}
+    allowed={
+        "P2":{"YES","NO"},
+        "P3":{"YES","NO","MAYBE"},
+        "P6":{"YES","NO","BORDERLINE","UNKNOWN","UNDEFINED","BOTH"},
+    }[protocol]
+
+    normalized=[]
+    for raw in attempts:
+        pid=raw.get("practice_id")
+        if pid not in expected_by_id:
+            raise ValueError(f"{path}: unexpected practice_id {pid!r}")
+        selected=raw.get("selected")
+        if selected not in allowed:
+            raise ValueError(f"{path}: invalid training response {selected!r}")
+        correct=selected==expected_by_id[pid]["correct"]
+        record={
+            "practice_id":pid,
+            "attempt":int(raw.get("attempt",len(seen[pid])+1)),
+            "selected":selected,
+            "correct":correct,
+        }
+        seen[pid].append(record)
+        normalized.append(record)
+
+    for pid,records in seen.items():
+        if not records:
+            raise ValueError(f"{path}: missing training item {pid}")
+        if not records[-1]["correct"]:
+            raise ValueError(f"{path}: training item {pid} not completed correctly")
+
+    return {
+        "attempts":normalized,
+        "practice_items":len(expected),
+        "training_attempt_count":len(normalized),
+        "training_errors":sum(not x["correct"] for x in normalized),
+        "training_completed":True,
+    }
+
+
+def ingest_file(path: Path, forms, training):
     payload=json.loads(path.read_text(encoding="utf-8"))
     required={"study","form_id","protocol","participant_id","rows"}
     missing=required-set(payload)
@@ -41,6 +92,10 @@ def ingest_file(path: Path, forms):
     form=forms[form_id]
     if payload["protocol"]!=form["protocol"]:
         raise ValueError(f"{path}: protocol does not match canonical form")
+
+    training_summary=validate_training_attempts(
+        path,payload,form["protocol"],training
+    )
 
     rows=payload["rows"]
     if len(rows)!=form["presented_trial_count"]:
@@ -107,7 +162,7 @@ def ingest_file(path: Path, forms):
             "response_time_ms":rt,
             "is_retest":bool(item["is_retest"]),
         })
-    return out
+    return out, training_summary
 
 
 def main():
@@ -117,13 +172,15 @@ def main():
     args=ap.parse_args()
 
     forms=load_forms()
+    training=load_training()
     combined=[]
+    sessions=[]
     seen_sessions=set()
     participant_protocol={}
 
     for raw in args.responses:
         path=Path(raw)
-        rows=ingest_file(path,forms)
+        rows,training_summary=ingest_file(path,forms,training)
         session=(rows[0]["participant_id"],rows[0]["form_id"])
         if session in seen_sessions:
             raise SystemExit(f"Duplicate participant/form session: {session}")
@@ -139,11 +196,18 @@ def main():
             )
         participant_protocol[participant]=protocol
         combined.extend(rows)
+        sessions.append({
+            "participant_id":participant,
+            "form_id":rows[0]["form_id"],
+            "protocol":protocol,
+            **training_summary,
+        })
 
     output={
         "dataset_id":"ucid-human-calibration-responses-ingested",
         "input_files":len(args.responses),
         "participants":len({r["participant_id"] for r in combined}),
+        "sessions":sessions,
         "rows":combined,
         "warning":"Internal design labels are reconstructed from canonical forms; participant files are not trusted for trial metadata."
     }
