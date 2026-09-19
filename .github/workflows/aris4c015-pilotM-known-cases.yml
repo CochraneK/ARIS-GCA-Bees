@@ -1,4 +1,4 @@
-name: ARIS4C015 Pilot M known-SB case enrichment v4
+name: ARIS4C015 Pilot M known-SB case enrichment v5
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
       - name: Run known-SB case-enriched pilot with event-time risk sets
         working-directory: papers/015-sleeping-beauty-miner/code
         run: |
-          python pilotM_known_case_enrichment.py             --controls-per-case-pool 100             --observation-end-year 2011             --output ../data/pilotM_known_cases_openalex.json
+          python pilotM_known_case_enrichment.py             --controls-per-case-pool 200             --observation-end-year 2011             --output ../data/pilotM_known_cases_openalex.json
 
       - name: Audit known cases and matching
         run: |
@@ -40,11 +40,12 @@ jobs:
           result = json.loads(path.read_text(encoding="utf-8"))
 
           assert result["pilot_design"]["n_known_cases"] == 3
-          assert result["n_input_papers"] >= 240
+          assert result["n_input_papers"] >= 500
           assert len(result["known_case_assessment"]) == 3
 
           summary = {
               "n_input_papers": result["n_input_papers"],
+              "control_sampling": result["pilot_design"].get("control_sampling"),
               "n_robust_sb": result["n_robust_sleeping_beauties"],
               "state_counts": result["state_counts"],
               "mechanism_ready": result["mechanism_ready"],
@@ -125,7 +126,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilotM-known-cases-v4
+          name: aris4c015-pilotM-known-cases-v5
           path: papers/015-sleeping-beauty-miner/data/pilotM_known_cases_openalex.json
           if-no-files-found: error
           retention-days: 30
