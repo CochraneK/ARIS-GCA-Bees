@@ -167,7 +167,11 @@
 
     const nudge=dir=>{
       stopLoop();
-      viewport.scrollBy({left:dir*stepSize(),behavior:prefersReduced?"auto":"smooth"});
+      const step=stepSize();
+      if(dir<0 && loopWidth>0 && viewport.scrollLeft<step){
+        viewport.scrollLeft += loopWidth;
+      }
+      viewport.scrollBy({left:dir*step,behavior:prefersReduced?"auto":"smooth"});
       window.setTimeout(startLoop,1600);
     };
 
