@@ -8,7 +8,7 @@ An indexed, falsification-first framework for a restricted class of functional-o
 
 ## Current state
 
-- Activity: **waiting**
+- Activity: **wait**
 - Progress: **66%**
 - Stage: **Pilot 0B complete · adjudication gate**
 - Evidence: 165-record reproducible retrieval + Coder A + genuinely independent 30-record Coder B; reliability summary READY_FOR_ADJUDICATION with 141 disagreement cells

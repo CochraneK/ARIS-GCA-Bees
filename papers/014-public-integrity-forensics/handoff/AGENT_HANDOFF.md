@@ -8,7 +8,7 @@ An auditable multi-source public-integrity agent that mines structured and web-n
 
 ## Current state
 
-- Activity: **waiting**
+- Activity: **wait**
 - Progress: **69%**
 - Stage: **China Pilot 1 · conservative cross-source entity layer**
 - Evidence: CCGP/CAS/USCC live graph + stable-ID-only auto-merge resolver under CI

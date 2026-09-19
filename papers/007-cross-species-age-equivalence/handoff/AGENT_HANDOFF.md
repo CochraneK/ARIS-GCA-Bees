@@ -8,7 +8,7 @@ A multi-axis benchmark of cross-species age equivalence. Life-history, independe
 
 ## Current state
 
-- Activity: **waiting**
+- Activity: **wait**
 - Progress: **76%**
 - Stage: **Pilot 3A molecular reproduction**
 - Evidence: 785-species Pilot0 + 88-species demography + 945 held-out events + universal-clock implementation parity PASS

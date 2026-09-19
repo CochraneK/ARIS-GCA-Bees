@@ -2,7 +2,7 @@
 
 - **Title:** Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals
 - **Project status:** pilot2-event-benchmark-complete
-- **Activity:** waiting
+- **Activity:** wait
 - **Portfolio progress:** 76%
 - **Current stage:** Pilot 3A molecular reproduction
 - **Evidence established:** 785-species Pilot0 + 88-species demography + 945 held-out events + universal-clock implementation parity PASS

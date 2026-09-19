@@ -2,7 +2,7 @@
 
 - **Title:** The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology
 - **Project status:** pilot-0
-- **Activity:** waiting
+- **Activity:** wait
 - **Portfolio progress:** 56%
 - **Current stage:** Design hardened · pilot-gated
 - **Evidence established:** Prereg skeleton + fidelity metrics + synthetic pilot + query/power gates + novelty/acquisition boundary hardening

@@ -2,7 +2,7 @@
 
 - **Title:** Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data
 - **Project status:** china-pilot0-stable-id-proven-cross-source-enrichment-next
-- **Activity:** waiting
+- **Activity:** wait
 - **Portfolio progress:** 69%
 - **Current stage:** China Pilot 1 · conservative cross-source entity layer
 - **Evidence established:** CCGP/CAS/USCC live graph + stable-ID-only auto-merge resolver under CI

@@ -2,7 +2,7 @@
 
 - **Title:** The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks
 - **Project status:** feasibility-pilot
-- **Activity:** waiting
+- **Activity:** wait
 - **Portfolio progress:** 74%
 - **Current stage:** Network100 acquired · work audit + independent second review
 - **Evidence established:** Identity100: 52 verified; second-review blind set 40. Network100: 2,956 unique works, 0 fetch errors; 334-work deterministic triage sample across 37 held people.

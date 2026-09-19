@@ -2,7 +2,7 @@
 
 - **Title:** Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification
 - **Project status:** human-calibration-ready-p2-p3-p6
-- **Activity:** waiting
+- **Activity:** wait
 - **Portfolio progress:** 72%
 - **Current stage:** Source-derived Pilot 2 + calibration60
 - **Evidence established:** Formal model + Pilots 0–2 + pinned OEWN 60-target calibration build; current CI PASS

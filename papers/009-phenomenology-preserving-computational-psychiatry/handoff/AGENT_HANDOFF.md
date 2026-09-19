@@ -8,7 +8,7 @@ A measurement framework that separates psychiatric acquisition from encoding los
 
 ## Current state
 
-- Activity: **waiting**
+- Activity: **wait**
 - Progress: **56%**
 - Stage: **Design hardened · pilot-gated**
 - Evidence: Prereg skeleton + fidelity metrics + synthetic pilot + query/power gates + novelty/acquisition boundary hardening
