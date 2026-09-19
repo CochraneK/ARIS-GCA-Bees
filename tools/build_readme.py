@@ -106,12 +106,12 @@ def common_badges() -> str:
 
 def english(rows: list[dict]) -> str:
     return f"""<p align="right">
-  <a href="./README.md"><img src="https://img.shields.io/badge/Language-English-2563eb" alt="English"></a>
-  <a href="./README.zh-CN.md"><img src="https://img.shields.io/badge/语言-中文-dc2626" alt="中文"></a>
+  <a href="./README.en.md"><img src="https://img.shields.io/badge/Language-English-2563eb" alt="English"></a>
+  <a href="./README.md"><img src="https://img.shields.io/badge/语言-中文（默认）-dc2626" alt="中文"></a>
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
+  <img src="./docs/assets/readme/en/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
 </p>
 
 <p align="center">
@@ -142,15 +142,15 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 ## Portfolio at a glance
 
 <p align="center">
-  <img src="./docs/assets/readme/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
+  <img src="./docs/assets/readme/en/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
+  <img src="./docs/assets/readme/en/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
+  <img src="./docs/assets/readme/en/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
 > Progress is a **portfolio-management estimate**, not a scientific result. \`100%\` means the repository-level final output contract is satisfied. **Quiet** includes submission-ready/completed tracks that do not need active execution.
@@ -168,7 +168,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 ## How ARIS4C works
 
 <p align="center">
-  <img src="./docs/assets/readme/architecture.svg" width="100%" alt="ARIS4C research system architecture">
+  <img src="./docs/assets/readme/en/architecture.svg" width="100%" alt="ARIS4C research system architecture">
 </p>
 
 The key distinction is intentional:
@@ -178,6 +178,20 @@ The key distinction is intentional:
 - **ARIS4C 000 / dashboard** manages the portfolio without becoming a second scientific truth.
 - **\`handoff/\`** preserves the context needed to resume work across sessions and agents.
 - **Git history** preserves superseded states rather than erasing how a paper evolved.
+
+## Common structure of every Paper
+
+<p align="center">
+  <img src="./docs/assets/readme/en/paper-structure.svg" width="100%" alt="Common structure of an ARIS4C paper project">
+</p>
+
+Every numbered Paper follows the same repository contract, while its scientific design, data, analyses, figures, and review gates remain project-specific.
+
+## Lifecycle of a Paper
+
+<p align="center">
+  <img src="./docs/assets/readme/en/paper-lifecycle.svg" width="100%" alt="Lifecycle of an ARIS4C paper">
+</p>
 
 ## Final-paper contract
 
@@ -196,6 +210,10 @@ A submission-ready/final ARIS4C paper is expected to provide:
 See [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md).
 
 ## Cross-agent continuity
+
+<p align="center">
+  <img src="./docs/assets/readme/en/handoff-package.svg" width="100%" alt="Cross-agent handoff package">
+</p>
 
 Every numbered paper has the same cold-start package:
 
@@ -272,7 +290,7 @@ def chinese(rows: list[dict]) -> str:
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
+  <img src="./docs/assets/readme/zh/hero.svg" width="100%" alt="ARIS4C — Research as a living system">
 </p>
 
 <p align="center">
@@ -303,15 +321,15 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 ## 当前研究组合
 
 <p align="center">
-  <img src="./docs/assets/readme/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
+  <img src="./docs/assets/readme/zh/portfolio-status.svg" width="100%" alt="ARIS4C portfolio status">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
+  <img src="./docs/assets/readme/zh/portfolio-maturity.svg" width="100%" alt="ARIS4C paper maturity chart">
 </p>
 
 <p align="center">
-  <img src="./docs/assets/readme/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
+  <img src="./docs/assets/readme/zh/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
 > Progress 是**项目管理估计**，不是科学结果。\`100%\` 表示仓库层面的最终输出契约已经满足。**Quiet** 表示 submission-ready / completed、当前不再需要主动执行的项目。
@@ -329,7 +347,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 ## ARIS4C 如何运作
 
 <p align="center">
-  <img src="./docs/assets/readme/architecture.svg" width="100%" alt="ARIS4C research system architecture">
+  <img src="./docs/assets/readme/zh/architecture.svg" width="100%" alt="ARIS4C research system architecture">
 </p>
 
 关键分工：
@@ -339,6 +357,20 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 - **ARIS4C 000 / dashboard** 管 portfolio，但不成为第二套科学真相。
 - **\`handoff/\`** 保存跨对话、跨账号、跨 Agent 继续研究所需的上下文。
 - **Git history** 保存被替代的旧版本，而不是抹掉研究如何演化。
+
+## 每篇 Paper 的通用结构
+
+<p align="center">
+  <img src="./docs/assets/readme/zh/paper-structure.svg" width="100%" alt="ARIS4C 单篇 Paper 项目的通用结构">
+</p>
+
+所有编号项目遵循同一套仓库结构与交付契约；真正的研究设计、数据、分析、图表和审查门则由各自科学问题决定。
+
+## 一篇 Paper 的生命周期
+
+<p align="center">
+  <img src="./docs/assets/readme/zh/paper-lifecycle.svg" width="100%" alt="ARIS4C 单篇 Paper 的生命周期">
+</p>
 
 ## Final Paper 标准
 
@@ -357,6 +389,10 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 详见 [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md)。
 
 ## 跨电脑 / 账号 / Agent 连续性
+
+<p align="center">
+  <img src="./docs/assets/readme/zh/handoff-package.svg" width="100%" alt="ARIS4C 跨 Agent 接管包">
+</p>
 
 每一个编号项目现在都有统一目录：
 
@@ -428,8 +464,12 @@ Research hub：**https://cochranek.github.io/ARIS4C/**
 
 def main() -> int:
     _, rows = load()
-    (ROOT / "README.md").write_text(english(rows).rstrip() + "\n", encoding="utf-8")
-    (ROOT / "README.zh-CN.md").write_text(chinese(rows).rstrip() + "\n", encoding="utf-8")
+    zh_text = chinese(rows).rstrip() + "\n"
+    en_text = english(rows).rstrip() + "\n"
+    (ROOT / "README.md").write_text(zh_text, encoding="utf-8")
+    (ROOT / "README.en.md").write_text(en_text, encoding="utf-8")
+    # Legacy Chinese path stays valid for old links.
+    (ROOT / "README.zh-CN.md").write_text(zh_text, encoding="utf-8")
     print(f"README generated for {len(rows)} papers.")
     return 0
 
