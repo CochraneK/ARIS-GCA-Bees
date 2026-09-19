@@ -1,0 +1,38 @@
+name: ARIS4C013 traditional feature implementation CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/traditional_features.py'
+      - 'papers/013-birth-death-temporal-coupling/code/pseudo_calendars.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_traditional_features.py'
+      - 'papers/013-birth-death-temporal-coupling/process/TRADITIONAL_REFERENCE_VECTORS.json'
+      - '.github/workflows/aris4c013-traditional-implementation.yml'
+  pull_request:
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/traditional_features.py'
+      - 'papers/013-birth-death-temporal-coupling/code/pseudo_calendars.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_traditional_features.py'
+      - 'papers/013-birth-death-temporal-coupling/process/TRADITIONAL_REFERENCE_VECTORS.json'
+      - '.github/workflows/aris4c013-traditional-implementation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned calendar implementation
+        run: python -m pip install --disable-pip-version-check lunar_python==1.4.8
+      - name: Compile and run reference vectors
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        run: |
+          python -m py_compile traditional_features.py pseudo_calendars.py
+          python -m unittest -v test_traditional_features.py

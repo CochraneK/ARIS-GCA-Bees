@@ -1,0 +1,64 @@
+{
+  "implementation": {
+    "library": "lunar_python",
+    "version": "1.4.8"
+  },
+  "vectors": [
+    {
+      "id": "hko_2018_before_li_chun",
+      "date": "2018-02-03",
+      "expected": {
+        "official_year_ganzhi": "丁酉",
+        "bazi_year_ganzhi": "丁酉",
+        "li_chun_ambiguous": false
+      },
+      "provenance": "HKO 2018 Gan-Zhi changeover article + deterministic library regression"
+    },
+    {
+      "id": "hko_2018_li_chun_date",
+      "date": "2018-02-04",
+      "expected": {
+        "official_year_ganzhi": "丁酉",
+        "bazi_year_ganzhi": null,
+        "li_chun_ambiguous": true,
+        "solar_term_on_date": "立春"
+      },
+      "provenance": "Hong Kong Observatory identifies 2018-02-04 as Spring Commences"
+    },
+    {
+      "id": "hko_2018_after_li_chun_before_cny",
+      "date": "2018-02-05",
+      "expected": {
+        "official_year_ganzhi": "丁酉",
+        "bazi_year_ganzhi": "戊戌",
+        "bazi_month_branch": "寅"
+      },
+      "provenance": "HKO distinguishes Li Chun 2018-02-04 from Lunar New Year 2018-02-16"
+    },
+    {
+      "id": "hko_2018_before_cny",
+      "date": "2018-02-15",
+      "expected": {
+        "official_year_ganzhi": "丁酉"
+      },
+      "provenance": "HKO states 2018 Lunar New Year was 2018-02-16"
+    },
+    {
+      "id": "hko_2018_cny",
+      "date": "2018-02-16",
+      "expected": {
+        "official_year_ganzhi": "戊戌"
+      },
+      "provenance": "HKO official-calendar year changeover convention"
+    },
+    {
+      "id": "lunar_python_documented_day",
+      "date": "1986-05-29",
+      "expected": {
+        "civil_day_ganzhi": "癸酉",
+        "official_year_ganzhi": "丙寅"
+      },
+      "provenance": "lunar-python README documented output regression vector"
+    }
+  ]
+}
