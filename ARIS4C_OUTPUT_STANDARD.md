@@ -1,4 +1,4 @@
-# ARIS4C Final Output Standard · v1
+# ARIS4C Final Output Standard · v2
 
 **Effective:** 2026-09-18  
 **Owner:** Cochrane Kang  
@@ -36,29 +36,59 @@ During active research, a Chinese extended abstract is acceptable as an interim 
 
 ## 2. Figure and table contract
 
+### Core rule: no fixed figure count or fixed figure template
+
+ARIS4C does **not** standardize papers to three figures, nor require the same figure types across projects. Figure count, figure form, and table count must follow the paper's actual inferential structure.
+
+The optimization target is **maximum information gain and visual explainability without redundancy**. A project should create as many scientifically useful visuals as needed to let a reader understand the design, evidence, main results, uncertainty, robustness, heterogeneity, and mechanism with minimal dependence on dense prose. It must not create decorative, duplicated, or weakly differentiated figures merely to increase the count.
+
+Whenever applicable, the visual plan should consider distinct roles such as:
+- study/design/data-flow map;
+- sample or corpus structure;
+- descriptive distributions;
+- primary effect/result visualization;
+- uncertainty / confidence / posterior visualization;
+- model comparison;
+- robustness / sensitivity / specification curve;
+- subgroup / heterogeneity / interaction visualization;
+- ablation / benchmark / error analysis;
+- network, spatial, temporal, phylogenetic, or semantic structure;
+- conceptual mechanism / ontology / architecture;
+- limitations, decision boundaries, or failure modes.
+
+Repeated use of the same chart form is acceptable only when it is the clearest encoding (for example, coordinated small multiples). Otherwise, prefer figure-type diversity that matches the underlying scientific question.
+
+A useful default is to think in terms of a **visual narrative**, not a quota:
+**What is the system? → What data entered? → What did we find? → How uncertain/robust is it? → Where does it vary or fail?**
+
+
+
 Figures and tables are scientific communication artifacts, not decoration. The required visual package depends on article type.
 
 ### Empirical / quantitative papers
-Default minimum:
-- >= 2 substantive figures;
-- >= 1 substantive table.
+Expected package:
+- enough substantive figures to cover the main inferential stages rather than a fixed count;
+- at least one substantive table when tabular precision adds value;
+- main-text figures plus supplementary visuals when additional diagnostics would otherwise overload the narrative.
 
-Examples: effect estimates, model comparison, robustness/sensitivity, sample/data flow, descriptive structure.
+Typical figure roles include study/data flow, descriptive structure, primary estimates, uncertainty, model comparison, robustness, heterogeneity, and diagnostics.
 
 ### Theory / synthesis / review papers
-Default minimum:
-- >= 1 conceptual or evidence-structure figure;
-- >= 1 evidence/model table;
-- if quantitative synthesis is present, >= 1 quantitative figure.
+Expected package:
+- conceptual/evidence-structure figures wherever relationships are easier to understand visually;
+- evidence/model tables where exact comparison matters;
+- quantitative figures whenever quantitative synthesis is present;
+- additional maps, taxonomies, timelines, networks, or evidence landscapes when they materially clarify the argument.
 
 ### Methods / benchmark / agent papers
-Default minimum:
-- >= 1 architecture/pipeline figure;
-- >= 1 benchmark/evaluation table;
-- empirical performance figures when results exist.
+Expected package:
+- architecture/pipeline visualization;
+- benchmark/evaluation tables;
+- performance, calibration, ablation, failure-mode, and error-analysis figures when results exist;
+- additional workflow/evidence-graph visualizations when they improve auditability.
 
 ### Exceptions
-A paper may have fewer figures/tables only when the manuscript explicitly records why a visual would add no scientific information. The exception must be visible in the paper's output metadata.
+A paper may remain visually sparse only when additional visuals would add no scientific information. The reason must be explicit in the manuscript/output metadata. Conversely, complex projects should not be artificially capped at a small number of figures.
 
 ## 3. Reproducibility contract for visuals
 
@@ -78,7 +108,26 @@ code/
 data/
 ```
 
-## 4. Page contract
+## 4. PDF-first public-delivery contract
+
+Final/submission-ready projects should additionally provide:
+- **English PDF** — stable public reading/download artifact;
+- **Chinese PDF** — stable bilingual mirror.
+
+Preferred manifest fields:
+
+```json
+"links": {
+  "paper_en_pdf": "...",
+  "paper_zh_pdf": "...",
+  "paper_en_full": "...",
+  "paper_zh_full": "..."
+}
+```
+
+The public Research Command Center is **PDF-first**: when a PDF link exists, the English / 中文 buttons point directly to the PDF. HTML or Markdown full text remains a fallback and source-friendly companion, not the preferred final public reading surface.
+
+## 5. Page contract
 
 The ARIS4C public hub should expose, when available:
 
@@ -91,12 +140,14 @@ The ARIS4C public hub should expose, when available:
 
 The dashboard should also make output completeness visible rather than treating manuscript progress alone as completion.
 
-## 5. Final-status gate
+## 6. Final-status gate
 
 A project may be marked `submission-ready` / `final` only if all applicable items pass:
 
 - [ ] English full manuscript
 - [ ] Chinese full manuscript
+- [ ] English PDF for public delivery when submission-ready/final
+- [ ] Chinese PDF for public delivery when submission-ready/final
 - [ ] appropriate figure package
 - [ ] appropriate table package
 - [ ] figures/tables traceable to evidence or explicitly labeled conceptual/synthetic
