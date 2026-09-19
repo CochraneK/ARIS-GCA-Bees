@@ -113,8 +113,8 @@ def card(p: dict, dashboard: dict) -> str:
         str(stage),
         " ".join(str(t) for t in p.get("tags", [])),
     ])
-    en_href = links.get("paper_en_full") or links.get("paper_en", "")
-    zh_href = links.get("paper_zh_full") or links.get("paper_zh", "")
+    en_href = links.get("paper_en_pdf") or links.get("paper_en_full") or links.get("paper_en", "")
+    zh_href = links.get("paper_zh_pdf") or links.get("paper_zh_full") or links.get("paper_zh", "")
     buttons = "".join([
         paper_button(paper_display_link(p, en_href) if en_href else "", "English", True),
         paper_button(paper_display_link(p, zh_href) if zh_href else "", "中文"),
@@ -150,8 +150,8 @@ def showcase_card(p: dict, dashboard: dict) -> str:
     progress = max(0, min(100, int(d.get("progress", 0))))
     stage = d.get("stage") or p.get("status") or "Unclassified"
     activity_text, activity_class = activity_label(d.get("activity", ""))
-    en_href = links.get("paper_en_full") or links.get("paper_en", "")
-    zh_href = links.get("paper_zh_full") or links.get("paper_zh", "")
+    en_href = links.get("paper_en_pdf") or links.get("paper_en_full") or links.get("paper_en", "")
+    zh_href = links.get("paper_zh_pdf") or links.get("paper_zh_full") or links.get("paper_zh", "")
     buttons = "".join([
         paper_button(paper_display_link(p, en_href) if en_href else "", "English", True),
         paper_button(paper_display_link(p, zh_href) if zh_href else "", "中文"),
@@ -247,7 +247,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, gates and blockers. Each project exposes only the English and Chinese full-text paper entrances on the public card.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, gates and blockers. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
           <div class="overview">
             <div class="metric"><strong>{len(papers)}</strong><span>tracked projects</span></div>
             <div class="metric"><strong>{avg}%</strong><span>mean portfolio maturity</span></div>
@@ -297,7 +297,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         </section>
       </main>
 
-      <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Public project cards expose only English and Chinese full-text paper entrances.</footer>
+      <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Public project cards expose PDF-first English and Chinese paper entrances.</footer>
     </section>
   </div>
   <script src="./command-center.js" defer></script>
