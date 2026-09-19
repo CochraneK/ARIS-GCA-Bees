@@ -1,0 +1,70 @@
+@page {
+  size: A4;
+  margin: 18mm 18mm 21mm 18mm;
+  @bottom-center {
+    content: "ARIS4C · Cochrane Kang · " counter(page) " / " counter(pages);
+    font-family: "Noto Sans", "Noto Sans CJK SC", sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+  }
+}
+html { font-size: 10.5pt; }
+body {
+  font-family: "Noto Serif", "Noto Serif CJK SC", "DejaVu Serif", serif;
+  color: #17201f;
+  line-height: 1.55;
+  max-width: none;
+  margin: 0;
+}
+h1, h2, h3, h4 {
+  font-family: "Noto Sans", "Noto Sans CJK SC", "DejaVu Sans", sans-serif;
+  color: #111827;
+  page-break-after: avoid;
+}
+h1 { font-size: 23pt; line-height: 1.18; margin: 0 0 10mm; }
+h2 { font-size: 15.5pt; margin: 8mm 0 3mm; border-bottom: 0.5pt solid #d1d5db; padding-bottom: 1.5mm; }
+h3 { font-size: 12.5pt; margin: 6mm 0 2mm; }
+h4 { font-size: 11pt; margin: 4mm 0 1.5mm; }
+p { margin: 0 0 3.2mm; orphans: 3; widows: 3; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+hr { border: 0; border-top: 0.7pt solid #cfd4d1; margin: 6mm 0; }
+blockquote {
+  margin: 4mm 8mm;
+  padding: 2mm 4mm;
+  border-left: 2.5pt solid #9aa09c;
+  color: #374151;
+  background: #f8faf9;
+}
+ul, ol { margin: 2mm 0 4mm 6mm; padding-left: 5mm; }
+li { margin-bottom: 1.2mm; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4mm 0 5mm;
+  font-family: "Noto Sans", "Noto Sans CJK SC", "DejaVu Sans", sans-serif;
+  font-size: 8.6pt;
+  line-height: 1.35;
+  break-inside: auto;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th, td { border: 0.5pt solid #cfd4d1; padding: 1.7mm 2mm; vertical-align: top; }
+th { background: #f2f4f3; font-weight: 700; }
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 218mm;
+  width: auto;
+  height: auto;
+  margin: 4mm auto 2.5mm;
+  break-inside: avoid;
+}
+p:has(> img:only-child) { break-inside: avoid; margin: 4mm 0 2mm; }
+code {
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 0.9em;
+  background: #f3f4f6;
+  padding: 0.2mm 0.6mm;
+}
+a { color: #1f4f70; text-decoration: none; }
