@@ -1,8 +1,8 @@
 # ARIS4C003 STATUS
 
 **Canonical state:** `DESIGN_LOCKED / OUTCOME_UNLOCKED`  
-**Updated:** 2026-09-18  
-**Contemporary confirmatory outcomes opened:** **NO**
+**Updated:** 2026-09-19  
+**Contemporary confirmatory outcome state:** **gate unlocked; first materialization attempt failed before any confirmatory effect estimate was produced or inspected**
 
 This file is the operational resume point for ARIS4C003. Historical exposure
 data and schema-only metadata checks are allowed before outcome unlock;
@@ -108,17 +108,38 @@ The strict gate now reports:
 
 ## Current execution stage
 
-The first modern OpenAlex outcome materialization has started under the frozen
-design. Country and dyad extraction run in parallel from the pinned public
-Parquet snapshot. No confirmatory effect estimate was inspected before the
-final IKES freeze or the implementation correction to the dyad all-country
-denominator.
+The first monolithic modern OpenAlex materialization workflow
+(`ARIS4C003 materialize OpenAlex outcomes`, run **35423271792**) completed with
+**failure** on 2026-09-19.
 
-Once materialization succeeds, the distributed model workflow auto-chains:
-core PPML fits, complete D01-D21 LOO, fixed-seed 999 IKES permutations for all
-three headline models, temporal profiles, and the small-N imperial-center
-corroboration. The first result package must be hash-locked before human
-inspection.
+The country job passed the strict frozen gate and scanned the public snapshot
+for about 73 minutes, then failed before writing the outcome artifact because
+`materialize_openalex_cells.py` constructed invalid DuckDB SQL:
+`WITH ... COPY (...)`. No confirmatory coefficient, p-value, ranking result,
+or first-result package was produced or inspected. The dyad job did not yield
+a usable completed artifact, and `build-panels` was skipped.
+
+The parser defect was fixed in commit
+`fe82cb54af0c1c0f349d7dfbf16f5eaf636627c3` by emitting
+`COPY (WITH ... SELECT ...)`. This fix has **not yet been validated against a
+real full OpenAlex shard**, so future agents must not describe outcome
+materialization as completed.
+
+The canonical recovery route is now the deterministic 32-way manifest-balanced
+workflow:
+
+`.github/workflows/aris4c003-openalex-sharded-fallback.yml`
+
+It uses the pinned OpenAlex Works manifest, exact file-list shards and
+`aggregate_openalex_shards.py`. On a successful aggregate it builds the
+zero-filled country/dyad panels. The downstream
+`.github/workflows/aris4c003-models.yml` then auto-chains the frozen core
+PPMLs, complete D01-D21 LOO, fixed-seed 999 IKES permutations for all three
+headline models, temporal profiles, small-N imperial-center corroboration and
+`FIRST_RESULT_LOCK.json`.
+
+**Next action:** run/validate the sharded fallback. Do not inspect substantive
+effect estimates until the first result package has been hash-locked.
 
 ## Former remaining integrity gate — CLOSED
 
