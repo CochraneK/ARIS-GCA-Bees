@@ -1,0 +1,65 @@
+name: ARIS4C011 Pilot 3 PMC Table Qualification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/code/pilot3_qualify_toxo_pmc.py"
+      - ".github/workflows/aris4c011-pilot3-pmc-table.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Qualify preserved-original PMC Table 1
+        working-directory: papers/011-research-forensics/code
+        run: |
+          python pilot3_qualify_toxo_pmc.py \
+            --qualification ../data/results/pilot3_toxo_table1_qualification.json \
+            --detector-object ../data/results/pilot3_toxo_table1_trackA_object.json
+      - name: Enforce Track-A leakage boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("papers/011-research-forensics/data/results")
+          q=json.loads((root/"pilot3_toxo_table1_qualification.json").read_text())
+          d=json.loads((root/"pilot3_toxo_table1_trackA_object.json").read_text())
+          assert q["qualification"] in {"SAFE_EXACT","BLOCKED"}
+          assert d["outcome_or_correction_metadata_included"] is False
+          assert "correction" not in json.dumps(d).lower()
+          if q["qualification"]=="SAFE_EXACT":
+              assert q["track_a_eligible"] is True
+              assert q["defect_state_preserved"] is True
+              assert q["correction_confirms_two_missing_columns"] is True
+              assert d["safe_exact"] is True
+          print(json.dumps({
+              "qualification":q["qualification"],
+              "A_columns":q["original_A_detected_columns_n"],
+              "B_columns":q["original_B_detected_columns_n"],
+              "detector_outcome_metadata":d["outcome_or_correction_metadata_included"],
+          },indent=2))
+          PY
+      - name: Persist public-safe qualification and detector object
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            "$PAPER_DIR/data/results/pilot3_toxo_table1_qualification.json" \
+            "$PAPER_DIR/data/results/pilot3_toxo_table1_trackA_object.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "011: freeze preserved-original PMC Table 1 Track-A object"
+            git pull --rebase origin main
+            git push
+          fi
