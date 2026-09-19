@@ -45,7 +45,9 @@ At the time one SB awakens, compare it with same-field and same-publication-year
 papers that are still dormant at that event time.
 
 A control may awaken later. Post-event information is not used to choose the
-match.
+match. The same eligible paper may be reused across distinct case risk sets,
+which is standard incidence-density/risk-set sampling semantics; controls are
+not duplicated within one case risk set.
 
 Secondary contrasts:
 - SB vs Forgotten;
