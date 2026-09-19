@@ -97,9 +97,10 @@ The longitudinal surname/exposure interaction is temporally separated from persi
 
 Define early exposure over `e ... e+2`:
 
-1. assign each eligible focal work its frozen LOAO primary-field prior-3-year exposure;
-2. calculate the author's mean exposure across eligible works during `e ... e+2`;
-3. require at least **2 exposure-defined eligible works** in this early window.
+1. among eligible article/conference-paper works in `e ... e+2`, retain only works on which the focal author's own authorship is CN-affiliated;
+2. assign each retained work its frozen LOAO primary-field prior-3-year exposure;
+3. calculate the author's arithmetic mean exposure across those retained early works;
+4. require at least **2 exposure-defined CN-affiliated early works** in this window.
 
 Stable surname vulnerability:
 
