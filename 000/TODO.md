@@ -3,13 +3,13 @@
 ## P0 · Scheduling
 
 - [ ] Continue the current genuine Active paper until a bounded unit is checkpointed.
-- [ ] When the Active slot becomes free, promote the highest-progress Wait paper.
+- [ ] When additional genuine execution capacity becomes available, promote the highest-progress Wait paper.
 - [ ] Recalculate the queue after every material paper-state change.
 
 ## P1 · Portfolio integrity
 
 - [ ] Keep `papers/dashboard.json` aligned with real execution rather than merely executable work.
-- [ ] Keep Active WIP at 1 by default and no more than 3 without a genuine parallel-work reason.
+- [ ] Keep Active WIP at 1 by default, but scale it up or down dynamically with model/agent/tool capability; 3 is only a conservative soft reference, not a hard cap.
 - [ ] Ensure every paper switch passes the checkpoint-before-switch rule.
 - [ ] Keep Block reasons explicit and actionable.
 
