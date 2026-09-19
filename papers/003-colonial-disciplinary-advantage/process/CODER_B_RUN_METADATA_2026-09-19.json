@@ -1,0 +1,19 @@
+{
+  "paper": "ARIS4C003",
+  "role": "confirmatory independent IKES Coder B",
+  "run_date": "2026-09-19",
+  "model_label_reported_by_user": "Qwen Flash 3.8",
+  "interface_or_agent_reported_by_user": "Qoder",
+  "independence_contract": {
+    "bundle_access_status": "PASS",
+    "independence_status": "PASS",
+    "blind_bundle_only": true,
+    "no_coder_a_scores_seen": true,
+    "no_contemporary_outcomes_seen": true
+  },
+  "original_commit": "682129cfad7feb527e6ad19d31e8b4cf97c8a9dd",
+  "original_path": "papers/003-colonial-disciplinary-advantage/process/coder_b_blind/CODER_B_RAW_RESPONSE_2026-09-19.md",
+  "canonical_raw_path": "papers/003-colonial-disciplinary-advantage/process/gptpage/2026-09-19_ikes-coder-b-qoder-raw.md",
+  "canonicalization_note": "Raw response was moved out of the blind input directory after completion so the blind bundle remains input-only and whitelist-stable. Content was copied byte-for-byte before deletion of the output file from the blind directory.",
+  "outcomes_seen_at_lock": false
+}
