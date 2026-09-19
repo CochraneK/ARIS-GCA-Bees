@@ -132,6 +132,26 @@
         "rule": "process/IDENTITY_RISK_RULE.md"
       },
       "note": "Outcome-blind audit: 120/120 candidate authors passed hard identity QA; 0 hard exclusions; low-risk subset=91; ORCID-anchored subset=92. R1-R6 prevalence reported without persistence or effect estimation."
+    },
+    "final_convention_materialization": {
+      "status": "pass",
+      "evidence": {
+        "aggregate_workflow_run": 35424125236,
+        "artifact": "aris4c006-final-convention-aggregate-repaired",
+        "evaluation_artifact": "aris4c006-execution-gate-evaluation-repaired",
+        "rule": "process/EXECUTION_ACCEPTANCE_RULE.md"
+      },
+      "note": "Outcome-blind 26-field convention/exposure materialization passed every prospectively frozen structural and information-support threshold; no H1/H2/H3 effect was estimated."
+    },
+    "primary_frame_materialization": {
+      "status": "pass",
+      "evidence": {
+        "aggregate_workflow_run": 35424125236,
+        "artifact": "aris4c006-primary-frame-aggregate-repaired",
+        "evaluation_artifact": "aris4c006-execution-gate-evaluation-repaired",
+        "rule": "process/EXECUTION_ACCEPTANCE_RULE.md"
+      },
+      "note": "Outcome-blind 26-field primary focal-work frame passed every prospectively frozen structural/sample-adequacy threshold; no H1/H2/H3 coefficient or p-value was computed."
     }
   },
   "hard_rule": "Do not estimate or inspect H1/H2/H3 until PREREGISTRATION_LOCK.json exists, every locked-file SHA still matches, and a separate valid process/CONFIRMATORY_UNLOCK.json explicitly references that lock. Locked design files themselves are never edited merely to unlock.",
