@@ -84,12 +84,12 @@
       "blocker": "Human semantic calibration before benchmark-scale claims"
     },
     "011": {
-      "progress": 72,
-      "stage": "Pilot 3 · object-level historical table qualification",
+      "progress": 78,
+      "stage": "Pilot 3 · five pre-outcome development true-positive evaluations across four papers",
       "activity": "wait",
-      "evidence": "Priority PLOS case has frozen pre-correction t001 wrapper provenance; table-image object qualification is now separated from F3 value extraction",
-      "next_gate": "Qualify archived Table-1 image object as SAFE_EXACT, then run F3 content extraction",
-      "blocker": "Historical table image replay/qualification remains the object-level gate"
+      "evidence": "SAFE_EXACT/time-safe development cases now span F5 cited-source consistency, F3 raw-data recomputation, F8 body↔caption scope coherence, F3 table-schema structure, and F1 significance/p-direction consistency; correction metadata remains manager-only",
+      "next_gate": "Run formatting/honest-error control, build small matched no-known-concern comparator set, then continue voxel/table queue and prepare frozen confirmatory cohort",
+      "blocker": "No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus, grouped/temporal split freeze, detector freeze, and human-review protocol"
     },
     "012": {
       "progress": 66,
