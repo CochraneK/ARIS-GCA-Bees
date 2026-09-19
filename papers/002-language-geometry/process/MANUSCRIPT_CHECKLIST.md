@@ -50,6 +50,6 @@
 - [x] Anonymous Stage 0–1I scripts and JSON outputs bundled for supplement.
 - [x] Reproducibility environment frozen.
 - [x] Supplement CI passed.
-- [ ] DOCX/PDF build artifact passes visual QA.
+- [x] DOCX/PDF build artifact passes full 31-page visual QA.
 - [ ] Author completes IPA/affiliation/address/email/ORCID/funding/COI and confirms exclusivity.
 - [ ] ScholarOne submission.
