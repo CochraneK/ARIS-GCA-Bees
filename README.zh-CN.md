@@ -52,7 +52,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
   <img src="./docs/assets/readme/zh/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
-> Progress 是**项目管理估计**，不是科学结果。`100%` 表示仓库层面的最终输出契约已经满足。主状态固定为三类：**Active / 进行中** = 现在就能执行下一步；**Waiting / 等待中** = 必须等待外部、人类、独立审查、数据传输等依赖；**Quiet / 静默** = 已完成或主动暂存。最近是否更新、CI 是否正在运行属于独立信号。
+> Progress 是**项目管理估计**，不是科学结果。`100%` 表示仓库层面的最终输出契约已经满足。实时执行状态固定为四类：**Finish / 完成** = 已满足当前 final/output contract；**Active / 正在推进** = 近期确实有实质研究推进或 research job 正在运行；**Wait / 待推进** = 下一步可以做，但当前没有实际推进；**Block / 阻塞** = 必须等待外部、人类、独立审查、数据传输等依赖。
 
 ## 已达到公开交付状态的论文
 
@@ -63,22 +63,22 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 
 | ID | 项目 | 状态 | 进度 | 接管入口 |
 |---|---|---:|---:|---|
-| **001** | [蜜蜂 GCA × 不确定性](papers/001-gca-bees/) | ⚪ 静默 | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) |
-| **002** | [语言周期性检验](papers/002-language-geometry/) | ⚪ 静默 | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) |
-| **003** | [殖民遗产 × 学科优势](papers/003-colonial-disciplinary-advantage/) | 🟢 进行中 | 70% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) |
-| **004** | [排斥的反事实知识网络成本](papers/004-counterfactual-cost-of-exclusion/) | 🟢 进行中 | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
-| **005** | [坏科学的全球隐性负担](papers/005-hidden-burden-bad-science/) | 🟡 等待中 | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
-| **006** | [中国姓名字母顺序暴露](papers/006-chinese-alphabetical-exposure/) | 🟢 进行中 | 62% | [handoff](papers/006-chinese-alphabetical-exposure/handoff/AGENT_HANDOFF.md) |
-| **007** | [跨物种年龄等价](papers/007-cross-species-age-equivalence/) | 🟢 进行中 | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
-| **008** | [人类高级智力演化 Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟢 进行中 | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) |
-| **009** | [现象学保持型计算精神病学](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟢 进行中 | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) |
-| **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🟢 进行中 | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |
-| **011** | [Research Forensics](papers/011-research-forensics/) | 🟢 进行中 | 72% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) |
-| **012** | [Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟢 进行中 | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) |
-| **013** | [出生—死亡时间耦合](papers/013-birth-death-temporal-coupling/) | 🟡 等待中 | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) |
-| **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟢 进行中 | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
-| **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 进行中 | 83% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
-| **016** | [全球脏话 / 禁忌语言语法](papers/016-global-grammar-of-swearing/) | 🟡 等待中 | 55% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
+| **001** | [蜜蜂 GCA × 不确定性](papers/001-gca-bees/) | 🔵 完成 | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) |
+| **002** | [语言周期性检验](papers/002-language-geometry/) | 🔵 完成 | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) |
+| **003** | [殖民遗产 × 学科优势](papers/003-colonial-disciplinary-advantage/) | 🟡 待推进 | 70% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) |
+| **004** | [排斥的反事实知识网络成本](papers/004-counterfactual-cost-of-exclusion/) | 🟡 待推进 | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
+| **005** | [坏科学的全球隐性负担](papers/005-hidden-burden-bad-science/) | 🔴 阻塞 | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
+| **006** | [中国姓名字母顺序暴露](papers/006-chinese-alphabetical-exposure/) | 🟡 待推进 | 62% | [handoff](papers/006-chinese-alphabetical-exposure/handoff/AGENT_HANDOFF.md) |
+| **007** | [跨物种年龄等价](papers/007-cross-species-age-equivalence/) | 🟡 待推进 | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
+| **008** | [人类高级智力演化 Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟡 待推进 | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) |
+| **009** | [现象学保持型计算精神病学](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟡 待推进 | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) |
+| **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🟡 待推进 | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |
+| **011** | [Research Forensics](papers/011-research-forensics/) | 🟡 待推进 | 72% | [handoff](papers/011-research-forensics/handoff/AGENT_HANDOFF.md) |
+| **012** | [Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟡 待推进 | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) |
+| **013** | [出生—死亡时间耦合](papers/013-birth-death-temporal-coupling/) | 🔴 阻塞 | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) |
+| **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 待推进 | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
+| **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 正在推进 | 83% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
+| **016** | [全球脏话 / 禁忌语言语法](papers/016-global-grammar-of-swearing/) | 🔴 阻塞 | 55% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
 
 ## ARIS4C 如何运作
 

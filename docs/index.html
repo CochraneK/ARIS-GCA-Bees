@@ -15,16 +15,18 @@
       <div class="identity"><span class="avatar">A4</span><div class="identity-copy"><strong>ARIS4C</strong><span>Research command center</span></div></div>
       <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">16</span></button>
-        <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">11</span></button>
-        <button class="nav-item" type="button" data-filter="waiting" data-label="Waiting"><span class="nav-icon">◇</span><span>Waiting</span><span id="navWaitingCount" class="nav-count">3</span></button>
-        <button class="nav-item" type="button" data-filter="quiet" data-label="Quiet"><span class="nav-icon">○</span><span>Quiet</span><span id="navQuietCount" class="nav-count">2</span></button>
+        <button class="nav-item" type="button" data-filter="finish" data-label="Finish"><span class="nav-icon">✓</span><span>Finish</span><span id="navFinishCount" class="nav-count">2</span></button>
+        <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">1</span></button>
+        <button class="nav-item" type="button" data-filter="wait" data-label="Wait"><span class="nav-icon">◇</span><span>Wait</span><span id="navWaitCount" class="nav-count">10</span></button>
+        <button class="nav-item" type="button" data-filter="block" data-label="Block"><span class="nav-icon">×</span><span>Block</span><span id="navBlockCount" class="nav-count">3</span></button>
       </nav>
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
-          <div class="legend-row"><i class="dot active"></i><span>Can execute next step now</span></div>
-          <div class="legend-row"><i class="dot waiting"></i><span>Waiting on a dependency</span></div>
-          <div class="legend-row"><i class="dot quiet"></i><span>Complete or intentionally parked</span></div>
+          <div class="legend-row"><i class="dot finish"></i><span>Final/output contract complete</span></div>
+          <div class="legend-row"><i class="dot active"></i><span>Meaningful work is moving now</span></div>
+          <div class="legend-row"><i class="dot wait"></i><span>Can continue, but not moving now</span></div>
+          <div class="legend-row"><i class="dot block"></i><span>External dependency prevents progress</span></div>
         </div>
       </div>
       <div class="sidebar-spacer"></div>
@@ -49,14 +51,14 @@
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, next actions and dependencies. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but waiting, or externally blocked. Each project exposes PDF-first English and Chinese paper entrances when available.</p>
           <div class="overview">
-            <div class="metric"><strong>16</strong><span>tracked projects</span></div>
-            <div class="metric"><strong>11</strong><span>active</span></div>
-            <div class="metric"><strong>3</strong><span>waiting</span></div>
-            <div class="metric"><strong>2</strong><span>quiet</span></div>
+            <div class="metric"><strong>2</strong><span>finish</span></div>
+            <div class="metric"><strong>1</strong><span>active now</span></div>
+            <div class="metric"><strong>10</strong><span>wait</span></div>
+            <div class="metric"><strong>3</strong><span>block</span></div>
           </div>
-          <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · 16 projects at ≥45% · 3 waiting on dependencies</span><strong>71%</strong></div><div class="progress-track"><span style="width:71%"></span></div></div>
+          <div class="portfolio-progress"><div class="row"><span>16 papers · 2 finish · 1 active now · 10 wait · 3 block</span><strong>71%</strong></div><div class="progress-track"><span style="width:71%"></span></div></div>
         </section>
 
         <div class="control-bar">
@@ -82,10 +84,10 @@
           <div id="showcaseViewport" class="showcase-viewport" tabindex="0" aria-label="Rolling ARIS4C project showcase">
             <div id="showcaseTrack" class="showcase-track">
               
-      <article class="showcase-card" data-showcase-original="true" data-id="001" data-progress="100" data-activity="quiet" data-last-commit="2026-09-19T05:47:02Z" data-search="001 From General Learning Ability to Uncertainty Monitoring in Honey Bees Bee GCA × Uncertainty comparative cognition / psychometrics / computational neuroethology submission-package-ready Submission package ready · output gate PASS ARIS ARIS4C honey bees general cognitive ability uncertainty monitoring metacognition quantitative synthesis">
+      <article class="showcase-card" data-showcase-original="true" data-id="001" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T06:54:25Z" data-search="001 From General Learning Ability to Uncertainty Monitoring in Honey Bees Bee GCA × Uncertainty comparative cognition / psychometrics / computational neuroethology submission-package-ready Submission package ready · output gate PASS ARIS ARIS4C honey bees general cognitive ability uncertainty monitoring metacognition quantitative synthesis">
         <div class="showcase-top">
           <span class="showcase-id">#001</span>
-          <span class="showcase-state"><i></i>Quiet</span>
+          <span class="showcase-state"><i></i>Finish</span>
         </div>
         <h3>Bee GCA × Uncertainty</h3>
         <p>Submission package ready · output gate PASS</p>
@@ -96,10 +98,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="002" data-progress="100" data-activity="quiet" data-last-commit="2026-09-19T05:47:02Z" data-search="002 Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization Testing linguistic periodicity linguistic typology / quantitative linguistics / language universals / model comparison submission-ready-author-metadata-pending Submission package ready · output gate PASS ARIS ARIS4C linguistic typology language periodic table model comparison circular seriation WALS Grambank TLI GBI">
+      <article class="showcase-card" data-showcase-original="true" data-id="002" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T06:54:25Z" data-search="002 Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization Testing linguistic periodicity linguistic typology / quantitative linguistics / language universals / model comparison submission-ready-author-metadata-pending Submission package ready · output gate PASS ARIS ARIS4C linguistic typology language periodic table model comparison circular seriation WALS Grambank TLI GBI">
         <div class="showcase-top">
           <span class="showcase-id">#002</span>
-          <span class="showcase-state"><i></i>Quiet</span>
+          <span class="showcase-state"><i></i>Finish</span>
         </div>
         <h3>Testing linguistic periodicity</h3>
         <p>Submission package ready · output gate PASS</p>
@@ -110,10 +112,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="003" data-progress="70" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="003 Colonial Legacies and the Global Geography of Disciplinary Advantage Colonial Legacies × Disciplinary Advantage science of science / historical sociology / scientometrics analysis-running Outcome materialization · locked first confirmatory run ARIS ARIS4C colonialism imperialism scientometrics science of science disciplinary specialization bibliometrics">
+      <article class="showcase-card" data-showcase-original="true" data-id="003" data-progress="70" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="003 Colonial Legacies and the Global Geography of Disciplinary Advantage Colonial Legacies × Disciplinary Advantage science of science / historical sociology / scientometrics analysis-running Outcome materialization · locked first confirmatory run ARIS ARIS4C colonialism imperialism scientometrics science of science disciplinary specialization bibliometrics">
         <div class="showcase-top">
           <span class="showcase-id">#003</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Colonial Legacies × Disciplinary Advantage</h3>
         <p>Outcome materialization · locked first confirmatory run</p>
@@ -124,10 +126,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="004" data-progress="74" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="004 The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks Mental Health × Knowledge-Network Exclusion science of science / computational social science / cultural analytics / mental-health stigma feasibility-pilot Network100 acquired · work audit + independent second review ARIS ARIS4C mental health stigma discrimination knowledge networks counterfactual simulation network robustness science of science cultural analytics">
+      <article class="showcase-card" data-showcase-original="true" data-id="004" data-progress="74" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="004 The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks Mental Health × Knowledge-Network Exclusion science of science / computational social science / cultural analytics / mental-health stigma feasibility-pilot Network100 acquired · work audit + independent second review ARIS ARIS4C mental health stigma discrimination knowledge networks counterfactual simulation network robustness science of science cultural analytics">
         <div class="showcase-top">
           <span class="showcase-id">#004</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Mental Health × Knowledge-Network Exclusion</h3>
         <p>Network100 acquired · work audit + independent second review</p>
@@ -138,10 +140,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="005" data-progress="68" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
+      <article class="showcase-card" data-showcase-original="true" data-id="005" data-progress="68" data-activity="block" data-last-commit="2026-09-19T06:54:25Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
         <div class="showcase-top">
           <span class="showcase-id">#005</span>
-          <span class="showcase-state"><i></i>Waiting</span>
+          <span class="showcase-state"><i></i>Block</span>
         </div>
         <h3>Global Burden of Bad Science</h3>
         <p>Confirmatory adjudication ready · independent dual-AI gate</p>
@@ -152,10 +154,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="006" data-progress="62" data-activity="active" data-last-commit="2026-09-19T14:01:25+08:00" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
+      <article class="showcase-card" data-showcase-original="true" data-id="006" data-progress="62" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
         <div class="showcase-top">
           <span class="showcase-id">#006</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Chinese Surnames × Alphabetical Exposure</h3>
         <p>Identification feasibility · historical window frozen</p>
@@ -166,10 +168,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="007" data-progress="76" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="007 Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals Cross-Species Age Equivalence comparative biology / geroscience / life-history evolution / computational biology pilot2-event-benchmark-complete Pilot 3A molecular reproduction ARIS ARIS4C comparative aging biological age cross-species translation epigenetic clocks life history senescence Animal-Age">
+      <article class="showcase-card" data-showcase-original="true" data-id="007" data-progress="76" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="007 Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals Cross-Species Age Equivalence comparative biology / geroscience / life-history evolution / computational biology pilot2-event-benchmark-complete Pilot 3A molecular reproduction ARIS ARIS4C comparative aging biological age cross-species translation epigenetic clocks life history senescence Animal-Age">
         <div class="showcase-top">
           <span class="showcase-id">#007</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Cross-Species Age Equivalence</h3>
         <p>Pilot 3A molecular reproduction</p>
@@ -180,10 +182,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="008" data-progress="60" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="008 The Human Intelligence Bootstrap: Necessary, Sufficient, and Bottleneck Configurations for Open-Ended Cumulative Intelligence Across Animals Human Intelligence Bootstrap comparative cognition / cultural evolution / human evolution / macroevolution design Pilot 8 · atomic A–F deep-coding queue ARIS ARIS4C human evolution comparative cognition cumulative culture animal culture phylogenetic comparative methods intelligence social learning cultural evolution">
+      <article class="showcase-card" data-showcase-original="true" data-id="008" data-progress="60" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="008 The Human Intelligence Bootstrap: Necessary, Sufficient, and Bottleneck Configurations for Open-Ended Cumulative Intelligence Across Animals Human Intelligence Bootstrap comparative cognition / cultural evolution / human evolution / macroevolution design Pilot 8 · atomic A–F deep-coding queue ARIS ARIS4C human evolution comparative cognition cumulative culture animal culture phylogenetic comparative methods intelligence social learning cultural evolution">
         <div class="showcase-top">
           <span class="showcase-id">#008</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Human Intelligence Bootstrap</h3>
         <p>Pilot 8 · atomic A–F deep-coding queue</p>
@@ -194,10 +196,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="009" data-progress="56" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="009 The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology Phenomenology-Preserving Computational Psychiatry computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement pilot-0 Design hardened · pilot-gated ARIS ARIS4C computational psychiatry phenomenology psychopathology measurement representation fidelity AI judges pilot-0 DAIS-C">
+      <article class="showcase-card" data-showcase-original="true" data-id="009" data-progress="56" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="009 The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology Phenomenology-Preserving Computational Psychiatry computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement pilot-0 Design hardened · pilot-gated ARIS ARIS4C computational psychiatry phenomenology psychopathology measurement representation fidelity AI judges pilot-0 DAIS-C">
         <div class="showcase-top">
           <span class="showcase-id">#009</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Phenomenology-Preserving Computational Psychiatry</h3>
         <p>Design hardened · pilot-gated</p>
@@ -208,10 +210,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="010" data-progress="72" data-activity="active" data-last-commit="2026-09-19T13:47:26+08:00" data-search="010 Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification Universal Concept Identification information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition human-calibration-ready-p2-p3-p6 Source-derived Pilot 2 + calibration60 ARIS ARIS4C Twenty Questions query complexity active learning ontology lexical semantics concept identification information theory vagueness paraconsistent logic ineffability">
+      <article class="showcase-card" data-showcase-original="true" data-id="010" data-progress="72" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="010 Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification Universal Concept Identification information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition human-calibration-ready-p2-p3-p6 Source-derived Pilot 2 + calibration60 ARIS ARIS4C Twenty Questions query complexity active learning ontology lexical semantics concept identification information theory vagueness paraconsistent logic ineffability">
         <div class="showcase-top">
           <span class="showcase-id">#010</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Universal Concept Identification</h3>
         <p>Source-derived Pilot 2 + calibration60</p>
@@ -222,10 +224,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="011" data-progress="72" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-benchmark-seed Pilot 3 · object-level historical table qualification ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
+      <article class="showcase-card" data-showcase-original="true" data-id="011" data-progress="72" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-benchmark-seed Pilot 3 · object-level historical table qualification ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
         <div class="showcase-top">
           <span class="showcase-id">#011</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Research Forensics</h3>
         <p>Pilot 3 · object-level historical table qualification</p>
@@ -236,10 +238,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="012" data-progress="66" data-activity="active" data-last-commit="2026-09-19T06:47:44Z" data-search="012 When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion Indexed Oppositional Causal Inversion metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems coderb-complete-ready-for-adjudication Pilot 0B complete · adjudication gate ARIS ARIS4C causal inversion paradox unintended consequences counterfinality choice overload autonomy deliberate ignorance less-is-more deterrence intergroup conflict Orwell">
+      <article class="showcase-card" data-showcase-original="true" data-id="012" data-progress="66" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="012 When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion Indexed Oppositional Causal Inversion metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems coderb-complete-ready-for-adjudication Pilot 0B complete · adjudication gate ARIS ARIS4C causal inversion paradox unintended consequences counterfinality choice overload autonomy deliberate ignorance less-is-more deterrence intergroup conflict Orwell">
         <div class="showcase-top">
           <span class="showcase-id">#012</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Indexed Oppositional Causal Inversion</h3>
         <p>Pilot 0B complete · adjudication gate</p>
@@ -250,10 +252,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="013" data-progress="50" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
+      <article class="showcase-card" data-showcase-original="true" data-id="013" data-progress="50" data-activity="block" data-last-commit="2026-09-19T06:54:25Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
         <div class="showcase-top">
           <span class="showcase-id">#013</span>
-          <span class="showcase-state"><i></i>Waiting</span>
+          <span class="showcase-state"><i></i>Block</span>
         </div>
         <h3>Birth–Death Temporal Coupling</h3>
         <p>Public NUMIDENT transfer · Pilot 1 ready</p>
@@ -264,10 +266,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="014" data-progress="69" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="014 Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data Public Integrity Forensics public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics china-pilot0-stable-id-proven-cross-source-enrichment-next China Pilot 1 · conservative cross-source entity layer ARIS ARIS4C anti-corruption public integrity open data public procurement beneficial ownership PEP entity resolution evidence graph human-in-the-loop forensics China internet mining hospitals SOEs research institutes universities NGOs web forensics">
+      <article class="showcase-card" data-showcase-original="true" data-id="014" data-progress="69" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="014 Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data Public Integrity Forensics public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics china-pilot0-stable-id-proven-cross-source-enrichment-next China Pilot 1 · conservative cross-source entity layer ARIS ARIS4C anti-corruption public integrity open data public procurement beneficial ownership PEP entity resolution evidence graph human-in-the-loop forensics China internet mining hospitals SOEs research institutes universities NGOs web forensics">
         <div class="showcase-top">
           <span class="showcase-id">#014</span>
-          <span class="showcase-state"><i></i>Active</span>
+          <span class="showcase-state"><i></i>Wait</span>
         </div>
         <h3>Public Integrity Forensics</h3>
         <p>China Pilot 1 · conservative cross-source entity layer</p>
@@ -292,10 +294,10 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="016" data-progress="55" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
+      <article class="showcase-card" data-showcase-original="true" data-id="016" data-progress="55" data-activity="block" data-last-commit="2026-09-19T06:54:25Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
         <div class="showcase-top">
           <span class="showcase-id">#016</span>
-          <span class="showcase-state"><i></i>Waiting</span>
+          <span class="showcase-state"><i></i>Block</span>
         </div>
         <h3>Global Grammar of Swearing</h3>
         <p>Empirical Phase 0 working manuscript</p>
@@ -318,10 +320,10 @@
             <p>Management layer: <code>papers/dashboard.json</code></p>
           </div>
           <section id="paperGrid" class="grid">
-    <article class="paper-card" data-id="001" data-progress="100" data-activity="quiet" data-last-commit="2026-09-19T05:47:02Z" data-search="001 From General Learning Ability to Uncertainty Monitoring in Honey Bees Bee GCA × Uncertainty comparative cognition / psychometrics / computational neuroethology submission-package-ready Submission package ready · output gate PASS ARIS ARIS4C honey bees general cognitive ability uncertainty monitoring metacognition quantitative synthesis">
+    <article class="paper-card" data-id="001" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T06:54:25Z" data-search="001 From General Learning Ability to Uncertainty Monitoring in Honey Bees Bee GCA × Uncertainty comparative cognition / psychometrics / computational neuroethology submission-package-ready Submission package ready · output gate PASS ARIS ARIS4C honey bees general cognitive ability uncertainty monitoring metacognition quantitative synthesis">
       <div class="paper-topline">
         <span class="paper-id">#001</span>
-        <span class="heartbeat"><i></i>Quiet</span>
+        <span class="heartbeat"><i></i>Finish</span>
       </div>
       <div class="statusline">submission-package-ready</div>
       <h3>From General Learning Ability to Uncertainty Monitoring in Honey Bees</h3>
@@ -333,15 +335,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Author portal submission</strong></div>
       </div>
       <div class="blocker is-clear"><span>Blocker</span>None scientific; author-only portal/contact fields</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:47:02Z">Last commit · —</span><span>2026</span><span>comparative cognition / psychometrics / computational neuroethology</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:54:25Z">Last commit · —</span><span>2026</span><span>comparative cognition / psychometrics / computational neuroethology</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">honey bees</span><span class="tag">general cognitive ability</span></div>
       <div class="actions"><a class="btn primary" href="paper/001/en/main.pdf">English</a><a class="btn" href="paper/001/zh/main.pdf">中文</a></div>
     </article>
 
-    <article class="paper-card" data-id="002" data-progress="100" data-activity="quiet" data-last-commit="2026-09-19T05:47:02Z" data-search="002 Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization Testing linguistic periodicity linguistic typology / quantitative linguistics / language universals / model comparison submission-ready-author-metadata-pending Submission package ready · output gate PASS ARIS ARIS4C linguistic typology language periodic table model comparison circular seriation WALS Grambank TLI GBI">
+    <article class="paper-card" data-id="002" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T06:54:25Z" data-search="002 Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization Testing linguistic periodicity linguistic typology / quantitative linguistics / language universals / model comparison submission-ready-author-metadata-pending Submission package ready · output gate PASS ARIS ARIS4C linguistic typology language periodic table model comparison circular seriation WALS Grambank TLI GBI">
       <div class="paper-topline">
         <span class="paper-id">#002</span>
-        <span class="heartbeat"><i></i>Quiet</span>
+        <span class="heartbeat"><i></i>Finish</span>
       </div>
       <div class="statusline">submission-ready-author-metadata-pending</div>
       <h3>Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization</h3>
@@ -353,15 +355,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Author metadata/declarations + ScholarOne submission</strong></div>
       </div>
       <div class="blocker is-clear"><span>Blocker</span>None scientific; author-only metadata/declarations and portal submission</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:47:02Z">Last commit · —</span><span>2026</span><span>linguistic typology / quantitative linguistics / language universals / model comparison</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:54:25Z">Last commit · —</span><span>2026</span><span>linguistic typology / quantitative linguistics / language universals / model comparison</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">linguistic typology</span><span class="tag">language periodic table</span></div>
       <div class="actions"><a class="btn primary" href="paper/002/en/main.pdf">English</a><a class="btn" href="paper/002/zh/main.pdf">中文</a></div>
     </article>
 
-    <article class="paper-card" data-id="003" data-progress="70" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="003 Colonial Legacies and the Global Geography of Disciplinary Advantage Colonial Legacies × Disciplinary Advantage science of science / historical sociology / scientometrics analysis-running Outcome materialization · locked first confirmatory run ARIS ARIS4C colonialism imperialism scientometrics science of science disciplinary specialization bibliometrics">
+    <article class="paper-card" data-id="003" data-progress="70" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="003 Colonial Legacies and the Global Geography of Disciplinary Advantage Colonial Legacies × Disciplinary Advantage science of science / historical sociology / scientometrics analysis-running Outcome materialization · locked first confirmatory run ARIS ARIS4C colonialism imperialism scientometrics science of science disciplinary specialization bibliometrics">
       <div class="paper-topline">
         <span class="paper-id">#003</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">analysis-running</div>
       <h3>Colonial Legacies and the Global Geography of Disciplinary Advantage</h3>
@@ -373,15 +375,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Complete OpenAlex country/dyad panels, 3 headline PPMLs, 3×999 permutations, LOO and first-result hash lock</strong></div>
       </div>
       <div class="blocker is-clear"><span>Blocker</span>None · public OpenAlex snapshot scan is compute/network intensive</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>science of science / historical sociology / scientometrics</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>science of science / historical sociology / scientometrics</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">colonialism</span><span class="tag">imperialism</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="004" data-progress="74" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="004 The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks Mental Health × Knowledge-Network Exclusion science of science / computational social science / cultural analytics / mental-health stigma feasibility-pilot Network100 acquired · work audit + independent second review ARIS ARIS4C mental health stigma discrimination knowledge networks counterfactual simulation network robustness science of science cultural analytics">
+    <article class="paper-card" data-id="004" data-progress="74" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="004 The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks Mental Health × Knowledge-Network Exclusion science of science / computational social science / cultural analytics / mental-health stigma feasibility-pilot Network100 acquired · work audit + independent second review ARIS ARIS4C mental health stigma discrimination knowledge networks counterfactual simulation network robustness science of science cultural analytics">
       <div class="paper-topline">
         <span class="paper-id">#004</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">feasibility-pilot</div>
       <h3>The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks</h3>
@@ -393,15 +395,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Prioritize and audit the 334 held-work sample; complete independent 40-case identity second review</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Independent identity judgments and work-level contamination decisions are still required before exposure coding</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>science of science / computational social science / cultural analytics / mental-health stigma</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>science of science / computational social science / cultural analytics / mental-health stigma</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">mental health</span><span class="tag">stigma</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="005" data-progress="68" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
+    <article class="paper-card" data-id="005" data-progress="68" data-activity="block" data-last-commit="2026-09-19T06:54:25Z" data-search="005 The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures Global Burden of Bad Science meta-research / science of science / bibliometrics / research integrity / causal inference pilot-b-adjudication-ready Confirmatory adjudication ready · independent dual-AI gate ARIS ARIS4C research integrity research misconduct retractions research waste bibliometrics science of science Bayesian latent class capture-recapture opportunity cost sleeping beauties">
       <div class="paper-topline">
         <span class="paper-id">#005</span>
-        <span class="heartbeat"><i></i>Waiting</span>
+        <span class="heartbeat"><i></i>Block</span>
       </div>
       <div class="statusline">pilot-b-adjudication-ready</div>
       <h3>The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures</h3>
@@ -413,15 +415,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Run genuinely independent dual-AI adjudication + arbitration + calibration</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Second independent adjudicator execution surface is not available in the current control thread; do not duplicate one model as two.</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:45:38Z">Last commit · —</span><span>2026</span><span>meta-research / science of science / bibliometrics / research integrity / causal inference</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:54:25Z">Last commit · —</span><span>2026</span><span>meta-research / science of science / bibliometrics / research integrity / causal inference</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">research integrity</span><span class="tag">research misconduct</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="006" data-progress="62" data-activity="active" data-last-commit="2026-09-19T14:01:25+08:00" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
+    <article class="paper-card" data-id="006" data-progress="62" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
       <div class="paper-topline">
         <span class="paper-id">#006</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">analysis</div>
       <h3>Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System</h3>
@@ -433,15 +435,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Finish validated author-order/identity exposure pipeline and unlock longitudinal outcome design</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Exposure/identity validation before confirmatory career outcomes</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T14:01:25+08:00">Last commit · —</span><span>2026</span><span>science of science / scientometrics / sociology of science / names research</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>science of science / scientometrics / sociology of science / names research</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">Chinese names</span><span class="tag">surname initials</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="007" data-progress="76" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="007 Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals Cross-Species Age Equivalence comparative biology / geroscience / life-history evolution / computational biology pilot2-event-benchmark-complete Pilot 3A molecular reproduction ARIS ARIS4C comparative aging biological age cross-species translation epigenetic clocks life history senescence Animal-Age">
+    <article class="paper-card" data-id="007" data-progress="76" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="007 Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals Cross-Species Age Equivalence comparative biology / geroscience / life-history evolution / computational biology pilot2-event-benchmark-complete Pilot 3A molecular reproduction ARIS ARIS4C comparative aging biological age cross-species translation epigenetic clocks life history senescence Animal-Age">
       <div class="paper-topline">
         <span class="paper-id">#007</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">pilot2-event-benchmark-complete</div>
       <h3>Are Animal Years Comparable? Benchmarking Cross-Species Biological Age Equivalence Across Mammals</h3>
@@ -453,15 +455,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Materialise molecular/epigenetic age axes and compare independent clocks</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Independent molecular-axis data/reproduction</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>comparative biology / geroscience / life-history evolution / computational biology</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>comparative biology / geroscience / life-history evolution / computational biology</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">comparative aging</span><span class="tag">biological age</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="008" data-progress="60" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="008 The Human Intelligence Bootstrap: Necessary, Sufficient, and Bottleneck Configurations for Open-Ended Cumulative Intelligence Across Animals Human Intelligence Bootstrap comparative cognition / cultural evolution / human evolution / macroevolution design Pilot 8 · atomic A–F deep-coding queue ARIS ARIS4C human evolution comparative cognition cumulative culture animal culture phylogenetic comparative methods intelligence social learning cultural evolution">
+    <article class="paper-card" data-id="008" data-progress="60" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="008 The Human Intelligence Bootstrap: Necessary, Sufficient, and Bottleneck Configurations for Open-Ended Cumulative Intelligence Across Animals Human Intelligence Bootstrap comparative cognition / cultural evolution / human evolution / macroevolution design Pilot 8 · atomic A–F deep-coding queue ARIS ARIS4C human evolution comparative cognition cumulative culture animal culture phylogenetic comparative methods intelligence social learning cultural evolution">
       <div class="paper-topline">
         <span class="paper-id">#008</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">design</div>
       <h3>The Human Intelligence Bootstrap: Necessary, Sufficient, and Bottleneck Configurations for Open-Ended Cumulative Intelligence Across Animals</h3>
@@ -473,15 +475,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Fill priority-1 tested-negative/positive A–F cells, then rebuild empirical matrix</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>399 A–F cells remain open; 150 calibration cells are highest priority</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>comparative cognition / cultural evolution / human evolution / macroevolution</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>comparative cognition / cultural evolution / human evolution / macroevolution</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">human evolution</span><span class="tag">comparative cognition</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="009" data-progress="56" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="009 The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology Phenomenology-Preserving Computational Psychiatry computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement pilot-0 Design hardened · pilot-gated ARIS ARIS4C computational psychiatry phenomenology psychopathology measurement representation fidelity AI judges pilot-0 DAIS-C">
+    <article class="paper-card" data-id="009" data-progress="56" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="009 The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology Phenomenology-Preserving Computational Psychiatry computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement pilot-0 Design hardened · pilot-gated ARIS ARIS4C computational psychiatry phenomenology psychopathology measurement representation fidelity AI judges pilot-0 DAIS-C">
       <div class="paper-topline">
         <span class="paper-id">#009</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">pilot-0</div>
       <h3>The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology</h3>
@@ -493,15 +495,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Acquire real pilot material and independent raters</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Real phenomenological corpus + reliability calibration</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">computational psychiatry</span><span class="tag">phenomenology</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="010" data-progress="72" data-activity="active" data-last-commit="2026-09-19T13:47:26+08:00" data-search="010 Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification Universal Concept Identification information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition human-calibration-ready-p2-p3-p6 Source-derived Pilot 2 + calibration60 ARIS ARIS4C Twenty Questions query complexity active learning ontology lexical semantics concept identification information theory vagueness paraconsistent logic ineffability">
+    <article class="paper-card" data-id="010" data-progress="72" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="010 Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification Universal Concept Identification information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition human-calibration-ready-p2-p3-p6 Source-derived Pilot 2 + calibration60 ARIS ARIS4C Twenty Questions query complexity active learning ontology lexical semantics concept identification information theory vagueness paraconsistent logic ineffability">
       <div class="paper-topline">
         <span class="paper-id">#010</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">human-calibration-ready-p2-p3-p6</div>
       <h3>Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification</h3>
@@ -513,15 +515,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Human-calibrate P2/P6 responses, then expand toward mixed Benchmark v0</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Human semantic calibration before benchmark-scale claims</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T13:47:26+08:00">Last commit · —</span><span>2026</span><span>information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">Twenty Questions</span><span class="tag">query complexity</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="011" data-progress="72" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-benchmark-seed Pilot 3 · object-level historical table qualification ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
+    <article class="paper-card" data-id="011" data-progress="72" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-benchmark-seed Pilot 3 · object-level historical table qualification ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
       <div class="paper-topline">
         <span class="paper-id">#011</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">methods-draft-agent-skill-benchmark-seed</div>
       <h3>Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening</h3>
@@ -533,15 +535,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Qualify archived Table-1 image object as SAFE_EXACT, then run F3 content extraction</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Historical table image replay/qualification remains the object-level gate</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">research integrity</span><span class="tag">research forensics</span></div>
       <div class="actions"><a class="btn primary" href="https://github.com/CochraneK/ARIS4C/blob/main/papers/011-research-forensics/manuscript/DRAFT.md">English</a><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="012" data-progress="66" data-activity="active" data-last-commit="2026-09-19T06:47:44Z" data-search="012 When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion Indexed Oppositional Causal Inversion metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems coderb-complete-ready-for-adjudication Pilot 0B complete · adjudication gate ARIS ARIS4C causal inversion paradox unintended consequences counterfinality choice overload autonomy deliberate ignorance less-is-more deterrence intergroup conflict Orwell">
+    <article class="paper-card" data-id="012" data-progress="66" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="012 When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion Indexed Oppositional Causal Inversion metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems coderb-complete-ready-for-adjudication Pilot 0B complete · adjudication gate ARIS ARIS4C causal inversion paradox unintended consequences counterfinality choice overload autonomy deliberate ignorance less-is-more deterrence intergroup conflict Orwell">
       <div class="paper-topline">
         <span class="paper-id">#012</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">coderb-complete-ready-for-adjudication</div>
       <h3>When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion</h3>
@@ -553,15 +555,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Adjudicate disagreements, reconcile mechanism taxonomy, and freeze post-adjudication reliability before broader claims</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>No missing independent coder; current gate is substantive adjudication, especially low-agreement mechanism/causal-strength fields</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:47:44Z">Last commit · —</span><span>2026</span><span>metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>metascience / causal inference / psychology / economics / organization science / international relations / information science / complex systems</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">causal inversion</span><span class="tag">paradox</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="013" data-progress="50" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
+    <article class="paper-card" data-id="013" data-progress="50" data-activity="block" data-last-commit="2026-09-19T06:54:25Z" data-search="013 Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems Birth–Death Temporal Coupling epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience research-design Public NUMIDENT transfer · Pilot 1 ready ARIS ARIS4C mortality birthday effect birth season circular statistics Bazi replication">
       <div class="paper-topline">
         <span class="paper-id">#013</span>
-        <span class="heartbeat"><i></i>Waiting</span>
+        <span class="heartbeat"><i></i>Block</span>
       </div>
       <div class="statusline">research-design</div>
       <h3>Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems</h3>
@@ -573,15 +575,15 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Transfer two public-use NUMIDENT V3 death archives, verify layout/hashes, run frozen Pilot 1</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>~1.88 GB file transfer into execution environment; no identity/permission blocker</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:45:38Z">Last commit · —</span><span>2026</span><span>epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:54:25Z">Last commit · —</span><span>2026</span><span>epidemiology / demography / survival analysis / cultural psychology / chronobiology / metascience</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">mortality</span><span class="tag">birthday effect</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="014" data-progress="69" data-activity="active" data-last-commit="2026-09-19T05:45:49Z" data-search="014 Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data Public Integrity Forensics public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics china-pilot0-stable-id-proven-cross-source-enrichment-next China Pilot 1 · conservative cross-source entity layer ARIS ARIS4C anti-corruption public integrity open data public procurement beneficial ownership PEP entity resolution evidence graph human-in-the-loop forensics China internet mining hospitals SOEs research institutes universities NGOs web forensics">
+    <article class="paper-card" data-id="014" data-progress="69" data-activity="wait" data-last-commit="2026-09-19T06:55:49Z" data-search="014 Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data Public Integrity Forensics public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics china-pilot0-stable-id-proven-cross-source-enrichment-next China Pilot 1 · conservative cross-source entity layer ARIS ARIS4C anti-corruption public integrity open data public procurement beneficial ownership PEP entity resolution evidence graph human-in-the-loop forensics China internet mining hospitals SOEs research institutes universities NGOs web forensics">
       <div class="paper-topline">
         <span class="paper-id">#014</span>
-        <span class="heartbeat"><i></i>Active</span>
+        <span class="heartbeat"><i></i>Wait</span>
       </div>
       <div class="statusline">china-pilot0-stable-id-proven-cross-source-enrichment-next</div>
       <h3>Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data</h3>
@@ -593,7 +595,7 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Run cross-source enrichment with exact stable IDs; route name-only matches to review</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Authoritative stable identifiers and source coverage vary by organization type</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T05:45:49Z">Last commit · —</span><span>2026</span><span>public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:55:49Z">Last commit · —</span><span>2026</span><span>public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">anti-corruption</span><span class="tag">public integrity</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
@@ -618,10 +620,10 @@
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="016" data-progress="55" data-activity="waiting" data-last-commit="2026-09-19T06:45:38Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
+    <article class="paper-card" data-id="016" data-progress="55" data-activity="block" data-last-commit="2026-09-19T06:54:25Z" data-search="016 The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity Global Grammar of Swearing linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution working-manuscript-phase0 Empirical Phase 0 working manuscript ARIS ARIS4C swearing taboo language profanity cross-linguistic linguistic typology cultural evolution sound symbolism phylogenetic correction sociolinguistics">
       <div class="paper-topline">
         <span class="paper-id">#016</span>
-        <span class="heartbeat"><i></i>Waiting</span>
+        <span class="heartbeat"><i></i>Block</span>
       </div>
       <div class="statusline">working-manuscript-phase0</div>
       <h3>The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity</h3>
@@ -633,7 +635,7 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Independent dual-coder ontology audit and end-to-end variance decomposition</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Independent/native-speaker annotation and Phase-0 reliability</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:45:38Z">Last commit · —</span><span>2026</span><span>linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T06:54:25Z">Last commit · —</span><span>2026</span><span>linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">swearing</span><span class="tag">taboo language</span></div>
       <div class="actions"><a class="btn primary" href="https://github.com/CochraneK/ARIS4C/blob/main/papers/016-global-grammar-of-swearing/manuscript/DRAFT.md">English</a><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article></section>
