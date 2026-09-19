@@ -9,17 +9,17 @@ A falsification-first cross-linguistic program testing which properties of taboo
 ## Current state
 
 - Activity: **block**
-- Progress: **55%**
-- Stage: **Empirical Phase 0 working manuscript**
-- Evidence: Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript
+- Progress: **60%**
+- Stage: **Empirical Phase 0 · measurement/control package frozen**
+- Evidence: Working manuscript + OSF audit + ontology/harmonisation + Glottolog + FWL item-FE + balanced/filler controls + frozen 300-row coder sample
 
 ## Immediate next action
 
-**Independent dual-coder ontology audit and end-to-end variance decomposition**
+**Independent Coder A/B ontology audit, native-language review, then measurement-corrected fingerprints**
 
 ## Current blocker / gate
 
-Independent/native-speaker annotation and Phase-0 reliability
+Genuinely independent/native-speaker annotation is required; current assistant cannot count as both coders
 
 ## Canonical files / entry points
 
