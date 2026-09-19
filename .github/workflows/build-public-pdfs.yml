@@ -1,0 +1,74 @@
+name: Build ARIS4C public PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/001-gca-bees/manuscript/**'
+      - 'papers/001-gca-bees/figures/**'
+      - 'papers/002-language-geometry/manuscript/**'
+      - 'papers/002-language-geometry/figures/**'
+      - 'tools/build_public_pdfs.py'
+      - 'tools/pdf_publication.css'
+      - '.github/workflows/build-public-pdfs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c-public-pdfs
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PDF dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends             fonts-noto-cjk fonts-noto-core             libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+          python -m pip install --upgrade pip
+          python -m pip install 'weasyprint>=66,<67' 'Markdown>=3.7,<4' 'pypdf>=5,<6'
+
+      - name: Build bilingual PDFs
+        run: python tools/build_public_pdfs.py
+
+      - name: Validate PDFs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          paths = [
+              Path('docs/paper/001/en/main.pdf'),
+              Path('docs/paper/001/zh/main.pdf'),
+              Path('docs/paper/002/en/main.pdf'),
+              Path('docs/paper/002/zh/main.pdf'),
+          ]
+          for p in paths:
+              r = PdfReader(str(p))
+              if len(r.pages) < 2:
+                  raise SystemExit(f'{p}: suspicious page count {len(r.pages)}')
+              text = ''.join((page.extract_text() or '') for page in r.pages[:2])
+              if len(text.strip()) < 200:
+                  raise SystemExit(f'{p}: insufficient extractable text')
+              print(p, len(r.pages), p.stat().st_size)
+          PY
+
+      - name: Commit refreshed PDFs
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/paper/001/en/main.pdf docs/paper/001/zh/main.pdf                   docs/paper/002/en/main.pdf docs/paper/002/zh/main.pdf
+          if git diff --cached --quiet; then
+            echo "PDFs already current"
+            exit 0
+          fi
+          git commit -m "docs: rebuild bilingual publication PDFs"
+          git pull --rebase origin main
+          git push origin HEAD:main
