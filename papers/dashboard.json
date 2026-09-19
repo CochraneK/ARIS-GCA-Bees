@@ -84,12 +84,12 @@
       "blocker": "External human-study gate: ethics/exemption determination, recruitment/platform setup, and real participant semantic calibration; LLM/synthetic responses cannot substitute"
     },
     "011": {
-      "progress": 86,
-      "stage": "Confirmatory transition · blinded 80-record feasibility frame frozen",
+      "progress": 87,
+      "stage": "Confirmatory transition · 80-record blinded feasibility frame frozen · exposure firewall expanded",
       "activity": "active",
-      "evidence": "Enriched development cycle closed at six time-safe pre-outcome FLAG evaluations across five target papers plus one SAFE_EXACT formatting/honest-error non-escalation control and four hashed development comparators. A detector-output-blind confirmatory-feasibility frame is now frozen at 80 journal articles across all 20 year×update-type strata (2016–2025 × correction/retraction; 4/stratum), excluding 42 development-exposed DOIs. Crossref feasibility fields show 79/80 full-text links and 25/80 current-title status markers; no detector performance has been inspected.",
-      "next_gate": "Build manager-only issue-adjudication packets for the frozen 80 records, assign issue family + required artifact role without detector output, then quantify and freeze SAFE_EXACT / PROXY_ONLY / BLOCKED attrition before confirmatory splits/scoring.",
-      "blocker": "No immediate engineering blocker. Confirmatory scoring remains procedurally disabled until broader-corpus issue/artifact adjudication, attrition freeze, grouped/temporal splits, detector/applicability/threshold freeze, leakage audit, and human-review protocol are complete."
+      "evidence": "Development cycle closed at six time-safe pre-outcome FLAG evaluations, one SAFE_EXACT formatting-control non-escalation case, and four hashed development comparators. A detector-output-blind feasibility frame contains 80 journal articles across all 20 year×update-type strata (2016–2025 × correction/retraction; 4/stratum). Because feasibility papers can affect acquisition/sample-size design, the development-exposure firewall was conservatively expanded to 180 DOIs, including feasibility target/source/notice DOIs, preventing reuse in final confirmatory performance manifests.",
+      "next_gate": "Build manager-only issue-adjudication packets for the frozen 80 feasibility records, assign issue family + required artifact role without detector output, quantify SAFE_EXACT / PROXY_ONLY / BLOCKED attrition, then use those aggregate feasibility rates to design a fresh independent confirmatory corpus.",
+      "blocker": "No immediate engineering blocker. Confirmatory scoring remains disabled until a fresh post-feasibility corpus is built and frozen with attrition, grouped/temporal splits, detector/applicability/threshold freeze, leakage audit, and human-review protocol."
     },
     "012": {
       "progress": 66,
@@ -108,12 +108,12 @@
       "blocker": "~1.88 GB file transfer into execution environment; no identity/permission blocker"
     },
     "014": {
-      "progress": 69,
-      "stage": "China Pilot 1 · conservative cross-source entity layer",
-      "activity": "wait",
-      "evidence": "CCGP/CAS/USCC live graph + stable-ID-only auto-merge resolver under CI",
-      "next_gate": "Run cross-source enrichment with exact stable IDs; route name-only matches to review",
-      "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
+      "progress": 71,
+      "stage": "China Pilot 1 · exact-USCC cross-source enrichment contract validated",
+      "activity": "active",
+      "evidence": "CCGP/CAS/USCC graph + stable-ID-only resolver now extended with a tested cross-source enrichment contract: only exact valid CN-USCC equality can auto-attach allowlisted factual registry attributes; name-only matches are REVIEW_CANDIDATE, same-name disjoint IDs are conflicts, interactive/unavailable sources are COVERAGE_GAP, sensitive contact fields are not propagated, and corruption_inference remains false. ARIS4C014 CI runs 118–119 PASS.",
+      "next_gate": "Implement the first lawful second-source organization adapter that exposes exact CN-USCC without bypassing interactive/CAPTCHA controls; run a bounded joinability enrichment and report exact-ID matches, review candidates, conflicts and coverage gaps.",
+      "blocker": "No architecture blocker. The primary constraint is lawful machine-readable access to authoritative second-source stable identifiers; interactive/CAPTCHA-protected registries must remain explicit coverage gaps rather than being bypassed."
     },
     "015": {
       "progress": 88,
