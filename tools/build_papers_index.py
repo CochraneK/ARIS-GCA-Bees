@@ -287,32 +287,34 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
 
       <main class="content">
         <section class="hero">
-          <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
-          <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but idle, or externally blocked. Each project exposes PDF-first English and Chinese paper entrances when available.</p>
-          <div class="overview">
-            <div class="metric"><strong>{finish}</strong><span>finish</span></div>
-            <div class="metric"><strong>{active}</strong><span>active now</span></div>
-            <div class="metric"><strong>{wait}</strong><span>wait</span></div>
-            <div class="metric"><strong>{block}</strong><span>block</span></div>
-          </div>
-          <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {wait} wait · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
-        </section>
-
-        <section id="progressHistorySection" class="progress-history-panel" aria-labelledby="progressHistoryTitle">
-          <div class="progress-history-head">
-            <div>
-              <p class="eyebrow">TODAY · GIT-DERIVED</p>
-              <h2 id="progressHistoryTitle">Today's progress · all papers</h2>
-              <p>All tracked papers on one chart; only today's <code>papers/dashboard.json</code> checkpoints are shown.</p>
+          <div class="hero-main">
+            <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
+            <h1>Research as a living system.</h1>
+            <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but idle, or externally blocked. Each project exposes PDF-first English and Chinese paper entrances when available.</p>
+            <div class="overview">
+              <div class="metric"><strong>{finish}</strong><span>finish</span></div>
+              <div class="metric"><strong>{active}</strong><span>active now</span></div>
+              <div class="metric"><strong>{wait}</strong><span>wait</span></div>
+              <div class="metric"><strong>{block}</strong><span>block</span></div>
             </div>
-            <strong class="progress-history-day">{esc(day_history.get("date", ""))}</strong>
+            <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {wait} wait · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
           </div>
-          <div class="progress-history-chart-wrap">
-            <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 330" role="img" aria-label="Today's ARIS4C progress for all papers"></svg>
-          </div>
-          <div id="progressHistoryLegend" class="progress-history-legend" aria-label="Paper legend"></div>
-          <div class="progress-history-foot"><span id="progressHistorySummary">{esc(history_summary)}</span><span>Git checkpoints · management estimate, not a scientific result</span></div>
+
+          <section id="progressHistorySection" class="progress-history-panel hero-history" aria-labelledby="progressHistoryTitle">
+            <div class="progress-history-head">
+              <div>
+                <p class="eyebrow">TODAY · GIT-DERIVED</p>
+                <h2 id="progressHistoryTitle">Today's progress</h2>
+                <p>All papers · today's dashboard checkpoints only.</p>
+              </div>
+              <strong class="progress-history-day">{esc(day_history.get("date", ""))}</strong>
+            </div>
+            <div class="progress-history-chart-wrap">
+              <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 330" role="img" aria-label="Today's ARIS4C progress for all papers"></svg>
+            </div>
+            <div id="progressHistoryLegend" class="progress-history-legend" aria-label="Paper legend"></div>
+            <div class="progress-history-foot"><span id="progressHistorySummary">{esc(history_summary)}</span><span>management estimate</span></div>
+          </section>
         </section>
 
         <div class="control-bar">
