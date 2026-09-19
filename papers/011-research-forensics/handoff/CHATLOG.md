@@ -37,3 +37,11 @@ For every future material conversation, append:
 - **Deletion handoff:** Before this chat is deleted, Git is being reconciled so a new chat/account/agent can recover the project from `handoff/`, `process/STATUS.md`, machine-readable results and the manuscript without relying on chat memory.
 - **Claim boundary:** Development true positives are not confirmatory performance estimates.
 
+## 2026-09-19 · Formatting-control non-escalation and comparator transition
+
+- **Surface:** ChatGPT ARIS4C 000 controller + GitHub Actions.
+- **User request:** Continue advancing autonomously.
+- **Execution:** Ran the pre-correction Aceh construction Table 2 formatting control through the real Research Forensics Track-A reporting stack and persisted its report/evaluation to Git.
+- **Result:** 10/10 PASS, 0 flags, review priority NONE, no misconduct inference; correction metadata remained hidden from detector inputs.
+- **Decision:** Treat this only as a development non-escalation demonstration, not a specificity estimate.
+- **Next:** Build a small matched no-known-integrity-concern comparator development set, then return to the unresolved voxel/Brodmann-area structured-content case and confirmatory-freeze preparation.
