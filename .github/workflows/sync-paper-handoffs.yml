@@ -6,6 +6,7 @@ on:
     paths:
       - 'papers/dashboard.json'
       - 'papers/*/paper.json'
+      - 'papers/*/handoff/**'
       - 'tools/sync_paper_handoffs.py'
       - 'tools/audit_paper_handoffs.py'
       - 'ARIS4C_CONTINUITY_STANDARD.md'
