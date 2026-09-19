@@ -96,6 +96,9 @@ jobs:
                       st.font.bold = True
                       st.font.color.rgb = RGBColor(0, 0, 0)
               for p in doc.paragraphs:
+                  if manuscript and p.text.strip().startswith('Table 6.'):
+                      # Avoid an orphaned Table 6 heading/first row at the foot of a page.
+                      p.paragraph_format.page_break_before = True
                   if p.style and p.style.name in {'Title','Heading 1','Heading 2','Heading 3','Heading 4'}:
                       for r in p.runs:
                           r.font.color.rgb = RGBColor(0, 0, 0)
