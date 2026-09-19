@@ -138,11 +138,16 @@ def scenarios(base):
     for i,sp in enumerate(taxa):
         if seg[sp]=="tier1_new50":
             for j in range(6):new50[i][j]=True
+    old29_pilot9=cp(m79_pilot9)
+    for i,sp in enumerate(taxa):
+        if seg[sp]=="current29":
+            for j in range(6):old29_pilot9[i][j]=True
     af=fill_cols(m79,range(6))
     sc={
       "pilot7_current29":m29,
       "tier1_empirical79":m79,
       "tier1_pilot9_partial_deep79":m79_pilot9,
+      "pilot9_old29_AF_complete":old29_pilot9,
       "pilot9_plus_A_complete":fill_cols(m79_pilot9,[0]),
       "pilot9_plus_B_complete":fill_cols(m79_pilot9,[1]),
       "pilot9_plus_C_complete":fill_cols(m79_pilot9,[2]),
