@@ -44,7 +44,9 @@
     "china_ccgp_detail_adapter": "code/china_ccgp_detail.py",
     "china_universe_adapter": "code/china_universe.py",
     "china_procurement_graph": "code/china_procurement_graph.py",
-    "china_ccgp_uscc_workflow": ".github/workflows/aris4c014-china-ccgp-uscc-smoke.yml"
+    "china_ccgp_uscc_workflow": ".github/workflows/aris4c014-china-ccgp-uscc-smoke.yml",
+    "china_institution_ontology": "process/CHINA_INSTITUTION_ONTOLOGY.md",
+    "repository_architecture": "process/REPOSITORY_ARCHITECTURE.md"
   },
   "tags": [
     "ARIS",
