@@ -6,11 +6,14 @@ on:
       - main
       - aris4c005-sleeping-beauty-20260918
       - aris4c005-sleeping-beauty-final-20260918
+      - aris4c005-sb-landmark-20260919
     paths:
       - ".github/workflows/aris4c005-sleeping-beauty.yml"
       - "papers/005-hidden-burden-bad-science/code/sleeping_beauty.py"
       - "papers/005-hidden-burden-bad-science/code/build_sleeping_beauty_pilot.py"
+      - "papers/005-hidden-burden-bad-science/code/build_sb_landmark_dataset.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_sleeping_beauty.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_sb_landmark_dataset.py"
   workflow_dispatch:
 
 permissions:
@@ -51,6 +54,16 @@ jobs:
             --seed 20260918 \
             --observation-end-year 2025
 
+      - name: Build leakage-safe landmark dataset
+        run: |
+          python "$PAPER_DIR/code/build_sb_landmark_dataset.py" \
+            "$RUNNER_TEMP/aris4c005_sb_history.csv" \
+            "$RUNNER_TEMP/aris4c005_sb_landmark.csv" \
+            "$PAPER_DIR/data/pilot/sb_landmark_pilot_summary.json" \
+            --landmark-age 5 \
+            --horizon-years 10 \
+            --observation-end-year 2025
+
       - name: Validate summary
         run: |
           python - <<'PY'
@@ -60,7 +73,11 @@ jobs:
           assert d["classification"] == "MATURE_RANDOM_DELAYED_RECOGNITION_PILOT_NOT_LOST_DISCOVERY_COUNT"
           assert d["sampling"]["sample_n_realized"] > 0
           assert d["beauty_coefficient"]["max"] is not None
-          print(json.dumps(d, indent=2))
+          q = 'papers/005-hidden-burden-bad-science/data/pilot/sb_landmark_pilot_summary.json'
+          l = json.load(open(q, encoding='utf-8'))
+          assert l["classification"] == "SB1_LANDMARK_DATASET_NOT_CAUSAL_SUPPRESSION"
+          assert l["papers_eligible_for_horizon"] > 0
+          print(json.dumps({"sb0": d, "sb1": l}, indent=2))
           PY
 
       - name: Upload row-level historical pilot
@@ -70,6 +87,7 @@ jobs:
           path: |
             ${{ runner.temp }}/aris4c005_sb_history.csv
             ${{ runner.temp }}/aris4c005_sb_metrics.csv
+            ${{ runner.temp }}/aris4c005_sb_landmark.csv
           retention-days: 30
           if-no-files-found: error
 
@@ -80,11 +98,11 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$PAPER_DIR/data/pilot/sleeping_beauty_pilot_summary.json"
+          git add "$PAPER_DIR/data/pilot/sleeping_beauty_pilot_summary.json" "$PAPER_DIR/data/pilot/sb_landmark_pilot_summary.json"
           if git diff --cached --quiet; then
             echo "No Sleeping Beauty summary change."
             exit 0
           fi
-          git commit -m "Update ARIS4C005 Sleeping Beauty pilot summary [skip ci]"
+          git commit -m "Update ARIS4C005 Sleeping Beauty and landmark summaries [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
