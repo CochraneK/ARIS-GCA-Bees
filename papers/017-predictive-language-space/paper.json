@@ -1,0 +1,77 @@
+{
+  "id": "017",
+  "portfolio_id": "ARIS4C-017",
+  "series_id": "LING-02",
+  "slug": "predictive-language-space",
+  "title": "Predicting the Empty Cells of Human Language Space: A Falsification-First Test of Typological Constraint and Unrealized Configurations",
+  "short_title": "LING-02 · Predictive Language Space",
+  "year": 2026,
+  "status": "concept-scaffold",
+  "domain": "linguistic typology / quantitative linguistics / language universals / predictive modeling",
+  "summary": "A conceptual successor to ARIS4C002 that shifts from testing one global circular geometry to testing whether competing typological constraint models can predict held-out languages, masked feature bundles, and calibrated support over unobserved regions of language space. Extinct-language claims are tertiary and require independently documented historical holdouts.",
+  "authors": [
+    "Cochrane Kang"
+  ],
+  "series": {
+    "code": "LING",
+    "index": 2,
+    "name": "Language Systems",
+    "predecessor": "002",
+    "predecessor_series_id": "LING-01",
+    "relation": "conceptual-successor"
+  },
+  "lineage": {
+    "conceptual_predecessor": "002",
+    "predecessor_slug": "language-geometry",
+    "boundary": "002 tests the simple global circular geometry; 017 tests predictive constraint structure over observed and unobserved typological configurations without assuming circularity."
+  },
+  "aris": {
+    "provenance": "ARIS4C conceptual split from completed LING-01; falsification-first predictive-language-space design scaffold",
+    "version": "v0.4.26"
+  },
+  "links": {
+    "paper_en": "",
+    "paper_zh": "",
+    "pipeline": "process/RESEARCH_PLAN.md",
+    "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/017-predictive-language-space",
+    "predecessor": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry",
+    "series_registry": "../series.json"
+  },
+  "tags": [
+    "ARIS",
+    "ARIS4C",
+    "LING-02",
+    "linguistic typology",
+    "predictive language space",
+    "language universals",
+    "held-out prediction",
+    "family-held-out",
+    "missing configurations",
+    "unrealized languages",
+    "calibration",
+    "model comparison"
+  ],
+  "bilingual_delivery": {
+    "english": false,
+    "chinese": false
+  },
+  "outputs": {
+    "paper_en": "not-started",
+    "paper_zh": "not-started",
+    "figures": {
+      "status": "not-started",
+      "count": 0,
+      "strategy": "adaptive visual narrative after Pilot-0"
+    },
+    "tables": {
+      "status": "not-started",
+      "count": 0
+    },
+    "exception": "Pre-pilot concept scaffold; final-output visual requirements are not yet applicable.",
+    "pdf": {
+      "status": "not-started",
+      "english": false,
+      "chinese": false
+    }
+  }
+}
