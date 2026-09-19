@@ -30,3 +30,10 @@
 - Changed today's chart payload to include only non-Finish projects with an actual percentage change across today's checkpoints.
 - Hardened command-center JS so theme/storage/chart/showcase failures cannot prevent navigation, Reset, search, sorting, or other controls from receiving listeners.
 - Added CI audit for complete portfolio visibility, chart-only filtering, control presence, and JavaScript syntax.
+
+## 2026-09-19 · Daily progress idle-gap compression
+
+- Replaced the linear wall-clock x-axis with an adaptive discontinuous axis for the daily progress chart.
+- Long inactivity is detected relative to the day's normal checkpoint cadence, not by one fixed arbitrary threshold.
+- Compressed gaps retain explicit dashed break markers, `//`, real idle duration, and real-time tooltip provenance.
+- Added CI audit tokens so accidental removal of the compression/disclosure mechanism fails the command-center audit.
