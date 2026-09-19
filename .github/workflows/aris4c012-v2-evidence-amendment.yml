@@ -77,5 +77,10 @@ jobs:
                   "$PAPER_DIR/process/B2_INPUT_AMENDMENT_01_FREEZE.json"
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "ARIS4C012 freeze v2 evidence Amendment 01 [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          pushed=0
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then pushed=1; break; fi
+            sleep $((attempt*2))
+          done
+          test "$pushed" -eq 1
