@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 PAPERS=ROOT/"papers"
 ASSET_DIR=ROOT/"docs"/"assets"/"readme"
 BG="#07162b"; PANEL="#0d2442"; PANEL2="#102c50"; GRID="#245d95"
-TEXT="#f8fafc"; MUTED="#a9bfe0"; ACTIVE="#48e996"; WAITING="#f2c14e"; QUIET="#8aa0b8"; ACCENT="#54a9ff"
+TEXT="#f8fafc"; MUTED="#a9bfe0"; FINISH="#7c8cff"; ACTIVE="#48e996"; WAIT="#f2c14e"; BLOCK="#ef6a6a"; ACCENT="#54a9ff"
 
 ZH_TITLES={
 "001":"蜜蜂 GCA × 不确定性","002":"语言周期性检验","003":"殖民遗产 × 学科优势",
@@ -47,14 +47,14 @@ def lines(s,x,y,items,klass="b",step=28):
     for i,t in enumerate(items): s.append(f'<text x="{x}" y="{y+i*step}" class="{klass}">{esc(t)}</text>')
 
 def hero(rows,lang):
-    zh=lang=="zh"; counts={k:sum(r["activity"]==k for r in rows) for k in ("active","waiting","quiet")}
+    zh=lang=="zh"; counts={k:sum(r["activity"]==k for r in rows) for k in ("finish","active","wait","block")}
     avg=round(sum(r["progress"] for r in rows)/max(1,len(rows))); continuity=sum(r["handoff"] for r in rows); pdf=sum(r["pdf"] for r in rows)
     title="让研究成为一个可持续运行的系统" if zh else "Research as a living system."
     subtitle="论文 · 证据 · 双语输出 · 审查门 · 跨 Agent 连续性" if zh else "Papers · evidence · bilingual outputs · review gates · cross-agent continuity"
     s=head(title,subtitle,1600,500)
     s += ['<path d="M0 370 C320 300 520 510 820 390 S1320 260 1600 360 V500 H0 Z" fill="#0b2748"/>']
-    labels=(["论文项目","平均成熟度","进行中","等待中","可接管"] if zh else ["tracked papers","mean maturity","Active","Waiting","handoff ready"])
-    vals=[len(rows),f"{avg}%",counts["active"],counts["waiting"],f"{continuity}/{len(rows)}"]
+    labels=(["论文项目","完成","正在推进","待推进","阻塞"] if zh else ["tracked papers","Finish","Active","Wait","Block"])
+    vals=[len(rows),counts["finish"],counts["active"],counts["wait"],counts["block"]]
     for i,(v,l) in enumerate(zip(vals,labels)):
         x=70+i*300; s += [f'<rect x="{x}" y="205" width="255" height="110" rx="20" fill="{PANEL}" stroke="{GRID}"/>',
         f'<text x="{x+22}" y="255" class="metric">{v}</text>',f'<text x="{x+22}" y="288" class="b">{esc(l)}</text>']
@@ -63,22 +63,22 @@ def hero(rows,lang):
     s += [f'<text x="70" y="455" class="m">{esc(note)}</text>','</svg>']; return "\n".join(s)
 
 def status(rows,lang):
-    zh=lang=="zh"; counts={k:sum(r["activity"]==k for r in rows) for k in ("active","waiting","quiet")}
-    labels=({"active":"进行中","waiting":"等待中","quiet":"静默"} if zh else {"active":"Active","waiting":"Waiting","quiet":"Quiet"}); colors={"active":ACTIVE,"waiting":WAITING,"quiet":QUIET}
+    zh=lang=="zh"; counts={k:sum(r["activity"]==k for r in rows) for k in ("finish","active","wait","block")}
+    labels=({"finish":"完成","active":"正在推进","wait":"待推进","block":"阻塞"} if zh else {"finish":"Finish","active":"Active","wait":"Wait","block":"Block"}); colors={"finish":FINISH,"active":ACTIVE,"wait":WAIT,"block":BLOCK}
     title="Portfolio 当前状态" if zh else "Portfolio state"; subtitle="来自 papers/dashboard.json 的 MECE 管理状态" if zh else "MECE management states from papers/dashboard.json"
     s=head(title,subtitle,1600,420); x=80; total=len(rows); bar=1440
-    for k in ("active","waiting","quiet"):
+    for k in ("finish","active","wait","block"):
         w=bar*counts[k]/max(1,total)
         if w: s.append(f'<rect x="{x:.1f}" y="185" width="{w:.1f}" height="58" fill="{colors[k]}"/>'); x+=w
-    for i,k in enumerate(("active","waiting","quiet")):
-        xx=170+i*520; s += [f'<circle cx="{xx}" cy="320" r="10" fill="{colors[k]}"/>',
+    for i,k in enumerate(("finish","active","wait","block")):
+        xx=125+i*375; s += [f'<circle cx="{xx}" cy="320" r="10" fill="{colors[k]}"/>',
         f'<text x="{xx+22}" y="327" class="h">{labels[k]} · {counts[k]}</text>']
     s += [f'<text x="1510" y="327" text-anchor="end" class="m">Total {total}</text>','</svg>']; return "\n".join(s)
 
 def maturity(rows,lang):
     zh=lang=="zh"; title="16 个 Paper 的成熟度" if zh else "Portfolio maturity by paper"
     subtitle="项目管理估计，不是科学结果；100% 表示仓库层最终输出契约满足" if zh else "Management estimate, not a scientific result; 100% means the repository-level final output contract is satisfied"
-    colors={"active":ACTIVE,"waiting":WAITING,"quiet":QUIET}; s=head(title,subtitle,1600,880)
+    colors={"finish":FINISH,"active":ACTIVE,"wait":WAIT,"block":BLOCK}; s=head(title,subtitle,1600,880)
     for i,r in enumerate(rows):
         col=0 if i<8 else 1; row=i if i<8 else i-8; x=70+col*785; y=165+row*82
         name=ZH_TITLES.get(r["id"],r["short"]) if zh else r["short"]; label=f'{r["id"]} · {name}'
