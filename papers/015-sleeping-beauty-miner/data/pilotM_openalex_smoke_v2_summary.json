@@ -1,0 +1,35 @@
+{
+  "pilot": "ARIS4C015 Pilot M OpenAlex mechanism smoke v2",
+  "workflow_run_id": 35426576937,
+  "source": "OpenAlex live API",
+  "cohort": {
+    "publication_year": 1980,
+    "field": "Physics & Astronomy (OpenAlex primary field 31)",
+    "sample_size": 100,
+    "seed": 15015,
+    "observation_end_year": 2011,
+    "selection_on_future_citation_count": false
+  },
+  "robust_sb": 0,
+  "state_counts": {
+    "AMBIGUOUS": 47,
+    "FADING": 7,
+    "FORGOTTEN": 31,
+    "IMMEDIATE_HIT": 14,
+    "LOW_EARLY_HIGH_LATE_UNCONFIRMED": 1
+  },
+  "mechanism_ready": false,
+  "mechanism_analysis_ready": false,
+  "mechanism_analysis_block_reasons": [
+    "no robust Sleeping Beauty cases"
+  ],
+  "sb_vs_forgotten_match_rate": 0,
+  "interpretation": [
+    "A reproducible random 100-paper historical cohort contained no robust Sleeping Beauty under the variable-sleep, less-deep-inclusive retrospective gate.",
+    "The pipeline correctly blocked mechanism inference instead of manufacturing positive cases from cohort-relative ranks.",
+    "The result is a sample-yield diagnostic, not an estimate of Sleeping Beauty prevalence.",
+    "The next empirical step is a larger merged historical cohort or case-enriched SciSciNet extraction."
+  ],
+  "claim_boundary": "Negative real-data smoke test; not a prevalence estimate and not evidence that Sleeping Beauties are absent from the field/year population.",
+  "computed_at": "2026-09-19"
+}
