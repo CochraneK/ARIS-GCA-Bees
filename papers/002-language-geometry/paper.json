@@ -94,5 +94,20 @@
       "chinese": true,
       "builder": "tools/build_public_pdfs.py"
     }
+  },
+  "portfolio_id": "ARIS4C-002",
+  "series_id": "LING-01",
+  "series": {
+    "code": "LING",
+    "index": 1,
+    "name": "Language Systems",
+    "successor": "017",
+    "successor_series_id": "LING-02",
+    "relation": "predecessor"
+  },
+  "lineage": {
+    "conceptual_successor": "017",
+    "successor_slug": "predictive-language-space",
+    "boundary": "002 tests whether a simple global circular geometry predicts observed typological structure; 017 asks whether learned typological constraints can predict held-out, missing, extinct-proxy, or unrealized configurations."
   }
 }
