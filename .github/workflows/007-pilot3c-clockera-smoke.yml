@@ -75,7 +75,7 @@ jobs:
           # 2023 Universal Clock release reports SeSAMe 1.18.4.
           stopifnot(as.character(packageVersion("sesame")) == "1.18.4")
           stopifnot(as.character(packageVersion("dbplyr")) == "2.3.4")
-          sesameDataCache()
+          sesameData::sesameDataCache()
 
           probe <- matrix(seq_len(200), nrow=20, ncol=10)
           target <- sort(rowMeans(probe))
@@ -151,7 +151,9 @@ jobs:
         run: |
           mkdir -p data/pilot3c_clockera_smoke
           Rscript -e 'writeLines(capture.output(sessionInfo()), "data/pilot3c_clockera_smoke/R_sessionInfo.txt")'
-          cp data/upstream/pilot3b_run.json data/pilot3c_clockera_smoke/upstream_pilot3b_run.json
+          if [ -s data/upstream/pilot3b_run.json ]; then
+            cp data/upstream/pilot3b_run.json data/pilot3c_clockera_smoke/upstream_pilot3b_run.json
+          fi
 
       - name: Upload clock-era smoke artifact
         if: always()
