@@ -15,9 +15,9 @@
 
 - [x] Record upstream freeze commit SHAs.
 - [x] Preserve pre-promotion analysis under `ideas/language-periodic-system/`.
-- [ ] Convert future reruns to commit-pinned data URLs.
-- [ ] Add input SHA256 manifest if numerical results are rerun.
-- [ ] Freeze Python package versions for final computational supplement.
+- [ ] Convert future numerical reruns to commit-pinned data URLs (not required for current frozen submission outputs).
+- [ ] Add input SHA256 manifest if numerical results are rerun (not required for current frozen submission outputs).
+- [x] Freeze Python package versions for final computational supplement.
 
 ## Manuscript artifacts
 
@@ -53,3 +53,11 @@
 - [x] DOCX/PDF build artifact passes full 31-page visual QA.
 - [ ] Author completes IPA/affiliation/address/email/ORCID/funding/COI and confirms exclusivity.
 - [ ] ScholarOne submission.
+
+## Technical submission QA
+
+- [x] Technical submission QA: PASS (`submission/linguistic-typology/SUBMISSION_QA.md`).
+- [x] Final reviewed build: run `35412714647`, artifact `10575195098`.
+- [x] Final blinded DOCX and PDF both render to 31 pages with no structural layout defects.
+- [x] DOCX/PDF text parity checked; only extraction-order differences, no content loss.
+- [x] Blinded DOCX creator metadata empty; manuscript/supplement identity scans clean.
