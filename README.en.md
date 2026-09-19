@@ -80,7 +80,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 | **013** | [Birth–Death Temporal Coupling](papers/013-birth-death-temporal-coupling/) | 🔴 Block | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) |
 | **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 Wait | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
 | **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 Active | 86% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
-| **016** | [Global Grammar of Swearing](papers/016-global-grammar-of-swearing/) | 🔴 Block | 55% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
+| **016** | [Global Grammar of Swearing](papers/016-global-grammar-of-swearing/) | 🔴 Block | 60% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
 | **017** | [LING-02 · Predictive Language Space](papers/017-predictive-language-space/) | 🟡 Wait | 20% | [handoff](papers/017-predictive-language-space/handoff/AGENT_HANDOFF.md) |
 
 ## How ARIS4C works
