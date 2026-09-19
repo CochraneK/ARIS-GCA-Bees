@@ -33,3 +33,29 @@ absolute-SMD < 0.10 balance gate.
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC4558410/
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC3828645/
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC8962511/
+
+## 2026-09-19 · Freeze Pilot-M primary cases and stop random-reservoir escalation
+
+**Decision:** For the current validation pilot, the primary event-time risk-set
+case set is frozen to the three literature-known Sleeping Beauties (Hummers
+1958, EPR 1935, Washburn 1921). Robust SBs discovered incidentally inside a
+random control reservoir remain discovery candidates and do not enter the
+primary case set until independent annual-trajectory / Beauty-Coefficient
+validation.
+
+**Why:** Allowing randomly sampled controls to become primary cases made the
+case set change whenever the reservoir changed, confounding matching-design
+comparisons.
+
+**Decision:** Separate OpenAlex acquisition from risk-set analysis. Reuse the
+saved 603-paper artifact for matcher and estimand diagnostics rather than
+re-querying the API for every design change.
+
+**Decision:** Do not keep escalating random reservoir size after the frozen
+case-set diagnostics. The acquired 200-controls/case cohort still fails the
+prespecified abs-SMD < 0.10 gate, and support diagnostics identify a strong
+overlap shortage for Washburn 1921 (minimum observed event-time sleep-rate gap
+1.180). The next acquisition step is the complete exact field × publication
+year frame, not another random sample and not a relaxed balance threshold.
+
+**Canonical evidence:** `data/pilotM_riskset_diagnostics_2026-09-19.json`.
