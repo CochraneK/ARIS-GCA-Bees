@@ -4,7 +4,7 @@
 
 - **Controller:** ARIS4C 000
 - **Scheduling:** completion-first
-- **Canonical state:** Git
+- **Canonical state:** git
 - **Default Active WIP:** 1
 - **Maximum Active WIP:** 3
 - **States:** Finish / Active / Wait / Block

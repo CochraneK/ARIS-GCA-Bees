@@ -30,6 +30,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 
 | 你想做什么 | 入口 |
 |---|---|
+| 让另一个 Agent / 账号 / 电脑接管总控 | **[`000/README.md`](000/README.md)** |
 | 可视化查看全部项目 | **[Research Command Center](https://cochranek.github.io/ARIS4C/)** |
 | 阅读已完成论文 | 见下方 **已达到公开交付状态的论文** |
 | 换电脑 / 账号 / Agent 继续某篇论文 | 打开该项目的 **`handoff/README.md`** |
