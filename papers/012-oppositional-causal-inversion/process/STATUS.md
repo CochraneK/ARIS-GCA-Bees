@@ -1,139 +1,185 @@
 # STATUS — ARIS4C012
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## State
 
-**PILOT 0A FEASIBILITY COMPLETE · REPRODUCIBLE PILOT RETRIEVAL PASSED · CODER B GATE OPEN**
+**PILOT 0B COMPLETE · RAW V1 RELIABILITY GATE NOT PASSED · SCHEMA REVISION / FRESH PILOT REQUIRED**
 
 ## Canonical identity
 
 **When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion**
 
-ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests whether superficially contradictory claims share a reusable indexed causal representation after actor, level, time, construct, environment, capacity, and feedback distinctions are restored.
+ARIS4C012 does not attempt to prove Orwell's slogans literally true. It tests whether superficially contradictory causal claims can be decomposed into a prespecified functional-opposition relation plus explicit actor, level, time, construct, environment, feedback, and capacity distinctions.
 
-## Completed
+## Current evidence state
 
-- [x] rejected literal `X = not-X` framing;
-- [x] defined indexed constructs `X[a,l,t,d,e]`;
-- [x] defined provisional Oppositional Causal Inversion (OCI);
-- [x] defined functional-opposition validity rules;
-- [x] drafted eight mechanism families;
-- [x] separated the three Orwell slogans into scientifically distinct pathways;
-- [x] added hard falsifiers and mandatory counterevidence;
-- [x] completed initial live prior-art sweep across international relations, social psychology, consumer psychology, organization science, economics, information behavior, clinical psychology, transportation, risk science, and scientometrics;
-- [x] built closest-prior-art matrix;
-- [x] built structured 24-record evidence seed;
-- [x] froze Pilot 0 retrieval/screening protocol;
-- [x] amended coding schema **before first coding** to separate OCI candidacy from evidential support;
-- [x] completed 30-record Coder A feasibility pass across six prespecified strata;
-- [x] recorded Pilot 0A audit and failure conditions;
-- [x] registered Paper 012 in the canonical papers index and manifest-driven public hub;
-- [x] generated a blind 30-record Coder B packet with all Coder A labels removed;
-- [x] added an explicit independent-coder handoff protocol;
-- [x] executed retrieval v0.1 and preserved its semantic-contamination failure as provenance;
-- [x] prospectively amended retrieval to v0.2 with type/title topical gates;
-- [x] executed retrieval v0.2 successfully: 1,800 raw hits, 1,375 transparent rejections, 165 selected Pilot candidates;
-- [x] passed Pilot retrieval reproducibility/gross-relevance Gate R; full systematic-review saturation remains open;
-- [x] drafted the theory/methods manuscript in `manuscript/DRAFT.md`;
-- [x] completed umbrella-theory novelty audit and rejected the original broad novelty claim;
-- [x] narrowed the canonical title from “a science of” to an indexed cross-domain framework;
-- [x] completed prior-art saturation audit across sociology, complex systems, energy, transportation, ecology, psychology, communication, clinical science, scientometrics, and risk science;
-- [x] completed 165-record retrieval-frame structure audit and identified within-stratum query imbalance;
-- [x] identified a v1 ontology orthogonality problem (index switches mixed with generative mechanisms);
-- [x] drafted a post-Gate-B `SCHEMA_V2_PROPOSAL.md` without modifying frozen Pilot 0B materials.
+### Concept / prior art
+- literal `X = not-X` framing rejected;
+- indexed construct representation defined as `X[a,l,t,d,e]`;
+- functional-opposition validity rules defined;
+- broad novelty claim rejected after prior-art saturation;
+- defensible novelty narrowed to:
+  - prespecified functional opposition;
+  - explicit index restoration;
+  - independently validated cross-domain coding.
 
-## Pilot 0A result
+### Retrieval
+- retrieval v0.1 preserved as a failed-but-informative semantic-contamination snapshot;
+- retrieval v0.2 passed executable/provenance-safe and gross topical-relevance gates;
+- 1,800 raw OpenAlex/Crossref hits;
+- 1,375 transparent pre-screen rejections;
+- 165 selected reproducible Pilot candidates;
+- full systematic-review saturation/recall remains open;
+- retrieval-frame audit shows query-family imbalance, so raw retrieval counts must not be treated as prevalence.
 
+### Pilot 0A
 Coder A feasibility labels:
 - OCI candidate: 21 yes / 7 no / 2 uncertain;
 - functional opposition: 21 yes / 4 no / 5 uncertain.
 
-These are **not prevalence estimates** and are not independently adjudicated.
+These are not prevalence estimates.
 
-The most useful early result is discriminant: broad paradox theory, strategic-paradox management, counterfinality, some diversionary-conflict work, and some rational-inattention/deliberate-ignorance work do **not** automatically qualify as OCI.
+### Pilot 0B
+A genuinely independent WorkBuddy Coder B completed all P01–P30 and committed the coded packet:
 
-## Current interpretation of the Orwell triad
+`8f9ec0dd99e25ae0411fd4e06d2b4dbd1ef219d9`
 
-### War -> peace
-Weak if stated literally. More defensible indexed mappings are intergroup competition -> intragroup cooperation, conditional deterrence, and security-seeking -> insecurity through strategic feedback.
+The commit documents that forbidden Coder A materials were not opened and that frozen v1 inputs were verified before coding.
 
-### Freedom -> slavery/dependence
-Potentially useful as a construct/time-switch family: more formal choice or short-run flexibility can reduce effective autonomy under specific moderators/feedback. Strong autonomy-benefit literature prevents universalization.
+Current coded B blob:
 
-### Ignorance -> strength
-Most heterogeneous. The strongest scientific mappings concern selective filtering, scarce attention, or coordination information—not generalized ignorance.
+`d7de922fd2227d63e9ec66883b127fe185d8becd`
+
+## Raw reliability result
+
+The automated scorer reports `READY_FOR_ADJUDICATION`, meaning the coding files are complete. This is **not** a scientific Gate B pass.
+
+Key raw metrics:
+
+| Field | Raw agreement | Cohen's kappa | Krippendorff alpha |
+|---|---:|---:|---:|
+| opposition_valid | 0.767 | 0.466 | 0.463 |
+| oci_candidate | 0.833 | 0.592 | 0.597 |
+| primary_mechanism | 0.000 | 0.000 | -0.042 |
+
+There are **141 disagreement cells** in the full packet.
+
+The frozen workflow rule requires revision and a fresh sample if opposition-validity or primary-mechanism agreement is below 0.70. Therefore **v1 has not passed the reliability gate**.
+
+See:
+
+`process/PILOT0B_RELIABILITY_AUDIT.md`
+
+## Important reliability interpretation
+
+Several low-agreement fields suffer from a coding-instrument vocabulary mismatch rather than purely substantive disagreement.
+
+Examples:
+- `level-switch/interdependence` vs `level_switch`;
+- `strategic equilibrium feedback` vs `strategic_feedback`;
+- `meta-analysis` vs `meta_analysis`;
+- `support` vs `yes`;
+- free-text causal-strength labels vs ordinal controlled tokens.
+
+The raw scorer should remain immutable. Do not post-hoc overwrite the raw kappa values with synonym-normalized values and call that preregistered reliability.
+
+At the same time, do not interpret `primary_mechanism kappa = 0` as direct proof that the scientific mechanisms have zero conceptual agreement. The Pilot exposed a real **schema/instrument standardization failure**.
+
+## Schema v2 status
+
+A post-Gate-B `SCHEMA_V2_PROPOSAL.md` was drafted **before Coder B labels were inspected**.
+
+It separates:
+1. opposition relation;
+2. index-switch vector;
+3. generative-mechanism vector;
+4. evidence mode / strength;
+5. result direction.
+
+This is now the leading redesign because v1 mixed index dimensions (actor/level/time/construct) with mechanisms (feedback/overload/filtering/power) in one forced `primary_mechanism` field.
+
+Do not retroactively relabel Pilot 0 as a successful v2 validation.
 
 ## Novelty status
 
-**BROAD CLAIM FAILED · NARROW INDEXED-REPRESENTATION CLAIM PROVISIONAL.**
+**BROAD CLAIM FAILED · NARROW INDEXED-REPRESENTATION CLAIM REMAINS PROVISIONAL.**
 
-A dedicated umbrella-theory audit found that Merton/Boudon-style unintended consequences, paradox theory, rebound typologies, and 2026 complex-systems work already cover much of the original broad idea. OCI therefore cannot claim a new general science of backfire. See `process/NOVELTY_AUDIT.md`.
-
-Major neighboring frameworks include:
+Major prior-art competitors include:
+- Merton/Boudon unintended/perverse consequences;
 - paradox theory;
+- complex adaptive-system intervention backfire;
 - boomerang and iatrogenic effects;
-- unintended/perverse consequences;
-- counterfinality;
-- security dilemma;
-- choice overload;
-- ecological rationality / less-is-more;
-- rational inattention;
-- deliberate ignorance;
 - rebound/Jevons effects;
 - Braess paradox;
-- risk compensation;
-- Goodhart/Campbell target feedback;
-- safe-development/levee effects.
+- safe-development effects;
+- psychological reactance;
+- ecological rationality / less-is-more;
+- rational inattention / deliberate ignorance;
+- Goodhart/Campbell proxy failure.
 
-The defensible novelty target is the **cross-domain indexed causal representation + falsifiable coding system**, not the observation that interventions sometimes backfire.
+The possible contribution is a validated representation layer for a restricted class of functional-opposite-producing causal effects, not a new discovery that interventions sometimes backfire.
 
 ## Locked safeguards
 
-- A functional opposite must be prespecified and independently codeable.
-- OCI candidacy and empirical support are separate fields.
-- Null/counterevidence remains in the evidence map.
-- Actor/level/time/construct/environment switches are explicit.
-- Evidence strength is separate from normative desirability.
+- Functional opposites must be prespecified, not invented after seeing results.
+- OCI candidacy and empirical support are separate.
+- Null/counterevidence stays in the evidence map.
 - No grand pooled OCI effect size.
-- War, threat, competition, deterrence, cohesion, regime support, and peace are separate constructs.
-- Formal choice and effective autonomy are separate constructs.
-- Selective filtering and externally imposed ignorance are separate constructs.
-- Political cases are descriptive/causal research objects, not advocacy.
-- No new-general-theory claim until independent reliability and out-of-domain value are demonstrated.
+- Raw retrieval frequency is not phenomenon prevalence.
+- War/threat/competition/deterrence/cohesion/regime support/peace remain distinct constructs.
+- Formal choice and effective autonomy remain distinct.
+- Selective filtering and externally imposed ignorance remain distinct.
+- Political cases are descriptive causal research objects, not advocacy.
+- Coder B v1 provenance and raw reliability outputs must remain preserved.
+- Any revised schema must be validated on a fresh independent sample.
 
 ## Current hard gate
 
-### Gate B — independent coding
-Run a genuinely independent Coder B on the same 30-record packet without access to Coder A labels.
+### Gate B — construct reliability
+**Independent coding: COMPLETE.**  
+**Raw v1 reliability: FAILS prespecified threshold.**  
+**Next action: diagnostic adjudication + schema revision + fresh A2/B2 Pilot.**
 
-Required outputs:
-- opposition-validity agreement;
-- OCI-candidacy agreement;
-- mechanism-family agreement;
-- index-switch agreement;
-- adjudication log.
+Adjudication should classify disagreements into:
+- lexical/token mismatch;
+- overlapping schema categories;
+- genuine conceptual disagreement;
+- source/metadata disagreement.
 
-If opposition-validity or primary-mechanism agreement is below 0.70, revise definitions and repeat on a fresh sample before full screening.
+It must not be used to cosmetically convert v1 into a passed reliability test.
 
 ### Gate R — reproducible retrieval
-**R1 executable/provenance-safe retrieval: PASS.**  
-**R2 gross topical relevance for Pilot retrieval: PASS.**  
-**R3 systematic-review saturation/recall: OPEN.**
-
-Retrieval v0.1 is retained as a failed-but-informative snapshot. Retrieval v0.2 is the current Pilot frame: 165 selected records from 1,800 raw OpenAlex/Crossref hits, with 1,375 rejected records and reasons preserved.
+- R1 executable/provenance-safe retrieval: **PASS**
+- R2 gross topical relevance for Pilot retrieval: **PASS**
+- R3 systematic-review saturation/recall: **OPEN**
 
 ## Next execution queue
 
-1. ingest the genuinely independent WorkBuddy Coder B output into `data/pilot0_coderB_blind.csv` (current canonical file remains blank; no 012 WorkBuddy artifact is discoverable in main/branches/Project files);
-2. calculate kappa/alpha and inspect whether low `primary_mechanism` agreement is caused by the v1 category-mixing problem;
-3. decide whether v1 survives or v2 requires a fresh independent pilot;
-4. compare the independently coded Pilot with the reproducible v0.2 retrieval frame;
-5. after a reliable schema passes, screen the 165-record frame, then targeted-expand underrepresented query families rather than treating raw retrieval counts as prevalence;
-6. expand backward/forward citation chasing and historical terminology toward review saturation;
-7. freeze the full evidence-map screening protocol after schema validation;
-8. update `manuscript/DRAFT.md` with independently validated reliability and evidence-map results.
+1. Preserve the raw v1 reliability summary/disagreement packet unchanged.
+2. Diagnose/adjudicate the 141 disagreement cells by disagreement type.
+3. Finalize and freeze a controlled-vocabulary Schema v2.
+4. Draw a fresh balanced validation sample.
+5. Run genuinely independent A2/B2 coding under v2.
+6. Recompute agreement with identical categorical vocabularies.
+7. Only after revised reliability passes, screen the 165-record frame.
+8. Target-expand underrepresented query families and perform backward/forward citation chasing.
+9. Update manuscript results and limitations.
+10. Produce final English paper + Chinese paper + evidence-traceable figures/tables under the ARIS4C output standard.
+
+## Manuscript / support files already present
+
+- `manuscript/DRAFT.md`
+- `manuscript/REFERENCES.md`
+- `process/NOVELTY_AUDIT.md`
+- `process/PRIOR_ART_SATURATION.md`
+- `process/RETRIEVAL_V0_1_AUDIT.md`
+- `process/RETRIEVAL_V0_2_AUDIT.md`
+- `process/RETRIEVAL_FRAME_AUDIT.md`
+- `process/INTERNAL_REVIEW.md`
+- `process/SCHEMA_V2_PROPOSAL.md`
+- `process/PILOT0B_RELIABILITY_AUDIT.md`
 
 ## Handoff sentence
 
-If this chat is lost, resume from this file. **ARIS4C012 has passed a one-coder 30-paper feasibility stress test but has not yet earned a general-theory claim. The decisive next step is independent opposition/mechanism coding plus reproducible retrieval.**
+If the original chat is deleted, resume from `handoff/AGENT_HANDOFF.md` and this file. **ARIS4C012 has a complete independent Coder B and reproducible retrieval frame, but v1 did not pass the prespecified reliability gate. The next scientific task is diagnostic adjudication and a fresh v2 validation Pilot—not full evidence-map screening yet.**
