@@ -2,6 +2,10 @@ name: ARIS4C006 preregistration lock generator
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/006-chinese-alphabetical-exposure/process/TRIGGER_PREREG_LOCK"
 
 permissions:
   contents: read
