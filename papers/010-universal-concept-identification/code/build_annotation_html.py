@@ -80,7 +80,7 @@ input[type=range]{width:100%}.hidden{display:none}code{font-size:.86em}
 const FORM=__FORM_JSON__;
 const TRAINING=__TRAINING_JSON__;
 let index=0, selected=null, startedAt=0, participant="", rows=[];
-let practiceIndex=0, practiceSelected=null, practiceChecked=false;
+let practiceIndex=0, practiceSelected=null, practiceChecked=false, practiceAttempt=0, practiceLog=[];
 const protocolHelp={
  P2:"<p><b>YES</b> = applies/true. <b>NO</b> = meaningful and applicable, but false. This condition intentionally forces binary judgment.</p>",
  P3:"<p><b>YES</b> = applies/true. <b>NO</b> = applicable but false. <b>MAYBE</b> = use the single coarse escape option whenever a confident binary judgment is not appropriate. This condition intentionally does not distinguish why.</p>",
@@ -106,7 +106,7 @@ function renderPractice(){
    render();
    return;
  }
- const item=items[practiceIndex]; practiceSelected=null; practiceChecked=false;
+ const item=items[practiceIndex]; practiceSelected=null; practiceChecked=false; practiceAttempt=0;
  document.getElementById("practiceCounter").textContent=(practiceIndex+1)+" / "+items.length;
  document.getElementById("practiceTarget").textContent=item.target;
  document.getElementById("practiceDefinition").textContent=item.definition || "";
@@ -137,12 +137,26 @@ function renderPractice(){
 function advancePractice(){
  const item=(TRAINING[FORM.protocol] || [])[practiceIndex];
  if(!practiceChecked){
-   practiceChecked=true;
+   practiceAttempt++;
    const correct=practiceSelected===item.correct;
+   practiceLog.push({
+     practice_id:item.practice_id,
+     attempt:practiceAttempt,
+     selected:practiceSelected,
+     correct
+   });
    const feedback=document.getElementById("practiceFeedback");
    feedback.classList.remove("hidden");
-   feedback.textContent=(correct?"Correct. ":"Try again conceptually. ")+item.explanation;
+   feedback.textContent=(correct?"Correct. ":"Not quite. ")+item.explanation;
    const next=document.getElementById("practiceNext");
+   if(!correct){
+     practiceSelected=null;
+     [...document.getElementById("practiceResponses").children].forEach(x=>x.classList.remove("selected"));
+     next.textContent="Check answer";
+     next.disabled=true;
+     return;
+   }
+   practiceChecked=true;
    next.textContent="Continue";
    return;
  }
@@ -197,7 +211,7 @@ function submitTrial(){
  }else render();
 }
 function download(){
- const payload={study:"ARIS4C010-UCID-calibration",form_id:FORM.form_id,protocol:FORM.protocol,participant_id:participant,completed_at:new Date().toISOString(),rows};
+ const payload={study:"ARIS4C010-UCID-calibration",form_id:FORM.form_id,protocol:FORM.protocol,participant_id:participant,completed_at:new Date().toISOString(),training_attempts:practiceLog,rows};
  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
  a.download=FORM.form_id+"_"+participant+"_responses.json"; a.click(); URL.revokeObjectURL(a.href);
