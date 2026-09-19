@@ -9,17 +9,17 @@ A measurement-first cross-linguistic study of taboo language using an open 18-co
 ## Current state
 
 - Activity: **block**
-- Progress: **65%**
-- Stage: **Phase 0 bilingual working paper · reliability gate frozen**
-- Evidence: EN+ZH drafts + 3 figures + OSF audit + ontology/harmonisation + genealogy + FWL repeated-item model + balanced/filler controls + frozen 300-row audit sample
+- Progress: **68%**
+- Stage: **Phase 0 bilingual working paper · semantic reliability gate + pronunciation validity gate**
+- Evidence: EN+ZH drafts + 3 figures + OSF/ontology/genealogy audits + FWL repeated-item controls + frozen 300-row coder sample + 8,187/8,190 full-route technical pronunciation success
 
 ## Immediate next action
 
-**Independent Coder A/B + native-language review; then measurement-corrected fingerprints and ontology×community models**
+**Independent Coder A/B + native ontology review; in parallel, stratified pronunciation-validity audit then matched-control approximant replication**
 
 ## Current blocker / gate
 
-Genuinely independent/native-speaker annotation is required; current assistant cannot satisfy the independence gate
+External independence/native-language validation is now the limiting factor; technical G2P coverage itself is no longer a blocker
 
 ## Canonical files / entry points
 

@@ -3,11 +3,11 @@
 - **Title:** The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity
 - **Project status:** working-manuscript-phase0
 - **Activity:** block
-- **Portfolio progress:** 65%
-- **Current stage:** Phase 0 bilingual working paper · reliability gate frozen
-- **Evidence established:** EN+ZH drafts + 3 figures + OSF audit + ontology/harmonisation + genealogy + FWL repeated-item model + balanced/filler controls + frozen 300-row audit sample
-- **Next gate:** Independent Coder A/B + native-language review; then measurement-corrected fingerprints and ontology×community models
-- **Blocker:** Genuinely independent/native-speaker annotation is required; current assistant cannot satisfy the independence gate
+- **Portfolio progress:** 68%
+- **Current stage:** Phase 0 bilingual working paper · semantic reliability gate + pronunciation validity gate
+- **Evidence established:** EN+ZH drafts + 3 figures + OSF/ontology/genealogy audits + FWL repeated-item controls + frozen 300-row coder sample + 8,187/8,190 full-route technical pronunciation success
+- **Next gate:** Independent Coder A/B + native ontology review; in parallel, stratified pronunciation-validity audit then matched-control approximant replication
+- **Blocker:** External independence/native-language validation is now the limiting factor; technical G2P coverage itself is no longer a blocker
 
 ## Source of truth
 
