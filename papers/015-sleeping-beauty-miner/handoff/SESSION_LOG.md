@@ -37,3 +37,20 @@ Append substantial execution sessions in reverse chronological order or chronolo
   `data/pilotM_riskset_diagnostics_2026-09-19.json`.
 - Updated paper metadata/dashboard to 88%, Active, stage
   `Track M · frozen-case common-support gate`.
+
+## 2026-09-19 · Complete-frame acquisition tooling
+
+- Added exact OpenAlex Works cursor enumeration and frame-count reconciliation.
+- Added a metadata-only complete-frame inventory stage for the three frozen
+  literature-known cases.
+- Added resumable JSONL citation-history reconstruction that skips completed
+  OpenAlex IDs and supports bounded batches.
+- Added manual GitHub Actions workflows for full-frame inventory and resumable
+  history batches; partial checkpoints are preserved as artifacts.
+- Added unit tests for cursor enumeration, exact year × field filters, resume
+  semantics, and bounded batches. ARIS4C015 CI runs 186–191 passed.
+- No mechanism threshold or substantive result changed.
+- Current live OpenAlex rate window remains exhausted, so the next empirical
+  full-frame run is externally blocked rather than code-blocked.
+- Dashboard activity moved from Active to Block at 88% so the 000 controller
+  can allocate execution capacity elsewhere.
