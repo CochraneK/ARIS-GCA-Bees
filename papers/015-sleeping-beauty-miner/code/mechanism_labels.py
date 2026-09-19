@@ -68,6 +68,7 @@ class SourceBCalibration:
     source: str
     high_b_threshold: float
     extreme_b_threshold: float | None = None
+    validated_for_source: bool = False
     note: str | None = None
 
     def as_dict(self) -> dict:
@@ -75,6 +76,7 @@ class SourceBCalibration:
             "source": self.source,
             "high_b_threshold": self.high_b_threshold,
             "extreme_b_threshold": self.extreme_b_threshold,
+            "validated_for_source": self.validated_for_source,
             "note": self.note,
         }
 
@@ -83,11 +85,24 @@ SCISCINET_V1_CALIBRATION = SourceBCalibration(
     source="SciSciNet v1",
     high_b_threshold=33.0,
     extreme_b_threshold=307.55,
+    validated_for_source=True,
     note=(
         "SciSciNet reports B>33 as approximately the top 2% of Sleeping "
         "Beauty coefficients in its journal-article corpus, while B>307.55 "
         "corresponds to its top-10,000 high-B group. These are source-specific "
         "reference thresholds, not universal scientific constants."
+    ),
+)
+
+OPENALEX_PROVISIONAL_CALIBRATION = SourceBCalibration(
+    source="OpenAlex exploratory",
+    high_b_threshold=33.0,
+    extreme_b_threshold=307.55,
+    validated_for_source=False,
+    note=(
+        "Thresholds are borrowed from SciSciNet-v1 only for plumbing/smoke "
+        "tests. They are not calibrated to the OpenAlex B distribution and "
+        "must not support confirmatory mechanism claims."
     ),
 )
 
