@@ -2,13 +2,13 @@
 
 ## State
 
-**CHINA PILOT 0 LIVE PROCUREMENT + CAS UNIVERSE FEASIBILITY PROVEN / CROSS-SOURCE ENTITY GRAPH NEXT**
+**CHINA PILOT 1 · EXACT-USCC ENRICHMENT CONTRACT VALIDATED / REAL SECOND-SOURCE JOIN NEXT**
 
 Date: 2026-09-18
 
 ## Current maturity estimate
 
-**~67%**
+**~71%**
 
 ## Completed foundations
 
@@ -41,6 +41,7 @@ Date: 2026-09-18
 - [x] completed a fixed official-page USCC regression: 4/4 final-award lots carried parsed stable supplier IDs;
 - [x] implemented a China procurement graph where final awards use AWARDED_TO, ranked candidates use HAS_RANKED_CANDIDATE, and name-only suppliers remain source-local;
 - [x] exact USCC suppliers can share a stable CN-USCC graph identity across notices; same-name-only suppliers cannot auto-merge.
+- [x] implemented and CI-validated `china_stable_id_enrichment.py`: only exact CN-USCC equality can auto-attach allowlisted factual registry attributes; name-only equality is review-only; same-name disjoint stable IDs are conflicts; interactive/unavailable sources remain `COVERAGE_GAP`; contact-person/telephone fields are not propagated; every output keeps `corruption_inference=false`.
 
 ## China-first source backbone
 
@@ -189,8 +190,8 @@ This advances the China procurement graph beyond source-local nodes without turn
 
 ## Immediate next work
 
-1. extend the now-working CCGP procurement graph with cross-source organization resolution and source provenance;
-2. enrich exact CN-USCC supplier identities from lawful official/public corporate sources without falling back to name-only merging;
+1. run the first bounded real second-source organization enrichment using exact CN-USCC from a lawful machine-readable official/public source; if the authoritative source is interactive/CAPTCHA-only, record `COVERAGE_GAP` rather than bypassing controls;
+2. extend the now-working CCGP procurement graph with those provenance-preserving exact-ID enrichment records, never falling back to name-only auto-merging;
 3. implement the National Public Resource Trading Platform federation and selected provincial adapters;
 4. build official organization-universe adapters for hospitals, SOEs, universities/research institutes and social organizations/charities;
 5. build institution-domain crawler contracts for hospital/SOE/institute/university/NGO procurement pages and PDFs;
