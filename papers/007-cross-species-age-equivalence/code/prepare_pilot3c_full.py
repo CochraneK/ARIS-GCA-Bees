@@ -126,7 +126,7 @@ def main() -> None:
                 "filename":url.rsplit("/",1)[-1],
             })
     with (args.out/"download_manifest.tsv").open("w",encoding="utf-8",newline="") as f:
-        w=csv.DictWriter(f,fieldnames=list(dl[0]),delimiter="\t")
+        w=csv.DictWriter(f,fieldnames=list(dl[0]),delimiter="\t",lineterminator="\n")
         w.writeheader();w.writerows(dl)
 
     drift=[]
