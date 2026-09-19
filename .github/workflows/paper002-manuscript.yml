@@ -48,13 +48,30 @@ jobs:
           test -s papers/002-language-geometry/process/CLAIMS_EVIDENCE_MATRIX.md
           test -s papers/002-language-geometry/process/DATA_PROVENANCE.md
           test -s papers/002-language-geometry/process/LITERATURE_RESCAN_2026-09-18.md
-      - name: Regenerate manuscript figures in clean CI
+      - name: Regenerate legacy core evidence plots as source-data smoke test
         run: python papers/002-language-geometry/code/make_manuscript_figures.py
-      - name: Verify regenerated figures
+      - name: Verify canonical six-figure manuscript package
         run: |
-          test -s papers/002-language-geometry/figures/figure1_cross_dataset.svg
-          test -s papers/002-language-geometry/figures/figure2_tli_paired_contrasts.svg
-          test -s papers/002-language-geometry/figures/figure3_circular_diagnostics.svg
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          root = Path('papers/002-language-geometry')
+          expected = [
+              'figure1_local_domain_gate.svg',
+              'figure2_circular_diagnostics.svg',
+              'figure3_tli_paired_contrasts.svg',
+              'figure4_geography_calibration.svg',
+              'figure5_cross_dataset.svg',
+              'figure6_stable_order_not_closure.svg',
+          ]
+          for name in expected:
+              p = root / 'figures' / name
+              assert p.is_file() and p.stat().st_size > 0, f'Missing canonical figure: {name}'
+          for manuscript in [root / 'manuscript' / 'DRAFT.md', root / 'manuscript' / 'DRAFT.zh-CN.md']:
+              text = manuscript.read_text(encoding='utf-8')
+              refs = re.findall(r'\.\./figures/(figure\d+_[^)]+\.svg)', text)
+              assert refs == expected, f'{manuscript}: canonical figure order mismatch: {refs}'
+          PY
       - name: Claim-boundary smoke check
         run: |
           python - <<'PY'
