@@ -1,6 +1,6 @@
 # ARIS4C009 Pilot-0 · DAIS-C structural classification
 
-**Generated:** 2026-09-19T05:12:32.259740+00:00
+**Generated:** 2026-09-19T05:15:15.790668+00:00
 
 ## Privacy rule
 No transcript text or participant IDs are emitted. TXT/RTF/DOCX parsing occurs only

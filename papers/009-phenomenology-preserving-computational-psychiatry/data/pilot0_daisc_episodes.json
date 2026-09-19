@@ -1,6 +1,6 @@
 {
   "dataset": "DAIS-C",
-  "generated_utc": "2026-09-19T05:12:32.493539+00:00",
+  "generated_utc": "2026-09-19T05:15:16.028290+00:00",
   "privacy_rule": "No transcript text, file names, or participant IDs emitted.",
   "episode_rule": "One interviewer block starts an episode; all immediately following participant blocks belong to that episode until the next interviewer block.",
   "selected_source_extensions": {

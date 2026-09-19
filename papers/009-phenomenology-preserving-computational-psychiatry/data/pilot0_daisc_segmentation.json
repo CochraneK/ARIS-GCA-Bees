@@ -1,0 +1,488 @@
+{
+  "dataset": "DAIS-C",
+  "generated_utc": "2026-09-19T05:15:16.263916+00:00",
+  "privacy_rule": "No transcript text, file names, or participant IDs emitted.",
+  "rule": "Greedily accumulate adjacent interviewer-response microepisodes until participant-word target is reached; never split inside a source turn.",
+  "targets": {
+    "20": {
+      "overall": {
+        "target_participant_words": 20,
+        "windows": 953,
+        "participant_words": {
+          "n": 953,
+          "min": 0,
+          "p10": 23.0,
+          "p25": 31.0,
+          "median": 52,
+          "p75": 107.0,
+          "p90": 198.6,
+          "max": 1031,
+          "mean": 89.48
+        },
+        "interviewer_words": {
+          "n": 953,
+          "min": 0,
+          "p10": 1.0,
+          "p25": 3.0,
+          "median": 15,
+          "p75": 39.0,
+          "p90": 93.0,
+          "max": 400,
+          "mean": 34.45
+        },
+        "microepisodes_per_window": {
+          "n": 953,
+          "min": 1,
+          "p10": 1.0,
+          "p25": 1.0,
+          "median": 1,
+          "p75": 2.0,
+          "p90": 4.0,
+          "max": 12,
+          "mean": 2.0
+        },
+        "participant_turns_per_window": {
+          "n": 953,
+          "min": 0,
+          "p10": 1.0,
+          "p25": 1.0,
+          "median": 1,
+          "p75": 2.0,
+          "p90": 4.0,
+          "max": 12,
+          "mean": 1.98
+        },
+        "below_target_windows": 28,
+        "zero_participant_word_windows": 10,
+        "over_250_participant_word_windows": 58,
+        "over_500_participant_word_windows": 10
+      },
+      "by_cohort": {
+        "clinical": {
+          "target_participant_words": 20,
+          "windows": 698,
+          "participant_words": {
+            "n": 698,
+            "min": 0,
+            "p10": 23.0,
+            "p25": 30.0,
+            "median": 47.0,
+            "p75": 94.75,
+            "p90": 189.3,
+            "max": 1031,
+            "mean": 85.23
+          },
+          "interviewer_words": {
+            "n": 698,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 3.0,
+            "median": 14.0,
+            "p75": 33.0,
+            "p90": 64.6,
+            "max": 259,
+            "mean": 25.81
+          },
+          "microepisodes_per_window": {
+            "n": 698,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 1.0,
+            "p75": 2.0,
+            "p90": 3.0,
+            "max": 8,
+            "mean": 1.82
+          },
+          "participant_turns_per_window": {
+            "n": 698,
+            "min": 0,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 1.0,
+            "p75": 2.0,
+            "p90": 3.0,
+            "max": 8,
+            "mean": 1.82
+          },
+          "below_target_windows": 15,
+          "zero_participant_word_windows": 3,
+          "over_250_participant_word_windows": 46,
+          "over_500_participant_word_windows": 8
+        },
+        "comparison": {
+          "target_participant_words": 20,
+          "windows": 255,
+          "participant_words": {
+            "n": 255,
+            "min": 0,
+            "p10": 21.4,
+            "p25": 34.0,
+            "median": 81,
+            "p75": 136.0,
+            "p90": 211.6,
+            "max": 626,
+            "mean": 101.13
+          },
+          "interviewer_words": {
+            "n": 255,
+            "min": 0,
+            "p10": 0.0,
+            "p25": 2.0,
+            "median": 24,
+            "p75": 85.5,
+            "p90": 185.0,
+            "max": 400,
+            "mean": 58.1
+          },
+          "microepisodes_per_window": {
+            "n": 255,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2,
+            "p75": 3.0,
+            "p90": 5.0,
+            "max": 12,
+            "mean": 2.49
+          },
+          "participant_turns_per_window": {
+            "n": 255,
+            "min": 0,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2,
+            "p75": 3.0,
+            "p90": 5.0,
+            "max": 12,
+            "mean": 2.44
+          },
+          "below_target_windows": 13,
+          "zero_participant_word_windows": 7,
+          "over_250_participant_word_windows": 12,
+          "over_500_participant_word_windows": 2
+        }
+      }
+    },
+    "40": {
+      "overall": {
+        "target_participant_words": 40,
+        "windows": 745,
+        "participant_words": {
+          "n": 745,
+          "min": 0,
+          "p10": 42.0,
+          "p25": 52.0,
+          "median": 79,
+          "p75": 132.0,
+          "p90": 226.0,
+          "max": 1031,
+          "mean": 114.47
+        },
+        "interviewer_words": {
+          "n": 745,
+          "min": 0,
+          "p10": 1.0,
+          "p25": 4.0,
+          "median": 21,
+          "p75": 53.0,
+          "p90": 116.0,
+          "max": 471,
+          "mean": 44.06
+        },
+        "microepisodes_per_window": {
+          "n": 745,
+          "min": 1,
+          "p10": 1.0,
+          "p25": 1.0,
+          "median": 2,
+          "p75": 3.0,
+          "p90": 5.0,
+          "max": 15,
+          "mean": 2.56
+        },
+        "participant_turns_per_window": {
+          "n": 745,
+          "min": 0,
+          "p10": 1.0,
+          "p25": 1.0,
+          "median": 2,
+          "p75": 3.0,
+          "p90": 5.0,
+          "max": 15,
+          "mean": 2.54
+        },
+        "below_target_windows": 28,
+        "zero_participant_word_windows": 6,
+        "over_250_participant_word_windows": 61,
+        "over_500_participant_word_windows": 11
+      },
+      "by_cohort": {
+        "clinical": {
+          "target_participant_words": 40,
+          "windows": 529,
+          "participant_words": {
+            "n": 529,
+            "min": 1,
+            "p10": 42.0,
+            "p25": 51.0,
+            "median": 73,
+            "p75": 119.0,
+            "p90": 229.0,
+            "max": 1031,
+            "mean": 112.45
+          },
+          "interviewer_words": {
+            "n": 529,
+            "min": 1,
+            "p10": 1.8,
+            "p25": 5.0,
+            "median": 20,
+            "p75": 42.0,
+            "p90": 89.0,
+            "max": 292,
+            "mean": 34.05
+          },
+          "microepisodes_per_window": {
+            "n": 529,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2,
+            "p75": 3.0,
+            "p90": 4.2,
+            "max": 12,
+            "mean": 2.41
+          },
+          "participant_turns_per_window": {
+            "n": 529,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2,
+            "p75": 3.0,
+            "p90": 5.0,
+            "max": 10,
+            "mean": 2.4
+          },
+          "below_target_windows": 15,
+          "zero_participant_word_windows": 0,
+          "over_250_participant_word_windows": 48,
+          "over_500_participant_word_windows": 9
+        },
+        "comparison": {
+          "target_participant_words": 40,
+          "windows": 216,
+          "participant_words": {
+            "n": 216,
+            "min": 0,
+            "p10": 42.0,
+            "p25": 56.75,
+            "median": 100.0,
+            "p75": 162.25,
+            "p90": 223.5,
+            "max": 626,
+            "mean": 119.39
+          },
+          "interviewer_words": {
+            "n": 216,
+            "min": 0,
+            "p10": 0.0,
+            "p25": 2.0,
+            "median": 28.0,
+            "p75": 102.25,
+            "p90": 210.5,
+            "max": 471,
+            "mean": 68.59
+          },
+          "microepisodes_per_window": {
+            "n": 216,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2.0,
+            "p75": 4.0,
+            "p90": 6.0,
+            "max": 15,
+            "mean": 2.94
+          },
+          "participant_turns_per_window": {
+            "n": 216,
+            "min": 0,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2.0,
+            "p75": 4.0,
+            "p90": 6.0,
+            "max": 15,
+            "mean": 2.88
+          },
+          "below_target_windows": 13,
+          "zero_participant_word_windows": 6,
+          "over_250_participant_word_windows": 13,
+          "over_500_participant_word_windows": 2
+        }
+      }
+    },
+    "80": {
+      "overall": {
+        "target_participant_words": 80,
+        "windows": 550,
+        "participant_words": {
+          "n": 550,
+          "min": 0,
+          "p10": 81.0,
+          "p25": 92.0,
+          "median": 116.0,
+          "p75": 182.0,
+          "p90": 273.1,
+          "max": 1031,
+          "mean": 155.05
+        },
+        "interviewer_words": {
+          "n": 550,
+          "min": 0,
+          "p10": 1.0,
+          "p25": 9.0,
+          "median": 32.0,
+          "p75": 73.75,
+          "p90": 151.1,
+          "max": 696,
+          "mean": 59.69
+        },
+        "microepisodes_per_window": {
+          "n": 550,
+          "min": 1,
+          "p10": 1.0,
+          "p25": 2.0,
+          "median": 3.0,
+          "p75": 4.0,
+          "p90": 7.0,
+          "max": 24,
+          "mean": 3.47
+        },
+        "participant_turns_per_window": {
+          "n": 550,
+          "min": 0,
+          "p10": 1.0,
+          "p25": 2.0,
+          "median": 3.0,
+          "p75": 4.0,
+          "p90": 7.0,
+          "max": 24,
+          "mean": 3.43
+        },
+        "below_target_windows": 28,
+        "zero_participant_word_windows": 3,
+        "over_250_participant_word_windows": 66,
+        "over_500_participant_word_windows": 11
+      },
+      "by_cohort": {
+        "clinical": {
+          "target_participant_words": 80,
+          "windows": 378,
+          "participant_words": {
+            "n": 378,
+            "min": 2,
+            "p10": 82.0,
+            "p25": 91.0,
+            "median": 112.5,
+            "p75": 172.75,
+            "p90": 283.3,
+            "max": 1031,
+            "mean": 157.38
+          },
+          "interviewer_words": {
+            "n": 378,
+            "min": 1,
+            "p10": 2.0,
+            "p25": 10.0,
+            "median": 29.0,
+            "p75": 61.0,
+            "p90": 125.3,
+            "max": 324,
+            "mean": 47.65
+          },
+          "microepisodes_per_window": {
+            "n": 378,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 2.0,
+            "median": 3.0,
+            "p75": 4.0,
+            "p90": 6.3,
+            "max": 17,
+            "mean": 3.37
+          },
+          "participant_turns_per_window": {
+            "n": 378,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 2.0,
+            "median": 3.0,
+            "p75": 4.0,
+            "p90": 7.0,
+            "max": 16,
+            "mean": 3.35
+          },
+          "below_target_windows": 15,
+          "zero_participant_word_windows": 0,
+          "over_250_participant_word_windows": 51,
+          "over_500_participant_word_windows": 9
+        },
+        "comparison": {
+          "target_participant_words": 80,
+          "windows": 172,
+          "participant_words": {
+            "n": 172,
+            "min": 0,
+            "p10": 80.0,
+            "p25": 92.75,
+            "median": 127.0,
+            "p75": 190.0,
+            "p90": 232.9,
+            "max": 626,
+            "mean": 149.94
+          },
+          "interviewer_words": {
+            "n": 172,
+            "min": 0,
+            "p10": 0.0,
+            "p25": 4.75,
+            "median": 40.0,
+            "p75": 113.75,
+            "p90": 239.2,
+            "max": 696,
+            "mean": 86.13
+          },
+          "microepisodes_per_window": {
+            "n": 172,
+            "min": 1,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2.0,
+            "p75": 5.0,
+            "p90": 7.0,
+            "max": 24,
+            "mean": 3.69
+          },
+          "participant_turns_per_window": {
+            "n": 172,
+            "min": 0,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 2.0,
+            "p75": 5.0,
+            "p90": 7.0,
+            "max": 24,
+            "mean": 3.62
+          },
+          "below_target_windows": 13,
+          "zero_participant_word_windows": 3,
+          "over_250_participant_word_windows": 15,
+          "over_500_participant_word_windows": 2
+        }
+      }
+    }
+  }
+}
