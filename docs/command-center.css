@@ -296,8 +296,7 @@ code{padding:2px 5px;border-radius:6px;background:var(--surface-3)}
   pointer-events:none;
 }
 .showcase-card[data-activity="active"]{--activity-color:var(--green)}
-.showcase-card[data-activity="gated"]{--activity-color:var(--amber)}
-.showcase-card[data-activity="blocked"]{--activity-color:var(--red)}
+.showcase-card[data-activity="waiting"]{--activity-color:var(--amber)}
 .showcase-card[data-activity="quiet"]{--activity-color:var(--faint)}
 .showcase-top,.showcase-bottom{
   display:flex;
