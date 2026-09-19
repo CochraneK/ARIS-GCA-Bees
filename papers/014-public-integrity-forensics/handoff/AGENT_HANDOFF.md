@@ -8,18 +8,18 @@ An auditable multi-source public-integrity agent that mines structured and web-n
 
 ## Current state
 
-- Activity: **wait**
-- Progress: **69%**
-- Stage: **China Pilot 1 · conservative cross-source entity layer**
-- Evidence: CCGP/CAS/USCC live graph + stable-ID-only auto-merge resolver under CI
+- Activity: **active**
+- Progress: **71%**
+- Stage: **China Pilot 1 · exact-USCC cross-source enrichment contract validated**
+- Evidence: CCGP/CAS/USCC graph + stable-ID-only resolver now extended with a tested cross-source enrichment contract: only exact valid CN-USCC equality can auto-attach allowlisted factual registry attributes; name-only matches are REVIEW_CANDIDATE, same-name disjoint IDs are conflicts, interactive/unavailable sources are COVERAGE_GAP, sensitive contact fields are not propagated, and corruption_inference remains false. ARIS4C014 CI runs 118–119 PASS.
 
 ## Immediate next action
 
-**Run cross-source enrichment with exact stable IDs; route name-only matches to review**
+**Implement the first lawful second-source organization adapter that exposes exact CN-USCC without bypassing interactive/CAPTCHA controls; run a bounded joinability enrichment and report exact-ID matches, review candidates, conflicts and coverage gaps.**
 
 ## Current blocker / gate
 
-Authoritative stable identifiers and source coverage vary by organization type
+No architecture blocker. The primary constraint is lawful machine-readable access to authoritative second-source stable identifiers; interactive/CAPTCHA-protected registries must remain explicit coverage gaps rather than being bypassed.
 
 ## Canonical files / entry points
 

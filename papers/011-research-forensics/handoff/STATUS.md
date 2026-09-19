@@ -3,11 +3,11 @@
 - **Title:** Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening
 - **Project status:** confirmatory-feasibility-frame-v0
 - **Activity:** active
-- **Portfolio progress:** 86%
-- **Current stage:** Confirmatory transition · blinded 80-record feasibility frame frozen
-- **Evidence established:** Six time-safe pre-outcome development FLAG evaluations across five target papers; one SAFE_EXACT formatting/honest-error control with 10 PASS / 0 FLAG / review priority NONE; four matched no-known-integrity-concern development comparators frozen by full-text SHA-256; and an 80-record detector-output-blind feasibility frame covering all 20 strata from 2016–2025 × correction/retraction with 4 records per stratum and 42 development-exposed DOIs excluded. Crossref feasibility metadata show 79/80 full-text links and 25/80 current-title status markers, reinforcing the requirement for historical Track-A artifact qualification.
-- **Next gate:** Build manager-only issue-adjudication packets for the frozen 80 records, assign issue family and required artifact role without detector output, then quantify/freeze SAFE_EXACT / PROXY_ONLY / BLOCKED attrition.
-- **Blocker:** No immediate engineering blocker. Confirmatory scoring remains disabled until issue/artifact adjudication, attrition, grouped/temporal splits, detector/applicability/threshold freeze, leakage audit, and human-review protocol are complete.
+- **Portfolio progress:** 87%
+- **Current stage:** Confirmatory transition · 80-record blinded feasibility frame frozen · exposure firewall expanded
+- **Evidence established:** Development cycle closed at six time-safe pre-outcome FLAG evaluations, one SAFE_EXACT formatting-control non-escalation case, and four hashed development comparators. A detector-output-blind feasibility frame contains 80 journal articles across all 20 year×update-type strata (2016–2025 × correction/retraction; 4/stratum). Because feasibility papers can affect acquisition/sample-size design, the development-exposure firewall was conservatively expanded to 180 DOIs, including feasibility target/source/notice DOIs, preventing reuse in final confirmatory performance manifests.
+- **Next gate:** Build manager-only issue-adjudication packets for the frozen 80 feasibility records, assign issue family + required artifact role without detector output, quantify SAFE_EXACT / PROXY_ONLY / BLOCKED attrition, then use those aggregate feasibility rates to design a fresh independent confirmatory corpus.
+- **Blocker:** No immediate engineering blocker. Confirmatory scoring remains disabled until a fresh post-feasibility corpus is built and frozen with attrition, grouped/temporal splits, detector/applicability/threshold freeze, leakage audit, and human-review protocol.
 
 ## Source of truth
 
