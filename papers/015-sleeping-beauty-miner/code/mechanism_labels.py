@@ -421,6 +421,7 @@ def robust_sleeping_beauty_gate(
 @dataclass(frozen=True)
 class MechanismState:
     state: str
+    quadrant_state: str
     early_percentile: float
     late_percentile: float
     early_low_threshold: float
@@ -433,6 +434,7 @@ class MechanismState:
     def as_dict(self) -> dict:
         return {
             "state": self.state,
+            "quadrant_state": self.quadrant_state,
             "early_percentile": self.early_percentile,
             "late_percentile": self.late_percentile,
             "early_low_threshold": self.early_low_threshold,
@@ -499,25 +501,34 @@ def classify_mechanism_state(
         late_high = False
 
     if early_low and late_high:
-        if require_robust_sb_for_sleeping_beauty:
-            state = (
-                "SLEEPING_BEAUTY"
-                if robust_sb is True
-                else "LOW_EARLY_HIGH_LATE_UNCONFIRMED"
-            )
-        else:
-            state = "SLEEPING_BEAUTY"
+        quadrant_state = "LOW_EARLY_HIGH_LATE"
     elif early_low and late_low:
-        state = "FORGOTTEN"
+        quadrant_state = "FORGOTTEN"
     elif early_high and late_high:
-        state = "IMMEDIATE_HIT"
+        quadrant_state = "IMMEDIATE_HIT"
     elif early_high and late_low:
-        state = "FADING"
+        quadrant_state = "FADING"
     else:
-        state = "AMBIGUOUS"
+        quadrant_state = "AMBIGUOUS"
+
+    # Retrospective robust-SB status is defined by the complete trajectory and
+    # takes precedence over a cohort-relative early/late quadrant. In very old
+    # sparse cohorts, a few early citations can rank highly even when the paper
+    # then remains deeply dormant for decades.
+    if require_robust_sb_for_sleeping_beauty and robust_sb is True:
+        state = "SLEEPING_BEAUTY"
+    elif quadrant_state == "LOW_EARLY_HIGH_LATE":
+        state = (
+            "SLEEPING_BEAUTY"
+            if not require_robust_sb_for_sleeping_beauty
+            else "LOW_EARLY_HIGH_LATE_UNCONFIRMED"
+        )
+    else:
+        state = quadrant_state
 
     return MechanismState(
         state=state,
+        quadrant_state=quadrant_state,
         early_percentile=float(early_percentile),
         late_percentile=float(late_percentile),
         early_low_threshold=float(early_low_threshold),
