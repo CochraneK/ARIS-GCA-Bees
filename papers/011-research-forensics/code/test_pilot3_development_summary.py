@@ -9,9 +9,9 @@ m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 class T(unittest.TestCase):
     def test_summary_boundaries(self):
         x=m.build()
-        self.assertEqual(x["true_positive_evaluations"]["count"],5)
-        self.assertEqual(x["true_positive_evaluations"]["unique_target_papers"],4)
-        self.assertEqual(x["true_positive_evaluations"]["family_counts"],{"F5":1,"F3":2,"F8":1,"F1":1})
+        self.assertEqual(x["true_positive_evaluations"]["count"],6)
+        self.assertEqual(x["true_positive_evaluations"]["unique_target_papers"],5)
+        self.assertEqual(x["true_positive_evaluations"]["family_counts"],{"F5":1,"F3":3,"F8":1,"F1":1})
         self.assertEqual(len(x["abstention_example"]["abstained_checks"]),5)
         self.assertEqual(x["negative_side_development_comparators"]["count"],4)
         self.assertEqual(x["conservative_non_escalation"]["flag_count"],0)
