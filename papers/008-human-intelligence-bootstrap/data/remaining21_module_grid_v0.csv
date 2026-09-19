@@ -89,24 +89,24 @@ Gasterosteus aculeatus,C,not_located_first_pass,,,scientific_name_plus_common_na
 Gasterosteus aculeatus,D,positive_proxy,pmcid:PMC4020685,environment-responsive nest construction / spiggin-mediated material joining,evidence_located,not_searched,Direct construction physiology/behavior context; not tool manufacture.
 Gasterosteus aculeatus,E,positive,pmcid:PMC4020685,constructed nest as persistent externalized structure,evidence_located,not_searched,Persistent nest construction is established; not cumulative cultural construction.
 Gasterosteus aculeatus,F,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
-Bison bison,A,pending_first_pass,,,pending,not_searched,
-Bison bison,B,pending_first_pass,,,pending,not_searched,
-Bison bison,C,pending_first_pass,,,pending,not_searched,
-Bison bison,D,pending_first_pass,,,pending,not_searched,
-Bison bison,E,pending_first_pass,,,pending,not_searched,
-Bison bison,F,pending_first_pass,,,pending,not_searched,
-Sarcophilus harrisii,A,pending_first_pass,,,pending,not_searched,
-Sarcophilus harrisii,B,pending_first_pass,,,pending,not_searched,
-Sarcophilus harrisii,C,pending_first_pass,,,pending,not_searched,
-Sarcophilus harrisii,D,pending_first_pass,,,pending,not_searched,
-Sarcophilus harrisii,E,pending_first_pass,,,pending,not_searched,
-Sarcophilus harrisii,F,pending_first_pass,,,pending,not_searched,
-Otospermophilus beecheyi,A,pending_first_pass,,,pending,not_searched,
-Otospermophilus beecheyi,B,pending_first_pass,,,pending,not_searched,
-Otospermophilus beecheyi,C,pending_first_pass,,,pending,not_searched,
-Otospermophilus beecheyi,D,pending_first_pass,,,pending,not_searched,
-Otospermophilus beecheyi,E,pending_first_pass,,,pending,not_searched,
-Otospermophilus beecheyi,F,pending_first_pass,,,pending,not_searched,
+Bison bison,A,positive_proxy,pmid:24811575,memory-based adaptive foraging,evidence_located,not_searched,Direct memory-guided adaptive movement evidence; not broad generative problem solving.
+Bison bison,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Bison bison,C,positive,pmcid:PMC11427542,mother-offspring acoustic communication,evidence_located,not_searched,Direct acoustic communication evidence; not vocal production learning.
+Bison bison,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Bison bison,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Bison bison,F,positive,pmid:27873440,collective movement decision-making in fusion-fission society,evidence_located,not_searched,Direct collective-decision/social-organization evidence; study also shows collective information can be maladaptive.
+Sarcophilus harrisii,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Sarcophilus harrisii,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Sarcophilus harrisii,C,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Sarcophilus harrisii,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Sarcophilus harrisii,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Sarcophilus harrisii,F,positive_proxy,pmid:19694783,wild seasonal contact-network structure,evidence_located,not_searched,Direct social-network structure evidence; contact connectivity is not equivalent to cooperation.
+Otospermophilus beecheyi,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Otospermophilus beecheyi,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Otospermophilus beecheyi,C,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Otospermophilus beecheyi,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Otospermophilus beecheyi,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Otospermophilus beecheyi,F,positive_proxy,pmcid:PMC6030582,linked above- and belowground social networks,evidence_located,not_searched,Direct California ground squirrel network evidence; does not establish social learning or cooperation.
 Eschrichtius robustus,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Eschrichtius robustus,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Eschrichtius robustus,C,positive,pmid:8817910,gray-whale acoustic repertoire along migration,evidence_located,not_searched,Direct acoustic communication evidence; not social-learning evidence.
@@ -119,9 +119,9 @@ Eubalaena australis,C,positive,pmid:27914379,mother-calf vocal repertoire,eviden
 Eubalaena australis,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Eubalaena australis,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Eubalaena australis,F,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
-Crocuta crocuta,A,pending_first_pass,,,pending,not_searched,
-Crocuta crocuta,B,pending_first_pass,,,pending,not_searched,
-Crocuta crocuta,C,pending_first_pass,,,pending,not_searched,
-Crocuta crocuta,D,pending_first_pass,,,pending,not_searched,
-Crocuta crocuta,E,pending_first_pass,,,pending,not_searched,
-Crocuta crocuta,F,pending_first_pass,,,pending,not_searched,
+Crocuta crocuta,A,positive,pmcid:PMC3427591,innovative problem solving,evidence_located,not_searched,Direct wild novel-problem innovation evidence.
+Crocuta crocuta,B,measured_context,pmid:25245305,directed social-learning test of a novel technical problem,evidence_located,specific_subindicator_tested_negative: directed social learning of novel technical solution,"Social-learning opportunity did not increase solving success, though observers showed reduced neophobia and rank-dependent attention. Treat as measured boundary, not B-positive."
+Crocuta crocuta,C,positive,pmcid:PMC12108359,multimodal gestural communication,evidence_located,not_searched,Direct multimodal communication evidence; not compositional language.
+Crocuta crocuta,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Crocuta crocuta,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Crocuta crocuta,F,positive,pmcid:PMC4402652,long-distance calls facilitate cooperative collective action,evidence_located,not_searched,Direct communication-linked cooperation evidence in wild hyenas.
