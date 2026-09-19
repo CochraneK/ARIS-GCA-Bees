@@ -1,19 +1,19 @@
 {
   "lock_version": 1,
-  "dataset_id": "ucid-mixed-p6-stress-calibration-v0",
+  "dataset_id": "ucid-mixed-response-stress-calibration-v1",
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35424073432,
-    "run_number": 61,
-    "head_sha": "28f81b871ae46666ed0386ed50ad779c18f051ee",
+    "run_id": 35424333316,
+    "run_number": 71,
+    "head_sha": "bfb65f4c55e48d59917b8b06600f0ea972716884",
     "conclusion": "success",
-    "artifact_id": 10577937884,
-    "artifact_name": "aris4c010-mixed-p6-calibration",
-    "artifact_sha256": "799add257f40c1f5cb2a090f6b4d6622686d346f0f78dd500fa5e322128454b4",
+    "artifact_id": 10578712604,
+    "artifact_name": "aris4c010-mixed-response-calibration",
+    "artifact_sha256": "b1b4868e564df8fbac5dc676a0d933f35de4ffffaaceee2d02a29e0d2712a255",
     "generated_json": {
       "file": "annotation_packet.generated.json",
-      "sha256": "ac1b46663b8838b645101853d548bbca5dad9cd9302e8737327bb03ef9a2bb9a",
-      "bytes": 185942,
+      "sha256": "8750077ee15d635f4826857e2f29f4c29f469bc2b1bc247a3ab71b25205016d0",
+      "bytes": 185948,
       "scenarios": 24,
       "query_bank_size": 18,
       "pairs": 216,
@@ -33,5 +33,6 @@
     "P3",
     "P6",
     "P6_CONTEXT"
-  ]
+  ],
+  "source_file": "data/mixed_calibration/stress_scenarios.v1.json"
 }
