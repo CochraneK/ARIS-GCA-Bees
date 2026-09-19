@@ -26,8 +26,14 @@ def main() -> int:
         if activity not in ALLOWED:
             errors.append(f"{pid}: invalid activity={activity!r}; allowed={sorted(ALLOWED)}")
 
-    if len(values) != 16:
-        errors.append(f"expected 16 dashboard projects, found {len(values)}")
+    manifest_ids = {
+        p.parent.name[:3]
+        for p in (ROOT / "papers").glob("[0-9][0-9][0-9]-*/paper.json")
+    }
+    if set(values) != manifest_ids:
+        missing = sorted(manifest_ids - set(values))
+        extra = sorted(set(values) - manifest_ids)
+        errors.append(f"dashboard/manifest ID mismatch: missing={missing}, extra={extra}")
 
     scheduling = dashboard.get("scheduling", {})
     if scheduling.get("policy") != "completion-first":
