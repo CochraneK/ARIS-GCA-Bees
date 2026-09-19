@@ -188,7 +188,6 @@ def showcase_card(p: dict, dashboard: dict) -> str:
 def build(papers: list[dict], dashboard: dict) -> str:
     projects = dashboard.get("projects", {})
     cards = "\n".join(card(p, dashboard) for p in papers)
-    cards = "\n".join(card(p, dashboard) for p in papers)
     showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
@@ -297,11 +296,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
             <p>Management layer: <code>papers/dashboard.json</code></p>
           </div>
           <section id="paperGrid" class="grid">{cards}</section>
-          <section id="detailSection" class="detail-section hidden" aria-live="polite">
-          <div class="section-head"><div><h2 id="detailTitle">Filtered projects</h2><p>Detailed management cards for the selected view.</p></div></div>
-          <section id="paperGrid" class="grid">{cards}</section>
-        </section>
-        <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
+          <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
         </section>
       </main>
 
