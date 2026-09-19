@@ -38,7 +38,11 @@ jobs:
           assert r["corruption_inference"] is False
           assert r["risk_score_computed"] is False
           assert r["named_risk_findings_emitted"] is False
-          assert r["cross_manifestation_resolution"]["automatic_name_only_merges"]==0
+          identity=r["cross_manifestation_resolution"]
+          assert identity["automatic_name_only_merges"]==0
+          assert identity["corruption_inference"] is False
+          assert identity["nodes_with_valid_cn_uscc"]>=1
+          assert identity["stable_id_conflict_decisions"]>=0
           assert r["graph"]["suppliers_with_stable_uscc"]>=1
           print(json.dumps(r,ensure_ascii=False,indent=2))
           PY
