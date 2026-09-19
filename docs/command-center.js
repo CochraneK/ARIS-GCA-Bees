@@ -15,11 +15,14 @@
 
   function setTheme(theme){
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem("aris4c-theme", theme);
+    try{ window.localStorage?.setItem("aris4c-theme", theme); }
+    catch(err){ console.warn("Theme preference could not be persisted", err); }
   }
 
   function initTheme(){
-    const saved = localStorage.getItem("aris4c-theme");
+    let saved="";
+    try{ saved=window.localStorage?.getItem("aris4c-theme") || ""; }
+    catch(err){ console.warn("Theme preference storage unavailable", err); }
     if(saved){ setTheme(saved); return; }
     const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     setTheme(prefersDark ? "dark" : "light");
@@ -75,6 +78,7 @@
     const portfolioSection = $("portfolioSection");
     const hero = document.querySelector(".hero");
     const historySection = $("progressHistorySection");
+    if(!grid) return;
     const cards = [...grid.querySelectorAll(".paper-card")];
 
     // The portfolio summary belongs only to the top-level overview.
@@ -106,8 +110,9 @@
         ? "Search results"
         : (document.querySelector("[data-filter].is-active")?.dataset.label || "Project portfolio");
     }
-    $("resultCount").textContent = (useShowcase ? cards.length : visible.length) + " / " + cards.length + " projects";
-    $("emptyState").classList.toggle("hidden", useShowcase || visible.length !== 0);
+    const resultCount=$("resultCount");
+    if(resultCount) resultCount.textContent = (useShowcase ? cards.length : visible.length) + " / " + cards.length + " projects";
+    $("emptyState")?.classList.toggle("hidden", useShowcase || visible.length !== 0);
     refreshShowcase();
   }
 
@@ -122,11 +127,11 @@
     };
     const meceTotal=Object.values(statusCounts).reduce((sum,n)=>sum+n,0);
 
-    $("navAllCount").textContent=cards.length;
-    $("navFinishCount")?.textContent=statusCounts.finish;
-    $("navActiveCount").textContent=statusCounts.active;
-    $("navWaitCount").textContent=statusCounts.wait;
-    $("navBlockCount").textContent=statusCounts.block;
+    if($("navAllCount")) $("navAllCount").textContent=cards.length;
+    if($("navFinishCount")) $("navFinishCount").textContent=statusCounts.finish;
+    if($("navActiveCount")) $("navActiveCount").textContent=statusCounts.active;
+    if($("navWaitCount")) $("navWaitCount").textContent=statusCounts.wait;
+    if($("navBlockCount")) $("navBlockCount").textContent=statusCounts.block;
 
     document.documentElement.dataset.statusMece=meceTotal===cards.length?"valid":"invalid";
     if(meceTotal!==cards.length){
@@ -336,7 +341,8 @@
       btn.addEventListener("click",()=>{
         currentFilter=btn.dataset.filter;
         document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("is-active",x===btn));
-        $("currentViewLabel").textContent=btn.dataset.label || btn.textContent.trim();
+        const label=$("currentViewLabel");
+        if(label) label.textContent=btn.dataset.label || btn.textContent.trim();
         apply();
       });
     });
@@ -345,25 +351,28 @@
     $("themeToggle")?.addEventListener("click",()=>setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark"));
     $("clearFilters")?.addEventListener("click",()=>{
       currentFilter="all";
-      $("searchInput").value="";
-      $("sortFilter").value="id";
+      if($("searchInput")) $("searchInput").value="";
+      if($("sortFilter")) $("sortFilter").value="id";
       document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("is-active",x.dataset.filter==="all"));
-      $("currentViewLabel").textContent="All projects";
+      if($("currentViewLabel")) $("currentViewLabel").textContent="All projects";
       apply();
     });
   }
 
-  removeLegacyNearFinal();
-  initTheme();
-  wire();
-  counts();
-  refreshCommitHeartbeats();
-  apply();
-  initShowcase();
-  try{ initProgressHistory(); }catch(err){
-    console.error("Progress history render failed",err);
-    const summary=$("progressHistorySummary");
-    if(summary) summary.textContent="Today's history is available, but the chart failed to render.";
+  function safeInit(label, fn){
+    try{ fn(); }
+    catch(err){ console.error(label+" failed", err); }
   }
-  setInterval(refreshCommitHeartbeats, 60000);
+
+  // Keep controls independent: a theme/storage/chart/showcase failure must not
+  // prevent navigation, Reset, search, sorting, or other buttons from working.
+  safeInit("Legacy cleanup", removeLegacyNearFinal);
+  safeInit("Theme initialization", initTheme);
+  safeInit("Control wiring", wire);
+  safeInit("Status counts", counts);
+  safeInit("Commit heartbeat", refreshCommitHeartbeats);
+  safeInit("Initial portfolio render", apply);
+  safeInit("Showcase initialization", initShowcase);
+  safeInit("Progress history render", initProgressHistory);
+  window.setInterval(()=>safeInit("Commit heartbeat refresh", refreshCommitHeartbeats), 60000);
 })();
