@@ -2,8 +2,8 @@
 """Build a LOCAL-ONLY blinded boundary-calibration packet for ARIS4C009.
 
 The default output lives under paper data/raw/, which is gitignored. This script
-intentionally writes source text for human raters and therefore MUST NOT be used to
-publish GitHub artifacts or committed outputs.
+intentionally writes source text for independent AI judges and therefore MUST NOT be
+used to publish GitHub artifacts or committed outputs.
 """
 
 from __future__ import annotations
@@ -184,7 +184,7 @@ def take_nonoverlap(candidates: list[dict], n: int, used: list[dict], rng: rando
     return chosen
 
 
-def write_rater(path: Path, items: list[dict], rng: random.Random) -> None:
+def write_judge(path: Path, items: list[dict], rng: random.Random) -> None:
     rows = items[:]
     rng.shuffle(rows)
     fields = [
@@ -224,7 +224,11 @@ def main() -> None:
     ap.add_argument("--regular-per-condition", type=int, default=60)
     ap.add_argument("--stress-per-condition", type=int, default=10)
     ap.add_argument("--training-items", type=int, default=20)
+    ap.add_argument("--judge-count", type=int, default=3)
     args = ap.parse_args()
+
+    if args.judge_count < 2:
+        raise ValueError("--judge-count must be at least 2; 3+ materially different models are recommended")
 
     rng = random.Random(args.seed)
     root = Path(args.root)
@@ -311,9 +315,38 @@ def main() -> None:
     for i, x in enumerate(training, 1):
         x["item_id"] = f"TR{i:03d}"
 
-    write_rater(out / "rater_A.tsv", selected, random.Random(args.seed + 1))
-    write_rater(out / "rater_B.tsv", selected, random.Random(args.seed + 2))
-    write_rater(out / "training.tsv", training, random.Random(args.seed + 3))
+    for j in range(1, args.judge_count + 1):
+        write_judge(
+            out / f"judge_{j:02d}.tsv",
+            selected,
+            random.Random(args.seed + j),
+        )
+        write_judge(
+            out / f"training_judge_{j:02d}.tsv",
+            training,
+            random.Random(args.seed + 100 + j),
+        )
+
+    manifest = {
+        "warning": "PRIVATE EXECUTION METADATA TEMPLATE. DO NOT COMMIT IF IT CONTAINS SENSITIVE ENDPOINT DETAILS.",
+        "required_judge_count": args.judge_count,
+        "judges": [
+            {
+                "judge_file": f"judge_{j:02d}.tsv",
+                "provider": "",
+                "model_family": "",
+                "model_version": "",
+                "execution_date": "",
+                "temperature_or_determinism": "",
+                "data_handling_mode": "",
+                "prompt_file": "process/AI_JUDGE_PROMPT_BOUNDARY.md",
+            }
+            for j in range(1, args.judge_count + 1)
+        ],
+    }
+    (out / "judge_manifest.template.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
 
     key = {
         "seed": args.seed,
@@ -358,26 +391,27 @@ def main() -> None:
         json.dumps(training_key, indent=2) + "\n", encoding="utf-8"
     )
 
-    readme = """# ARIS4C009 boundary calibration packet — PRIVATE
+    readme = """# ARIS4C009 AI boundary calibration packet — PRIVATE
 
 Do not commit or upload this directory.
 
-## Training phase
+## Judge architecture
 
-Both raters first complete `training.tsv` independently.
+Use at least three materially different model families/providers where feasible.
 
-After both finish the training file, they may open `training_key.json`, discuss
-disagreements, and align on the written boundary rules. Training items are disjoint
-from all primary/stress source regions and never enter the primary agreement result.
+Each model receives:
+- the same frozen prompt from process/AI_JUDGE_PROMPT_BOUNDARY.md;
+- its own independently shuffled judge file;
+- no access to another judge's output;
+- no access to private_key.json.
 
-## Primary phase
+Generated primary files are judge_01.tsv, judge_02.tsv, ... .
+Generated dry-run files are training_judge_01.tsv, training_judge_02.tsv, ... .
 
-Raters then independently complete their own primary file:
+The 20 training windows are for parser/refusal/instruction-following dry runs only.
+They never enter the primary agreement estimate and judges do not discuss or reconcile them.
 
-- `rater_A.tsv`
-- `rater_B.tsv`
-
-Allowed values:
+## Allowed values
 
 - coherent_boundary: yes / no
 - sufficient_nontrivial: yes / no
@@ -385,13 +419,18 @@ Allowed values:
 - recommended_action: keep / merge / split / reject
 - confidence_1_5: 1–5
 
-Do not inspect `private_key.json` until both primary rating files are frozen.
+Do not inspect private_key.json until all primary judge outputs are frozen.
 
-Primary calibration excludes items marked as stress in the private key; stress items
-probe tails and very long windows.
+Primary calibration excludes items marked as stress in the private key.
 
-After both raters finish, use score_boundary_ratings.py to produce an aggregate,
-public-safe summary.
+After all judges finish, run score_boundary_ratings.py with repeated --judge arguments
+to produce an aggregate, public-safe cross-model summary.
+
+## Privacy
+
+Only use local models or external endpoints whose data-use and retention terms are
+compatible with the source-data governance. Never upload this packet as a public CI
+artifact.
 """
     (out / "README_PRIVATE.md").write_text(readme, encoding="utf-8")
 
