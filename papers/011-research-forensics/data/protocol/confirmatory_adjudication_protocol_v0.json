@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.1.1",
   "state": "FROZEN_FOR_FIRST_PASS_ADJUDICATION",
   "purpose": "Manager-side issue and required-artifact-role coding for the frozen 80-record feasibility frame before any detector scoring.",
   "source_hierarchy": [
@@ -19,6 +19,7 @@
   ],
   "issue_family_vocab": {
     "statistical_reporting": "Reported statistical value, model specification, analysis, or inferential inconsistency/error.",
+    "table_numerical_reporting": "Reported table value, quantitative/numerical field, schema, unit, exponent, aggregate, or arithmetic error not primarily an inferential/statistical-analysis error.",
     "data_fabrication_falsification": "Official/primary evidence specifically supports fabricated, falsified, or manipulated data; do not infer from a generic retraction.",
     "image_integrity": "Figure/image duplication, manipulation, assembly, or image-content problem.",
     "plagiarism_text_duplication": "Plagiarism, substantial text overlap, duplicate/redundant publication.",
@@ -72,5 +73,8 @@
     "NEEDS_SOURCE",
     "EXCLUDE_DUPLICATE_EVENT"
   ],
-  "freeze_boundary": "Changing this coding ontology after first-pass coding starts requires a dated protocol amendment; old codes remain preserved and remapped explicitly."
+  "freeze_boundary": "Changing this coding ontology after first-pass coding starts requires a dated protocol amendment; old codes remain preserved and remapped explicitly.",
+  "pre_first_pass_amendments": [
+    "2026-09-19: added table_numerical_reporting before any first-pass labels were committed, so non-statistical F3/table errors are not forced into statistical_reporting or other_unclear."
+  ]
 }
