@@ -37,23 +37,54 @@ def q(value: object) -> str:
     return str(value).replace("'", "''")
 
 
-def prepare_source(source_arg: str) -> tuple[str, list[str]]:
-    """Return Parquet source/glob and hard-gate command."""
-    if source_arg.startswith("s3://"):
-        return source_arg, [
-            sys.executable,
-            str(CODE / "preoutcome_gate.py"),
-            "--strict",
+def prepare_source(source_arg: str) -> tuple[str, list[str], bool]:
+    """Return DuckDB read_parquet expression, gate command, and remote flag.
+
+    A source beginning with @ is a newline-delimited file of exact Parquet
+    URIs. This supports deterministic manifest sharding without changing the
+    extraction query.
+    """
+    if source_arg.startswith("@"):
+        list_path = Path(source_arg[1:]).expanduser().resolve()
+        urls = [
+            line.strip()
+            for line in list_path.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
         ]
+        if not urls:
+            raise SystemExit(f"Empty OpenAlex Parquet file list: {list_path}")
+        if not all(u.startswith("s3://") for u in urls):
+            raise SystemExit("Shard file lists must contain only s3:// Parquet URIs")
+        quoted = ", ".join("'" + q(u) + "'" for u in urls)
+        expr = (
+            f"read_parquet([{quoted}], "
+            "union_by_name=true, hive_partitioning=true)"
+        )
+        gate = [sys.executable, str(CODE / "preoutcome_gate.py"), "--strict"]
+        return expr, gate, True
+
+    if source_arg.startswith("s3://"):
+        expr = (
+            f"read_parquet('{q(source_arg)}', "
+            "union_by_name=true, hive_partitioning=true)"
+        )
+        gate = [sys.executable, str(CODE / "preoutcome_gate.py"), "--strict"]
+        return expr, gate, True
 
     root = Path(source_arg).expanduser().resolve()
-    return str(root / "**" / "*.parquet"), [
+    glob = root / "**" / "*.parquet"
+    expr = (
+        f"read_parquet('{q(glob)}', "
+        "union_by_name=true, hive_partitioning=true)"
+    )
+    gate = [
         sys.executable,
         str(CODE / "preoutcome_gate.py"),
         "--snapshot-root",
         str(root),
         "--strict",
     ]
+    return expr, gate, False
 
 
 def main() -> None:
@@ -61,15 +92,15 @@ def main() -> None:
     p.add_argument(
         "snapshot_root",
         help=(
-            "local Works Parquet root or public S3 parquet glob, e.g. "
-            "s3://openalex/data/parquet/works/**/*.parquet"
+            "local Works Parquet root, public S3 parquet glob, or @file "
+            "containing exact public-S3 Parquet URIs"
         ),
     )
     p.add_argument("--output-dir", type=Path, default=DATA / "derived" / "openalex")
     args = p.parse_args()
 
     source_arg = str(args.snapshot_root)
-    parquet_source, gate_cmd = prepare_source(source_arg)
+    work_source, gate_cmd, remote_source = prepare_source(source_arg)
     subprocess.run(gate_cmd, check=True)
 
     crosswalk = PROCESS / "DISCIPLINE_CROSSWALK.csv"
@@ -81,7 +112,7 @@ def main() -> None:
     types_sql = ",".join("'" + x.replace("'", "''") + "'" for x in WORK_TYPES)
     con = duckdb.connect(database=":memory:")
     con.execute("SET preserve_insertion_order=false")
-    if source_arg.startswith("s3://"):
+    if remote_source:
         con.execute("INSTALL httpfs")
         con.execute("LOAD httpfs")
 
@@ -108,10 +139,6 @@ def main() -> None:
 
     # Parquet projection and publication_year predicates are deliberately kept
     # inside the first CTE so DuckDB can use Parquet column/row-group pruning.
-    work_source = (
-        f"read_parquet('{q(parquet_source)}', "
-        "union_by_name=true, hive_partitioning=true)"
-    )
     base_sql = f"""
         WITH eligible AS (
             SELECT
@@ -304,7 +331,7 @@ def main() -> None:
     print(coverage_out)
     print(
         "Confirmatory outcome cells materialized under a passed hard gate. "
-        f"source={parquet_source}"
+        f"source={source_arg}"
     )
 
 
