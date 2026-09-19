@@ -1,5 +1,5 @@
 {
-  "retrieved_at_utc": "2026-09-19T05:11:56.723772+00:00",
+  "retrieved_at_utc": "2026-09-19T05:19:18.311354+00:00",
   "source": "OpenAlex Works API",
   "endpoint": "https://api.openalex.org/works",
   "query_url": "https://api.openalex.org/works?filter=publication_year:2000-2025,type:article|review&group_by=publication_year&per_page=200&corpus=core",

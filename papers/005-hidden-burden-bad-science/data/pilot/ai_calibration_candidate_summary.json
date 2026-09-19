@@ -3,8 +3,9 @@
   "unique_resolvable_dois": 63504,
   "event_rows_without_resolvable_doi": 6080,
   "candidate_queue_counts": {
-    "U_REVIEW": 56169,
+    "U_REVIEW": 53143,
     "N_PROCESS_REVIEW": 5314,
+    "N_ERROR_REVIEW": 3026,
     "P_REVIEW": 586,
     "P_HIGH_REVIEW": 1435
   },
@@ -14,12 +15,14 @@
     "P_HIGH_REVIEW": "narrow fabrication/falsification screening signal plus official/misconduct context",
     "P_REVIEW": "narrow fabrication/falsification screening signal",
     "N_PROCESS_REVIEW": "narrow process-only reason family with no scientific unreliability signal",
+    "N_ERROR_REVIEW": "E3 error/reproducibility signal without strong integrity flags; requires confirmation that the error is non-severe/non-misconduct",
     "U_REVIEW": "mixed/ambiguous/insufficient screening evidence"
   },
   "warnings": [
     "Retraction Watch reasons are screening metadata, not calibration truth.",
     "P candidates require notice/institutional primary-evidence confirmation and materiality review.",
     "N_PROCESS_REVIEW requires explicit evidence that the scientific claim is unaffected.",
+    "N_ERROR_REVIEW is not automatically honest error; it requires primary evidence excluding severe integrity failure.",
     "Absence of a scientific flag is not a negative reference standard.",
     "Provisional cluster IDs are only de-duplication/review aids and do not prove statistical independence.",
     "Do not commit or publicly release the row-level candidate queue from a public repository."

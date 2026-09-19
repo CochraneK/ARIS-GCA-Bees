@@ -1,6 +1,6 @@
 {
   "paper": "ARIS4C005",
-  "generated_at_utc": "2026-09-19T05:12:07.232084+00:00",
+  "generated_at_utc": "2026-09-19T05:19:28.099116+00:00",
   "stage": "Pilot A — public-data acquisition feasibility",
   "confirmatory_use_allowed": false,
   "outputs": {
@@ -18,7 +18,7 @@
     },
     "data/pilot/ai_calibration_candidate_summary.json": {
       "exists": true,
-      "bytes": 1320
+      "bytes": 1625
     }
   },
   "warnings": [
