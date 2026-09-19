@@ -4,9 +4,9 @@
   "title": "Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data",
   "short_title": "Public Integrity Forensics",
   "year": 2026,
-  "status": "china-pilot0-stable-id-proven-cross-source-enrichment-next",
+  "status": "china-pilot1-exact-uscc-enrichment-contract-validated",
   "domain": "public integrity / China internet mining / hospitals / SOEs / research institutes / universities / NGOs / public procurement / corporate networks / audit / entity resolution / graph analytics",
-  "summary": "An auditable multi-source public-integrity agent that mines structured and web-native public records across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations and suppliers, builds a time-aware evidence graph, and produces reproducible human-review leads without equating anomalies, public-office status, organizational identity or web allegations with corruption.",
+  "summary": "An auditable multi-source public-integrity agent that mines structured and web-native public records across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations and suppliers, builds a time-aware evidence graph, and produces reproducible human-review leads without equating anomalies, public-office status, organizational identity or web allegations with corruption. China Pilot 1 now has a CI-validated exact-CN-USCC cross-source enrichment contract: factual attributes auto-attach only under exact stable-ID equality; name-only matches require review; same-name disjoint IDs are conflicts; inaccessible sources remain coverage gaps. A real lawful second-source corporate enrichment run is still pending.",
   "authors": [
     "Cochrane Kang"
   ],
@@ -46,7 +46,8 @@
     "china_procurement_graph": "code/china_procurement_graph.py",
     "china_ccgp_uscc_workflow": ".github/workflows/aris4c014-china-ccgp-uscc-smoke.yml",
     "china_institution_ontology": "process/CHINA_INSTITUTION_ONTOLOGY.md",
-    "repository_architecture": "process/REPOSITORY_ARCHITECTURE.md"
+    "repository_architecture": "process/REPOSITORY_ARCHITECTURE.md",
+    "china_stable_id_enrichment": "code/china_stable_id_enrichment.py"
   },
   "tags": [
     "ARIS",
