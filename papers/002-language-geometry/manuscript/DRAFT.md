@@ -208,6 +208,11 @@ More directly, the mean circular wrap-around closure/internal-adjacency ratio wa
 
 These diagnostics are noisy-data sensitivities, not formal rejection tests for all circular-Robinson structures. Their value is that the negative periodic interpretation no longer depends solely on a higher-capacity tree outperforming a circle.
 
+
+![Figure 3. Held-out circular-Robinson-style sensitivity](../figures/figure3_circular_diagnostics.svg)
+
+**Figure 3. Held-out circular-Robinson-style sensitivity.** Mean row-unimodality violation for the learned circular order, an average-linkage tree leaf order and random orders at 40 and 60 TLI features; lower is better. The circular order improves on random order but does not outperform the tree order.
+
 ### 3.6 Tree-over-circle ranking was stable across repeated TLI family hold-outs
 
 Across 20 valid Stage 1F family-held-out splits, mean Spearman correlation was:
@@ -222,6 +227,11 @@ Across 20 valid Stage 1F family-held-out splits, mean Spearman correlation was:
 The paired tree-minus-circle difference was **+0.073**, with split-bootstrap 95% CI **[0.055, 0.092]**; the tree was higher in all 20 splits. The low-rank-minus-circle difference was +0.046 [0.033, 0.061] and favored low-rank in 95% of splits. Euclidean-versus-circle was effectively tied (+0.001 [−0.020, 0.021]).
 
 The bootstrap interval is a summary of split sensitivity, not phylogenetic uncertainty.
+
+
+![Figure 2. TLI repeated family-held-out paired contrasts](../figures/figure2_tli_paired_contrasts.svg)
+
+**Figure 2. TLI repeated family-held-out paired contrasts.** Paired differences in held-out Spearman correlation across 20 TLI top-level-family hold-out splits. Error bars are 95% bootstrap intervals over split-level paired contrasts and should not be read as phylogenetic uncertainty intervals.
 
 ### 3.7 TLI geography blocks weakened all models, but the pattern was not universal
 
@@ -252,6 +262,11 @@ Unlike TLI/GBI, WALS exhibited high cross-macroarea association transfer: **0.63
 | WALS sparse external sanity replication | 2,659 | 30 | **0.603** | 0.410 | 8/8 |
 
 Absolute Spearman magnitudes should not be compared directly across datasets because coverage, sparsity, feature definitions, feature selection and curation differ. The relevant replication is qualitative: in each representation, the optimized circle did not reverse the tree benchmark under family hold-out.
+
+
+![Figure 1. Family-held-out predictive ranking across representations](../figures/figure1_cross_dataset.svg)
+
+**Figure 1. Family-held-out predictive ranking across representations.** Mean Spearman correlation between model-predicted and independently estimated held-out feature-association matrices for TLI, GBI and WALS. In each representation, the hierarchical-tree benchmark exceeds the directly optimized circular model; absolute magnitudes are not directly comparable across datasets.
 
 ## 4. Discussion
 
