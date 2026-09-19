@@ -3,13 +3,19 @@
   "artifact": "aris4c010-standalone-ui",
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35406666313,
-    "run_number": 47,
-    "head_sha": "e2bca72c61c61bd3ba4a7c5d5948ec7535fcb7cc",
+    "run_id": 35424073432,
+    "run_number": 61,
+    "head_sha": "28f81b871ae46666ed0386ed50ad779c18f051ee",
     "conclusion": "success",
-    "artifact_id": 10573100444,
-    "artifact_sha256": "28e521205e2b8e0f9885a1307a2a7c23bad496a7866cb698fb3335fdf3a89647",
-    "participant_pages": 72,
+    "artifact_id": 10578547402,
+    "artifact_name": "aris4c010-standalone-ui",
+    "artifact_sha256": "4766ac8d7c491867a706ba617e14c810f9e8e62e82724c6633b9bf34f233ffb4",
+    "participant_pages": 108,
+    "protocols": [
+      "P2",
+      "P3",
+      "P6"
+    ],
     "network_submission_code": "none"
   },
   "properties": [
