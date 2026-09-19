@@ -20,3 +20,14 @@ For every future material conversation, append:
 - important user correction/constraint;
 - decision/result;
 - affected files/commits where known.
+
+
+## 2026-09-19 · Institution-universe expansion and repository split
+
+- **Surface:** ChatGPT / ARIS4C014
+- **Participants:** Cochrane Kang + ChatGPT
+- **Question:** Whether additional institution types should be added to the China public-integrity universe, and whether the growing agent belongs inside ARIS4C, repo-auditor, or a separate repository.
+- **Institution design result:** Move toward a two-axis ontology: legal/organizational identity × functional domain. Important additions include rural collective economic organizations, local SOEs/LGFVs, government investment/guidance funds, primary/secondary/vocational education, professional intermediaries, public utilities/urban operations, and research peripheral/commercialization entities.
+- **Repository result:** ARIS4C014 remains the scientific parent; OpenIntegrity should become a standalone reusable implementation; repo-auditor remains the independent quality/safety/release auditor.
+- **Important constraint:** Do not interpret institution category, ownership type, public-office status, NGO mission, religion, advocacy, nationality or foreign links as corruption evidence.
+- **Persistence action:** Added `process/CHINA_INSTITUTION_ONTOLOGY.md` and `process/REPOSITORY_ARCHITECTURE.md`; updated handoff state so this chat can be deleted without losing the decision.
