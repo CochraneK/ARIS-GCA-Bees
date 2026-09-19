@@ -261,6 +261,10 @@ Stage 1B 给圆环更大的拟合自由。
 
 Grammatical categories 是唯一一个 optimized circle 均值（0.252）略高于 tree（0.229）的域，但其稳定性只有 0.373，低于预先规定的 0.40，因此不能晋升为局部周期候选。
 
+![图 1：局部结构域周期性联合门槛](../figures/figure1_local_domain_gate.svg)
+
+**图 1｜局部结构域周期性联合门槛。** 五个预定义 TLI 结构域同时按圆环排序稳定性与 optimized-circle 相对 tree 的留出预测优势定位。稳定性门槛为 0.40，预测竞争性要求 circle-minus-tree > 0；没有结构域进入联合通过区域。
+
 ### 3.5 留出 circular-Robinson 风格诊断不支持全局闭合
 
 40 特征：
@@ -280,9 +284,9 @@ Grammatical categories 是唯一一个 optimized circle 均值（0.252）略高�
 60 特征时，圆环“最后一个点连回第一个点”的相似关系几乎不存在。这与“存在稳定开放顺序，但并不真正闭环”的解释更一致。
 
 
-![图 3：留出 circular-Robinson 风格敏感性](../figures/figure3_circular_diagnostics.svg)
+![图 2：留出 circular-Robinson 风格敏感性](../figures/figure2_circular_diagnostics.svg)
 
-**图 3｜留出 circular-Robinson 风格敏感性。** 比较 40 与 60 个 TLI 特征下圆环排序、树叶排序和随机排序的 row-unimodality violation（越低越好）。圆环优于随机排序，但没有优于树叶排序。
+**图 2｜留出 circular-Robinson 风格敏感性。** 比较 40 与 60 个 TLI 特征下圆环排序、树叶排序和随机排序的 row-unimodality violation（越低越好）。圆环优于随机排序，但没有优于树叶排序。
 
 ### 3.6 TLI 重复家族留出中 tree-over-circle 非常稳定
 
@@ -298,9 +302,9 @@ tree 在 20/20 个 split 都超过 optimized circle。
 但 bootstrap CI 只是划分敏感性区间，不等于谱系不确定性区间。
 
 
-![图 2：TLI 重复家族留出配对比较](../figures/figure2_tli_paired_contrasts.svg)
+![图 3：TLI 重复家族留出配对比较](../figures/figure3_tli_paired_contrasts.svg)
 
-**图 2｜TLI 重复家族留出配对比较。** 展示 20 个顶层家族留出 split 中各模型相对 optimized circle 的 held-out Spearman 配对差异；误差线是 split-level 配对差异 bootstrap 的 95% 区间，不代表系统发育不确定性。
+**图 3｜TLI 重复家族留出配对比较。** 展示 20 个顶层家族留出 split 中各模型相对 optimized circle 的 held-out Spearman 配对差异；误差线是 split-level 配对差异 bootstrap 的 95% 区间，不代表系统发育不确定性。
 
 ### 3.7 TLI 跨地理区域迁移显著下降，但不能推广为普遍规律
 
@@ -316,6 +320,10 @@ matched-size 校准显示：
 | 相同样本量随机 coordinate block | 0.351 |
 
 10/10 个真实地理块都低于相同样本量随机对照。
+
+![图 4：TLI 地理迁移的同样本量校准](../figures/figure4_geography_calibration.svg)
+
+**图 4｜TLI 地理迁移的同样本量校准。** 真实 macroarea 与 coordinate-cluster 留出块的 train-test association transfer 明显低于同样本量随机块，说明 TLI 中的迁移下降不能简单归因于测试集更小；但 WALS 的后续相反结果仍限制了这一发现的普遍性。
 
 然而 WALS 后续结果与此不同，因此不能把“跨区域几何必然崩溃”提升为普遍结论。
 
@@ -364,9 +372,9 @@ tree-minus-circle = +0.193，8/8 次 tree 都更高。
 不同数据表示的覆盖率、缺失率、特征定义、筛选策略和清理方法不同，绝对 Spearman 大小不能直接跨行比较。可比较的是定性排序：在三个表示中，optimized circle 都没有超过 tree 基线。
 
 
-![图 1：跨表示的家族留出预测排序](../figures/figure1_cross_dataset.svg)
+![图 5：跨表示的家族留出预测排序](../figures/figure5_cross_dataset.svg)
 
-**图 1｜跨表示的家族留出预测排序。** 比较 TLI、GBI 与 WALS 中模型预测与独立 held-out feature-association matrix 的平均 Spearman 相关。在三个表示中，hierarchical-tree 基准都高于直接优化的 circular model；不同数据集的绝对数值不应直接比较。
+**图 5｜跨表示的家族留出预测排序。** 比较 TLI、GBI 与 WALS 中模型预测与独立 held-out feature-association matrix 的平均 Spearman 相关。在三个表示中，hierarchical-tree 基准都高于直接优化的 circular model；不同数据集的绝对数值不应直接比较。
 
 ## 4. 讨论
 
@@ -402,6 +410,10 @@ Grammar linear order 的 circle stability 高达 0.811，circular prediction 也
 因此，一个系统即使能被稳定排成某种顺序、画在圆上看起来整齐、甚至圆形 embedding 能解释一部分结构，也仍然可能本质上更接近梯度、层级或开放 manifold，而不是周期闭环。
 
 这也是为什么 Kemp（2026）这样的局部语义域圆形结构与本研究并不矛盾：季节、月相、方向等本来就具有天然周期/方向语义，它们完全可能形成真正圆形结构；本文检验的是一个跨语法、词汇、音系等异质特征的全球单圆。
+
+![图 6：稳定排序并不等于周期闭合](../figures/figure6_stable_order_not_closure.svg)
+
+**图 6｜稳定排序并不等于周期闭合。** 左侧表示一个可以稳定复现的开放顺序，右侧突出真正周期系统额外要求的“末端—起点”闭合边。经验上的对应是 Grammar linear order 的高稳定性（0.811）与 60 特征全局 closure ratio 仅 0.037 ± 0.091 的强烈反差。
 
 ### 4.4 地理异质性只是表示依赖的次级结果
 
