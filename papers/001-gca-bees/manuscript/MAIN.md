@@ -61,10 +61,6 @@ Recent reviews consider prediction, attention, emotion-like states, self-related
 
 Similarly, complex social learning in bumblebees—such as acquisition of a two-step puzzle-box behavior from trained demonstrators (Bridges et al., 2024)—is evidence about social learning and cultural transmission, not direct evidence of tool use, self-awareness, or a shared “precision” variable.
 
-![Figure 4. Evidence boundary between the two literatures](../figures/figure4_evidence_boundary.svg)
-
-**Figure 4. Evidence boundary between the two literatures.** Existing studies establish structured learning covariance and difficulty-sensitive opt-out behavior separately. The scientifically decisive missing edge is same-individual coupling; one mechanism, metacognition, consciousness, or a shared precision/confidence variable therefore cannot be inferred from species-level coexistence.
-
 ---
 
 ## 3. Quantitative synthesis of published learning covariance
@@ -117,6 +113,10 @@ First, the positive learning covariance is not a simulation artifact. It is visi
 Second, the factor structure is strikingly similar across the two conditions. That is meaningful evidence for a common *statistical organization* of the three learning indicators.
 
 Third, statistical generality is not mechanistic generality. The dominant loading of initial discrimination, small samples, selection into reversal analyses, and the cross-sensory dissociation observed in earlier work all leave open whether the factor reflects a broad cognitive resource, shared task demands, a narrower learning-efficiency trait, or correlated domain-specific processes.
+
+![Figure 4. Evidence boundary between the two literatures](../figures/figure4_evidence_boundary.svg)
+
+**Figure 4. Evidence boundary between the two literatures.** Existing studies establish structured learning covariance and difficulty-sensitive opt-out behavior separately. The scientifically decisive missing edge is same-individual coupling; one mechanism, metacognition, consciousness, or a shared precision/confidence variable therefore cannot be inferred from species-level coexistence.
 
 ---
 
