@@ -1,6 +1,6 @@
 # ARIS4C016 Phonology Feasibility and Replication Plan
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## Phase-0 feasibility result
 
@@ -137,3 +137,19 @@ A language enters the confirmatory phonology analysis only if:
   low confidence.
 
 Otherwise that language remains descriptive/exploratory.
+
+
+## Live Epitran technical audit · 2026-09-19
+
+A live smoke test with Epitran 1.35.2 was run against the checksum-verified
+Study-1 inventory.
+
+- 5,103 rows in the ten currently dependency-free routes were attempted;
+- 5,103 / 5,103 returned technically usable output;
+- 3,087 English/Mandarin/Cantonese rows were deliberately dependency-blocked;
+- 995 / 5,103 attempted rows (~19.5%) were multiword.
+
+This upgrades the track from package-level feasibility to executable technical
+feasibility, but does not pass the pronunciation-validity gate.
+
+See `process/G2P_TECHNICAL_AUDIT.md`.
