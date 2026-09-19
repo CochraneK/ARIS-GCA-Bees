@@ -1,0 +1,261 @@
+{
+  "classification": "CALIBRATION_ANCHOR_ZERO_ERROR_DESIGN_NOT_MODEL_ACCURACY",
+  "confidence": 0.95,
+  "zero_error_design": [
+    {
+      "target_error_rate": 0.01,
+      "target_specificity_if_fpr": 0.99,
+      "required_independent_zero_error_anchors": 299,
+      "achieved_upper_bound_at_n": 0.009969146792899286
+    },
+    {
+      "target_error_rate": 0.005,
+      "target_specificity_if_fpr": 0.995,
+      "required_independent_zero_error_anchors": 598,
+      "achieved_upper_bound_at_n": 0.004997058694246492
+    },
+    {
+      "target_error_rate": 0.001,
+      "target_specificity_if_fpr": 0.999,
+      "required_independent_zero_error_anchors": 2995,
+      "achieved_upper_bound_at_n": 0.0009997444209011164
+    },
+    {
+      "target_error_rate": 0.0005,
+      "target_specificity_if_fpr": 0.9995,
+      "required_independent_zero_error_anchors": 5990,
+      "achieved_upper_bound_at_n": 0.0004999972090551363
+    },
+    {
+      "target_error_rate": 0.0001,
+      "target_specificity_if_fpr": 0.9999,
+      "required_independent_zero_error_anchors": 29956,
+      "achieved_upper_bound_at_n": 9.999941531979584e-05
+    }
+  ],
+  "ppv_scenarios": [
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "ppv": 0.13816925734024169
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "ppv": 0.242792109256449
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "ppv": 0.6158583525789066
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.8,
+      "specificity": 0.9995,
+      "ppv": 0.7622677465459943
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "ppv": 0.1528013582342953
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "ppv": 0.2650957290132546
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "ppv": 0.6433166547533951
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.9,
+      "specificity": 0.9995,
+      "ppv": 0.7829491083079787
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "ppv": 0.1599326599326598
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "ppv": 0.27576197387518125
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "ppv": 0.6556245686680467
+    },
+    {
+      "true_prevalence": 0.002,
+      "sensitivity": 0.95,
+      "specificity": 0.9995,
+      "ppv": 0.791996665277217
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "ppv": 0.2867383512544801
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "ppv": 0.4456824512534817
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "ppv": 0.8008008008008006
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.8,
+      "specificity": 0.9995,
+      "ppv": 0.8893829905503166
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "ppv": 0.3114186851211071
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "ppv": 0.47493403693931385
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "ppv": 0.8189262966333029
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.9,
+      "specificity": 0.9995,
+      "ppv": 0.9004502251125662
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "ppv": 0.3231292517006801
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "ppv": 0.4884318766066836
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "ppv": 0.82680591818973
+    },
+    {
+      "true_prevalence": 0.005,
+      "sensitivity": 0.95,
+      "specificity": 0.9995,
+      "ppv": 0.9051929490233539
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.99,
+      "ppv": 0.44692737430167573
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.995,
+      "ppv": 0.6177606177606175
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.999,
+      "ppv": 0.889877641824249
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.8,
+      "specificity": 0.9995,
+      "ppv": 0.9417304296645146
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.99,
+      "ppv": 0.476190476190476
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.995,
+      "ppv": 0.6451612903225804
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.999,
+      "ppv": 0.9009009009009008
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.9,
+      "specificity": 0.9995,
+      "ppv": 0.9478672985782045
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.99,
+      "ppv": 0.48969072164948435
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.995,
+      "ppv": 0.6574394463667818
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.999,
+      "ppv": 0.9056244041944708
+    },
+    {
+      "true_prevalence": 0.01,
+      "sensitivity": 0.95,
+      "specificity": 0.9995,
+      "ppv": 0.9504752376188146
+    }
+  ],
+  "warnings": [
+    "These calculations assume independent anchor errors.",
+    "Anchor clustering or near-duplicate evidence reduces effective sample size.",
+    "Zero observed errors do not imply zero true error rate.",
+    "A modest negative-anchor panel cannot empirically establish 99.9-99.99% specificity.",
+    "Final prevalence inference must combine empirical calibration with specificity/shared-error sensitivity."
+  ]
+}
