@@ -199,6 +199,7 @@ def main() -> None:
         r.PROCESS / "PREREGISTRATION_AMENDMENT_002.md",
         r.PROCESS / "PREREGISTRATION_AMENDMENT_003.md",
         r.PROCESS / "MODEL_SPEC_LOCK.json",
+        r.PROCESS / "IMPLEMENTATION_CORRECTION_001.md",
         r.DATA / "derived" / "COLDAT_FORMER_COLONY_EXPOSURE.csv",
         r.DATA / "derived" / "COUNTRY_CROSSWALK.csv",
         r.DATA / "derived" / "CEPII_DYADS.csv",
