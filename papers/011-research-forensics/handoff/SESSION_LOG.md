@@ -56,3 +56,13 @@ Append substantial execution sessions in reverse chronological order or chronolo
 - Workload/leakage signals only: 79/80 Crossref full-text links, 33/80 abstracts, 70 distinct journals, 25/80 current-title status markers, and 80/80 current update relations.
 - Added `process/CONFIRMATORY_FEASIBILITY_V0.md` documenting allowed/forbidden uses and the next manager-only adjudication gate.
 - Advanced portfolio maturity to 86%. Confirmatory scoring remains explicitly disabled.
+
+
+## 2026-09-19 · Feasibility-frame deduplication repair
+
+- Audited the first 80-row frame before manager first-pass coding and found six duplicate target-event occupancies.
+- Root cause: within-stratum duplicate candidates were appended before the global `seen` set was updated.
+- Hardened selection to reject duplicate event keys and duplicate target DOIs before stratum ranking/slicing; added unit and CI assertions for 80 unique targets and 80 unique event keys.
+- Re-ran the frozen deterministic selection without detector outputs. The repaired frame again contains 80 records, 20/20 strata at four records each, and no development-exposed DOI.
+- Reconciled feasibility statistics: 79 journal-article + 1 proceedings-article; 79/80 Crossref full-text links; 37/80 abstracts; 28/80 current-title status markers; 71 distinct containers.
+- Added a manager-only adjudication packet, frozen adjudication ontology v0.1.1, structural validator, short-evidence acquisition layer, and safe workflow-run cascade. No first-pass issue labels had been committed before this repair.
