@@ -1,14 +1,14 @@
 # STATUS — ARIS4C005
 
-**Last updated:** 2026-09-18  
-**State:** `SCALED_AUDIT_COMPLETE / AI_BATCHES_READY / CITATION_AI_READY`  
+**Last updated:** 2026-09-19  
+**State:** `AI_EXECUTION_READY / LATENT_MODEL_VALIDATED / IMPACT_SCAFFOLDS_READY`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
 
 **The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures**
 
-Scope remains frozen. The 10,000-work confirmatory random audit and dual-AI input batches are complete. The prevalence-critical dependency is execution/calibration of AI adjudication, not sampling or ontology design. Citation-edge AI adjudication is also packaged for execution.
+Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batches, batch-output integrity gates, latent prevalence model, correlated-error sensitivity, RLY framework, Innovation Delay scaffold, and historical/prospective delayed-recognition infrastructure are complete. The prevalence-critical dependency is now actual AI adjudication labels plus calibration, not further sampling or ontology design.
 
 ---
 
@@ -32,6 +32,7 @@ Scope remains frozen. The 10,000-work confirmatory random audit and dual-AI inpu
 - [x] 2025 JAMA Network Open paper-mill systematic-review contamination benchmark added.
 - [x] 2026 BMJ paper-mill ML detector study recorded as detector-feasibility / bias precedent.
 - [x] Human-time, participant, collaborator and NIH-cost context anchors recorded with qualifications.
+- [x] Direct narrow-domain time anchors added: 177 team-hours per retrospective publication, 14 manuscript-formatting hours, and a qualified 4–8 h peer-review context range; transportability and overlap limits are explicit.
 
 ## Pilot A — live public-data acquisition
 
@@ -94,9 +95,44 @@ Scope remains frozen. The 10,000-work confirmatory random audit and dual-AI inpu
 - [x] Public-safe scaled-audit summary and batch manifest committed.
 - [x] External AI adjudication handoff specification written.
 - [x] Citation-edge dual-AI packet generated: **486 edges / 972 assignments / 10 batches**.
+- [x] Fail-closed batch-output collector implemented for all 80 article + 10 citation batches; checksum/row-count/adjudicator/prompt/vocabulary/abstention invariants enforced.
+- [x] Calibrated dual-AI latent prevalence model implemented and six-stratum synthetic recovery passed.
+- [x] Correlated-AI-error sensitivity implemented from conditional independence to maximal positive shared-error dependence.
 - [ ] Run dual-AI article adjudication + arbitration.
 - [ ] Run dual-AI citation-edge adjudication + arbitration.
 - [ ] Calibrate AI error using high-confidence anchors and sensitivity analysis.
+
+## RLY / human-time burden
+
+- [x] RLY decomposition frozen as RLY-P / RLY-D / RLY-C / RLY-I.
+- [x] Fail-closed RLY calculator implemented.
+- [x] Empirical total is blocked when attribution, time conversion, or overlap resolution is missing.
+- [x] Direct narrow-domain time anchors recorded with non-transportability warnings.
+- [x] Participant sacrifice, career spillover, peer-review denominator and financial cost remain separate dimensions unless a valid time-conversion model exists.
+- [ ] Calibrate attributable hours per severe-failure unit / material-dependence edge / correction event before any empirical global RLY total.
+
+## Innovation Delay / Scientific Detour
+
+- [x] Innovation Delay protocol and data contract frozen.
+- [x] Matched event-study estimator implemented with baseline normalization, pre-trend diagnostics and bootstrap intervals.
+- [x] Output-equivalent delay years implemented without relabeling them as literal discovery years.
+- [x] Pre-shock OpenAlex semantic-neighborhood candidate builder implemented; post-treatment matching leakage is prohibited.
+- [x] Azoulay et al. retraction-spillover study recorded as causal-design precedent.
+- [ ] Run real matched topic event studies after adjudicated E1-S source set is available.
+
+## Sleeping Beauty / delayed recognition
+
+- [x] Ke et al. Beauty Coefficient and awakening-time definitions implemented.
+- [x] Historical citation trajectories reconstruct full incoming-citation years using live OpenAlex grouped queries; truncated Work `counts_by_year` is explicitly forbidden for mature histories.
+- [x] Mature random engineering pilot completed on **200/200** cited article/review works published 1990–2005 and observed through 2025.
+- [x] Current main-run SB0 pilot: B median **2.5**, q95 **26.78**, max **85**; peak age median **6 y**; awakening age median **4.5 y**.
+- [x] Leakage-safe SB1 landmark dataset implemented and live-tested.
+- [x] With landmark age 5 and 10-year horizon, **200/200** pilot papers had mature follow-up; **56** had engineering awakening-after-landmark outcomes and **74** had late-peak outcomes.
+- [ ] Add temporally frozen semantic/network predictors for SB1.
+- [ ] Run SB2 integrity-exposure / awakening-hazard analysis only after E1-S/SCF exposure is empirically available.
+- [ ] Keep SB3 suppressed-opportunity / never-awoken counterfactual behind calibration and causal-identification gates.
+
+---
 
 # Live Pilot A anchors
 
@@ -165,14 +201,16 @@ See `process/SCALED_AUDIT_RESULTS.md` and `process/AI_ADJUDICATION_HANDOFF.md`.
 
 AI may provide most labels, but its measurement error must be calibrated or sensitivity-tested. Dual-model agreement is not gold-standard truth.
 
-## GATE C — latent prevalence identification
+## GATE C — latent prevalence identification — MODEL READY / LABELS PENDING
 
-No global hidden-case estimate until:
+- [x] Weighted six-stratum latent prevalence model implemented.
+- [x] AI sensitivity/specificity treated as uncertain measurement parameters.
+- [x] Synthetic truth recovery passed.
+- [x] Positive correlated-error sensitivity implemented for shared AI false positives/false negatives.
+- [ ] Actual article AI labels not yet available.
+- [ ] Anchor calibration and missingness sensitivity still required before a global hidden-case estimate.
 
-- random-audit estimate and latent model are reconcilable;
-- posterior materially updates the prior;
-- one detector/field does not dominate;
-- missingness sensitivity does not change estimates by an order of magnitude.
+No global hidden-case estimate is authorized until actual labels, calibration and sensitivity checks are complete.
 
 ## GATE D — semantic contamination — AI INPUTS COMPLETE / LABELS PENDING
 
@@ -187,26 +225,33 @@ The real high-propagation stress-test contains:
 
 Raw citation exposure remains distinct from contamination. SCF and Dependence Ghost Half-Life require semantic labels and calibration. See `process/CITATION_AI_HANDOFF.md`.
 
-## GATE F — RLY / cost scaling
+## GATE F — RLY / cost scaling — FRAMEWORK READY / ATTRIBUTION PENDING
 
-Scenario model remains non-empirical until effort distributions are calibrated. Whole associated grants are never called wasted funding.
+The fail-closed RLY component model and several direct time anchors exist, but a global empirical RLY total remains blocked until attributable affected-unit counts, hours-per-unit distributions, overlap resolution, and a defensible research-year conversion are calibrated. Whole associated grants are never called wasted funding.
 
-## GATE G/H — innovation and Sleeping Beauty
+## GATE G — Innovation Delay — ESTIMATOR READY / REAL MATCHED PANELS PENDING
 
-Innovation Delay requires valid matched topic controls and pre-trends. Permanent Never-Woken Sleeping Beauty counts remain downstream exploratory work.
+Protocol, pre-shock candidate discovery, matched event-study estimation, pre-trend diagnostics and output-equivalent delay metrics are implemented. Real causal estimates require adjudicated source exposure plus frozen pre-treatment controls.
+
+## GATE H — Sleeping Beauty — SB0/SB1 ENGINEERING PASS / SB2-SB3 PENDING
+
+Historical B/awakening measurement and a leakage-safe landmark dataset are operational. No universal B cutoff is imposed. Integrity-related awakening suppression (SB2) and suppressed-opportunity counts (SB3) remain downstream of calibrated exposure and causal identification.
 
 ---
 
 # Next execution queue
 
-1. Execute the **80 article-adjudication batches** with AI_A and AI_B under `AI-ADJ-V1`.
-2. Merge article outputs with `merge_ai_adjudications.py`; arbitrate disagreements/LOW/INDETERMINATE cases.
-3. Execute the **10 citation-edge batches** under `CIT-EDGE-V1`.
-4. Calibrate/sensitivity-test AI measurement error with formal/high-confidence anchors.
-5. Fit weighted latent prevalence only after calibration.
-6. Convert semantic citation labels into SCF and **Dependence Ghost Half-Life**.
-7. Continue RLY/cost calibration and Innovation Delay event-study infrastructure.
-8. Keep Never-Woken Sleeping Beauty counterfactual behind the causal-identification gate.
+1. Execute the **80 article-adjudication batches** with independent AI_A and AI_B under `AI-ADJ-V1`.
+2. Run `collect_ai_batch_outputs.py --mode article` to verify all 20,000 returned assignments against the canonical manifest before any merge.
+3. Merge A/B article outputs, route disagreements/LOW/INDETERMINATE cases to arbitration, and preserve abstentions.
+4. Execute the **10 citation-edge batches** under `CIT-EDGE-V1`.
+5. Run `collect_ai_batch_outputs.py --mode citation`, then semantic disagreement/arbitration.
+6. Calibrate AI measurement error using formal/high-confidence positive and negative anchors; report correlated-error and missingness sensitivity.
+7. Fit the weighted six-stratum global latent-prevalence model.
+8. Convert calibrated semantic citation labels into SCF and **Dependence Ghost Half-Life**.
+9. Run real Innovation Delay matched event studies using adjudicated E1-S sources and pre-shock controls.
+10. Calibrate RLY attributable-time components; keep unsupported components scenario-only or NOT_IDENTIFIED.
+11. Add temporally frozen semantic/network predictors to SB1, then test SB2 integrity exposure; keep SB3 suppressed-opportunity counts exploratory until causal gates pass.
 
 ---
 
@@ -220,9 +265,11 @@ Innovation Delay requires valid matched topic controls and pre-trends. Permanent
 - Do not call every citation contamination.
 - Do not publish Fermi scenario output as empirical finding.
 - Do not claim a global count of never-awakened discoveries before the causal chain validates.
+- Do not hand-concatenate AI batch outputs; run the manifest/checksum collector first.
+- Do not add 14 h formatting time on top of a full idea-to-publication time estimate when that estimate already includes submission/revision labor.
 
 ---
 
 # Handoff sentence
 
-If this chat is lost, resume from this file. **The 10,000-work confirmatory random audit is complete; 20,000 article-level AI assignments are split into 80 deterministic batches; the 486-edge semantic-citation task is split into 972 assignments / 10 batches. The next prevalence-critical work is executing and calibrating AI labels, not rebuilding samples. Do not estimate global latent prevalence before calibration.**
+If this chat is lost, resume from this file. **Sampling, AI input batching, batch-output integrity validation, latent prevalence inference, correlated-error sensitivity, RLY framework, Innovation Delay scaffold, and SB0/SB1 delayed-recognition infrastructure are complete. The next prevalence-critical work is actual execution of 80 article + 10 citation AI batches, followed by collector validation, arbitration and calibration. Do not rebuild the 10,000-work sample, hand-concatenate outputs, or estimate global prevalence/RLY/lost discoveries before their gates pass.**
