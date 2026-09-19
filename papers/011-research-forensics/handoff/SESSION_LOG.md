@@ -25,3 +25,11 @@ Append substantial execution sessions in reverse chronological order or chronolo
 - Replaced stale handoff status/TODO/takeover text and appended current decisions/conversation/session history.
 - No confirmatory performance claim was introduced.
 
+## 2026-09-19 · Pilot 3 formatting-control execution
+
+- Materialized the existing SAFE_EXACT construction-decimal control into an executable Track-A evaluation.
+- Added `code/pilot3_format_control.py` and a dedicated GitHub Actions workflow.
+- Workflow run 35440672452 completed successfully and committed the machine-readable report/evaluation.
+- DOI 10.1371/journal.pone.0263337 produced 10 PASS findings, 0 flags, review priority NONE, and no misconduct inference; correction metadata was not detector-visible.
+- Preserved the development-only claim boundary: no specificity or superiority estimate was made.
+- Promoted ARIS4C011 from Wait to Active at 80%; next bounded unit is a small matched no-known-integrity-concern comparator set.
