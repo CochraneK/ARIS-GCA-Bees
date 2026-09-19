@@ -13,6 +13,8 @@ on:
       - 'tools/audit_readme.py'
       - 'tools/audit_portfolio_status.py'
       - 'ARIS4C_STATUS_MODEL.md'
+      - 'ARIS4C_OPERATING_MODEL.md'
+      - 'tools/portfolio_queue.py'
       - 'ARIS4C_OUTPUT_STANDARD.md'
       - 'tools/migrate_aris4c.py'
       - '.github/workflows/build-paper-index.yml'
@@ -54,6 +56,7 @@ jobs:
             python tools/build_readme.py
             python tools/audit_readme.py
             python tools/audit_portfolio_status.py
+            python tools/portfolio_queue.py
 
             if git diff --quiet; then
               echo "No generated or migration changes"
