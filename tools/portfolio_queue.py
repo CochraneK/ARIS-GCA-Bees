@@ -11,8 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "papers" / "dashboard.json"
 
 
-def load_projects() -> dict[str, dict]:
-    return json.loads(DASHBOARD.read_text(encoding="utf-8")).get("projects", {})
+def load_dashboard() -> dict:
+    return json.loads(DASHBOARD.read_text(encoding="utf-8"))
 
 
 def wait_key(item: tuple[str, dict]) -> tuple:
@@ -26,10 +26,20 @@ def wait_key(item: tuple[str, dict]) -> tuple:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
-    parser.add_argument("--slots", type=int, default=1, help="target Active WIP slots (default: 1; max recommended: 3)")
+    parser.add_argument(
+        "--slots",
+        type=int,
+        default=None,
+        help=(
+            "target Active execution capacity; no fixed maximum. "
+            "Omit to use dashboard default_active_wip."
+        ),
+    )
     args = parser.parse_args()
 
-    projects = load_projects()
+    dashboard = load_dashboard()
+    projects = dashboard.get("projects", {})
+    scheduling = dashboard.get("scheduling", {})
     active = sorted(
         ((pid, row) for pid, row in projects.items() if row.get("activity") == "active"),
         key=lambda x: (-int(x[1].get("progress", 0)), x[0]),
@@ -47,13 +57,21 @@ def main() -> int:
         key=lambda x: x[0],
     )
 
-    slots = min(max(args.slots, 1), 3)
+    slots = (
+        int(args.slots)
+        if args.slots is not None
+        else int(scheduling.get("default_active_wip", 1))
+    )
+    if slots < 1:
+        parser.error("--slots must be >= 1")
     free_slots = max(0, slots - len(active))
     promote = wait[:free_slots]
 
     data = {
         "policy": "completion-first",
+        "active_wip_policy": scheduling.get("active_wip_policy", "adaptive"),
         "target_active_slots": slots,
+        "fixed_max_active_wip": scheduling.get("max_active_wip"),
         "active": [
             {"id": pid, "progress": row.get("progress", 0), "next_gate": row.get("next_gate", "")}
             for pid, row in active
