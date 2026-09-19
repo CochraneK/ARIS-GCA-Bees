@@ -1,0 +1,57 @@
+{
+  "classification": "PILOT0B_DISAGREEMENT_DIAGNOSIS",
+  "raw_input": "papers/012-oppositional-causal-inversion/data/reliability/pilot0_disagreements.csv",
+  "raw_input_sha": "ee3025de576e4be61df239a701e5bdcaeaf15121",
+  "disagreement_cells": 141,
+  "diagnosis_counts": {
+    "schema_category_overlap": 24,
+    "lexical_token_vocabulary_mismatch": 30,
+    "source_metadata_disagreement": 26,
+    "genuine_conceptual_disagreement": 61
+  },
+  "by_field": {
+    "primary_mechanism": {
+      "schema_category_overlap": 24,
+      "genuine_conceptual_disagreement": 6
+    },
+    "evidence_mode": {
+      "lexical_token_vocabulary_mismatch": 8,
+      "source_metadata_disagreement": 4
+    },
+    "causal_claim_strength": {
+      "lexical_token_vocabulary_mismatch": 6,
+      "genuine_conceptual_disagreement": 24
+    },
+    "result_support": {
+      "lexical_token_vocabulary_mismatch": 16,
+      "genuine_conceptual_disagreement": 13
+    },
+    "evidence_tier": {
+      "source_metadata_disagreement": 22
+    },
+    "oci_candidate": {
+      "genuine_conceptual_disagreement": 5
+    },
+    "opposition_valid": {
+      "genuine_conceptual_disagreement": 7
+    },
+    "actor_switch": {
+      "genuine_conceptual_disagreement": 1
+    },
+    "nonlinearity": {
+      "genuine_conceptual_disagreement": 2
+    },
+    "selection_filtering": {
+      "genuine_conceptual_disagreement": 1
+    },
+    "feedback": {
+      "genuine_conceptual_disagreement": 1
+    },
+    "time_switch": {
+      "genuine_conceptual_disagreement": 1
+    }
+  },
+  "adjudication_status": "DIAGNOSTIC_ONLY_NOT_RECODED",
+  "raw_v1_reliability_immutable": true,
+  "note": "Diagnosis categories identify likely failure modes; they do not replace coder labels or constitute source-level adjudication."
+}
