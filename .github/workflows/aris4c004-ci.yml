@@ -9,7 +9,7 @@ on:
       - "papers/004-counterfactual-cost-of-exclusion/process/IDENTITY_CODEBOOK.md"
       - "papers/004-counterfactual-cost-of-exclusion/process/WORK_CODEBOOK.md"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_pilot30.csv"
-      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv"\n      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_network100_seed_v1.csv"
       - ".github/workflows/aris4c004-ci.yml"
   pull_request:
     paths:
@@ -18,7 +18,7 @@ on:
       - "papers/004-counterfactual-cost-of-exclusion/process/IDENTITY_CODEBOOK.md"
       - "papers/004-counterfactual-cost-of-exclusion/process/WORK_CODEBOOK.md"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_pilot30.csv"
-      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv"\n      - "papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_network100_seed_v1.csv"
       - ".github/workflows/aris4c004-ci.yml"
   workflow_dispatch:
 
@@ -48,3 +48,10 @@ jobs:
           python papers/004-counterfactual-cost-of-exclusion/code/validate_work_decisions.py
           papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv
           --identity-decisions papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_pilot30.csv
+
+      - name: Validate network100 evidence seed
+        run: >-
+          python papers/004-counterfactual-cost-of-exclusion/code/validate_work_decisions.py
+          papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_network100_seed_v1.csv
+          --identity-decisions papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv
+          --review-queue papers/004-counterfactual-cost-of-exclusion/data/derived/network100_held_work_audit_sample.csv
