@@ -85,9 +85,8 @@ def activity_label(value: str) -> tuple[str, str]:
     key = (value or "quiet").lower()
     labels = {
         "active": ("Active", "active"),
-        "gated": ("At gate", "gated"),
+        "waiting": ("Waiting", "waiting"),
         "quiet": ("Quiet", "quiet"),
-        "blocked": ("Blocked", "blocked"),
     }
     return labels.get(key, ("Tracked", "quiet"))
 
@@ -189,9 +188,8 @@ def build(papers: list[dict], dashboard: dict) -> str:
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
     active = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "active")
-    gated = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "gated")
+    waiting = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "waiting")
     quiet = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "quiet")
-    blocked = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "blocked")
     mature = sum(1 for v in progresses if v >= 45)
 
     return f"""<!doctype html>
@@ -212,17 +210,15 @@ def build(papers: list[dict], dashboard: dict) -> str:
       <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">{len(papers)}</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">{active}</span></button>
-        <button class="nav-item" type="button" data-filter="gated" data-label="At gate"><span class="nav-icon">◇</span><span>At gate</span><span id="navGatedCount" class="nav-count">{gated}</span></button>
+        <button class="nav-item" type="button" data-filter="waiting" data-label="Waiting"><span class="nav-icon">◇</span><span>Waiting</span><span id="navWaitingCount" class="nav-count">{waiting}</span></button>
         <button class="nav-item" type="button" data-filter="quiet" data-label="Quiet"><span class="nav-icon">○</span><span>Quiet</span><span id="navQuietCount" class="nav-count">{quiet}</span></button>
-        <button class="nav-item" type="button" data-filter="blocked" data-label="Blocked"><span class="nav-icon">×</span><span>Blocked</span><span id="navBlockedCount" class="nav-count">{blocked}</span></button>
       </nav>
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
-          <div class="legend-row"><i class="dot active"></i><span>Active execution</span></div>
-          <div class="legend-row"><i class="dot gated"></i><span>Scientific / review gate</span></div>
-          <div class="legend-row"><i class="dot quiet"></i><span>Submission-ready / complete</span></div>
-          <div class="legend-row"><i class="dot blocked"></i><span>Hard blocker</span></div>
+          <div class="legend-row"><i class="dot active"></i><span>Can execute next step now</span></div>
+          <div class="legend-row"><i class="dot waiting"></i><span>Waiting on a dependency</span></div>
+          <div class="legend-row"><i class="dot quiet"></i><span>Complete or intentionally parked</span></div>
         </div>
       </div>
       <div class="sidebar-spacer"></div>
@@ -247,14 +243,14 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, gates and blockers. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, next actions and dependencies. Each project exposes PDF-first English and Chinese paper entrances on the public card, with full-text web/source fallbacks when PDFs are not yet available.</p>
           <div class="overview">
             <div class="metric"><strong>{len(papers)}</strong><span>tracked projects</span></div>
-            <div class="metric"><strong>{avg}%</strong><span>mean portfolio maturity</span></div>
-            <div class="metric"><strong>{active}</strong><span>active execution tracks</span></div>
-            <div class="metric"><strong>{quiet}</strong><span>quiet tracks</span></div>
+            <div class="metric"><strong>{active}</strong><span>active</span></div>
+            <div class="metric"><strong>{waiting}</strong><span>waiting</span></div>
+            <div class="metric"><strong>{quiet}</strong><span>quiet</span></div>
           </div>
-          <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · {mature} projects at ≥45% · {gated + blocked} at gate/blocker</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
+          <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · {mature} projects at ≥45% · {waiting} waiting on dependencies</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
         </section>
 
         <div class="control-bar">
