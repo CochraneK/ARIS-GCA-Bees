@@ -10,16 +10,16 @@ A predictive stress test of the simple global-circle form of the language period
 
 - Activity: **finish**
 - Progress: **100%**
-- Stage: **Submission package ready · output gate PASS**
-- Evidence: Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS
+- Stage: **Output gate PASS · journal package refresh pending**
+- Evidence: Final EN + ZH manuscripts/PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; historical 3-figure Linguistic Typology package QA PASS
 
 ## Immediate next action
 
-**Author metadata/declarations + ScholarOne submission**
+**Rebuild/re-QA 6-figure Linguistic Typology package, then author metadata/declarations + ScholarOne**
 
 ## Current blocker / gate
 
-None scientific; author-only metadata/declarations and portal submission
+None scientific; editorial package refresh plus author-only metadata/declarations and portal submission
 
 ## Canonical files / entry points
 

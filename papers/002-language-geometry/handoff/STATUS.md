@@ -4,10 +4,10 @@
 - **Project status:** submission-ready-author-metadata-pending
 - **Activity:** finish
 - **Portfolio progress:** 100%
-- **Current stage:** Submission package ready · output gate PASS
-- **Evidence established:** Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS
-- **Next gate:** Author metadata/declarations + ScholarOne submission
-- **Blocker:** None scientific; author-only metadata/declarations and portal submission
+- **Current stage:** Output gate PASS · journal package refresh pending
+- **Evidence established:** Final EN + ZH manuscripts/PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; historical 3-figure Linguistic Typology package QA PASS
+- **Next gate:** Rebuild/re-QA 6-figure Linguistic Typology package, then author metadata/declarations + ScholarOne
+- **Blocker:** None scientific; editorial package refresh plus author-only metadata/declarations and portal submission
 
 ## Source of truth
 
