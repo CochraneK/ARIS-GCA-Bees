@@ -124,6 +124,37 @@ def test_table_numeric_range_abstains_on_ambiguous_mixed_separators():
     assert out["findings"][0]["applicable"] is False
 
 
+def test_table_integer_list_token_flags_non_integer_script_token():
+    d = TableArithmeticDetector()
+    ctx = context(table_checks=[
+        {
+            "check_type": "integer_list_token",
+            "reported_value": "22/42/41/21/40/13/43",
+            "allow_blank": True,
+            "source_locator": "valid BA token",
+        },
+        {
+            "check_type": "integer_list_token",
+            "reported_value": "",
+            "allow_blank": True,
+            "source_locator": "blank BA token",
+        },
+        {
+            "check_type": "integer_list_token",
+            "reported_value": "9月8日",
+            "allow_blank": True,
+            "source_locator": "malformed BA token",
+        },
+    ])
+    out = run_forensics(ctx, [d])
+    assert [x["status"] for x in out["findings"]] == [
+        "PASS", "PASS", "FLAG"
+    ]
+    flagged = out["findings"][2]
+    assert flagged["evidence"]["normalized_token"] == "9月8日"
+    assert flagged["misconduct_inference"] is False
+
+
 def test_table_percentage_and_rank_gap():
     d = TableArithmeticDetector()
     ctx = context(table_checks=[
