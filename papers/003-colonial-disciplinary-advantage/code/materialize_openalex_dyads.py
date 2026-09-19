@@ -4,9 +4,12 @@
 THIS IS A CONFIRMATORY-OUTCOME SCRIPT and is hard-gated.
 
 Frozen multilateral-work rule:
-If a work contains n distinct mapped countries (n>=2), it contributes total
-scientific-collaboration mass 1, divided equally across the n*(n-1)/2 unordered
-country pairs. Thus each pair receives 2/[n(n-1)].
+If a work contains n distinct identifiable OpenAlex countries (n>=2), it
+contributes total scientific-collaboration mass 1 across all n*(n-1)/2
+unordered country pairs. Thus each pair receives 2/[n(n-1)] **before**
+restricting endpoints to the frozen 159-country analysis universe. A work that
+also contains an out-of-universe country therefore contributes less than total
+mass 1 to the retained analysis pairs, rather than being renormalized upward.
 
 The output contains positive observed dyadic mass only. The confirmatory model
 must complete the eligible pair×discipline×period grid with genuine zeros using
@@ -158,24 +161,34 @@ def main() -> None:
                   ) = m.oa_id
               )
         ),
-        work_country AS (
+        work_country_all AS (
             SELECT DISTINCT
                 c.work_id,
                 c.period,
                 c.concept_id,
                 c.conceptual_discipline,
-                cm.iso3c
+                upper(country_code) AS iso2
             FROM classified c
             CROSS JOIN UNNEST(c.authorships) AS au(a)
             CROSS JOIN UNNEST(a.countries) AS cc(country_code)
-            JOIN country_map cm ON upper(country_code) = cm.iso2
             WHERE country_code IS NOT NULL
         ),
-        sized AS (
+        sized_all AS (
             SELECT
                 *,
-                COUNT(*) OVER (PARTITION BY work_id) AS n_countries
-            FROM work_country
+                COUNT(*) OVER (PARTITION BY work_id) AS n_all_identifiable_countries
+            FROM work_country_all
+        ),
+        mapped AS (
+            SELECT
+                w.work_id,
+                w.period,
+                w.concept_id,
+                w.conceptual_discipline,
+                w.n_all_identifiable_countries,
+                cm.iso3c
+            FROM sized_all w
+            JOIN country_map cm USING (iso2)
         ),
         pairs AS (
             SELECT
@@ -185,12 +198,15 @@ def main() -> None:
                 a.conceptual_discipline,
                 a.iso3c AS iso3_i,
                 b.iso3c AS iso3_j,
-                2.0 / (a.n_countries * (a.n_countries - 1)) AS pair_weight
-            FROM sized a
-            JOIN sized b
+                2.0 / (
+                    a.n_all_identifiable_countries
+                    * (a.n_all_identifiable_countries - 1)
+                ) AS pair_weight
+            FROM mapped a
+            JOIN mapped b
               ON a.work_id = b.work_id
              AND a.iso3c < b.iso3c
-            WHERE a.n_countries >= 2
+            WHERE a.n_all_identifiable_countries >= 2
         )
         SELECT
             iso3_i || '__' || iso3_j AS pair_id,
