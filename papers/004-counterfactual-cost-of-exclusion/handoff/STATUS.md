@@ -2,13 +2,32 @@
 
 - **Title:** The Counterfactual Cost of Exclusion: Mental Health and Keystone Individuals in Human Knowledge Networks
 - **Project status:** feasibility-pilot
-- **Activity:** wait
+- **Activity:** block
 - **Portfolio progress:** 74%
-- **Current stage:** Network100 acquired · work audit + independent second review
-- **Evidence established:** Identity100: 52 verified; second-review blind set 40. Network100: 2,956 unique works, 0 fetch errors; 334-work deterministic triage sample across 37 held people.
-- **Next gate:** Prioritize and audit the 334 held-work sample; complete independent 40-case identity second review
-- **Blocker:** Independent identity judgments and work-level contamination decisions are still required before exposure coding
+- **Current stage:** P4 pre-exposure audit · independent identity second-review gate
+- **Completed:** P0 concept/causal architecture; P1 pilot30; P2 frozen-100 identity first review; P3 frozen-100 work/network gate
+- **Identity100:** 52 verified; 38 no-graph; 8 collision; 2 identity error; 0 provisional
+- **Network100:** 2,956 unique works; 0 fetch errors; 25/100 network-observable
+- **Terminal verified holds:** 13 insufficient clean works; 14 unresolved work contamination
+- **Blind second-review set:** 40/100
+- **Next gate:** independent reviewer completes all 40 blind identity judgments → adjudicate disagreements → write/hash `PREEXPOSURE_FRAME_FREEZE.md`
+- **Blocker:** independent identity review is external by design; the current assistant cannot self-certify independence
+- **Mental-health exposure:** locked / not started
+
+## Important correction to older handoff state
+
+The earlier handoff text saying “334-work deterministic triage sample across 37 held people” still needed audit is obsolete.
+
+That work gate has already been closed in:
+`process/NETWORK100_WORK_GATE_FREEZE.md`
+
+The held work states are terminal for the current pre-exposure frame and must not be reopened merely to increase N.
 
 ## Source of truth
 
-This snapshot is synchronized from `paper.json` and `papers/dashboard.json`. Study-specific `process/` files may contain finer-grained status and frozen design details.
+Canonical process state:
+`process/STATUS.md`
+
+This snapshot was reconciled against Git on 2026-09-19 immediately before deletion of the current ChatGPT conversation.
+
+If chat history conflicts with Git, **Git wins**.
