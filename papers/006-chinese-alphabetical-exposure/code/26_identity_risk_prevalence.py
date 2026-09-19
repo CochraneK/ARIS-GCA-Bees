@@ -14,7 +14,8 @@ from pathlib import Path
 
 OA="https://api.openalex.org"
 CR="https://api.crossref.org/works/"
-UA="ARIS4C006/0.26 identity-risk-prevalence"
+UA="ARIS4C006/0.26.1 identity-risk-prevalence-optimized"
+CANON_CACHE={}
 
 def get_json(url,retries=5):
     req=urllib.request.Request(url,headers={"User-Agent":UA})
@@ -61,9 +62,39 @@ def crossref(doi_url):
     return (d or {}).get("message") or None
 
 def canonical_author(raw_id):
-    d=get_json(OA+"/authors/"+urllib.parse.quote(short(raw_id),safe=""))
-    if not d:return None
-    return {"id":short(d.get("id")),"orcid":d.get("orcid") or ""}
+    rid=short(raw_id)
+    if not rid:return None
+    if rid in CANON_CACHE:return CANON_CACHE[rid]
+    d=get_json(OA+"/authors/"+urllib.parse.quote(rid,safe=""))
+    out={"id":short((d or {}).get("id")),"orcid":(d or {}).get("orcid") or ""} if d else None
+    CANON_CACHE[rid]=out
+    return out
+
+def canonicalize_many(raw_ids):
+    ids=sorted({short(x) for x in raw_ids if short(x)})
+    out={}
+    missing=[]
+    for rid in ids:
+        if rid in CANON_CACHE and CANON_CACHE[rid]:
+            out[rid]=CANON_CACHE[rid]["id"];continue
+        missing.append(rid)
+    for k in range(0,len(missing),100):
+        chunk=missing[k:k+100]
+        p={"filter":"openalex:"+"|".join(chunk),"per_page":100,"select":"id,orcid"}
+        if os.getenv("OPENALEX_API_KEY"):p["api_key"]=os.environ["OPENALEX_API_KEY"]
+        d=get_json(OA+"/authors?"+urllib.parse.urlencode(p,safe="|:"))
+        returned={}
+        for a in (d or {}).get("results") or []:
+            cid=short(a.get("id"))
+            if cid:
+                returned[cid]={"id":cid,"orcid":a.get("orcid") or ""}
+        for rid in chunk:
+            if rid in returned:
+                CANON_CACHE[rid]=returned[rid];out[rid]=rid
+            else:
+                one=canonical_author(rid)
+                if one and one.get("id"):out[rid]=one["id"]
+    return out
 
 def seed_works(year,target):
     p={
@@ -140,8 +171,14 @@ def analyze_candidate(seed,corrected_total):
     years=defaultdict(list);raw_ids=set();orcid_values=set()
     if can.get("orcid"):orcid_values.add(str(can["orcid"]).lower())
 
-    # Resolve embedded aliases only for focal authorship matching/provenance.
-    alias_cache={}
+    # Resolve embedded aliases in batches per candidate history.
+    history_raw_ids=[]
+    for w in works:
+        for a in w.get("authorships") or []:
+            rid=short((a.get("author") or {}).get("id"))
+            if rid:history_raw_ids.append(rid)
+    alias_map=canonicalize_many(history_raw_ids)
+
     for w in works:
         y=w.get("publication_year")
         if not y:continue
@@ -149,11 +186,7 @@ def analyze_candidate(seed,corrected_total):
         for a in w.get("authorships") or []:
             rid=short((a.get("author") or {}).get("id"))
             if not rid:continue
-            if rid==cid:
-                matched=a;raw_ids.add(rid);break
-            if rid not in alias_cache:
-                ca=canonical_author(rid);alias_cache[rid]=(ca or {}).get("id","")
-            if alias_cache[rid]==cid:
+            if rid==cid or alias_map.get(rid)==cid:
                 matched=a;raw_ids.add(rid);break
         if matched is None:continue
         yrs=years[y];yrs.append(w)
