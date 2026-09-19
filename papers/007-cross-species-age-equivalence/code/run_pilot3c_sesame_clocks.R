@@ -68,7 +68,7 @@ for (i in seq_len(nrow(smoke))) {
   mf <- manifest[trimws(manifest$geo_accession) == gsm, , drop=FALSE]
   if (nrow(mf) != 2) stop(sprintf("%s: manifest expected 2 IDAT files, got %d", gsm, nrow(mf)))
 
-  local_names <- mf$filename
+  local_names <- trimws(as.character(mf$filename))
   files <- file.path(idat_dir, local_names)
   if (!all(file.exists(files))) {
     missing <- files[!file.exists(files)]
