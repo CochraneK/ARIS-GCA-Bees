@@ -7,7 +7,7 @@ from pathlib import Path
 from collections import Counter
 
 VERIFIED={"VERIFIED_SINGLE","VERIFIED_CLUSTER"}
-ALLOWED={"RELEASE_SAMPLE_PASS","HOLD_INSUFFICIENT_CLEAN_WORKS","ESCALATE_TARGETED_WORK_REVIEW"}
+ALLOWED={"RELEASE_SAMPLE_PASS","RELEASE_FULL_WORK_REVIEW","HOLD_INSUFFICIENT_CLEAN_WORKS","ESCALATE_TARGETED_WORK_REVIEW"}
 
 def truthy(v): return (v or "").strip().lower() in {"1","true","yes","y"}
 def read(p):
@@ -20,17 +20,19 @@ def main():
     p.add_argument("--work-summary",type=Path,required=True)
     p.add_argument("--audit-sample",type=Path,required=True)
     p.add_argument("--prior-work-decisions",type=Path,required=True)
+    p.add_argument("--full-work-review",type=Path,required=True)
     a=p.parse_args()
 
     ids={r["person_id"]:r for r in read(a.identities)}
     ws={r["person_id"]:r for r in read(a.work_summary)}
     sample=read(a.audit_sample)
     prior=read(a.prior_work_decisions)
+    full=read(a.full_work_review)
     decisions=read(a.decisions)
     errors=[]
 
     held={pid for pid,r in ids.items() if r.get("identity_status") in VERIFIED and not truthy(r.get("network_observable"))}
-    released_by_table={r["person_id"] for r in decisions if r.get("person_work_decision")=="RELEASE_SAMPLE_PASS"}
+    released_by_table={r["person_id"] for r in decisions if r.get("person_work_decision") in {"RELEASE_SAMPLE_PASS","RELEASE_FULL_WORK_REVIEW"}}
     expected=held | released_by_table
     seen=[r["person_id"] for r in decisions]
     if len(seen)!=len(set(seen)): errors.append("duplicate person_id in person work decisions")
@@ -44,6 +46,14 @@ def main():
         if r.get("work_decision") in {"KEEP_ORIGINAL","KEEP_POSTHUMOUS_ORIGINAL"} and truthy(r.get("include_in_network")):
             prior_keep[r["person_id"]]+=1
 
+    full_by={}
+    for r in full:
+        full_by.setdefault(r["person_id"],[]).append(r)
+    for pid,rr in full_by.items():
+        ids_seen=[x.get("openalex_work_id","") for x in rr]
+        if len(ids_seen)!=len(set(ids_seen)):
+            errors.append(f"{pid}: duplicate OpenAlex work ID in full work review")
+
     for r in decisions:
         pid=r["person_id"]; dec=r.get("person_work_decision","")
         if dec not in ALLOWED:
@@ -51,7 +61,7 @@ def main():
         meta=ws.get(pid,{})
         plausible=int(meta.get("plausible_unique_works_n") or 0)
         approved=truthy(r.get("network_release_approved"))
-        if approved != (dec=="RELEASE_SAMPLE_PASS"):
+        if approved != (dec in {"RELEASE_SAMPLE_PASS","RELEASE_FULL_WORK_REVIEW"}):
             errors.append(f"{pid}: network_release_approved inconsistent with decision")
         identity_observable=truthy((ids.get(pid) or {}).get("network_observable"))
         if identity_observable != approved:
@@ -69,6 +79,18 @@ def main():
             unreviewed=[x for x in rows if not (x.get("reviewer") or "").strip() or not truthy(x.get("mh_blinded_at_work_audit"))]
             if bad: errors.append(f"{pid}: {len(bad)} sampled rows not affirmed as focal-person works")
             if unreviewed: errors.append(f"{pid}: {len(unreviewed)} sampled rows lack blinded review")
+        elif dec=="RELEASE_FULL_WORK_REVIEW":
+            rows=full_by.get(pid,[])
+            if len(rows)!=plausible:
+                errors.append(f"{pid}: full release requires explicit decision for every plausible work ({len(rows)} != {plausible})")
+            unresolved=[x for x in rows if x.get("work_decision")=="NEEDS_REVIEW" or not (x.get("work_decision") or "").strip()]
+            unreviewed=[x for x in rows if not (x.get("reviewer") or "").strip() or not truthy(x.get("mh_blinded_at_work_lock")) or not (x.get("decision_evidence") or "").strip()]
+            inconsistent=[x for x in rows if truthy(x.get("include_in_network")) != (x.get("work_decision") in {"KEEP_ORIGINAL","KEEP_POSTHUMOUS_ORIGINAL"})]
+            keep_n=sum(x.get("work_decision") in {"KEEP_ORIGINAL","KEEP_POSTHUMOUS_ORIGINAL"} and truthy(x.get("include_in_network")) for x in rows)
+            if unresolved: errors.append(f"{pid}: {len(unresolved)} full-review rows unresolved")
+            if unreviewed: errors.append(f"{pid}: {len(unreviewed)} full-review rows lack blinded evidence review")
+            if inconsistent: errors.append(f"{pid}: {len(inconsistent)} full-review rows have inconsistent include flag")
+            if keep_n<5: errors.append(f"{pid}: full release requires >=5 KEEP works, got {keep_n}")
         elif dec=="HOLD_INSUFFICIENT_CLEAN_WORKS":
             if not (plausible<5 or prior_keep[pid]<5 and prior_keep[pid]>0):
                 errors.append(f"{pid}: insufficient-work hold not supported (plausible={plausible}, prior_keep={prior_keep[pid]})")
@@ -77,7 +99,7 @@ def main():
         print(f"FAIL: {len(errors)} person-work decision invariant error(s)",file=sys.stderr)
         for e in errors: print("- "+e,file=sys.stderr)
         return 1
-    print(f"PASS: {len(decisions)} held verified people covered; releases={sum(r['person_work_decision']=='RELEASE_SAMPLE_PASS' for r in decisions)}")
+    print(f"PASS: {len(decisions)} held verified people covered; releases={sum(r['person_work_decision'] in {'RELEASE_SAMPLE_PASS','RELEASE_FULL_WORK_REVIEW'} for r in decisions)}")
     return 0
 
 if __name__=="__main__": raise SystemExit(main())
