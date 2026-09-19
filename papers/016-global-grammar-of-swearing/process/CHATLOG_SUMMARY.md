@@ -93,6 +93,36 @@ Manifest SHA-256:
 
 The current assistant must not impersonate two independent coders.
 
+### Turn 6 — pronunciation engineering became executable
+
+The project moved beyond a phonology feasibility plan. Epitran 1.35.2 was
+actually run on the checksum-verified Study-1 inventory. English required
+building Flite `lex_lookup` from source according to Epitran's official
+instructions; the exact Flite commit was frozen.
+
+Mandarin and Cantonese received a better Phase-0 route than character-level
+dictionary lookup: the source study already contains high-coverage
+romanization, so the project uses source transcription → `cmn-Latn` /
+`yue-Latn` → IPA candidate.
+
+### Turn 7 — all 13 languages passed the engineering-feasibility gate
+
+The full-route audit produced technical pronunciation output for
+**8,187 / 8,190 Study-1 rows (99.9634%)**.
+
+The three non-success rows were:
+- two Singapore-English rows with empty/non-letter output;
+- one Mandarin row without source transcription.
+
+This changed the phonology bottleneck from **tool coverage** to
+**pronunciation validity**.
+
+The project explicitly rejects the inference:
+“99.9634% technical G2P success = 99.9634% pronunciation accuracy.”
+
+The next phonology gate is stratified native/source-language pronunciation
+validation, followed by matched neutral controls and frozen approximant coding.
+
 ## Current interpretation boundary
 
 The current paper may say:
@@ -117,3 +147,22 @@ Read first:
 5. `process/AUDIT_SAMPLE_FREEZE.md`
 
 Then execute the independent reliability gate.
+
+
+## Chat deletion safety checkpoint
+
+As of 2026-09-19, the scientifically useful state of this conversation has
+been persisted to Git.
+
+A future agent should not require this chat transcript. Recovery order:
+
+1. `process/STATUS.md`
+2. `process/HANDOFF.md`
+3. `process/CHATLOG_SUMMARY.md`
+4. `paper.json`
+5. `manuscript/DRAFT.md` and `manuscript/DRAFT.zh-CN.md`
+6. `process/CODER_HANDOFF.md` and `process/AUDIT_SAMPLE_FREEZE.md`
+7. `process/G2P_FULL_ROUTE_AUDIT.md` and `data/phonology_runtime_lock.json`
+
+Git is the canonical source of truth; deletion of the chat should not be
+treated as deletion of project state.
