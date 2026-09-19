@@ -8,18 +8,18 @@ A cross-disciplinary, auditable framework that routes scientific manuscripts to 
 
 ## Current state
 
-- Activity: **wait**
-- Progress: **78%**
-- Stage: **Pilot 3 · five pre-outcome development true-positive evaluations across four papers**
-- Evidence: SAFE_EXACT/time-safe development cases now span F5 cited-source consistency, F3 raw-data recomputation, F8 body↔caption scope coherence, F3 table-schema structure, and F1 significance/p-direction consistency; correction metadata remains manager-only
+- Activity: **active**
+- Progress: **80%**
+- Stage: **Pilot 3 · formatting control passed · comparator construction**
+- Evidence: Five SAFE_EXACT/time-safe development true-positive evaluations across F5/F3/F8/F3/F1 plus a SAFE_EXACT formatting/honest-error control: DOI 10.1371/journal.pone.0263337 yielded 10/10 PASS findings, 0 flags, review priority NONE, and no misconduct inference with correction metadata hidden
 
 ## Immediate next action
 
-**Run formatting/honest-error control, build small matched no-known-concern comparator set, then continue voxel/table queue and prepare frozen confirmatory cohort**
+**Build a small matched no-known-integrity-concern comparator set, then continue the unresolved voxel/Brodmann-area table acquisition and produce a descriptive development complementarity/abstention summary before confirmatory freeze**
 
 ## Current blocker / gate
 
-No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus, grouped/temporal split freeze, detector freeze, and human-review protocol
+No immediate hard blocker; confirmatory inference remains gated on a broader time-safe corpus, grouped/temporal split freeze, detector/version/applicability freeze, leakage audit, and human-review protocol
 
 ## Canonical files / entry points
 
