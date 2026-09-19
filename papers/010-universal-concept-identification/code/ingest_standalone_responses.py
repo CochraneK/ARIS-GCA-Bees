@@ -18,7 +18,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-FORMS = ROOT / "data" / "human_forms" / "forms.generated.json"\nTRAINING = ROOT / "data" / "human_forms" / "protocol_training.v1.json"
+FORMS = ROOT / "data" / "human_forms" / "forms.generated.json"
+TRAINING = ROOT / "data" / "human_forms" / "protocol_training.v1.json"
 
 
 def load_forms():
