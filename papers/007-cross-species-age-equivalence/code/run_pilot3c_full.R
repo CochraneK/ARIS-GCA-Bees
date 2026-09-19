@@ -77,16 +77,16 @@ for (i in seq_len(nrow(samples))) {
   mf <- manifest[trimws(manifest$geo_accession) == gsm, , drop=FALSE]
   if (nrow(mf) != 2) stop(sprintf("%s: manifest expected two IDAT files, got %d", gsm, nrow(mf)))
 
-  local_names <- sub("\\.gz$", "", mf$filename)
+  local_names <- mf$filename
   files <- file.path(idat_dir, local_names)
   if (!all(file.exists(files))) {
     stop(sprintf("%s: missing local IDAT(s): %s", gsm, paste(files[!file.exists(files)], collapse=", ")))
   }
 
-  grn <- files[grepl("_Grn\\.idat$", files)]
-  red <- files[grepl("_Red\\.idat$", files)]
+  grn <- files[grepl("_Grn\\.idat(\\.gz)?$", files)]
+  red <- files[grepl("_Red\\.idat(\\.gz)?$", files)]
   if (length(grn)!=1 || length(red)!=1) stop(sprintf("%s: expected one green and one red IDAT", gsm))
-  prefix <- sub("_Grn\\.idat$", "", grn)
+  prefix <- sub("_Grn\\.idat(\\.gz)?$", "", grn)
 
   message(sprintf("[%d/%d] %s %s age=%s tissue=%s",
     i, nrow(samples), gsm, row$organism, row$age_years, row$tissue_raw))
