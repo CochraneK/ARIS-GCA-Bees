@@ -6,12 +6,11 @@
 <text x="800.0" y="72" text-anchor="middle" class="t">Portfolio 当前状态</text>
 <text x="800.0" y="112" text-anchor="middle" class="s">来自 papers/dashboard.json 的 MECE 管理状态</text>
 <rect x="80.0" y="185" width="990.0" height="58" fill="#48e996"/>
-<rect x="1070.0" y="185" width="270.0" height="58" fill="#f2c14e"/>
-<rect x="1340.0" y="185" width="180.0" height="58" fill="#8aa0b8"/>
+<rect x="1070.0" y="185" width="180.0" height="58" fill="#8aa0b8"/>
 <circle cx="90" cy="320" r="10" fill="#48e996"/>
 <text x="112" y="327" class="h">Active · 11</text>
 <circle cx="450" cy="320" r="10" fill="#f2c14e"/>
-<text x="472" y="327" class="h">At gate · 3</text>
+<text x="472" y="327" class="h">At gate · 0</text>
 <circle cx="810" cy="320" r="10" fill="#8aa0b8"/>
 <text x="832" y="327" class="h">Quiet · 2</text>
 <circle cx="1170" cy="320" r="10" fill="#ef6a6a"/>

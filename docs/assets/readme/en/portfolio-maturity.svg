@@ -24,7 +24,7 @@
 <text x="70" y="493" class="h" font-size="20">005 · Global Burden of Bad Science</text>
 <text x="730" y="493" text-anchor="end" class="b">68%</text>
 <rect x="70" y="511" width="660" height="16" rx="8" fill="#1b385a"/>
-<rect x="70" y="511" width="448.79999999999995" height="16" rx="8" fill="#f2c14e"/>
+<rect x="70" y="511" width="448.79999999999995" height="16" rx="8" fill="#48e996"/>
 <text x="70" y="575" class="h" font-size="20">006 · Chinese Surnames × Alphabetica…</text>
 <text x="730" y="575" text-anchor="end" class="b">62%</text>
 <rect x="70" y="593" width="660" height="16" rx="8" fill="#1b385a"/>
@@ -56,7 +56,7 @@
 <text x="855" y="493" class="h" font-size="20">013 · Birth–Death Temporal Coupling</text>
 <text x="1515" y="493" text-anchor="end" class="b">50%</text>
 <rect x="855" y="511" width="660" height="16" rx="8" fill="#1b385a"/>
-<rect x="855" y="511" width="330.0" height="16" rx="8" fill="#f2c14e"/>
+<rect x="855" y="511" width="330.0" height="16" rx="8" fill="#48e996"/>
 <text x="855" y="575" class="h" font-size="20">014 · Public Integrity Forensics</text>
 <text x="1515" y="575" text-anchor="end" class="b">69%</text>
 <rect x="855" y="593" width="660" height="16" rx="8" fill="#1b385a"/>
@@ -68,5 +68,5 @@
 <text x="855" y="739" class="h" font-size="20">016 · Global Grammar of Swearing</text>
 <text x="1515" y="739" text-anchor="end" class="b">55%</text>
 <rect x="855" y="757" width="660" height="16" rx="8" fill="#1b385a"/>
-<rect x="855" y="757" width="363.0" height="16" rx="8" fill="#f2c14e"/>
+<rect x="855" y="757" width="363.0" height="16" rx="8" fill="#48e996"/>
 </svg>
