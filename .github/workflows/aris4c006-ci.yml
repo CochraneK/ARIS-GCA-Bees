@@ -65,6 +65,7 @@ jobs:
               "WORK_TYPE_RULE.md",
               "INFERENCE_RULE.md",
               "LONGITUDINAL_SAMPLING_RULE.md",
+              "UNLOCK_PROTOCOL.md",
           ]
           missing = [x for x in required if not (root / "process" / x).exists()]
           assert not missing, f"missing required process files: {missing}"
@@ -88,22 +89,27 @@ jobs:
           assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["final_h3_authors"] == 750
           assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["entry_years_required"] == 7
           assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["entry_fields_required"] == 20
-          spec_unlocked = bool(analysis_spec.get("confirmatory_outcomes_unlocked", False))
-          gate_unlocked = bool(gates.get("confirmatory_outcomes_unlocked", False))
-          assert spec_unlocked == gate_unlocked, "DESIGN_GATES and ANALYSIS_SPEC unlock flags must match"
+          # Locked design snapshots never flip their internal unlock booleans.
+          assert analysis_spec.get("confirmatory_outcomes_unlocked") is False
+          assert gates.get("confirmatory_outcomes_unlocked") is False
 
           lock_path = root / "process" / "PREREGISTRATION_LOCK.json"
+          unlock_path = root / "process" / "CONFIRMATORY_UNLOCK.json"
           status = manifest["status"]
 
-          if not spec_unlocked:
-              assert status not in {"analysis", "manuscript"}, "analysis/manuscript status forbidden while outcome gate is locked"
-              if status == "preregistered":
-                  assert lock_path.exists(), "preregistered status requires PREREGISTRATION_LOCK.json"
-          else:
-              assert lock_path.exists(), "confirmatory unlock requires PREREGISTRATION_LOCK.json"
-              lock = json.loads(lock_path.read_text(encoding="utf-8"))
-              assert lock.get("confirmatory_outcomes_unlocked_at_lock_creation") is False, "prereg lock must have been created while outcomes were locked"
-              assert status in {"analysis", "manuscript"}, "unlocked outcomes require analysis/manuscript status"
+          if status == "research-design":
+              assert not unlock_path.exists(), "research-design cannot have confirmatory unlock record"
+          elif status == "preregistered":
+              assert lock_path.exists(), "preregistered status requires PREREGISTRATION_LOCK.json"
+              assert not unlock_path.exists(), "preregistered status must remain confirmatory-locked"
+          elif status in {"analysis", "manuscript"}:
+              assert lock_path.exists(), "analysis/manuscript requires PREREGISTRATION_LOCK.json"
+              assert unlock_path.exists(), "analysis/manuscript requires CONFIRMATORY_UNLOCK.json"
+              import subprocess, sys
+              subprocess.run(
+                  [sys.executable, str(root / "code" / "31_verify_prereg_lock.py"), "--require-unlock"],
+                  check=True,
+              )
 
           if status in {"preregistered", "analysis", "manuscript"}:
               assert "TBF" not in prereg, "cannot advance with unresolved TBF fields"
