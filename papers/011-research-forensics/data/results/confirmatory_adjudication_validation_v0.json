@@ -1,0 +1,13 @@
+{
+  "analysis": "ARIS4C011 confirmatory adjudication validation",
+  "row_count": 80,
+  "state_counts": {
+    "UNASSESSED": 80
+  },
+  "require_complete": false,
+  "error_count": 0,
+  "errors": [],
+  "structure_valid": true,
+  "adjudication_complete": false,
+  "confirmatory_eligibility_inferred": false
+}
