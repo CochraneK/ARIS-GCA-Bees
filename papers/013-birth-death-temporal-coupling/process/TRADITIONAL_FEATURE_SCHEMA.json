@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "frozen": false,
+  "feature_freeze_version": "draft-0.1",
+  "outcome_access_status": "no H3/H4 outcome analysis permitted",
+  "required_before_freeze": [
+    "pinned conversion implementation",
+    "reference-date test vectors",
+    "boundary ambiguity rules",
+    "pseudo-system generators",
+    "multiplicity families",
+    "pre-outcome freeze commit"
+  ],
+  "families": [
+    {
+      "id": "F1_official_ganzhi_year",
+      "status": "admissible-draft",
+      "class": "H3",
+      "boundary": "Chinese New Year",
+      "requires": [
+        "birth_date"
+      ],
+      "full_bazi": false
+    },
+    {
+      "id": "F2_bazi_ganzhi_year",
+      "status": "admissible-draft",
+      "class": "H4-partial",
+      "boundary": "Li Chun",
+      "requires": [
+        "birth_date",
+        "li_chun_table"
+      ],
+      "ambiguous_without_time_on_boundary_date": true,
+      "full_bazi": false
+    },
+    {
+      "id": "F3_solar_term_phase",
+      "status": "admissible-draft",
+      "class": "H3",
+      "boundary": "24 solar terms",
+      "requires": [
+        "birth_date",
+        "solar_term_table"
+      ],
+      "full_bazi": false
+    },
+    {
+      "id": "F4_bazi_month_branch",
+      "status": "admissible-draft",
+      "class": "H4-partial",
+      "boundary": "12 Jie",
+      "requires": [
+        "birth_date",
+        "jie_table"
+      ],
+      "ambiguous_without_time_on_boundary_date": true,
+      "full_bazi": false
+    },
+    {
+      "id": "F5_civil_date_sexagenary_day",
+      "status": "admissible-draft",
+      "class": "H3-H4-partial",
+      "requires": [
+        "birth_date",
+        "frozen_reference_epoch"
+      ],
+      "label_rule": "never call full personal day pillar",
+      "full_bazi": false
+    },
+    {
+      "id": "F6_stem_element_polarity",
+      "status": "admissible-draft",
+      "class": "H4-semantic",
+      "requires": [
+        "frozen_parent_stem"
+      ],
+      "full_bazi": false
+    }
+  ],
+  "confirmatory_exclusions": [
+    "hour_pillar",
+    "true_solar_time",
+    "ten_gods",
+    "hidden_stems",
+    "na_yin",
+    "stem_combinations",
+    "branch_clashes",
+    "branch_harms",
+    "branch_punishments",
+    "luck_pillars",
+    "favorable_element_scoring",
+    "posthoc_auspicious_rules"
+  ],
+  "primary_semantic_maps": {
+    "stem_to_element": {
+      "Jia": "Wood",
+      "Yi": "Wood",
+      "Bing": "Fire",
+      "Ding": "Fire",
+      "Wu": "Earth",
+      "Ji": "Earth",
+      "Geng": "Metal",
+      "Xin": "Metal",
+      "Ren": "Water",
+      "Gui": "Water"
+    },
+    "stem_polarity": {
+      "Jia": "Yang",
+      "Yi": "Yin",
+      "Bing": "Yang",
+      "Ding": "Yin",
+      "Wu": "Yang",
+      "Ji": "Yin",
+      "Geng": "Yang",
+      "Xin": "Yin",
+      "Ren": "Yang",
+      "Gui": "Yin"
+    }
+  },
+  "identifiability_rule": "Free categorical cycle fit is not evidence for traditional semantics because label permutations are model-equivalent.",
+  "execution_gate": "locked until frozen=true and implementation/test-vector hashes are supplied"
+}
