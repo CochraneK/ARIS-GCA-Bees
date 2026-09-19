@@ -349,21 +349,37 @@ Axes that do not demonstrate reproducible coding will remain exploratory.
 
 ## 8. Phonological validation track
 
-The source `transcription` field cannot support a global phonological test:
-it is populated almost entirely for Cantonese and Mandarin. We therefore
-propose an independent pronunciation layer using language-specific G2P/IPA
-resources with native-language validation.
+The source `transcription` field cannot itself support a common global
+phonological analysis: it is populated primarily for the Chinese samples and
+is not a shared IPA representation. We therefore built an independent
+pronunciation layer rather than treating that source field as globally
+comparable.
+
+A live full-route engineering audit was then executed on all 8,190 Study-1
+rows. The frozen runtime uses Epitran 1.35.2; English uses `eng-Latn` with
+Flite `lex_lookup` compiled from frozen Flite commit
+`6c9f20dc915b17f5619340069889db0aa007fcdc`. Cantonese and Mandarin use the
+source study's high-coverage romanization through `yue-Latn` and
+`cmn-Latn`, avoiding unnecessary character-level pronunciation guessing in
+Phase 0. Remaining languages use language/script-specific Epitran routes.
+
+The pipeline returned technically usable output for **8,187 / 8,190 rows
+(99.9634%)**. The three non-success rows were two Singapore-English rows with
+empty/non-letter output and one Mandarin row lacking source transcription; no
+backend exceptions occurred in the full-route audit.
+
+This result closes the broad **engineering coverage** question but does not
+establish pronunciation accuracy. Slang, creative spelling, borrowing,
+code-switching, multiword expressions, orthographic ambiguity and dialectal
+English variation can all produce linguistically wrong pronunciations despite
+a technically successful G2P return. The next phonological gate is therefore
+a stratified native/source-language pronunciation-validity audit.
 
 The primary preregistered phonological replication will test the previously
 reported approximant hypothesis against within-language matched neutral
 controls. Other phonological classes will remain exploratory unless
-independently preregistered.
-
-PHOIBLE can provide standardized inventory and distinctive-feature
-information, while pronunciation generation requires word-level resources
-such as Epitran-supported language/script pipelines. Pronunciation failures,
-slang, code-switching and multi-word expressions must be audited because G2P
-error is unlikely to be random with respect to taboo vocabulary.
+independently preregistered. PHOIBLE can provide standardized inventory and
+distinctive-feature information, but it is not a word-pronunciation lexicon.
 
 ---
 
@@ -417,7 +433,7 @@ Important limitations include:
 - language-family diversity is limited;
 - the flat source taxonomy prevents direct recovery of semantic content for
   many insult/slur rows;
-- phonological data require a new standardized pronunciation layer.
+- the pronunciation layer is technically executable, but pronunciation validity has not yet been independently/native-language audited.
 
 ---
 
@@ -430,7 +446,7 @@ The next promotion gates are:
 3. English ontology × community repeated-item models;
 4. missing/unresolved-content sensitivity bounds;
 5. genealogy-aware cross-language tests;
-6. preregistered approximant replication with matched controls;
+6. stratified pronunciation-validity audit, then preregistered approximant replication with matched controls;
 7. expanded crossed language × country sampling.
 
 ---
