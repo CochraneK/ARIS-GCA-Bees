@@ -1,0 +1,3 @@
+scientific_name,outcome_id,outcome_state,source_id,evidence_summary,confidence,claim_limit
+Nephila clavipes,O6,positive,pmcid:PMC7716925,orb-web construction as persistent externalized structure,high,"Exact-species/current-synonym web construction under altered gravity; demonstrates externalized structure, not cumulative culture."
+Periplaneta americana,O5,ambiguous,pmcid:PMC10325095,emergent collective memory in shelter-choice groups,medium,"Group-level memory emerges from social interactions, but the study does not show culturally distributed knowledge or cross-generation retention."
