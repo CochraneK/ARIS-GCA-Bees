@@ -50,9 +50,12 @@ Secondary review source:
 - `../manuscript/DRAFT.md`
 - `../manuscript/TABLES.md`
 - `../manuscript/FIGURE_CAPTIONS.md`
-- `../figures/figure1_cross_dataset.svg`
-- `../figures/figure2_tli_paired_contrasts.svg`
-- `../figures/figure3_circular_diagnostics.svg`
+- `../figures/figure1_local_domain_gate.svg`
+- `../figures/figure2_circular_diagnostics.svg`
+- `../figures/figure3_tli_paired_contrasts.svg`
+- `../figures/figure4_geography_calibration.svg`
+- `../figures/figure5_cross_dataset.svg`
+- `../figures/figure6_stable_order_not_closure.svg`
 - `DATA_PROVENANCE.md`
 - `CLAIMS_EVIDENCE_MATRIX.md`
 - `MANUSCRIPT_AUDIT.md`
@@ -88,7 +91,7 @@ A fresh different-family reviewer wrote `MANUSCRIPT_REVIEW_RECEIPT.md`. Verdict 
 - [x] TLI/GBI vs WALS family-metadata code paths documented accurately.
 - [x] GBI feature-selection and 12-split rules documented.
 - [x] Stage inventory table added.
-- [x] Clean GitHub Actions manuscript CI regenerates all three figures and checks manifest/artifacts/claim boundaries.
+- [x] GitHub Actions manuscript CI checks manifest/artifacts/claim boundaries and verifies both EN/ZH manuscripts reference the six canonical figures in order. The legacy three-plot generator is retained as a source-data smoke test but is not the complete six-figure renderer.
 - [x] Latest `main` Paper 002 manuscript CI: SUCCESS.
 - [x] Stale concurrency PRs #9 and #11 closed after safe direct integration.
 
@@ -104,12 +107,12 @@ A fresh different-family reviewer wrote `MANUSCRIPT_REVIEW_RECEIPT.md`. Verdict 
 
 ~~**Target-journal formatting / submission preparation (editorial only).**~~ **COMPLETE (2026-09-19).** The Linguistic Typology technical package passed final QA. The maximum permitted claim remains frozen at the bounded wording in §Scientific freeze and must not be broadened without a new review cycle. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
 
-**Current remaining gate:** author-supplied metadata/declarations, then actual ScholarOne upload/submit.
+**Current remaining gate:** refresh/rebuild the Linguistic Typology submission package against the canonical six-figure manuscript, re-run technical QA, then supply author metadata/declarations and perform the ScholarOne upload/submit.
 
 
 ## Submission-package gate · 2026-09-19
 
-**State:** TECHNICAL PACKAGE COMPLETE
+**State:** HISTORICAL TECHNICAL PACKAGE PASS · SIX-FIGURE REFRESH REQUIRED
 
 Primary target: **Linguistic Typology**
 
@@ -118,7 +121,7 @@ Completed:
 - journal-specific blinded manuscript formatting;
 - 160-word abstract + 5 keywords;
 - six in-manuscript tables;
-- three in-manuscript and separately uploadable figures;
+- historical reviewed build contained three in-manuscript and separately uploadable figures; canonical EN/ZH manuscripts were subsequently expanded to six figures;
 - title-page / cover-letter / declarations templates;
 - anonymised Stage 0–1I supplement;
 - pinned contemporary reproduction environment;
@@ -128,9 +131,9 @@ Completed:
 - anonymisation scans;
 - final artifact provenance recorded in `submission/linguistic-typology/SUBMISSION_QA.md`.
 
-**Remaining hard gate:** author-supplied submission metadata and explicit declarations, followed by ScholarOne upload/submit.
+**Remaining hard gate:** rebuild/re-QA the journal package so it matches the six-figure canonical manuscript; then author-supplied submission metadata and explicit declarations, followed by ScholarOne upload/submit.
 
-No additional scientific analysis or manuscript expansion is currently required.
+No additional scientific analysis is currently required. The package refresh is editorial/reproducibility work caused by post-QA visual expansion, not a reopening of the scientific claim.
 
 
 ## Bilingual delivery
@@ -139,8 +142,16 @@ No additional scientific analysis or manuscript expansion is currently required.
 
 - English canonical manuscript: `../manuscript/DRAFT.md`
 - Chinese complete manuscript: `../manuscript/DRAFT.zh-CN.md`
-- figures: 3
+- figures: 6
 - manuscript-facing tables: 6
 - output gate metadata: PASS-ready in `../paper.json`
 
 The Chinese manuscript preserves the same numerical results and bounded claim as the independently reviewed English manuscript. It is a portfolio/delivery artifact and does not alter the blinded English journal-submission package.
+
+
+## 2026-09-19 continuity checkpoint
+
+- Canonical English and Chinese manuscripts each contain the same ordered six-figure narrative.
+- Latest known Paper 002 manuscript CI covering the six-figure repository state before this checkpoint: run #114 (`35422718503`) on commit `99568d00fa33b6dd8bae7610965d32d5bac213c2`, conclusion **success**.
+- The older Linguistic Typology technical QA remains valid only for build commit `608bc871fd4a634a0906b93aeabcd47675e8cb08`, which packaged three figures. Do not interpret that historical PASS as QA of the current six-figure submission package.
+- Scientific claim remains frozen; torus/multi-cycle/multi-level/local follow-up hypotheses belong in a new paper rather than post-hoc expansion of Paper 002.
