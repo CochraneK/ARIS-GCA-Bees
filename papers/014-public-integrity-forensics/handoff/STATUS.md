@@ -1,7 +1,7 @@
 # ARIS4C014 · Current status
 
 - **Title:** Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data
-- **Project status:** china-pilot0-stable-id-proven-cross-source-enrichment-next
+- **Project status:** china-pilot1-exact-uscc-enrichment-contract-validated
 - **Activity:** active
 - **Portfolio progress:** 71%
 - **Current stage:** China Pilot 1 · exact-USCC cross-source enrichment contract validated

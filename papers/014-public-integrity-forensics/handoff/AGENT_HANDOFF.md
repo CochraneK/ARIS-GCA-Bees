@@ -4,7 +4,7 @@
 
 **Public Integrity Forensics: An Auditable Multi-Source Agent for Corruption-Risk Screening from Open Data**
 
-An auditable multi-source public-integrity agent that mines structured and web-native public records across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations and suppliers, builds a time-aware evidence graph, and produces reproducible human-review leads without equating anomalies, public-office status, organizational identity or web allegations with corruption.
+An auditable multi-source public-integrity agent that mines structured and web-native public records across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations and suppliers, builds a time-aware evidence graph, and produces reproducible human-review leads without equating anomalies, public-office status, organizational identity or web allegations with corruption. China Pilot 1 now has a CI-validated exact-CN-USCC cross-source enrichment contract: factual attributes auto-attach only under exact stable-ID equality; name-only matches require review; same-name disjoint IDs are conflicts; inaccessible sources remain coverage gaps. A real lawful second-source corporate enrichment run is still pending.
 
 ## Current state
 
