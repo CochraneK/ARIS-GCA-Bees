@@ -52,12 +52,12 @@
       "blocker": "Exposure/identity validation before confirmatory career outcomes"
     },
     "007": {
-      "progress": 76,
-      "stage": "Pilot 3C · independent raw-IDAT molecular smoke",
+      "progress": 78,
+      "stage": "Pilot 3C · clock-era preprocessing replication gate",
       "activity": "active",
-      "evidence": "Pilot0 785 mappings + Pilot1 88-species demography + Pilot2 945 held-out events + Pilot3A MMC v3.0.0 parity PASS + Pilot3B frozen 50-sample/6-species pan-clock-training=no holdout",
-      "next_gate": "Pass 10-sample/6-species SeSAMe SHCDPB Clock2/3 smoke at >=95% CpG coverage, then auto-run frozen 50-sample full holdout",
-      "blocker": "Engineering only: latest failed smoke downloaded all 20 IDATs but CRLF in download_manifest.tsv polluted Bash filenames; fix is committed and rerun 35433019496 is in progress"
+      "evidence": "Pilot0 785 mappings + Pilot1 88-species demography + Pilot2 945 held-out events + Pilot3A MMC v3.0.0 parity PASS + Pilot3B frozen 50-sample/6-species pan-clock-training=no holdout. Modern SeSAMe SHCDPB 10-sample smoke resolved IDAT/CRLF/probe-ID layers: Clock2/3 required probe names are 100% present; species-nonmapping 0.5 convention raises usable coverage, but residual QC-missing leaves minimum final coverage 0.8971 / 0.8895, below the frozen 0.95 gate.",
+      "next_gate": "Run the same frozen 10-sample set under the 2023 clock-era stack (R 4.3 / Bioconductor 3.17 / SeSAMe 1.18.4 / SHCDPM). If >=95% Clock2/3 input coverage passes, run the frozen 50-sample holdout under the same clock-era preprocessing; preserve modern SHCDPB as a sensitivity/QC route.",
+      "blocker": "Method replication gate, not download engineering: modern SHCDPB preprocessing does not reproduce >=95% clock-input coverage for all frozen samples. Clock-era SeSAMe 1.18.4/SHCDPM workflow is implemented and queued; the 0.95 threshold remains unchanged."
     },
     "008": {
       "progress": 60,
