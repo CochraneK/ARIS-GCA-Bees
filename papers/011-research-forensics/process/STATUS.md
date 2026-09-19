@@ -4,7 +4,7 @@ Updated: 2026-09-19
 
 ## State
 
-**FIVE PRE-OUTCOME DEVELOPMENT TRUE-POSITIVE EVALUATIONS · FOUR TARGET PAPERS · MULTI-FAMILY COMPLEMENTARITY**
+**FIVE PRE-OUTCOME DEVELOPMENT TRUE-POSITIVE EVALUATIONS · FORMAT-CONTROL NON-ESCALATION PASS · COMPARATOR CONSTRUCTION**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -70,6 +70,7 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - Fourth target paper / fifth development true-positive evaluation: PLOS 10.1371/journal.pone.0180395 has a preserved-original PMC body-text object (SAFE_EXACT) containing the sentence "There were significant increases ... (p>.05)". F1_SIGNIFICANCE_P_DIRECTION_V1 flags the internal significance-direction inconsistency without correction metadata; the later correction independently confirms the direction fix.
 - Development evidence now spans five pre-outcome true-positive detector evaluations across four target papers and multiple evidence routes: cited-source consistency (F5), deposited-data recomputation (F3), body↔caption scope coherence (F8), table-schema structure (F3), and significance-claim/p-direction consistency (F1).
 - These Pilot 2/3 cases are deliberately enriched development examples and remain ineligible for confirmatory sensitivity, precision, or superiority claims.
+- The SAFE_EXACT formatting/honest-error control DOI 10.1371/journal.pone.0263337 was executed through the real Track-A reporting stack with correction metadata hidden: all 10 locale-formatted Cronbach-alpha checks PASS, flag_count=0, review_priority=NONE, and misconduct_inference=false. This validates conservative non-escalation for this development control only; it is not a specificity estimate.
 
 ## Critical design findings already established
 
@@ -125,8 +126,7 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Run the construction decimal-separator CONTROL (10.1371/journal.pone.0263337) through the same reporting stack and verify that a formatting/honest-error case is not escalated as a scientific contradiction.
-2. Begin a small matched no-known-integrity-concern comparator set now that four target papers have produced five development-stage pre-outcome true-positive evaluations.
-3. Continue the Pilot 3 acquisition queue with the voxel/Brodmann-area table case as the next unresolved structured-content candidate; demote cases that cannot satisfy object-level time safety.
-4. Produce only a descriptive development summary of detector-family yield/complementarity and abstention; do not estimate confirmatory sensitivity, precision, or superiority from the enriched Pilot 3 set.
-5. Prepare the transition to a frozen broader confirmatory cohort: grouped/temporal splits, no label-bearing features, frozen detector versions/applicability rules, and human-review protocol.
+1. Build a small matched **no-known-integrity-concern comparator** development set; do not call it a clean-control set and do not estimate specificity from it.
+2. Continue the Pilot 3 acquisition queue with the voxel/Brodmann-area table case as the next unresolved structured-content candidate; demote cases that cannot satisfy object-level time safety.
+3. Produce only a descriptive development summary of detector-family yield/complementarity, conservative non-escalation and abstention; do not estimate confirmatory sensitivity, precision, or superiority from the enriched Pilot 3 set.
+4. Prepare the transition to a frozen broader confirmatory cohort: grouped/temporal splits, no label-bearing features, frozen detector versions/applicability rules, and human-review protocol.
