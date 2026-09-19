@@ -4,14 +4,14 @@
   "title": "The Fidelity Frontier in Computational Psychiatry: Decomposing Acquisition and Encoding Loss in Psychopathology",
   "short_title": "Phenomenology-Preserving Computational Psychiatry",
   "year": 2026,
-  "status": "pilot-gated",
+  "status": "pilot-0",
   "domain": "computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement",
-  "summary": "A measurement framework that separates how psychopathological experience is elicited from how a fixed evidential record is encoded. ARIS4C009 benchmarks same-source representations with blinded reconstruction tests, then treats phenomenological fidelity, reliability, intended-use validity, predictive utility, privacy and burden as distinct objectives on a use-conditioned Pareto frontier.",
+  "summary": "A measurement framework that separates psychiatric acquisition from encoding loss. Pilot-0 now runs on real open schizophrenia interview material (DAIS-C) with privacy-preserving source inventory, structural segmentation, blinded boundary calibration, and later same-source representation fidelity benchmarking.",
   "authors": [
     "Cochrane Kang"
   ],
   "aris": {
-    "provenance": "ARIS4C guided research design; formal ARIS provenance to be frozen at full run",
+    "provenance": "ARIS4C guided research design and Pilot-0 engineering; formal manuscript provenance to be frozen at full run",
     "version": "v0.4.26",
     "commit": ""
   },
@@ -29,7 +29,7 @@
     "psychopathology",
     "measurement",
     "representation fidelity",
-    "idiographic modeling",
-    "state-space models"
+    "pilot-0",
+    "DAIS-C"
   ]
 }

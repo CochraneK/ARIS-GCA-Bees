@@ -1,125 +1,124 @@
 # ARIS4C009 · Status
 
-**Current stage:** empirical Pilot-0 / rater-gated  
+**Current stage:** empirical Pilot-0 / human-boundary-calibration gate  
 **ARIS baseline:** v0.4.26  
 **Canonical scope:** quantify acquisition and encoding divergence separately before mechanistic expansion.
 
 ## Completed
 
-- [x] Canonical research question defined.
-- [x] Source evidence distinguished from latent lived-state ground truth.
-- [x] Acquisition (A_m) and encoding (E_k) formally separated.
-- [x] 009A split into 009A1 same-source encoding benchmark and 009A2 acquisition benchmark.
-- [x] Actual self-report separated from questionnaire-format source projection.
-- [x] Intended-use validity separated from source-reconstruction fidelity.
-- [x] Use-conditioned Pareto frontier specified.
-- [x] Rate-distortion formulation restricted to fixed-source encoding.
-- [x] Independent fidelity metrics, relation ontology and query bank specified.
-- [x] Power/precision sensitivity framework added.
-- [x] Adversarial audit completed and fatal-design confounds corrected.
-- [x] Expanded Gate A novelty review completed; broad novelty claims retired.
-- [x] 009A1 preregistration-ready protocol skeleton revised.
-- [x] 009A2 acquisition protocol drafted.
-- [x] Physical-context constraint layer specified separately.
+- [x] Acquisition and encoding formally separated.
+- [x] 009A1 fixed-source encoding benchmark specified.
+- [x] 009A2 acquisition-method benchmark specified separately.
+- [x] Fidelity separated from reliability, intended-use validity, prediction and burden.
+- [x] Independent query/adjudication/evaluation architecture specified.
+- [x] Relation ontology, data dictionary and power/precision framework drafted.
+- [x] Adversarial audit completed.
+- [x] Expanded Gate A novelty audit completed; broad priority claims retired.
 - [x] DAIS-C selected as open real-clinical Pilot-0 engineering corpus.
-- [x] Official DAIS-C archive downloaded successfully in GitHub Actions.
-- [x] Raw psychiatric transcript publication blocked by an allowlist privacy gate.
-- [x] Archive SHA-256 and aggregate structural inventory recorded.
-- [x] TXT/RTF/DOCX transcript representations structurally classified.
-- [x] 28 unique full-interaction transcript files recovered in the public archive layer.
-- [x] Full-interaction participant-word scale cross-checked against speaker-only representation.
-- [x] Privacy-preserving candidate-episode parser implemented.
+- [x] Official archive automatically downloaded from UK Data Service.
+- [x] Archive checksum and privacy-preserving inventory published.
+- [x] Raw psychiatric transcript publication blocked by workflow allowlist.
+- [x] TXT/RTF/DOCX representations structurally classified.
+- [x] 28 public full-interaction transcripts recovered: 15 clinical-source, 13 comparison-source.
+- [x] Microepisode parser run on real data.
+- [x] 1,908 interviewer-anchored candidate microepisodes inventoried.
+- [x] Microepisode rule rejected as too granular for direct fidelity scoring.
+- [x] 20/40/80-word multi-turn segmentation sensitivity completed.
+- [x] 20- and 40-word strategies advanced to blinded human calibration.
+- [x] 80-word strategy deferred because it combines more microepisodes and increases long-window burden.
+- [x] Private local packet generator implemented.
+- [x] Aggregate boundary-rating scorer implemented.
+- [x] DAIS-C no-disease-inference limitations frozen.
+
+## Current empirical facts from Pilot-0
+
+### Full interaction layer
+
+- 28 usable full-interaction transcripts in the public archive layer.
+- participant-word count in full interaction ≈ speaker-only representation, supporting source recovery.
+- raw texts remain outside Git.
+
+### Microepisodes
+
+- 1,908 interviewer-anchored units;
+- 1,871 include participant response;
+- participant words: median 14, IQR 2–50.
+
+Conclusion: one-question/one-response units are too often trivial.
+
+### Segmentation sensitivity
+
+- target 20 → 953 windows; median 52 participant words; median 1 microepisode/window;
+- target 40 → 745 windows; median 79 words; median 2 microepisodes/window;
+- target 80 → 550 windows; median 116 words; median 3 microepisodes/window.
+
+No strategy is canonical until human calibration.
 
 ## Gate A — novelty
 
-**Status:** conditional pass for research development.
+**Conditional pass for research development.**
 
-The defensible candidate contribution is the integrated acquisition/encoding benchmark architecture, not any single component.
+Formal manuscript-stage database screening remains required.
 
-Formal manuscript-stage multi-database screening remains required.
+## Gate B — source engineering
 
-## Gate B — 009A1 source engineering
+**Passed for DAIS-C Pilot-0.**
 
-**Status:** passed for Pilot-0 engineering.
+The pipeline can reproducibly retrieve, classify and structurally segment real
+schizophrenia interview material without publishing raw text.
 
-DAIS-C is adequate for:
+## Gate C — human boundary calibration
 
-- parser testing;
-- source provenance;
-- episode-boundary calibration;
-- query-bank feasibility;
-- relation-graph feasibility;
-- R3P/R4P projection feasibility;
-- evaluator-blinding workflow.
+**Current blocker.**
 
-DAIS-C is **not** treated as an EASE/EAWE/STEP corpus.
+Need two independent raters to complete the blinded 20-vs-40 boundary packet.
 
-## Gate C — episode-boundary validation
+Primary outputs:
 
-**Status:** next blocker.
+- coherence;
+- sufficiency for nontrivial query construction;
+- mixed-topic rate;
+- keep/merge/split/reject;
+- Gwet AC1.
 
-The machine parser defines a candidate episode as:
+## Gate D — query / relation calibration
 
-> one interviewer block + all immediately following participant blocks until the next interviewer block.
+After boundary rule is frozen:
 
-Before semantic fidelity scoring:
+- build source-only queries;
+- estimate answerability;
+- remove redundant queries;
+- calibrate relation annotation;
+- estimate evaluator variance;
+- test R3P/R4P projection feasibility.
 
-1. sample calibration episodes;
-2. two trained raters judge split/merge/reject;
-3. quantify boundary agreement/error;
-4. revise if needed;
-5. freeze parser rule.
+## Gate E — 009A1 representation benchmark
 
-## Gate D — source/query/relation calibration
+Minimum representations:
 
-After episode boundaries are frozen, estimate:
-
-- source answerability;
-- query redundancy;
-- adjudication agreement;
-- relation-annotation reliability;
-- usable query yield;
-- evaluator variance;
-- R3P/R4P projection feasibility.
-
-## Gate E — 009A1 confirmatory representation benchmark
-
-Minimum conditions:
-
-- R0 rich source;
-- R1 episode graph;
-- R2 phenomenology-informed structured code;
+- R0 source;
+- R1 relation graph;
+- R2-lite phenomenology-informed structure for DAIS-C;
 - R3P questionnaire-format projection;
-- R4P conventional symptom-code projection.
+- R4P conventional symptom-style projection.
 
-For DAIS-C, R2 is explicitly **R2-lite**, not an EASE score.
+DAIS-C is not an EASE corpus.
 
 ## Gate F — richer psychosis Pilot-1
 
-**Preferred target:** AMP-SCZ under approved NIMH Data Archive access.
+Preferred target: AMP-SCZ under approved NIMH Data Archive access.
 
-Rationale:
+This is the stronger substrate for PSYCHS/open-interview and later multimodal validation.
 
-- PSYCHS;
-- open-ended interview language samples;
-- transcript-level psychosis-risk material;
-- multimodal clinical/contextual data.
+## Gate G — 009A2 acquisition study
 
-Pilot-1 is where direct psychosis-risk measurement claims should be tested.
-
-## Gate G — 009A2 acquisition pilot
-
-Purpose-collected randomized matched-content acquisition study remains separate and requires ethics/data collection.
-
-## Gate H — multimodal/mechanistic extension
-
-Deferred until measurement layers survive.
+Requires purpose-collected human data and ethics approval.
 
 ## Current blocker
 
-The project now has real Pilot-0 data.
+The next irreducible input is **two independent human raters**.
 
-The next high-value input is **independent human boundary/adjudication work**, not more conceptual expansion.
+More automated conceptual expansion before this gate has lower value than completing the calibration.
 
 ## Scope control
 
