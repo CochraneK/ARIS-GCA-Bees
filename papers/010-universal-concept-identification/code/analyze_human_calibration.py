@@ -61,7 +61,7 @@ def main():
     for r in rows:
         allowed={"P2":P2,"P3":P3,"P6":P6}.get(r["protocol"])
         if allowed is None:
-            invalid.append((r.get("participant_id"),r["pair_id"],f"unknown protocol {r[\"protocol\"]}"))
+            invalid.append((r.get("participant_id"), r["pair_id"], "unknown protocol " + str(r.get("protocol"))))
             continue
         if r["response"] not in allowed:
             invalid.append((r.get("participant_id"),r["pair_id"],r["response"]))
