@@ -108,6 +108,20 @@ Successful workflow run: `35407424125`.
 
 These numbers are acquisition/triage outputs, not final network-release counts. No held person is auto-released from work-count thresholds alone.
 
+### Work-audit review compression
+
+The held-work audit is now organized without making any automatic authorship decision:
+
+- raw held-work review rows in the full network100 corpus: **2,230**;
+- deterministic audit sample: **334 rows / 37 people**;
+- row-level review priorities: **135 P1, 71 P2, 128 P3**;
+- person-level review priorities: **20 P1, 6 P2, 11 P3**;
+- machine verdicts: **NONE for all 334 rows / all 37 people**;
+- automatic releases: **0**;
+- automatic exclusions: **0**.
+
+Priority signals only determine review order (e.g. pre-existing namesake/mixed-fragment notes, posthumous boundary, container-like titles, multi-fragment clusters). They do not override `WORK_CODEBOOK.md`.
+
 ### Pilot30 work/network release
 
 After work-level cleaning:
