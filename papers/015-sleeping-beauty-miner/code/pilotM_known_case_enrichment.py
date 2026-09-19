@@ -53,6 +53,77 @@ KNOWN_CASES = (
 )
 
 
+def _sample_unique_control_pool(
+    *,
+    filters: str,
+    target_size: int,
+    base_seed: int,
+    api_key: str | None,
+    exclude_ids: set[str] | None = None,
+) -> tuple[list, dict[str, Any]]:
+    """Build a deterministic unique OpenAlex control pool across seed pages.
+
+    OpenAlex one-page random sampling is capped at 100 works. For larger
+    mechanism reservoirs, issue deterministic independent sample pages and
+    deduplicate by OpenAlex ID. The first page uses the historical base seed,
+    so targets <=100 preserve the original sampling convention.
+    """
+    if target_size < 1 or target_size > 1000:
+        raise ValueError("target_size must be between 1 and 1000")
+
+    excluded = set(exclude_ids or ())
+    selected = []
+    selected_ids: set[str] = set()
+    attempts = []
+    round_index = 0
+    max_rounds = max(10, ((target_size + 99) // 100) * 4)
+
+    while len(selected) < target_size and round_index < max_rounds:
+        remaining = target_size - len(selected)
+        request_size = min(100, remaining)
+        seed = int(base_seed) + round_index * 104729
+        sampled = sample_works(
+            filters=filters,
+            sample_size=request_size,
+            seed=seed,
+            api_key=api_key,
+        )
+        accepted = 0
+        for work in sampled:
+            work_id = getattr(work, "openalex_id", None)
+            if not work_id or work_id in excluded or work_id in selected_ids:
+                continue
+            selected.append(work)
+            selected_ids.add(work_id)
+            accepted += 1
+            if len(selected) >= target_size:
+                break
+        attempts.append(
+            {
+                "seed": seed,
+                "requested": request_size,
+                "returned": len(sampled),
+                "accepted_unique": accepted,
+            }
+        )
+        round_index += 1
+
+    if len(selected) < target_size:
+        raise OpenAlexError(
+            "Could not assemble requested unique control pool: "
+            f"target={target_size}, unique={len(selected)}, "
+            f"attempts={round_index}"
+        )
+
+    return selected, {
+        "target_size": target_size,
+        "unique_size": len(selected),
+        "base_seed": int(base_seed),
+        "seed_stride": 104729,
+        "attempts": attempts,
+    }
+
+
 def _corpus_paper(
     work,
     history,
@@ -76,12 +147,13 @@ def run_known_case_enrichment(
     observation_end_year: int = 2011,
     api_key: str | None = None,
 ) -> dict[str, Any]:
-    if controls_per_case_pool < 20 or controls_per_case_pool > 100:
-        raise ValueError("controls_per_case_pool must be between 20 and 100")
+    if controls_per_case_pool < 20 or controls_per_case_pool > 1000:
+        raise ValueError("controls_per_case_pool must be between 20 and 1000")
 
     papers: list[CorpusPaper] = []
     known_case_meta = []
     control_meta = []
+    control_sampling_meta = []
     seen_ids: set[str] = set()
 
     for spec in KNOWN_CASES:
@@ -129,11 +201,20 @@ def run_known_case_enrichment(
             f"publication_year:{year},type:article,"
             f"primary_topic.field.id:{field_id}"
         )
-        sampled = sample_works(
+        sampled, sampling_meta = _sample_unique_control_pool(
             filters=filters,
-            sample_size=controls_per_case_pool,
-            seed=int(spec["seed"]),
+            target_size=controls_per_case_pool,
+            base_seed=int(spec["seed"]),
             api_key=api_key,
+            exclude_ids=seen_ids,
+        )
+        control_sampling_meta.append(
+            {
+                "case_id": spec["case_id"],
+                "publication_year": year,
+                "field_id": field_id,
+                **sampling_meta,
+            }
         )
 
         for control in sampled:
@@ -232,6 +313,7 @@ def run_known_case_enrichment(
         "known_case_source": "Ke et al. 2015 PNAS",
         "n_known_cases": len(KNOWN_CASES),
         "controls_per_case_pool_requested": controls_per_case_pool,
+        "control_sampling": control_sampling_meta,
         "observation_end_year": observation_end_year,
         "control_frame": "same publication year x current OpenAlex primary field",
         "case_selection_is_retrospective": True,
