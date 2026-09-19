@@ -2,7 +2,9 @@ name: ARIS4C003 distributed confirmatory models
 
 on:
   workflow_run:
-    workflows: ["ARIS4C003 materialize OpenAlex outcomes"]
+    workflows:
+      - "ARIS4C003 materialize OpenAlex outcomes"
+      - "ARIS4C003 sharded OpenAlex fallback"
     types: [completed]
   workflow_dispatch:
     inputs:
