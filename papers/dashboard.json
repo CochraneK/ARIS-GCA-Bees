@@ -93,11 +93,11 @@
     },
     "012": {
       "progress": 66,
-      "stage": "Pilot 0B complete · adjudication gate",
+      "stage": "Pilot 0B complete · v1 reliability revision gate",
       "activity": "wait",
-      "evidence": "165-record reproducible retrieval + Coder A + genuinely independent 30-record Coder B; reliability summary READY_FOR_ADJUDICATION with 141 disagreement cells",
-      "next_gate": "Adjudicate disagreements, reconcile mechanism taxonomy, and freeze post-adjudication reliability before broader claims",
-      "blocker": "No missing independent coder; current gate is substantive adjudication, especially low-agreement mechanism/causal-strength fields"
+      "evidence": "165-record reproducible retrieval + genuinely independent 30-record Coder B; raw opposition-valid κ=0.466, OCI-candidacy κ=0.592, primary-mechanism κ=0 with 141 disagreement cells; instrument vocabulary mismatch documented",
+      "next_gate": "Diagnose/adjudicate disagreement types, freeze controlled-vocabulary Schema v2, then run a fresh independent A2/B2 reliability Pilot",
+      "blocker": "v1 coding instrument did not meet the prespecified reliability threshold; full evidence-map screening remains gated until revised independent validation"
     },
     "013": {
       "progress": 50,
