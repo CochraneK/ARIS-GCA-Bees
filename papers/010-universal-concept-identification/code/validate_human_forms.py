@@ -14,10 +14,10 @@ FORMS=ROOT/"data"/"human_forms"/"forms.generated.json"
 def main():
     payload=json.loads(FORMS.read_text(encoding="utf-8"))
     forms=payload["forms"]
-    assert len(forms)==72
-    assert Counter(f["protocol"] for f in forms)=={"P2":36,"P6":36}
+    assert len(forms)==108
+    assert Counter(f["protocol"] for f in forms)=={"P2":36,"P3":36,"P6":36}
 
-    exposure={"P2":Counter(),"P6":Counter()}
+    exposure={"P2":Counter(),"P3":Counter(),"P6":Counter()}
     for form in forms:
         assert form["main_trial_count"]==84
         assert form["retest_trial_count"]==8
@@ -38,15 +38,15 @@ def main():
         for a,b in zip(form["items"],form["items"][1:]):
             assert a["pair_id"]!=b["pair_id"], f"immediate duplicate in {form['form_id']}"
 
-    for protocol in ("P2","P6"):
+    for protocol in ("P2","P3","P6"):
         lex=[v for k,v in exposure[protocol].items() if k.startswith("oewn2025:")]
         mixed=[v for k,v in exposure[protocol].items() if not k.startswith("oewn2025:")]
         assert set(lex)=={3}, (protocol,set(lex))
         assert set(mixed)=={4}, (protocol,set(mixed))
 
     print("PASS human form validation")
-    print("forms: 72")
-    print("P2/P6 forms: 36/36")
+    print("forms: 108")
+    print("P2/P3/P6 forms: 36/36/36")
     print("main/retest/presented per form: 84/8/92")
     print("lexical pair exposure per protocol: 3")
     print("mixed pair exposure per protocol: 4")
