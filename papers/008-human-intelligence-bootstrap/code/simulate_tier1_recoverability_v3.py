@@ -20,7 +20,7 @@ Each candidate is fitted as y = intercept + slope * signature.
 Feedback/dynamic interaction is deliberately not a fourth static catch-all;
 it requires a separately specified temporal/network model.
 
-This is a design diagnostic, not a biological power calculation.
+This is a design diagnostic, not a biological power calculation.\n\nPilot-9 v3 uses common random numbers across fixed-mask scenarios so differences between 79-taxon masks are attributable to missingness/design rather than scenario-specific Monte Carlo draws.
 """
 from __future__ import annotations
 import argparse,csv,math,random,statistics
@@ -193,7 +193,7 @@ def main():
     base=Path(__file__).resolve().parents[1]
     ap=argparse.ArgumentParser();ap.add_argument("--reps",type=int,default=500);ap.add_argument("--oracle-reps",type=int,default=200);args=ap.parse_args()
     summary=[];confrows=[]
-    for si,(name,mask) in enumerate(scenarios(base).items()):
+    for name,mask in scenarios(base).items():
         rec,margin,conf=run_mask(mask,args.reps,SEED+si*10000)
         per=[sum(row[j] for row in mask) for j in range(10)];obs=sum(per);total=len(mask)*10
         for true in MODELS:
