@@ -10,10 +10,11 @@ on:
     paths:
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
       - ".github/workflows/aris4c004-network100.yml"
+      - ".github/workflows/aris4c004-network100.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   work-shards:
@@ -150,6 +151,22 @@ jobs:
           cat "$OUT/identity_second_review_summary.json"
           cat "$OUT/verified_work_corpus/verified_work_overall.json"
           cat "$OUT/held_work_audit_sample_summary.json"
+
+      - name: Persist public-safe network100 review packet
+        shell: bash
+        run: |
+          cp "$OUT/verified_work_corpus/verified_work_summary.csv" "$PAPER_DIR/data/derived/network100_verified_work_summary.csv"
+          cp "$OUT/held_work_audit_sample.csv" "$PAPER_DIR/data/derived/network100_held_work_audit_sample.csv"
+          cp "$OUT/held_work_audit_sample_summary.json" "$PAPER_DIR/data/derived/network100_held_work_audit_sample_summary.json"
+          cp "$OUT/verified_work_corpus/verified_work_overall.json" "$PAPER_DIR/data/derived/network100_verified_work_overall.json"
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add             "$PAPER_DIR/data/derived/network100_verified_work_summary.csv"             "$PAPER_DIR/data/derived/network100_held_work_audit_sample.csv"             "$PAPER_DIR/data/derived/network100_held_work_audit_sample_summary.json"             "$PAPER_DIR/data/derived/network100_verified_work_overall.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "004: persist network100 work-review packet"
+            git pull --rebase origin main
+            git push
+          fi
 
       - name: Upload network100 acquisition artifact
         uses: actions/upload-artifact@v4
