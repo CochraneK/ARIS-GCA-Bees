@@ -1,10 +1,182 @@
 {
-  "registry_version": "0.1.0",
+  "registry_version": "0.2.0",
   "state": "FROZEN_DEVELOPMENT_EXPOSURE_SNAPSHOT",
-  "generated_from": "structured seed/pilot artifacts plus data/results/pilot*",
-  "exclusion_count": 42,
-  "policy": "Any DOI exposed during method development, pilot acquisition, comparator discovery/screening, control construction, or development evaluation is excluded from confirmatory performance manifests.",
+  "generated_from": "structured seed/pilot artifacts, data/results/pilot*, and design-affecting confirmatory_feasibility* frames",
+  "exclusion_count": 180,
+  "policy": "Any DOI exposed during method development, pilot acquisition, comparator discovery/screening, control construction, development evaluation, or a design-affecting blinded feasibility frame is excluded from final confirmatory performance manifests.",
   "entries": [
+    {
+      "doi": "10.1002/bsd2.70047",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1002/bsd2.70073",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1002/smtd.202100938",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1002/smtd.202200739",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s00170-023-12215-1",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s00170-023-12362-5",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s00266-022-02778-x",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s00266-022-02831-9",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10198-019-01144-0",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10198-020-01210-y",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10750-020-04418-4",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10750-020-04485-7",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10851-020-01015-x",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10851-021-01028-0",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10896-024-00797-7",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s10896-025-00845-w",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s11046-004-1820-x",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s11046-022-00641-w",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s11205-016-1296-3",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
     {
       "doi": "10.1007/s11277-021-09072-0",
       "source_files": [
@@ -18,6 +190,356 @@
       ],
       "source_fields": [
         "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s11695-018-3163-6",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s11695-018-3202-3",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12013-024-01403-9",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12013-024-01490-8",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12035-016-9837-y",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12237-017-0258-6",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12237-018-00497-8",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12517-021-06789-x",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s12517-021-09025-8",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s13304-014-0251-6",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1007/s13304-019-00638-z",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.apjtm.2015.11.006",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.apjtm.2017.06.015",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.chemosphere.2020.127653",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.cplett.2022.139863",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.drugpo.2018.11.009",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.energy.2021.120910",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.energy.2024.130381",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.ijhydene.2020.05.261",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.physb.2020.412002",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.tsep.2025.103276",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1016/j.ygcen.2017.09.006",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/543163b",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/nature.2017.21536",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41409-019-0649-3",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41409-019-0767-y",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41419-019-2106-z",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41419-019-2220-y",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41440-020-00571-4",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41440-021-00622-4",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41579-018-0048-6",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41579-018-0060-x",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41598-020-75103-8",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41598-021-83230-z",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41598-021-92676-0",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41598-021-94669-5",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41598-023-47880-5",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/s41598-023-50297-9",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
       ]
     },
     {
@@ -45,6 +567,268 @@
       ]
     },
     {
+      "doi": "10.1038/srep14229",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1038/srep17243",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1039/c6dt03024f",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1039/c6dt90217k",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1049/iet-rpg.2017.0351",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1049/iet-rpg.2018.5568",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1074/jbc.a117.910060",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1074/jbc.m910060199",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/00223131.2024.2402366",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/00223131.2025.2485652",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/00914037.2015.1055631",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/00914037.2022.2060646",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/0966369x.2016.1204999",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/0966369x.2017.1302558",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/10447318.2022.2143027",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/10447318.2023.2170002",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/14689367.2016.1207753",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/14689367.2017.1322774",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/23306343.2025.2495492",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/23306343.2025.2517422",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/24701556.2020.1799398",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1080/24701556.2024.2327709",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1088/1475-7516/2023/09/044",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1088/1475-7516/2024/02/e01",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1088/1757-899x/1145/1/012055",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1088/1757-899x/1145/1/012174",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1093/carcin/bgy036",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi",
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1097/jdn.0000000000000750",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1097/jdn.0000000000000762",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
       "doi": "10.1111/bjso.12452",
       "source_files": [
         "data/pilot/plos_morality_2021_cross_source_safe_exact.json",
@@ -54,6 +838,186 @@
         "comparison_source_doi",
         "doi",
         "source_doi"
+      ]
+    },
+    {
+      "doi": "10.1111/ced.14339",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1111/ced.15282",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1123/jpah.2015-0702",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1123/jpah.2017-0254",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1136/bmj.k1083",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1136/bmj.k913",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1142/s0217751x20501341",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1142/s0217751x2093001x",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1155/2022/2084276",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1155/2022/3053694",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1155/2023/1287325",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1155/2023/9768716",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1155/2023/9783091",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1155/2024/9859620",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1158/0008-5472.can-08-2780",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1158/0008-5472.can-22-2399",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1158/2159-8290.cd-17-0228",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1158/2159-8290.cd-18-1516",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1159/000085681",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1159/000500102",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
       ]
     },
     {
@@ -107,6 +1071,96 @@
       ]
     },
     {
+      "doi": "10.1186/s12939-024-02229-w",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1186/s12939-024-02330-0",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1186/s12967-022-03317-7",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1186/s12967-024-05632-7",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1190/geo2017-0028.1",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1190/geo2018-0614-retraction.1",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1190/tle35060528.1",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1190/tle35080719.1",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.1212/wnl.0000000000009919",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1212/wnl.0000000000010883",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
       "doi": "10.1371/journal.pone.0075637",
       "source_files": [
         "data/pilot/pilot3_correction_candidates.csv",
@@ -144,6 +1198,24 @@
       ],
       "source_fields": [
         "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0147986",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0154549",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
       ]
     },
     {
@@ -411,6 +1483,15 @@
       ]
     },
     {
+      "doi": "10.1371/journal.pone.0292680",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
       "doi": "10.1371/journal.pone.0293342",
       "source_files": [
         "data/results/pilot3_comparator_candidates.json",
@@ -457,6 +1538,15 @@
       ],
       "source_fields": [
         "correction_doi"
+      ]
+    },
+    {
+      "doi": "10.1371/journal.pone.0312330",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
       ]
     },
     {
@@ -509,6 +1599,24 @@
       ]
     },
     {
+      "doi": "10.1556/084.2016.17.1.5",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.1556/084.2017.18.1.10",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
       "doi": "10.18452/33744",
       "source_files": [
         "data/pilot/plos_music_2023_rawdata_safe_exact.json",
@@ -516,6 +1624,150 @@
       ],
       "source_fields": [
         "repository_doi"
+      ]
+    },
+    {
+      "doi": "10.3389/fpsyg.2022.999953",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3389/fpsyg.2025.1675526",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/app8112184",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/app9040633",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/ijerph13070646",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/ijerph5030152",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/ijgi8010039",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/ijgi8090402",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/molecules25245875",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/molecules30173542",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/toxics10050203",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3390/toxics13020074",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.3758/s13423-017-1319-3",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.3758/s13423-018-1505-y",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
+      ]
+    },
+    {
+      "doi": "10.4102/jamba.v11i1.725",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "target_doi"
+      ]
+    },
+    {
+      "doi": "10.4102/jamba.v13i1.1036",
+      "source_files": [
+        "data/results/confirmatory_feasibility_frame_v0.json"
+      ],
+      "source_fields": [
+        "notice_or_source_doi"
       ]
     }
   ]

@@ -2,7 +2,7 @@
   "analysis": "ARIS4C011 confirmatory freeze preflight",
   "protocol_version": "0.1.0",
   "protocol_state": "PRE_FREEZE",
-  "development_exclusion_count": 42,
+  "development_exclusion_count": 180,
   "manifest_rows": 0,
   "checks": {
     "freeze_gates_closed": false,
