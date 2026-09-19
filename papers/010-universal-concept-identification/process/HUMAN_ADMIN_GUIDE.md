@@ -2,7 +2,7 @@
 
 ## Scope
 
-This guide covers the first **P2 versus P6 calibration**. It does not authorize or replace institutional ethics review.
+This guide covers the first **P2 versus P3 versus P6 calibration**. It does not authorize or replace institutional ethics review.
 
 ## What participants judge
 
@@ -26,6 +26,16 @@ Choose exactly one:
 - **NO** — the question is meaningful and applicable, but does not apply / is false.
 
 P2 intentionally forces binary judgment.
+
+## P3 instructions
+
+Choose exactly one:
+
+- **YES** — applies / true.
+- **NO** — meaningful and applicable, but false.
+- **MAYBE** — a confident binary answer is not appropriate, regardless of why.
+
+P3 deliberately collapses ambiguity, uncertainty, borderline status, missing context and semantic failure into one coarse escape response. Participants should not be asked to diagnose the reason.
 
 ## P6 instructions
 
