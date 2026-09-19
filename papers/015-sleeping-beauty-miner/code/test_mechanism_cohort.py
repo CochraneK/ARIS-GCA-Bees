@@ -104,12 +104,15 @@ class MechanismCohortTests(unittest.TestCase):
         # assess matched-group SMD balance.
         self.assertFalse(result["mechanism_analysis_ready"])
         self.assertIn(
-            "SB-vs-Forgotten balance not assessable",
+            "SB-vs-at-risk-dormant balance not assessable",
             result["mechanism_analysis_block_reasons"],
         )
         self.assertGreaterEqual(
             result["state_counts"].get("SLEEPING_BEAUTY", 0),
             1,
+        )
+        self.assertTrue(
+            result["contrasts"]["SB_vs_AT_RISK_DORMANT"]["matches"]
         )
         self.assertTrue(
             result["contrasts"]["SB_vs_FORGOTTEN"]["matches"]
@@ -178,7 +181,7 @@ class MechanismCohortTests(unittest.TestCase):
         )
         self.assertTrue(result["mechanism_ready"])
         self.assertTrue(
-            result["contrasts"]["SB_vs_FORGOTTEN"]["balance"][
+            result["contrasts"]["SB_vs_AT_RISK_DORMANT"]["balance"][
                 "balance_assessable"
             ]
         )
