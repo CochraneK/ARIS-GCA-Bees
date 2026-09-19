@@ -25,6 +25,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from html.parser import HTMLParser
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -127,6 +128,76 @@ def fetch_semantic_scholar(doi: str) -> tuple[str,str,str]:
     except Exception:
         return "","",""
     return clean_text(d.get("abstract") or ""), url, d.get("url") or ""
+
+class _MetadataHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.meta=[]
+        self._jsonld=False
+        self._jsonbuf=[]
+    def handle_starttag(self, tag, attrs):
+        d={str(k).lower():v for k,v in attrs}
+        if tag.lower()=="meta":
+            key=(d.get("name") or d.get("property") or "").lower()
+            val=d.get("content") or ""
+            if key and val:self.meta.append((key,val))
+        if tag.lower()=="script" and (d.get("type") or "").lower()=="application/ld+json":
+            self._jsonld=True;self._jsonbuf=[]
+    def handle_data(self,data):
+        if self._jsonld:self._jsonbuf.append(data)
+    def handle_endtag(self,tag):
+        if tag.lower()=="script" and self._jsonld:self._jsonld=False
+
+def request_text(url: str, timeout: int = 30, retries: int = 2):
+    last=None
+    for attempt in range(retries):
+        try:
+            req=urllib.request.Request(url,headers={"User-Agent":USER_AGENT,"Accept":"text/html,application/xhtml+xml"})
+            with urllib.request.urlopen(req,timeout=timeout) as r:
+                raw=r.read(2_000_000)
+                return raw.decode(r.headers.get_content_charset() or "utf-8",errors="replace"),r.geturl()
+        except Exception as exc:
+            last=exc
+            if attempt+1<retries:time.sleep(0.8*(attempt+1))
+    return "",url
+
+def _recursive_descriptions(obj):
+    out=[]
+    if isinstance(obj,dict):
+        for k,v in obj.items():
+            lk=str(k).lower()
+            if lk in {"abstract","description"} and isinstance(v,str):out.append((lk,v))
+            out.extend(_recursive_descriptions(v))
+    elif isinstance(obj,list):
+        for v in obj:out.extend(_recursive_descriptions(v))
+    return out
+
+def fetch_landing_description(url: str) -> tuple[str,str,str]:
+    if not url:return "","",""
+    page,final=request_text(url)
+    if not page:return "",url,final
+    parser=_MetadataHTMLParser()
+    try:parser.feed(page)
+    except Exception:pass
+    priority=["citation_abstract","dc.description","dcterms.description","dcterms.abstract","description","og:description","twitter:description"]
+    by={}
+    for key,val in parser.meta:
+        by.setdefault(key,[]).append(val)
+    candidates=[]
+    for key in priority:
+        for val in by.get(key,[]):candidates.append((key,val))
+    for m in re.finditer(r'<script[^>]+type=["\\\']application/ld\\+json["\\\'][^>]*>(.*?)</script>',page,re.I|re.S):
+        try:
+            obj=json.loads(html.unescape(m.group(1)))
+            for key,val in _recursive_descriptions(obj):
+                candidates.append(("jsonld_"+key,val))
+        except Exception:
+            continue
+    for key,val in candidates:
+        text=clean_text(val)
+        if len(text.split())>=25:
+            return text,key,final
+    return "",url,final
 
 def evidence_for(row: dict[str,str]) -> dict:
     doi = (row.get("doi") or "").strip().lower()
