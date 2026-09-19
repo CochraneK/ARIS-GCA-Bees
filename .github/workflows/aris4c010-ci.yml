@@ -81,6 +81,9 @@ jobs:
       - name: Run retest power sensitivity
         run: python power_retest_scenarios.py
 
+      - name: Validate protocol training
+        run: python validate_protocol_training.py
+
       - name: Build standalone annotation HTML
         run: python build_annotation_html.py
 
