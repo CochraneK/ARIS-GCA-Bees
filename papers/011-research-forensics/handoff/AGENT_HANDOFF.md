@@ -4,22 +4,22 @@
 
 **Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening**
 
-A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now has six time-safe pre-outcome development FLAG evaluations across five target papers, a SAFE_EXACT formatting/honest-error control with zero flags, and four matched no-known-integrity-concern development comparators frozen by full-text hash; confirmatory performance inference remains frozen pending a broader time-safe corpus and protocol lock.
+A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. The enriched development cycle is closed, and a detector-output-blind 80-record confirmatory-feasibility frame is now frozen across balanced 2016–2025 correction/retraction strata; confirmatory scoring remains locked.
 
 ## Current state
 
 - Activity: **active**
-- Progress: **84%**
-- Stage: **Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition**
-- Evidence: Six time-safe pre-outcome development FLAG evaluations across five target papers (F5/F3/F8/F3/F1/F3), including the preserved-original voxel/Brodmann-area case with 5 PASS + 1 correction-blind FLAG; SAFE_EXACT formatting/honest-error control remains 10 PASS, 0 FLAG, review priority NONE; four matched no-known-integrity-concern development comparators selected independently of detector output passed notice screening and had retrieved full-text versions frozen by SHA-256. The descriptive development summary records complementarity and five real ABSTAIN checks without confirmatory performance claims.
+- Progress: **86%**
+- Stage: **Confirmatory transition · blinded 80-record feasibility frame frozen**
+- Evidence: Six time-safe pre-outcome development FLAG evaluations across five papers; one 10-PASS/0-FLAG formatting control; four hashed development comparators; and an 80-record detector-output-blind feasibility frame covering 20 balanced 2016–2025 × correction/retraction strata, excluding all 42 development-exposed DOIs. Crossref workload signals show 79/80 full-text links and 25/80 current-title status markers; these are acquisition/leakage observations, not detector-performance results.
 
 ## Immediate next action
 
-**Expand the broader time-safe comparator/case corpus, then freeze grouped/temporal splits, detector versions and applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring.**
+**Build manager-only issue-adjudication packets for the frozen 80 records, assign issue family / ground-truth tier / required artifact role without detector output, then quantify and freeze time-safe artifact attrition.**
 
 ## Current blocker / gate
 
-No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus scale-up and a complete protocol freeze.
+No immediate engineering blocker. Confirmatory inference remains gated on manager-only issue/artifact adjudication, time-safe attrition freeze, grouped/temporal split freeze, detector/applicability/threshold freeze, leakage audit, and human-review protocol.
 
 ## Canonical files / entry points
 
