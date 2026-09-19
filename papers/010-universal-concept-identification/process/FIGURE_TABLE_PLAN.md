@@ -43,7 +43,7 @@ synthetic / source-derived / machine-mapped / human-calibrated / adjudicated.
 Show:
 - 60 OEWN lexical targets;
 - 24 stress scenarios;
-- 36 base forms × P2/P6;
+- 36 base forms × P2/P3/P6;
 - main/retest structure;
 - pair exposure balance.
 
@@ -57,11 +57,13 @@ Potential axes:
 
 No values should be populated from synthetic pilots.
 
-### Figure 6 · P2 versus P6 response validity
+### Figure 6 · P2 versus P3 versus P6 response validity
 **Status:** confirmatory only.
 
 Potential panels:
-- retest consistency;
+- retest consistency across P2 / P3 / P6;
+- P2→P3 coarse-escape effect;
+- P3→P6 fine-graining effect;
 - response entropy;
 - invalid forced-answer rate;
 - response time;
