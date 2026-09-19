@@ -156,8 +156,18 @@ def showcase_card(p: dict, dashboard: dict) -> str:
         paper_button(paper_display_link(p, en_href) if en_href else "", "English", True),
         paper_button(paper_display_link(p, zh_href) if zh_href else "", "中文"),
     ])
+    search_blob = " ".join([
+        str(p.get("id", "")),
+        str(p.get("title", "")),
+        str(p.get("short_title", "")),
+        str(p.get("domain", "")),
+        str(p.get("status", "")),
+        str(stage),
+        " ".join(str(t) for t in p.get("tags", [])),
+    ])
+    last_commit = p.get("_last_commit", "")
     return f"""
-      <article class="showcase-card" data-activity="{esc(activity_class)}">
+      <article class="paper-card showcase-card" data-showcase-original="true" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-last-commit="{esc(last_commit)}" data-search="{esc(search_blob)}">
         <div class="showcase-top">
           <span class="showcase-id">#{esc(p.get('id'))}</span>
           <span class="showcase-state"><i></i>{esc(activity_text)}</span>
@@ -174,7 +184,6 @@ def showcase_card(p: dict, dashboard: dict) -> str:
 
 def build(papers: list[dict], dashboard: dict) -> str:
     projects = dashboard.get("projects", {})
-    cards = "\n".join(card(p, dashboard) for p in papers)
     showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
@@ -262,7 +271,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
             </div>
           </div>
           <div id="showcaseViewport" class="showcase-viewport" tabindex="0" aria-label="Rolling ARIS4C project showcase">
-            <div id="showcaseTrack" class="showcase-track">
+            <div id="paperGrid" class="showcase-track">
               {showcase}
             </div>
           </div>
@@ -276,8 +285,6 @@ def build(papers: list[dict], dashboard: dict) -> str:
           </div>
         </div>
 
-        <div class="section-head"><div><h2>Project portfolio</h2><p>Idea → design → pilot → empirical analysis → manuscript → final</p></div><p>Management layer: <code>papers/dashboard.json</code></p></div>
-        <section id="paperGrid" class="grid">{cards}</section>
         <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
       </main>
 
