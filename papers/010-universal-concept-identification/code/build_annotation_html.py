@@ -14,6 +14,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parent
 FORMS=ROOT/"data"/"human_forms"/"forms.generated.json"
+TRAINING=ROOT/"data"/"human_forms"/"protocol_training.v1.json"
 OUT=ROOT/"data"/"human_forms"/"html"
 
 
@@ -47,6 +48,16 @@ input[type=range]{width:100%}.hidden{display:none}code{font-size:.86em}
 <button class="next" onclick="begin()">Begin</button>
 <p class="muted">This page stores responses only in your browser memory and downloads a JSON file at the end. It does not send responses anywhere.</p>
 </div>
+<div class="card hidden" id="training">
+<div class="muted">Practice <span id="practiceCounter"></span></div>
+<h2 id="practiceTarget"></h2>
+<p id="practiceDefinition"></p>
+<div class="context hidden" id="practiceContext"></div>
+<div class="query" id="practiceQuery"></div>
+<div class="responses" id="practiceResponses"></div>
+<div class="context hidden" id="practiceFeedback"></div>
+<button class="next" id="practiceNext" onclick="advancePractice()" disabled>Check answer</button>
+</div>
 <div class="card hidden" id="trial">
 <div class="muted"><span id="counter"></span></div>
 <div class="progress"><div class="bar" id="bar"></div></div>
@@ -67,7 +78,9 @@ input[type=range]{width:100%}.hidden{display:none}code{font-size:.86em}
 </div>
 <script>
 const FORM=__FORM_JSON__;
+const TRAINING=__TRAINING_JSON__;
 let index=0, selected=null, startedAt=0, participant="", rows=[];
+let practiceIndex=0, practiceSelected=null, practiceChecked=false;
 const protocolHelp={
  P2:"<p><b>YES</b> = applies/true. <b>NO</b> = meaningful and applicable, but false. This condition intentionally forces binary judgment.</p>",
  P3:"<p><b>YES</b> = applies/true. <b>NO</b> = applicable but false. <b>MAYBE</b> = use the single coarse escape option whenever a confident binary judgment is not appropriate. This condition intentionally does not distinguish why.</p>",
@@ -79,11 +92,62 @@ function begin(){
  participant=document.getElementById("pid").value.trim();
  if(!participant){alert("Enter a pseudonymous participant ID.");return}
  document.getElementById("start").classList.add("hidden");
- document.getElementById("trial").classList.remove("hidden");
- render();
+ document.getElementById("training").classList.remove("hidden");
+ renderPractice();
 }
 function displayTarget(item){
  return item.lemma || item.target || item.target_id || "Target";
+}
+function renderPractice(){
+ const items=TRAINING[FORM.protocol] || [];
+ if(practiceIndex>=items.length){
+   document.getElementById("training").classList.add("hidden");
+   document.getElementById("trial").classList.remove("hidden");
+   render();
+   return;
+ }
+ const item=items[practiceIndex]; practiceSelected=null; practiceChecked=false;
+ document.getElementById("practiceCounter").textContent=(practiceIndex+1)+" / "+items.length;
+ document.getElementById("practiceTarget").textContent=item.target;
+ document.getElementById("practiceDefinition").textContent=item.definition || "";
+ const ctx=document.getElementById("practiceContext");
+ if(item.context && Object.keys(item.context).length){
+   ctx.classList.remove("hidden");
+   ctx.textContent="Context\n"+JSON.stringify(item.context,null,2);
+ }else{ctx.classList.add("hidden");ctx.textContent=""}
+ document.getElementById("practiceQuery").textContent=item.query;
+ const feedback=document.getElementById("practiceFeedback");
+ feedback.classList.add("hidden"); feedback.textContent="";
+ const box=document.getElementById("practiceResponses"); box.innerHTML="";
+ const allowed=FORM.items[0].allowed_responses;
+ allowed.forEach(resp=>{
+   const b=document.createElement("button"); b.textContent=resp;
+   b.onclick=()=>{
+     if(practiceChecked)return;
+     practiceSelected=resp;
+     [...box.children].forEach(x=>x.classList.remove("selected"));
+     b.classList.add("selected");
+     document.getElementById("practiceNext").disabled=false;
+   };
+   box.appendChild(b);
+ });
+ const next=document.getElementById("practiceNext");
+ next.textContent="Check answer"; next.disabled=true;
+}
+function advancePractice(){
+ const item=(TRAINING[FORM.protocol] || [])[practiceIndex];
+ if(!practiceChecked){
+   practiceChecked=true;
+   const correct=practiceSelected===item.correct;
+   const feedback=document.getElementById("practiceFeedback");
+   feedback.classList.remove("hidden");
+   feedback.textContent=(correct?"Correct. ":"Try again conceptually. ")+item.explanation;
+   const next=document.getElementById("practiceNext");
+   next.textContent="Continue";
+   return;
+ }
+ practiceIndex++;
+ renderPractice();
 }
 function render(){
  const item=FORM.items[index]; selected=null;
@@ -165,6 +229,7 @@ def sanitize_form(form):
 
 def main():
     payload=json.loads(FORMS.read_text(encoding="utf-8"))
+    training=json.loads(TRAINING.read_text(encoding="utf-8"))["protocols"]
     OUT.mkdir(parents=True,exist_ok=True)
     rows=[]
     for form in payload["forms"]:
@@ -172,7 +237,8 @@ def main():
         page=(TEMPLATE
               .replace("__FORM_ID__",html.escape(form["form_id"]))
               .replace("__PROTOCOL__",html.escape(form["protocol"]))
-              .replace("__FORM_JSON__",json.dumps(clean,ensure_ascii=False).replace("</","<\\/")))
+              .replace("__FORM_JSON__",json.dumps(clean,ensure_ascii=False).replace("</","<\\/"))
+              .replace("__TRAINING_JSON__",json.dumps(training,ensure_ascii=False).replace("</","<\\/")))
         path=OUT/f"{form['form_id']}.html"
         path.write_text(page,encoding="utf-8")
         rows.append(f'<li><a href="{path.name}">{html.escape(form["form_id"])}</a></li>')
