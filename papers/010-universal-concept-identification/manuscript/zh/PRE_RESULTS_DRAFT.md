@@ -67,12 +67,14 @@ UCID 使用类型化、多轴因子分解，而不宣称存在唯一、终极的
 
 P2 只有 YES / NO。
 
+P3 为 YES / NO / MAYBE。它是一个粗粒度的非二元机制对照：MAYBE 刻意把“为什么不适合给出确定二元答案”的各种原因合并在一起。
+
 P6 区分：
 YES、NO、BORDERLINE、UNKNOWN、UNDEFINED、BOTH。
 
 P6+context 进一步允许 CONTEXT_REQUEST。
 
-更丰富的回答字母表理论上可以保留更多信息，但也可能带来更高认知负担和更差一致性，因此其价值必须由数据决定。
+关键机制检验不再只是 P2 对 P6。P2→P3 估计“允许任何非二元逃生答案”的价值；P3→P6 估计“进一步区分不同语义失败原因”的增量价值。更丰富的回答字母表理论上可以保留更多信息，但也可能带来更高认知负担和更差一致性。
 
 ## 5. 既有研究边界
 
@@ -112,7 +114,7 @@ bank、spring、head、line、point、light、field、board、foot、case。
 
 ### 6.4 人类 form 设计
 
-36 个平衡 base forms 分别复制为 P2 与 P6，共 72 个 form。
+36 个平衡 base forms 分别复制为 P2、P3 与 P6，共 108 个 form。
 
 每个 form 包含 84 个唯一主试次和 8 个 covert retest。完整跑一轮 forms 可以获得均衡的 pair 覆盖，但 72 并不等于正式功效分析后的样本量建议。
 
@@ -147,7 +149,7 @@ Pilot 2 使用 15 个真实 OEWN 名词义项：`bank` 9 个、`spring` 6 个。
 - 期望/最坏情况查询成本；
 - Semantic Query Overhead；
 - 非法/类型错误问题率；
-- P2/P6 一致性和 retest；
+- P2/P3/P6 一致性和 retest；
 - open-world calibration。
 
 ## 9. 讨论——预先固定的解释边界
@@ -156,7 +158,7 @@ Pilot 2 使用 15 个真实 OEWN 名词义项：`bank` 9 个、`spring` 6 个。
 
 若简单 lexical graph 或 embedding 与多轴表示相当，则应直接缩小论文结论。
 
-若 P6 的分类在人类中无法获得稳定一致性，应简化回答协议，而不是为了理论美感强行保留。
+若 P6 相比粗粒度 P3 的 MAYBE 对照没有足够增量收益，应简化回答协议，而不是为了理论美感强行保留。
 
 真正的 strong ineffability 仍然属于任务可表征性的边界，而不是 benchmark 中一个普通数据行。
 
