@@ -26,8 +26,9 @@ Dependency:
 3. process/RESEARCH_PLAN.md
 4. agent/sleeping-beauty-miner/SKILL.md
 5. agent/sleeping-beauty-miner/references/SIGNAL_CONTRACT.md
-6. data/pilotM_known_cases_v3_summary.json
-7. process/CONVERSATION_LOG.md
+6. data/pilotM_riskset_diagnostics_2026-09-19.json
+7. process/PILOTM_PROVISIONAL_CANDIDATE_VALIDATION.md
+8. process/CONVERSATION_LOG.md
 
 ## Three tracks
 
@@ -93,38 +94,53 @@ Random cohorts remain useful for Track B.
 
 ### Known-case enriched real mechanism pilot
 
-Known literature cases:
+Frozen literature-known primary cases:
 - Hummers & Offeman 1958, DOI 10.1021/ja01539a017
 - Einstein-Podolsky-Rosen 1935, DOI 10.1103/PhysRev.47.777
 - Washburn 1921, DOI 10.1103/PhysRev.17.273
 
-Pilot M v3:
-- workflow run: 35427591815
-- workflow head SHA: 3ce9f09975f2858fd362ac4cfe727b815df047c3
-- 153 papers
-- 5 robust SB
-- all three literature-reference cases pass the robust SB gate
-- two additional provisional OpenAlex robust-SB candidates:
-  - W2018826127, An Experimental Study of the Reflection of X-Rays from
-    Calcite, DOI 10.1103/PhysRev.17.608
-  - W2006869700, Some Studies Concerning Rotating Axes and Polyatomic
-    Molecules, DOI 10.1103/PhysRev.47.552
+The v3 smoke test used 50 controls/case. Subsequent runs corrected two design
+issues: OpenAlex sample-size changes were non-nested, and global no-replacement
+across risk sets was inconsistent with incidence-density sampling.
 
-Current primary risk-set result:
-- 5/5 SB cases matched
-- match rate = 1.0
-- balance fails at the prespecified SMD < 0.10 criterion
-- sleep-rate-to-event abs SMD ~= 0.950
-- reference-count abs SMD ~= 0.562
-- author-count abs SMD ~= 0.566
+Current acquisition/analysis architecture:
+- deterministic multi-seed unique control reservoirs;
+- control reuse across distinct case risk sets;
+- primary cases frozen to the 3 literature-known SBs;
+- provisional reservoir discoveries excluded from the primary case set until
+  independent trajectory/B validation;
+- acquisition artifact separated from offline analysis.
 
-This is materially better than the secondary SB-vs-Forgotten sleep-rate SMD
-~= 3.317, which supports the direction of the event-time risk-set design, but
-it is not analysis-ready.
+Current real acquisition:
+- 603 records;
+- 200 acquired controls per literature-known case;
+- v7 artifact run: 35435974241;
+- offline frozen-case analysis run: 35436185652.
+
+Frozen-case result:
+- 1:1: 3/3 cases matched, max abs SMD = 1.633;
+- 1:4: 12 matched rows, max abs SMD = 2.417;
+- neither passes abs SMD < 0.10.
+
+Common-support diagnostic:
+- EPR 1935: 197 eligible controls, minimum sleep-rate gap = 0.438;
+- Washburn 1921: 198 eligible controls, minimum gap = 1.180;
+- Hummers 1958: 195 eligible controls, minimum gap = 0.063.
+
+Interpretation:
+the current problem is not match yield but common support, especially in the
+1921 stratum. Do not keep increasing the number of matched controls or relax
+the SMD gate. Enumerate the complete exact field × year frame next.
+
+Two provisional OpenAlex candidates have passed publisher identity/later-use
+cross-checks but not independent annual-trajectory/B validation. They remain
+provisional and are not primary cases.
 
 Current blockers:
-1. risk-set covariate balance remains poor
-2. OpenAlex B calibration is not source-validated
+1. complete-frame common support has not yet been established;
+2. OpenAlex B calibration is not source-validated;
+3. OpenAlex live acquisition reached its current API rate window during the
+   v8 reacquisition attempt; saved artifacts remain fully usable offline.
 
 Therefore:
 - mechanism_ready=true
@@ -227,32 +243,32 @@ Do not claim validated prospective prediction yet.
 
 ## Immediate next actions
 
-1. Expand each known/confirmed SB's at-risk control reservoir while keeping the
-   SMD threshold fixed. First try 100 controls/case, then deterministic
-   multi-seed pools if needed.
-2. Do not rescue balance by post-hoc relaxation of SMD < 0.10.
-3. Cross-validate the two provisional additional SB candidates in an
-   independent bibliographic source.
-4. Run SciSciNet-v2 schema discovery and source-specific B calibration when
-   BigQuery/GCS access is available.
-5. Re-run risk-set matching on a larger confirmed SB cohort.
-6. Only after acceptable balance, add mechanism feature families:
-   reference combinations, network position, field readiness, semantic
-   neighborhood, Prince/awakening path, and optional patent/technology links.
-7. Keep M0/M1/M2/M3 timing explicit to prevent time reversal.
-8. Connect real ARIS4C011 integrity findings for the same cases.
-9. Continue Track B independently with chronological/field/era holdouts and
-   transparent baseline comparisons.
+1. Enumerate the **complete** same-field × same-publication-year OpenAlex frame
+   for the 3 frozen literature-known cases; do not draw another random
+   reservoir.
+2. Re-run frozen 1:1 event-time support diagnostics with abs SMD < 0.10
+   unchanged.
+3. If complete-frame common support still fails, freeze an overlap-limited
+   estimand or unmatched-case rule before any mechanism regression.
+4. Independently validate OpenAlex annual citation trajectories / Beauty
+   Coefficient using SciSciNet-v2 or another bibliographic source.
+5. Add additional SBs to the primary case set only after cross-source
+   trajectory/B validation.
+6. Preserve acquisition/analysis separation: use saved artifacts for matcher
+   development rather than repeatedly re-querying OpenAlex.
+7. Only after acceptable balance, add mechanism feature families.
+8. Keep M0/M1/M2/M3 timing explicit and continue Track B independently.
 
 ## CI / reproducibility checkpoint
 
-Latest checked code CI after the identity/fate/risk-set work:
-- workflow: ARIS4C015 Sleeping Beauty Miner CI
-- run: 35427583429
-- head SHA: 8589012e4bc59f9f0d2eef8d9f2f47647026f0d4
-- conclusion: success
+Latest checked design-code CI:
+- frozen primary-case selection: run 35436038223 — success;
+- offline frozen-case reanalysis: run 35436139665 — success;
+- offline common-support diagnostic path: success and checkpointed to
+  data/pilotM_riskset_diagnostics_2026-09-19.json.
 
-Pilot M v3 also completed successfully.
+Live v8 reacquisition returned OpenAlex HTTP 429 after the rate window was
+exhausted. Treat that as an acquisition constraint, not a scientific failure.
 
 ## Recovery instruction for a new chat
 
