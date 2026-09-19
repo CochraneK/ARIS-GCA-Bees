@@ -1,0 +1,153 @@
+name: ARIS4C006 field36 chunked fallback
+
+on:
+  workflow_run:
+    workflows: ["ARIS4C006 field36 repair build"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  convention-chunks:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - chunk: c1
+            start: 2008
+            end: 2014
+          - chunk: c2
+            start: 2013
+            end: 2019
+          - chunk: c3
+            start: 2018
+            end: 2024
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build field36 convention chunk
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/22_materialize_field_convention.py \
+            --field-id 36 \
+            --start-year ${{ matrix.start }} \
+            --end-year ${{ matrix.end }} \
+            --annual-D 35 \
+            --annual-D3 20 \
+            --max-blocks 4 \
+            --outdir data/field36_chunked/convention/${{ matrix.chunk }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-field36-fallback-convention-${{ matrix.chunk }}
+          path: ${{ env.PAPER_DIR }}/data/field36_chunked/convention/${{ matrix.chunk }}/
+          if-no-files-found: error
+          retention-days: 30
+
+  primary-chunks:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - chunk: p1
+            start: 2011
+            end: 2015
+          - chunk: p2
+            start: 2016
+            end: 2020
+          - chunk: p3
+            start: 2021
+            end: 2025
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download frozen surname inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv"             -o "$PAPER_DIR/data/raw/familyname.csv"
+          curl -L --fail --retry 5 --retry-delay 2             "https://raw.githubusercontent.com/jaaack-wang/ccnc/a14520b9cc8bd6b251aeb4a7453ab1a45f23aa15/Ch-Last-Names-Dict/ChineseLastNamesNoTones.json"             -o "$PAPER_DIR/data/raw/ccnc_lastnames.json"
+      - name: Build field36 primary-frame chunk
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/24_materialize_primary_frame.py \
+            --field-id 36 \
+            --familyname-csv data/raw/familyname.csv \
+            --ccnc-json data/raw/ccnc_lastnames.json \
+            --target-works 40 \
+            --min-cell-works 20 \
+            --max-blocks 5 \
+            --start-year ${{ matrix.start }} \
+            --end-year ${{ matrix.end }} \
+            --outdir data/field36_chunked/primary/${{ matrix.chunk }}
+      - name: Remove raw surname inputs
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        run: rm -rf data/raw
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-field36-fallback-primary-${{ matrix.chunk }}
+          path: ${{ env.PAPER_DIR }}/data/field36_chunked/primary/${{ matrix.chunk }}/
+          if-no-files-found: error
+          retention-days: 30
+
+  merge:
+    if: ${{ always() && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success') }}
+    needs: [convention-chunks, primary-chunks]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require all chunk jobs passed
+        run: |
+          test "${{ needs.convention-chunks.result }}" = "success"
+          test "${{ needs.primary-chunks.result }}" = "success"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c006-field36-fallback-convention-*
+          path: ${{ env.PAPER_DIR }}/data/field36_chunked/download/convention
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c006-field36-fallback-primary-*
+          path: ${{ env.PAPER_DIR }}/data/field36_chunked/download/primary
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Strictly merge identical-rule chunks
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/33_merge_field36_chunked.py \
+            --convention-root data/field36_chunked/download/convention \
+            --primary-root data/field36_chunked/download/primary \
+            --convention-out data/field36_chunked/merged/convention \
+            --primary-out data/field36_chunked/merged/primary
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-field36-repair-convention
+          path: ${{ env.PAPER_DIR }}/data/field36_chunked/merged/convention/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-field36-repair-primary-frame
+          path: ${{ env.PAPER_DIR }}/data/field36_chunked/merged/primary/
+          if-no-files-found: error
+          retention-days: 30
