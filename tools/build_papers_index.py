@@ -258,6 +258,14 @@ def build(papers: list[dict], dashboard: dict) -> str:
           <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · {mature} projects at ≥45% · {gated + blocked} at gate/blocker</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
         </section>
 
+        <div class="control-bar">
+          <div class="control-left"><span id="resultCount" class="result-count">{len(papers)} / {len(papers)} projects</span></div>
+          <div class="control-right">
+            <select id="sortFilter" aria-label="Sort projects"><option value="id">ID order</option><option value="progress-desc">Maturity high → low</option><option value="progress-asc">Maturity low → high</option><option value="activity">Activity state</option><option value="recent">Recent commit</option></select>
+            <button id="clearFilters" class="filter-chip" type="button">Reset</button>
+          </div>
+        </div>
+
         <section class="showcase" aria-labelledby="showcaseTitle">
           <div class="showcase-head">
             <div>
@@ -276,14 +284,6 @@ def build(papers: list[dict], dashboard: dict) -> str:
             </div>
           </div>
         </section>
-
-        <div class="control-bar">
-          <div class="control-left"><span id="resultCount" class="result-count">{len(papers)} / {len(papers)} projects</span></div>
-          <div class="control-right">
-            <select id="sortFilter" aria-label="Sort projects"><option value="id">ID order</option><option value="progress-desc">Maturity high → low</option><option value="progress-asc">Maturity low → high</option><option value="activity">Activity state</option><option value="recent">Recent commit</option></select>
-            <button id="clearFilters" class="filter-chip" type="button">Reset</button>
-          </div>
-        </div>
 
         <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
       </main>
