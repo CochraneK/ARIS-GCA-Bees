@@ -1,0 +1,147 @@
+name: ARIS4C015 Pilot M 500-paper merged cohort
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilotM-500.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  shard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        seed: [15015, 15016, 15017, 15018, 15019]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Export raw historical shard
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilotM_openalex_export.py             --sample-size 100             --seed ${{ matrix.seed }}             --filters "publication_year:1980,type:article,primary_topic.field.id:31"             --observation-end-year 2011             --output "../data/pilotM_shard_${{ matrix.seed }}.json"
+
+      - name: Validate raw shard
+        env:
+          SEED: ${{ matrix.seed }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              f"pilotM_shard_{os.environ['SEED']}.json"
+          )
+          result = json.loads(path.read_text(encoding="utf-8"))
+          assert result["dataset_type"] == "raw historical mechanism shard"
+          assert result["provenance"]["selection_on_future_citation_count"] is False
+          assert result["provenance"]["sample_size_exported"] >= 80
+          assert len(result["papers"]) >= 80
+          print(json.dumps({
+              "seed": int(os.environ["SEED"]),
+              "n": len(result["papers"]),
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-shard-${{ matrix.seed }}
+          path: papers/015-sleeping-beauty-miner/data/pilotM_shard_${{ matrix.seed }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: shard
+    if: ${{ always() && needs.shard.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-pilotM-shard-*
+          path: papers/015-sleeping-beauty-miner/data/pilotM-shards
+          merge-multiple: true
+
+      - name: Merge before classification
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilotM_merge_shards.py             ../data/pilotM-shards/pilotM_shard_*.json             --output ../data/pilotM_openalex_1980_physics_500.json
+
+      - name: Audit merged mechanism cohort
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilotM_openalex_1980_physics_500.json"
+          )
+          result = json.loads(path.read_text(encoding="utf-8"))
+
+          provenance = result["input_provenance"]
+          assert provenance["n_shards"] == 5
+          assert provenance["n_unique_papers"] >= 350
+          assert "mechanism_ready" in result
+          assert "mechanism_analysis_ready" in result
+
+          print(json.dumps({
+              "n_unique": provenance["n_unique_papers"],
+              "duplicates_removed": provenance[
+                  "n_duplicate_rows_removed"
+              ],
+              "robust_sb": result["n_robust_sleeping_beauties"],
+              "state_counts": result["state_counts"],
+              "mechanism_ready": result["mechanism_ready"],
+              "mechanism_analysis_ready": result[
+                  "mechanism_analysis_ready"
+              ],
+              "analysis_block_reasons": result[
+                  "mechanism_analysis_block_reasons"
+              ],
+              "SB_vs_FORGOTTEN": {
+                  "match_rate": result["contrasts"][
+                      "SB_vs_FORGOTTEN"
+                  ]["match_rate"],
+                  "balance": result["contrasts"][
+                      "SB_vs_FORGOTTEN"
+                  ]["balance"],
+              },
+              "SB_vs_IMMEDIATE_HIT": {
+                  "match_rate": result["contrasts"][
+                      "SB_vs_IMMEDIATE_HIT"
+                  ]["match_rate"],
+                  "balance": result["contrasts"][
+                      "SB_vs_IMMEDIATE_HIT"
+                  ]["balance"],
+              },
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-500-aggregate
+          path: papers/015-sleeping-beauty-miner/data/pilotM_openalex_1980_physics_500.json
+          if-no-files-found: error
+          retention-days: 30
