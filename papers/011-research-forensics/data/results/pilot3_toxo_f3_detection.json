@@ -1,0 +1,27 @@
+{
+  "track": "A_CONTENT_ONLY",
+  "detector_family": "F3",
+  "detector_id": "F3_TABLE_SCHEMA_COLUMN_DROP_V1",
+  "paper_id": "10.1371/journal.pone.0180906",
+  "object_label": "Table 1",
+  "finding": "FLAG",
+  "flag_reason": "section-to-section result-schema column count drops by >=2",
+  "section_A_header_n": 5,
+  "section_B_header_n": 2,
+  "header_count_drop": 3,
+  "detector_visible_A_headers": [
+    "Household Variables",
+    "Yes/ total (%)",
+    "OR",
+    "95% CI",
+    "p-value"
+  ],
+  "detector_visible_B_headers": [
+    "Adjusted-OR",
+    "p-value"
+  ],
+  "outcome_metadata_used": false,
+  "correction_metadata_used": false,
+  "misconduct_inference": false,
+  "interpretation": "Structural anomaly only; FLAG requires evidence review and is not a fraud/misconduct claim."
+}

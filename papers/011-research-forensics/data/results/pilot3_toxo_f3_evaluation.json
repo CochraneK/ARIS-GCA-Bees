@@ -1,0 +1,11 @@
+{
+  "paper_id": "10.1371/journal.pone.0180906",
+  "detector_id": "F3_TABLE_SCHEMA_COLUMN_DROP_V1",
+  "detector_output": "FLAG",
+  "frozen_manager_label": "DOCUMENTED_TABLE_COLUMN_OMISSION",
+  "true_positive": true,
+  "false_negative": false,
+  "label_visible_to_detector": false,
+  "misconduct_inference": false,
+  "note": "Detector output was produced from the SAFE_EXACT original table schema before manager label comparison."
+}
