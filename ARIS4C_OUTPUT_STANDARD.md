@@ -127,6 +127,39 @@ Preferred manifest fields:
 
 The public Research Command Center is **PDF-first**: when a PDF link exists, the English / 中文 buttons point directly to the PDF. HTML or Markdown full text remains a fallback and source-friendly companion, not the preferred final public reading surface.
 
+
+## 4.5 One-page visual explainer for Finish papers
+
+When a paper reaches the portfolio state **Finish**, it must expose one compact visual that explains the whole paper at a glance.
+
+This visual is a **public communication layer**, not a replacement for the scientific figures. It should compress the paper into the smallest useful narrative, typically:
+
+**research question → evidence/data → main result → evidence boundary / implication**
+
+Requirements:
+
+- one image per Finish paper;
+- faithful to the canonical manuscript and evidence state;
+- clearly separate supported findings from boundaries, uncertainty, or next-step claims;
+- stored as a repository asset and declared in `paper.json -> outputs.one_page_visual`;
+- displayed as a small clickable thumbnail in the portfolio README so the table remains compact;
+- regenerated when a material manuscript change makes the old summary misleading.
+
+Preferred metadata:
+
+```json
+"outputs": {
+  "one_page_visual": {
+    "status": "complete",
+    "repo_path": "docs/assets/paper-at-a-glance/00X.webp",
+    "language": "zh-CN",
+    "purpose": "one-page visual explanation of the complete paper for the portfolio table"
+  }
+}
+```
+
+The portfolio may use image-generation models for this communication artifact, but the executor must verify the generated text and scientific claims against the paper before marking it complete.
+
 ## 5. Continuity / cross-agent handoff contract
 
 Every numbered ARIS4C paper, including early-stage projects, must maintain the handoff package defined in `ARIS4C_CONTINUITY_STANDARD.md`:
@@ -162,6 +195,8 @@ The ARIS4C public hub should expose, when available:
 
 The dashboard should also make output completeness visible rather than treating manuscript progress alone as completion.
 
+The public Research Command Center should expose a **progress-over-time curve derived from Git history** of `papers/dashboard.json`. This history is a management trace, not a scientific result. It should support the portfolio mean and per-paper views without requiring manually maintained historical values.
+
 ## 7. Final-status gate
 
 A project may be marked `submission-ready` / `final` only if all applicable items pass:
@@ -178,6 +213,7 @@ A project may be marked `submission-ready` / `final` only if all applicable item
 - [ ] reproducibility artifacts present where applicable
 - [ ] independent/reviewer gate complete where required
 - [ ] Page/index links current
+- [ ] one-page visual explainer present and current for Finish state
 - [ ] per-paper continuity/handoff audit PASS
 - [ ] current TODO / next gate does not contradict the declared final state
 - [ ] material conversation and execution history preserved in public-safe Git records
