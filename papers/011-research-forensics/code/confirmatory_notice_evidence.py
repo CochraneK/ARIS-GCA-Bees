@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-USER_AGENT="ARIS4C011-confirmatory-notice-evidence/0.1 (https://github.com/CochraneK/ARIS4C)"
+USER_AGENT="ARIS4C011-confirmatory-notice-evidence/0.2 (https://github.com/CochraneK/ARIS4C)"
 
 def request_bytes(url:str,attempts:int=4)->bytes:
     req=urllib.request.Request(url,headers={"User-Agent":USER_AGENT,"Accept":"*/*"})
