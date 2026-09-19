@@ -61,7 +61,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 - **001 · 蜜蜂 GCA × 不确定性** — [English PDF](https://cochranek.github.io/ARIS4C/paper/001/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/001/zh/main.pdf)
 - **002 · LING-01 · 语言周期性检验** — [English PDF](https://cochranek.github.io/ARIS4C/paper/002/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/002/zh/main.pdf)
 
-## 16 个 Paper
+## 17 个 Paper
 
 | ID | 项目 | 状态 | 进度 | 接管入口 |
 |---|---|---:|---:|---|
@@ -81,6 +81,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 待推进 | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
 | **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 正在推进 | 83% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
 | **016** | [全球脏话 / 禁忌语言语法](papers/016-global-grammar-of-swearing/) | 🔴 阻塞 | 55% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
+| **017** | [LING-02 · 预测性语言空间](papers/017-predictive-language-space/) | 🟡 待推进 | 20% | [handoff](papers/017-predictive-language-space/handoff/AGENT_HANDOFF.md) |
 
 ## ARIS4C 如何运作
 

@@ -6,19 +6,19 @@
 <text x="800.0" y="72" text-anchor="middle" class="t">交付与连续性</text>
 <text x="800.0" y="112" text-anchor="middle" class="s">仓库不仅保存论文，也保存让下一位执行者继续研究所需的状态与上下文</text>
 <rect x="70" y="180" width="330" height="180" rx="24" fill="#0d2442" stroke="#245d95"/>
-<text x="94" y="235" class="metric">16</text>
+<text x="94" y="235" class="metric">17</text>
 <text x="94" y="278" class="h">项目</text>
 <text x="94" y="318" class="m">canonical paper.json</text>
 <rect x="450" y="180" width="330" height="180" rx="24" fill="#0d2442" stroke="#245d95"/>
-<text x="474" y="235" class="metric">16</text>
+<text x="474" y="235" class="metric">17</text>
 <text x="474" y="278" class="h">可接管</text>
-<text x="474" y="318" class="m">16/16 handoff</text>
+<text x="474" y="318" class="m">17/17 handoff</text>
 <rect x="830" y="180" width="330" height="180" rx="24" fill="#0d2442" stroke="#245d95"/>
 <text x="854" y="235" class="metric">2</text>
 <text x="854" y="278" class="h">双语 PDF</text>
-<text x="854" y="318" class="m">2/16 EN + ZH</text>
+<text x="854" y="318" class="m">2/17 EN + ZH</text>
 <rect x="1210" y="180" width="330" height="180" rx="24" fill="#0d2442" stroke="#245d95"/>
-<text x="1234" y="235" class="metric">71%</text>
+<text x="1234" y="235" class="metric">68%</text>
 <text x="1234" y="278" class="h">平均成熟度</text>
 <text x="1234" y="318" class="m">portfolio estimate</text>
 </svg>

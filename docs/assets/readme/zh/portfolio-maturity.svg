@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="880" viewBox="0 0 1600 880" role="img">
-<title>16 个 Paper 的成熟度</title>
+<title>17 个 Paper 的成熟度</title>
 <rect width="1600" height="880" rx="28" fill="#07162b"/>
 <style>text{font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif}.t{font-size:48px;font-weight:800;fill:#f8fafc}.s{font-size:23px;fill:#a9bfe0}.h{font-size:25px;font-weight:750;fill:#f8fafc}.b{font-size:17px;fill:#c8d7ec}.m{font-size:14px;fill:#8da9ce}.k{font-size:16px;font-weight:700;fill:#66e7a4}.n{font-size:17px;font-weight:800;fill:#54a9ff}.metric{font-size:38px;font-weight:800;fill:#f8fafc}</style>
 <text x="58" y="62" class="n">ARIS<tspan fill="#f8fafc">4C</tspan></text>
-<text x="800.0" y="72" text-anchor="middle" class="t">16 个 Paper 的成熟度</text>
+<text x="800.0" y="72" text-anchor="middle" class="t">17 个 Paper 的成熟度</text>
 <text x="800.0" y="112" text-anchor="middle" class="s">项目管理估计，不是科学结果；100% 表示仓库层最终输出契约满足</text>
 <text x="70" y="165" class="h" font-size="20">001 · 蜜蜂 GCA × 不确定性</text>
 <text x="730" y="165" text-anchor="end" class="b">100%</text>
@@ -69,4 +69,8 @@
 <text x="1515" y="739" text-anchor="end" class="b">55%</text>
 <rect x="855" y="757" width="660" height="16" rx="8" fill="#1b385a"/>
 <rect x="855" y="757" width="363.0" height="16" rx="8" fill="#ef6a6a"/>
+<text x="855" y="821" class="h" font-size="20">017 · LING-02 · 预测性语言空间</text>
+<text x="1515" y="821" text-anchor="end" class="b">20%</text>
+<rect x="855" y="839" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="839" width="132.0" height="16" rx="8" fill="#f2c14e"/>
 </svg>

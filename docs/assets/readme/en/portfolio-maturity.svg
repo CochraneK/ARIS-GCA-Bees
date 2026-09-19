@@ -69,4 +69,8 @@
 <text x="1515" y="739" text-anchor="end" class="b">55%</text>
 <rect x="855" y="757" width="660" height="16" rx="8" fill="#1b385a"/>
 <rect x="855" y="757" width="363.0" height="16" rx="8" fill="#ef6a6a"/>
+<text x="855" y="821" class="h" font-size="20">017 · LING-02 · Predictive Language …</text>
+<text x="1515" y="821" text-anchor="end" class="b">20%</text>
+<rect x="855" y="839" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="839" width="132.0" height="16" rx="8" fill="#f2c14e"/>
 </svg>
