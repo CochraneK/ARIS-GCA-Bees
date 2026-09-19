@@ -45,3 +45,13 @@ For every future material conversation, append:
 - **Result:** 10/10 PASS, 0 flags, review priority NONE, no misconduct inference; correction metadata remained hidden from detector inputs.
 - **Decision:** Treat this only as a development non-escalation demonstration, not a specificity estimate.
 - **Next:** Build a small matched no-known-integrity-concern comparator development set, then return to the unresolved voxel/Brodmann-area structured-content case and confirmatory-freeze preparation.
+
+
+## 2026-09-19 · Continuation after controller chat limit
+
+- **Surface:** ChatGPT / ARIS4C01 000 controller continuation.
+- **Participants:** Cochrane Kang + ChatGPT.
+- **User request:** Continue the work previously owned by `000ARIS4C001` after that chat reached its limit, while keeping Git as the recovery surface.
+- **Execution outcome for ARIS4C011:** completed the matched development comparator freeze, produced the descriptive complementarity/abstention summary, executed the preserved-original voxel/Brodmann-area case, and reconciled the Pilot 3 queue.
+- **Current evidence boundary:** six pre-outcome development FLAG evaluations across five target papers; one SAFE_EXACT formatting/honest-error non-escalation control; four matched no-known-integrity-concern development comparators; no confirmatory performance or misconduct inference.
+- **Next:** expand the broader time-safe corpus and freeze the confirmatory protocol rather than continuing low-yield development candidate chasing.
