@@ -114,10 +114,6 @@ Second, the factor structure is strikingly similar across the two conditions. Th
 
 Third, statistical generality is not mechanistic generality. The dominant loading of initial discrimination, small samples, selection into reversal analyses, and the cross-sensory dissociation observed in earlier work all leave open whether the factor reflects a broad cognitive resource, shared task demands, a narrower learning-efficiency trait, or correlated domain-specific processes.
 
-![Figure 4. Evidence boundary between the two literatures](../figures/figure4_evidence_boundary.svg)
-
-**Figure 4. Evidence boundary between the two literatures.** Existing studies establish structured learning covariance and difficulty-sensitive opt-out behavior separately. The scientifically decisive missing edge is same-individual coupling; one mechanism, metacognition, consciousness, or a shared precision/confidence variable therefore cannot be inferred from species-level coexistence.
-
 ---
 
 ## 4. Competing models
@@ -157,6 +153,10 @@ Under the chosen scenario, the one-factor model is rarely selected because the s
 ![Figure 3. Synthetic model-recovery diagnostic](../figures/figure3_model_recovery.svg)
 
 **Figure 3. Synthetic model-recovery diagnostic.** BIC model-selection rates across 200 synthetic replications at each sample size under a two-correlated-factor data-generating model (loading = 0.65; latent-factor correlation = 0.35). This is an experimental-design diagnostic only and is **not empirical evidence about bees**.
+
+![Figure 4. Evidence boundary between the two literatures](../figures/figure4_evidence_boundary.svg)
+
+**Figure 4. Evidence boundary between the two literatures.** Existing studies establish structured learning covariance and difficulty-sensitive opt-out behavior separately. The scientifically decisive missing edge is same-individual coupling; one mechanism, metacognition, consciousness, or a shared precision/confidence variable therefore cannot be inferred from species-level coexistence.
 
 ---
 
