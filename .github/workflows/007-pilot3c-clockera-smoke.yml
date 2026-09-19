@@ -39,6 +39,18 @@ jobs:
           BiocManager::install(version="3.17", ask=FALSE)
           BiocManager::install(c("sesame","sesameData"), ask=FALSE, update=FALSE)
 
+          # Bioconductor 3.17/3.18 era AnnotationHub/BiocFileCache code calls
+          # collect(Inf), which became incompatible with dbplyr >=2.4.0.
+          # Pin the last pre-breakage dbplyr release to reproduce the 2023
+          # software stack rather than patch old Bioconductor internals.
+          install.packages("remotes", repos="https://cloud.r-project.org")
+          remotes::install_version(
+            "dbplyr",
+            version="2.3.4",
+            repos="https://cloud.r-project.org",
+            upgrade="never"
+          )
+
           # Keep the same Linux CI safeguard used by the modern smoke.
           BiocManager::install(
             "preprocessCore",
@@ -56,11 +68,14 @@ jobs:
           cat("Bioconductor=", as.character(BiocManager::version()), "\n")
           cat("sesame=", as.character(packageVersion("sesame")), "\n")
           cat("sesameData=", as.character(packageVersion("sesameData")), "\n")
+          cat("dbplyr=", as.character(packageVersion("dbplyr")), "\n")
           cat("preprocessCore=", as.character(packageVersion("preprocessCore")), "\n")
 
           # The public Bioconductor 3.17 archive corresponding to the
           # 2023 Universal Clock release reports SeSAMe 1.18.4.
           stopifnot(as.character(packageVersion("sesame")) == "1.18.4")
+          stopifnot(as.character(packageVersion("dbplyr")) == "2.3.4")
+          sesameDataCache()
 
           probe <- matrix(seq_len(200), nrow=20, ncol=10)
           target <- sort(rowMeans(probe))
