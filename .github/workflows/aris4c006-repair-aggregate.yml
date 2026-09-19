@@ -55,7 +55,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           repository: CochraneK/ARIS4C
-          run-id: 35421412480
+          run-id: ${{ env.FIELD36_RUN_ID }}
           name: aris4c006-field36-repair-primary-frame
           path: ${{ env.PAPER_DIR }}/data/repair_aggregate/primary_frame/field36_repair
 
