@@ -1,6 +1,6 @@
 # ARIS4C008 · The Human Intelligence Bootstrap
 
-**Status:** research design / pre-ARIS deepening
+**Status:** Pilot 9 deep coding · all 50 Tier-1 additions first-pass complete; retained29 backfill and new50 second pass active
 
 ## Canonical question
 
