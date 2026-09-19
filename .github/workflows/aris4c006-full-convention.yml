@@ -2,6 +2,10 @@ name: ARIS4C006 full convention build
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-full-convention.yml"
 
 permissions:
   contents: read
