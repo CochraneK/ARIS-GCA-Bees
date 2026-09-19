@@ -25,12 +25,21 @@ def load_rows(path):
     text=Path(path).read_text(encoding="utf-8").strip()
     if not text:
         return []
-    if text.startswith("["):
-        return json.loads(text)
-    obj=json.loads(text) if text.startswith("{") and "\n" not in text else None
+
+    # Accept ordinary JSON arrays/objects regardless of pretty-printing.
+    # Fall back to JSONL only when the full document is not valid JSON.
+    try:
+        obj=json.loads(text)
+    except json.JSONDecodeError:
+        return [json.loads(line) for line in text.splitlines() if line.strip()]
+
+    if isinstance(obj,list):
+        return obj
     if isinstance(obj,dict) and "rows" in obj:
         return obj["rows"]
-    return [json.loads(line) for line in text.splitlines() if line.strip()]
+    if isinstance(obj,dict):
+        return [obj]
+    raise ValueError("Unsupported response JSON structure")
 
 
 def entropy(counts):
