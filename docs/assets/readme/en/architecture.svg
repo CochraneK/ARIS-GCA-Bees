@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img">
+<title>ARIS4C research system architecture</title>
+<rect width="1600" height="780" rx="28" fill="#07162b"/>
+<style>text{font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif}.t{font-size:48px;font-weight:800;fill:#f8fafc}.s{font-size:23px;fill:#a9bfe0}.h{font-size:25px;font-weight:750;fill:#f8fafc}.b{font-size:17px;fill:#c8d7ec}.m{font-size:14px;fill:#8da9ce}.k{font-size:16px;font-weight:700;fill:#66e7a4}.n{font-size:17px;font-weight:800;fill:#54a9ff}.metric{font-size:38px;font-weight:800;fill:#f8fafc}</style>
+<text x="58" y="62" class="n">ARIS<tspan fill="#f8fafc">4C</tspan></text>
+<text x="800.0" y="72" text-anchor="middle" class="t">ARIS4C research system architecture</text>
+<text x="800.0" y="112" text-anchor="middle" class="s">Scientific work flows forward; handoff context loops back so another executor can safely continue</text>
+<rect x="60" y="180" width="240" height="150" rx="22" fill="#102c50" stroke="#245d95" stroke-width="2"/>
+<text x="80" y="218" class="n">01</text>
+<text x="80" y="262" class="h">Research question</text>
+<text x="80" y="298" class="m">idea · hypothesis · scope</text>
+<line x1="310" y1="255" x2="342" y2="255" stroke="#54a9ff" stroke-width="4"/>
+<path d="M340 246 L355 255 L340 264 Z" fill="#54a9ff"/>
+<rect x="360" y="180" width="240" height="150" rx="22" fill="#102c50" stroke="#245d95" stroke-width="2"/>
+<text x="380" y="218" class="n">02</text>
+<text x="380" y="262" class="h">ARIS engine</text>
+<text x="380" y="298" class="m">search · design · critique</text>
+<line x1="610" y1="255" x2="642" y2="255" stroke="#54a9ff" stroke-width="4"/>
+<path d="M640 246 L655 255 L640 264 Z" fill="#54a9ff"/>
+<rect x="660" y="155" width="280" height="200" rx="22" fill="#102c50" stroke="#54a9ff" stroke-width="2"/>
+<text x="680" y="193" class="n">03</text>
+<text x="680" y="237" class="h">Paper workspace</text>
+<text x="680" y="273" class="m">canonical evidence hub</text>
+<line x1="950" y1="255" x2="982" y2="255" stroke="#54a9ff" stroke-width="4"/>
+<path d="M980 246 L995 255 L980 264 Z" fill="#54a9ff"/>
+<rect x="1000" y="180" width="240" height="150" rx="22" fill="#102c50" stroke="#245d95" stroke-width="2"/>
+<text x="1020" y="218" class="n">04</text>
+<text x="1020" y="262" class="h">Review gates</text>
+<text x="1020" y="298" class="m">science · reproducibility</text>
+<line x1="1250" y1="255" x2="1282" y2="255" stroke="#54a9ff" stroke-width="4"/>
+<path d="M1280 246 L1295 255 L1280 264 Z" fill="#54a9ff"/>
+<rect x="1300" y="180" width="240" height="150" rx="22" fill="#102c50" stroke="#245d95" stroke-width="2"/>
+<text x="1320" y="218" class="n">05</text>
+<text x="1320" y="262" class="h">Public output</text>
+<text x="1320" y="298" class="m">EN + ZH PDF</text>
+<rect x="310" y="450" width="270" height="120" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="330" y="495" class="h">Evidence</text>
+<text x="330" y="535" class="m">data · code · provenance</text>
+<rect x="625" y="450" width="270" height="120" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="645" y="495" class="h">Bilingual paper</text>
+<text x="645" y="535" class="m">EN + ZH</text>
+<rect x="940" y="450" width="270" height="120" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="960" y="495" class="h">Visual narrative</text>
+<text x="960" y="535" class="m">figures · tables</text>
+<rect x="1255" y="450" width="270" height="120" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="1275" y="495" class="h">handoff/</text>
+<text x="1275" y="535" class="m">8-file continuity pack</text>
+<rect x="80" y="650" width="1440" height="64" rx="18" fill="#0b213c" stroke="#245d95"/>
+<text x="110" y="691" class="k">Cross-agent continuity</text>
+<text x="360" y="691" class="b">Git → handoff/ → next computer / account / agent → the same canonical paper workspace</text>
+</svg>

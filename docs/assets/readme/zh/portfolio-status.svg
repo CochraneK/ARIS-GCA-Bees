@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420" role="img">
+<title>Portfolio 当前状态</title>
+<rect width="1600" height="420" rx="28" fill="#07162b"/>
+<style>text{font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif}.t{font-size:48px;font-weight:800;fill:#f8fafc}.s{font-size:23px;fill:#a9bfe0}.h{font-size:25px;font-weight:750;fill:#f8fafc}.b{font-size:17px;fill:#c8d7ec}.m{font-size:14px;fill:#8da9ce}.k{font-size:16px;font-weight:700;fill:#66e7a4}.n{font-size:17px;font-weight:800;fill:#54a9ff}.metric{font-size:38px;font-weight:800;fill:#f8fafc}</style>
+<text x="58" y="62" class="n">ARIS<tspan fill="#f8fafc">4C</tspan></text>
+<text x="800.0" y="72" text-anchor="middle" class="t">Portfolio 当前状态</text>
+<text x="800.0" y="112" text-anchor="middle" class="s">来自 papers/dashboard.json 的 MECE 管理状态</text>
+<rect x="80.0" y="185" width="900.0" height="58" fill="#48e996"/>
+<rect x="980.0" y="185" width="360.0" height="58" fill="#f2c14e"/>
+<rect x="1340.0" y="185" width="180.0" height="58" fill="#8aa0b8"/>
+<circle cx="90" cy="320" r="10" fill="#48e996"/>
+<text x="112" y="327" class="h">Active · 10</text>
+<circle cx="450" cy="320" r="10" fill="#f2c14e"/>
+<text x="472" y="327" class="h">At gate · 4</text>
+<circle cx="810" cy="320" r="10" fill="#8aa0b8"/>
+<text x="832" y="327" class="h">Quiet · 2</text>
+<circle cx="1170" cy="320" r="10" fill="#ef6a6a"/>
+<text x="1192" y="327" class="h">Blocked · 0</text>
+<text x="1510" y="327" text-anchor="end" class="m">Total 16</text>
+</svg>

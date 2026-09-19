@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" role="img">
+<title>Research as a living system.</title>
+<rect width="1600" height="500" rx="28" fill="#07162b"/>
+<style>text{font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif}.t{font-size:48px;font-weight:800;fill:#f8fafc}.s{font-size:23px;fill:#a9bfe0}.h{font-size:25px;font-weight:750;fill:#f8fafc}.b{font-size:17px;fill:#c8d7ec}.m{font-size:14px;fill:#8da9ce}.k{font-size:16px;font-weight:700;fill:#66e7a4}.n{font-size:17px;font-weight:800;fill:#54a9ff}.metric{font-size:38px;font-weight:800;fill:#f8fafc}</style>
+<text x="58" y="62" class="n">ARIS<tspan fill="#f8fafc">4C</tspan></text>
+<text x="800.0" y="72" text-anchor="middle" class="t">Research as a living system.</text>
+<text x="800.0" y="112" text-anchor="middle" class="s">Papers · evidence · bilingual outputs · review gates · cross-agent continuity</text>
+<path d="M0 370 C320 300 520 510 820 390 S1320 260 1600 360 V500 H0 Z" fill="#0b2748"/>
+<rect x="70" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="92" y="255" class="metric">16</text>
+<text x="92" y="288" class="b">tracked papers</text>
+<rect x="370" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="392" y="255" class="metric">71%</text>
+<text x="392" y="288" class="b">mean maturity</text>
+<rect x="670" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="692" y="255" class="metric">10</text>
+<text x="692" y="288" class="b">Active</text>
+<rect x="970" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="992" y="255" class="metric">4</text>
+<text x="992" y="288" class="b">At gate</text>
+<rect x="1270" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
+<text x="1292" y="255" class="metric">16/16</text>
+<text x="1292" y="288" class="b">handoff ready</text>
+<text x="70" y="455" class="m">2 project(s) expose EN + ZH PDFs · continuity 16/16</text>
+</svg>

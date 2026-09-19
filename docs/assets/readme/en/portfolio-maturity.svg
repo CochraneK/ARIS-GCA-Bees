@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="880" viewBox="0 0 1600 880" role="img">
+<title>Portfolio maturity by paper</title>
+<rect width="1600" height="880" rx="28" fill="#07162b"/>
+<style>text{font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif}.t{font-size:48px;font-weight:800;fill:#f8fafc}.s{font-size:23px;fill:#a9bfe0}.h{font-size:25px;font-weight:750;fill:#f8fafc}.b{font-size:17px;fill:#c8d7ec}.m{font-size:14px;fill:#8da9ce}.k{font-size:16px;font-weight:700;fill:#66e7a4}.n{font-size:17px;font-weight:800;fill:#54a9ff}.metric{font-size:38px;font-weight:800;fill:#f8fafc}</style>
+<text x="58" y="62" class="n">ARIS<tspan fill="#f8fafc">4C</tspan></text>
+<text x="800.0" y="72" text-anchor="middle" class="t">Portfolio maturity by paper</text>
+<text x="800.0" y="112" text-anchor="middle" class="s">Management estimate, not a scientific result; 100% means the repository-level final output contract is satisfied</text>
+<text x="70" y="165" class="h" font-size="20">001 · Bee GCA × Uncertainty</text>
+<text x="730" y="165" text-anchor="end" class="b">100%</text>
+<rect x="70" y="183" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="183" width="660.0" height="16" rx="8" fill="#8aa0b8"/>
+<text x="70" y="247" class="h" font-size="20">002 · Testing linguistic periodicity</text>
+<text x="730" y="247" text-anchor="end" class="b">100%</text>
+<rect x="70" y="265" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="265" width="660.0" height="16" rx="8" fill="#8aa0b8"/>
+<text x="70" y="329" class="h" font-size="20">003 · Colonial Legacies × Disciplina…</text>
+<text x="730" y="329" text-anchor="end" class="b">70%</text>
+<rect x="70" y="347" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="347" width="462.0" height="16" rx="8" fill="#48e996"/>
+<text x="70" y="411" class="h" font-size="20">004 · Mental Health × Knowledge-Netw…</text>
+<text x="730" y="411" text-anchor="end" class="b">74%</text>
+<rect x="70" y="429" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="429" width="488.4" height="16" rx="8" fill="#48e996"/>
+<text x="70" y="493" class="h" font-size="20">005 · Global Burden of Bad Science</text>
+<text x="730" y="493" text-anchor="end" class="b">68%</text>
+<rect x="70" y="511" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="511" width="448.79999999999995" height="16" rx="8" fill="#f2c14e"/>
+<text x="70" y="575" class="h" font-size="20">006 · Chinese Surnames × Alphabetica…</text>
+<text x="730" y="575" text-anchor="end" class="b">62%</text>
+<rect x="70" y="593" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="593" width="409.2" height="16" rx="8" fill="#48e996"/>
+<text x="70" y="657" class="h" font-size="20">007 · Cross-Species Age Equivalence</text>
+<text x="730" y="657" text-anchor="end" class="b">76%</text>
+<rect x="70" y="675" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="675" width="501.59999999999997" height="16" rx="8" fill="#48e996"/>
+<text x="70" y="739" class="h" font-size="20">008 · Human Intelligence Bootstrap</text>
+<text x="730" y="739" text-anchor="end" class="b">60%</text>
+<rect x="70" y="757" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="70" y="757" width="396.0" height="16" rx="8" fill="#48e996"/>
+<text x="855" y="165" class="h" font-size="20">009 · Phenomenology-Preserving Compu…</text>
+<text x="1515" y="165" text-anchor="end" class="b">56%</text>
+<rect x="855" y="183" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="183" width="369.59999999999997" height="16" rx="8" fill="#48e996"/>
+<text x="855" y="247" class="h" font-size="20">010 · Universal Concept Identification</text>
+<text x="1515" y="247" text-anchor="end" class="b">72%</text>
+<rect x="855" y="265" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="265" width="475.2" height="16" rx="8" fill="#48e996"/>
+<text x="855" y="329" class="h" font-size="20">011 · Research Forensics</text>
+<text x="1515" y="329" text-anchor="end" class="b">72%</text>
+<rect x="855" y="347" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="347" width="475.2" height="16" rx="8" fill="#48e996"/>
+<text x="855" y="411" class="h" font-size="20">012 · Indexed Oppositional Causal In…</text>
+<text x="1515" y="411" text-anchor="end" class="b">63%</text>
+<rect x="855" y="429" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="429" width="415.79999999999995" height="16" rx="8" fill="#f2c14e"/>
+<text x="855" y="493" class="h" font-size="20">013 · Birth–Death Temporal Coupling</text>
+<text x="1515" y="493" text-anchor="end" class="b">50%</text>
+<rect x="855" y="511" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="511" width="330.0" height="16" rx="8" fill="#f2c14e"/>
+<text x="855" y="575" class="h" font-size="20">014 · Public Integrity Forensics</text>
+<text x="1515" y="575" text-anchor="end" class="b">69%</text>
+<rect x="855" y="593" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="593" width="455.4" height="16" rx="8" fill="#48e996"/>
+<text x="855" y="657" class="h" font-size="20">015 · Sleeping Beauty Miner</text>
+<text x="1515" y="657" text-anchor="end" class="b">83%</text>
+<rect x="855" y="675" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="675" width="547.8" height="16" rx="8" fill="#48e996"/>
+<text x="855" y="739" class="h" font-size="20">016 · Global Grammar of Swearing</text>
+<text x="1515" y="739" text-anchor="end" class="b">55%</text>
+<rect x="855" y="757" width="660" height="16" rx="8" fill="#1b385a"/>
+<rect x="855" y="757" width="363.0" height="16" rx="8" fill="#f2c14e"/>
+</svg>

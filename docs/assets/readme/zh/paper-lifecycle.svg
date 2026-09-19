@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+<title>单篇 Paper 的生命周期</title>
+<rect width="1600" height="900" rx="28" fill="#07162b"/>
+<style>text{font-family:Inter,"Noto Sans SC","Microsoft YaHei","PingFang SC",system-ui,sans-serif}.t{font-size:48px;font-weight:800;fill:#f8fafc}.s{font-size:23px;fill:#a9bfe0}.h{font-size:25px;font-weight:750;fill:#f8fafc}.b{font-size:17px;fill:#c8d7ec}.m{font-size:14px;fill:#8da9ce}.k{font-size:16px;font-weight:700;fill:#66e7a4}.n{font-size:17px;font-weight:800;fill:#54a9ff}.metric{font-size:38px;font-weight:800;fill:#f8fafc}</style>
+<text x="58" y="62" class="n">ARIS<tspan fill="#f8fafc">4C</tspan></text>
+<text x="800.0" y="72" text-anchor="middle" class="t">单篇 Paper 的生命周期</text>
+<text x="800.0" y="112" text-anchor="middle" class="s">从想法，到证据，到双语公开输出</text>
+<rect x="35" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="66" cy="226" r="24" fill="#0f7ee8"/><text x="66" y="233" text-anchor="middle" class="h" font-size="18">1</text>
+<text x="53" y="310" class="h" font-size="20">问题 / 想法</text>
+<text x="53" y="365" class="b">明确可研究的问题</text>
+<text x="53" y="397" class="b">及其现实或理论价值</text>
+<path d="M243 420 L258 420" stroke="#54a9ff" stroke-width="4"/>
+<path d="M254 411 L268 420 L254 429 Z" fill="#54a9ff"/>
+<rect x="258" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="289" cy="226" r="24" fill="#0f7ee8"/><text x="289" y="233" text-anchor="middle" class="h" font-size="18">2</text>
+<text x="276" y="310" class="h" font-size="20">界定范围与检索</text>
+<text x="276" y="365" class="b">系统检索、定位 gap</text>
+<text x="276" y="397" class="b">确认可行性与新颖性</text>
+<path d="M466 420 L481 420" stroke="#54a9ff" stroke-width="4"/>
+<path d="M477 411 L491 420 L477 429 Z" fill="#54a9ff"/>
+<rect x="481" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="512" cy="226" r="24" fill="#0f7ee8"/><text x="512" y="233" text-anchor="middle" class="h" font-size="18">3</text>
+<text x="499" y="310" class="h" font-size="20">研究设计</text>
+<text x="499" y="365" class="b">方法、数据、指标、对照</text>
+<text x="499" y="397" class="b">与 falsifier 先行</text>
+<path d="M689 420 L704 420" stroke="#54a9ff" stroke-width="4"/>
+<path d="M700 411 L714 420 L700 429 Z" fill="#54a9ff"/>
+<rect x="704" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="735" cy="226" r="24" fill="#0f7ee8"/><text x="735" y="233" text-anchor="middle" class="h" font-size="18">4</text>
+<text x="722" y="310" class="h" font-size="20">证据 / 代码 / 数据</text>
+<text x="722" y="365" class="b">执行分析并保留</text>
+<text x="722" y="397" class="b">完整 provenance</text>
+<path d="M912 420 L927 420" stroke="#54a9ff" stroke-width="4"/>
+<path d="M923 411 L937 420 L923 429 Z" fill="#54a9ff"/>
+<rect x="927" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="958" cy="226" r="24" fill="#0f7ee8"/><text x="958" y="233" text-anchor="middle" class="h" font-size="18">5</text>
+<text x="945" y="310" class="h" font-size="20">论文撰写</text>
+<text x="945" y="365" class="b">方法、结果、讨论</text>
+<text x="945" y="397" class="b">图表、引用与局限</text>
+<path d="M1135 420 L1150 420" stroke="#54a9ff" stroke-width="4"/>
+<path d="M1146 411 L1160 420 L1146 429 Z" fill="#54a9ff"/>
+<rect x="1150" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="1181" cy="226" r="24" fill="#0f7ee8"/><text x="1181" y="233" text-anchor="middle" class="h" font-size="18">6</text>
+<text x="1168" y="310" class="h" font-size="20">Review gates</text>
+<text x="1168" y="365" class="b">科学、复现、独立审查</text>
+<text x="1168" y="397" class="b">与质量门</text>
+<path d="M1358 420 L1373 420" stroke="#54a9ff" stroke-width="4"/>
+<path d="M1369 411 L1383 420 L1369 429 Z" fill="#54a9ff"/>
+<rect x="1373" y="190" width="205" height="470" rx="22" fill="#0d2442" stroke="#245d95"/>
+<circle cx="1404" cy="226" r="24" fill="#0f7ee8"/><text x="1404" y="233" text-anchor="middle" class="h" font-size="18">7</text>
+<text x="1391" y="310" class="h" font-size="20">公开输出</text>
+<text x="1391" y="365" class="b">EN + ZH PDF</text>
+<text x="1391" y="397" class="b">代码、数据、图表与 handoff</text>
+<rect x="35" y="720" width="1530" height="88" rx="22" fill="#0b213c" stroke="#245d95"/>
+<text x="70" y="775" class="k" font-size="19">贯穿全程：证据可追踪 · 图表按信息增益自适应 · 完成时 EN + ZH · continuity 持续更新</text>
+</svg>
