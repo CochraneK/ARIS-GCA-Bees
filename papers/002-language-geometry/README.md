@@ -1,6 +1,6 @@
 # Paper 002 · Testing the Periodic-Table Hypothesis of Human Language
 
-**Status:** manuscript Draft v1 complete · independent manuscript-stage review pending  
+**Status:** scientific manuscript complete · independent manuscript review `PASS_SUBMISSION_PREP` · technical Linguistic Typology package `PASS` · author metadata/declarations pending  
 **Canonical paper ID:** `002`  
 **Slug:** `language-geometry`
 
@@ -64,7 +64,7 @@ Future manuscript-facing artifacts should be developed inside this Paper 002 dir
 - Data provenance: `process/DATA_PROVENANCE.md`
 - Draft audit: `process/MANUSCRIPT_AUDIT.md`
 
-Draft v1 implements all manuscript-level boundaries required by the independent Hy3 secondary review. The next hard quality gate is an independent **manuscript-stage** review, not another idea-stage promotion review.
+Draft v1 implements all manuscript-level boundaries required by the independent Hy3 secondary review. The independent **manuscript-stage** review is now complete with `PASS_SUBMISSION_PREP`, and the Linguistic Typology technical submission package has also passed QA. No further scientific expansion is required for Paper 002.
 
 
 ## Bilingual manuscript
@@ -73,3 +73,14 @@ Draft v1 implements all manuscript-level boundaries required by the independent 
 - Chinese complete version: `manuscript/DRAFT.zh-CN.md`
 
 The Chinese version preserves the same numerical results, claim boundaries, and limitations as the independently reviewed English manuscript. It is an ARIS4C bilingual-delivery artifact; the journal submission remains the blinded English package under `submission/linguistic-typology/`.
+
+
+## Current finalization state
+
+Paper 002 is scientifically and technically submission-ready. Remaining blockers are intentionally human-only and are not evidence gaps:
+
+- confirm author identity/contact metadata required by the journal;
+- confirm funding, conflict-of-interest, CRediT and originality declarations;
+- copy the confirmed metadata into ScholarOne and perform the actual submission.
+
+Canonical details are in `submission/linguistic-typology/SUBMISSION_METADATA_CHECKLIST.md` and `SUBMISSION_QA.md`. The manuscript claim remains scientifically frozen; new model families or post-hoc hypothesis expansion belong in a new paper rather than being appended to Paper 002.
