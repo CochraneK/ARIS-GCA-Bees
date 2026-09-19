@@ -198,7 +198,15 @@ Reject if semantically admissible queries achieve unrestricted-optimum cost with
 Reject if vague/contextual/compositional/pathological strata do not show systematic additional collision/answer inconsistency/query cost after matching frequency and familiarity.
 
 ### H4 enriched response protocol
-The claim is not "more labels always win." Test whether P6 lowers contradiction/invalid-answer rates and total interaction cost after accounting for answer-channel information capacity.
+The claim is not "more labels always win."
+
+Use three conditions:
+
+- P2 = YES/NO;
+- P3 = YES/NO/MAYBE;
+- P6 = YES/NO/BORDERLINE/UNKNOWN/UNDEFINED/BOTH.
+
+Test P2→P3 to estimate the value of any non-binary escape response, and P3→P6 to estimate the incremental value of semantically distinguishing why binary judgment fails. The P3→P6 contrast is the critical mechanism test.
 
 ### H5 open-world advantage
 Reject if OUT-OF-SUPPORT handling does not improve calibration/error under held-out targets.
@@ -211,7 +219,8 @@ Reject if OUT-OF-SUPPORT handling does not improve calibration/error under held-
 - pairwise collision analyses;
 - calibration curves for posterior target probabilities;
 - matched comparisons controlling candidate-set size and prior entropy;
-- sensitivity to answer alphabet and oracle noise.
+- sensitivity to answer alphabet and oracle noise;
+- planned P2→P3 and P3→P6 mechanism contrasts.
 
 Avoid treating each question path as an independent observation when paths share the same target/question bank.
 
