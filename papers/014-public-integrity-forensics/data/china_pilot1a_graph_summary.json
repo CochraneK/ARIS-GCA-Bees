@@ -1,0 +1,28 @@
+{
+  "pilot": "CHINA_PILOT_1A_PROCUREMENT_GRAPH_JOINABILITY",
+  "retrieved_at": "2026-09-19T01:37:27.007601+00:00",
+  "requested_notice_urls": 13,
+  "graphs_built": 13,
+  "fetch_or_parse_failures": 0,
+  "graph": {
+    "raw_node_manifestations": 51,
+    "unique_node_ids": 51,
+    "edges": 38,
+    "projects": 13,
+    "suppliers_with_stable_uscc": 4,
+    "suppliers_name_only_source_local": 8,
+    "stable_supplier_ids_reused_across_notices": 0,
+    "final_award_edges": 12,
+    "ranked_candidate_edges": 0
+  },
+  "cross_manifestation_resolution": {
+    "same_org_exact_stable_id_decisions": 0,
+    "name_only_review_candidate_decisions": 12,
+    "automatic_name_only_merges": 0
+  },
+  "coverage_failures": [],
+  "corruption_inference": false,
+  "risk_score_computed": false,
+  "named_risk_findings_emitted": false,
+  "interpretation": "Engineering/joinability pilot only. Stable-ID reuse and name-only review candidates are identity-resolution facts, not integrity signals."
+}
