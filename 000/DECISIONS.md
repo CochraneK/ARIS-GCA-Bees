@@ -60,3 +60,17 @@
 - Public cards, rolling showcase, counts, and today's progress chart follow the same visibility rule.
 
 **Why:** The command center should foreground work that has actually started and still needs advancement, rather than mixing untouched ideas or already-completed outputs into the live execution surface.
+
+## 2026-09-19 · Correction — curve filtering is local, not global
+
+**Supersedes:** “Public command center shows in-progress work only.”
+
+**Decision:** Keep the public Research Command Center as a **complete portfolio surface**. Finish, 0%-progress, and unchanged-today projects remain visible in normal navigation, counts, detailed cards, search, and the All-projects rolling showcase.
+
+Only the **Today's progress time curve** is filtered:
+
+- hide projects whose current activity is `Finish`;
+- hide projects whose progress percentage did not change across today's Git-derived checkpoints;
+- show non-Finish projects only when at least two checkpoints establish a real percentage change today.
+
+**Why:** The user's intent was to reduce visual noise in the time-series chart, not to remove completed or untouched projects from the rest of the portfolio UI.
