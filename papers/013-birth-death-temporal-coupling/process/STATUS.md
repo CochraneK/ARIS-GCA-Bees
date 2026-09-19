@@ -23,6 +23,10 @@
 - [x] Removed exact-age boundary selection from the primary sample: year-gap 19–110 is now the phase-safe primary eligibility rule.
 - [x] Promoted **exact birth year × death year × sex** to the primary marginal-independence null; birth-decade × death-year × sex is retained as a visible sensitivity null.
 - [x] Added a deterministic toy audit showing that an exact-age boundary filter can manufacture an offset-0 O/E of about **2.98** under a true no-effect data-generating process.
+- [x] Added fixed-margin offset-0 mean/variance inference and effect-size classification shared by discovery and holdout.
+- [x] Froze the ordinary birthday-effect SESOI at **±1%** (O/E 0.99–1.01), including practical-null equivalence rules.
+- [x] Built a **mechanically gated temporal holdout runner** for raw NUMIDENT.
+- [x] Added a two-step holdout release protocol; the repository default remains locked and CI treats an accidental unlock as failure.
 
 ## Pilot 0A result
 The naive same-month/day observed/expected ratio was 2.6768. This is **not evidence of a birthday or astrological effect** because the source is dominated by low-precision date heaping. Excluding all records with day-of-month 1 reduced the ratio to 1.8250 but did not remove the anomaly, so further precision filtering is required.
@@ -44,7 +48,7 @@ OpenICPSR hosts two death archives, approximately 938 MB each, but its download 
 - **B — Administrative Pilot 1:** run the **v2-locked** 1988–1996 discovery immediately after either source is available.
 - **C — Precision audit:** quantify prespecified day 1/4/15 heaping and report exception/source fields before interpreting offset 0.
 - **D — Discovery freeze:** commit discovery results and freeze any justified sensitivity analyses without altering the locked primary specification.
-- **E — Temporal holdout:** evaluate 1997–2005 exactly once.
+- **E — Temporal holdout:** after discovery freeze and two-step release authorization, evaluate 1997–2005 exactly once under the fixed ±1% benchmark.
 - **F — Traditional-calendar feature freeze:** only after the ordinary calendar/anniversary model is established.
 - **G — External replication:** seek an independent country/registry.
 
@@ -54,4 +58,4 @@ OpenICPSR hosts two death archives, approximately 938 MB each, but its download 
 Current justified claim: apparent birth–death coupling can be extremely large when date precision is mishandled; the hypothesis is now operationalized for a population-scale administrative test, but the full administrative dataset bytes are not yet present in the execution environment.
 
 ## Immediate next action
-The administrative data-transfer gate remains external. While it is unresolved, finish data-independent safeguards (effect-size benchmarks and a mechanically gated holdout runner); once bytes are available, run Pilot 1 v2 without redesigning it from the observed result.
+The data-independent safeguards are now implemented. The remaining external blocker is administrative data transfer; once bytes are available, run Pilot 1 v2, freeze discovery, then use the mechanical release chain for the untouched holdout.
