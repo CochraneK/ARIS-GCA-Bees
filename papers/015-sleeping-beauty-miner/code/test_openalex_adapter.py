@@ -42,6 +42,27 @@ class OpenAlexAdapterTests(unittest.TestCase):
             calls[0][1]["filter"],
         )
 
+    def test_work_payload_extracts_primary_field_id(self):
+        work = openalex_adapter.OpenAlexWork.from_payload(
+            {
+                "id": "https://openalex.org/W1",
+                "display_name": "Target",
+                "publication_year": 1980,
+                "primary_topic": {
+                    "display_name": "Topic",
+                    "field": {
+                        "id": "https://openalex.org/fields/31",
+                        "display_name": "Physics and Astronomy",
+                    },
+                },
+                "authorships": [{}, {}],
+                "referenced_works_count": 12,
+            }
+        )
+        self.assertEqual(work.primary_field_id, "31")
+        self.assertEqual(work.authorship_count, 2)
+        self.assertEqual(work.referenced_works_count, 12)
+
     def test_short_id_accepts_full_openalex_url(self):
         self.assertEqual(
             openalex_adapter._short_id("https://openalex.org/W123"),
