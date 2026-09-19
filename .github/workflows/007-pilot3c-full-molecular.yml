@@ -1,0 +1,149 @@
+name: ARIS4C007 Pilot 3C full molecular holdout
+
+on:
+  workflow_run:
+    workflows: ["ARIS4C007 Pilot 3C molecular smoke"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  full-holdout:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5.1"
+
+      - name: Install SeSAMe
+        shell: Rscript {0}
+        run: |
+          install.packages("BiocManager", repos="https://cloud.r-project.org")
+          BiocManager::install(version="3.21", ask=FALSE)
+          BiocManager::install(c("sesame","sesameData"), ask=FALSE, update=FALSE)
+          stopifnot(requireNamespace("sesame", quietly=TRUE))
+          stopifnot(requireNamespace("sesameData", quietly=TRUE))
+          cat("sesame=", as.character(packageVersion("sesame")), "\n")
+          cat("sesameData=", as.character(packageVersion("sesameData")), "\n")
+
+      - name: Resolve canonical upstream artifacts
+        working-directory: papers/007-cross-species-age-equivalence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/upstream/pilot0 data/upstream/pilot3b data/upstream/smoke
+
+          P0="$(gh run list --workflow 007-pilot0.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+          P3B="$(gh run list --workflow 007-pilot3b-geo-metadata.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+          SMOKE="$(gh run list --workflow 007-pilot3c-molecular-smoke.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$P0"
+          test -n "$P3B"
+          test -n "$SMOKE"
+
+          gh run download "$P0" --name aris4c007-pilot0 --dir data/upstream/pilot0
+          gh run download "$P3B" --name aris4c007-pilot3b-geo-metadata --dir data/upstream/pilot3b
+          gh run download "$SMOKE" --name aris4c007-pilot3c-molecular-smoke --dir data/upstream/smoke
+
+          gh run view "$P0" --json databaseId,headSha,createdAt,url,conclusion,workflowName > data/upstream/pilot0_run.json
+          gh run view "$P3B" --json databaseId,headSha,createdAt,url,conclusion,workflowName > data/upstream/pilot3b_run.json
+          gh run view "$SMOKE" --json databaseId,headSha,createdAt,url,conclusion,workflowName > data/upstream/smoke_run.json
+
+          test -s data/upstream/pilot0/pilot0/life_history_mapping_grid.csv
+          test -s data/upstream/pilot3b/bounded_independent_panclock_holdout.csv
+          test -s data/upstream/smoke/pilot3c_summary.csv
+
+      - name: Fetch pinned MMC v3.0.0 parameters
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          set -euo pipefail
+          mkdir -p data/pilot3c_full/mmc
+          BASE="https://raw.githubusercontent.com/shorvath/MammalianMethylationConsortium/44f3329fd593b472c2b6d021d764c9d7e5681f88/UniversalPanMammalianClock/ClockParameters"
+          curl -fL "$BASE/clock2.csv" -o data/pilot3c_full/mmc/clock2.csv
+          curl -fL "$BASE/clock3.csv" -o data/pilot3c_full/mmc/clock3.csv
+          curl -fL "$BASE/anage49.csv" -o data/pilot3c_full/mmc/anage49.csv
+
+          sha256sum data/pilot3c_full/mmc/clock2.csv data/pilot3c_full/mmc/clock3.csv data/pilot3c_full/mmc/anage49.csv             > data/pilot3c_full/mmc/sha256.txt
+          cat data/pilot3c_full/mmc/sha256.txt
+
+          grep -q "650d3cdf43f10048bd7d84d1ac04bc0b11cf507db6a6c37c9b6f12ebe820c0a3" data/pilot3c_full/mmc/sha256.txt
+          grep -q "3c193cf979efa1e277ca469e3b710af19953cc937451f6a6852700a2271a0011" data/pilot3c_full/mmc/sha256.txt
+
+      - name: Freeze the 50-sample holdout and trait vintages
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/prepare_pilot3c_full.py             --holdout data/upstream/pilot3b/bounded_independent_panclock_holdout.csv             --pilot0-grid data/upstream/pilot0/pilot0/life_history_mapping_grid.csv             --pilot0-coverage data/upstream/pilot0/pilot0/coverage_summary.json             --clockera-anage data/pilot3c_full/mmc/anage49.csv             --out data/pilot3c_full
+          cat data/pilot3c_full/prep_full_summary.json
+
+      - name: Download and expand 50 raw IDAT pairs
+        working-directory: papers/007-cross-species-age-equivalence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/pilot3c_full/idats
+          tail -n +2 data/pilot3c_full/download_manifest.tsv | while IFS=$'\t' read -r gsm species url filename; do
+            echo "Downloading $gsm $filename"
+            curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30               "$url" -o "data/pilot3c_full/idats/$filename"
+            test -s "data/pilot3c_full/idats/$filename"
+          done
+
+          find data/pilot3c_full/idats -type f -name '*.idat.gz' -print0 | xargs -0 -r gzip -d
+          EXPECTED="$(tail -n +2 data/pilot3c_full/download_manifest.tsv | wc -l)"
+          ACTUAL="$(find data/pilot3c_full/idats -type f -name '*.idat' | wc -l)"
+          test "$ACTUAL" -eq "$EXPECTED"
+          echo "Expanded IDAT files: $ACTUAL"
+          du -sh data/pilot3c_full/idats
+
+      - name: Normalize raw IDATs and compute molecular linear predictors
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          Rscript code/run_pilot3c_full.R             data/pilot3c_full/idats             data/pilot3c_full/holdout50.csv             data/pilot3c_full/mmc/clock2.csv             data/pilot3c_full/mmc/clock3.csv             data/pilot3c_full/results             data/pilot3c_full/download_manifest.tsv
+          cat data/pilot3c_full/results/normalization_qc.csv
+
+      - name: Apply clock-era and current-trait transforms separately
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          python code/summarize_pilot3c_full.py             --predictions data/pilot3c_full/results/molecular_linear_predictors.csv             --traits data/pilot3c_full/species_traits_vintages.csv             --out-csv data/pilot3c_full/results/enriched_molecular_predictions.csv             --out-json data/pilot3c_full/results/molecular_summary.json
+          cat data/pilot3c_full/results/molecular_summary.json
+
+      - name: Record provenance and software environment
+        working-directory: papers/007-cross-species-age-equivalence
+        run: |
+          Rscript -e 'writeLines(capture.output(sessionInfo()), "data/pilot3c_full/results/R_sessionInfo.txt")'
+          cp data/upstream/pilot0_run.json data/pilot3c_full/results/upstream_pilot0_run.json
+          cp data/upstream/pilot3b_run.json data/pilot3c_full/results/upstream_pilot3b_run.json
+          cp data/upstream/smoke_run.json data/pilot3c_full/results/upstream_smoke_run.json
+
+      - name: Upload full independent molecular holdout
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c007-pilot3c-full-molecular-holdout
+          path: |
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/prep_full_summary.json
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/holdout50.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/species_traits_vintages.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/mmc/sha256.txt
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/normalization_qc.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/molecular_linear_predictors.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/clock_probe_betas.csv.gz
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/enriched_molecular_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/molecular_summary.json
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/R_sessionInfo.txt
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/upstream_pilot0_run.json
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/upstream_pilot3b_run.json
+            papers/007-cross-species-age-equivalence/data/pilot3c_full/results/upstream_smoke_run.json
+          if-no-files-found: error
+          retention-days: 30
