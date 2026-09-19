@@ -102,12 +102,14 @@ def card(p: dict, dashboard: dict) -> str:
     next_gate = d.get("next_gate") or "Not yet recorded"
     blocker = d.get("blocker") or "Not yet recorded"
     activity_text, activity_class = activity_label(d.get("activity", ""))
+    series_id = str(p.get("series_id", "") or "").strip()
     tags_list = p.get("tags", [])[:4]
     tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in tags_list)
     search_blob = " ".join([
         str(p.get("id", "")),
         str(p.get("title", "")),
         str(p.get("short_title", "")),
+        series_id,
         str(p.get("domain", "")),
         str(p.get("status", "")),
         str(stage),
@@ -124,7 +126,7 @@ def card(p: dict, dashboard: dict) -> str:
     return f"""
     <article class="paper-card" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-last-commit="{esc(last_commit)}" data-search="{esc(search_blob)}">
       <div class="paper-topline">
-        <span class="paper-id">#{esc(p.get('id'))}</span>
+        <span class="paper-id">#{esc(p.get('id'))}{(" · " + esc(series_id)) if series_id else ""}</span>
         <span class="heartbeat"><i></i>{esc(activity_text)}</span>
       </div>
       <div class="statusline">{esc(p.get('status'))}</div>
@@ -150,6 +152,7 @@ def showcase_card(p: dict, dashboard: dict) -> str:
     progress = max(0, min(100, int(d.get("progress", 0))))
     stage = d.get("stage") or p.get("status") or "Unclassified"
     activity_text, activity_class = activity_label(d.get("activity", ""))
+    series_id = str(p.get("series_id", "") or "").strip()
     en_href = links.get("paper_en_pdf") or links.get("paper_en_full") or links.get("paper_en", "")
     zh_href = links.get("paper_zh_pdf") or links.get("paper_zh_full") or links.get("paper_zh", "")
     buttons = "".join([
@@ -169,7 +172,7 @@ def showcase_card(p: dict, dashboard: dict) -> str:
     return f"""
       <article class="showcase-card" data-showcase-original="true" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-last-commit="{esc(last_commit)}" data-search="{esc(search_blob)}">
         <div class="showcase-top">
-          <span class="showcase-id">#{esc(p.get('id'))}</span>
+          <span class="showcase-id">#{esc(p.get('id'))}{(" · " + esc(series_id)) if series_id else ""}</span>
           <span class="showcase-state"><i></i>{esc(activity_text)}</span>
         </div>
         <h3>{esc(p.get('short_title') or p.get('title'))}</h3>
