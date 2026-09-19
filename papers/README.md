@@ -17,7 +17,7 @@ This directory is the canonical registry of research projects produced with ARIS
 | 009 | formal research design | papers/009-phenomenology-preserving-computational-psychiatry/ |
 | 010 | formal research design / combinatorial Pilot 0 complete | papers/010-universal-concept-identification/ |
 | 011 | formal research design / benchmark specification locked | papers/011-research-forensics/ |
-| 012 | indexed framework / Pilot retrieval passed / independent Coder B blocked | papers/012-oppositional-causal-inversion/ |
+| 012 | Pilot 0B complete / v1 reliability revision + fresh-v2-pilot gate | papers/012-oppositional-causal-inversion/ |
 | 013 | formal research design / administrative Pilot 1 discovery | papers/013-birth-death-temporal-coupling/ |
 | 014 | OpenIntegrity / UK Pilot 1A frozen / China Pilot 0 live procurement + CAS universe feasibility frozen / cross-source entity graph next | papers/014-public-integrity-forensics/ |
 | 015 | Sleeping Beauty Miner / pilot + mechanism track | papers/015-sleeping-beauty-miner/ |
