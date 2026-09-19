@@ -42,6 +42,11 @@ def collect(root: Path) -> dict[str,dict[str,Any]]:
     res=root/"data"/"results"
     if res.exists():
         candidates += list(res.glob("pilot*.csv")) + list(res.glob("pilot*.json"))
+        # Feasibility-frame papers can affect sample-size/acquisition design,
+        # so conservatively prevent them from re-entering final confirmatory
+        # performance manifests even though no detector outcomes were viewed.
+        candidates += list(res.glob("confirmatory_feasibility*.csv"))
+        candidates += list(res.glob("confirmatory_feasibility*.json"))
     for path in sorted(set(candidates)):
         rel=str(path.relative_to(root))
         if path.suffix==".json":
@@ -62,11 +67,11 @@ def main():
     outpath=a.output or a.root/"data"/"protocol"/"development_exclusion_registry.json"
     rows=collect(a.root)
     payload={
-      "registry_version":"0.1.0",
+      "registry_version":"0.2.0",
       "state":"FROZEN_DEVELOPMENT_EXPOSURE_SNAPSHOT",
-      "generated_from":"structured seed/pilot artifacts plus data/results/pilot*",
+      "generated_from":"structured seed/pilot artifacts, data/results/pilot*, and design-affecting confirmatory_feasibility* frames",
       "exclusion_count":len(rows),
-      "policy":"Any DOI exposed during method development, pilot acquisition, comparator discovery/screening, control construction, or development evaluation is excluded from confirmatory performance manifests.",
+      "policy":"Any DOI exposed during method development, pilot acquisition, comparator discovery/screening, control construction, development evaluation, or a design-affecting blinded feasibility frame is excluded from final confirmatory performance manifests.",
       "entries":[rows[k] for k in sorted(rows)],
     }
     outpath.parent.mkdir(parents=True,exist_ok=True)
