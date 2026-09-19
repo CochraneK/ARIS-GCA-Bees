@@ -1,0 +1,84 @@
+name: ARIS4C006 H1 falsification diagnostics
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-h1-falsification.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  falsification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+      SOURCE_RUN_ID: "35424125236"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preregistration integrity and unlock
+        working-directory: ${{ env.PAPER_DIR }}
+        run: python code/31_verify_prereg_lock.py --require-unlock
+      - name: Download frozen convention aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c006-final-convention-aggregate-repaired
+          path: frozen/convention
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Download frozen primary-frame aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c006-primary-frame-aggregate-repaired
+          path: frozen/frame
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Rebuild exact-LOAO primary frame
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          mkdir -p data/confirmatory/falsification
+          python code/29_build_confirmatory_loao_frame.py \
+            --focal-rows "../../frozen/frame/primary_focal_rows_all_fields.csv" \
+            --rolling-exposure "../../frozen/convention/rolling_exposure_all_fields.csv" \
+            --convention-contributions "../../frozen/convention/convention_work_contributions_all_fields.csv" \
+            --out data/confirmatory/falsification/loao_frame.csv \
+            --manifest data/confirmatory/falsification/loao_manifest.json
+      - name: Build future placebo and 1000-permutation diagnostics
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/40_confirmatory_h1_falsification.py \
+            --loao-frame data/confirmatory/falsification/loao_frame.csv \
+            --convention-contributions "../../frozen/convention/convention_work_contributions_all_fields.csv" \
+            --rolling-past "../../frozen/convention/rolling_exposure_all_fields.csv" \
+            --outdir data/confirmatory/falsification/diagnostics \
+            --permutations 1000
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5.1"
+      - name: Install analysis dependencies
+        run: Rscript -e 'install.packages(c("fixest","jsonlite"), repos="https://cloud.r-project.org")'
+      - name: Run future-exposure placebo with frozen FE/clustering
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          Rscript code/41_future_exposure_placebo.R \
+            --input data/confirmatory/falsification/diagnostics/future_loao_frame.csv \
+            --outdir data/confirmatory/falsification/future_model
+      - name: Upload falsification outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-h1-falsification
+          path: |
+            ${{ env.PAPER_DIR }}/data/confirmatory/falsification/loao_manifest.json
+            ${{ env.PAPER_DIR }}/data/confirmatory/falsification/diagnostics/manifest.json
+            ${{ env.PAPER_DIR }}/data/confirmatory/falsification/diagnostics/field_year_prior_future_exposure.csv
+            ${{ env.PAPER_DIR }}/data/confirmatory/falsification/diagnostics/permutation_distribution.csv
+            ${{ env.PAPER_DIR }}/data/confirmatory/falsification/future_model/future_exposure_placebo.csv
+            ${{ env.PAPER_DIR }}/data/confirmatory/falsification/future_model/manifest.json
+          if-no-files-found: error
+          retention-days: 90
