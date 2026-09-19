@@ -13,11 +13,11 @@
     },
     "002": {
       "progress": 100,
-      "stage": "Submission package ready · output gate PASS",
+      "stage": "Output gate PASS · journal package refresh pending",
       "activity": "finish",
-      "evidence": "Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS",
-      "next_gate": "Author metadata/declarations + ScholarOne submission",
-      "blocker": "None scientific; author-only metadata/declarations and portal submission"
+      "evidence": "Final EN + ZH manuscripts/PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; historical 3-figure Linguistic Typology package QA PASS",
+      "next_gate": "Rebuild/re-QA 6-figure Linguistic Typology package, then author metadata/declarations + ScholarOne",
+      "blocker": "None scientific; editorial package refresh plus author-only metadata/declarations and portal submission"
     },
     "003": {
       "progress": 70,
