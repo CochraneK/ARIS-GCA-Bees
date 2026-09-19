@@ -1,6 +1,6 @@
 # ARIS4C016 Independent Coder Handoff
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## Task
 
@@ -134,3 +134,39 @@ Run:
 6. native-review queue.
 
 Only then adjudicate.
+
+
+## Executable handoff
+
+Generate Coder A's private sheet **outside the repository**:
+
+```bash
+python code/export_private_coding_sheet.py \
+  --output /PRIVATE/PATH/aris4c016_coder_a.csv \
+  --coder-id A
+```
+
+Generate Coder B independently with a different private output path and
+`--coder-id B`.
+
+The exporter:
+- regenerates the frozen deterministic sample;
+- verifies the Study-1 source SHA-256;
+- verifies the frozen 300-row manifest SHA-256;
+- refuses by default to write raw taboo/slur content anywhere inside the
+  ARIS4C repository.
+
+After both frozen outputs are returned, calculate aggregate reliability:
+
+```bash
+python code/score_coder_reliability.py \
+  /PRIVATE/PATH/aris4c016_coder_a.csv \
+  /PRIVATE/PATH/aris4c016_coder_b.csv \
+  --output /PRIVATE/PATH/aris4c016_reliability.json
+```
+
+The reliability output contains aggregate statistics and disagreement row
+hashes only; it does not emit raw lexical expressions.
+
+Canonical frozen-sample identity:
+`48c58f91901e8c2a1aab01958e95ea28afaf0f33e7a98677f98e58b8a412c9b4`.
