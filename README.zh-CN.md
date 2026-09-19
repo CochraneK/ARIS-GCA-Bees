@@ -79,7 +79,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | **012** | [Oppositional Causal Inversion](papers/012-oppositional-causal-inversion/) | 🟡 待推进 | 66% | [handoff](papers/012-oppositional-causal-inversion/handoff/AGENT_HANDOFF.md) |
 | **013** | [出生—死亡时间耦合](papers/013-birth-death-temporal-coupling/) | 🔴 阻塞 | 50% | [handoff](papers/013-birth-death-temporal-coupling/handoff/AGENT_HANDOFF.md) |
 | **014** | [Public Integrity Forensics](papers/014-public-integrity-forensics/) | 🟡 待推进 | 69% | [handoff](papers/014-public-integrity-forensics/handoff/AGENT_HANDOFF.md) |
-| **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 正在推进 | 86% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
+| **015** | [Sleeping Beauty Miner](papers/015-sleeping-beauty-miner/) | 🟢 正在推进 | 88% | [handoff](papers/015-sleeping-beauty-miner/handoff/AGENT_HANDOFF.md) |
 | **016** | [全球脏话 / 禁忌语言语法](papers/016-global-grammar-of-swearing/) | 🔴 阻塞 | 68% | [handoff](papers/016-global-grammar-of-swearing/handoff/AGENT_HANDOFF.md) |
 | **017** | [LING-02 · 预测性语言空间](papers/017-predictive-language-space/) | 🟡 待推进 | 20% | [handoff](papers/017-predictive-language-space/handoff/AGENT_HANDOFF.md) |
 

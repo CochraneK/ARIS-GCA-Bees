@@ -7,7 +7,8 @@
 - **Canonical state:** git
 - **Default Active WIP:** 1
 - **Active WIP policy:** adaptive
-- **Soft reference:** 3 for ordinary single-controller workflows; **no fixed hard maximum**
+- **Soft Active WIP reference:** 3
+- **Fixed Maximum Active WIP:** none
 - **States:** Finish / Active / Wait / Block
 - **Paper switch rule:** checkpoint bounded substantive work to Git before switching
 
@@ -22,6 +23,8 @@
 
 Continue **015** first. The next completion-first Wait candidate is **011** whenever additional genuine execution capacity becomes available.
 
-The current three Active papers do **not** fill a hard cap. More papers may become Active if the current model/agent/tool setup can sustain real parallel research without weakening context isolation, checkpoint discipline, or state accuracy.
+A higher Active count is allowed when the current model/agent/tool setup can
+sustain genuine parallel research without weakening paper-level isolation,
+bounded Git checkpoints, supervision, or truthful live-state tracking.
 
 Recalculate from `papers/dashboard.json` after any material state change.
