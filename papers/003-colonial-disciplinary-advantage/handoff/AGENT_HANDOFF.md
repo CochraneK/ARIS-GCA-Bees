@@ -8,18 +8,18 @@ A locked, outcome-unblinded cross-national and cross-disciplinary test of whethe
 
 ## Current state
 
-- Activity: **ready-to-resume**
+- Activity: **wait**
 - Progress: **70%**
-- Stage: **Outcome materialization recovery · deterministic sharded fallback**
-- Evidence: COLDAT + CEPII audited · confirmatory Qoder/Qwen Flash 3.8 Coder B validated · 12-cell outcome-blind adjudication · IKES frozen with SHA-256 provenance · strict gate unlocked
+- Stage: **Outcome materialization · locked first confirmatory run**
+- Evidence: COLDAT + CEPII audited · blind Coder A/B + adjudicated IKES frozen · strict gate unlocked · OpenAlex scan running
 
 ## Immediate next action
 
-**Dispatch/validate the 32-way sharded OpenAlex fallback; on success let the existing distributed model workflow produce and hash-lock the first confirmatory package.**
+**Complete OpenAlex country/dyad panels, 3 headline PPMLs, 3×999 permutations, LOO and first-result hash lock**
 
 ## Current blocker / gate
 
-First monolithic run 35423271792 failed after ~73 min with invalid DuckDB `WITH ... COPY` syntax. Parser fixed in commit `fe82cb54...`, but the fix is not yet validated on a real shard. Do not rerun the monolithic workflow; use `aris4c003-openalex-sharded-fallback.yml`.
+None · public OpenAlex snapshot scan is compute/network intensive
 
 ## Canonical files / entry points
 
@@ -43,10 +43,3 @@ Before ending a substantial session:
 - append any material research decision to `DECISIONS.md`;
 - append a public-safe conversation summary to `CHATLOG.md`;
 - append what was executed/validated to `SESSION_LOG.md`.
-
-
-## 2026-09-19 pre-deletion resume note
-
-Read `PRE_DELETE_CHECKPOINT_2026-09-19.md` first. It records the exact failed
-run, parser fix, frozen Coder-B/IKES state, recovery workflow, downstream
-auto-chain, and do-not-change rules.
