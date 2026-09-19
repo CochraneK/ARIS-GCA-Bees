@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-09-19",
-  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the repository-level final output contract is satisfied (English full paper + Chinese full paper + appropriate figures/tables + review/reproducibility gates). Activity is a MECE management state: active, gated, quiet, or blocked. Quiet includes near-final/submission-ready/completed tracks that do not need active execution; Near final is not a separate category.",
+  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the repository-level final output contract is satisfied (English full paper + Chinese full paper + appropriate figures/tables + review/reproducibility gates). Activity is a MECE management state: active, gated, quiet, or blocked. Quiet includes submission-ready/completed tracks that do not need active execution.",
   "projects": {
     "001": {
       "progress": 100,
