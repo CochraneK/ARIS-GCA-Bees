@@ -1,14 +1,14 @@
 # STATUS — ARIS4C005
 
 **Last updated:** 2026-09-19  
-**State:** `AI_EXECUTION_READY / LATENT_MODEL_VALIDATED / IMPACT_SCAFFOLDS_READY`  
+**State:** `AI_EXECUTION_READY / CALIBRATION_PIPELINE_READY / LATENT_MODEL_VALIDATED / IMPACT_SCAFFOLDS_READY`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
 
 **The Hidden Burden of Bad Science: Estimating the Global Scale and Downstream Cost of Research Integrity Failures**
 
-Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batches, batch-output integrity gates, latent prevalence model, correlated-error sensitivity, RLY framework, Innovation Delay scaffold, and historical/prospective delayed-recognition infrastructure are complete. The prevalence-critical dependency is now actual AI adjudication labels plus calibration, not further sampling or ontology design.
+Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batches, batch-output integrity gates, latent prevalence model, correlated-error sensitivity, AI calibration design/candidate/reference-review infrastructure, RLY framework, Innovation Delay scaffold, and SB0/SB1 delayed-recognition infrastructure are complete. The prevalence-critical dependency is now actual AI adjudication labels plus actual reference-review/calibration labels, not further sampling or ontology design.
 
 ---
 
@@ -40,11 +40,11 @@ Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batche
 - [x] OpenAlex core article+review universe extracted for 2000–2025.
 - [x] Frozen OpenAlex query returned **137,445,874** works under the target metadata definition.
 - [x] Annual counts and query provenance committed.
-- [x] Retraction Watch snapshot pinned to Git commit `448a0ed262c6348dd6f06ac03f5602bae4ef2d01`.
+- [x] Latest Retraction Watch snapshot pinned to Git commit `8324ad5ae03519e1f213d417c6cf3e02d7dc5d1f` (older snapshots retained in Git history).
 - [x] Snapshot summarized without redistributing raw CSV.
-- [x] 72,577 correction/event rows observed.
-- [x] 63,434 unique resolvable original-paper DOIs observed.
-- [x] 60,971 unique original DOIs had at least one event with nature `Retraction`.
+- [x] Latest live Retraction Watch snapshot: **72,621** correction/event rows.
+- [x] Latest live snapshot: **63,504** unique resolvable original-paper DOIs.
+- [x] Latest live snapshot: **61,041** unique original DOIs had at least one event with nature `Retraction`.
 - [x] Row-level vs unique-work counts separated.
 - [x] Retraction dates parsed chronologically rather than lexically.
 - [x] Current reason labels/renames handled case-insensitively.
@@ -98,9 +98,14 @@ Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batche
 - [x] Fail-closed batch-output collector implemented for all 80 article + 10 citation batches; checksum/row-count/adjudicator/prompt/vocabulary/abstention invariants enforced.
 - [x] Calibrated dual-AI latent prevalence model implemented and six-stratum synthetic recovery passed.
 - [x] Correlated-AI-error sensitivity implemented from conditional independence to maximal positive shared-error dependence.
+- [x] Calibration anchor design implemented with exact rare-event specificity bounds: at 95% confidence and zero observed false positives, ~299 independent negatives support FPR<1%, ~598 support <0.5%, ~2,995 support <0.1%, ~5,990 support <0.05%, and ~29,956 support <0.01%.
+- [x] Private Retraction Watch calibration-candidate builder implemented; row-level candidates are not committed/uploaded.
+- [x] Latest candidate queues: **1,435 P_HIGH_REVIEW / 586 P_REVIEW / 5,314 N_PROCESS_REVIEW / 3,026 N_ERROR_REVIEW / 53,143 U_REVIEW**; these are review queues, not truth labels.
+- [x] Blinded dual reference-review pipeline implemented: REF_A/REF_B receive neutral bibliography only, never queue labels or AI_A/AI_B outputs.
+- [x] Reference merger preserves detailed states (`HONEST_MAJOR_ERROR`, `MINOR_OR_IMMATERIAL`, `NO_MATERIAL_PROBLEM_FOUND`) and only promotes dual-consensus A/B anchors; disagreements/unresolved/C-quality cases stay out of Se/Sp calibration.
 - [ ] Run dual-AI article adjudication + arbitration.
 - [ ] Run dual-AI citation-edge adjudication + arbitration.
-- [ ] Calibrate AI error using high-confidence anchors and sensitivity analysis.
+- [ ] Execute REF_A/REF_B primary-evidence reference reviews on calibration candidates, merge dual-consensus anchors, then calibrate AI error using A-only primary / A+B sensitivity sets.
 
 ## RLY / human-time burden
 
@@ -128,6 +133,7 @@ Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batche
 - [x] Current main-run SB0 pilot: B median **2.5**, q95 **26.78**, max **85**; peak age median **6 y**; awakening age median **4.5 y**.
 - [x] Leakage-safe SB1 landmark dataset implemented and live-tested.
 - [x] With landmark age 5 and 10-year horizon, **200/200** pilot papers had mature follow-up; **56** had engineering awakening-after-landmark outcomes and **74** had late-peak outcomes.
+- [x] SB1 early-citation baseline implemented with publication-year-blocked out-of-fold validation: **AUC 0.614**, **Brier 0.1973** vs prevalence-baseline **0.2045** (improvement **0.0072**). Interpretation: early citation trajectory carries only modest signal and is not enough for lost-discovery identification.
 - [ ] Add temporally frozen semantic/network predictors for SB1.
 - [ ] Run SB2 integrity-exposure / awakening-hazard analysis only after E1-S/SCF exposure is empirically available.
 - [ ] Keep SB3 suppressed-opportunity / never-awoken counterfactual behind calibration and causal-identification gates.
@@ -140,19 +146,19 @@ Primary target denominator:
 
 `OpenAlex core + type:article|review + publication_year:2000-2025`
 
-- metadata count: **137,445,874**
+- latest Pilot A metadata count (2026-09-19 snapshot): **137,434,060**
 - source: OpenAlex Works API
 - extraction timestamp stored in `data/pilot/openalex_universe_provenance.json`
 
 Retraction Watch snapshot:
 
-- event rows: **72,577**
-- unique original-paper DOIs: **63,434**
-- unique original DOIs with Retraction nature: **60,971**
+- latest event rows: **72,621**
+- latest unique original-paper DOIs: **63,504**
+- latest unique original DOIs with Retraction nature: **61,041**
 - paper-mill signal unique DOIs: **11,706**
-- narrow auto E1-S unique DOIs: **2,020**
-- strong E1-M unique DOIs: **18,863**
-- strong E1-P unique DOIs: **20,417**
+- narrow auto E1-S unique DOIs: **2,021**
+- strong E1-M unique DOIs: **18,871**
+- strong E1-P unique DOIs: **20,429**
 - rows/cases requiring manual review remain large; these auto flags are screening variables only.
 
 See `data/pilot/retraction_watch_snapshot_summary.json`.
@@ -201,6 +207,8 @@ See `process/SCALED_AUDIT_RESULTS.md` and `process/AI_ADJUDICATION_HANDOFF.md`.
 
 AI may provide most labels, but its measurement error must be calibrated or sensitivity-tested. Dual-model agreement is not gold-standard truth.
 
+Calibration-candidate infrastructure is now operational. Latest public-safe aggregate queue counts are stored in `data/pilot/ai_calibration_candidate_summary.json`; row-level candidates remain private/ephemeral. `CAL-REF-V1` supports independent REF_A/REF_B evidence review. Machine dual-consensus is explicitly reported as machine-assisted reference evidence, not a human gold standard.
+
 ## GATE C — latent prevalence identification — MODEL READY / LABELS PENDING
 
 - [x] Weighted six-stratum latent prevalence model implemented.
@@ -241,12 +249,12 @@ Historical B/awakening measurement and a leakage-safe landmark dataset are opera
 
 # Next execution queue
 
-1. Execute the **80 article-adjudication batches** with independent AI_A and AI_B under `AI-ADJ-V1`.
+1. Execute the **80 article-adjudication batches** with independent AI_A and AI_B under `AI-ADJ-V1` (or continue any already-started external run without changing prompt/schema).
 2. Run `collect_ai_batch_outputs.py --mode article` to verify all 20,000 returned assignments against the canonical manifest before any merge.
 3. Merge A/B article outputs, route disagreements/LOW/INDETERMINATE cases to arbitration, and preserve abstentions.
 4. Execute the **10 citation-edge batches** under `CIT-EDGE-V1`.
 5. Run `collect_ai_batch_outputs.py --mode citation`, then semantic disagreement/arbitration.
-6. Calibrate AI measurement error using formal/high-confidence positive and negative anchors; report correlated-error and missingness sensitivity.
+6. Regenerate private calibration candidates via Pilot A as needed, create blinded REF_A/REF_B packets, execute `CAL-REF-V1`, merge only dual-consensus A/B anchors, then calibrate AI measurement error; report correlated-error, anchor-quality and missingness sensitivity.
 7. Fit the weighted six-stratum global latent-prevalence model.
 8. Convert calibrated semantic citation labels into SCF and **Dependence Ghost Half-Life**.
 9. Run real Innovation Delay matched event studies using adjudicated E1-S sources and pre-shock controls.
@@ -272,4 +280,4 @@ Historical B/awakening measurement and a leakage-safe landmark dataset are opera
 
 # Handoff sentence
 
-If this chat is lost, resume from this file. **Sampling, AI input batching, batch-output integrity validation, latent prevalence inference, correlated-error sensitivity, RLY framework, Innovation Delay scaffold, and SB0/SB1 delayed-recognition infrastructure are complete. The next prevalence-critical work is actual execution of 80 article + 10 citation AI batches, followed by collector validation, arbitration and calibration. Do not rebuild the 10,000-work sample, hand-concatenate outputs, or estimate global prevalence/RLY/lost discoveries before their gates pass.**
+If this chat is lost, resume from this file plus `process/CHAT_HANDOFF_2026-09-19.md`. **Sampling, 90 AI input batches, batch-output integrity validation, latent prevalence inference, correlated-error sensitivity, calibration design/candidate/reference-review infrastructure, RLY framework, Innovation Delay scaffold, and SB0/SB1 delayed-recognition infrastructure are complete. The next prevalence-critical work is actual execution of article/citation AI batches and REF_A/REF_B evidence reviews, followed by collector validation, arbitration, calibration and the weighted latent model. Do not rebuild the 10,000-work sample, expose private candidate rows, hand-concatenate outputs, or estimate global prevalence/RLY/lost discoveries before their gates pass.**
