@@ -44,6 +44,7 @@ REQUIRED_PASS_GATES=[
     "global_time_window",
     "loao_implementation",
     "synthetic_model_smoke",
+    "longitudinal_sampling",
     "final_convention_materialization",
     "primary_frame_materialization",
     "longitudinal_identity_risk_qa",
