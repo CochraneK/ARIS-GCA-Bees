@@ -83,6 +83,47 @@ def test_binary_summary_pass_and_flag():
     assert [x["status"] for x in out["findings"]] == ["PASS", "FLAG"]
 
 
+def test_table_numeric_range_accepts_decimal_comma_and_numeric_zero():
+    d = TableArithmeticDetector()
+    ctx = context(table_checks=[
+        {
+            "check_type": "numeric_range",
+            "reported_value": "0,943",
+            "min_value": 0,
+            "max_value": 1,
+            "source_locator": "decimal comma",
+        },
+        {
+            "check_type": "numeric_range",
+            "reported_value": 0,
+            "min_value": 0,
+            "max_value": 1,
+            "source_locator": "numeric zero",
+        },
+    ])
+    out = run_forensics(ctx, [d])
+    assert [x["status"] for x in out["findings"]] == ["PASS", "PASS"]
+    assert out["findings"][0]["evidence"]["parsed_value"] == 0.943
+    assert out["findings"][0]["evidence"]["decimal_separator_style"] == "comma"
+    assert out["findings"][1]["evidence"]["parsed_value"] == 0.0
+
+
+def test_table_numeric_range_abstains_on_ambiguous_mixed_separators():
+    d = TableArithmeticDetector()
+    ctx = context(table_checks=[
+        {
+            "check_type": "numeric_range",
+            "reported_value": "1,234.5",
+            "min_value": 0,
+            "max_value": 2000,
+            "source_locator": "ambiguous token",
+        },
+    ])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "ABSTAIN"
+    assert out["findings"][0]["applicable"] is False
+
+
 def test_table_percentage_and_rank_gap():
     d = TableArithmeticDetector()
     ctx = context(table_checks=[
