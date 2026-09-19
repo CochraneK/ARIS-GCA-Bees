@@ -15,7 +15,6 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 from artifact_safety import assess_track_a_artifact
-from wayback_discovery import discover
 
 
 def fetch(url: str, retries: int=3) -> bytes:
@@ -39,29 +38,22 @@ def main():
     doi="10.1371/journal.pone.0293412"
     correction_date="2025-01-03"
     original=f"https://journals.plos.org/plosone/article/figure?id={doi}.t001"
-    records=discover(
-        original,
-        event_date=correction_date,
-        identity_marker=f"{doi}.t001",
-        timeout=30,
-    )
+    frozen_timestamp="20240520012147"
+    frozen_digest="JLJFGD45MKV3MXK5F65FHV3MNXYNBD7Y"
     result={
         "target_doi":doi,
         "required_role":"table",
         "object_id":"t001",
         "original_url":original,
         "correction_date":correction_date,
-        "discovery_capture_n":len(records),
+        "discovery_capture_n":1,
         "qualification":"BLOCKED",
         "track_a_eligible":False,
         "reason":[],
+        "capture_source":"frozen from successful Pilot 3 CDX discovery run 35407336466",
     }
-    if not records:
-        result["reason"].append("no exact pre-correction t001 capture discovered")
-    else:
-        rec=records[0]
-        replay=f"https://web.archive.org/web/{rec.timestamp}id_/{rec.original}"
-        try:
+    replay=f"https://web.archive.org/web/{frozen_timestamp}id_/{original}"
+    try:
             body=fetch(replay)
             text=body.decode("utf-8","replace")
             low=text.lower()
@@ -78,7 +70,7 @@ def main():
             }
             content_ok=all(content_markers.values())
             q=assess_track_a_artifact(
-                artifact_version_date=f"{rec.timestamp[0:4]}-{rec.timestamp[4:6]}-{rec.timestamp[6:8]}",
+                artifact_version_date=f"{frozen_timestamp[0:4]}-{frozen_timestamp[4:6]}-{frozen_timestamp[6:8]}",
                 outcome_date=correction_date,
                 immutable_or_historical_snapshot=True,
                 historical_equivalence="archive_snapshot_of_published_version",
@@ -90,8 +82,8 @@ def main():
             )
             safe=(q.status=="SAFE_EXACT" and identity_ok and content_ok)
             result.update({
-                "capture_timestamp":rec.timestamp,
-                "capture_digest_cdx":rec.digest,
+                "capture_timestamp":frozen_timestamp,
+                "capture_digest_cdx":frozen_digest,
                 "replay_url":replay,
                 "retrieved_sha256":hashlib.sha256(body).hexdigest(),
                 "retrieved_bytes":len(body),
@@ -107,8 +99,8 @@ def main():
                 result["reason"].append("expected Table 1 content markers not both present")
             if q.status!="SAFE_EXACT":
                 result["reason"].extend(q.reasons)
-        except Exception as exc:
-            result["reason"].append(f"replay_retrieval_failed:{type(exc).__name__}:{exc}")
+    except Exception as exc:
+        result["reason"].append(f"replay_retrieval_failed:{type(exc).__name__}:{exc}")
 
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
