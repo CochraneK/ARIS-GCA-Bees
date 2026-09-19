@@ -6,7 +6,7 @@ machine-readable gate files explicitly set confirmatory_outcomes_unlocked=true.
 It constructs model inputs only and does not estimate effects.
 """
 from __future__ import annotations
-import argparse,csv,json
+import argparse,csv,json,subprocess,sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -31,21 +31,11 @@ def truth(x):
     return str(x).strip().lower()=="true" if isinstance(x,str) else bool(x)
 
 def guard():
-    lock=PROC/"PREREGISTRATION_LOCK.json"
-    if not lock.exists():
-        raise SystemExit("LOCKED: preregistration lock missing")
-    lockj=load_json(lock)
-    gates=load_json(PROC/"DESIGN_GATES.json")
-    spec=load_json(PROC/"ANALYSIS_SPEC.json")
-    if gates.get("confirmatory_outcomes_unlocked") is not True:
-        raise SystemExit("LOCKED: DESIGN_GATES not explicitly unlocked")
-    if spec.get("confirmatory_outcomes_unlocked") is not True:
-        raise SystemExit("LOCKED: ANALYSIS_SPEC not explicitly unlocked")
-    if spec["primary_exposure"]["lag_window_years"]!=3:
-        raise SystemExit("spec drift: lag window")
-    if spec["primary_model"]["primary_estimand"]!="beta2":
-        raise SystemExit("spec drift: primary estimand")
-    return lockj
+    verifier=ROOT/"code"/"31_verify_prereg_lock.py"
+    p=subprocess.run([sys.executable,str(verifier),"--require-unlock"],capture_output=True,text=True)
+    if p.returncode!=0:
+        raise SystemExit("LOCKED/INVALID PREREG STATE:\n"+p.stdout+"\n"+p.stderr)
+    return load_json(PROC/"PREREGISTRATION_LOCK.json")
 
 def main():
     ap=argparse.ArgumentParser()
