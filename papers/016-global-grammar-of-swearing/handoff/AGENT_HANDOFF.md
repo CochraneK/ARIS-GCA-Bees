@@ -4,7 +4,7 @@
 
 **The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity**
 
-A falsification-first cross-linguistic program testing which properties of taboo language are stable across communities, genealogically structured, or context-sensitive. Phase 0 now audits the open 18-community/13-language Sulpizio et al. dataset, exposes substantial cross-lab annotation heterogeneity, introduces an orthogonal multi-axis ontology, links samples to Glottolog, and builds reproducible harmonization and reliability gates before any cultural-prevalence claim.
+A measurement-first cross-linguistic study of taboo language using an open 18-community/13-language dataset. Phase 0 now includes a reproducible annotation audit, orthogonal ontology, Glottolog linkage, item-fixed-effects English comparisons, balanced and filler negative controls, a frozen 300-row independent-coder sample, three public-safe figures, and parallel English/Chinese working manuscripts. Confirmatory semantic fingerprints remain gated on genuinely independent/native-language reliability.
 
 ## Current state
 
@@ -26,6 +26,7 @@ Genuinely independent/native-speaker annotation is required; current assistant c
 - **paper.json:** paper.json
 - **process/status or plan:** process/RESEARCH_PLAN.md
 - **English paper:** manuscript/DRAFT.md
+- **Chinese paper:** manuscript/DRAFT.zh-CN.md
 - **source:** https://github.com/CochraneK/ARIS4C/tree/main/papers/016-global-grammar-of-swearing
 
 ## Before changing anything
