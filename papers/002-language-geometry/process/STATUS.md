@@ -127,3 +127,16 @@ Completed:
 **Remaining hard gate:** author-supplied submission metadata and explicit declarations, followed by ScholarOne upload/submit.
 
 No additional scientific analysis or manuscript expansion is currently required.
+
+
+## Bilingual delivery
+
+**State:** COMPLETE
+
+- English canonical manuscript: `../manuscript/DRAFT.md`
+- Chinese complete manuscript: `../manuscript/DRAFT.zh-CN.md`
+- figures: 3
+- manuscript-facing tables: 6
+- output gate metadata: PASS-ready in `../paper.json`
+
+The Chinese manuscript preserves the same numerical results and bounded claim as the independently reviewed English manuscript. It is a portfolio/delivery artifact and does not alter the blinded English journal-submission package.
