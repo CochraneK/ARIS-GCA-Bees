@@ -1,4 +1,4 @@
-# ARIS4C010 · Mixed P6 Response-State Calibration
+# ARIS4C010 · Mixed Response-State Calibration
 
 The 60-target OEWN lexical calibration is intentionally ordinary: it is strong for polysemy and semantic separation, but weak for evaluating rare response states such as BORDERLINE, UNDEFINED or BOTH.
 
@@ -33,7 +33,20 @@ The scenario's `phenomenon_tags` document why the item was included; they are no
 - 18 generic probes;
 - 9 probes per scenario in a deterministic answer-blind rotation;
 - 216 target-query pairs;
-- identical semantic material available to P2, P6 and P6+context conditions.
+- identical semantic material available to P2, P3, P6 and P6+context conditions.
+
+## Protocol mechanism
+
+### P2
+Forced YES/NO.
+
+### P3 mechanism control
+YES / NO / MAYBE. MAYBE deliberately collapses all reasons a confident binary answer may fail.
+
+### P6
+YES / NO / BORDERLINE / UNKNOWN / UNDEFINED / BOTH.
+
+This allows a direct test of whether fine-grained semantic states improve reliability or identification beyond a generic uncertainty escape response.
 
 ## Primary question
 
