@@ -70,6 +70,7 @@ const FORM=__FORM_JSON__;
 let index=0, selected=null, startedAt=0, participant="", rows=[];
 const protocolHelp={
  P2:"<p><b>YES</b> = applies/true. <b>NO</b> = meaningful and applicable, but false. This condition intentionally forces binary judgment.</p>",
+ P3:"<p><b>YES</b> = applies/true. <b>NO</b> = applicable but false. <b>MAYBE</b> = use the single coarse escape option whenever a confident binary judgment is not appropriate. This condition intentionally does not distinguish why.</p>",
  P6:"<p><b>YES</b> = applies/true; <b>NO</b> = applicable but false; <b>BORDERLINE</b> = genuinely graded; <b>UNKNOWN</b> = determinate in principle but not knowable from allowed information; <b>UNDEFINED</b> = not properly truth-evaluable as posed; <b>BOTH</b> = positive and negative support coexist under the supplied non-explosive representation.</p>"
 };
 document.getElementById("protocolHelp").innerHTML=protocolHelp[FORM.protocol];
