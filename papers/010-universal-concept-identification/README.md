@@ -137,7 +137,7 @@ Before strong novelty language is permitted:
 
 Pilot 2 does **not** yet validate the semantic labels: the target identities/glosses are source-derived, while the added semantic query responses remain `machine_mapped_unreviewed`.
 
-The next scientific gate is human P2/P6 calibration, not further ontology prose.
+The next scientific gate is human P2/P3/P6 calibration, not further ontology prose.
 
 
 ## Human calibration readiness
@@ -151,7 +151,7 @@ Ready artifacts:
 - 720-pair answer-blind lexical calibration subset;
 - 24 mixed semantic stress scenarios;
 - 216-pair blank P6 stress calibration packet;
-- 72 balanced participant forms: 36 P2 + 36 P6;
+- 108 balanced participant forms: 36 P2 + 36 P3 + 36 P6;
 - 84 unique main trials + 8 covert retests per form;
 - 72 platform-neutral form CSV files + index;
 - descriptive analysis, retest, and adjudication-triage code;
@@ -159,3 +159,18 @@ Ready artifacts:
 - figure/table plan.
 
 The next empirical gate requires real human responses. No synthetic/model-generated response is permitted to fill that role.
+
+
+### Why P3 was added
+
+A 2026 nearest-neighbor re-audit showed that coarse non-binary Twenty Questions responses are already present in prior adaptive-elicitation work. Therefore UCID no longer treats “more than YES/NO” as novel.
+
+The human calibration now contains:
+
+- **P2** — YES / NO;
+- **P3** — YES / NO / MAYBE;
+- **P6** — YES / NO / BORDERLINE / UNKNOWN / UNDEFINED / BOTH.
+
+The key mechanism test is **P3 → P6**: whether distinguishing *why* a binary answer fails adds value beyond a generic MAYBE option.
+
+The current engineering chain for the three-protocol design is verified in ARIS4C010 CI run **#61**. Power-sensitivity code for the P2→P3 and P3→P6 contrasts is verified in run **#62**.
