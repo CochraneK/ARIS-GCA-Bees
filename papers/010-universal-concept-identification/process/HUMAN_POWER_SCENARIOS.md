@@ -4,7 +4,7 @@ This is **not** the final registered power analysis. It documents how strongly s
 
 ## Approximation
 
-For a protocol-level contrast in retest consistency, the repository computes the usual two-proportion normal-approximation requirement and then applies the simple design effect:
+For a pairwise protocol contrast in retest consistency, the repository computes the usual two-proportion normal-approximation requirement and then applies the simple design effect:
 
 `DE = 1 + (m - 1) × ρ`
 
@@ -12,9 +12,19 @@ where `m = 8` repeated retest judgments and `ρ` is a participant-level intra-cl
 
 This does not capture crossed item effects and therefore cannot replace the final hierarchical-model power analysis.
 
-## Illustrative scenario
+## Mechanism-specific scenarios
 
-If P2 retest consistency is 0.80 and the scientifically meaningful P6 level is 0.88:
+The design now includes three protocols:
+
+- P2 = binary forcing;
+- P3 = coarse MAYBE escape;
+- P6 = fine-grained semantic states.
+
+Therefore the key contrasts are P2→P3 and P3→P6.
+
+## Illustrative P2→P3/P6-scale scenario
+
+If P2 retest consistency is 0.80 and a coarse/rich protocol reaches 0.88:
 
 - ignoring clustering requires roughly 329 effective retest observations per arm;
 - with `ρ = 0.05`, `DE = 1.35`;
@@ -23,7 +33,7 @@ If P2 retest consistency is 0.80 and the scientifically meaningful P6 level is 0
 Therefore:
 
 - one balanced form cycle: 36 participants/arm — primarily a feasibility stage;
-- two cycles: 72 participants/arm — more plausible for detecting an ~0.08 reliability difference under this illustrative ICC;
+- two cycles: 72 participants/arm — more plausible for detecting an ~0.08 pairwise reliability difference under this illustrative ICC;
 - smaller true differences can require substantially more participants.
 
 ## Why the project uses staged recruitment
@@ -36,8 +46,10 @@ The first cycle estimates:
 
 Those observed nuisance parameters can inform a properly frozen second-stage precision/power calculation without pretending that arbitrary assumptions are known in advance.
 
-The code `power_retest_scenarios.py` prints a sensitivity grid for:
-- P6 consistency 0.85 / 0.88 / 0.90 versus P2 = 0.80;
+The code `power_retest_scenarios.py` prints sensitivity grids for:
+
+- P2=.80 versus P3-like targets .85 / .88 / .90;
+- P3=.85 versus P6 targets .88 / .90 / .92;
 - participant-level ICC 0 / .05 / .10.
 
 ## Claim boundary
@@ -45,3 +57,14 @@ The code `power_retest_scenarios.py` prints a sensitivity grid for:
 Do not cite the approximate numbers as a definitive required sample size.
 
 The final confirmatory plan should simulate the intended hierarchical analysis using Stage-A nuisance estimates while keeping the effect-size target fixed independently of observed treatment/protocol differences.
+
+
+## Fine-graining is likely harder
+
+The scientifically distinctive comparison is P3→P6, not P2→P6.
+
+If P3 already raises retest consistency to 0.85 and P6 only raises it to 0.88, the absolute difference is 0.03. Under the same simple clustered approximation, that can require far more participants than the 0.08 scenario.
+
+Therefore a null P3→P6 result from one 36-person-per-arm cycle should not be interpreted as strong evidence that fine-grained states have no value. Stage A is primarily for nuisance-parameter estimation and feasibility.
+
+The final power simulation should use the intended hierarchical model and a pre-specified minimum worthwhile P3→P6 effect.
