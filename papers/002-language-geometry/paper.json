@@ -68,7 +68,8 @@
     "paper_zh": "complete",
     "figures": {
       "status": "complete",
-      "count": 3
+      "count": 6,
+      "strategy": "adaptive visual narrative; sequential main-text figures"
     },
     "tables": {
       "status": "complete",
