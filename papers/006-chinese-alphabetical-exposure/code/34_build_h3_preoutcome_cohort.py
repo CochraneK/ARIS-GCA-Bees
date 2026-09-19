@@ -190,6 +190,10 @@ def main():
 
     for k in range(0,len(ids),a.author_batch_size):
         batch=ids[k:k+a.author_batch_size]
+        # Engineering-only acceleration: resolve candidate canonical metadata in
+        # one OpenAlex batch instead of one author endpoint call per candidate.
+        # Sampling, cohort and identity rules are unchanged.
+        batch_author_meta=canonicalize_ids(batch)
         works=fetch_batch_histories(batch,2011,2025)
         # Canonicalize work-embedded IDs and assign each work to target candidates.
         byauthor=defaultdict(list)
@@ -223,11 +227,11 @@ def main():
                 hard.append("duplicate_canonical_authorship")
 
             # Canonical entity / ORCID provenance.
-            ar=author_record(aid)
-            resolved=short(ar.get("id"))
+            meta=batch_author_meta.get(aid) or ("","")
+            resolved=meta[0]
             if not resolved or resolved!=aid:
                 hard.append("canonical_author_resolution_failure")
-            orcid=ar.get("orcid") or ""
+            orcid=meta[1] or ""
             embedded_ids={short((au.get("author") or {}).get("id"))
                           for _,au,err in h if au and (au.get("author") or {}).get("id")}
             embedded_orcids={(au.get("author") or {}).get("orcid") or ""
