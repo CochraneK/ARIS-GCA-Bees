@@ -4,42 +4,46 @@
 
 **When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion**
 
-Pilot 0B raw v1 reliability remains a failed immutable instrument-validation result. All 141 disagreement cells have been diagnostically partitioned (30 lexical/token, 24 schema-overlap, 26 source/metadata, 61 genuine conceptual); controlled-vocabulary Schema v2 is frozen; and a fresh deterministic 30-record balanced validation sample with zero Pilot 0B overlap is frozen. Next gate: materialize identical blind evidence packets, then run genuinely independent A2/B2 coding before full evidence-map screening.
+Pilot 0B raw v1 reliability remains an immutable failed instrument-validation result. All 141 disagreement cells are diagnostically partitioned; controlled-vocabulary Schema v2 is frozen; a fresh balanced validation set was constructed; and the final blind pre-coding packet now contains usable abstract-level evidence for all 30 slots. Six evidence-unavailable slots were replaced before any A2/B2 labels existed using the frozen same-stratum deterministic evidence-availability rule.
 
 ## Current state
 
-- Activity: **active**
+- Activity: **block**
 - Progress: **66%**
-- Stage: **Schema v2 frozen · fresh 30-record validation sample frozen**
-- Evidence: Raw v1 Pilot 0B preserved; all 141 disagreement cells diagnostically partitioned (30 lexical/token, 24 schema-overlap, 26 source/metadata, 61 genuine conceptual); orthogonal controlled-vocabulary Schema v2 frozen; fresh deterministic 30-record sample frozen across 6 strata with zero Pilot 0B overlap
+- Stage: **Schema v2 · final blind bundle frozen · independent A2/B2 gate**
+- Final evidence packet SHA-256: `8eb9fd3782d480ce7412f378b422296047f5190e1208675e767ddcf7fc114ccf`
+- Final A2/B2 bundle SHA-256: `9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51`
+- Evidence coverage: **30/30 abstract excerpts**
+- A2/B2 blank response forms: **byte-identical**
 
 ## Immediate next action
 
-**Materialize identical blinded evidence packets for the frozen v2 sample, freeze packet hashes, then run genuinely independent A2/B2 coding and reliability scoring**
+**Run genuinely independent A2 and B2 coding on separate isolated execution surfaces.** Use:
+- `process/A2_INPUT_AMENDMENT_02_FREEZE.json`
+- `process/B2_INPUT_AMENDMENT_02_FREEZE.json`
+- `process/SCHEMA_V2_FROZEN.md`
+- `process/V2_INDEPENDENT_CODING_PROTOCOL.md`
+
+After each coder completes all V201–V230 rows, freeze the completed file with `code/freeze_v2_coder.py`. Do not expose one coder's completed labels to the other. Integrate only after both completion freezes exist, then run `code/score_v2_agreement.py`.
 
 ## Current blocker / gate
 
-No immediate engineering blocker; full 165-record evidence-map screening remains gated on fresh independent v2 reliability validation
+A genuinely independent second coding context is mandatory. **Do not run the current controller twice and call that independent A2/B2.** Full 165-record screening remains locked until v2 reliability passes.
 
 ## Canonical files / entry points
 
-- **paper.json:** paper.json
-- **process/status or plan:** process/RESEARCH_PLAN.md
-- **source:** https://github.com/CochraneK/ARIS4C/tree/main/papers/012-oppositional-causal-inversion
+- `process/SCHEMA_V2_FROZEN.md`
+- `process/V2_BLIND_PACKET_AMENDMENT_02_FREEZE.json`
+- `data/v2_blind_amendment_02/common_evidence_packet_amendment_02.jsonl`
+- `process/V2_INDEPENDENT_CODING_PROTOCOL.md`
+- `code/freeze_v2_coder.py`
+- `code/score_v2_agreement.py`
+- `paper.json`
 
 ## Before changing anything
 
-1. Read `TODO.md`, `DECISIONS.md`, and the newest entries in `CHATLOG.md` and `SESSION_LOG.md`.
-2. Preserve frozen/preregistered design decisions unless the repository explicitly records an authorized amendment.
-3. Do not broaden claims beyond the evidence state recorded in the manuscript/process files.
-4. Use **Cochrane Kang** for visible author naming.
-5. Do not commit secrets, private credentials, hidden chain-of-thought, or unnecessary sensitive personal data.
-6. After a material change, update canonical research files first, then continuity files.
-
-## Handoff completion rule
-
-Before ending a substantial session:
-- update `TODO.md`;
-- append any material research decision to `DECISIONS.md`;
-- append a public-safe conversation summary to `CHATLOG.md`;
-- append what was executed/validated to `SESSION_LOG.md`.
+1. Read `TODO.md`, `DECISIONS.md`, and the newest `SESSION_LOG.md`.
+2. Preserve all v1 raw results and v2 packet/sample freezes.
+3. Do not replace further records after either coder starts.
+4. Never merge only one completed coder result into `main`.
+5. Use **Cochrane Kang** for visible author naming.
