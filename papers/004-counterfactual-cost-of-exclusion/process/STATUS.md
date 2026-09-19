@@ -25,7 +25,7 @@ The independent reviewer has **not** yet supplied second-review judgments. This 
 
 ## Current state
 
-**RUNNING — pre-exposure scale-up / identity100 expansion**
+**RUNNING — pre-exposure scale-up / work-network audit + independent identity second review**
 
 The first-30 science pilot has passed identity, work-cleaning, and bounded downstream-network feasibility. The project is now expanding the same mental-health-blind identity/network pipeline to the full frozen 100-person science frame.
 
@@ -94,6 +94,20 @@ Final first-review states:
 
 Thus **18/30 = 60%** have a verified person ↔ OpenAlex mapping after first review.
 
+### Network100 acquisition
+
+Successful workflow run: `35407424125`.
+
+- verified people: **52**;
+- unique person-work records after deduplication: **2,956**;
+- fetch errors: **0**;
+- work shards: **8**;
+- held verified people requiring work-level review: **39**;
+- deterministic held-work audit sample: **334 works across 37 people**;
+- independent identity second-review set: **40 people**.
+
+These numbers are acquisition/triage outputs, not final network-release counts. No held person is auto-released from work-count thresholds alone.
+
 ### Pilot30 work/network release
 
 After work-level cleaning:
@@ -156,10 +170,11 @@ See:
 - [x] Build/audit verified-person work corpus and work-decision validator.
 - [x] Decontaminate sufficient held identities to expand pilot network frame from 9 to 13.
 - [x] Demonstrate bounded downstream citation neighborhoods for all 13.
-- [ ] Resolve/triage the remaining 70 frozen candidates under the same MH-blind protocol.
-- [ ] Produce and validate `identity_decisions_100_draft.csv`.
-- [ ] Adjudicate new provisional single/cluster identities at scale.
-- [ ] Build clean work corpora and network strata for newly verified identities.
+- [x] Resolve/triage the remaining 70 frozen candidates under the same MH-blind protocol.
+- [x] Produce and validate `identity_decisions_100_draft.csv` and freeze `identity_decisions_100.csv`.
+- [x] Adjudicate new provisional single/cluster identities at first review with zero provisional states.
+- [x] Acquire the 52 verified identities' network100 work corpus: 2,956 unique works, 0 fetch errors.
+- [ ] Audit held work corpora and release additional identities only under the frozen work codebook.
 - [ ] Measure final pre-exposure network observability by cohort, visibility, geography, gender and subdomain.
 - [ ] Run independent second-review audit of accepted identities / difficult clusters.
 - [ ] Decide whether an alternate region/subdomain sensitivity frame is required.
