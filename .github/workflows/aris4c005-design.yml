@@ -7,8 +7,12 @@ on:
       - ".github/workflows/aris4c005-design.yml"
       - "papers/005-hidden-burden-bad-science/code/prevalence_design.py"
       - "papers/005-hidden-burden-bad-science/code/adjudicator_error_design.py"
+      - "papers/005-hidden-burden-bad-science/code/calibration_anchor_design.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_prevalence_design.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_adjudicator_error_design.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_calibration_anchor_design.py"
+      - "papers/005-hidden-burden-bad-science/process/AI_CALIBRATION_ANCHOR_PROTOCOL.md"
+      - "papers/005-hidden-burden-bad-science/data/ai_calibration_anchor_template.csv"
   workflow_dispatch:
 
 permissions:
@@ -49,16 +53,25 @@ jobs:
           python "$PAPER_DIR/code/adjudicator_error_design.py" \
             "$PAPER_DIR/data/pilot/ai_adjudicator_error_design.json"
 
+      - name: Run AI calibration anchor design
+        run: |
+          python "$PAPER_DIR/code/calibration_anchor_design.py" \
+            "$PAPER_DIR/data/pilot/ai_calibration_anchor_design.json" \
+            --confidence 0.95
+
       - name: Validate design outputs
         run: |
           python - <<'PY'
           import json
           p1 = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/prevalence_design_summary.json', encoding='utf-8'))
           p2 = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/ai_adjudicator_error_design.json', encoding='utf-8'))
+          p3 = json.load(open('papers/005-hidden-burden-bad-science/data/pilot/ai_calibration_anchor_design.json', encoding='utf-8'))
           assert p1["classification"] == "DESIGN_SIMULATION_NOT_EMPIRICAL_PREVALENCE"
           assert p2["classification"] == "AI_ADJUDICATOR_ERROR_DESIGN_SCENARIOS_NOT_EMPIRICAL_ACCURACY"
+          assert p3["classification"] == "CALIBRATION_ANCHOR_ZERO_ERROR_DESIGN_NOT_MODEL_ACCURACY"
           assert len(p1["results"]) > 0
           assert len(p2["single_model_scenarios"]) > 0
+          assert len(p3["zero_error_design"]) > 0
           print('design outputs OK')
           PY
 
@@ -68,7 +81,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$PAPER_DIR/data/pilot/prevalence_design_summary.json" "$PAPER_DIR/data/pilot/ai_adjudicator_error_design.json"
+          git add "$PAPER_DIR/data/pilot/prevalence_design_summary.json" "$PAPER_DIR/data/pilot/ai_adjudicator_error_design.json" "$PAPER_DIR/data/pilot/ai_calibration_anchor_design.json"
           if git diff --cached --quiet; then
             echo "No design summary change."
             exit 0
