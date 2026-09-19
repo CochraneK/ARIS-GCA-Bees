@@ -1,0 +1,14 @@
+{
+  "source_workflow_run": 35407424125,
+  "verified_people_n": 52,
+  "unique_work_records_n": 2956,
+  "manual_review_work_rows_n": 2230,
+  "fetch_errors_n": 0,
+  "work_shards_n": 8,
+  "held_verified_people_n": 39,
+  "held_people_with_audit_sample_n": 37,
+  "held_work_audit_sample_rows_n": 334,
+  "identity_second_review_selected_n": 40,
+  "mental_health_information_used": false,
+  "note": "Durable public-safe summary copied from the successful network100 acquisition workflow logs. Work-level audit and independent identity second review remain gates before exposure coding."
+}
