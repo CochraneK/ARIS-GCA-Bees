@@ -39,6 +39,11 @@ jobs:
           BiocManager::install(version="3.17", ask=FALSE)
           BiocManager::install(c("sesame","sesameData"), ask=FALSE, update=FALSE)
 
+          # SHCDPM's design-matching step calls RPMM::blc. RPMM was a
+          # Bioconductor dependency in the 2023-era SeSAMe stack but is not
+          # installed by the minimal runtime dependency set.
+          BiocManager::install("RPMM", ask=FALSE, update=FALSE)
+
           # Bioconductor 3.17/3.18 era AnnotationHub/BiocFileCache code calls
           # collect(Inf), which became incompatible with dbplyr >=2.4.0.
           # Pin the last pre-breakage dbplyr release to reproduce the 2023
@@ -64,12 +69,14 @@ jobs:
           stopifnot(requireNamespace("sesame", quietly=TRUE))
           stopifnot(requireNamespace("sesameData", quietly=TRUE))
           stopifnot(requireNamespace("preprocessCore", quietly=TRUE))
+          stopifnot(requireNamespace("RPMM", quietly=TRUE))
           cat("R=", R.version.string, "\n")
           cat("Bioconductor=", as.character(BiocManager::version()), "\n")
           cat("sesame=", as.character(packageVersion("sesame")), "\n")
           cat("sesameData=", as.character(packageVersion("sesameData")), "\n")
           cat("dbplyr=", as.character(packageVersion("dbplyr")), "\n")
           cat("preprocessCore=", as.character(packageVersion("preprocessCore")), "\n")
+          cat("RPMM=", as.character(packageVersion("RPMM")), "\n")
 
           # The public Bioconductor 3.17 archive corresponding to the
           # 2023 Universal Clock release reports SeSAMe 1.18.4.
