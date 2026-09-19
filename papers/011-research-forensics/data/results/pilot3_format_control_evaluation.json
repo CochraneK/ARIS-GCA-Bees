@@ -1,0 +1,38 @@
+{
+  "paper": "ARIS4C011",
+  "pilot": "Pilot 3 formatting/honest-error control",
+  "target_doi": "10.1371/journal.pone.0263337",
+  "artifact_id": "plos_aceh_2022_table2_original",
+  "fixture_sha256": "28dcb3631d73d20afbe20e0f0c83490638774b7bc177c8d3b615289c863f86ef",
+  "benchmark_role": "FORMAT_CONTROL",
+  "confirmatory_performance_estimate": false,
+  "correction_metadata_visible_to_detector": false,
+  "detector_families": [
+    "table_consistency"
+  ],
+  "detector_versions": [
+    "table_arithmetic@pilot1-0.1.0"
+  ],
+  "finding_count": 10,
+  "flag_count": 0,
+  "statuses": [
+    "PASS"
+  ],
+  "decimal_separator_styles": [
+    "comma"
+  ],
+  "review_priority": "NONE",
+  "misconduct_inference": false,
+  "checks": {
+    "track_a_eligible": true,
+    "extraction_safe": true,
+    "finding_count_expected": true,
+    "statuses_expected": true,
+    "review_priority_expected": true,
+    "decimal_style_expected": true,
+    "zero_flags": true,
+    "no_misconduct_inference": true
+  },
+  "status": "PASS",
+  "interpretation": "Conservative non-escalation passed: locale-formatted Cronbach-alpha values were parsed as valid 0-1 values, produced PASS findings only, and generated review priority NONE. This is a development control and does not estimate confirmatory specificity."
+}
