@@ -208,17 +208,17 @@ CI run #30 confirms:
 
 ### Verified participant forms
 
-CI run #43 confirms:
+The **current three-protocol form artifact is locked to CI run #61** in `process/HUMAN_FORMS_LOCK.json`:
 
 - 108 total forms;
 - P2/P3/P6 = 36/36/36;
-- 84 unique main trials + 8 retests = 92 presented trials/form;
+- 84 unique main trials + 8 retests = 92 presented formal trials/form;
 - lexical pair main exposure = 3 per protocol per complete form cycle;
 - mixed-stress pair main exposure = 4 per protocol per complete form cycle;
 - 108 per-form CSVs + one index;
-- synthetic analyzer dry-run passes, including retest matching.
+- synthetic analyzer dry-run covers P2/P3/P6.
 
-The one failed CI attempt before run #43 exposed an immediate main/retest adjacency in one form; the ordering algorithm was changed to deterministic reshuffling until no adjacent duplicate remains. Run #43 verifies the fix.
+An earlier two-protocol development run exposed a possible immediate main/retest adjacency. The ordering algorithm was changed to deterministic reshuffling until no adjacent duplicate remains; the current run-#61 artifact is the canonical form lock.
 
 ### What is genuinely blocked
 
@@ -274,23 +274,16 @@ The surviving candidate contribution is narrower:
 
 This remains a provisional integration gap, not a frozen novelty claim.
 
-## Final engineering verification
+## Engineering verification history
 
-ARIS4C010 CI run **#49** completed successfully.
+CI run **#49** was a successful **pre-P3 engineering baseline**: all then-current Python tools compiled and the source/calibration/forms/UI/power plumbing executed. It is retained as history but is superseded for the current three-protocol design.
 
-It verifies:
+For the current design:
 
-- all Python tools compile with `py_compile`;
-- Pilots and source validators;
-- pinned OEWN Calibration60;
-- mixed P2/P3/P6 response-state packet;
-- 108 balanced participant forms;
-- CSV export;
-- synthetic analysis dry-run;
-- standalone no-backend annotation HTML;
-- retest power-sensitivity calculator.
+- **run #61** verifies the P2/P3/P6 chain and locks the 108-form artifact;
+- **run #62** verifies the updated power-sensitivity calculator.
 
-Illustrative retest sensitivity, assuming P2 consistency 0.80, 8 retests/person, two-sided alpha=.05, power=.80:
+Illustrative retest sensitivity from the earlier binary-to-rich protocol calculation, assuming P2 consistency 0.80, 8 retests/person, two-sided alpha=.05, power=.80:
 
 - target P6=.85, ICC=.05 → ~153 participants/arm;
 - target P6=.88, ICC=.05 → ~56 participants/arm;
