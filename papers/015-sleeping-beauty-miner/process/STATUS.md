@@ -29,6 +29,23 @@ Interpretation: this is a scientifically useful negative yield result, not evide
 
 Workflow: `ARIS4C015 Pilot M Multi-Stratum` run `35406774616`.
 
+## Track A retrospective discovery · successful throttled run
+
+The public-API-safe serial Track-A workflow completed across three outcome-enriched strata:
+
+- Physics 1980: 50 screened, **4 robust SB**, 16 near-gate;
+- Medicine 1980: 50 screened, **3 robust SB**, 5 near-gate;
+- Computer Science 1990: 50 screened, **6 robust SB**, 11 near-gate;
+- total: **150 screened, 13 unique strict robust SB**.
+
+This cohort is deliberately enriched using present-day citation count to reduce retrospective case-discovery cost. Therefore:
+- **prevalence estimation is forbidden** from this sample;
+- **prospective predictive-performance claims are forbidden** from this sample.
+
+This result complements the unselected 500-paper mechanism-yield diagnostic (0 robust SB): random small cohorts are suitable for prospective benchmarking, whereas Track A requires retrospective enrichment to efficiently find mechanism cases.
+
+Successful workflow run: `35407583375`.
+
 ## Completed
 
 ### Core agent / engineering
@@ -169,10 +186,10 @@ treated as universal constants.
 
 ## Immediate next gates
 
-1. Connect a reproducible SciSciNet-v2 or SciSciNet slice/query.
-2. Build the first empirical robust-SB mechanism cohort.
-3. Verify that robust SB cases actually exist before mechanism modeling.
-4. Quantify match yield for SB vs Forgotten and SB vs Immediate Hit.
+1. Freeze the 13 current robust Track-A cases with provenance and threshold sensitivity.
+2. Build an **unselected** same-field/year control reservoir with the same 2025 endpoint.
+3. Quantify match yield and balance for SB vs Forgotten and SB vs Immediate Hit.
+4. Expand retrospective discovery beyond the current 150 enriched candidates only after the matching gate is characterized.
 5. Add reference-combination / citation-network mechanism features.
 6. Run Prince / awakening-path analysis on confirmed cases.
 7. Expand prospective Pilot 1 beyond citation baselines and simple lexical
