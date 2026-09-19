@@ -228,6 +228,11 @@ prompt hash, if the committed prompt no longer hashes to what the judges were gi
 string in an outgoing artifact contains source speech.
 `.github/workflows/aris4c009-ai-judge-audit.yml` re-checks the same properties on every push.
 
+Both workflow checks were executed locally against the committed aggregates before this record was
+written: the privacy sweep and structure validation on the published files, and the three-judge mock
+smoke path against the current scorer. The audit workflow itself has no run history on `main` yet, so
+its first green run remains to be observed.
+
 ## 11. Open items carried into Gate D
 
 1. `coherent_boundary` AC1 0.74 — boundary edges, not window content, are where the judges

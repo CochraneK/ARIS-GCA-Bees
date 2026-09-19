@@ -26,7 +26,7 @@
 - [x] Aggregate agreement scorer implemented.
 - [x] Pre-AI-redesign real-DAIS-C packet/scorer smoke workflow passed.
 - [x] Smoke workflow has read-only repository permission and deletes private text.
-- [x] PR #90 updated the smoke workflow to three mock AI judges; post-PR90 workflow success has not yet been independently observed through the GitHub connector.
+- [x] PR #90 updated the smoke workflow to three mock AI judges; the post-PR90 run on `main` succeeded (2026-09-19T05:38:03Z).
 - [x] Boundary-judge manual and synthetic practice cases completed.
 - [x] DAIS-C disease-effect interpretation limits frozen.
 - [x] AMP-SCZ Release-4 Pilot-1 minimum-access plan and variable-family map drafted.
@@ -60,7 +60,8 @@ Turn-pair units are too often trivial for fidelity scoring.
 - target 40 → 745 windows; median 79 words; median 2 microepisodes/window;
 - target 80 → 550 windows; median 116 words; median 3 microepisodes/window.
 
-20 and 40 proceed to blinded multi-model AI calibration. 80 remains a rescue condition.
+20 and 40 proceed to blinded multi-model AI calibration; the Gate-C run below selected 40.
+80 remains a rescue condition.
 
 ### Boundary calibration (Gate C, executed 2026-09-19)
 
