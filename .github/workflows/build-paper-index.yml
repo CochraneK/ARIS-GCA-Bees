@@ -16,6 +16,7 @@ on:
       - 'ARIS4C_OPERATING_MODEL.md'
       - 'tools/portfolio_queue.py'
       - 'tools/sync_000_controller.py'
+      - 'tools/sync_progress_history.py'
       - '000/**'
       - 'ARIS4C_OUTPUT_STANDARD.md'
       - 'tools/migrate_aris4c.py'
@@ -53,6 +54,7 @@ jobs:
 
             python tools/migrate_aris4c.py
             python tools/audit_paper_outputs.py
+            python tools/sync_progress_history.py
             python tools/build_papers_index.py
             python tools/build_readme_assets.py
             python tools/build_readme.py
