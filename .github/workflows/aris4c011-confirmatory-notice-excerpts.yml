@@ -1,0 +1,60 @@
+name: ARIS4C011 short manager notice excerpts
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-confirmatory-notice-excerpts.yml"
+      - "papers/011-research-forensics/code/confirmatory_notice_excerpt.py"
+      - "papers/011-research-forensics/code/test_confirmatory_notice_excerpt.py"
+      - "papers/011-research-forensics/data/results/confirmatory_notice_evidence_v0.json"
+
+permissions:
+  contents: write
+
+jobs:
+  excerpts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python code/test_confirmatory_notice_excerpt.py -q
+      - run: |
+          python code/confirmatory_notice_excerpt.py \
+            --input data/results/confirmatory_notice_evidence_v0.json \
+            --output data/results/confirmatory_notice_excerpts_v0.json
+      - name: Audit excerpt cap and separation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("data/results/confirmatory_notice_excerpts_v0.json").read_text(encoding="utf-8"))
+          assert x["row_count"]==80
+          assert x["max_excerpt_words"]==80
+          assert x["full_notice_text_committed"] is False
+          assert all(r["excerpt_word_count"]<=80 for r in x["rows"])
+          assert all(r["manager_only"] is True and r["track_a_input_allowed"] is False for r in x["rows"])
+          print(json.dumps({"rows":80,"nonempty":x["rows_with_nonempty_excerpt"],"errors":x["rows_with_error"]},indent=2))
+          PY
+      - name: Commit short manager excerpts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/confirmatory_notice_excerpts_v0.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ARIS4C011 add capped manager notice excerpts v0"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git pull --rebase origin main
+            if git push; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1
