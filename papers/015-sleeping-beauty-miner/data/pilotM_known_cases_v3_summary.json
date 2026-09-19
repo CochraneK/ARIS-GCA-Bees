@@ -1,0 +1,120 @@
+{
+  "pilot": "ARIS4C015 Pilot M known-SB case enrichment v3",
+  "workflow_run_id": 35427591815,
+  "workflow_head_sha": "3ce9f09975f2858fd362ac4cfe727b815df047c3",
+  "source": "OpenAlex live API",
+  "observation_end_year": 2011,
+  "n_input_papers": 153,
+  "n_robust_sb": 5,
+  "state_counts": {
+    "AMBIGUOUS": 14,
+    "FADING": 18,
+    "FORGOTTEN": 94,
+    "IMMEDIATE_HIT": 14,
+    "LOW_EARLY_HIGH_LATE_UNCONFIRMED": 8,
+    "SLEEPING_BEAUTY": 5
+  },
+  "known_reference_cases": [
+    {
+      "case_id": "ke2015_02_hummers",
+      "openalex_id": "W4233194460",
+      "title": "Preparation of Graphitic Oxide",
+      "field_id": "25",
+      "state": "SLEEPING_BEAUTY",
+      "relative_quadrant": "AMBIGUOUS",
+      "post_awakening_fate": "EXPANDED_AFTER_AWAKENING",
+      "beauty_coefficient": 12679.32561276233,
+      "variable_sleep_years": 48
+    },
+    {
+      "case_id": "ke2015_06_epr",
+      "openalex_id": "W1986407511",
+      "title": "Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?",
+      "field_id": "31",
+      "state": "SLEEPING_BEAUTY",
+      "relative_quadrant": "IMMEDIATE_HIT",
+      "post_awakening_fate": "EXPANDED_AFTER_AWAKENING",
+      "beauty_coefficient": 2458.7234032730785,
+      "variable_sleep_years": 32
+    },
+    {
+      "case_id": "ke2015_07_washburn",
+      "openalex_id": "W2058046601",
+      "title": "The Dynamics of Capillary Flow",
+      "field_id": "25",
+      "state": "SLEEPING_BEAUTY",
+      "relative_quadrant": "IMMEDIATE_HIT",
+      "post_awakening_fate": "EXPANDED_AFTER_AWAKENING",
+      "beauty_coefficient": 2472.077704420081,
+      "variable_sleep_years": 61
+    }
+  ],
+  "additional_provisional_robust_candidates": [
+    {
+      "openalex_id": "W2018826127",
+      "title": "An Experimental Study of the Reflection of X-Rays from Calcite",
+      "doi": "10.1103/PhysRev.17.608",
+      "publication_year": 1921,
+      "beauty_coefficient": 938.829268292683,
+      "variable_sleep_years": 82,
+      "status": "PROVISIONAL_OPENALEX_ROBUST_SB"
+    },
+    {
+      "openalex_id": "W2006869700",
+      "title": "Some Studies Concerning Rotating Axes and Polyatomic Molecules",
+      "doi": "10.1103/PhysRev.47.552",
+      "publication_year": 1935,
+      "beauty_coefficient": 270.41723301211414,
+      "variable_sleep_years": 39,
+      "status": "PROVISIONAL_OPENALEX_ROBUST_SB"
+    }
+  ],
+  "primary_contrast": {
+    "name": "SB_vs_AT_RISK_DORMANT",
+    "design": "event-time risk-set matching",
+    "match_rate": 1,
+    "n_matches": 5,
+    "balance_pass": false,
+    "max_abs_smd_threshold": 0.1,
+    "max_observed_abs_smd": 0.949546820948398,
+    "abs_smd": {
+      "sleep_rate_to_case_event": 0.949546820948398,
+      "reference_count": 0.5616875979995275,
+      "author_count": 0.5656854249492381
+    }
+  },
+  "secondary_contrasts": {
+    "SB_vs_FORGOTTEN": {
+      "match_rate": 1,
+      "n_matches": 5,
+      "balance_pass": false,
+      "max_observed_abs_smd": 3.3169377905473816
+    },
+    "SB_vs_IMMEDIATE_HIT": {
+      "match_rate": 1,
+      "n_matches": 5,
+      "balance_pass": false,
+      "max_observed_abs_smd": 0.7993360076321755
+    }
+  },
+  "mechanism_ready": true,
+  "mechanism_analysis_ready": false,
+  "mechanism_analysis_block_reasons": [
+    "SB-vs-at-risk-dormant observed covariates remain imbalanced",
+    "Beauty Coefficient threshold is not validated for this source"
+  ],
+  "methodological_findings": [
+    "Robust Sleeping Beauty identity is separate from cohort-relative early/late trajectory quadrant.",
+    "Event-time risk-set matching is the primary mechanism contrast; Forgotten and Immediate-Hit comparisons are secondary.",
+    "Risk-set matching improved the worst sleep-depth imbalance relative to SB-vs-Forgotten (about 0.95 versus about 3.32) but remains far above the prespecified 0.10 balance threshold.",
+    "A 50-control-per-known-case pool is sufficient for match yield but not for acceptable covariate balance.",
+    "The two additional robust cases remain provisional until cross-source validation and source-specific B calibration."
+  ],
+  "next_gate": "Expand the at-risk control reservoir without relaxing the balance threshold; validate B/source sensitivity with SciSciNet-v2 or another independent source before substantive mechanism inference.",
+  "latest_ci": {
+    "head_sha": "8589012e4bc59f9f0d2eef8d9f2f47647026f0d4",
+    "workflow_run_id": 35427583429,
+    "conclusion": "success"
+  },
+  "computed_at": "2026-09-19"
+}
