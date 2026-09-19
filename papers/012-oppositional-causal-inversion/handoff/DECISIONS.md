@@ -104,3 +104,26 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Boundary:** the manifest is not yet a coder packet. Identical blinded evidence packets must be materialized and hashed before independent A2/B2 coding.
 
 **Canonical artifacts:** `data/v2_validation_sample_manifest.csv`, `process/V2_VALIDATION_SAMPLE_FREEZE.json`, `process/V2_VALIDATION_SAMPLE_AUDIT.md`, `code/draw_v2_validation_sample.py`.
+
+## 2026-09-19 · Final v2 blind evidence bundle frozen
+
+**Decision:** Do not start independent coding on the first materialized packet because 6/30 records were bibliographic-only. Preserve that packet and its hashes as provenance.
+
+**Evidence-availability sequence:**
+- initial immutable packet: 24 abstract excerpts / 6 bibliographic-only; bundle `62006415127acc5a8d9385067691dad1a0d7592382b188dba926c364b921662a`;
+- Amendment 01: attempted public DOI/landing-page metadata enrichment for only the six missing slots; recovered 0/6 and changed neither sample nor labels;
+- Amendment 02: before any A2/B2 labels existed, applied a frozen same-stratum fixed-hash rule and selected the first evidence-materializable fresh candidate for each missing slot.
+
+**Final result:** 30/30 records have abstract excerpts; six replacements were selected solely by evidence availability under the pre-frozen deterministic rule. No Pilot-0, A2/B2, adjudication, anticipated result direction, or manuscript usefulness was used for replacement selection.
+
+**Final bundle:** evidence packet SHA-256 `8eb9fd3782d480ce7412f378b422296047f5190e1208675e767ddcf7fc114ccf`; A2/B2 bundle SHA-256 `9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51`.
+
+## 2026-09-19 · Independent A2/B2 becomes a hard external gate
+
+**Decision:** Transition ARIS4C012 from Active to Block after the final pre-coding bundle freeze.
+
+**Why:** The current controller has no genuinely independent second coding execution surface. Running the same controller/context twice would not satisfy the frozen independence contract.
+
+**Safeguard:** A2 and B2 must use separate isolated execution surfaces, each freeze its completed labels before comparison, and neither completed coder file may be exposed to the other before both freezes exist. The repository workflow rejects partial one-coder integration on `main`.
+
+**Next gate:** genuinely independent A2/B2 → separate completion freezes → v2 reliability scoring → only a PASS unlocks the 165-record evidence-map screen.
