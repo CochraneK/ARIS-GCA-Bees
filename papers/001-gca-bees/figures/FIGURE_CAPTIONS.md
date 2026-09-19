@@ -8,3 +8,9 @@ Published one-factor loadings reported by Peñaherrera-Aguirre et al. (2024) for
 
 ## Figure 3. Synthetic model-recovery diagnostic
 BIC model-selection rates across 200 synthetic replications at each sample size under a two-correlated-factor data-generating model (loading = 0.65; latent-factor correlation = 0.35). This is an experimental-design diagnostic only and **not empirical evidence about bees**.
+
+## Figure 4
+**Evidence boundary between the two literatures.** Existing studies establish structured learning covariance and difficulty-sensitive opt-out behavior separately. The decisive missing edge is same-individual coupling; broader mechanistic claims are therefore not yet identified.
+
+## Figure 5
+**Decisive same-individual experiment.** Learning and uncertainty-sensitive choice are measured in the same identified bees, with nuisance variables retained and five competing models compared using held-out predictive and calibration criteria.
