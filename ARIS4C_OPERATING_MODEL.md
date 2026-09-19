@@ -1,7 +1,7 @@
 # ARIS4C Operating Model · v1
 
 **Effective:** 2026-09-19  
-**Owner:** Cochrane Kang  
+**Owner:** CochraneK  
 **Scope:** how ARIS4C 000 schedules, executes, checkpoints, and switches among numbered papers
 
 ## 1. Control-plane model
