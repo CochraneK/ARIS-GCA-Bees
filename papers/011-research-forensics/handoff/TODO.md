@@ -2,13 +2,13 @@
 
 ## P0 · Next gate
 
-- [ ] Run the formatting/honest-error CONTROL case `10.1371/journal.pone.0263337` through the reporting stack; confirm conservative non-escalation.
+- [x] Run the formatting/honest-error CONTROL case `10.1371/journal.pone.0263337` through the reporting stack; conservative non-escalation PASS: 10/10 PASS findings, 0 flags, review priority NONE, no misconduct inference.
 - [ ] Build a small matched **no-known-integrity-concern comparator** set.
 - [ ] Continue Pilot 3 with the unresolved voxel/Brodmann-area table case as the next structured-content acquisition target.
 
 ## P1 · Development summary
 
-- [ ] Summarize the five pre-outcome development true-positive evaluations by detector family, applicability, evidence class, abstention and complementarity.
+- [ ] Summarize the five pre-outcome development true-positive evaluations **plus the formatting-control non-escalation case** by detector family, applicability, evidence class, abstention and complementarity.
 - [ ] Preserve the enriched-development label; do **not** estimate confirmatory sensitivity/precision/superiority from Pilot 3.
 - [ ] Keep corrections/retractions manager-only during detector execution.
 - [ ] Verify every new case at `paper × issue × required artifact role` level before scoring.
