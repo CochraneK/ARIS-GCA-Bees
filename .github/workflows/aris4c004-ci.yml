@@ -7,6 +7,7 @@ on:
       - "papers/004-counterfactual-cost-of-exclusion/code/**"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_person_work_decisions_v1.csv"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_held_work_audit_sample.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_reviewed_work_audit_evidence_v1.csv"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_verified_work_summary.csv"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_full_work_review_v1.csv"
       - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
@@ -62,6 +63,7 @@ jobs:
           --identities papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv
           --work-summary papers/004-counterfactual-cost-of-exclusion/data/derived/network100_verified_work_summary.csv
           --audit-sample papers/004-counterfactual-cost-of-exclusion/data/derived/network100_held_work_audit_sample.csv
+          --reviewed-audit-evidence papers/004-counterfactual-cost-of-exclusion/data/derived/network100_reviewed_work_audit_evidence_v1.csv
           --prior-work-decisions papers/004-counterfactual-cost-of-exclusion/data/derived/work_decisions_pilot30.csv
           --full-work-review papers/004-counterfactual-cost-of-exclusion/data/derived/network100_full_work_review_v1.csv
 
