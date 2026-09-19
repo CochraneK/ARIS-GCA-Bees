@@ -1,0 +1,73 @@
+name: ARIS4C006 full convention build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  convention-field:
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        field_id: [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build outcome-blind field convention
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/22_materialize_field_convention.py \
+            --field-id ${{ matrix.field_id }} \
+            --start-year 2008 \
+            --end-year 2024 \
+            --annual-D 35 \
+            --annual-D3 20 \
+            --max-blocks 4 \
+            --outdir data/final_convention/field_${{ matrix.field_id }}
+      - name: Upload field convention artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-final-convention-field-${{ matrix.field_id }}
+          path: ${{ env.PAPER_DIR }}/data/final_convention/field_${{ matrix.field_id }}/
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate-convention:
+    needs: convention-field
+    if: ${{ always() && !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all field artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c006-final-convention-field-*
+          path: ${{ env.PAPER_DIR }}/data/final_convention_artifacts
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Aggregate and validate all 26 fields
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/23_aggregate_final_convention.py \
+            data/final_convention_artifacts \
+            --outdir data/final_convention_aggregate
+      - name: Upload aggregate convention artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-final-convention-aggregate
+          path: ${{ env.PAPER_DIR }}/data/final_convention_aggregate/
+          if-no-files-found: error
+          retention-days: 30
