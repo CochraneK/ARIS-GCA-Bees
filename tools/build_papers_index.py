@@ -346,7 +346,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
               <div>
                 <p class="eyebrow">TODAY · GIT-DERIVED</p>
                 <h2 id="progressHistoryTitle">Today's progress</h2>
-                <p>Only papers whose progress changed today · Finish is hidden from this curve only.</p>
+                <p>Only papers whose progress changed today.<br>Finish is hidden from this curve only.</p>
               </div>
               <strong class="progress-history-day">{esc(day_history.get("date", ""))}</strong>
             </div>
