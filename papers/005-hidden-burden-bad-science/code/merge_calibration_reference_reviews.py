@@ -27,8 +27,22 @@ from pathlib import Path
 from typing import Any
 
 STATES = {"SEVERE_SUPPORTED", "NON_SEVERE_SUPPORTED", "UNRESOLVED"}
+DETAIL_STATES = {
+    "SEVERE_SUPPORTED",
+    "HONEST_MAJOR_ERROR",
+    "MINOR_OR_IMMATERIAL",
+    "NO_MATERIAL_PROBLEM_FOUND",
+    "SERIOUS_UNRESOLVED",
+    "INDETERMINATE",
+}
+NEGATIVE_DETAIL_STATES = {
+    "HONEST_MAJOR_ERROR",
+    "MINOR_OR_IMMATERIAL",
+    "NO_MATERIAL_PROBLEM_FOUND",
+}
+UNRESOLVED_DETAIL_STATES = {"SERIOUS_UNRESOLVED", "INDETERMINATE"}
 QUALITIES = {"A", "B", "C", "UNRESOLVED"}
-MATERIALITY = {"MATERIAL", "SCIENTIFICALLY_UNAFFECTED", "UNKNOWN"}
+MATERIALITY = {"MATERIAL", "IMMATERIAL", "SCIENTIFICALLY_UNAFFECTED", "UNKNOWN"}
 ACCESS = {"FULL_PRIMARY", "PARTIAL_PRIMARY", "SECONDARY_ONLY", "NO_ACCESS"}
 FORBIDDEN_REFERENCE_IDS = {
     "AI_A",
@@ -75,6 +89,20 @@ def norm(value: str | None) -> str:
     return (value or "").strip().upper()
 
 
+def valid_detail_materiality(detail: str, materiality: str) -> bool:
+    if detail == "SEVERE_SUPPORTED":
+        return materiality == "MATERIAL"
+    if detail == "HONEST_MAJOR_ERROR":
+        return materiality == "MATERIAL"
+    if detail == "MINOR_OR_IMMATERIAL":
+        return materiality in {"IMMATERIAL", "SCIENTIFICALLY_UNAFFECTED"}
+    if detail == "NO_MATERIAL_PROBLEM_FOUND":
+        return materiality == "SCIENTIFICALLY_UNAFFECTED"
+    if detail in UNRESOLVED_DETAIL_STATES:
+        return materiality in MATERIALITY
+    return False
+
+
 def validate_review(row: dict[str, str]) -> None:
     cid = (row.get("candidate_id") or "").strip()
     if not cid:
@@ -91,12 +119,21 @@ def validate_review(row: dict[str, str]) -> None:
         raise ValueError(f"{cid}: prompt_version must be CAL-REF-V1")
 
     state = norm(row.get("reference_state"))
+    detail = norm(row.get("reference_scientific_state_detail"))
     quality = norm(row.get("anchor_quality"))
     materiality = norm(row.get("materiality_assessment"))
     access = norm(row.get("evidence_access"))
 
     if state not in STATES:
         raise ValueError(f"{cid}: invalid reference_state {state!r}")
+    if detail not in DETAIL_STATES:
+        raise ValueError(f"{cid}: invalid reference_scientific_state_detail {detail!r}")
+    if state == "SEVERE_SUPPORTED" and detail != "SEVERE_SUPPORTED":
+        raise ValueError(f"{cid}: severe binary state/detail mismatch")
+    if state == "NON_SEVERE_SUPPORTED" and detail not in NEGATIVE_DETAIL_STATES:
+        raise ValueError(f"{cid}: non-severe binary state/detail mismatch")
+    if state == "UNRESOLVED" and detail not in UNRESOLVED_DETAIL_STATES:
+        raise ValueError(f"{cid}: unresolved binary state/detail mismatch")
     if quality not in QUALITIES:
         raise ValueError(f"{cid}: invalid anchor_quality {quality!r}")
     if materiality not in MATERIALITY:
@@ -121,14 +158,9 @@ def validate_review(row: dict[str, str]) -> None:
         if not (row.get(field) or "").strip():
             raise ValueError(f"{cid}: missing required {field}")
 
-    if state == "SEVERE_SUPPORTED" and materiality != "MATERIAL":
-        raise ValueError(f"{cid}: severe reference requires MATERIAL")
-    if (
-        state == "NON_SEVERE_SUPPORTED"
-        and materiality != "SCIENTIFICALLY_UNAFFECTED"
-    ):
+    if not valid_detail_materiality(detail, materiality):
         raise ValueError(
-            f"{cid}: non-severe reference requires SCIENTIFICALLY_UNAFFECTED"
+            f"{cid}: materiality {materiality!r} is inconsistent with detailed state {detail!r}"
         )
 
 
@@ -173,6 +205,8 @@ def merge_reference_reviews(
 
         state_a = norm(ra.get("reference_state"))
         state_b = norm(rb.get("reference_state"))
+        detail_a = norm(ra.get("reference_scientific_state_detail"))
+        detail_b = norm(rb.get("reference_scientific_state_detail"))
         quality_a = norm(ra.get("anchor_quality"))
         quality_b = norm(rb.get("anchor_quality"))
 
@@ -181,6 +215,9 @@ def merge_reference_reviews(
             continue
         if state_a != state_b:
             status_counts["STATE_DISAGREEMENT"] += 1
+            continue
+        if detail_a != detail_b:
+            status_counts["DETAIL_DISAGREEMENT"] += 1
             continue
 
         final_quality = worse_quality(quality_a, quality_b)
@@ -194,23 +231,20 @@ def merge_reference_reviews(
         materiality_a = norm(ra.get("materiality_assessment"))
         materiality_b = norm(rb.get("materiality_assessment"))
 
+        if (
+            not valid_detail_materiality(detail_a, materiality_a)
+            or not valid_detail_materiality(detail_b, materiality_b)
+        ):
+            status_counts["MATERIALITY_MISMATCH"] += 1
+            continue
+
         if state_a == "SEVERE_SUPPORTED":
-            if materiality_a != "MATERIAL" or materiality_b != "MATERIAL":
-                status_counts["MATERIALITY_MISMATCH"] += 1
-                continue
             family = "P+"
             binary = 1
-            scientific_state = "SEVERE_SUPPORTED"
         else:
-            if (
-                materiality_a != "SCIENTIFICALLY_UNAFFECTED"
-                or materiality_b != "SCIENTIFICALLY_UNAFFECTED"
-            ):
-                status_counts["MATERIALITY_MISMATCH"] += 1
-                continue
             family = "N+"
             binary = 0
-            scientific_state = "NO_MATERIAL_PROBLEM_FOUND"
+        scientific_state = detail_a
 
         evidence_source = " | ".join(
             sorted(
@@ -256,11 +290,7 @@ def merge_reference_reviews(
                 "evidence_type": evidence_type,
                 "evidence_source": evidence_source,
                 "evidence_locator": evidence_locator,
-                "materiality_basis": (
-                    "MATERIAL"
-                    if binary == 1
-                    else "SCIENTIFICALLY_UNAFFECTED"
-                ),
+                "materiality_basis": materiality_a,
                 "adjudication_blinded": 1,
                 "notes": (
                     "machine-assisted dual-reference consensus; "
