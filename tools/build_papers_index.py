@@ -247,7 +247,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but waiting, or externally blocked. Each project exposes PDF-first English and Chinese paper entrances when available.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but idle, or externally blocked. Each project exposes PDF-first English and Chinese paper entrances when available.</p>
           <div class="overview">
             <div class="metric"><strong>{finish}</strong><span>finish</span></div>
             <div class="metric"><strong>{active}</strong><span>active now</span></div>
