@@ -280,8 +280,8 @@ when the canonical author has >=1 eligible article/conference-paper in `e+4` or 
 It measures observed bibliographic persistence, not true employment retention or academic exit.
 
 Early exposure:
-- mean LOAO primary-field exposure across eligible works in `e ... e+2`;
-- require >=2 exposure-defined early works.
+- mean LOAO primary-field exposure across eligible article/conference-paper works in `e ... e+2` on which the focal author's own authorship is CN-affiliated;
+- require >=2 such exposure-defined CN-affiliated early works.
 
 Stable surname vulnerability:
 
