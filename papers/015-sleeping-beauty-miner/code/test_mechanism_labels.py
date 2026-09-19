@@ -130,11 +130,20 @@ class MechanismLabelTests(unittest.TestCase):
         )
         self.assertEqual(result.state, "FORGOTTEN")
 
-    def test_middle_zone_is_ambiguous(self):
+    def test_robust_sb_overrides_relative_middle_zone(self):
         result = classify_mechanism_state(
             early_percentile=0.50,
             late_percentile=0.90,
             robust_sb=True,
+        )
+        self.assertEqual(result.state, "SLEEPING_BEAUTY")
+        self.assertEqual(result.quadrant_state, "AMBIGUOUS")
+
+    def test_middle_zone_without_robust_gate_is_ambiguous(self):
+        result = classify_mechanism_state(
+            early_percentile=0.50,
+            late_percentile=0.90,
+            robust_sb=False,
         )
         self.assertEqual(result.state, "AMBIGUOUS")
 
