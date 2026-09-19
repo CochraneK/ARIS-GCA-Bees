@@ -2,7 +2,7 @@
 
 - **Title:** Colonial Legacies and the Global Geography of Disciplinary Advantage
 - **Project status:** analysis-running
-- **Activity:** ready-to-resume
+- **Activity:** active
 - **Portfolio progress:** 70%
 - **Current stage:** Outcome materialization recovery · deterministic sharded fallback
 - **Evidence established:** COLDAT + CEPII audited · confirmatory Qoder/Qwen Flash 3.8 Coder B validated · 12-cell outcome-blind adjudication · IKES frozen with SHA-256 provenance · strict gate DESIGN_LOCKED/OUTCOME_UNLOCKED

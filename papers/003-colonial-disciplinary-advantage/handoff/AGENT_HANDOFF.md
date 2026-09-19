@@ -8,7 +8,7 @@ A locked, outcome-unblinded cross-national and cross-disciplinary test of whethe
 
 ## Current state
 
-- Activity: **ready-to-resume**
+- Activity: **active**
 - Progress: **70%**
 - Stage: **Outcome materialization recovery · deterministic sharded fallback**
 - Evidence: COLDAT + CEPII audited · confirmatory Qoder/Qwen Flash 3.8 Coder B validated · 12-cell outcome-blind adjudication · IKES frozen with SHA-256 provenance · strict gate DESIGN_LOCKED/OUTCOME_UNLOCKED
