@@ -139,6 +139,69 @@ A Prince score is descriptive. It does not establish causal awakening.
 
 Multiple Princes and gradual awakening must remain valid outputs.
 
+## Track M temporal phases
+
+Mechanism analysis must label evidence by when it exists relative to the
+Sleeping Beauty trajectory.
+
+### M0 — Publication-state evidence
+
+Available at or immediately after publication:
+
+- reference combinations;
+- author/network position;
+- journal/source/indexing context;
+- contemporaneous semantic distance;
+- document type and reference count.
+
+Use to study initial visibility and field readiness.
+
+### M1 — Sleep-period evidence
+
+Observed after publication but before the case-specific awakening boundary:
+
+- cumulative citation rate during the sleep window;
+- changes in semantic-neighborhood size;
+- emergence of related methods/technologies;
+- changes in bibliographic-coupling neighborhood;
+- weak diffusion into adjacent communities.
+
+Use to study persistence of neglect and latent field development.
+
+### M2 — Awakening-window evidence
+
+Observed near the identified awakening:
+
+- candidate Prince papers;
+- sudden co-citation growth;
+- new citing communities;
+- technology/patent/application events;
+- review/guideline events where timestamped.
+
+Use to study awakening triggers.
+
+### M3 — Post-awakening evidence
+
+Observed only after awakening.
+
+This may describe consequences of awakening but must not be used to explain
+why the paper was initially neglected. It is forbidden as a prospective
+feature before the corresponding historical cutoff.
+
+### Anti-time-reversal rule
+
+A later event cannot be used as evidence for the cause of initial neglect
+without an explicit longitudinal/causal design.
+
+For example:
+
+- a 2005 Prince paper may help explain a 2005 awakening;
+- it cannot be used as a feature claiming why a 1958 paper was overlooked at
+  publication.
+
+Track M may use later evidence to study awakening mechanisms. Track B may use
+only evidence available by its historical cutoff.
+
 ## Feature-family separation
 
 For ablation, keep at least these families distinct:
