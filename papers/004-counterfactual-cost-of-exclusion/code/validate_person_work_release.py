@@ -7,7 +7,7 @@ from pathlib import Path
 from collections import Counter
 
 VERIFIED={"VERIFIED_SINGLE","VERIFIED_CLUSTER"}
-ALLOWED={"RELEASE_SAMPLE_PASS","RELEASE_FULL_WORK_REVIEW","HOLD_INSUFFICIENT_CLEAN_WORKS","ESCALATE_TARGETED_WORK_REVIEW"}
+ALLOWED={"RELEASE_SAMPLE_PASS","RELEASE_FULL_WORK_REVIEW","HOLD_INSUFFICIENT_CLEAN_WORKS","HOLD_UNRESOLVED_WORK_CONTAMINATION","ESCALATE_TARGETED_WORK_REVIEW"}
 
 def truthy(v): return (v or "").strip().lower() in {"1","true","yes","y"}
 def read(p):
@@ -98,6 +98,11 @@ def main():
         elif dec=="HOLD_INSUFFICIENT_CLEAN_WORKS":
             if not (plausible<5 or prior_keep[pid]<5 and prior_keep[pid]>0):
                 errors.append(f"{pid}: insufficient-work hold not supported (plausible={plausible}, prior_keep={prior_keep[pid]})")
+        elif dec=="HOLD_UNRESOLVED_WORK_CONTAMINATION":
+            if plausible<5:
+                errors.append(f"{pid}: unresolved-contamination hold requires >=5 mechanically plausible works; use insufficient-work hold instead (plausible={plausible})")
+            if approved:
+                errors.append(f"{pid}: unresolved-contamination hold cannot approve network release")
 
     if errors:
         print(f"FAIL: {len(errors)} person-work decision invariant error(s)",file=sys.stderr)
