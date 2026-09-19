@@ -35,7 +35,7 @@ def pair_row(target, query):
         "query_id": query["query_id"],
         "query_text": query["text"],
         "query_kind": query["query_kind"],
-        "protocols": ["P2", "P6"],
+        "protocols": ["P2", "P3", "P6"],
         "response": None,
         "confidence": None,
         "annotator_id": None,
@@ -72,7 +72,7 @@ def main():
     payload_common = {
         "source_pool": pool["dataset_id"],
         "query_bank": qbank["dataset_id"],
-        "protocols": ["P2", "P6"],
+        "protocols": ["P2", "P3", "P6"],
         "gold_status": "unannotated",
         "warning": "Blank annotation packet. No response in this file is semantic ground truth.",
     }
