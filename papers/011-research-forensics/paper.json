@@ -4,15 +4,15 @@
   "title": "Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening",
   "short_title": "Research Forensics",
   "year": 2026,
-  "status": "methods-draft-agent-skill-pilot3-control-passed",
+  "status": "methods-draft-agent-skill-pilot3-development-summary",
   "domain": "metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication",
-  "summary": "A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now includes five time-safe pre-outcome development true-positive evaluations plus a SAFE_EXACT formatting/honest-error control that correctly produced zero flags and review priority NONE; confirmatory performance inference remains frozen pending a broader comparator corpus and protocol lock.",
+  "summary": "A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now has six time-safe pre-outcome development FLAG evaluations across five target papers, a SAFE_EXACT formatting/honest-error control with zero flags, and four matched no-known-integrity-concern development comparators frozen by full-text hash; confirmatory performance inference remains frozen pending a broader time-safe corpus and protocol lock.",
   "authors": [
     "Cochrane Kang"
   ],
   "aris": {
     "provenance": "ARIS4C guided design with live prior-art and source-anatomy audits; benchmark protocol and evidence semantics frozen before confirmatory corpus construction",
-    "version": "v0.4.26",
+    "version": "v0.4.27",
     "commit": ""
   },
   "links": {
@@ -21,7 +21,10 @@
     "pipeline": "process/RESEARCH_PLAN.md",
     "skill": "agent/research-forensics/SKILL.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/011-research-forensics",
-    "pilot3_format_control": "data/results/pilot3_format_control_evaluation.json"
+    "pilot3_format_control": "data/results/pilot3_format_control_evaluation.json",
+    "pilot3_development_summary": "process/PILOT3_DEVELOPMENT_SUMMARY.md",
+    "pilot3_comparator_freeze": "data/results/pilot3_comparator_fulltext_freeze.json",
+    "pilot3_voxel_ba": "data/results/pilot3_voxel_ba_evaluation.json"
   },
   "tags": [
     "ARIS",
