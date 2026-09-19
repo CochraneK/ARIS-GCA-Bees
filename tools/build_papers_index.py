@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ROOT / "papers"
 OUT = ROOT / "docs" / "index.html"
 DASHBOARD = PAPERS / "dashboard.json"
+PROGRESS_HISTORY = PAPERS / "progress_history.json"
 REPO_URL = "https://github.com/CochraneK/ARIS4C"
 
 
@@ -41,6 +42,12 @@ def load_dashboard() -> dict:
     if not DASHBOARD.exists():
         return {"projects": {}}
     return json.loads(DASHBOARD.read_text(encoding="utf-8"))
+
+
+def load_progress_history() -> dict:
+    if not PROGRESS_HISTORY.exists():
+        return {"schema_version": 1, "points": []}
+    return json.loads(PROGRESS_HISTORY.read_text(encoding="utf-8"))
 
 
 def esc(value: object) -> str:
@@ -185,7 +192,7 @@ def showcase_card(p: dict, dashboard: dict) -> str:
       </article>"""
 
 
-def build(papers: list[dict], dashboard: dict) -> str:
+def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     projects = dashboard.get("projects", {})
     cards = "\n".join(card(p, dashboard) for p in papers)
     showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
@@ -196,6 +203,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
     wait = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "wait")
     block = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "block")
     mature = sum(1 for v in progresses if v >= 45)
+    history_json = json.dumps(history, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
     return f"""<!doctype html>
 <html lang="en" data-theme="light">
@@ -260,6 +268,27 @@ def build(papers: list[dict], dashboard: dict) -> str:
           <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {wait} wait · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
         </section>
 
+        <section id="progressHistorySection" class="progress-history-panel" aria-labelledby="progressHistoryTitle">
+          <div class="progress-history-head">
+            <div>
+              <p class="eyebrow">GIT-DERIVED HISTORY</p>
+              <h2 id="progressHistoryTitle">Progress over time</h2>
+              <p>Historical maturity checkpoints reconstructed from <code>papers/dashboard.json</code> commits.</p>
+            </div>
+            <label class="progress-history-select">Series
+              <select id="progressHistorySeries" aria-label="Progress history series">
+                <option value="__mean__">Portfolio mean</option>
+                {"".join(f'<option value="{esc(p.get("id"))}">#{esc(p.get("id"))} · {esc(p.get("short_title") or p.get("title"))}</option>' for p in papers)}
+              </select>
+            </label>
+          </div>
+          <div class="progress-history-chart-wrap">
+            <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 260" role="img" aria-label="ARIS4C progress history chart"></svg>
+            <div id="progressHistoryTooltip" class="progress-history-tooltip hidden"></div>
+          </div>
+          <div class="progress-history-foot"><span id="progressHistorySummary">Loading history…</span><span>Git checkpoints · management estimate, not a scientific result</span></div>
+        </section>
+
         <div class="control-bar">
           <div class="control-left"><span id="resultCount" class="result-count">{len(papers)} / {len(papers)} projects</span></div>
           <div class="control-right">
@@ -303,6 +332,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
       <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Public project cards expose PDF-first English and Chinese paper entrances.</footer>
     </section>
   </div>
+  <script id="progressHistoryData" type="application/json">{history_json}</script>
   <script src="./command-center.js" defer></script>
 </body>
 </html>
@@ -312,8 +342,9 @@ def build(papers: list[dict], dashboard: dict) -> str:
 def main() -> None:
     papers = load_papers()
     dashboard = load_dashboard()
+    history = load_progress_history()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(build(papers, dashboard), encoding="utf-8")
+    OUT.write_text(build(papers, dashboard, history), encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)} with {len(papers)} paper(s)")
 
 
