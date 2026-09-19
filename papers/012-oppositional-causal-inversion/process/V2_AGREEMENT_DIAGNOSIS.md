@@ -21,12 +21,14 @@ Only `idx_level_switch` (kappa 0.632, raw 0.800) passes the secondary gate.
 
 ## 2. The primary gate failure is not a base-rate artifact
 
-Gwet AC1 for `opposition_valid` is 0.471 against Cohen's kappa 0.481, so the
-low kappa is not the prevalence paradox. It is a systematic liberality shift:
-`yes` prevalence is 0.53 for A2 and 0.73 for B2, and 7 of the 8 focal
-`opposition_valid` disagreements run in the same direction (A2 `no` -> B2 `yes`).
-Records: V203, V205, V211, V214, V215, V225, V228 (A2 negative, B2 positive);
-V227 is the single reverse case.
+For `opposition_valid` the coders agree on 0.733 of records against a Cohen
+chance expectation of 0.487, giving kappa 0.481 and Krippendorff's nominal alpha
+0.471; the two agree closely, so the low kappa is not the prevalence paradox
+(no category is used by either coder more than 73% of the time). It is a
+systematic liberality shift: `yes` prevalence is 0.53 for A2 and 0.73 for B2, and
+7 of the 8 focal `opposition_valid` disagreements run in the same direction
+(A2 `no` -> B2 `yes`). Records: V203, V205, V211, V214, V215, V225, V228 (A2
+negative, B2 positive); V227 is the single reverse case.
 
 ## 3. Partition of the 380 disagreement cells
 
@@ -60,11 +62,13 @@ identical within each coder for 30/30 records, and their 16 disagreement cells a
 the same 8 records duplicated. They are one item scored twice, which inflates the
 informative-axis count without adding information.
 
-**RC3 — `evidence_strength` has no anchored scale.** Raw agreement 0.367 while
- chance agreement is 0.752 (AC1 -1.556): the coders are not noisy in the same
-space, they are mapping different subsets of `none/weak/moderate/strong` onto each
-other's labels. `uncertain` use differs 3 vs 10. No anchor ties strength to a
-concrete feature of the packet.
+**RC3 — `evidence_strength` has no anchored scale.** Raw agreement 0.367 against a
+Cohen chance expectation of 0.227, i.e. kappa 0.181 and nominal alpha 0.172 — the
+coders do beat chance, but only just, and the marginals show why: A2 spreads over
+`moderate` (11), `weak` (8) and `none` (6) and uses `uncertain` 3 times, while B2
+concentrates on `uncertain` (10) and `weak` (9) and reaches `strong` once. They are
+scaling the same word differently, and no anchor ties strength to a concrete
+feature of the packet.
 
 **RC4 — mechanism vectors have no positive test.** Mechanism fields are the worst
 passing group (all kappa <= 0.18, `mech_capacity_overload` at -0.041). The schema

@@ -127,7 +127,9 @@ constant, because in a reliability test the instrument must not vary. See
 | secondary axes passing | 1 / 32 | all |
 | disagreement cells | 380 | — |
 
-The primary gate failure is not a base-rate artifact (Gwet AC1 0.471). 68.2% of
+The primary gate failure is not a base-rate artifact: raw agreement 0.733 against
+a Cohen chance expectation of 0.487 gives kappa 0.481 and nominal alpha 0.471.
+68.2% of
 all cells are a single `0` vs `uncertain` conflict created by schema precedence
 rule 4, and `oci_candidate` duplicates `opposition_valid` on 30/30 records.
 Diagnosis, root causes and the proposed v3 amendment are in
