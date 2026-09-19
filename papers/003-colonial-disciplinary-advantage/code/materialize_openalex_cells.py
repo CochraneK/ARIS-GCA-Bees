@@ -251,9 +251,9 @@ def main() -> None:
         )
 
     con.execute(
-        base_sql
-        + f"""
+        f"""
         COPY (
+        {base_sql}
             SELECT
                 iso3c,
                 country,
@@ -285,9 +285,9 @@ def main() -> None:
     )
 
     con.execute(
-        base_sql
-        + f"""
+        f"""
         COPY (
+        {base_sql}
             SELECT
                 c.period,
                 c.concept_id,
