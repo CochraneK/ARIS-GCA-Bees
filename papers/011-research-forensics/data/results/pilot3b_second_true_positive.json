@@ -1,0 +1,60 @@
+{
+  "target_doi": "10.1371/journal.pone.0293412",
+  "correction_doi": "10.1371/journal.pone.0317174",
+  "target_artifact": {
+    "source": "Humboldt-Universität zu Berlin institutional repository",
+    "repository_record_date": "2023-10-26",
+    "repository_doi": "10.18452/33744",
+    "bytes": 893239,
+    "sha256": "95460abea1594e8f8f1aec4e8fb029df0e0faacf4e7244ba7ddb25dc7eefe60b",
+    "byte_identical_to_plos_printable_verified": "2026-09-18",
+    "status": "SAFE_EXACT"
+  },
+  "comparison_data": {
+    "platform": "OSF",
+    "node": "nf4x7",
+    "file": "survey1_ratings.csv",
+    "guid": "t5muj",
+    "created_at": "2023-07-28T22:30:28.355281Z",
+    "current_version": 1,
+    "rows": 353,
+    "distinct_country_strings": 64,
+    "sha256": "90f86ae54abb67e980a3379bfc95ab796fb9ebfe1ea9580fa4afde8743a035bb",
+    "status": "SAFE_EXACT"
+  },
+  "detector": "categorical_aggregate_recompute",
+  "detector_family": "table_consistency",
+  "evidence_class": "E1",
+  "historical_reported": {
+    "category": "Mexico",
+    "count": 16,
+    "percent": "4.5"
+  },
+  "recomputed": {
+    "aliases": [
+      "mexico"
+    ],
+    "matched_variants": {
+      "Mexico": 11,
+      "México": 5,
+      "MÉXICO": 1
+    },
+    "count": 17,
+    "percent_rounded": "4.8"
+  },
+  "result": "FLAG",
+  "review_priority": "MODERATE",
+  "correction_used_as_detector_input": false,
+  "later_official_correction": {
+    "count": 17,
+    "percent": "4.8",
+    "other_count": 87
+  },
+  "within_table_arithmetic": {
+    "historical_count_sum": 353,
+    "historical_percent_sum": "100.0",
+    "interpretation": "compensating Mexico/Other errors mask the issue from within-table arithmetic"
+  },
+  "excluded_inference": "No full country recoding is inferred; obvious UK variants total 78 while the historical table reports 79, indicating an undocumented grouping decision.",
+  "misconduct_inference": false
+}

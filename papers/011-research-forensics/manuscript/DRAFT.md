@@ -326,6 +326,18 @@ Under Track A, N matched, whereas RMSEA, CFI, and the best-fitting-model field d
 
 This n=1 result is not interpreted as a performance estimate. It demonstrates that the provenance-constrained pipeline can generate a genuine pre-outcome true positive using only an exact historical target artifact and evidence that was contemporaneously available.
 
+### 7.7 Second pre-outcome true-positive: raw-data-to-table consistency
+
+A second case demonstrates a different failure mode and detector pathway. The 2023 PLOS ONE article with DOI 10.1371/journal.pone.0293412 reported countries of residence for Survey 1 (N=353) in Table 1. Humboldt-Universität zu Berlin's institutional repository stores the PLOS-branded PDF under a record dated 26 October 2023, the target publication date, and links the publisher DOI. The repository file is byte-identical to the PLOS printable PDF verified on 18 September 2026 (893,239 bytes; SHA-256 95460abea1594e8f8f1aec4e8fb029df0e0faacf4e7244ba7ddb25dc7eefe60b). The historical table reports Mexico as 16 (4.5%) and Other as 88 (24.9%).
+
+The article's public OSF project also contains survey1_ratings.csv. OSF metadata records version 1 as created and last modified on 28 July 2023, before article publication, with SHA-256 90f86ae54abb67e980a3379bfc95ab796fb9ebfe1ea9580fa4afde8743a035bb. The file contains 353 rows. We represented the complete 64-string frequency distribution for the country field rather than participant-level data. Under a prespecified minimal normalization—Unicode NFKD decomposition, diacritic removal, whitespace normalization, and case folding—the raw variants "Mexico" (11), "México" (5), and "MÉXICO" (1) map unambiguously to Mexico, yielding 17/353 = 4.8% to one decimal place.
+
+We therefore added a deterministic categorical-aggregate recomputation adapter. It requires a complete source frequency table whose counts sum to the stated sample size, a source file digest and timestamp, explicit alias rules, a target source locator, and evidence that the raw-data source was available at target-publication time. The historical table's 16/4.5% result produces an E1 FLAG and MODERATE review priority. The PLOS correction published on 3 January 2025 later states that Mexico should be 17 and 4.8% and that Other should be 87. As in the first case, the correction is ground truth only and is not detector input.
+
+This case also provides a concrete complementarity result. The historical table is internally self-consistent: its country counts sum to 353 and its displayed percentages sum to 100.0%, because the Mexico undercount is offset by an Other overcount. A within-table arithmetic detector can therefore pass while a raw-data-to-table consistency detector flags the error. We intentionally do not reconstruct the full published country-grouping scheme because obvious United Kingdom variants in the raw field sum to 78 whereas the table reports 79; inferring the undocumented rule would introduce analyst discretion. The confirmatory check is restricted to the unambiguous Mexico normalization.
+
+These two pre-outcome true-positive cases remain development examples rather than an estimate of sensitivity or precision. Their value is to show two independent evidence routes—cited-source consistency and deposited-data recomputation—and to demonstrate that detector-family complementarity can occur in real corrections rather than only synthetic examples.
+
 ## 8. Detector versioning and defect governance
 
 An integrated system inherits the failure modes of its components. Detector version and known defects are therefore part of evidence provenance.

@@ -36,11 +36,14 @@
     "discrete_means": [],
     "binary_summaries": [],
     "table_checks": [],
-    "doi_resolutions": []
+    "doi_resolutions": [],
+    "cross_source_records": [],
+    "categorical_aggregate_checks": []
   },
   "expected_pilot1_outcome": {
     "review_priority": "NONE",
     "finding_statuses": [
+      "ABSTAIN",
       "ABSTAIN",
       "ABSTAIN",
       "ABSTAIN",

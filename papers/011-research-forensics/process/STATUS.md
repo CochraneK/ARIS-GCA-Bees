@@ -1,10 +1,10 @@
 # STATUS — ARIS4C011
 
-Updated: 2026-09-19
+Updated: 2026-09-18
 
 ## State
 
-**PILOT 3 ACTIVE · TWO REAL PRE-OUTCOME TRUE POSITIVES ACROSS F5 AND F3**
+**SECOND PRE-OUTCOME REAL TRUE-POSITIVE · RAW-DATA↔TABLE CHECK ADDED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -59,10 +59,11 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - Pilot 3 candidate prioritisation is now code-driven rather than manual, with PRIORITY / SECONDARY / CONTROL / DEFER / COMPLETE states.
 - Seven documented PLOS correction candidates have been triaged plus the completed Pilot 2B case.
 - Exact pre-correction PLOS PDF recovered for 10.1371/journal.pone.0263337 (Wayback 2022-02-09, digest JH73D3J2WEFFQC75H7OUERJ74OJMJZKP); retained as a formatting/honest-error CONTROL rather than a scientific true-positive.
-- Priority case 10.1371/journal.pone.0293412 now has a SAFE_EXACT historical Table-1 wrapper, but no independently verified pre-correction table-image object; its F3 table-content route remains object-level BLOCKED rather than being scored as a false negative.
-- PMC preserved-original route validated 10.1371/journal.pone.0180906 as SAFE_EXACT for Table 1: original section A exposes 5 result columns while section B exposes only 2, with the 2018 correction held exclusively in the manager layer.
-- **Second real Track A true-positive and first F3 true-positive:** F3_TABLE_SCHEMA_COLUMN_DROP_V1 flagged the original Table 1 with a 3-column structural drop while seeing no correction/outcome metadata; the manager-held correction independently documents the missing-column error.
-- The F3 result is an anomaly/error detection result, not evidence of misconduct or intent.
+- Publication-day institutional copy of PLOS DOI 10.1371/journal.pone.0293412 verified byte-identical to the PLOS printable PDF (SHA-256 95460abea1594e8f8f1aec4e8fb029df0e0faacf4e7244ba7ddb25dc7eefe60b).
+- Contemporaneous OSF survey1_ratings.csv verified as current_version=1, created/modified 2023-07-28, N=353, SHA-256 90f86ae54abb67e980a3379bfc95ab796fb9ebfe1ea9580fa4afde8743a035bb.
+- New F3 categorical_aggregate_recompute adapter added with complete-frequency-table, hash, date, alias and provenance requirements.
+- Second real Track A true-positive: historical Table 1 reports Mexico 16 / 4.5%, while case/diacritic-normalized deposited data deterministically yield 17 / 4.8%; the 2025 official correction independently confirms those values.
+- The same historical table remains internally arithmetic-consistent because Mexico -1 is compensated by Other +1; this is a real complementarity example where within-table arithmetic can PASS while raw-data-to-table consistency FLAGs.
 
 ## Critical design findings already established
 
@@ -118,8 +119,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Refresh the code-driven Pilot 3 queue after completed/blocking outcomes; the next active substantive target is 10.1371/journal.pone.0180395.
-2. Keep 10.1371/journal.pone.0293412 object-level BLOCKED unless a historical table image is independently recovered; do not repeatedly count wrapper captures as table readiness.
-3. Use the construction decimal-separator case as a low-risk escalation-control test.
-4. Seek at least one additional SAFE_EXACT substantive case before any descriptive multi-family detector-yield summary.
+1. Work the updated Pilot 3 queue with Toxoplasma Table 1B as the new active rank 1.
+2. Seek a third substantive SAFE_EXACT_READY case from a detector route independent of the first two where feasible.
+3. Run the construction decimal-separator CONTROL through the same reporting stack and verify it is not escalated as a scientific contradiction.
+4. Begin a small no-known-concern matched comparator set only after at least three substantive issue-ready cases exist.
 5. Keep Pilot 3 explicitly separate from the later frozen confirmatory cohort.

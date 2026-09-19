@@ -28,6 +28,7 @@ STRUCTURED_INPUT_KEYS = {
     "table_checks",
     "doi_resolutions",
     "cross_source_records",
+    "categorical_aggregate_checks",
 }
 
 

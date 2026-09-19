@@ -76,3 +76,13 @@ def test_queue_ranks_priority_before_secondary_and_controls():
     assert out[0]["active_rank"] == "1"
     assert out[1]["active_rank"] == "2"
     assert out[2]["active_rank"] == ""
+
+
+def test_raw_data_recompute_mode_is_supported():
+    out = score_candidate(base(
+        verification_mode="RAW_DATA_RECOMPUTE",
+        artifact_state="SAFE_EXACT_READY",
+        candidate_state="COMPLETE",
+    ))
+    assert out["queue_status"] == "COMPLETE"
+    assert int(out["priority_score"]) >= 20

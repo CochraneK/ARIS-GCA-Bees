@@ -1,6 +1,6 @@
 # Pilot 3 — reproducible correction-candidate expansion
 
-Updated: 2026-09-19
+Updated: 2026-09-18
 
 ## Why this stage exists
 
@@ -22,52 +22,59 @@ Completed true-positive cases are removed from active acquisition. Formatting-on
 
 ## Current queue
 
-The queue is now regenerated from `data/pilot/pilot3_correction_candidates.csv`; completed and blocked cases no longer remain artificially at the top.
+### PRIORITY
 
-### COMPLETE
+1. **10.1371/journal.pone.0293412** — Table 1 country counts/proportions.
+   - correction: 10.1371/journal.pone.0317174
+   - pre-correction HTML exists;
+   - exact historical table object still unresolved;
+   - candidate F3 arithmetic/sum check.
 
-**10.1371/journal.pone.0258910** — completed F5 cross-source true-positive calibration case.
+2. **10.1371/journal.pone.0180906** — two columns missing from Table 1B.
+   - correction: 10.1371/journal.pone.0192570
+   - strong F3 structural-completeness target;
+   - first printable-PDF archive query returned no pre-correction capture.
 
-**10.1371/journal.pone.0180906** — completed F3 table-schema true-positive.
-- original PMC record: PMC5521765;
-- SAFE_EXACT preserved-original Table 1;
-- section A detected result columns: 5;
-- section B detected result columns: 2;
-- content-only detector: `F3_TABLE_SCHEMA_COLUMN_DROP_V1`;
-- detector output: `FLAG`;
-- manager-held 2018 correction label: documented two-column omission;
-- outcome/correction metadata visible to detector: **false**;
-- misconduct inference: **false**.
+### SECONDARY
 
-### ACTIVE / SECONDARY
-
-1. **10.1371/journal.pone.0180395** — corrected two-tailed p-values plus table-schema changes.
+3. **10.1371/journal.pone.0180395** — corrected two-tailed p-values plus table-schema changes.
    - potential F1/F3 case;
-   - requires contemporaneously recoverable source statistics/table evidence.
+   - may require recoverable source statistics or raw data.
 
-2. **10.1371/journal.pone.0293412** — Table 1 country counts/proportions.
-   - historical table wrapper is SAFE_EXACT;
-   - required table image has no independently verified pre-correction capture;
-   - current object-level status: `NO_PRE_EVENT_OBJECT` / BLOCKED for table-content F3;
-   - keep available for future archival recovery, but do not score it now.
-
-3. **10.1371/journal.pone.0163749** — corrected Brodmann-area table entries.
+4. **10.1371/journal.pone.0163749** — multiple Table 2 Brodmann-area entry errors.
    - potential F3 structural/token anomaly case;
-   - historical table object still required.
+   - historical table object still needed.
 
 ### CONTROL
 
-**10.1371/journal.pone.0263337** — decimal-separator formatting case.
-- SAFE_EXACT pre-correction PDF;
-- retained as a formatting/honest-error control, not a scientific contradiction.
+**10.1371/journal.pone.0263337** — comma-versus-period decimal formatting in the Cronbach alpha column.
+- exact pre-correction PLOS PDF exists in Wayback from 2022-02-09;
+- digest: JH73D3J2WEFFQC75H7OUERJ74OJMJZKP;
+- archived Table 2 prints values such as 0,943 and 0,819;
+- this is deliberately treated as a low-risk formatting/honest-error control rather than a scientific contradiction.
 
 ### DEFER
 
-- 10.1371/journal.pone.0075637 — requires re-analysis/model specification rather than a cheap deterministic manuscript check.
-- 10.1371/journal.pone.0142234 — very short correction window and mostly statement/heading changes.
+- 10.1371/journal.pone.0075637 — scientifically meaningful model/outlier correction, but it requires re-analysis rather than a cheap deterministic check.
+- 10.1371/journal.pone.0142234 — 21-day correction window and largely heading/statement corrections.
 
 ## Selection-bias rule
 
 Pilot 3 is allowed to be enriched for recoverable, detector-compatible cases because its purpose is pipeline development.
 
 No confirmatory sensitivity, precision, or comparative-performance claim may be calculated from this queue. A later confirmatory cohort must be selected under a frozen, broader sampling protocol independent of whether a detector is expected to succeed.
+
+
+## Pilot 3B resolution of the former rank-1 case
+
+The music-country case (10.1371/journal.pone.0293412) is no longer an active acquisition target.
+
+New evidence changed its routing:
+
+- the Humboldt-Universität repository record is dated 2023-10-26 and stores journal.pone.0293412.pdf;
+- that file is byte-identical to the PLOS printable PDF (SHA-256 95460abea1594e8f8f1aec4e8fb029df0e0faacf4e7244ba7ddb25dc7eefe60b);
+- the public OSF file survey1_ratings.csv is version 1, created/modified 2023-07-28, with SHA-256 90f86ae54abb67e980a3379bfc95ab796fb9ebfe1ea9580fa4afde8743a035bb;
+- the historical table's Mexico 16/4.5% is internally arithmetic-consistent with the table because Other is simultaneously 88;
+- raw-data normalization of Mexico/México/MÉXICO yields 17/4.8%.
+
+Accordingly, the candidate was reclassified from DETERMINISTIC_INTERNAL to RAW_DATA_RECOMPUTE and from ACTIVE to COMPLETE. This demonstrates why candidate routing is provisional during pipeline development: source anatomy can change which detector is actually capable of detecting a documented error.
