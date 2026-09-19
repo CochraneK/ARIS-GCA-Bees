@@ -1,0 +1,75 @@
+{
+  "protocol_version": "0.1.0",
+  "state": "PRE_FREEZE",
+  "purpose": "Machine-auditable gates that must close before ARIS4C011 confirmatory scoring.",
+  "development_evidence_policy": {
+    "development_results_are_nonconfirmatory": true,
+    "development_dois_must_not_enter_confirmatory_manifest": true,
+    "exclusion_registry": "data/protocol/development_exclusion_registry.json",
+    "structured_source_scope": [
+      "data/seed/**/*.csv",
+      "data/seed/**/*.json",
+      "data/pilot/**/*.csv",
+      "data/pilot/**/*.json",
+      "data/results/pilot*.csv",
+      "data/results/pilot*.json"
+    ]
+  },
+  "split_contract": {
+    "required_columns": ["target_doi", "split"],
+    "cluster_fields": ["known_cluster_id", "text_cluster_id", "image_cluster_id"],
+    "same_doi_may_cross_splits": false,
+    "same_nonempty_cluster_may_cross_splits": false,
+    "split_labels_must_be_frozen_before_scoring": true
+  },
+  "temporal_contract": {
+    "temporal_test_label": "temporal_test",
+    "outcome_date_field": "outcome_date",
+    "development_cutoff": null,
+    "rule": "Every temporal_test outcome_date must be strictly after the frozen development_cutoff."
+  },
+  "track_a_leakage_contract": {
+    "manifest_allowlist": [
+      "paper_id",
+      "target_title_safe",
+      "article_type",
+      "fulltext_ref",
+      "track_a_title_requires_historical_validation",
+      "track_a_document_safe",
+      "split"
+    ],
+    "feature_allowlist": ["target_title_safe"],
+    "forbidden_field_fragments": [
+      "notice",
+      "reason",
+      "correction",
+      "retraction",
+      "ground_truth",
+      "label",
+      "outcome",
+      "assertion",
+      "update_relation"
+    ],
+    "forbidden_value_tokens": [
+      "RETRACTED",
+      "RETRACTION",
+      "CORRECTED ARTICLE",
+      "EXPRESSION OF CONCERN"
+    ]
+  },
+  "freeze_gates": {
+    "broader_time_safe_corpus_complete": false,
+    "safe_exact_proxy_blocked_attrition_frozen": false,
+    "grouped_split_manifest_frozen": false,
+    "temporal_cutoff_frozen": false,
+    "detector_versions_frozen": false,
+    "known_defect_policy_frozen": false,
+    "applicability_rules_frozen": false,
+    "thresholds_frozen": false,
+    "label_leakage_audit_passed": false,
+    "human_review_protocol_frozen": false,
+    "reviewer_burden_measure_frozen": false
+  },
+  "confirmatory_scoring_allowed": false,
+  "claim_boundary": "PRE_FREEZE is a design/readiness state only. No confirmatory performance estimate is authorized until every freeze gate is true and the preflight report is PASS."
+}
