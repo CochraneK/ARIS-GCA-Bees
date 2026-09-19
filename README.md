@@ -59,14 +59,14 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 ## 已达到公开交付状态的论文
 
 - **001 · 蜜蜂 GCA × 不确定性** — [English PDF](https://cochranek.github.io/ARIS4C/paper/001/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/001/zh/main.pdf)
-- **002 · 语言周期性检验** — [English PDF](https://cochranek.github.io/ARIS4C/paper/002/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/002/zh/main.pdf)
+- **002 · LING-01 · 语言周期性检验** — [English PDF](https://cochranek.github.io/ARIS4C/paper/002/en/main.pdf) · [中文 PDF](https://cochranek.github.io/ARIS4C/paper/002/zh/main.pdf)
 
 ## 16 个 Paper
 
 | ID | 项目 | 状态 | 进度 | 接管入口 |
 |---|---|---:|---:|---|
 | **001** | [蜜蜂 GCA × 不确定性](papers/001-gca-bees/) | 🔵 完成 | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) |
-| **002** | [语言周期性检验](papers/002-language-geometry/) | 🔵 完成 | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) |
+| **002** | [LING-01 · 语言周期性检验](papers/002-language-geometry/) | 🔵 完成 | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) |
 | **003** | [殖民遗产 × 学科优势](papers/003-colonial-disciplinary-advantage/) | 🟡 待推进 | 70% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) |
 | **004** | [排斥的反事实知识网络成本](papers/004-counterfactual-cost-of-exclusion/) | 🟡 待推进 | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
 | **005** | [坏科学的全球隐性负担](papers/005-hidden-burden-bad-science/) | 🔴 阻塞 | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
