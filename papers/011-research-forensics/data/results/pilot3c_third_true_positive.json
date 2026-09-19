@@ -1,0 +1,33 @@
+{
+  "target_doi": "10.1371/journal.pone.0180906",
+  "correction_doi": "10.1371/journal.pone.0192570",
+  "target_publication": "2017-07-21",
+  "historical_snapshot": "20170724151640",
+  "historical_digest": "MTJNXHVAUJZCTOAR47PRAO7AVYGIDJ7O",
+  "historical_roles": [
+    "body_text",
+    "table_caption"
+  ],
+  "detector": "cross_section_scope_coherence",
+  "detector_family": "methods_results_coherence",
+  "result": "FLAG",
+  "evidence_class": "E1",
+  "review_priority": "MODERATE",
+  "body_scope_labels": [
+    "multiple_logistic_regression"
+  ],
+  "caption_scope_labels": [
+    "univariate_logistic_regression"
+  ],
+  "missing_scope_labels": [
+    "multiple_logistic_regression"
+  ],
+  "later_official_correction_confirms_caption_error": true,
+  "correction_used_as_detector_input": false,
+  "separate_missing_columns_subissue": {
+    "status": "BLOCKED_REQUIRED_ROLE",
+    "reason": "Historical Table 1 image object was not independently archived; direct replay returned 404 and exact image CDX queries returned no pre-correction capture."
+  },
+  "misconduct_inference": false,
+  "interpretation": "Third development-stage pre-outcome true-positive. It detects the independently documented caption/scope error only, not the missing-column sub-issue."
+}
