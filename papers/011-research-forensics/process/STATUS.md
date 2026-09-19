@@ -4,7 +4,7 @@ Updated: 2026-09-19
 
 ## State
 
-**THIRD PRE-OUTCOME REAL TRUE-POSITIVE · ISSUE DECOMPOSITION DEMONSTRATED**
+**FIVE PRE-OUTCOME DEVELOPMENT TRUE-POSITIVE EVALUATIONS · FOUR TARGET PAPERS · MULTI-FAMILY COMPLEMENTARITY**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -64,9 +64,12 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - New F3 categorical_aggregate_recompute adapter added with complete-frequency-table, hash, date, alias and provenance requirements.
 - Second real Track A true-positive: historical Table 1 reports Mexico 16 / 4.5%, while case/diacritic-normalized deposited data deterministically yield 17 / 4.8%; the 2025 official correction independently confirms those values.
 - The same historical table remains internally arithmetic-consistent because Mexico -1 is compensated by Other +1; this is a real complementarity example where within-table arithmetic can PASS while raw-data-to-table consistency FLAGs.
-- Third real Track A true-positive: PLOS 10.1371/journal.pone.0180906 has a SAFE_EXACT 2017-07-24 publisher HTML snapshot whose Results text attributes multiple-analysis findings to Table 1 while the same historical Table 1 caption describes only univariate logistic regression.
+- Third real Track A true-positive route: PLOS 10.1371/journal.pone.0180906 has a SAFE_EXACT 2017-07-24 publisher HTML snapshot whose Results text attributes multiple-analysis findings to Table 1 while the same historical Table 1 caption describes only univariate logistic regression.
 - New F8 cross_section_scope_coherence adapter flags that body-to-caption scope mismatch as E1 / MODERATE; the 2018 correction later independently confirms that the Table 1 caption was erroneous.
-- The same correction's two-missing-columns sub-issue remains BLOCKED because the historical Table 1 image object was not archived. One correction notice is now explicitly decomposed into independently eligible/ineligible sub-issues.
+- The Toxoplasma correction was further decomposed: a preserved-original PMC Table 1 object was subsequently qualified SAFE_EXACT, allowing the correction-blind F3_TABLE_SCHEMA_COLUMN_DROP_V1 detector to FLAG the section-A vs section-B schema drop. Manager-only correction metadata later confirmed the two-column omission. This supersedes the earlier temporary BLOCKED state for that sub-issue.
+- Fourth target paper / fifth development true-positive evaluation: PLOS 10.1371/journal.pone.0180395 has a preserved-original PMC body-text object (SAFE_EXACT) containing the sentence "There were significant increases ... (p>.05)". F1_SIGNIFICANCE_P_DIRECTION_V1 flags the internal significance-direction inconsistency without correction metadata; the later correction independently confirms the direction fix.
+- Development evidence now spans five pre-outcome true-positive detector evaluations across four target papers and multiple evidence routes: cited-source consistency (F5), deposited-data recomputation (F3), body↔caption scope coherence (F8), table-schema structure (F3), and significance-claim/p-direction consistency (F1).
+- These Pilot 2/3 cases are deliberately enriched development examples and remain ineligible for confirmatory sensitivity, precision, or superiority claims.
 
 ## Critical design findings already established
 
@@ -122,8 +125,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Work the updated Pilot 3 queue with the adaptive-p-value correction as active rank 1.
-2. Run the construction decimal-separator CONTROL through the same reporting stack and verify it is not escalated as a scientific contradiction.
-3. Begin a small no-known-concern matched comparator set now that three substantive SAFE_EXACT_READY development cases exist.
-4. Quantify descriptive detector-family yield only as a development summary; do not estimate confirmatory sensitivity/precision from Pilot 3.
-5. Keep Pilot 3 explicitly separate from the later frozen confirmatory cohort.
+1. Run the construction decimal-separator CONTROL (10.1371/journal.pone.0263337) through the same reporting stack and verify that a formatting/honest-error case is not escalated as a scientific contradiction.
+2. Begin a small matched no-known-integrity-concern comparator set now that four target papers have produced five development-stage pre-outcome true-positive evaluations.
+3. Continue the Pilot 3 acquisition queue with the voxel/Brodmann-area table case as the next unresolved structured-content candidate; demote cases that cannot satisfy object-level time safety.
+4. Produce only a descriptive development summary of detector-family yield/complementarity and abstention; do not estimate confirmatory sensitivity, precision, or superiority from the enriched Pilot 3 set.
+5. Prepare the transition to a frozen broader confirmatory cohort: grouped/temporal splits, no label-bearing features, frozen detector versions/applicability rules, and human-review protocol.
