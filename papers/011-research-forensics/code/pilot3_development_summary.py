@@ -17,6 +17,7 @@ def build():
       ("F8","Methods-results semantic coherence","pilot3c_third_true_positive.json","target_doi","detector"),
       ("F3","Table and arithmetic consistency","pilot3_toxo_f3_evaluation.json","paper_id","detector_id"),
       ("F1","Statistical inference consistency","pilot3_adaptive_f1_evaluation.json","paper_id","detector_id"),
+      ("F3","Table and arithmetic consistency","pilot3_voxel_ba_evaluation.json","target_doi","detector_id"),
     ]
     records=[]
     for fid,fname,filename,doi_key,detector_key in sources:
@@ -34,7 +35,7 @@ def build():
           "source_file":"data/results/"+filename,
         })
     targets=sorted(set(x["target_doi"] for x in records))
-    if len(records)!=5 or len(targets)!=4:
+    if len(records)!=6 or len(targets)!=5:
         raise ValueError("development FLAG count drifted")
     families={}
     for x in records:
@@ -74,7 +75,7 @@ def build():
       "confirmatory_performance_estimate":False,
       "claim_boundary":"Enriched development evidence may demonstrate feasibility, complementarity, abstention, conservative non-escalation, provenance discipline and failure modes, but must not estimate sensitivity, precision, specificity, false-positive rate, prevalence or superiority.",
       "true_positive_evaluations":{
-        "count":5,"unique_target_papers":4,"family_counts":families,"records":records},
+        "count":6,"unique_target_papers":5,"family_counts":families,"records":records},
       "complementarity_examples":[
         {"target_doi":music["target_doi"].lower(),"families":["F3"],
          "observation":"Within-table arithmetic stayed internally consistent (count sum 353; percent sum 100.0), while raw-data-to-table recomputation FLAGged Mexico 16/4.5 versus 17/4.8."},
@@ -106,7 +107,7 @@ def markdown(x):
       "## Claim boundary","",x["claim_boundary"],"",
       "No misconduct inference is made.","",
       "## Descriptive evidence","",
-      "- Five pre-outcome FLAG evaluations across four target papers; family counts: %s." % fam,
+      "- Six pre-outcome FLAG evaluations across five target papers; family counts: %s." % fam,
       "- Complementarity: the music-country case passes internal arithmetic while deposited-data recomputation flags; the Toxoplasma case has separate F8 and F3 routes.",
       "- Abstention: one SAFE_EXACT J-STAGE review yields five genuine ABSTAIN checks and review priority NONE.",
       "- Conservative non-escalation: formatting control gives 10 PASS, 0 FLAG, review priority NONE.",
@@ -130,4 +131,4 @@ if __name__=="__main__":
     out=build()
     (R/"pilot3_development_summary.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (P/"PILOT3_DEVELOPMENT_SUMMARY.md").write_text(markdown(out),encoding="utf-8")
-    print(json.dumps({"flags":5,"targets":4,"comparators":4,"confirmatory":False},indent=2))
+    print(json.dumps({"flags":6,"targets":5,"comparators":4,"confirmatory":False},indent=2))
