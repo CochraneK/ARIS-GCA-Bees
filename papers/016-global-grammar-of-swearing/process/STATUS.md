@@ -34,7 +34,11 @@ The project has entered empirical Phase 0 using the public Sulpizio et al. datas
 - deterministic 300-row ontology audit sample frozen with manifest SHA-256;
 - balanced all-five-English-item sensitivity and filler negative-control analysis completed;
 - phonology feasibility audit completed and external G2P/PHOIBLE replication plan specified;
-- naïve semantic-fingerprint construction tested and rejected as measurement-biased.
+- naïve semantic-fingerprint construction tested and rejected as measurement-biased;
+- balanced all-five-English sensitivity and sparse filler negative control completed;
+- deterministic 300-row ontology audit sample frozen with manifest hash;
+- three public-safe manuscript figures added;
+- parallel English and Chinese working manuscripts established.
 
 ## Immediate next gates
 
