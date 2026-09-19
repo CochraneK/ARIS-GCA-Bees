@@ -419,6 +419,87 @@ def robust_sleeping_beauty_gate(
 
 
 @dataclass(frozen=True)
+class PostAwakeningFate:
+    state: str
+    awakening_rate: float
+    terminal_rate: float
+    terminal_to_awakening_ratio: float | None
+    terminal_years: int
+    note: str
+
+    def as_dict(self) -> dict:
+        return {
+            "state": self.state,
+            "awakening_rate": self.awakening_rate,
+            "terminal_rate": self.terminal_rate,
+            "terminal_to_awakening_ratio": (
+                self.terminal_to_awakening_ratio
+            ),
+            "terminal_years": self.terminal_years,
+            "note": self.note,
+        }
+
+
+def post_awakening_fate(
+    counts: Sequence[int | float],
+    *,
+    sleep_years: int,
+    wake_years: int = 4,
+    terminal_years: int = 5,
+) -> PostAwakeningFate:
+    """Describe whether attention persists after the awakening window.
+
+    This is an exploratory descriptive layer, not part of robust-SB identity.
+
+    Ratio bands:
+    - <0.5: TRANSIENT_OR_FADED
+    - 0.5..1.5: ROUGHLY_SUSTAINED
+    - >1.5: EXPANDED_AFTER_AWAKENING
+
+    The ratio and raw rates must always be reported so conclusions do not
+    depend only on these heuristic labels.
+    """
+    c = _counts(counts)
+    if sleep_years < 1 or wake_years < 1 or terminal_years < 1:
+        raise ValueError("window lengths must be >= 1")
+    if len(c) < sleep_years + wake_years:
+        raise ValueError("history too short for awakening window")
+
+    wake = c[sleep_years:sleep_years + wake_years]
+    terminal = c[-terminal_years:]
+    wake_rate = sum(wake) / len(wake)
+    terminal_rate = sum(terminal) / len(terminal)
+
+    ratio = (
+        terminal_rate / wake_rate
+        if wake_rate > 0
+        else None
+    )
+    if ratio is None:
+        state = "UNDEFINED_ZERO_AWAKENING_RATE"
+    elif ratio < 0.5:
+        state = "TRANSIENT_OR_FADED"
+    elif ratio <= 1.5:
+        state = "ROUGHLY_SUSTAINED"
+    else:
+        state = "EXPANDED_AFTER_AWAKENING"
+
+    return PostAwakeningFate(
+        state=state,
+        awakening_rate=float(wake_rate),
+        terminal_rate=float(terminal_rate),
+        terminal_to_awakening_ratio=(
+            float(ratio) if ratio is not None else None
+        ),
+        terminal_years=terminal_years,
+        note=(
+            "Exploratory post-awakening descriptor; not part of Sleeping "
+            "Beauty identity and not a causal mechanism label."
+        ),
+    )
+
+
+@dataclass(frozen=True)
 class MechanismState:
     state: str
     quadrant_state: str
