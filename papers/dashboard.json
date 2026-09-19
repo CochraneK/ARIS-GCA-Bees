@@ -124,12 +124,12 @@
       "blocker": "Observed-covariate balance still fails and OpenAlex B calibration remains provisional"
     },
     "016": {
-      "progress": 55,
-      "stage": "Empirical Phase 0 working manuscript",
+      "progress": 60,
+      "stage": "Empirical Phase 0 · measurement/control package frozen",
       "activity": "block",
-      "evidence": "Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript",
-      "next_gate": "Independent dual-coder ontology audit and end-to-end variance decomposition",
-      "blocker": "Independent/native-speaker annotation and Phase-0 reliability"
+      "evidence": "Working manuscript + OSF audit + ontology/harmonisation + Glottolog + FWL item-FE + balanced/filler controls + frozen 300-row coder sample",
+      "next_gate": "Independent Coder A/B ontology audit, native-language review, then measurement-corrected fingerprints",
+      "blocker": "Genuinely independent/native-speaker annotation is required; current assistant cannot count as both coders"
     },
     "017": {
       "progress": 20,
