@@ -12,12 +12,12 @@
       "blocker": "None scientific; author-only portal/contact fields"
     },
     "002": {
-      "progress": 97,
-      "stage": "Submission formatting + final-output packaging",
-      "activity": "active",
-      "evidence": "Independent review PASS_SUBMISSION_PREP; 3 manuscript figures; Linguistic Typology package under CI",
-      "next_gate": "Clean submission CI, add full Chinese mirror, register final output metadata",
-      "blocker": "Editorial/output packaging only; science not reopened"
+      "progress": 100,
+      "stage": "Submission package ready · output gate PASS",
+      "activity": "quiet",
+      "evidence": "Final EN + ZH manuscripts; independent PASS_SUBMISSION_PREP; 3 figures; 6 tables; Linguistic Typology technical package PASS",
+      "next_gate": "Author metadata/declarations + ScholarOne submission",
+      "blocker": "None scientific; author-only metadata/declarations and portal submission"
     },
     "003": {
       "progress": 58,
