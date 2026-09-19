@@ -8,7 +8,7 @@ ARIS4C001 · Final manuscript · 18 September 2026
 **Target journal:** Frontiers in Psychology — Comparative Psychology  
 **Target article type:** Hypothesis and Theory  
 **Main-text word count (approx.):** 3001  
-**Figures:** 3  
+**Figures:** 5  
 **Tables:** 3
 
 ### Abstract
@@ -60,6 +60,10 @@ Accordingly, this paper uses **uncertainty-sensitive choice** for the behavioral
 Recent reviews consider prediction, attention, emotion-like states, self-related processing, and metacognition relevant to the study of insect consciousness, while emphasizing that no single behavioral assay establishes subjective experience (Chittka et al., 2025). The present analysis therefore makes no inference from learning covariance or opt-out behavior to phenomenal consciousness or self-awareness.
 
 Similarly, complex social learning in bumblebees—such as acquisition of a two-step puzzle-box behavior from trained demonstrators (Bridges et al., 2024)—is evidence about social learning and cultural transmission, not direct evidence of tool use, self-awareness, or a shared “precision” variable.
+
+![Figure 4. Evidence boundary between the two literatures](../figures/figure4_evidence_boundary.svg)
+
+**Figure 4. Evidence boundary between the two literatures.** Existing studies establish structured learning covariance and difficulty-sensitive opt-out behavior separately. The scientifically decisive missing edge is same-individual coupling; one mechanism, metacognition, consciousness, or a shared precision/confidence variable therefore cannot be inferred from species-level coexistence.
 
 ---
 
@@ -167,6 +171,10 @@ The existing literature shows why selection matters. Finke et al. (2023) conditi
 The confirmatory analysis should compare M1–M5 using held-out predictive performance, calibration, and posterior predictive checks. For opt-out behavior, a hierarchical logistic model can estimate the effect of difficulty and reinforcement history while allowing bee- and colony-level variation. A latent uncertainty term should be added only after the associative baseline is specified.
 
 Strong falsifiers are straightforward. The single-general-factor model is weakened if uncertainty indicators show reliable individual variation but near-zero latent correlation with learning/GCA. A pure associative opt-out model is weakened if bees generalize uncertainty-sensitive control in ways that learned values and stimulus similarity do not predict. A broad GCA interpretation is weakened if positive covariance disappears across modalities or contexts after reliability and selection are controlled. A unitary precision account is weakened if different tasks require different latent parameters or simpler models predict equally well.
+
+![Figure 5. Decisive same-individual experiment](../figures/figure5_same_individual_experiment.svg)
+
+**Figure 5. Decisive same-individual experiment.** The proposed design measures learning and uncertainty-sensitive choice in the same identified bees, retains key nuisance variables, and compares the five competing models using held-out prediction, reliability, calibration, and transfer. The figure visualizes the inferential bridge that is absent from the current literature.
 
 ---
 
