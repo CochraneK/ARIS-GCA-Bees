@@ -139,6 +139,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 | Understand final-output requirements | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
 | Understand continuity requirements | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
 | Understand portfolio activity states | [`ARIS4C_STATUS_MODEL.md`](ARIS4C_STATUS_MODEL.md) |
+| Understand 000 scheduling / checkpoint rules | [`ARIS4C_OPERATING_MODEL.md`](ARIS4C_OPERATING_MODEL.md) |
 
 ## Portfolio at a glance
 
@@ -255,6 +256,7 @@ ARIS4C/
 ├── ARIS4C_OUTPUT_STANDARD.md
 ├── ARIS4C_CONTINUITY_STANDARD.md
 ├── ARIS4C_STATUS_MODEL.md
+├── ARIS4C_OPERATING_MODEL.md
 └── aris.lock.json                 # pinned ARIS lineage
 ```
 
@@ -267,6 +269,7 @@ python tools/build_readme.py
 python tools/audit_paper_outputs.py
 python tools/audit_paper_handoffs.py
 python tools/sync_paper_handoffs.py
+python tools/portfolio_queue.py
 ```
 
 ## Design principles
@@ -277,6 +280,7 @@ python tools/sync_paper_handoffs.py
 4. **Bilingual by default at completion.** Final public delivery is English + Chinese and PDF-first.
 5. **Research must be resumable.** A project that another agent cannot safely continue is operationally incomplete.
 6. **Anomalies are not verdicts.** Forensics-oriented projects preserve human review and explicit uncertainty.
+7. **Finish what is closest first.** 000 continues genuine Active work first, then promotes the highest-progress Wait paper, with bounded-unit Git checkpoints before switching.
 
 ---
 
@@ -320,6 +324,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | 查看最终输出标准 | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
 | 查看跨 Agent 接管标准 | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
 | 查看项目状态分类规则 | [`ARIS4C_STATUS_MODEL.md`](ARIS4C_STATUS_MODEL.md) |
+| 查看 000 调度 / 落盘规则 | [`ARIS4C_OPERATING_MODEL.md`](ARIS4C_OPERATING_MODEL.md) |
 
 ## 当前研究组合
 
@@ -458,6 +463,7 @@ python tools/sync_paper_handoffs.py
 4. **完成时默认双语。** Final public delivery 使用 English + 中文，并优先 PDF。
 5. **研究必须可接管。** 如果换一个 Agent 就无法继续，这个项目在 operational 层面就还没完成。
 6. **异常不是定罪。** Forensics 类项目保留 human review、证据边界和明确的不确定性。
+7. **优先完成最接近完成的项目。** 000 先续跑真正的 Active；有空闲槽位时，从 Wait 中按进度从高到低启动，并在切换 Paper 前完成 bounded-unit Git checkpoint。
 
 ---
 
