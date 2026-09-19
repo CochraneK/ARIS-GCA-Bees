@@ -1,0 +1,113 @@
+name: ARIS4C012 v2 evidence Amendment 02
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c012-v2-evidence-replacement.yml"
+      - "papers/012-oppositional-causal-inversion/code/replace_v2_evidence_unavailable.py"
+      - "papers/012-oppositional-causal-inversion/process/V2_EVIDENCE_AVAILABILITY_AMENDMENT_02.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c012-v2-evidence-amendment-02
+  cancel-in-progress: true
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/012-oppositional-causal-inversion
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile replacement tooling
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_materialize_v2_blind_packet.py' -v
+
+      - name: Run deterministic same-stratum replacement
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f "$PAPER_DIR/process/V2_BLIND_PACKET_AMENDMENT_02_FREEZE.json" ]; then
+            echo "Amendment 02 already frozen; validating only."
+          else
+            python "$PAPER_DIR/code/replace_v2_evidence_unavailable.py" \
+              --frame "$PAPER_DIR/data/retrieval_v0_2_0/retrieval_candidates.csv" \
+              --pilot0 "$PAPER_DIR/data/pilot0_coderA_feasibility.csv" \
+              --sample "$PAPER_DIR/data/v2_validation_sample_manifest.csv" \
+              --packet "$PAPER_DIR/data/v2_blind/common_evidence_packet.jsonl" \
+              --prior-freeze "$PAPER_DIR/process/V2_BLIND_PACKET_FREEZE.json" \
+              --amendment1-freeze "$PAPER_DIR/process/V2_BLIND_PACKET_AMENDMENT_01_FREEZE.json" \
+              --schema "$PAPER_DIR/process/SCHEMA_V2_FROZEN.md" \
+              --template "$PAPER_DIR/data/v2_validation_coding_template.csv" \
+              --out-dir "$PAPER_DIR/data/v2_blind_amendment_02" \
+              --freeze-dir "$PAPER_DIR/process"
+          fi
+
+      - name: Validate final pre-coding bundle
+        run: |
+          python - <<'PY'
+          import csv,hashlib,json
+          from pathlib import Path
+          p=Path("papers/012-oppositional-causal-inversion")
+          f=json.loads((p/"process/V2_BLIND_PACKET_AMENDMENT_02_FREEZE.json").read_text())
+          a=json.loads((p/"process/A2_INPUT_AMENDMENT_02_FREEZE.json").read_text())
+          b=json.loads((p/"process/B2_INPUT_AMENDMENT_02_FREEZE.json").read_text())
+          report=json.loads((p/"data/v2_blind_amendment_02/amendment_02_report.json").read_text())
+          packet=p/"data/v2_blind_amendment_02/common_evidence_packet_amendment_02.jsonl"
+          aform=p/"data/v2_blind_amendment_02/A2_response_amendment_02.csv"
+          bform=p/"data/v2_blind_amendment_02/B2_response_amendment_02.csv"
+          sha=lambda x:hashlib.sha256(x.read_bytes()).hexdigest()
+          records=[json.loads(x) for x in packet.read_text(encoding="utf-8").splitlines() if x.strip()]
+          assert f["ready_for_independent_coding"] is True
+          assert report["ready_for_independent_coding"] is True
+          assert f["replacement_count"]==6 and report["replacement_count"]==6
+          assert len(records)==30 and not [r for r in records if r["evidence_state"]=="BIBLIOGRAPHIC_ONLY"]
+          assert sha(packet)==f["evidence_packet_sha256"]
+          assert sha(aform)==sha(bform)==f["response_form_sha256"]
+          assert a["bundle_sha256"]==b["bundle_sha256"]==f["bundle_sha256"]
+          forbidden={"stratum","query","query_index","draw_score","selection_rank","provider","provider_id","oci_candidate","opposition_valid","primary_mechanism"}
+          assert all(not (set(r)&forbidden) for r in records)
+          print(json.dumps({"bundle_sha256":f["bundle_sha256"],"replacement_count":6,"ready":True},indent=2))
+          PY
+
+      - name: Persist final pre-coding bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/v2_blind_amendment_02" \
+                  "$PAPER_DIR/process/V2_BLIND_PACKET_AMENDMENT_02_FREEZE.json" \
+                  "$PAPER_DIR/process/A2_INPUT_AMENDMENT_02_FREEZE.json" \
+                  "$PAPER_DIR/process/B2_INPUT_AMENDMENT_02_FREEZE.json"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ARIS4C012 freeze final v2 pre-coding bundle [skip ci]"
+          pushed=0
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then pushed=1; break; fi
+            sleep $((attempt*2))
+          done
+          test "$pushed" -eq 1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c012-v2-final-pre-coding-bundle
+          path: |
+            papers/012-oppositional-causal-inversion/data/v2_blind_amendment_02
+            papers/012-oppositional-causal-inversion/process/V2_BLIND_PACKET_AMENDMENT_02_FREEZE.json
+            papers/012-oppositional-causal-inversion/process/A2_INPUT_AMENDMENT_02_FREEZE.json
+            papers/012-oppositional-causal-inversion/process/B2_INPUT_AMENDMENT_02_FREEZE.json
+          retention-days: 30
