@@ -1,0 +1,145 @@
+name: ARIS4C015 Canonical SB Discovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/015-sleeping-beauty-miner/code/trackA_canonical_case_discovery.py"
+      - ".github/workflows/aris4c015-canonical-discovery.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - slug: physics_1980
+            year: 1980
+            field_id: 31
+            field: Physics and Astronomy
+            reference_seed: 15161
+            candidate_seed: 15160
+          - slug: medicine_1980
+            year: 1980
+            field_id: 27
+            field: Medicine
+            reference_seed: 27161
+            candidate_seed: 27160
+          - slug: computer_science_1990
+            year: 1990
+            field_id: 17
+            field: Computer Science
+            reference_seed: 17161
+            candidate_seed: 17160
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover canonical cases against fixed unselected reference
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python trackA_canonical_case_discovery.py \
+            --base-filters "publication_year:${{ matrix.year }},type:article,primary_topic.field.id:${{ matrix.field_id }}" \
+            --field "${{ matrix.field }}" \
+            --reference-seed ${{ matrix.reference_seed }} \
+            --candidate-seed ${{ matrix.candidate_seed }} \
+            --reference-n 100 \
+            --candidate-n 100 \
+            --end-year 2025 \
+            --output "../data/canonical_${{ matrix.slug }}.json"
+      - name: Validate case-definition boundary
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path("papers/015-sleeping-beauty-miner/data")/f"canonical_{os.environ['SLUG']}.json"
+          r=json.loads(p.read_text())
+          assert r["track"]=="A_CANONICAL_CASE_DISCOVERY_FOR_M"
+          assert r["reference_pool"]["selection_on_present_day_citation_count"] is False
+          assert r["candidate_pool"]["selection_on_present_day_citation_count"] is True
+          assert r["prevalence_estimation_allowed"] is False
+          assert r["prospective_performance_allowed"] is False
+          assert r["reference_pool"]["analyzed_n"]>=80
+          assert r["candidate_pool"]["analyzed_n"]>=80
+          for x in r["canonical_cases"]:
+              assert x["robust_gate"] is True
+              assert x["early_percentile_vs_unselected_reference"] <= 0.25
+              assert x["late_percentile_vs_unselected_reference"] >= 0.75
+              assert x["canonical_mechanism_state"]=="SLEEPING_BEAUTY"
+          print(json.dumps({
+              "slug":os.environ["SLUG"],
+              "robust":r["robust_gate_candidates_n"],
+              "canonical":r["canonical_sb_n"],
+          },indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-canonical-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/canonical_${{ matrix.slug }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: discover
+    if: ${{ always() && needs.discover.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-canonical-*
+          path: canonical
+          merge-multiple: true
+      - name: Aggregate canonical yield
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[]; ids=set()
+          for p in sorted(Path("canonical").glob("canonical_*.json")):
+              r=json.loads(p.read_text())
+              for x in r["canonical_cases"]: ids.add(x["openalex_id"])
+              rows.append({
+                  "file":p.name,
+                  "reference_n":r["reference_pool"]["analyzed_n"],
+                  "candidate_n":r["candidate_pool"]["analyzed_n"],
+                  "robust_gate_candidates_n":r["robust_gate_candidates_n"],
+                  "canonical_sb_n":r["canonical_sb_n"],
+                  "robust_noncanonical_n":r["robust_noncanonical_n"],
+              })
+          s={
+              "track":"A_CANONICAL_CASE_DISCOVERY_FOR_M",
+              "n_strata":len(rows),
+              "reference_papers":sum(x["reference_n"] for x in rows),
+              "candidate_papers":sum(x["candidate_n"] for x in rows),
+              "robust_gate_candidates":sum(x["robust_gate_candidates_n"] for x in rows),
+              "canonical_sb_rows":sum(x["canonical_sb_n"] for x in rows),
+              "unique_canonical_sb_ids":len(ids),
+              "prevalence_estimation_allowed":False,
+              "prospective_performance_allowed":False,
+              "strata":rows,
+          }
+          Path("canonical_summary.json").write_text(json.dumps(s,indent=2)+"\n")
+          assert s["n_strata"]==3
+          print(json.dumps(s,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-canonical-summary
+          path: canonical_summary.json
+          if-no-files-found: error
+          retention-days: 30
