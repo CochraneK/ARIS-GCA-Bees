@@ -1,0 +1,89 @@
+name: ARIS4C011 Pilot 3 comparator discovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-pilot3-comparators.yml"
+      - "papers/011-research-forensics/code/pilot3_comparator_discovery.py"
+      - "papers/011-research-forensics/code/test_pilot3_comparator_discovery.py"
+      - "papers/011-research-forensics/data/pilot/pilot3_correction_candidates.csv"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-pilot3-comparators
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run comparator discovery unit tests
+        run: python -m unittest -q code/test_pilot3_comparator_discovery.py
+
+      - name: Discover provisional matched comparator candidates
+        run: |
+          python code/pilot3_comparator_discovery.py             --output data/results/pilot3_comparator_candidates.json             --per-target 3             --window-days 45             --query-rows 100
+
+      - name: Audit claim boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/results/pilot3_comparator_candidates.json")
+          x=json.loads(p.read_text(encoding="utf-8"))
+          assert x["benchmark_role"]=="NO_KNOWN_INTEGRITY_CONCERN_COMPARATOR_CANDIDATE"
+          assert x["secondary_screen_required"] is True
+          assert x["candidate_count"]==12
+          assert all(v==3 for v in x["candidate_count_by_target"].values())
+          assert "detector output" in x["explicit_nonmatching_variables"]
+          assert all(
+              r["screen_state"]=="PROVISIONAL_CROSSREF_NEGATIVE"
+              for r in x["matches"]
+          )
+          print(json.dumps({
+              "candidate_count":x["candidate_count"],
+              "candidate_count_by_target":x["candidate_count_by_target"],
+              "secondary_screen_required":x["secondary_screen_required"],
+          },indent=2))
+          PY
+
+      - name: Commit provisional comparator candidate set
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/pilot3_comparator_candidates.json
+          if git diff --cached --quiet; then
+            echo "Comparator candidate set already current."
+          else
+            git commit -m "ARIS4C011 record provisional matched comparator candidates"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-pilot3-comparator-candidates
+          path: papers/011-research-forensics/data/results/pilot3_comparator_candidates.json
+          retention-days: 30
