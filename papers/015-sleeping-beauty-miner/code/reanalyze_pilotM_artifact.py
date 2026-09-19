@@ -13,7 +13,11 @@ import json
 from pathlib import Path
 
 from mechanism_matching import MechanismPaper
-from risk_set_matching import build_awakening_risk_set_contrast
+from risk_set_matching import (
+    build_awakening_risk_set_contrast,
+    is_at_risk_dormant_control,
+    risk_set_distance,
+)
 
 
 def _mechanism_rows(payload: dict) -> list[MechanismPaper]:
@@ -83,6 +87,87 @@ def _known_case_ids(payload: dict) -> set[str]:
     return ids
 
 
+def _quantile(values: list[float], p: float) -> float | None:
+    if not values:
+        return None
+    ordered = sorted(values)
+    if len(ordered) == 1:
+        return float(ordered[0])
+    pos = p * (len(ordered) - 1)
+    lo = int(pos)
+    hi = min(lo + 1, len(ordered) - 1)
+    frac = pos - lo
+    return float(ordered[lo] * (1.0 - frac) + ordered[hi] * frac)
+
+
+def _support_diagnostics(
+    papers: list[MechanismPaper],
+    case_ids: set[str],
+) -> dict:
+    by_id = {p.paper_id: p for p in papers}
+    out = {}
+    for case_id in sorted(case_ids):
+        case = by_id[case_id]
+        eligible = []
+        for control in papers:
+            ok, rate, burst = is_at_risk_dormant_control(case, control)
+            if not ok or rate is None:
+                continue
+            eligible.append(
+                {
+                    "control_id": control.paper_id,
+                    "sleep_rate": float(rate),
+                    "sleep_gap": abs(float(case.robust_sleep_rate) - float(rate)),
+                    "reference_gap": (
+                        abs(float(case.reference_count) - float(control.reference_count))
+                        if case.reference_count is not None
+                        and control.reference_count is not None
+                        else None
+                    ),
+                    "author_gap": (
+                        abs(float(case.author_count) - float(control.author_count))
+                        if case.author_count is not None
+                        and control.author_count is not None
+                        else None
+                    ),
+                    "distance": risk_set_distance(
+                        case,
+                        control,
+                        control_rate=float(rate),
+                    ),
+                    "future_state": control.state,
+                    "first_burst_age": burst,
+                }
+            )
+        eligible.sort(key=lambda x: (x["distance"], x["control_id"]))
+        sleep_gaps = [x["sleep_gap"] for x in eligible]
+        ref_gaps = [
+            x["reference_gap"] for x in eligible
+            if x["reference_gap"] is not None
+        ]
+        author_gaps = [
+            x["author_gap"] for x in eligible
+            if x["author_gap"] is not None
+        ]
+        out[case_id] = {
+            "case_event_age": case.robust_sleep_years,
+            "case_sleep_rate": case.robust_sleep_rate,
+            "case_reference_count": case.reference_count,
+            "case_author_count": case.author_count,
+            "n_eligible_controls_in_acquired_cohort": len(eligible),
+            "sleep_gap": {
+                "min": min(sleep_gaps) if sleep_gaps else None,
+                "p10": _quantile(sleep_gaps, 0.10),
+                "p25": _quantile(sleep_gaps, 0.25),
+                "median": _quantile(sleep_gaps, 0.50),
+            },
+            "reference_gap_min": min(ref_gaps) if ref_gaps else None,
+            "author_gap_min": min(author_gaps) if author_gaps else None,
+            "nearest_controls": eligible[:10],
+        }
+    return out
+
+
 def reanalyze(payload: dict, ratios: list[int]) -> dict:
     papers = _mechanism_rows(payload)
     case_ids = _known_case_ids(payload)
@@ -107,6 +192,7 @@ def reanalyze(payload: dict, ratios: list[int]) -> dict:
         "frozen_primary_case_ids": sorted(case_ids),
         "control_reuse_across_case_risk_sets": True,
         "balance_threshold_abs_smd": 0.10,
+        "support_diagnostics": _support_diagnostics(papers, case_ids),
         "contrasts": contrasts,
     }
 
