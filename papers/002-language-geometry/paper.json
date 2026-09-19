@@ -24,7 +24,7 @@
   },
   "links": {
     "paper_en": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/manuscript/DRAFT.md",
-    "paper_zh": "",
+    "paper_zh": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/manuscript/DRAFT.zh-CN.md",
     "pipeline": "https://github.com/CochraneK/ARIS4C/blob/main/papers/002-language-geometry/process/STATUS.md",
     "source": "https://github.com/CochraneK/ARIS4C/tree/main/papers/002-language-geometry",
     "staging_provenance": "https://github.com/CochraneK/ARIS4C/tree/main/ideas/language-periodic-system",
@@ -56,5 +56,9 @@
       "author metadata/declarations",
       "actual ScholarOne submission"
     ]
+  },
+  "bilingual_delivery": {
+    "english": true,
+    "chinese": true
   }
 }
