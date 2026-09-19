@@ -477,7 +477,7 @@ def build_priority_contrasts(
     controls_per_case: int = 1,
     year_tolerance: int = 0,
     early_percentile_caliper: float = 0.15,
-    sleep_rate_caliper: float = 1.0,
+    sleep_rate_caliper: float | None = None,
     max_abs_smd: float = 0.10,
 ) -> dict:
     """Construct the two primary SB mechanism contrasts."""
