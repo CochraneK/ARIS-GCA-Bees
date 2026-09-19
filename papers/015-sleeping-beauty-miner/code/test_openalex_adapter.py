@@ -6,6 +6,80 @@ import openalex_adapter
 
 
 class OpenAlexAdapterTests(unittest.TestCase):
+    def test_count_works_reads_meta_count(self):
+        def fake_request(path, *, params=None, api_key=None, **kwargs):
+            self.assertEqual(path, "/works")
+            self.assertEqual(params["filter"], "publication_year:1921")
+            return {"results": [], "meta": {"count": 321}}
+
+        with patch.object(openalex_adapter, "_request_json", fake_request):
+            count = openalex_adapter.count_works(
+                filters="publication_year:1921"
+            )
+
+        self.assertEqual(count, 321)
+
+    def test_iter_works_uses_cursor_pagination(self):
+        calls = []
+
+        def fake_request(path, *, params=None, api_key=None, **kwargs):
+            calls.append((path, dict(params or {})))
+            cursor = params["cursor"]
+            if cursor == "*":
+                return {
+                    "results": [
+                        {
+                            "id": "https://openalex.org/W1",
+                            "display_name": "One",
+                            "publication_year": 1921,
+                            "primary_topic": {
+                                "field": {
+                                    "id": "https://openalex.org/fields/25"
+                                }
+                            },
+                            "authorships": [{}],
+                            "referenced_works_count": 1,
+                        }
+                    ],
+                    "meta": {"next_cursor": "NEXT"},
+                }
+            return {
+                "results": [
+                    {
+                        "id": "https://openalex.org/W2",
+                        "display_name": "Two",
+                        "publication_year": 1921,
+                        "primary_topic": {
+                            "field": {
+                                "id": "https://openalex.org/fields/25"
+                            }
+                        },
+                        "authorships": [{}, {}],
+                        "referenced_works_count": 2,
+                    }
+                ],
+                "meta": {"next_cursor": None},
+            }
+
+        with (
+            patch.object(openalex_adapter, "_request_json", fake_request),
+            patch.object(openalex_adapter.time, "sleep"),
+        ):
+            works = list(
+                openalex_adapter.iter_works(
+                    filters=(
+                        "publication_year:1921,type:article,"
+                        "primary_topic.field.id:25"
+                    )
+                )
+            )
+
+        self.assertEqual([w.openalex_id for w in works], ["W1", "W2"])
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(calls[0][1]["cursor"], "*")
+        self.assertEqual(calls[1][1]["cursor"], "NEXT")
+        self.assertIn("referenced_works_count", calls[0][1]["select"])
+
     def test_historical_filter_is_sent_to_api(self):
         calls = []
 
