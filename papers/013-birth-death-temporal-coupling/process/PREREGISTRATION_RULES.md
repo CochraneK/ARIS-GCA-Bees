@@ -22,3 +22,11 @@
 14. **Do not open 1997–2005 until the mechanical two-step holdout release protocol validates.**
 
 15. **Do not use H3/H4 traditional-calendar features to rescue a failed ordinary-calendar H2 result.** H3/H4 are separately frozen prediction families, not post-hoc replacements for the primary birthday analysis.
+
+16. **Treat traditional date features as deterministic representations of DOB, not additional information beyond DOB.** Evidence is about reproducible structure/compression under equal-complexity comparisons.
+
+17. **Do not use free categorical Gan-Zhi/zodiac fit as evidence for traditional semantics.** Such fits are invariant to relabeling.
+
+18. **Separate feature freeze from outcome-model freeze.** Feature v1.0 may be materialized, but H3/H4 mortality analysis remains prohibited until the source-specific model schema is independently frozen.
+
+19. **Traditional semantic comparisons require matched pseudo systems.** The frozen pseudo seed set is 13001–14000 inclusive (1,000 systems); outcome-dependent reseeding is prohibited.
