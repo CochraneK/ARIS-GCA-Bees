@@ -23,3 +23,14 @@ Append substantial execution sessions in reverse chronological order or chronolo
 - Triggered corrected verification run `35433019496`; at deletion checkpoint it was the active gate.
 - Updated `paper.json`, `papers/dashboard.json`, `process/STATUS.md`, and the handoff package before chat deletion.
 - User requested chat deletion only after the useful state was persisted to Git; this log is the public-safe execution record for that handoff.
+
+## 2026-09-19 · Pilot 3C coverage diagnosis and clock-era replication gate
+
+- Modern SeSAMe SHCDPB smoke run `35438430019` completed all acquisition and preprocessing infrastructure but failed the unchanged >=95% required-CpG coverage gate.
+- Added diagnostics separating required-probe name presence, raw finite betas, species-structural non-mapping, residual QC missingness and final clock-input coverage.
+- Verified that Clock2/3 required probe-name coverage is 100% across the frozen 10-sample smoke set, eliminating probe-ID mismatch as the current failure layer.
+- Applied beta=0.5 only to CpGs structurally masked by SeSAMe species inference; residual pOOBAH/QC missingness remains missing and continues to count against the gate.
+- Modern SHCDPB minimum final coverage is 0.8971 for Clock2 and 0.8895 for Clock3; the 0.95 threshold was not relaxed.
+- Historical method audit identified the 2023 Mammal40 non-human recommendation as SeSAMe 1.18.4 / SHCDPM rather than the current SHCDPB recipe.
+- Added a separate clock-era smoke workflow using R 4.3, Bioconductor 3.17, SeSAMe 1.18.4 and SHCDPM on the same frozen samples and pinned MMC v3.0.0 coefficients.
+- Modern SHCDPB is retained as a sensitivity/QC route; it is not being rewritten as the primary clock-era replication.
