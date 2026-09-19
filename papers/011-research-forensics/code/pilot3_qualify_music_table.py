@@ -76,7 +76,7 @@ def main():
                 historical_equivalence="archive_snapshot_of_published_version",
                 provenance_source="Internet Archive Wayback CDX + replay",
                 title="",
-                filename_or_path=rec.original,
+                filename_or_path=original,
                 leading_text=text[:6000],
                 current_metadata_has_update_relation=True,
             )
@@ -96,7 +96,7 @@ def main():
             if not identity_ok:
                 result["reason"].append("target DOI/table identity not verified in replay content")
             if not content_ok:
-                result["reason"].append("expected Table 1 content markers not both present")
+                result["reason"].append("expected Table 1 identity/content markers not all present")
             if q.status!="SAFE_EXACT":
                 result["reason"].extend(q.reasons)
     except Exception as exc:
