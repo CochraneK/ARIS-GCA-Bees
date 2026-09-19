@@ -8,18 +8,18 @@ A formal and empirical research program measuring the query cost imposed by sema
 
 ## Current state
 
-- Activity: **wait**
+- Activity: **block**
 - Progress: **72%**
-- Stage: **Source-derived Pilot 2 + calibration60**
-- Evidence: Formal model + Pilots 0–2 + pinned OEWN 60-target calibration build; current CI PASS
+- Stage: **Human calibration ready · P2/P3/P6 mechanism design**
+- Evidence: Formal theory + Pilots 0–2 + pinned OEWN Calibration60 + 108 balanced P2/P3/P6 forms + protocol training/ingestion/UI + bilingual pre-results manuscripts/figures; current 010 CI chain recorded PASS through runs #61/#62 in paper metadata
 
 ## Immediate next action
 
-**Human-calibrate P2/P6 responses, then expand toward mixed Benchmark v0**
+**Complete ethics/recruitment gate, then collect Stage-A real human P2/P3/P6 calibration responses and resolve the P3→P6 mechanism gate before Benchmark v0 expansion**
 
 ## Current blocker / gate
 
-Human semantic calibration before benchmark-scale claims
+External human-study gate: ethics/exemption determination, recruitment/platform setup, and real participant semantic calibration; LLM/synthetic responses cannot substitute
 
 ## Canonical files / entry points
 
