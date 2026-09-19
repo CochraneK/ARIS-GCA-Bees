@@ -8,7 +8,7 @@ A preregistration-first study testing whether birth timing predicts death timing
 
 ## Current state
 
-- Activity: **gated**
+- Activity: **waiting**
 - Progress: **50%**
 - Stage: **Public NUMIDENT transfer · Pilot 1 ready**
 - Evidence: Raw NUMIDENT parser/tests + locked 1988–1996 discovery + public OpenICPSR V3 death-file provenance manifest

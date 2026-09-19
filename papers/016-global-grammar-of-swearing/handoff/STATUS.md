@@ -2,7 +2,7 @@
 
 - **Title:** The Global Grammar of Swearing: A Cross-Linguistic Atlas of Taboo, Insult, and Profanity
 - **Project status:** working-manuscript-phase0
-- **Activity:** gated
+- **Activity:** waiting
 - **Portfolio progress:** 55%
 - **Current stage:** Empirical Phase 0 working manuscript
 - **Evidence established:** Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript

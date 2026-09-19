@@ -8,7 +8,7 @@ A global, uncertainty-aware meta-research program with a completed public-data d
 
 ## Current state
 
-- Activity: **gated**
+- Activity: **waiting**
 - Progress: **68%**
 - Stage: **Confirmatory adjudication ready · independent dual-AI gate**
 - Evidence: 10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds

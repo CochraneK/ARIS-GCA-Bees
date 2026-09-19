@@ -2,7 +2,7 @@
 
 - **Title:** Born to Die? A Falsification-First Test of Birth–Death Temporal Coupling Across Biological, Psychological, Cultural, and Astrological Time Systems
 - **Project status:** research-design
-- **Activity:** gated
+- **Activity:** waiting
 - **Portfolio progress:** 50%
 - **Current stage:** Public NUMIDENT transfer · Pilot 1 ready
 - **Evidence established:** Raw NUMIDENT parser/tests + locked 1988–1996 discovery + public OpenICPSR V3 death-file provenance manifest
