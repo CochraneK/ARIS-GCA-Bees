@@ -6,7 +6,7 @@
   "year": 2026,
   "status": "pilot-0",
   "domain": "computational psychiatry / phenomenological psychopathology / neurophenomenology / psychometrics / mental-health measurement",
-  "summary": "A measurement framework that separates psychiatric acquisition from encoding loss. Pilot-0 now runs on real open schizophrenia interview material (DAIS-C) with privacy-preserving source inventory, structural segmentation, blinded boundary calibration, and later same-source representation fidelity benchmarking.",
+  "summary": "A measurement framework that separates psychiatric acquisition from encoding loss. Pilot-0 runs on open DAIS-C schizophrenia interview material with privacy-preserving source engineering, structural segmentation, blinded multi-model AI boundary calibration, and later same-source representation fidelity benchmarking.",
   "authors": [
     "Cochrane Kang"
   ],
@@ -29,6 +29,7 @@
     "psychopathology",
     "measurement",
     "representation fidelity",
+    "AI judges",
     "pilot-0",
     "DAIS-C"
   ]
