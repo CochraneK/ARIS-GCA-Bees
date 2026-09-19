@@ -134,7 +134,20 @@
     "cohort": "entry years 2014-2020; 3-year clean lookback; 5-year follow-up; see COHORT_DEFINITION.json",
     "within_author_exposure_variation_gate": "pass",
     "distal_outcomes_max_confirmatory": 2,
-    "distal_confirmatory_endpoint": "ObservedFiveYearPublicationPersistence"
+    "distal_confirmatory_endpoint": "ObservedFiveYearPublicationPersistence",
+    "sampling": {
+      "status": "frozen_preoutcome",
+      "rule": "Nested work-seeded cohort from primary-frame focal authors observed in their validated entry year; no post-entry survivor sampling and no secondary author subsampling.",
+      "document": "process/LONGITUDINAL_SAMPLING_RULE.md",
+      "minimum_structural_adequacy": {
+        "validated_entry_authors": 1000,
+        "final_h3_authors": 750,
+        "entry_years_required": 7,
+        "entry_fields_required": 20,
+        "orcid_anchored_authors": 100,
+        "low_identity_risk_authors": 500
+      }
+    }
   },
   "prohibited_adaptive_choices": [
     "choosing source-level exposure because it gives a larger surname interaction",
