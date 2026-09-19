@@ -40,7 +40,9 @@ def _parse_locale_decimal(value: Any) -> Tuple[float, str]:
     separators or mixed comma/point tokens are intentionally rejected because
     their interpretation is ambiguous without an explicit locale.
     """
-    token = unicodedata.normalize("NFKC", str(value or "")).strip()
+    token = unicodedata.normalize(
+        "NFKC", str(value if value is not None else "")
+    ).strip()
     if not token:
         raise ValueError("empty numeric token")
     if "," in token and "." in token:
