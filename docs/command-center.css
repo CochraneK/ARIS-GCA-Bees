@@ -425,3 +425,49 @@ code{padding:2px 5px;border-radius:6px;background:var(--surface-3)}
   .progress-history-select select{max-width:72vw}
   .progress-history-foot{align-items:flex-start;flex-direction:column;gap:3px}
 }
+
+
+/* Same-day all-paper progress overlay */
+.progress-history-day{
+  color:var(--muted);
+  font-size:10px;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.05em;
+}
+.history-series-line{
+  fill:none;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.78;
+  transition:opacity .12s ease,stroke-width .12s ease;
+}
+.history-series-dot{opacity:.9}
+.history-series-muted{opacity:.10}
+.progress-history-legend{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(78px,1fr));
+  gap:5px 7px;
+  margin-top:8px;
+}
+.history-legend-item{
+  min-width:0;
+  display:grid;
+  grid-template-columns:7px auto 1fr;
+  align-items:center;
+  gap:5px;
+  padding:4px 6px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--muted);
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  font-size:7.5px;
+  cursor:default;
+}
+.history-legend-item i{width:7px;height:7px;border-radius:999px}
+.history-legend-item strong{color:var(--text);font-size:7.5px}
+.history-legend-item span{text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:720px){
+  .progress-history-day{font-size:9px}
+  .progress-history-legend{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
