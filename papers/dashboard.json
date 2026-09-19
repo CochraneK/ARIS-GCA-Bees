@@ -144,9 +144,12 @@
     "policy": "completion-first",
     "control_chat": "000",
     "canonical_state": "git",
+    "active_wip_policy": "adaptive",
     "default_active_wip": 1,
-    "max_active_wip": 3,
-    "selection_rule": "continue active first; when a slot is free, choose the highest-progress wait paper; exclude block and finish unless explicitly overridden",
+    "soft_active_wip_reference": 3,
+    "max_active_wip": null,
+    "capacity_rule": "No fixed hard cap. Expand or contract Active WIP according to the current model/agent/tool capacity, genuine parallelism, paper-level context isolation, checkpoint discipline, and truthful live-state tracking; exceeding 3 is allowed when those conditions remain strong.",
+    "selection_rule": "continue active first; when additional genuine execution capacity is available, choose the highest-progress wait paper; exclude block and finish unless explicitly overridden",
     "checkpoint_rule": "commit each bounded substantive work unit and sync handoff before intentionally switching papers",
     "active_recency_default_hours": 2
   }
