@@ -17,6 +17,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 P2={"YES","NO"}
+P3={"YES","NO","MAYBE"}
 P6={"YES","NO","BORDERLINE","UNKNOWN","UNDEFINED","BOTH"}
 
 
@@ -58,7 +59,10 @@ def main():
 
     invalid=[]
     for r in rows:
-        allowed=P2 if r["protocol"]=="P2" else P6
+        allowed={"P2":P2,"P3":P3,"P6":P6}.get(r["protocol"])
+        if allowed is None:
+            invalid.append((r.get("participant_id"),r["pair_id"],f"unknown protocol {r[\"protocol\"]}"))
+            continue
         if r["response"] not in allowed:
             invalid.append((r.get("participant_id"),r["pair_id"],r["response"]))
     if invalid:
@@ -81,8 +85,15 @@ def main():
         result["protocols"][protocol]={
             "n":len(prows),
             "response_counts":dict(counts),
-            "nonbinary_rate":0.0 if protocol=="P2" else
-                sum(counts[x] for x in ("BORDERLINE","UNKNOWN","UNDEFINED","BOTH"))/len(prows),
+            "escape_rate":(
+                0.0 if protocol=="P2" else
+                counts.get("MAYBE",0)/len(prows) if protocol=="P3" else
+                sum(counts.get(x,0) for x in ("BORDERLINE","UNKNOWN","UNDEFINED","BOTH"))/len(prows)
+            ),
+            "fine_grained_nonbinary_rate":(
+                0.0 if protocol!="P6" else
+                sum(counts.get(x,0) for x in ("BORDERLINE","UNKNOWN","UNDEFINED","BOTH"))/len(prows)
+            ),
             "mean_pairwise_agreement":None if not agreements else sum(agreements)/len(agreements),
             "mean_pair_response_entropy_bits":
                 sum(entropy(Counter(v)) for v in by_pair.values())/len(by_pair),
