@@ -48,3 +48,15 @@
 **Why:** The useful degree of parallelism depends on the execution environment. Stronger future models, multi-agent orchestration, parallel compute, or better tooling may be able to advance more than three papers simultaneously without sacrificing scientific quality or continuity.
 
 **Guardrail:** Additional Active papers are justified only when they are genuinely moving and paper-level context isolation, bounded Git checkpointing, supervision, and truthful live-state tracking remain intact. If those degrade, WIP should contract rather than preserve a target count.
+
+
+## 2026-09-19 · Public command center shows in-progress work only
+
+**Decision:** The public Research Command Center displays only projects with `0 < progress < 100`.
+
+- `progress == 0`: hidden because no substantive work has started.
+- `progress == 100`: hidden because the current output contract is complete.
+- Canonical Git state remains unchanged; hidden projects stay in `papers/dashboard.json` and remain available to scheduling, audit, provenance, and historical reconstruction.
+- Public cards, rolling showcase, counts, and today's progress chart follow the same visibility rule.
+
+**Why:** The command center should foreground work that has actually started and still needs advancement, rather than mixing untouched ideas or already-completed outputs into the live execution surface.
