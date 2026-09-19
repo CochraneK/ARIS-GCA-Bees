@@ -42,6 +42,7 @@ class OpenAlexWork:
     doi: str | None
     cited_by_count: int | None
     primary_topic: str | None
+    primary_field_id: str | None = None
     referenced_works_count: int | None = None
     authorship_count: int | None = None
 
@@ -55,6 +56,7 @@ class OpenAlexWork:
             doi=payload.get("doi"),
             cited_by_count=payload.get("cited_by_count"),
             primary_topic=topic.get("display_name"),
+            primary_field_id=_short_id((topic.get("field") or {}).get("id")),
             referenced_works_count=payload.get("referenced_works_count"),
             authorship_count=(
                 len(payload.get("authorships") or [])
