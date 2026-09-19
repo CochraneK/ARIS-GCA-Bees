@@ -32,10 +32,10 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 |---|---|
 | 可视化查看全部项目 | **[Research Command Center](https://cochranek.github.io/ARIS4C/)** |
 | 阅读已完成论文 | 见下方 **已达到公开交付状态的论文** |
-| 换电脑 / 账号 / Agent 继续某篇论文 | 打开该项目的 **\`handoff/README.md\`** |
-| 查看当前 portfolio 状态 | [\`papers/dashboard.json\`](papers/dashboard.json) |
-| 查看最终输出标准 | [\`ARIS4C_OUTPUT_STANDARD.md\`](ARIS4C_OUTPUT_STANDARD.md) |
-| 查看跨 Agent 接管标准 | [\`ARIS4C_CONTINUITY_STANDARD.md\`](ARIS4C_CONTINUITY_STANDARD.md) |
+| 换电脑 / 账号 / Agent 继续某篇论文 | 打开该项目的 **`handoff/README.md`** |
+| 查看当前 portfolio 状态 | [`papers/dashboard.json`](papers/dashboard.json) |
+| 查看最终输出标准 | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
+| 查看跨 Agent 接管标准 | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
 
 ## 当前研究组合
 
@@ -51,7 +51,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
   <img src="./docs/assets/readme/zh/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
-> Progress 是**项目管理估计**，不是科学结果。\`100%\` 表示仓库层面的最终输出契约已经满足。**Quiet** 表示 submission-ready / completed、当前不再需要主动执行的项目。
+> Progress 是**项目管理估计**，不是科学结果。`100%` 表示仓库层面的最终输出契约已经满足。**Quiet** 表示 submission-ready / completed、当前不再需要主动执行的项目。
 
 ## 已达到公开交付状态的论文
 
@@ -90,7 +90,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 - **ARIS** 提供研究流程。
 - **每一个 numbered paper** 拥有自己的科学证据和决策。
 - **ARIS4C 000 / dashboard** 管 portfolio，但不成为第二套科学真相。
-- **\`handoff/\`** 保存跨对话、跨账号、跨 Agent 继续研究所需的上下文。
+- **`handoff/`** 保存跨对话、跨账号、跨 Agent 继续研究所需的上下文。
 - **Git history** 保存被替代的旧版本，而不是抹掉研究如何演化。
 
 ## 每篇 Paper 的通用结构
@@ -118,7 +118,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | 图表 | 根据论文真正的推断结构设计，**不固定 3 张图，也不固定图型** |
 | 证据 | empirical / synthetic / conceptual provenance 可追踪 |
 | 审查 | 对应的科学、复现、独立 review gate |
-| 连续性 | \`handoff/\` 包含状态、TODO、决策、上下文、对话记录、Agent 接管说明和 session log |
+| 连续性 | `handoff/` 包含状态、TODO、决策、上下文、对话记录、Agent 接管说明和 session log |
 | 公开入口 | Research Command Center 中的链接保持最新 |
 
 详见 [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md)。
@@ -131,7 +131,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 
 每一个编号项目现在都有统一目录：
 
-\`\`\`text
+```text
 papers/00X-project/
 └── handoff/
     ├── README.md
@@ -142,17 +142,17 @@ papers/00X-project/
     ├── CHATLOG.md
     ├── AGENT_HANDOFF.md
     └── SESSION_LOG.md
-\`\`\`
+```
 
 新的执行者原则上只需要：
 
-> **先读 \`papers/00X-.../handoff/README.md\`，然后从当前 Git 状态继续。**
+> **先读 `papers/00X-.../handoff/README.md`，然后从当前 Git 状态继续。**
 
 公开仓库里的 CHATLOG 保存的是 **public-safe 的研究对话摘要**，不会写入 API key、私密凭证、不必要的个人敏感信息或模型隐藏 chain-of-thought。
 
 ## 仓库结构
 
-\`\`\`text
+```text
 ARIS4C/
 ├── papers/
 │   ├── dashboard.json             # portfolio canonical state
@@ -168,18 +168,18 @@ ARIS4C/
 ├── ARIS4C_OUTPUT_STANDARD.md
 ├── ARIS4C_CONTINUITY_STANDARD.md
 └── aris.lock.json
-\`\`\`
+```
 
 ## 重建与审计
 
-\`\`\`bash
+```bash
 python tools/build_papers_index.py
 python tools/build_readme_assets.py
 python tools/build_readme.py
 python tools/audit_paper_outputs.py
 python tools/audit_paper_handoffs.py
 python tools/sync_paper_handoffs.py
-\`\`\`
+```
 
 ## 设计原则
 

@@ -32,10 +32,10 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 |---|---|
 | See the whole portfolio visually | **[Research Command Center](https://cochranek.github.io/ARIS4C/)** |
 | Read completed papers | See **Publication-ready outputs** below |
-| Continue one paper on another machine / account / agent | Open that paper's **\`handoff/README.md\`** |
-| Check current portfolio state | [\`papers/dashboard.json\`](papers/dashboard.json) |
-| Understand final-output requirements | [\`ARIS4C_OUTPUT_STANDARD.md\`](ARIS4C_OUTPUT_STANDARD.md) |
-| Understand continuity requirements | [\`ARIS4C_CONTINUITY_STANDARD.md\`](ARIS4C_CONTINUITY_STANDARD.md) |
+| Continue one paper on another machine / account / agent | Open that paper's **`handoff/README.md`** |
+| Check current portfolio state | [`papers/dashboard.json`](papers/dashboard.json) |
+| Understand final-output requirements | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
+| Understand continuity requirements | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
 
 ## Portfolio at a glance
 
@@ -51,7 +51,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
   <img src="./docs/assets/readme/en/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
-> Progress is a **portfolio-management estimate**, not a scientific result. \`100%\` means the repository-level final output contract is satisfied. **Quiet** includes submission-ready/completed tracks that do not need active execution.
+> Progress is a **portfolio-management estimate**, not a scientific result. `100%` means the repository-level final output contract is satisfied. **Quiet** includes submission-ready/completed tracks that do not need active execution.
 
 ## Publication-ready outputs
 
@@ -90,7 +90,7 @@ The key distinction is intentional:
 - **ARIS** supplies the research workflow.
 - **Each numbered paper** owns its scientific evidence and decisions.
 - **ARIS4C 000 / dashboard** manages the portfolio without becoming a second scientific truth.
-- **\`handoff/\`** preserves the context needed to resume work across sessions and agents.
+- **`handoff/`** preserves the context needed to resume work across sessions and agents.
 - **Git history** preserves superseded states rather than erasing how a paper evolved.
 
 ## Common structure of every Paper
@@ -118,7 +118,7 @@ A submission-ready/final ARIS4C paper is expected to provide:
 | Visuals | Figure/table package chosen for the actual inferential structure — **no fixed “3 figures” quota** |
 | Evidence | Traceable empirical / synthetic / conceptual provenance |
 | Review | Required scientific / reproducibility / independent-review gates |
-| Continuity | \`handoff/\` package with status, TODO, decisions, context, chat log, agent handoff, and session log |
+| Continuity | `handoff/` package with status, TODO, decisions, context, chat log, agent handoff, and session log |
 | Public surface | Current links on the Research Command Center |
 
 See [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md).
@@ -131,7 +131,7 @@ See [**ARIS4C Final Output Standard · v3**](ARIS4C_OUTPUT_STANDARD.md).
 
 Every numbered paper has the same cold-start package:
 
-\`\`\`text
+```text
 papers/00X-project/
 └── handoff/
     ├── README.md
@@ -142,17 +142,17 @@ papers/00X-project/
     ├── CHATLOG.md
     ├── AGENT_HANDOFF.md
     └── SESSION_LOG.md
-\`\`\`
+```
 
 A new executor should be able to start with:
 
-> **Read \`papers/00X-.../handoff/README.md\` and continue from the current repository state.**
+> **Read `papers/00X-.../handoff/README.md` and continue from the current repository state.**
 
 The public repository stores **public-safe conversation summaries**, not credentials, private personal material, or hidden model chain-of-thought.
 
 ## Repository anatomy
 
-\`\`\`text
+```text
 ARIS4C/
 ├── papers/
 │   ├── dashboard.json             # portfolio source of truth
@@ -168,18 +168,18 @@ ARIS4C/
 ├── ARIS4C_OUTPUT_STANDARD.md
 ├── ARIS4C_CONTINUITY_STANDARD.md
 └── aris.lock.json                 # pinned ARIS lineage
-\`\`\`
+```
 
 ## Rebuild and audit
 
-\`\`\`bash
+```bash
 python tools/build_papers_index.py
 python tools/build_readme_assets.py
 python tools/build_readme.py
 python tools/audit_paper_outputs.py
 python tools/audit_paper_handoffs.py
 python tools/sync_paper_handoffs.py
-\`\`\`
+```
 
 ## Design principles
 
