@@ -14,7 +14,8 @@
     <aside class="sidebar" aria-label="Research portfolio navigation">
       <div class="identity"><span class="avatar">A4</span><div class="identity-copy"><strong>ARIS4C</strong><span>Research command center</span></div></div>
       <nav class="nav" aria-label="MECE project status">
-        <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">15</span></button>
+        <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">17</span></button>
+        <button class="nav-item" type="button" data-filter="finish" data-label="Finish"><span class="nav-icon">✓</span><span>Finish</span><span id="navFinishCount" class="nav-count">2</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">3</span></button>
         <button class="nav-item" type="button" data-filter="wait" data-label="Wait"><span class="nav-icon">◇</span><span>Wait</span><span id="navWaitCount" class="nav-count">5</span></button>
         <button class="nav-item" type="button" data-filter="block" data-label="Block"><span class="nav-icon">×</span><span>Block</span><span id="navBlockCount" class="nav-count">7</span></button>
@@ -22,6 +23,7 @@
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
+          <div class="legend-row"><i class="dot finish"></i><span>Final/output contract complete</span></div>
           <div class="legend-row"><i class="dot active"></i><span>Meaningful work is moving now</span></div>
           <div class="legend-row"><i class="dot wait"></i><span>Can continue, but not moving now</span></div>
           <div class="legend-row"><i class="dot block"></i><span>External dependency prevents progress</span></div>
@@ -50,13 +52,14 @@
           <div class="hero-main">
             <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
             <h1>Research as a living system.</h1>
-            <p class="hero-copy">A portfolio of ARIS-driven papers and agents currently in motion: moving now, ready but idle, or externally blocked. Untouched and 100% completed projects stay in Git but are intentionally omitted here.</p>
+            <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but idle, or externally blocked. The progress curve is intentionally quieter and shows only papers that actually moved today.</p>
             <div class="overview">
+              <div class="metric"><strong>2</strong><span>finish</span></div>
               <div class="metric"><strong>3</strong><span>active now</span></div>
               <div class="metric"><strong>5</strong><span>wait</span></div>
               <div class="metric"><strong>7</strong><span>block</span></div>
             </div>
-            <div class="portfolio-progress"><div class="row"><span>15 in-progress papers · 3 active now · 5 wait · 7 block</span><strong>66%</strong></div><div class="progress-track"><span style="width:66%"></span></div></div>
+            <div class="portfolio-progress"><div class="row"><span>17 papers · 2 finish · 3 active now · 5 wait · 7 block</span><strong>70%</strong></div><div class="progress-track"><span style="width:70%"></span></div></div>
           </div>
 
           <section id="progressHistorySection" class="progress-history-panel hero-history" aria-labelledby="progressHistoryTitle">
@@ -64,7 +67,7 @@
               <div>
                 <p class="eyebrow">TODAY · GIT-DERIVED</p>
                 <h2 id="progressHistoryTitle">Today's progress</h2>
-                <p>In-progress papers only · today's dashboard checkpoints.</p>
+                <p>Only papers whose progress changed today · Finish is hidden from this curve only.</p>
               </div>
               <strong class="progress-history-day">2026-09-19</strong>
             </div>
@@ -72,12 +75,12 @@
               <svg id="progressHistoryChart" class="progress-history-chart" viewBox="0 0 1000 330" role="img" aria-label="Today's ARIS4C progress for all papers"></svg>
             </div>
             <div id="progressHistoryLegend" class="progress-history-legend" aria-label="Paper legend"></div>
-            <div class="progress-history-foot"><span id="progressHistorySummary">2026-09-19 · 30 checkpoints · 15 papers on one chart</span><span>management estimate</span></div>
+            <div class="progress-history-foot"><span id="progressHistorySummary">2026-09-19 · 30 checkpoints · 10 changed-today papers</span><span>management estimate</span></div>
           </section>
         </section>
 
         <div class="control-bar">
-          <div class="control-left"><span id="resultCount" class="result-count">15 / 15 projects</span></div>
+          <div class="control-left"><span id="resultCount" class="result-count">17 / 17 projects</span></div>
           <div class="control-right">
             <select id="sortFilter" aria-label="Sort projects"><option value="id">ID order</option><option value="progress-desc">Maturity high → low</option><option value="progress-asc">Maturity low → high</option><option value="activity">Activity state</option><option value="recent">Recent commit</option></select>
             <button id="clearFilters" class="filter-chip" type="button">Reset</button>
@@ -89,7 +92,7 @@
             <div>
               <p class="eyebrow">LIVE RESEARCH SHOWCASE</p>
               <h2 id="showcaseTitle">ARIS4C rolling research board</h2>
-              <p>All in-progress papers, continuously rotating. Hover, focus, drag or use the arrows to pause and explore.</p>
+              <p>All current papers, continuously rotating. Hover, focus, drag or use the arrows to pause and explore.</p>
             </div>
             <div class="showcase-controls" aria-label="Showcase controls">
               <button id="showcasePrev" class="showcase-arrow" type="button" aria-label="Previous projects">←</button>
@@ -99,6 +102,34 @@
           <div id="showcaseViewport" class="showcase-viewport" tabindex="0" aria-label="Rolling ARIS4C project showcase">
             <div id="showcaseTrack" class="showcase-track">
               
+      <article class="showcase-card" data-showcase-original="true" data-id="001" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T20:14:12+08:00" data-search="001 From General Learning Ability to Uncertainty Monitoring in Honey Bees Bee GCA × Uncertainty comparative cognition / psychometrics / computational neuroethology submission-package-ready Submission package ready · output gate PASS ARIS ARIS4C honey bees general cognitive ability uncertainty monitoring metacognition quantitative synthesis">
+        <div class="showcase-top">
+          <span class="showcase-id">#001</span>
+          <span class="showcase-state"><i></i>Finish</span>
+        </div>
+        <h3>Bee GCA × Uncertainty</h3>
+        <p>Submission package ready · output gate PASS</p>
+        <div class="showcase-progress"><span style="width:100%"></span></div>
+        <div class="showcase-bottom">
+          <strong>100%</strong>
+          <div class="showcase-actions"><a class="btn primary" href="paper/001/en/main.pdf">English</a><a class="btn" href="paper/001/zh/main.pdf">中文</a></div>
+        </div>
+      </article>
+
+      <article class="showcase-card" data-showcase-original="true" data-id="002" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T20:14:23+08:00" data-search="002 Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization Testing linguistic periodicity linguistic typology / quantitative linguistics / language universals / model comparison submission-ready-author-metadata-pending Output gate PASS · journal package refresh pending ARIS ARIS4C linguistic typology language periodic table model comparison circular seriation WALS Grambank TLI GBI">
+        <div class="showcase-top">
+          <span class="showcase-id">#002 · LING-01</span>
+          <span class="showcase-state"><i></i>Finish</span>
+        </div>
+        <h3>Testing linguistic periodicity</h3>
+        <p>Output gate PASS · journal package refresh pending</p>
+        <div class="showcase-progress"><span style="width:100%"></span></div>
+        <div class="showcase-bottom">
+          <strong>100%</strong>
+          <div class="showcase-actions"><a class="btn primary" href="paper/002/en/main.pdf">English</a><a class="btn" href="paper/002/zh/main.pdf">中文</a></div>
+        </div>
+      </article>
+
       <article class="showcase-card" data-showcase-original="true" data-id="003" data-progress="78" data-activity="active" data-last-commit="2026-09-19T19:33:56+08:00" data-search="003 Colonial Legacies and the Global Geography of Disciplinary Advantage Colonial Legacies × Disciplinary Advantage science of science / historical sociology / scientometrics analysis-running Confirmatory model execution · FIRST_RESULT_LOCK gate ARIS ARIS4C colonialism imperialism scientometrics science of science disciplinary specialization bibliometrics">
         <div class="showcase-top">
           <span class="showcase-id">#003</span>
@@ -141,7 +172,7 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="006" data-progress="62" data-activity="wait" data-last-commit="2026-09-19T08:59:02Z" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
+      <article class="showcase-card" data-showcase-original="true" data-id="006" data-progress="62" data-activity="wait" data-last-commit="2026-09-19T20:45:56+08:00" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
         <div class="showcase-top">
           <span class="showcase-id">#006</span>
           <span class="showcase-state"><i></i>Wait</span>
@@ -211,7 +242,7 @@
         </div>
       </article>
 
-      <article class="showcase-card" data-showcase-original="true" data-id="011" data-progress="84" data-activity="active" data-last-commit="2026-09-19T12:40:58Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-pilot3-development-summary Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
+      <article class="showcase-card" data-showcase-original="true" data-id="011" data-progress="84" data-activity="active" data-last-commit="2026-09-19T12:47:41Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-pilot3-development-summary Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
         <div class="showcase-top">
           <span class="showcase-id">#011</span>
           <span class="showcase-state"><i></i>Active</span>
@@ -321,6 +352,46 @@
             <p>Management layer: <code>papers/dashboard.json</code></p>
           </div>
           <section id="paperGrid" class="grid">
+    <article class="paper-card" data-id="001" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T20:14:12+08:00" data-search="001 From General Learning Ability to Uncertainty Monitoring in Honey Bees Bee GCA × Uncertainty  comparative cognition / psychometrics / computational neuroethology submission-package-ready Submission package ready · output gate PASS ARIS ARIS4C honey bees general cognitive ability uncertainty monitoring metacognition quantitative synthesis">
+      <div class="paper-topline">
+        <span class="paper-id">#001</span>
+        <span class="heartbeat"><i></i>Finish</span>
+      </div>
+      <div class="statusline">submission-package-ready</div>
+      <h3>From General Learning Ability to Uncertainty Monitoring in Honey Bees</h3>
+      <div class="progress-head"><span>Submission package ready · output gate PASS</span><strong>100%</strong></div>
+      <div class="card-progress" aria-label="Portfolio maturity 100%"><span style="width:100%"></span></div>
+      <p class="summary">A submission-ready quantitative synthesis and theory paper showing reproducible covariance among honey-bee learning tasks while separating that evidence from uncertainty-monitoring, metacognition, and consciousness claims; the Frontiers Comparative Psychology submission package includes journal metadata, statements, cover letter, reproducible analysis, and fallback-journal guidance.</p>
+      <div class="evidence-grid">
+        <div class="evidence-cell"><span>Evidence</span><strong>Final EN + ZH manuscripts and PDFs, reproducible synthesis, 5 figures, 3 tables, journal package</strong></div>
+        <div class="evidence-cell"><span>Next gate</span><strong>Author portal submission</strong></div>
+      </div>
+      <div class="blocker is-clear"><span>Blocker</span>None scientific; author-only portal/contact fields</div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T20:14:12+08:00">Last commit · —</span><span>2026</span><span>comparative cognition / psychometrics / computational neuroethology</span><span>ARIS v0.4.26</span></div>
+      <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">honey bees</span><span class="tag">general cognitive ability</span></div>
+      <div class="actions"><a class="btn primary" href="paper/001/en/main.pdf">English</a><a class="btn" href="paper/001/zh/main.pdf">中文</a></div>
+    </article>
+
+    <article class="paper-card" data-id="002" data-progress="100" data-activity="finish" data-last-commit="2026-09-19T20:14:23+08:00" data-search="002 Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization Testing linguistic periodicity LING-01 linguistic typology / quantitative linguistics / language universals / model comparison submission-ready-author-metadata-pending Output gate PASS · journal package refresh pending ARIS ARIS4C linguistic typology language periodic table model comparison circular seriation WALS Grambank TLI GBI">
+      <div class="paper-topline">
+        <span class="paper-id">#002 · LING-01</span>
+        <span class="heartbeat"><i></i>Finish</span>
+      </div>
+      <div class="statusline">submission-ready-author-metadata-pending</div>
+      <h3>Testing the periodic-table hypothesis of human language: predictive evidence does not support a global circular organization</h3>
+      <div class="progress-head"><span>Output gate PASS · journal package refresh pending</span><strong>100%</strong></div>
+      <div class="card-progress" aria-label="Portfolio maturity 100%"><span style="width:100%"></span></div>
+      <p class="summary">A predictive stress test of the simple global-circle form of the language periodic-table hypothesis across TLI, GBI, and WALS. Family-held-out evidence and direct circularity diagnostics do not support the tested global circular geometry; hierarchical/non-circular models provide stronger predictive benchmarks without establishing one universal tree geometry.</p>
+      <div class="evidence-grid">
+        <div class="evidence-cell"><span>Evidence</span><strong>Final EN + ZH manuscripts/PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; historical 3-figure Linguistic Typology package QA PASS</strong></div>
+        <div class="evidence-cell"><span>Next gate</span><strong>Rebuild/re-QA 6-figure Linguistic Typology package, then author metadata/declarations + ScholarOne</strong></div>
+      </div>
+      <div class="blocker is-clear"><span>Blocker</span>None scientific; editorial package refresh plus author-only metadata/declarations and portal submission</div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T20:14:23+08:00">Last commit · —</span><span>2026</span><span>linguistic typology / quantitative linguistics / language universals / model comparison</span><span>ARIS v0.4.26</span></div>
+      <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">linguistic typology</span><span class="tag">language periodic table</span></div>
+      <div class="actions"><a class="btn primary" href="paper/002/en/main.pdf">English</a><a class="btn" href="paper/002/zh/main.pdf">中文</a></div>
+    </article>
+
     <article class="paper-card" data-id="003" data-progress="78" data-activity="active" data-last-commit="2026-09-19T19:33:56+08:00" data-search="003 Colonial Legacies and the Global Geography of Disciplinary Advantage Colonial Legacies × Disciplinary Advantage  science of science / historical sociology / scientometrics analysis-running Confirmatory model execution · FIRST_RESULT_LOCK gate ARIS ARIS4C colonialism imperialism scientometrics science of science disciplinary specialization bibliometrics">
       <div class="paper-topline">
         <span class="paper-id">#003</span>
@@ -381,7 +452,7 @@
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="006" data-progress="62" data-activity="wait" data-last-commit="2026-09-19T08:59:02Z" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure  science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
+    <article class="paper-card" data-id="006" data-progress="62" data-activity="wait" data-last-commit="2026-09-19T20:45:56+08:00" data-search="006 Alphabetical Exposure and Scholarly Credit in China&#x27;s Research System Chinese Surnames × Alphabetical Exposure  science of science / scientometrics / sociology of science / names research analysis Identification feasibility · historical window frozen ARIS ARIS4C Chinese names surname initials alphabetical authorship scientometrics science of science OpenAlex">
       <div class="paper-topline">
         <span class="paper-id">#006</span>
         <span class="heartbeat"><i></i>Wait</span>
@@ -396,7 +467,7 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Finish validated author-order/identity exposure pipeline and unlock longitudinal outcome design</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>Exposure/identity validation before confirmatory career outcomes</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T08:59:02Z">Last commit · —</span><span>2026</span><span>science of science / scientometrics / sociology of science / names research</span><span>ARIS v0.4.26</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T20:45:56+08:00">Last commit · —</span><span>2026</span><span>science of science / scientometrics / sociology of science / names research</span><span>ARIS v0.4.26</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">Chinese names</span><span class="tag">surname initials</span></div>
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
@@ -481,7 +552,7 @@
       <div class="actions"><span class="btn disabled primary" aria-disabled="true" title="Full text not ready yet">English</span><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
 
-    <article class="paper-card" data-id="011" data-progress="84" data-activity="active" data-last-commit="2026-09-19T12:40:58Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics  metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-pilot3-development-summary Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
+    <article class="paper-card" data-id="011" data-progress="84" data-activity="active" data-last-commit="2026-09-19T12:47:41Z" data-search="011 Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening Research Forensics  metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication methods-draft-agent-skill-pilot3-development-summary Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition ARIS ARIS4C research integrity research forensics scientific misconduct statcheck GRIM SPRITE image integrity citation integrity paper mills AI detection evidence graph human-in-the-loop agent skills">
       <div class="paper-topline">
         <span class="paper-id">#011</span>
         <span class="heartbeat"><i></i>Active</span>
@@ -496,7 +567,7 @@
         <div class="evidence-cell"><span>Next gate</span><strong>Expand the broader time-safe comparator/case corpus, then freeze grouped/temporal splits, detector versions and applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring.</strong></div>
       </div>
       <div class="blocker"><span>Blocker</span>No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus scale-up and a complete protocol freeze.</div>
-      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T12:40:58Z">Last commit · —</span><span>2026</span><span>metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication</span><span>ARIS v0.4.27</span></div>
+      <div class="meta"><span class="commit-heartbeat" data-commit-time="2026-09-19T12:47:41Z">Last commit · —</span><span>2026</span><span>metascience / research integrity / statistical forensics / scientific image forensics / citation analysis / NLP / scholarly communication</span><span>ARIS v0.4.27</span></div>
       <div class="tags"><span class="tag">ARIS</span><span class="tag">ARIS4C</span><span class="tag">research integrity</span><span class="tag">research forensics</span></div>
       <div class="actions"><a class="btn primary" href="https://github.com/CochraneK/ARIS4C/blob/main/papers/011-research-forensics/manuscript/DRAFT.md">English</a><span class="btn disabled" aria-disabled="true" title="Full text not ready yet">中文</span></div>
     </article>
@@ -627,7 +698,7 @@
       <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Public project cards expose PDF-first English and Chinese paper entrances.</footer>
     </section>
   </div>
-  <script id="progressHistoryData" type="application/json">{"schema_version":1,"source":"git history of papers/dashboard.json","date":"2026-09-19","points":[{"commit":"333c3a7e6c97","timestamp":"2026-09-19T07:30:31+08:00","tracked":16,"mean_progress":67.81,"finish_count":7,"projects":{"003":58,"004":62,"005":68,"006":62,"007":76,"008":58,"009":56,"010":72,"011":68,"012":63,"013":48,"014":67,"015":75,"016":55}},{"commit":"4840dd54e24c","timestamp":"2026-09-19T07:48:35+08:00","tracked":16,"mean_progress":68.19,"finish_count":2,"projects":{"003":58,"004":62,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":69,"012":63,"013":48,"014":69,"015":76,"016":55}},{"commit":"4fb63d6f4986","timestamp":"2026-09-19T07:56:55+08:00","tracked":16,"mean_progress":68.88,"finish_count":1,"projects":{"003":58,"004":68,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":69,"012":63,"013":50,"014":69,"015":79,"016":55}},{"commit":"4a527b350db0","timestamp":"2026-09-19T09:20:58+08:00","tracked":16,"mean_progress":69.62,"finish_count":1,"projects":{"003":58,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":63,"013":50,"014":69,"015":82,"016":55}},{"commit":"6397e3a5d6a9","timestamp":"2026-09-19T09:24:08+08:00","tracked":16,"mean_progress":69.69,"finish_count":1,"projects":{"003":58,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":63,"013":50,"014":69,"015":83,"016":55}},{"commit":"b190d5605b18","timestamp":"2026-09-19T12:29:20+08:00","tracked":16,"mean_progress":69.88,"finish_count":2,"projects":{"003":58,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":63,"013":50,"014":69,"015":83,"016":55}},{"commit":"2c9ff94a73d0","timestamp":"2026-09-19T13:24:42+08:00","tracked":16,"mean_progress":70.62,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":63,"013":50,"014":69,"015":83,"016":55}},{"commit":"ad7725781587","timestamp":"2026-09-19T14:35:13+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"7a73099fea8e","timestamp":"2026-09-19T14:45:29+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"c46ec6c96914","timestamp":"2026-09-19T14:54:17+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"b7c33e991c81","timestamp":"2026-09-19T14:55:39+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"8fbf3cb156b8","timestamp":"2026-09-19T15:55:14+08:00","tracked":17,"mean_progress":67.82,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55,"017":20}},{"commit":"5d176901b34c","timestamp":"2026-09-19T16:04:26+08:00","tracked":17,"mean_progress":68.0,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":86,"016":55,"017":20}},{"commit":"a170d90d9eaa","timestamp":"2026-09-19T16:21:58+08:00","tracked":17,"mean_progress":68.0,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":72,"012":66,"013":50,"014":69,"015":86,"016":55,"017":20}},{"commit":"2f6bcabf9fe7","timestamp":"2026-09-19T16:24:54+08:00","tracked":17,"mean_progress":68.35,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":55,"017":20}},{"commit":"41b43627bc0b","timestamp":"2026-09-19T16:25:14+08:00","tracked":17,"mean_progress":68.65,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":60,"017":20}},{"commit":"312caca84615","timestamp":"2026-09-19T16:27:22+08:00","tracked":17,"mean_progress":68.65,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":60,"017":20}},{"commit":"45666eb23917","timestamp":"2026-09-19T16:28:33+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65,"017":20}},{"commit":"84cfd70e87b7","timestamp":"2026-09-19T16:33:06+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65,"017":20}},{"commit":"836674e02099","timestamp":"2026-09-19T16:42:49+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65,"017":20}},{"commit":"6c7a9fb1cb17","timestamp":"2026-09-19T16:49:43+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65,"017":20}},{"commit":"942344ff5468","timestamp":"2026-09-19T16:59:07+08:00","tracked":17,"mean_progress":69.12,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":86,"016":68,"017":20}},{"commit":"b654eb7f31db","timestamp":"2026-09-19T18:01:44+08:00","tracked":17,"mean_progress":69.24,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"a3bf623b86cd","timestamp":"2026-09-19T18:40:56+08:00","tracked":17,"mean_progress":69.24,"finish_count":2,"projects":{"003":70,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"72744d526f68","timestamp":"2026-09-19T18:50:58+08:00","tracked":17,"mean_progress":69.71,"finish_count":2,"projects":{"003":78,"004":74,"005":68,"006":62,"007":76,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"bd27a84cdd47","timestamp":"2026-09-19T19:12:49+08:00","tracked":17,"mean_progress":69.82,"finish_count":2,"projects":{"003":78,"004":74,"005":68,"006":62,"007":78,"008":60,"009":56,"010":72,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"3ab487476aec","timestamp":"2026-09-19T19:39:13+08:00","tracked":17,"mean_progress":69.94,"finish_count":2,"projects":{"003":78,"004":74,"005":68,"006":62,"007":78,"008":60,"009":56,"010":72,"011":80,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"90de34534298","timestamp":"2026-09-19T19:50:38+08:00","tracked":17,"mean_progress":69.94,"finish_count":2,"projects":{"003":78,"004":74,"005":68,"006":62,"007":78,"008":60,"009":56,"010":72,"011":80,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"591ea5fb0b3a","timestamp":"2026-09-19T20:37:45+08:00","tracked":17,"mean_progress":70.18,"finish_count":2,"projects":{"003":78,"004":74,"005":68,"006":62,"007":78,"008":60,"009":56,"010":72,"011":84,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}},{"commit":"381a74dcb5af","timestamp":"2026-09-19T20:42:28+08:00","tracked":17,"mean_progress":70.18,"finish_count":2,"projects":{"003":78,"004":74,"005":68,"006":62,"007":78,"008":60,"009":56,"010":72,"011":84,"012":66,"013":50,"014":69,"015":88,"016":68,"017":20}}]}</script>
+  <script id="progressHistoryData" type="application/json">{"schema_version":1,"source":"git history of papers/dashboard.json","date":"2026-09-19","points":[{"commit":"333c3a7e6c97","timestamp":"2026-09-19T07:30:31+08:00","tracked":16,"mean_progress":67.81,"finish_count":7,"projects":{"003":58,"004":62,"007":76,"008":58,"011":68,"012":63,"013":48,"014":67,"015":75,"016":55}},{"commit":"4840dd54e24c","timestamp":"2026-09-19T07:48:35+08:00","tracked":16,"mean_progress":68.19,"finish_count":2,"projects":{"003":58,"004":62,"007":76,"008":60,"011":69,"012":63,"013":48,"014":69,"015":76,"016":55}},{"commit":"4fb63d6f4986","timestamp":"2026-09-19T07:56:55+08:00","tracked":16,"mean_progress":68.88,"finish_count":1,"projects":{"003":58,"004":68,"007":76,"008":60,"011":69,"012":63,"013":50,"014":69,"015":79,"016":55}},{"commit":"4a527b350db0","timestamp":"2026-09-19T09:20:58+08:00","tracked":16,"mean_progress":69.62,"finish_count":1,"projects":{"003":58,"004":74,"007":76,"008":60,"011":72,"012":63,"013":50,"014":69,"015":82,"016":55}},{"commit":"6397e3a5d6a9","timestamp":"2026-09-19T09:24:08+08:00","tracked":16,"mean_progress":69.69,"finish_count":1,"projects":{"003":58,"004":74,"007":76,"008":60,"011":72,"012":63,"013":50,"014":69,"015":83,"016":55}},{"commit":"b190d5605b18","timestamp":"2026-09-19T12:29:20+08:00","tracked":16,"mean_progress":69.88,"finish_count":2,"projects":{"003":58,"004":74,"007":76,"008":60,"011":72,"012":63,"013":50,"014":69,"015":83,"016":55}},{"commit":"2c9ff94a73d0","timestamp":"2026-09-19T13:24:42+08:00","tracked":16,"mean_progress":70.62,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":63,"013":50,"014":69,"015":83,"016":55}},{"commit":"ad7725781587","timestamp":"2026-09-19T14:35:13+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"7a73099fea8e","timestamp":"2026-09-19T14:45:29+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"c46ec6c96914","timestamp":"2026-09-19T14:54:17+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"b7c33e991c81","timestamp":"2026-09-19T14:55:39+08:00","tracked":16,"mean_progress":70.81,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"8fbf3cb156b8","timestamp":"2026-09-19T15:55:14+08:00","tracked":17,"mean_progress":67.82,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":83,"016":55}},{"commit":"5d176901b34c","timestamp":"2026-09-19T16:04:26+08:00","tracked":17,"mean_progress":68.0,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":86,"016":55}},{"commit":"a170d90d9eaa","timestamp":"2026-09-19T16:21:58+08:00","tracked":17,"mean_progress":68.0,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":72,"012":66,"013":50,"014":69,"015":86,"016":55}},{"commit":"2f6bcabf9fe7","timestamp":"2026-09-19T16:24:54+08:00","tracked":17,"mean_progress":68.35,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":55}},{"commit":"41b43627bc0b","timestamp":"2026-09-19T16:25:14+08:00","tracked":17,"mean_progress":68.65,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":60}},{"commit":"312caca84615","timestamp":"2026-09-19T16:27:22+08:00","tracked":17,"mean_progress":68.65,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":60}},{"commit":"45666eb23917","timestamp":"2026-09-19T16:28:33+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65}},{"commit":"84cfd70e87b7","timestamp":"2026-09-19T16:33:06+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65}},{"commit":"836674e02099","timestamp":"2026-09-19T16:42:49+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65}},{"commit":"6c7a9fb1cb17","timestamp":"2026-09-19T16:49:43+08:00","tracked":17,"mean_progress":68.94,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":65}},{"commit":"942344ff5468","timestamp":"2026-09-19T16:59:07+08:00","tracked":17,"mean_progress":69.12,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":86,"016":68}},{"commit":"b654eb7f31db","timestamp":"2026-09-19T18:01:44+08:00","tracked":17,"mean_progress":69.24,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"a3bf623b86cd","timestamp":"2026-09-19T18:40:56+08:00","tracked":17,"mean_progress":69.24,"finish_count":2,"projects":{"003":70,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"72744d526f68","timestamp":"2026-09-19T18:50:58+08:00","tracked":17,"mean_progress":69.71,"finish_count":2,"projects":{"003":78,"004":74,"007":76,"008":60,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"bd27a84cdd47","timestamp":"2026-09-19T19:12:49+08:00","tracked":17,"mean_progress":69.82,"finish_count":2,"projects":{"003":78,"004":74,"007":78,"008":60,"011":78,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"3ab487476aec","timestamp":"2026-09-19T19:39:13+08:00","tracked":17,"mean_progress":69.94,"finish_count":2,"projects":{"003":78,"004":74,"007":78,"008":60,"011":80,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"90de34534298","timestamp":"2026-09-19T19:50:38+08:00","tracked":17,"mean_progress":69.94,"finish_count":2,"projects":{"003":78,"004":74,"007":78,"008":60,"011":80,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"591ea5fb0b3a","timestamp":"2026-09-19T20:37:45+08:00","tracked":17,"mean_progress":70.18,"finish_count":2,"projects":{"003":78,"004":74,"007":78,"008":60,"011":84,"012":66,"013":50,"014":69,"015":88,"016":68}},{"commit":"381a74dcb5af","timestamp":"2026-09-19T20:42:28+08:00","tracked":17,"mean_progress":70.18,"finish_count":2,"projects":{"003":78,"004":74,"007":78,"008":60,"011":84,"012":66,"013":50,"014":69,"015":88,"016":68}}],"chart_project_ids":["003","004","007","008","011","012","013","014","015","016"],"chart_rule":"hide_finish_and_no_progress_today"}</script>
   <script src="./command-center.js?v=402d30ff9db1" defer></script>
 </body>
 </html>
