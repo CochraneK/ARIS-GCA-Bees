@@ -120,9 +120,10 @@ def main():
         },
         "canonical_rule":{
             "absolute_robust_gate":True,
-            "early_5y_percentile_max":0.25,
-            "late_5y_percentile_min":0.75,
+            "early_low_rule":"early_5y_percentile <= 0.25 OR exact early_5y_citations == 0",
+            "late_high_rule":"late_5y_percentile >= 0.75 with nonzero late attention",
             "reference_population":"independent unselected same-field/year OpenAlex sample",
+            "zero_counts_are_low":True
         },
         "robust_gate_candidates_n":len(robust),
         "canonical_sb_n":len(canonical),
