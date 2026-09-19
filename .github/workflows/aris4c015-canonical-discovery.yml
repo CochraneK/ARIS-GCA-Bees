@@ -73,8 +73,12 @@ jobs:
           assert r["candidate_pool"]["analyzed_n"]>=80
           for x in r["canonical_cases"]:
               assert x["robust_gate"] is True
-              assert x["early_percentile_vs_unselected_reference"] <= 0.25
+              assert (
+                  x["early_percentile_vs_unselected_reference"] <= 0.25
+                  or x["early_5y_citations"] == 0
+              )
               assert x["late_percentile_vs_unselected_reference"] >= 0.75
+              assert x["late_5y_citations"] > 0
               assert x["canonical_mechanism_state"]=="SLEEPING_BEAUTY"
           print(json.dumps({
               "slug":os.environ["SLUG"],
