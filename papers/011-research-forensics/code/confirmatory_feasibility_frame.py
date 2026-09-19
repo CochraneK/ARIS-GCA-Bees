@@ -157,25 +157,34 @@ def build(
 ) -> dict[str,Any]:
     excluded=development_dois(exclusions)
     selected=[]
-    seen=set()
+    seen_events=set()
+    seen_targets=set()
 
     for year in range(start_year,end_year+1):
         for update_type in ("correction","retraction"):
             events=update_events_for_year(update_type,year,query_rows)
             clean=[]
+            local_events=set()
+            local_targets=set()
             for e in events:
-                key=(e["target_doi"],e["update_type"],e["outcome_date"])
-                if e["target_doi"] in excluded or e["notice_or_source_doi"] in excluded:
+                key=(e["target_doi"],e["notice_or_source_doi"],e["update_type"],e["outcome_date"])
+                target=e["target_doi"]
+                if target in excluded or e["notice_or_source_doi"] in excluded:
                     continue
-                if key in seen:
+                if key in seen_events or key in local_events:
+                    continue
+                if target in seen_targets or target in local_targets:
                     continue
                 clean.append(e)
+                local_events.add(key)
+                local_targets.add(target)
             clean.sort(key=lambda e:stable_rank(
                 str(year),update_type,e["target_doi"],e["notice_or_source_doi"],e["outcome_date"]
             ))
             chosen=clean[:per_year_type]
             for e in chosen:
-                seen.add((e["target_doi"],e["update_type"],e["outcome_date"]))
+                seen_events.add((e["target_doi"],e["notice_or_source_doi"],e["update_type"],e["outcome_date"]))
+                seen_targets.add(e["target_doi"])
                 selected.append({"calendar_stratum":year,**e})
 
     resolved=[]
@@ -214,8 +223,9 @@ def build(
         "update_types":["correction","retraction"],
         "selection_rule":(
             "Within each calendar-year × update-type stratum, exclude any target/source DOI "
-            "exposed in development, deduplicate event keys, rank remaining events by SHA-256 "
-            "of frozen provenance identifiers, and retain the first N. Detector outputs and "
+            "exposed in development, enforce globally unique target DOIs and unique event keys, "
+            "rank remaining events by SHA-256 of frozen provenance identifiers, and retain the "
+            "first N. Detector outputs and "
             "review priority are never used for selection."
         ),
         "per_year_type_target":per_year_type,
