@@ -44,7 +44,7 @@ wait
 block
 ```
 
-The old portfolio values `quiet`, `gated`, and `blocked` are invalid.
+The old portfolio values `quiet`, `waiting`, `gated`, and `blocked` are invalid.
 
 Scientific “gates” can still appear in `stage`, `next_gate`, or project process files. They describe the research workflow, not the portfolio execution state.
 
