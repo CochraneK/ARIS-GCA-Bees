@@ -8,18 +8,18 @@ Pilot 0B raw v1 reliability remains a failed immutable instrument-validation res
 
 ## Current state
 
-- Activity: **wait**
+- Activity: **active**
 - Progress: **66%**
-- Stage: **Pilot 0B complete · v1 reliability revision gate**
-- Evidence: 165-record reproducible retrieval + genuinely independent 30-record Coder B; raw opposition-valid κ=0.466, OCI-candidacy κ=0.592, primary-mechanism κ=0 with 141 disagreement cells; instrument vocabulary mismatch documented
+- Stage: **Schema v2 frozen · fresh 30-record validation sample frozen**
+- Evidence: Raw v1 Pilot 0B preserved; 141-cell disagreement diagnosis complete; controlled-vocabulary Schema v2 frozen; fresh deterministic 30-record balanced sample frozen with zero Pilot 0B overlap
 
 ## Immediate next action
 
-**Diagnose/adjudicate disagreement types, freeze controlled-vocabulary Schema v2, then run a fresh independent A2/B2 reliability Pilot**
+**Materialize identical blinded evidence packets for the frozen v2 sample, freeze packet hashes, then run genuinely independent A2/B2 coding and reliability scoring**
 
 ## Current blocker / gate
 
-v1 coding instrument did not meet the prespecified reliability threshold; full evidence-map screening remains gated until revised independent validation
+No immediate engineering blocker; full 165-record evidence-map screening remains gated on fresh independent v2 reliability validation
 
 ## Canonical files / entry points
 
