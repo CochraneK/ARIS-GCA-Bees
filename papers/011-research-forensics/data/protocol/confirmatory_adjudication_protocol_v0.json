@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.1.0",
+  "state": "FROZEN_FOR_FIRST_PASS_ADJUDICATION",
+  "purpose": "Manager-side issue and required-artifact-role coding for the frozen 80-record feasibility frame before any detector scoring.",
+  "source_hierarchy": [
+    "official publisher correction/retraction/expression-of-concern notice",
+    "PubMed/PMC structured notice relation or preserved notice",
+    "institutional or journal investigation statement",
+    "other primary-source public record",
+    "secondary commentary only as a pointer, never as final GT-A/B/C evidence"
+  ],
+  "prohibited_inputs": [
+    "detector outputs",
+    "finding counts",
+    "review priority",
+    "anomaly/model scores",
+    "post-hoc detector success/failure",
+    "author nationality/name origin/institutional prestige as suspicion features"
+  ],
+  "issue_family_vocab": {
+    "statistical_reporting": "Reported statistical value, model specification, analysis, or inferential inconsistency/error.",
+    "data_fabrication_falsification": "Official/primary evidence specifically supports fabricated, falsified, or manipulated data; do not infer from a generic retraction.",
+    "image_integrity": "Figure/image duplication, manipulation, assembly, or image-content problem.",
+    "plagiarism_text_duplication": "Plagiarism, substantial text overlap, duplicate/redundant publication.",
+    "paper_mill": "Official/primary evidence specifically identifies paper-mill or industrially fabricated manuscript activity.",
+    "authorship_peer_review": "Authorship, gift/ghost authorship, peer-review manipulation, or editorial-process integrity issue.",
+    "citation_reference": "Reference/citation existence, attribution, metadata, or citation-manipulation issue.",
+    "registration_ethics_provenance": "Registration, protocol, consent, ethics approval, identifier, source/provenance, or timeline issue.",
+    "methods_results_coherence": "Mismatch across methods, results, abstract, captions, reported scope, or internal semantic claims not better captured above.",
+    "other_unclear": "Official issue exists but available evidence is too nonspecific or outside the frozen families."
+  },
+  "ground_truth_tiers": {
+    "GT-A": "Official correction/retraction/EoC or equivalent notice explicitly identifies the issue.",
+    "GT-B": "Correction/corrigendum explicitly documents a concrete error without implying misconduct.",
+    "GT-C": "Primary-source institutional/journal investigation documents the issue.",
+    "GT-D": "Reproducible public forensic finding without official adjudication; exploratory only.",
+    "GT-E": "Suspicion/commentary only; not positive confirmatory ground truth."
+  },
+  "content_detectability": {
+    "CONTENT_ASSESSABLE": "At least one labelled issue should be assessable from a pre-outcome manuscript/artifact role.",
+    "PROCESS_ONLY": "The labelled issue is external/process-level and has no direct manuscript-content artifact role for Track A.",
+    "MIXED": "The record contains both content-assessable and process-only labelled sub-issues.",
+    "UNCLEAR": "Available manager-side evidence is insufficient to decide content detectability."
+  },
+  "artifact_role_vocab": {
+    "body_text": "Historical article prose/abstract/methods/results/caption text.",
+    "table": "Historical table content/schema/values.",
+    "figure_image": "Historical image/figure pixels or panels.",
+    "references": "Historical reference list or citation context.",
+    "raw_data": "Contemporaneously available deposited/source data required for recomputation.",
+    "supplement": "Historical supplementary material.",
+    "registration_protocol": "Contemporaneously available registration/protocol/ethics record.",
+    "metadata_timeline": "Bibliographic/provenance/timeline metadata available independently of the later label.",
+    "cross_source_reference": "Contemporaneous independent cited/source record required for cross-source comparison.",
+    "none_content_detectable": "No direct Track-A content artifact can represent the labelled issue.",
+    "other": "Required role does not fit the frozen vocabulary; explain in notes."
+  },
+  "coding_rules": [
+    "Code the issue supported by the manager-side source, not a broader motive or misconduct category.",
+    "Multiple issue_family_codes and required_artifact_roles are allowed and separated by semicolons.",
+    "Do not automatically map correction to GT-B or retraction to GT-A; read the source evidence.",
+    "Generic or nonspecific notices remain other_unclear rather than being upgraded to fabrication/falsification or paper_mill.",
+    "PROCESS_ONLY requires required_artifact_roles=none_content_detectable.",
+    "CONTENT_ASSESSABLE requires at least one artifact role other than none_content_detectable.",
+    "MIXED requires at least one concrete content artifact role; explain process-only component in notes.",
+    "Adjudication never sets confirmatory eligibility. Eligibility is determined later after time-safe artifact qualification and protocol gates.",
+    "Current corrected/retracted titles and current update relations are manager-side label provenance and must never enter Track A."
+  ],
+  "first_pass_states": [
+    "UNASSESSED",
+    "CODED_PENDING_REVIEW",
+    "NEEDS_SOURCE",
+    "EXCLUDE_DUPLICATE_EVENT"
+  ],
+  "freeze_boundary": "Changing this coding ontology after first-pass coding starts requires a dated protocol amendment; old codes remain preserved and remapped explicitly."
+}
