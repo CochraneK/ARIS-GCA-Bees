@@ -309,7 +309,7 @@
 
     svg.innerHTML=`<g>${grid}</g><g>${paths}</g><g>${labels}</g>`;
 
-    const latest=points.at(-1)?.projects||{};
+    const latest=(points[points.length-1]||{}).projects||{};
     legend.innerHTML=ids.map(id=>`
       <span class="history-legend-item" data-series="${id}">
         <i style="background:${colorFor(id)}"></i>
@@ -360,6 +360,10 @@
   refreshCommitHeartbeats();
   apply();
   initShowcase();
-  initProgressHistory();
+  try{ initProgressHistory(); }catch(err){
+    console.error("Progress history render failed",err);
+    const summary=$("progressHistorySummary");
+    if(summary) summary.textContent="Today's history is available, but the chart failed to render.";
+  }
   setInterval(refreshCommitHeartbeats, 60000);
 })();
