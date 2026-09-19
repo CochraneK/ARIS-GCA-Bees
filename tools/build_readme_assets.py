@@ -67,10 +67,10 @@ def status(rows,lang):
     labels={"active":"Active","waiting":"Waiting","quiet":"Quiet"}; colors={"active":ACTIVE,"waiting":WAITING,"quiet":QUIET}
     title="Portfolio 当前状态" if zh else "Portfolio state"; subtitle="来自 papers/dashboard.json 的 MECE 管理状态" if zh else "MECE management states from papers/dashboard.json"
     s=head(title,subtitle,1600,420); x=80; total=len(rows); bar=1440
-    for k in ("active","gated","quiet","blocked"):
+    for k in ("active","waiting","quiet"):
         w=bar*counts[k]/max(1,total)
         if w: s.append(f'<rect x="{x:.1f}" y="185" width="{w:.1f}" height="58" fill="{colors[k]}"/>'); x+=w
-    for i,k in enumerate(("active","gated","quiet","blocked")):
+    for i,k in enumerate(("active","waiting","quiet")):
         xx=170+i*520; s += [f'<circle cx="{xx}" cy="320" r="10" fill="{colors[k]}"/>',
         f'<text x="{xx+22}" y="327" class="h">{labels[k]} · {counts[k]}</text>']
     s += [f'<text x="1510" y="327" text-anchor="end" class="m">Total {total}</text>','</svg>']; return "\n".join(s)
