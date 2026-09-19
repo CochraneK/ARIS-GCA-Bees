@@ -38,3 +38,11 @@ Append substantial execution sessions in chronological order.
 - Added a reproducible diagnostic script plus row-level CSV, JSON summary, and process audit artifact.
 - Kept `adjudicated_value` blank and preserved Pilot 0B as a failed v1 reliability gate rather than retroactively normalizing it into a pass.
 - Next bounded unit: freeze the Schema v2 controlled vocabulary and validation form before drawing a fresh A2/B2 sample.
+
+## 2026-09-19 · Schema v2 freeze
+
+- Converted the pre-existing v2 proposal into a frozen controlled-vocabulary coding specification for fresh validation only.
+- Removed the forced single primary-mechanism field in favor of orthogonal opposition, index-switch, mechanism, and evidence-mode vectors.
+- Added exact allowed tokens, uncertainty rules, blinding rules, a blank v2 coding template, and prespecified reliability gates.
+- Preserved Pilot 0B raw labels/statistics unchanged.
+- Next bounded unit is fresh balanced validation-sample construction; independent A2/B2 coding remains a later separate execution gate.
