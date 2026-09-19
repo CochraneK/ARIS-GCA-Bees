@@ -1,5 +1,7 @@
 # Paper 002 Status
 
+**Recovery / cross-agent handoff:** `HANDOFF.md` — read this first in a new chat/account/computer before changing Paper 002.
+
 **Paper:** `002-language-geometry`  
 **Stage:** manuscript Draft v1 complete · independent manuscript review PASS_SUBMISSION_PREP  
 **Promotion gate:** PASSED  
