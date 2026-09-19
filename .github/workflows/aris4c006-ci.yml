@@ -64,6 +64,7 @@ jobs:
               "LOAO_EXPOSURE_RULE.md",
               "WORK_TYPE_RULE.md",
               "INFERENCE_RULE.md",
+              "PUBLICATION_PLAN.md",
               "LONGITUDINAL_SAMPLING_RULE.md",
               "UNLOCK_PROTOCOL.md",
           ]
