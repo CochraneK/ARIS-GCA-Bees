@@ -60,7 +60,7 @@
     else if(sort === "progress-asc") cards.sort((a,b)=>Number(a.dataset.progress)-Number(b.dataset.progress));
     else if(sort === "recent") cards.sort((a,b)=>new Date(b.dataset.lastCommit||0)-new Date(a.dataset.lastCommit||0));
     else if(sort === "activity"){
-      const rank={active:0,waiting:1,block:2,finish:3};
+      const rank={active:0,wait:1,block:2,finish:3};
       cards.sort((a,b)=>(rank[a.dataset.activity]??9)-(rank[b.dataset.activity]??9)||String(a.dataset.id).localeCompare(String(b.dataset.id)));
     }else cards.sort((a,b)=>String(a.dataset.id).localeCompare(String(b.dataset.id)));
     return cards;
@@ -109,7 +109,7 @@
     const statusCounts={
       finish:count("finish"),
       active:count("active"),
-      waiting:count("waiting"),
+      wait:count("wait"),
       block:count("block")
     };
     const meceTotal=Object.values(statusCounts).reduce((sum,n)=>sum+n,0);
@@ -117,7 +117,7 @@
     $("navAllCount").textContent=cards.length;
     $("navFinishCount").textContent=statusCounts.finish;
     $("navActiveCount").textContent=statusCounts.active;
-    $("navWaitingCount").textContent=statusCounts.waiting;
+    $("navWaitCount").textContent=statusCounts.wait;
     $("navBlockCount").textContent=statusCounts.block;
 
     document.documentElement.dataset.statusMece=meceTotal===cards.length?"valid":"invalid";
