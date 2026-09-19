@@ -1,0 +1,73 @@
+name: ARIS4C006 H1 robustness
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-h1-robustness.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  robustness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+      SOURCE_RUN_ID: "35424125236"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preregistration integrity and unlock
+        working-directory: ${{ env.PAPER_DIR }}
+        run: python code/31_verify_prereg_lock.py --require-unlock
+      - name: Download frozen convention aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c006-final-convention-aggregate-repaired
+          path: frozen/convention
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Download frozen primary-frame aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c006-primary-frame-aggregate-repaired
+          path: frozen/frame
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Rebuild exact-LOAO frame
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          mkdir -p data/confirmatory/robustness
+          python code/29_build_confirmatory_loao_frame.py \
+            --focal-rows "../../frozen/frame/primary_focal_rows_all_fields.csv" \
+            --rolling-exposure "../../frozen/convention/rolling_exposure_all_fields.csv" \
+            --convention-contributions "../../frozen/convention/convention_work_contributions_all_fields.csv" \
+            --out data/confirmatory/robustness/loao_frame.csv \
+            --manifest data/confirmatory/robustness/loao_manifest.json
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5.1"
+      - name: Install analysis dependencies
+        run: Rscript -e 'install.packages(c("fixest","jsonlite"), repos="https://cloud.r-project.org")'
+      - name: Run frozen H1 robustness suite
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          Rscript code/39_confirmatory_h1_robustness.R \
+            --input data/confirmatory/robustness/loao_frame.csv \
+            --rolling "../../frozen/convention/rolling_exposure_all_fields.csv" \
+            --outdir data/confirmatory/robustness/results
+      - name: Upload robustness outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-h1-robustness
+          path: |
+            ${{ env.PAPER_DIR }}/data/confirmatory/robustness/loao_manifest.json
+            ${{ env.PAPER_DIR }}/data/confirmatory/robustness/results/h1_robustness.csv
+            ${{ env.PAPER_DIR }}/data/confirmatory/robustness/results/manifest.json
+          if-no-files-found: error
+          retention-days: 90
