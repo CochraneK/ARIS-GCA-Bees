@@ -20,6 +20,8 @@ import pandas as pd
 DISCOVERY_YEARS = tuple(range(1988, 1997))
 BIRTH_HEAP_DAYS = {1, 15}
 DEATH_HEAP_DAYS = {1, 4, 15}
+PHASE_SAFE_MIN_YEAR_GAP = 19
+PHASE_SAFE_MAX_YEAR_GAP = 110
 
 # 0-based day of year for a canonical non-leap year.
 MONTH_START = np.array([0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334], dtype=np.int16)
@@ -46,6 +48,17 @@ def month_day_to_doy(m: np.ndarray, d: np.ndarray) -> np.ndarray:
     return MONTH_START[m] + d - 1
 
 
+def phase_safe_year_gap(byear: np.ndarray, dyear: np.ndarray) -> np.ndarray:
+    """Eligibility independent of birth/death month-day pairing.
+
+    Using exact attained-age filtering at the lower/upper boundary can itself
+    induce birth-death phase dependence.  Year gaps 19..110 guarantee that
+    every valid month/day pairing corresponds to an attained age of 18..110.
+    """
+    gap = dyear - byear
+    return (gap >= PHASE_SAFE_MIN_YEAR_GAP) & (gap <= PHASE_SAFE_MAX_YEAR_GAP)
+
+
 class PhaseAccumulator:
     def __init__(self) -> None:
         self.n = 0
@@ -62,15 +75,19 @@ class PhaseAccumulator:
             mask = dyear == y
             self.observed_by_year[int(y)] += np.bincount(offsets[mask], minlength=365)
 
-        frame = pd.DataFrame({
-            "bdec": (byear // 10) * 10,
-            "dyear": dyear,
-            "sex": sex,
-            "bdoy": bdoy,
-            "ddoy": ddoy,
-        })
-        for (bdec, dy, sx), g in frame.groupby(["bdec", "dyear", "sex"], sort=False, dropna=False):
-            key = (int(bdec), int(dy), int(sx))
+        frame = pd.DataFrame(
+            {
+                "byear": byear,
+                "dyear": dyear,
+                "sex": sex,
+                "bdoy": bdoy,
+                "ddoy": ddoy,
+            }
+        )
+        for (by, dy, sx), g in frame.groupby(
+            ["byear", "dyear", "sex"], sort=False, dropna=False
+        ):
+            key = (int(by), int(dy), int(sx))
             entry = self.strata[key]
             entry[0] += np.bincount(g["bdoy"].to_numpy(), minlength=365)
             entry[1] += np.bincount(g["ddoy"].to_numpy(), minlength=365)
@@ -83,17 +100,37 @@ class PhaseAccumulator:
             out[k] = float(np.dot(births, np.roll(deaths, -k))) / n
         return out
 
-    def expected(self, dyear=None):
+    def expected(self, dyear=None, strata=None):
         out = np.zeros(365, dtype=float)
-        for (bdec, dy, sx), (b, d, n) in self.strata.items():
+        source = self.strata if strata is None else strata
+        for (_by, dy, _sx), (b, d, n) in source.items():
             if dyear is not None and dy != dyear:
                 continue
             if n:
                 out += self._expected_one(b, d, n)
         return out
 
+    def birth_decade_strata(self):
+        """Aggregate the primary exact-birth-year strata for a coarse sensitivity null."""
+        out = defaultdict(
+            lambda: [
+                np.zeros(365, dtype=np.int64),
+                np.zeros(365, dtype=np.int64),
+                0,
+            ]
+        )
+        for (by, dy, sx), (b, d, n) in self.strata.items():
+            key = ((by // 10) * 10, dy, sx)
+            entry = out[key]
+            entry[0] += b
+            entry[1] += d
+            entry[2] += n
+        return out
+
     def summarize(self):
         exp = self.expected()
+        decade_strata = self.birth_decade_strata()
+        exp_decade = self.expected(strata=decade_strata)
         obs = self.observed.astype(float)
         ratio = np.divide(obs, exp, out=np.full(365, np.nan), where=exp > 0)
         by_year = {}
@@ -106,11 +143,26 @@ class PhaseAccumulator:
                 "expected_offset0": float(ey[0]),
                 "oe_offset0": float(oy[0] / ey[0]) if ey[0] else math.nan,
             }
+        decade_by_year = {}
+        for y in DISCOVERY_YEARS:
+            ey = self.expected(y, strata=decade_strata)
+            oy = self.observed_by_year[y].astype(float)
+            decade_by_year[str(y)] = {
+                "expected_offset0": float(ey[0]),
+                "oe_offset0": float(oy[0] / ey[0]) if ey[0] else math.nan,
+            }
+
         return {
             "n": int(self.n),
             "observed_offset0": int(obs[0]),
             "expected_offset0": float(exp[0]),
             "oe_offset0": float(ratio[0]),
+            "null_model": "exact birth year × death year × sex",
+            "birth_decade_null_sensitivity": {
+                "expected_offset0": float(exp_decade[0]),
+                "oe_offset0": float(obs[0] / exp_decade[0]) if exp_decade[0] else math.nan,
+                "by_death_year": decade_by_year,
+            },
             "offset_window": [
                 {
                     "offset": k,
@@ -148,7 +200,9 @@ def main():
         "discovery_year_rows": 0,
         "complete_components": 0,
         "valid_gregorian": 0,
-        "age_18_110": 0,
+        "exact_age_18_110_diagnostic": 0,
+        "phase_safe_year_gap_19_110": 0,
+        "boundary_adult_excluded": 0,
         "feb29_excluded": 0,
     }
     bday_hist = np.zeros(32, dtype=np.int64)
@@ -195,9 +249,13 @@ def main():
                 counts["valid_gregorian"] += len(by)
 
                 age = dy - by - (((dm < bm) | ((dm == bm) & (dd < bd))).astype(np.int32))
-                adult = (age >= 18) & (age <= 110)
-                by,bm,bd,dy,dm,dd,sx = [x[adult] for x in (by,bm,bd,dy,dm,dd,sx)]
-                counts["age_18_110"] += len(by)
+                exact_adult = (age >= 18) & (age <= 110)
+                counts["exact_age_18_110_diagnostic"] += int(exact_adult.sum())
+
+                phase_safe = phase_safe_year_gap(by, dy)
+                counts["phase_safe_year_gap_19_110"] += int(phase_safe.sum())
+                counts["boundary_adult_excluded"] += int((exact_adult & ~phase_safe).sum())
+                by,bm,bd,dy,dm,dd,sx = [x[phase_safe] for x in (by,bm,bd,dy,dm,dd,sx)]
                 if not len(by):
                     continue
 
@@ -221,13 +279,16 @@ def main():
                     strict.add(bdoy[idx],ddoy[idx],by[idx],dy[idx],sx[idx])
 
                 if chunk_i % 10 == 0:
-                    print(f"chunks={chunk_i} rows_read={counts['rows_read']:,} discovery_complete_adult={counts['age_18_110']:,}", flush=True)
+                    print(f"chunks={chunk_i} rows_read={counts['rows_read']:,} phase_safe={counts['phase_safe_year_gap_19_110']:,}", flush=True)
 
     result = {
         "pilot": "ARIS4C013 BUNMD Pilot 1 discovery",
         "discovery_years": [1988,1996],
         "holdout_years_untouched": [1997,2005],
         "counts": counts,
+        "eligibility_primary": "valid complete dates with death_year - birth_year in 19..110; inclusion is month/day independent",
+        "null_model_primary": "exact birth year × death year × sex marginal independence",
+        "null_model_sensitivity": "birth decade × death year × sex marginal independence",
         "prespecified_heaping_flags": {
             "birth_days": sorted(BIRTH_HEAP_DAYS),
             "death_days": sorted(DEATH_HEAP_DAYS),
@@ -249,15 +310,19 @@ def main():
         "",
         "## Sample",
         f"- rows in discovery death years: {counts['discovery_year_rows']:,}",
-        f"- complete valid adult dates before Feb-29 exclusion: {counts['age_18_110']:,}",
+        f"- exact-age 18–110 records (diagnostic only): {counts['exact_age_18_110_diagnostic']:,}",
+        f"- phase-safe year-gap 19–110 records before Feb-29 exclusion: {counts['phase_safe_year_gap_19_110']:,}",
+        f"- exact-age boundary records excluded to prevent selection-induced phase bias: {counts['boundary_adult_excluded']:,}",
         f"- raw phase sample: {r['n']:,}",
         f"- strict phase sample: {s['n']:,}",
         "",
         "## Offset 0 (same Gregorian month/day)",
         f"- raw observed / expected: {r['observed_offset0']:,} / {r['expected_offset0']:.1f}",
-        f"- raw O/E: **{r['oe_offset0']:.4f}**",
+        f"- raw O/E under primary exact-birth-year null: **{r['oe_offset0']:.4f}**",
+        f"- raw O/E under birth-decade sensitivity null: **{r['birth_decade_null_sensitivity']['oe_offset0']:.4f}**",
         f"- strict observed / expected: {s['observed_offset0']:,} / {s['expected_offset0']:.1f}",
-        f"- strict O/E: **{s['oe_offset0']:.4f}**",
+        f"- strict O/E under primary exact-birth-year null: **{s['oe_offset0']:.4f}**",
+        f"- strict O/E under birth-decade sensitivity null: **{s['birth_decade_null_sensitivity']['oe_offset0']:.4f}**",
         "",
         "## Prespecified heaping dates",
         f"- birth day 1: {bday_hist[1]:,}",

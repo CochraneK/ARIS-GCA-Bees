@@ -55,6 +55,29 @@ class RawNumidentLayoutTest(unittest.TestCase):
             [True, False, False],
         )
 
+    def test_phase_safe_year_gap(self):
+        by = np.array([1970, 1970, 1970, 1970])
+        dy = np.array([1988, 1989, 2080, 2081])
+        self.assertEqual(
+            mod.phase_safe_year_gap(by, dy).tolist(),
+            [False, True, True, False],
+        )
+
+    def test_primary_strata_use_exact_birth_year(self):
+        acc = mod.PhaseAccumulator()
+        acc.add(
+            np.array([0, 10], dtype=np.int16),
+            np.array([1, 11], dtype=np.int16),
+            np.array([1900, 1901], dtype=np.int32),
+            np.array([1988, 1988], dtype=np.int32),
+            np.array([1, 1], dtype=np.int16),
+        )
+        self.assertIn((1900, 1988, 1), acc.strata)
+        self.assertIn((1901, 1988, 1), acc.strata)
+        summary = acc.summarize()
+        self.assertEqual(summary["null_model"], "exact birth year × death year × sex")
+        self.assertAlmostEqual(float(acc.expected().sum()), 2.0, places=9)
+
 
 if __name__ == "__main__":
     unittest.main()

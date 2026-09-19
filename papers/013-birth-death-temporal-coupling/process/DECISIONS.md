@@ -47,3 +47,19 @@ Any cultural/traditional calendar family must compete against synthetic encoding
 
 ## D011 · Null results remain publishable
 The project is successful if it shows that apparent coupling is explained by seasonality, administrative heaping, ordinary birthday effects, or no reproducible signal at all.
+
+## D012 · Phase-safe eligibility replaces exact-age boundary filtering
+
+Before any administrative coupling outcome was available, stress testing showed that exact attained-age eligibility can mechanically induce phase dependence at boundary ages. A toy null with `death_year - birth_year = 18` can produce an offset-0 O/E near 2.98 after selecting age >=18.
+
+Pilot 1 primary eligibility is therefore `death_year - birth_year = 19..110`, which makes inclusion independent of birth/death month-day. Exact age 18–110 is retained only as a diagnostic count.
+
+## D013 · Exact birth-year null is primary
+
+The Pilot 1 primary marginal-independence strata are now:
+
+- exact birth year;
+- death year;
+- sex category.
+
+The earlier birth-decade × death-year × sex null is retained as a prespecified sensitivity analysis. This change was locked before BUNMD/raw-NUMIDENT coupling outcomes were accessible.
