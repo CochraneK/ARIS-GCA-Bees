@@ -1,7 +1,7 @@
 # ARIS4C010 · Preregistration Skeleton v0.1
 
 **Status:** internal design draft — not registered  
-**Date:** 2026-09-18
+**Date:** 2026-09-19
 
 This file exists to prevent outcome-dependent rewriting once human-calibrated Benchmark v0 data are available.
 
@@ -41,16 +41,24 @@ Vague, context-dependent, compositional and semantic-stress targets will have hi
 - response entropy/disagreement;
 - retest inconsistency.
 
-### H4 · rich response validity
-P6/P6+context will reduce forced-answer invalidity and retest contradiction relative to P2 after accounting for added response time/cognitive cost.
+### H4 · response-protocol mechanism
+
+The response experiment separates two mechanisms:
+
+- **H4a · coarse escape effect:** P3 (YES/NO/MAYBE) will reduce forced binary invalidity relative to P2.
+- **H4b · semantic differentiation effect:** P6 will improve reliability, interpretability, or downstream identification relative to P3 by distinguishing BORDERLINE / UNKNOWN / UNDEFINED / BOTH rather than collapsing them into MAYBE.
+
+P6+context is a later extension testing explicit context requests.
 
 **Primary outcomes**
 - invalid forced-answer rate;
+- rate of MAYBE in P3 versus fine-grained non-binary states in P6;
 - retest disagreement;
+- category confusion / response entropy;
 - total interaction time/cost;
 - successful identification per cost.
 
-No claim that "more response labels are automatically more informative in practice" is permitted.
+No claim that "more response labels are automatically more informative in practice" is permitted. A P6 advantage over P2 is not sufficient by itself; the key mechanistic comparison is P6 versus P3.
 
 ### H5 · open-world calibration
 Explicit OOS handling will reduce confidently wrong in-support identifications on withheld targets relative to forced closed-world guessing.
@@ -146,7 +154,7 @@ These outcomes should narrow, not be hidden from, the manuscript.
 ## Freeze requirements before real preregistration
 
 - [ ] Benchmark v0 source versions fixed
-- [ ] human calibration completed
+- [ ] Stage-A P2/P3/P6 human calibration completed
 - [ ] power/precision plan
 - [ ] exact primary statistical models
 - [ ] response-time cost definition
