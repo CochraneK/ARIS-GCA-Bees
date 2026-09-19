@@ -130,6 +130,14 @@
       "evidence": "Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript",
       "next_gate": "Independent dual-coder ontology audit and end-to-end variance decomposition",
       "blocker": "Independent/native-speaker annotation and Phase-0 reliability"
+    },
+    "017": {
+      "progress": 20,
+      "stage": "Concept separated from 002 · predictive target scaffolded",
+      "activity": "wait",
+      "evidence": "Distinct LING-02 prediction ladder, comparator families, hypotheses/falsifiers, and explicit claim boundary inherited from completed LING-01 negative global-circle result",
+      "next_gate": "Inventory reusable 002 data/code and freeze leakage-safe Pilot-0 prediction targets plus random/family/macroarea split manifests",
+      "blocker": "None; queued behind higher-progress completion-first work"
     }
   },
   "scheduling": {
