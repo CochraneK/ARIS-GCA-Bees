@@ -179,7 +179,7 @@ def canonical_jsonl(records: list[dict]) -> bytes:
     for r in sorted(records,key=lambda x:x["sample_id"]):
         assert_blind_record(r)
         lines.append(json.dumps(r,ensure_ascii=False,sort_keys=True,separators=(",",":")))
-    return ("\\n".join(lines)+"\\n").encode("utf-8")
+    return ("\n".join(lines)+"\n").encode("utf-8")
 
 def build_response_csv(template_path: Path, records: list[dict]) -> bytes:
     with template_path.open(encoding="utf-8",newline="") as f:
@@ -190,7 +190,7 @@ def build_response_csv(template_path: Path, records: list[dict]) -> bytes:
         raise AssertionError("v2 coding template must contain sample_id or record_id, plus title")
     import io
     buf=io.StringIO(newline="")
-    w=csv.DictWriter(buf,fieldnames=fields,lineterminator="\\n")
+    w=csv.DictWriter(buf,fieldnames=fields,lineterminator="\n")
     w.writeheader()
     for r in sorted(records,key=lambda x:x["sample_id"]):
         row={k:"" for k in fields}
@@ -245,7 +245,7 @@ def main() -> None:
     packet_sha=sha256_bytes(packet_bytes)
     schema_sha=sha256_file(schema_path)
     response_sha=sha256_bytes(response_bytes)
-    bundle_material=(packet_sha+"\\n"+schema_sha+"\\n"+response_sha+"\\n").encode()
+    bundle_material=(packet_sha+"\n"+schema_sha+"\n"+response_sha+"\n").encode()
     bundle_sha=sha256_bytes(bundle_material)
 
     counts={}
@@ -270,7 +270,7 @@ def main() -> None:
         "note":"If bibliographic_only_count > 0, do not start A2/B2. First apply a pre-coding evidence-availability amendment or acquire equivalent blinded evidence without inspecting labels.",
     }
     report_path=out_dir/"materialization_report.json"
-    report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
     common={
         "classification":"V2_BLIND_PACKET_FREEZE",
@@ -288,7 +288,7 @@ def main() -> None:
         "materialization_report":str(report_path),
         "ready_for_independent_coding":report["ready_for_independent_coding"],
     }
-    common_freeze.write_text(json.dumps(common,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    common_freeze.write_text(json.dumps(common,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
     for coder,path in (("A2",a2_path),("B2",b2_path)):
         d={
@@ -304,7 +304,7 @@ def main() -> None:
             "must_remain_blind_to_pilot0_labels_and_adjudication":True,
             "ready_for_independent_coding":report["ready_for_independent_coding"],
         }
-        (freeze_dir/f"{coder}_INPUT_FREEZE.json").write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+        (freeze_dir/f"{coder}_INPUT_FREEZE.json").write_text(json.dumps(d,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
     assert sha256_file(a2_path)==sha256_file(b2_path)==response_sha
     a2=json.loads((freeze_dir/"A2_INPUT_FREEZE.json").read_text(encoding="utf-8"))
