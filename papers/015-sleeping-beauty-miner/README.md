@@ -9,7 +9,7 @@
 Build an auditable agent that does three different jobs without conflating them:
 
 1. **Retrospective identification** — identify papers whose complete citation histories robustly support delayed recognition.
-2. **Mechanism discovery** — compare robust Sleeping Beauties with matched Forgotten / Immediate-Hit controls to study why recognition was delayed and what triggered awakening.
+2. **Mechanism discovery** — compare robust Sleeping Beauties primarily with event-time at-risk dormant controls, plus Forgotten / Immediate-Hit secondary contrasts, to study why recognition was delayed and what triggered awakening.
 3. **Prospective mining** — rank still-dormant papers that may deserve renewed human attention **before** an awakening is visible.
 
 A random prospective cohort is not guaranteed to contain a genuine Sleeping Beauty. Cohort-relative top-q outcomes therefore remain benchmark labels only; they cannot be used to manufacture mechanism cases.
@@ -142,10 +142,12 @@ This track validates implementation; it is not the main scientific claim.
 Goal: study delayed-recognition mechanisms using a case-enriched retrospective cohort.
 
 Primary design:
-- robust SB gate from converging retrospective definitions;
-- field/cohort-normalized SLEEPING_BEAUTY / FORGOTTEN / IMMEDIATE_HIT / FADING states;
-- SB vs Forgotten matched comparison;
-- SB vs Immediate-Hit matched comparison;
+- robust SB identity from converging retrospective full-trajectory definitions;
+- relative early/late cohort quadrant stored separately from SB identity;
+- post-awakening fate stored as a third separate descriptor;
+- **primary event-time SB vs at-risk-dormant risk-set comparison**;
+- secondary SB vs Forgotten comparison;
+- secondary SB vs Immediate-Hit comparison;
 - Prince / awakening-path analysis.
 
 Hard rule:
@@ -249,23 +251,37 @@ Mechanism Track now adds:
 
 - robust retrospective SB gate;
 - source-calibrated B threshold support;
-- van-Raan-style sleep/depth/wake gate;
+- variable sleep/depth/wake gate;
 - later-recognition floor;
-- four canonical trajectory states;
-- deterministic matched controls;
-- mechanism_ready hard gate that blocks inference when no robust SB exists.
+- robust SB identity separated from relative early/late quadrant;
+- post-awakening fate descriptor;
+- event-time at-risk-dormant risk-set matching as the primary contrast;
+- Forgotten and Immediate-Hit secondary contrasts;
+- mechanism_ready and stricter mechanism_analysis_ready gates.
+
+Latest real-data mechanism result (Pilot M v3):
+- 153 papers;
+- 5 robust SB cases;
+- all 3 literature-reference cases passed the robust gate;
+- 5/5 at-risk-dormant matches found;
+- balance still failed: max observed abs SMD ~= 0.950;
+- OpenAlex B calibration remains provisional;
+- therefore mechanism_ready=true but mechanism_analysis_ready=false.
 
 ### Immediate next gates
 
-1. connect a reproducible SciSciNet-v2 / SciSciNet query or slice;
-2. use SB_B only as a cheap candidate prefilter, then reconstruct trajectories;
-3. build the first empirical robust-SB mechanism cohort;
-4. measure SB-vs-Forgotten and SB-vs-Immediate-Hit match yield / balance;
-5. add reference-combination and network mechanism features;
-6. run Prince / awakening-trigger analysis;
-7. return mechanism-derived, cutoff-safe features to the prospective benchmark;
-8. train learned models only after independent feature families show stable value.
+1. expand the at-risk control reservoir while keeping abs SMD < 0.10 fixed;
+2. cross-validate the two provisional additional SB candidates;
+3. execute SciSciNet-v2 schema discovery / source-specific B calibration when access is available;
+4. re-run risk-set matching on a larger confirmed-SB cohort;
+5. add mechanism features only after matching balance becomes acceptable;
+6. run Prince / awakening-trigger analysis with M0/M1/M2/M3 time ordering;
+7. return cutoff-safe mechanism-derived features to Track B;
+8. train learned prospective models only after independent feature families show stable value.
 
 Canonical execution state: process/STATUS.md  
+Recovery / cross-agent handoff: process/HANDOFF.md  
+Conversation decision log: process/CONVERSATION_LOG.md  
 Mechanism design: process/MECHANISM_TRACK.md  
+Pilot M v3 result: data/pilotM_known_cases_v3_summary.json  
 Pilot 1 citation results: process/PILOT1_RESULTS.md
