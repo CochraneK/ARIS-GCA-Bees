@@ -48,6 +48,9 @@ jobs:
       - name: IKES pipeline smoke test
         run: python code/test_ikes_pipeline.py
 
+      - name: Distributed aggregation integrity test
+        run: python code/test_distributed_aggregation.py
+
       - name: Legacy synthetic PPML sanity
         run: python code/simulate_ppml.py
 
