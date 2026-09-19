@@ -39,10 +39,14 @@ Before switching away from the current paper:
 
 **Paper switch gate:** do not intentionally switch to another paper while material state from the current bounded unit remains only in chat.
 
-## 4. WIP limit
+## 4. Adaptive WIP policy
 
 - Default in 000: **1 Active paper**.
-- Normal upper bound: **3 Active papers** when genuine parallel compute/agents make that useful.
+- **3 Active papers is a conservative soft reference for ordinary single-controller workflows, not a maximum.**
+- ARIS4C has **no fixed numeric hard cap** on Active papers.
+- Expand WIP when the current model, agents, compute, and tools can genuinely sustain more parallel research while preserving paper-level context isolation, bounded Git checkpoints, supervision, and truthful live-state tracking.
+- Stronger future models or multi-agent orchestration may therefore run **more than 3 Active papers** when this remains operationally safe and scientifically clean.
+- Contract WIP when context contamination, stale handoffs, missed checkpoints, shallow work, or monitoring overhead begins to reduce quality.
 - Do not mark many papers Active merely because they are executable.
 
 See `ARIS4C_STATUS_MODEL.md` for the canonical meanings of Finish / Active / Wait / Block.
@@ -54,7 +58,7 @@ When the user does not explicitly choose a paper, 000 uses **completion-first sc
 Priority order:
 
 1. **Continue existing Active work first**, provided it is still genuinely moving.
-2. If an Active slot is free, select from **Wait** projects by **highest portfolio progress first**.
+2. If additional genuine execution capacity is available, select from **Wait** projects by **highest portfolio progress first**.
 3. **Block** projects are excluded from the normal execution queue until their dependency is removed.
 4. **Finish** projects are skipped unless explicitly reopened.
 5. The user's explicit instruction always overrides automatic queue order.
