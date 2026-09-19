@@ -14,11 +14,11 @@
 
 - **Finish:** 001, 002
 - **Active:** 015
-- **Wait:** 007, 010, 011, 003, 014, 012, 006, 008, 009, 017
+- **Wait:** 011, 007, 010, 003, 014, 012, 006, 008, 009, 017
 - **Block:** 004, 005, 016, 013
 
 ## Current dispatch
 
-Continue **015** first. When its Active slot becomes free, the next completion-first Wait candidate is **007**.
+Continue **015** first. When its Active slot becomes free, the next completion-first Wait candidate is **011**.
 
 Recalculate from `papers/dashboard.json` after any material state change.
