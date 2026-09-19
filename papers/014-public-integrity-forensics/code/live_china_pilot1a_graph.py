@@ -13,7 +13,7 @@ from pathlib import Path
 
 from china_ccgp import discover_live,fetch_text
 from china_ccgp_detail import parse_ccgp_award_detail
-from china_entity_resolution import resolve_cross_source
+from china_entity_resolution import build_resolution_audit
 from china_procurement_graph import ccgp_notice_graph
 
 FIXED_USCC_URL=(
@@ -56,7 +56,7 @@ def main():
 
     # Preserve manifestations for review-candidate discovery, then union exact
     # graph IDs. Same CN-USCC node ID is already deterministic across notices.
-    decisions=resolve_cross_source(all_nodes)
+    resolution_audit=build_resolution_audit(all_nodes)
     unique_nodes={}
     node_manifestations=Counter()
     for n in all_nodes:
@@ -75,7 +75,6 @@ def main():
         nid for nid in stable_supplier_ids if node_manifestations[nid]>1
     ]
 
-    resolution_counts=Counter(x["relation"] for x in decisions)
     payload={
         "pilot":"CHINA_PILOT_1A_PROCUREMENT_GRAPH_JOINABILITY",
         "retrieved_at":retrieved,
@@ -94,9 +93,14 @@ def main():
             "ranked_candidate_edges":sum(e.get("type")=="HAS_RANKED_CANDIDATE" for e in all_edges),
         },
         "cross_manifestation_resolution":{
-            "same_org_exact_stable_id_decisions":resolution_counts["SAME_ORG"],
-            "name_only_review_candidate_decisions":resolution_counts["REVIEW_CANDIDATE"],
+            "nodes_with_valid_cn_uscc":resolution_audit["nodes_with_valid_cn_uscc"],
+            "exact_stable_id_cluster_count":resolution_audit["exact_stable_id_cluster_count"],
+            "same_org_exact_stable_id_decisions":resolution_audit["auto_merge_decision_count"],
+            "name_only_review_candidate_decisions":resolution_audit["name_only_review_candidate_count"],
+            "stable_id_conflict_decisions":resolution_audit["stable_id_conflict_count"],
+            "unlinked_manifestations":len(resolution_audit["unlinked_node_ids"]),
             "automatic_name_only_merges":0,
+            "corruption_inference":False,
         },
         "coverage_failures":[x["error_class"] for x in failures],
         "corruption_inference":False,
