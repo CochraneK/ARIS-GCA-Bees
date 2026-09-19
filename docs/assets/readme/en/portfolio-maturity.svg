@@ -46,9 +46,9 @@
 <rect x="855" y="265" width="660" height="16" rx="8" fill="#1b385a"/>
 <rect x="855" y="265" width="475.2" height="16" rx="8" fill="#ef6a6a"/>
 <text x="855" y="329" class="h" font-size="20">011 · Research Forensics</text>
-<text x="1515" y="329" text-anchor="end" class="b">84%</text>
+<text x="1515" y="329" text-anchor="end" class="b">87%</text>
 <rect x="855" y="347" width="660" height="16" rx="8" fill="#1b385a"/>
-<rect x="855" y="347" width="554.4" height="16" rx="8" fill="#48e996"/>
+<rect x="855" y="347" width="574.1999999999999" height="16" rx="8" fill="#48e996"/>
 <text x="855" y="411" class="h" font-size="20">012 · Indexed Oppositional Causal In…</text>
 <text x="1515" y="411" text-anchor="end" class="b">66%</text>
 <rect x="855" y="429" width="660" height="16" rx="8" fill="#1b385a"/>
@@ -58,9 +58,9 @@
 <rect x="855" y="511" width="660" height="16" rx="8" fill="#1b385a"/>
 <rect x="855" y="511" width="330.0" height="16" rx="8" fill="#ef6a6a"/>
 <text x="855" y="575" class="h" font-size="20">014 · Public Integrity Forensics</text>
-<text x="1515" y="575" text-anchor="end" class="b">69%</text>
+<text x="1515" y="575" text-anchor="end" class="b">71%</text>
 <rect x="855" y="593" width="660" height="16" rx="8" fill="#1b385a"/>
-<rect x="855" y="593" width="455.4" height="16" rx="8" fill="#f2c14e"/>
+<rect x="855" y="593" width="468.59999999999997" height="16" rx="8" fill="#48e996"/>
 <text x="855" y="657" class="h" font-size="20">015 · Sleeping Beauty Miner</text>
 <text x="1515" y="657" text-anchor="end" class="b">88%</text>
 <rect x="855" y="675" width="660" height="16" rx="8" fill="#1b385a"/>

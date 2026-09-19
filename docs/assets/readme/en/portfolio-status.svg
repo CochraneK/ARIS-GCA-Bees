@@ -6,15 +6,15 @@
 <text x="800.0" y="72" text-anchor="middle" class="t">Portfolio state</text>
 <text x="800.0" y="112" text-anchor="middle" class="s">MECE management states from papers/dashboard.json</text>
 <rect x="80.0" y="185" width="169.4" height="58" fill="#7c8cff"/>
-<rect x="249.4" y="185" width="254.1" height="58" fill="#48e996"/>
-<rect x="503.5" y="185" width="423.5" height="58" fill="#f2c14e"/>
+<rect x="249.4" y="185" width="338.8" height="58" fill="#48e996"/>
+<rect x="588.2" y="185" width="338.8" height="58" fill="#f2c14e"/>
 <rect x="927.1" y="185" width="592.9" height="58" fill="#ef6a6a"/>
 <circle cx="125" cy="320" r="10" fill="#7c8cff"/>
 <text x="147" y="327" class="h">Finish · 2</text>
 <circle cx="500" cy="320" r="10" fill="#48e996"/>
-<text x="522" y="327" class="h">Active · 3</text>
+<text x="522" y="327" class="h">Active · 4</text>
 <circle cx="875" cy="320" r="10" fill="#f2c14e"/>
-<text x="897" y="327" class="h">Wait · 5</text>
+<text x="897" y="327" class="h">Wait · 4</text>
 <circle cx="1250" cy="320" r="10" fill="#ef6a6a"/>
 <text x="1272" y="327" class="h">Block · 7</text>
 <text x="1510" y="327" text-anchor="end" class="m">Total 17</text>
