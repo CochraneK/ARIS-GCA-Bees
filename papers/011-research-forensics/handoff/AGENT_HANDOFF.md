@@ -9,17 +9,17 @@ A cross-disciplinary, auditable framework that routes scientific manuscripts to 
 ## Current state
 
 - Activity: **wait**
-- Progress: **72%**
-- Stage: **Pilot 3 · object-level historical table qualification**
-- Evidence: Priority PLOS case has frozen pre-correction t001 wrapper provenance; table-image object qualification is now separated from F3 value extraction
+- Progress: **78%**
+- Stage: **Pilot 3 · five pre-outcome development true-positive evaluations across four papers**
+- Evidence: SAFE_EXACT/time-safe development cases now span F5 cited-source consistency, F3 raw-data recomputation, F8 body↔caption scope coherence, F3 table-schema structure, and F1 significance/p-direction consistency; correction metadata remains manager-only
 
 ## Immediate next action
 
-**Qualify archived Table-1 image object as SAFE_EXACT, then run F3 content extraction**
+**Run formatting/honest-error control, build small matched no-known-concern comparator set, then continue voxel/table queue and prepare frozen confirmatory cohort**
 
 ## Current blocker / gate
 
-Historical table image replay/qualification remains the object-level gate
+No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus, grouped/temporal split freeze, detector freeze, and human-review protocol
 
 ## Canonical files / entry points
 
