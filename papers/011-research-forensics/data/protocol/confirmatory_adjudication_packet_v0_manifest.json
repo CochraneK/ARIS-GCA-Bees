@@ -71,6 +71,6 @@
     "Do not run detector scoring on this packet or expose adjudicated label-side fields to Track A."
   ],
   "source_frame_file": "confirmatory_feasibility_frame_v0.json",
-  "source_frame_sha256": "92f04b58718997866d637b82f48c54c4358c3ad6006e405eb5b2f59603065350",
-  "packet_csv_sha256": "4a0127cd7b3b85bbd81f220489a21003c34a5f109f1249898122334c01398134"
+  "source_frame_sha256": "6210a79a392852da1cf159b467db65abeb0e5afc5126bb0d7608f7bd1f47fdd3",
+  "packet_csv_sha256": "af8b4e54498816cb6ae8159583895c861cfb80ebf9b438001d944017ddbbdb71"
 }
