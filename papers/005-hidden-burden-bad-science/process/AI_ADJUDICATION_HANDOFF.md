@@ -109,6 +109,32 @@ Missing DOI is **not** an integrity signal.
 
 ---
 
+## Batch-output integrity gate
+
+Before concatenating or adjudicating model outputs, place all completed files in one directory using the convention:
+
+- `AI_A_batch_001_output.csv` … `AI_A_batch_040_output.csv`
+- `AI_B_batch_001_output.csv` … `AI_B_batch_040_output.csv`
+
+Run:
+
+`python code/collect_ai_batch_outputs.py data/pilot/scaled_ai_batch_manifest.json <completed_output_dir> <collected_dir> <collection_summary.json> --mode article`
+
+The collector fails closed on:
+
+- missing/extra rows;
+- assignment checksum mismatch;
+- duplicate assignments;
+- wrong adjudicator;
+- wrong prompt version;
+- invalid controlled-vocabulary values;
+- missing model/run provenance;
+- INDETERMINATE without an abstention reason.
+
+Successful collection proves batch/schema integrity only. It does **not** prove label correctness.
+
+---
+
 ## After both model passes
 
 Concatenate AI_A outputs and AI_B outputs separately, then run:
