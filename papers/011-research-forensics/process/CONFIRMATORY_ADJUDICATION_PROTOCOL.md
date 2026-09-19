@@ -18,6 +18,7 @@ Detector output, finding count, review priority, anomaly/model score, or whether
 ## Issue families
 
 - **statistical_reporting** — statistical value/model/analysis/inference reporting error.
+- **table_numerical_reporting** — table value, numerical field, schema, unit, exponent, aggregate, or arithmetic error that is not primarily an inferential/statistical-analysis error.
 - **data_fabrication_falsification** — only when primary evidence specifically supports fabricated/falsified/manipulated data.
 - **image_integrity** — figure/image duplication, manipulation, assembly, or image-content issue.
 - **plagiarism_text_duplication** — plagiarism, text overlap, duplicate/redundant publication.
@@ -47,6 +48,10 @@ Update type alone does not determine the tier.
 `PROCESS_ONLY` uses `none_content_detectable`. It must not be scored as a Track-A false negative simply because a manuscript-content detector cannot observe a gift-authorship or peer-review-process issue.
 
 `MIXED` is used when the same record documents both content-assessable and process-only sub-issues. `UNCLEAR` is used when the manager evidence is insufficient.
+
+## Pre-first-pass amendment
+
+Before any first-pass labels were committed, `table_numerical_reporting` was added so F3/table errors are not forced into `statistical_reporting` or `other_unclear`. This is protocol v0.1.1; no coded row existed under v0.1.0.
 
 ## Frozen safeguards
 
