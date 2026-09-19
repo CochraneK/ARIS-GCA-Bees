@@ -1,0 +1,77 @@
+name: ARIS4C011 confirmatory adjudication packet
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-confirmatory-adjudication-packet.yml"
+      - "papers/011-research-forensics/code/build_confirmatory_adjudication_packet.py"
+      - "papers/011-research-forensics/code/test_build_confirmatory_adjudication_packet.py"
+      - "papers/011-research-forensics/data/results/confirmatory_feasibility_frame_v0.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-confirmatory-adjudication-packet
+  cancel-in-progress: true
+
+jobs:
+  packet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test label-side projection safeguards
+        run: python code/test_build_confirmatory_adjudication_packet.py -q
+      - name: Build manager-only adjudication packet
+        run: |
+          python code/build_confirmatory_adjudication_packet.py \
+            --input data/results/confirmatory_feasibility_frame_v0.json \
+            --csv-output data/protocol/confirmatory_adjudication_packet_v0.csv \
+            --manifest-output data/protocol/confirmatory_adjudication_packet_v0_manifest.json
+      - name: Audit blinding and blank adjudication state
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          m=json.loads(Path("data/protocol/confirmatory_adjudication_packet_v0_manifest.json").read_text(encoding="utf-8"))
+          with Path("data/protocol/confirmatory_adjudication_packet_v0.csv").open(newline="",encoding="utf-8") as f:
+              rows=list(csv.DictReader(f))
+          forbidden=set(m["forbidden_input_fields"])|{"detector_output_visible"}
+          assert m["state"]=="MANAGER_ONLY_UNADJUDICATED"
+          assert m["row_count"]==80
+          assert m["selection_used_detector_output"] is False
+          assert len(rows)==80
+          assert all(r["adjudication_state"]=="UNASSESSED" for r in rows)
+          assert all(not r["issue_family_codes"] and not r["required_artifact_roles"] for r in rows)
+          assert not (set(rows[0]) & forbidden)
+          print(json.dumps({"rows":80,"state":m["state"],"forbidden_columns_present":[]},indent=2))
+          PY
+      - name: Commit label-side packet contract
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/protocol/confirmatory_adjudication_packet_v0.csv
+          git add data/protocol/confirmatory_adjudication_packet_v0_manifest.json
+          if git diff --cached --quiet; then
+            echo "Adjudication packet current."
+          else
+            git commit -m "ARIS4C011 freeze manager-only adjudication packet v0"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
