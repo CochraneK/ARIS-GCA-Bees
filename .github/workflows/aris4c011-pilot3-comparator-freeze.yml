@@ -1,0 +1,93 @@
+name: ARIS4C011 Pilot 3 comparator full-text freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-pilot3-comparator-freeze.yml"
+      - "papers/011-research-forensics/code/pilot3_comparator_artifact_freeze.py"
+      - "papers/011-research-forensics/code/test_pilot3_comparator_artifact_freeze.py"
+      - "papers/011-research-forensics/data/results/pilot3_comparator_notice_screen.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-pilot3-comparator-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run comparator-freeze unit tests
+        run: python code/test_pilot3_comparator_artifact_freeze.py -q
+
+      - name: Freeze selected comparator full-text provenance
+        run: |
+          python code/pilot3_comparator_artifact_freeze.py \
+            --input data/results/pilot3_comparator_notice_screen.json \
+            --output data/results/pilot3_comparator_fulltext_freeze.json
+
+      - name: Audit development-only claim boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("data/results/pilot3_comparator_fulltext_freeze.json")
+          x=json.loads(p.read_text(encoding="utf-8"))
+          assert x["input_selected_count"]==4
+          assert x["frozen_pass_count"]==4
+          assert x["all_selected_frozen"] is True
+          assert x["selection_independent_of_detector_output"] is True
+          assert x["full_text_committed"] is False
+          assert x["confirmatory_eligibility"]=="DEVELOPMENT_ONLY_UNTIL_BROADER_CORPUS_AND_PROTOCOL_FREEZE"
+          assert all(
+              row["qualification_state"]=="FROZEN_NOTICE_NEGATIVE_FULLTEXT"
+              and len(row["fulltext_sha256"])==64
+              for row in x["frozen_comparators"]
+          )
+          print(json.dumps({
+              "frozen_pass_count":x["frozen_pass_count"],
+              "all_selected_frozen":x["all_selected_frozen"],
+              "confirmatory_eligibility":x["confirmatory_eligibility"],
+          },indent=2))
+          PY
+
+      - name: Commit compact comparator provenance
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/pilot3_comparator_fulltext_freeze.json
+          if git diff --cached --quiet; then
+            echo "Comparator provenance already current."
+          else
+            git commit -m "ARIS4C011 freeze comparator full-text provenance"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c011-pilot3-comparator-freeze
+          path: papers/011-research-forensics/data/results/pilot3_comparator_fulltext_freeze.json
+          retention-days: 30
