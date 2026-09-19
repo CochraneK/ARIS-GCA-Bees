@@ -16,6 +16,7 @@
   ],
   "issue_family_vocab": [
     "statistical_reporting",
+    "table_numerical_reporting",
     "data_fabrication_falsification",
     "image_integrity",
     "plagiarism_text_duplication",
