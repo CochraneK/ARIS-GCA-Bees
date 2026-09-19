@@ -10,6 +10,7 @@ on:
       - 'tools/build_readme.py'
       - 'tools/build_readme_assets.py'
       - 'tools/audit_paper_outputs.py'
+      - 'tools/audit_readme.py'
       - 'ARIS4C_OUTPUT_STANDARD.md'
       - 'tools/migrate_aris4c.py'
       - '.github/workflows/build-paper-index.yml'
@@ -49,6 +50,7 @@ jobs:
             python tools/build_papers_index.py
             python tools/build_readme_assets.py
             python tools/build_readme.py
+            python tools/audit_readme.py
 
             if git diff --quiet; then
               echo "No generated or migration changes"
