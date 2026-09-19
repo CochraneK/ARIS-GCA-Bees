@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "papers/011-research-forensics/data/results/pilot3_comparator_candidates.json"
+      - ".github/workflows/aris4c011-pilot3-comparator-screen.yml"
 
 permissions:
   contents: write
