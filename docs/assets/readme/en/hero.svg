@@ -16,10 +16,10 @@
 <text x="692" y="255" class="metric">1</text>
 <text x="692" y="288" class="b">Active</text>
 <rect x="970" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
-<text x="992" y="255" class="metric">11</text>
+<text x="992" y="255" class="metric">10</text>
 <text x="992" y="288" class="b">Wait</text>
 <rect x="1270" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
-<text x="1292" y="255" class="metric">3</text>
+<text x="1292" y="255" class="metric">4</text>
 <text x="1292" y="288" class="b">Block</text>
 <text x="70" y="455" class="m">2 project(s) expose EN + ZH PDFs · continuity 17/17</text>
 </svg>
