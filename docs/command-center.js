@@ -338,12 +338,54 @@
     const pointX=new Map();
     parsedPoints.forEach((row,i)=>pointX.set(row.p,L+visualTimes[i]/visualMax*innerW));
     const xPoint=p=>pointX.get(p) ?? L;
-    const y=v=>T+(100-v)/100*innerH;
 
-    const grid=[0,25,50,75,100].map(v=>`
+    // Adaptive percentage axis:
+    // omit unused vertical ranges, but keep enough context that a 1–2 point
+    // movement cannot be visually inflated into a full-height swing.
+    const plottedValues=points.flatMap(p=>
+      ids.map(id=>Number(p.projects?.[id])).filter(Number.isFinite)
+    );
+    const rawMin=plottedValues.length ? Math.min(...plottedValues) : 0;
+    const rawMax=plottedValues.length ? Math.max(...plottedValues) : 100;
+    const rawSpan=Math.max(0,rawMax-rawMin);
+    const minVisibleSpan=20;
+    const padding=Math.max(3,rawSpan*.12);
+    let yMin=Math.max(0,Math.floor((rawMin-padding)/5)*5);
+    let yMax=Math.min(100,Math.ceil((rawMax+padding)/5)*5);
+
+    if(yMax-yMin<minVisibleSpan){
+      const center=(rawMin+rawMax)/2;
+      yMin=Math.floor((center-minVisibleSpan/2)/5)*5;
+      yMax=yMin+minVisibleSpan;
+      if(yMin<0){ yMax-=yMin; yMin=0; }
+      if(yMax>100){ yMin-=yMax-100; yMax=100; }
+      yMin=Math.max(0,yMin);
+      yMax=Math.min(100,yMax);
+    }
+    if(yMax<=yMin){ yMin=0; yMax=100; }
+
+    const yRange=yMax-yMin;
+    const y=v=>T+(yMax-v)/yRange*innerH;
+    const niceSteps=[1,2,5,10,20,25,50];
+    const yStep=niceSteps.find(step=>step>=yRange/4) || 50;
+    const yTicks=[];
+    for(let v=Math.ceil(yMin/yStep)*yStep;v<=yMax;v+=yStep) yTicks.push(v);
+    if(!yTicks.includes(yMin)) yTicks.unshift(yMin);
+    if(!yTicks.includes(yMax)) yTicks.push(yMax);
+
+    const grid=yTicks.map(v=>`
       <line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" class="history-grid-line"/>
       <text x="${L-9}" y="${y(v)+4}" text-anchor="end" class="history-axis-label">${v}%</text>
     `).join("");
+
+    const yBreakMarks=[
+      yMin>0
+        ? `<path d="M ${L-5} ${H-B-5} l 5 -5 M ${L+2} ${H-B-5} l 5 -5" class="history-idle-break-slash"><title>Vertical axis starts at ${yMin}% because lower unused values are omitted.</title></path>`
+        : "",
+      yMax<100
+        ? `<path d="M ${L-5} ${T+8} l 5 -5 M ${L+2} ${T+8} l 5 -5" class="history-idle-break-slash"><title>Vertical axis ends at ${yMax}% because higher unused values are omitted.</title></path>`
+        : ""
+    ].join("");
 
     const breakMarks=idleBreaks.map(gap=>{
       const x1=xPoint(gap.from.p), x2=xPoint(gap.to.p);
@@ -375,7 +417,7 @@
       return `<g data-history-series="${id}"><path d="${d}" class="history-series-line" stroke="${colorFor(id)}"><title>#${id}</title></path>${dots}</g>`;
     }).join("");
 
-    svg.innerHTML=`<g>${grid}</g><g>${breakMarks}</g><g>${paths}</g><g>${labels}</g>`;
+    svg.innerHTML=`<g>${grid}</g><g>${yBreakMarks}</g><g>${breakMarks}</g><g>${paths}</g><g>${labels}</g>`;
 
     const latest=(points[points.length-1]||{}).projects||{};
     legend.innerHTML=ids.map(id=>`
@@ -396,7 +438,8 @@
 
     if(summary){
       const compression=idleBreaks.length ? ` · ${idleBreaks.length} idle gap${idleBreaks.length===1?"":"s"} compressed` : "";
-      summary.textContent=`${data.date||"Today"} · ${points.length} checkpoints · ${ids.length} papers${compression}`;
+      const yWindow=(yMin>0 || yMax<100) ? ` · Y ${yMin}–${yMax}%` : "";
+      summary.textContent=`${data.date||"Today"} · ${points.length} checkpoints · ${ids.length} papers${compression}${yWindow}`;
     }
   }
 
