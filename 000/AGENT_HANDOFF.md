@@ -19,12 +19,14 @@ Your job is to decide what to work on next, enforce checkpoint-before-switch, ke
 Default policy is **completion-first**:
 
 1. continue genuine Active work;
-2. when an Active slot is free, choose the highest-progress Wait paper;
+2. when additional genuine execution capacity is available, choose the highest-progress Wait paper;
 3. do not schedule Block papers until their dependency can be cleared;
 4. do not touch Finish papers unless explicitly reopened;
 5. explicit user instructions override automatic ordering.
 
-Default Active WIP = 1. Normal maximum = 3.
+Default Active WIP = 1. **There is no fixed numeric maximum.** A WIP of 3 is only a conservative soft reference for ordinary single-controller execution.
+
+Increase Active WIP beyond 3 when a stronger model, multi-agent setup, parallel compute, or better tooling can genuinely advance more papers at once while preserving paper-level context isolation, bounded Git checkpoints, and truthful live-state tracking. Reduce WIP again if quality, continuity, supervision, or state freshness begins to degrade.
 
 ## Paper switch gate
 
