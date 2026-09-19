@@ -57,6 +57,11 @@ def load():
             "next_gate": d.get("next_gate", ""),
             "paper_en_pdf": links.get("paper_en_pdf", ""),
             "paper_zh_pdf": links.get("paper_zh_pdf", ""),
+            "one_page_visual": (
+                (p.get("outputs", {}).get("one_page_visual", {}) or {}).get("repo_path", "")
+                if isinstance(p.get("outputs", {}).get("one_page_visual", {}), dict)
+                else ""
+            ),
         })
     return dashboard, rows
 
@@ -74,9 +79,15 @@ def paper_rows(rows: list[dict], zh: bool = False) -> str:
     for r in rows:
         state = STATE.get(r["activity"], (r["activity"], r["activity"]))[1 if zh else 0]
         title = ZH_TITLES.get(r["id"], r["short_title"]) if zh else r["short_title"]
+        visual = r.get("one_page_visual", "")
+        if visual:
+            alt = ("一图读懂 " if zh else "One-page visual ") + r["id"]
+            visual_cell = f'<a href="{visual}"><img src="{visual}" height="40" alt="{alt}"></a>'
+        else:
+            visual_cell = "—"
         lines.append(
             f'| **{r["id"]}** | [{title}](papers/{r["folder"]}/) | {state} | '
-            f'{r["progress"]}% | [handoff](papers/{r["folder"]}/handoff/AGENT_HANDOFF.md) |'
+            f'{r["progress"]}% | [handoff](papers/{r["folder"]}/handoff/AGENT_HANDOFF.md) | {visual_cell} |'
         )
     return "\n".join(lines)
 
@@ -165,8 +176,8 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 
 ## The {len(rows)}-paper portfolio
 
-| ID | Project | State | Progress | Continue from |
-|---|---|---:|---:|---|
+| ID | Project | State | Progress | Continue from | At a glance |
+|---|---|---:|---:|---|---:|
 {paper_rows(rows)}
 
 ## How ARIS4C works
@@ -352,8 +363,8 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 
 ## {len(rows)} 个 Paper
 
-| ID | 项目 | 状态 | 进度 | 接管入口 |
-|---|---|---:|---:|---|
+| ID | 项目 | 状态 | 进度 | 接管入口 | 一图读懂 |
+|---|---|---:|---:|---|---:|
 {paper_rows(rows, zh=True)}
 
 ## ARIS4C 如何运作
