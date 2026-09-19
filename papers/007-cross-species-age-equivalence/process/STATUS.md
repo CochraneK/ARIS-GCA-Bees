@@ -1,7 +1,7 @@
 # STATUS — ARIS4C007
 
 **Last updated:** 2026-09-19  
-**State:** `PILOT3A_REFERENCE_PARITY_PASS / PILOT3B_METADATA_FEASIBILITY`  
+**State:** `PILOT3B_METADATA_PASS / PILOT3C_MOLECULAR_SMOKE`  
 **ARIS provenance:** v0.4.26 @ `951654847b015585385b2448c5667dcd04e7b56b`
 
 ## Canonical research identity
@@ -45,7 +45,7 @@ The project is no longer framed as merely inventing a better "animal years" calc
 - [x] Three-method benchmark completed: A1 median fold error 1.75×; A3 1.69×; A4-LOTO 1.22× overall.
 - [x] A4 does not universally dominate: chimpanzee A3≈A4; postnatal 0–2 years clearly favors A3.
 - [x] Full Pilot 2 result frozen in `process/PILOT2_EVENT_RESULTS.md`.
-- [x] Pilot 3 molecular-axis protocol frozen in `process/PILOT3_MOLECULAR_PLAN.md`.\n- [x] Pilot 3A Universal Clock 2/3 coefficients and linear predictors independently reproduced against MMC v3.0.0 on 50 official bottlenose-dolphin examples.\n- [x] MammalMethylClock v1.1.0 coefficient tables pass parity to <1e-6, but its released Clock-3 inverse wrapper fails parity (median 8.78 y; max 42.14 y difference from MMC reference).\n- [x] MMC Clock-3 documented Lu transform reproduced to machine precision; MMC v3.0.0 is now the canonical implementation.\n- [x] Additional Clock-1 reference-script indexing issue recorded and Clock 1 quarantined pending separate validation.\n- [x] Full implementation audit frozen in `process/PILOT3A_CLOCK_PARITY_RESULTS.md`.
+- [x] Pilot 3 molecular-axis protocol frozen in `process/PILOT3_MOLECULAR_PLAN.md`.\n- [x] Pilot 3A Universal Clock 2/3 coefficients and linear predictors independently reproduced against MMC v3.0.0 on 50 official bottlenose-dolphin examples.\n- [x] MammalMethylClock v1.1.0 coefficient tables pass parity to <1e-6, but its released Clock-3 inverse wrapper fails parity (median 8.78 y; max 42.14 y difference from MMC reference).\n- [x] MMC Clock-3 documented Lu transform reproduced to machine precision; MMC v3.0.0 is now the canonical implementation.\n- [x] Additional Clock-1 reference-script indexing issue recorded and Clock 1 quarantined pending separate validation.\n- [x] Full implementation audit frozen in `process/PILOT3A_CLOCK_PARITY_RESULTS.md`.\n- [x] GSE223748 metadata-first audit completed: 15,043 samples, 346 species, 70 tissue labels.\n- [x] Explicit pan-clock training membership parsed: 11,514 training / 3,529 non-training samples.\n- [x] Primary independent molecular holdout frozen: 50 pan-clock-training=no samples across six Pilot-0-overlap species, all with individual IDAT pairs.\n- [x] Pilot 3B result frozen in `process/PILOT3B_METADATA_RESULTS.md`.\n- [x] Pilot 3C 12-sample / six-species raw-IDAT smoke workflow submitted.
 
 ## Primary novelty claim to test
 
@@ -90,12 +90,12 @@ Species are not independent observations. Phylogenetic block cross-validation an
 
 ## Next execution queue
 
-1. Acquire GSE223748 metadata without downloading the full beta-value matrix.
-2. Inventory species, tissues, age ranges, sex, study/batch, platform and training-membership flags.
-3. Quantify overlap with Pilot 0/1/2 and freeze a bounded molecular validation sample.
-4. Reproduce Universal Clock 2/3 on that bounded sample using MMC v3.0.0 reference transforms.
-5. Add molecular coordinates to the cross-method disagreement benchmark with target-transform circularity labels.
-6. Audit dual-species clocks separately; never use an A1/A3-derived target as independent validation for the same construct.
+1. Complete the 12-sample / six-species Pilot 3C raw-IDAT smoke test.
+2. Require >=95% universal-clock CpG coverage and valid Clock 2/3 predictions in every smoke sample.
+3. If smoke passes, expand the identical SeSAMe/MMC pipeline to all 50 independent non-training holdout samples.
+4. Compare Clock 2/3 chronological prediction residuals by species, tissue and life stage.
+5. Add molecular coordinates to the cross-method disagreement benchmark with explicit target-transform circularity labels.
+6. Use the 74-sample Pilot-2-overlap molecular set only for event-conditioned triangulation, never as the primary independent holdout.
 7. After molecular feasibility, add Myhrvold + mammalian phylogeny for broad trait-level inference.
 8. Build the first multi-axis disagreement atlas.
 9. Freeze phylogenetic leave-one-order-out validation before any latent-age model.
