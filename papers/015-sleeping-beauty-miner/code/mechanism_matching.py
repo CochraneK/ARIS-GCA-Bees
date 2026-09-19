@@ -41,6 +41,9 @@ class MechanismPaper:
     author_count: int | None = None
     early_citation_count: int | None = None
     source_id: str | None = None
+    annual_citation_counts: tuple[int, ...] | None = None
+    robust_sleep_years: int | None = None
+    robust_sleep_rate: float | None = None
 
     def as_dict(self) -> dict:
         return {
@@ -53,6 +56,8 @@ class MechanismPaper:
             "author_count": self.author_count,
             "early_citation_count": self.early_citation_count,
             "source_id": self.source_id,
+            "robust_sleep_years": self.robust_sleep_years,
+            "robust_sleep_rate": self.robust_sleep_rate,
         }
 
 
@@ -101,6 +106,23 @@ def _scaled_abs(
     return abs(float(left) - float(right)) / scale
 
 
+
+
+def sleep_window_rate(
+    paper: MechanismPaper,
+    years: int,
+) -> float | None:
+    """Citation rate during the first requested number of years."""
+    if paper.annual_citation_counts is None:
+        return None
+    if years < 1:
+        raise ValueError("years must be >= 1")
+    window = paper.annual_citation_counts[:years]
+    if len(window) < years:
+        return None
+    return sum(float(x) for x in window) / years
+
+
 def matching_distance(
     case: MechanismPaper,
     control: MechanismPaper,
@@ -109,6 +131,8 @@ def matching_distance(
     reference_scale: float = 30.0,
     author_scale: float = 5.0,
     early_count_scale: float = 10.0,
+    match_sleep_depth: bool = False,
+    sleep_rate_scale: float = 1.0,
 ) -> float:
     """Interpretable early-life distance; lower is more similar.
 
@@ -135,6 +159,23 @@ def matching_distance(
         control.early_citation_count,
         scale=early_count_scale,
     )
+
+    if (
+        match_sleep_depth
+        and case.robust_sleep_years is not None
+        and case.robust_sleep_rate is not None
+    ):
+        control_rate = sleep_window_rate(
+            control,
+            case.robust_sleep_years,
+        )
+        if control_rate is not None:
+            distance += 2.0 * _scaled_abs(
+                case.robust_sleep_rate,
+                control_rate,
+                scale=sleep_rate_scale,
+            )
+
     return float(distance)
 
 
@@ -146,6 +187,8 @@ def eligible_control(
     year_tolerance: int = 0,
     require_same_field: bool = True,
     early_percentile_caliper: float = 0.15,
+    use_early_percentile_caliper: bool = True,
+    sleep_rate_caliper: float | None = None,
 ) -> bool:
     """Eligibility gate using only pre-outcome variables."""
     if control.state != control_state:
@@ -156,11 +199,25 @@ def eligible_control(
         return False
     if abs(case.publication_year - control.publication_year) > year_tolerance:
         return False
-    if abs(
-        case.early_citation_percentile
-        - control.early_citation_percentile
-    ) > early_percentile_caliper:
-        return False
+    if use_early_percentile_caliper:
+        if abs(
+            case.early_citation_percentile
+            - control.early_citation_percentile
+        ) > early_percentile_caliper:
+            return False
+
+    if sleep_rate_caliper is not None:
+        if case.robust_sleep_years is None or case.robust_sleep_rate is None:
+            return False
+        control_rate = sleep_window_rate(
+            control,
+            case.robust_sleep_years,
+        )
+        if control_rate is None:
+            return False
+        if abs(case.robust_sleep_rate - control_rate) > sleep_rate_caliper:
+            return False
+
     return True
 
 
@@ -174,6 +231,9 @@ def nearest_controls(
     year_tolerance: int = 0,
     require_same_field: bool = True,
     early_percentile_caliper: float = 0.15,
+    use_early_percentile_caliper: bool = True,
+    sleep_rate_caliper: float | None = None,
+    match_sleep_depth: bool = False,
 ) -> tuple[list[Match], list[str]]:
     """Deterministic nearest-neighbour matching with explicit unmatched cases.
 
@@ -200,13 +260,19 @@ def nearest_controls(
                 year_tolerance=year_tolerance,
                 require_same_field=require_same_field,
                 early_percentile_caliper=early_percentile_caliper,
+                use_early_percentile_caliper=use_early_percentile_caliper,
+                sleep_rate_caliper=sleep_rate_caliper,
             ):
                 continue
             if not with_replacement and control.paper_id in used:
                 continue
             candidates.append(
                 (
-                    matching_distance(case, control),
+                    matching_distance(
+                        case,
+                        control,
+                        match_sleep_depth=match_sleep_depth,
+                    ),
                     control.paper_id,
                     control,
                 )
@@ -294,6 +360,7 @@ def match_balance_diagnostics(
     papers: Sequence[MechanismPaper],
     *,
     include_early_attention: bool,
+    include_sleep_depth: bool = False,
     max_abs_smd: float = 0.10,
 ) -> dict:
     """Audit matched-group balance on pre-outcome numeric covariates.
@@ -329,6 +396,26 @@ def match_balance_diagnostics(
                     [p.early_citation_count for p in controls],
                 ),
             }
+        )
+
+    if include_sleep_depth:
+        case_rates = []
+        control_rates = []
+        for case, control in zip(cases, controls):
+            if (
+                case.robust_sleep_years is None
+                or case.robust_sleep_rate is None
+            ):
+                case_rates.append(None)
+                control_rates.append(None)
+                continue
+            case_rates.append(case.robust_sleep_rate)
+            control_rates.append(
+                sleep_window_rate(control, case.robust_sleep_years)
+            )
+        covariates["matched_sleep_window_rate"] = (
+            case_rates,
+            control_rates,
         )
 
     diagnostics = {}
@@ -390,6 +477,7 @@ def build_priority_contrasts(
     controls_per_case: int = 1,
     year_tolerance: int = 0,
     early_percentile_caliper: float = 0.15,
+    sleep_rate_caliper: float = 1.0,
     max_abs_smd: float = 0.10,
 ) -> dict:
     """Construct the two primary SB mechanism contrasts."""
@@ -403,10 +491,13 @@ def build_priority_contrasts(
         controls_per_case=controls_per_case,
         year_tolerance=year_tolerance,
         early_percentile_caliper=early_percentile_caliper,
+        use_early_percentile_caliper=False,
+        sleep_rate_caliper=sleep_rate_caliper,
+        match_sleep_depth=True,
     )
 
-    # SB vs Immediate Hit intentionally relaxes the early-attention caliper:
-    # early attention is the defining contrast. Other exact strata remain.
+    # SB vs Immediate Hit intentionally does not match sleep depth or early
+    # attention: recognition timing is the defining contrast.
     immediate_matches, immediate_unmatched = nearest_controls(
         sb,
         rows,
@@ -414,18 +505,23 @@ def build_priority_contrasts(
         controls_per_case=controls_per_case,
         year_tolerance=year_tolerance,
         early_percentile_caliper=1.0,
+        use_early_percentile_caliper=False,
+        sleep_rate_caliper=None,
+        match_sleep_depth=False,
     )
 
     forgotten_balance = match_balance_diagnostics(
         forgotten_matches,
         rows,
-        include_early_attention=True,
+        include_early_attention=False,
+        include_sleep_depth=True,
         max_abs_smd=max_abs_smd,
     )
     immediate_balance = match_balance_diagnostics(
         immediate_matches,
         rows,
         include_early_attention=False,
+        include_sleep_depth=False,
         max_abs_smd=max_abs_smd,
     )
 
@@ -461,10 +557,9 @@ def build_priority_contrasts(
             "same_field": True,
             "year_tolerance": year_tolerance,
             "controls_per_case": controls_per_case,
-            "early_percentile_caliper_SB_vs_FORGOTTEN": (
-                early_percentile_caliper
-            ),
-            "early_percentile_caliper_SB_vs_IMMEDIATE_HIT": 1.0,
+            "early_percentile_caliper_SB_vs_FORGOTTEN": None,
+            "sleep_rate_caliper_SB_vs_FORGOTTEN": sleep_rate_caliper,
+            "early_percentile_caliper_SB_vs_IMMEDIATE_HIT": None,
             "replacement": False,
             "max_abs_smd": max_abs_smd,
         },
