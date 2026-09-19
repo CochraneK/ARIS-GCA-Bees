@@ -141,6 +141,20 @@ def candidate_queue(
             "process-only screening reasons with no scientific unreliability flag; must verify claim unaffected",
         )
 
+    honest_error_candidate = (
+        e3
+        and not e1s
+        and not e1m
+        and not e1p
+        and not paper_mill
+        and not manual_scientific
+    )
+    if honest_error_candidate:
+        return (
+            "N_ERROR_REVIEW",
+            "error/reproducibility screening signal without strong integrity flags; must verify honest-error reference evidence",
+        )
+
     return (
         "U_REVIEW",
         "insufficient or mixed screening evidence for calibration truth",
