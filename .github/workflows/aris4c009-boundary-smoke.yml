@@ -40,9 +40,10 @@ jobs:
           set -euo pipefail
           python papers/009-phenomenology-preserving-computational-psychiatry/code/build_private_boundary_packet.py \
             --root "$RUNNER_TEMP/daisc" \
-            --out "$RUNNER_TEMP/boundary_packet"
+            --out "$RUNNER_TEMP/boundary_packet" \
+            --judge-count 3
 
-      - name: Validate packet and create mock completed ratings
+      - name: Validate packet and create mock AI-judge outputs
         shell: bash
         run: |
           set -euo pipefail
@@ -58,18 +59,13 @@ jobs:
 
           assert len(key["items"]) == 140, len(key["items"])
           assert len(training_key["items"]) == 20, len(training_key["items"])
-          with (root / "training.tsv").open("r", encoding="utf-8", newline="") as f:
-              training_rows = list(csv.DictReader(f, delimiter="\t"))
-          assert len(training_rows) == 20, len(training_rows)
           assert set(key["condition_map"]) == {"A", "B"}
           assert sorted(key["condition_map"].values()) == [20, 40]
 
-          for src_name, dst_name in [
-              ("rater_A.tsv", "mock_A.tsv"),
-              ("rater_B.tsv", "mock_B.tsv"),
-          ]:
-              src = root / src_name
-              dst = root / dst_name
+          for idx in range(1, 4):
+              src = root / f"judge_{idx:02d}.tsv"
+              dst = root / f"mock_judge_{idx:02d}.tsv"
+              assert src.exists(), src
               with src.open("r", encoding="utf-8", newline="") as f:
                   rows = list(csv.DictReader(f, delimiter="\t"))
                   fields = rows[0].keys()
@@ -86,13 +82,14 @@ jobs:
                   w.writerows(rows)
           PY
 
-      - name: Run aggregate scorer
+      - name: Run aggregate multi-model scorer
         shell: bash
         run: |
           set -euo pipefail
           python papers/009-phenomenology-preserving-computational-psychiatry/code/score_boundary_ratings.py \
-            --rater-a "$RUNNER_TEMP/boundary_packet/mock_A.tsv" \
-            --rater-b "$RUNNER_TEMP/boundary_packet/mock_B.tsv" \
+            --judge "$RUNNER_TEMP/boundary_packet/mock_judge_01.tsv" \
+            --judge "$RUNNER_TEMP/boundary_packet/mock_judge_02.tsv" \
+            --judge "$RUNNER_TEMP/boundary_packet/mock_judge_03.tsv" \
             --key "$RUNNER_TEMP/boundary_packet/private_key.json" \
             --json-out "$RUNNER_TEMP/boundary_score.json" \
             --md-out "$RUNNER_TEMP/boundary_score.md"
@@ -103,10 +100,12 @@ jobs:
           from pathlib import Path
           p = Path(os.environ["RUNNER_TEMP"]) / "boundary_score.json"
           x = json.loads(p.read_text(encoding="utf-8"))
+          assert x["judge_count"] == 3
           assert x["regular_items_scored"] == 120
           assert set(x["by_condition"]) == {"A", "B"}
           for field, stats in x["agreement"].items():
               assert stats["agreement"] == 1.0, (field, stats)
+              assert stats["ac1"] == 1.0, (field, stats)
           PY
 
       - name: Delete private packet and assert clean repository
