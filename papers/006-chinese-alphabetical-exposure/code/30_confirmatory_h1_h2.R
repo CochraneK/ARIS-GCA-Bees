@@ -14,18 +14,24 @@ get_arg <- function(flag) {
 input_csv <- get_arg("--input")
 outdir <- get_arg("--outdir")
 
-if (!requireNamespace("fixest", quietly=TRUE)) stop("fixest is required")
-if (!requireNamespace("jsonlite", quietly=TRUE)) stop("jsonlite is required")
 if (!dir.exists("process")) stop("run from papers/006-chinese-alphabetical-exposure")
 
-lock_path <- file.path("process", "PREREGISTRATION_LOCK.json")
-if (!file.exists(lock_path)) stop("LOCKED: PREREGISTRATION_LOCK.json missing")
-lock <- jsonlite::fromJSON(lock_path)
-gates <- jsonlite::fromJSON(file.path("process", "DESIGN_GATES.json"))
-spec <- jsonlite::fromJSON(file.path("process", "ANALYSIS_SPEC.json"))
+verify_out <- system2(
+  "python",
+  c("code/31_verify_prereg_lock.py", "--require-unlock"),
+  stdout=TRUE,
+  stderr=TRUE
+)
+verify_status <- attr(verify_out, "status")
+if (!is.null(verify_status) && verify_status != 0) {
+  stop(paste(c("LOCKED/INVALID PREREG STATE", verify_out), collapse="\n"))
+}
 
-if (!isTRUE(gates$confirmatory_outcomes_unlocked)) stop("LOCKED: DESIGN_GATES not unlocked")
-if (!isTRUE(spec$confirmatory_outcomes_unlocked)) stop("LOCKED: ANALYSIS_SPEC not unlocked")
+if (!requireNamespace("fixest", quietly=TRUE)) stop("fixest is required")
+if (!requireNamespace("jsonlite", quietly=TRUE)) stop("jsonlite is required")
+
+lock <- jsonlite::fromJSON(file.path("process", "PREREGISTRATION_LOCK.json"))
+spec <- jsonlite::fromJSON(file.path("process", "ANALYSIS_SPEC.json"))
 if (!identical(spec$primary_model$primary_estimand, "beta2")) stop("spec drift: primary estimand")
 expected_cluster <- c("canonical_author_id","work_id","primary_field_x_year")
 if (!identical(as.character(spec$primary_model$inference$cluster), expected_cluster)) {
