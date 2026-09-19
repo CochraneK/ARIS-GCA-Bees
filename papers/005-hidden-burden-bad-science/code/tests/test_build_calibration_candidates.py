@@ -95,6 +95,31 @@ class CalibrationCandidateTests(unittest.TestCase):
         out, _ = collapse_rows(rows)
         self.assertEqual(out[0]["candidate_queue"], "U_REVIEW")
 
+
+    def test_error_only_is_honest_error_review_candidate_not_truth(self):
+        rows = [
+            row(
+                "10.1/e",
+                "Error in Data",
+                e3=1,
+            )
+        ]
+        out, _ = collapse_rows(rows)
+        self.assertEqual(out[0]["candidate_queue"], "N_ERROR_REVIEW")
+        self.assertEqual(out[0]["reference_binary_state"], "")
+        self.assertEqual(out[0]["requires_primary_evidence_review"], 1)
+
+    def test_error_plus_strong_integrity_flag_is_not_negative_candidate(self):
+        r = row(
+            "10.1/f",
+            "Error in Data; Plagiarism of/in Article",
+            e3=1,
+        )
+        r["e1m_strong_auto"] = "1"
+        rows = [r]
+        out, _ = collapse_rows(rows)
+        self.assertEqual(out[0]["candidate_queue"], "U_REVIEW")
+
     def test_no_doi_is_not_emitted_as_row_level_candidate(self):
         out, summary = collapse_rows(
             [row("", "Falsification/Fabrication of Data", e1s=1)]
