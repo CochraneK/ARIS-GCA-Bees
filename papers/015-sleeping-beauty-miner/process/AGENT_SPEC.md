@@ -74,12 +74,15 @@ Input:
 
 Output:
 - robust-SB gate results;
-- four-state trajectory classification:
+- robust SB identity separated from cohort-relative early/late quadrant;
+- four-state trajectory descriptors:
   SLEEPING_BEAUTY / FORGOTTEN / IMMEDIATE_HIT / FADING;
 - explicit AMBIGUOUS / LOW_EARLY_HIGH_LATE_UNCONFIRMED states;
-- matched SB-vs-Forgotten and SB-vs-Immediate-Hit contrasts;
+- primary event-time SB-vs-at-risk-dormant risk-set contrast;
+- secondary SB-vs-Forgotten and SB-vs-Immediate-Hit contrasts;
+- post-awakening fate descriptor separated from SB identity;
 - candidate Prince / awakening-path evidence;
-- mechanism-ready boolean and block reason.
+- mechanism-ready boolean and stricter mechanism-analysis-ready gate.
 
 Hard rule:
 - if zero robust SB cases are present, return mechanism_ready=false;
