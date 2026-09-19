@@ -1,6 +1,6 @@
 {
   "pilot": "CHINA_PILOT_1A_PROCUREMENT_GRAPH_JOINABILITY",
-  "retrieved_at": "2026-09-19T11:37:03.564722+00:00",
+  "retrieved_at": "2026-09-19T11:38:00.993856+00:00",
   "requested_notice_urls": 13,
   "graphs_built": 13,
   "fetch_or_parse_failures": 0,
@@ -16,9 +16,14 @@
     "ranked_candidate_edges": 0
   },
   "cross_manifestation_resolution": {
+    "nodes_with_valid_cn_uscc": 4,
+    "exact_stable_id_cluster_count": 0,
     "same_org_exact_stable_id_decisions": 0,
     "name_only_review_candidate_decisions": 12,
-    "automatic_name_only_merges": 0
+    "stable_id_conflict_decisions": 0,
+    "unlinked_manifestations": 43,
+    "automatic_name_only_merges": 0,
+    "corruption_inference": false
   },
   "coverage_failures": [],
   "corruption_inference": false,
