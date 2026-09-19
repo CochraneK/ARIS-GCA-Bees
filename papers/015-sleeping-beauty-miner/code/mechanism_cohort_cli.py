@@ -28,6 +28,10 @@ from pathlib import Path
 from typing import Any
 
 from mechanism_cohort import CorpusPaper, build_mechanism_cohort
+from mechanism_labels import (
+    SCISCINET_V1_CALIBRATION,
+    SourceBCalibration,
+)
 
 
 def _paper(row: dict[str, Any]) -> CorpusPaper:
@@ -74,6 +78,7 @@ def run_payload(
     early_percentile_caliper: float = 0.15,
     max_abs_smd: float = 0.10,
     min_primary_match_rate: float = 0.50,
+    b_calibration: SourceBCalibration = SCISCINET_V1_CALIBRATION,
 ) -> dict[str, Any]:
     if isinstance(payload, list):
         rows = payload
@@ -95,6 +100,7 @@ def run_payload(
         matching_early_percentile_caliper=early_percentile_caliper,
         matching_max_abs_smd=max_abs_smd,
         min_primary_match_rate=min_primary_match_rate,
+        b_calibration=b_calibration,
     )
     result["input_provenance"] = provenance
     result["cli_parameters"] = {
