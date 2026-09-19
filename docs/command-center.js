@@ -64,7 +64,12 @@
     const showcaseTrack = $("showcaseTrack");
     const showcaseSection = $("showcaseSection");
     const portfolioSection = $("portfolioSection");
+    const hero = document.querySelector(".hero");
     const cards = [...grid.querySelectorAll(".paper-card")];
+
+    // The portfolio summary belongs only to the top-level overview.
+    // Category views should open directly into their working project cards.
+    hero?.classList.toggle("hidden", currentFilter !== "all");
 
     cards.forEach(card => {
       const hay = (card.dataset.search || "").toLowerCase();
