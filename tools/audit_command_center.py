@@ -51,6 +51,12 @@ def main()->None:
         if token not in js:
             fail(f"control wiring token missing from JS: {token}")
 
+    # The progress chart must use a visibly disclosed discontinuous time axis
+    # so long computer-idle gaps cannot dominate the horizontal geometry.
+    for token in ("idleThreshold","compressedIdleSpan","history-idle-break","Compressed inactive gap"):
+        if token not in js:
+            fail(f"idle-gap compression invariant missing from JS: {token}")
+
     m=re.search(r'<script id="progressHistoryData" type="application/json">(.*?)</script>',html,re.S)
     if not m:
         fail("progressHistoryData payload missing")
