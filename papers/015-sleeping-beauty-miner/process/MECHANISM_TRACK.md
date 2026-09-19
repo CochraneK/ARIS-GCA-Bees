@@ -200,37 +200,45 @@ Beauty.
 
 ## Primary mechanism contrasts
 
-### M1 — SB vs Forgotten
+### M1 — SB vs at-risk dormant control
 
-Both had low early recognition.
+Primary question:
 
-Question:
+> At the calendar time the SB awakens, what distinguishes it from a
+> same-field/same-cohort paper that is still dormant at that time?
 
-> Why did one later awaken while the other remained ignored?
+This is an event-time **risk-set comparison**.
 
-This is the most important contrast for discovering latent-value / readiness /
-network mechanisms.
+For an SB with sleep length s:
 
-Match on pre-outcome characteristics such as:
+- exact-match field and publication year;
+- inspect each potential control only through age s for matching;
+- require average citation rate through s to remain in the configured sleep
+  regime;
+- require no qualifying awakening burst at or before the case event time;
+- allow the control to awaken later;
+- match on sleep-rate distance, reference count and author count;
+- do not use the control's post-event future outcome to select the match.
 
-- field;
-- publication year;
-- **case-specific sleep-depth citation rate**: for an SB sleeping s years,
-  compare a control's citation rate across its own first s years;
-- reference count;
-- author count;
-- document type;
-- source/journal as sensitivity or exact-match stratum where feasible.
+A paper that later becomes an SB is therefore allowed to serve as a control at
+an earlier case's awakening time if it was still dormant then. This naturally
+supports later survival / time-to-awakening analysis.
 
-A fixed first-5-year citation percentile is retained as a descriptive variable,
-not the primary SB-vs-Forgotten matching gate. Long sleepers such as classic
-cases can have a relatively high first-5-year percentile in historically
-sparse cohorts while remaining low-attention over a much longer sleep period.
+This is now the primary readiness contrast because it aligns the comparison
+time and avoids defining controls as papers that must remain forgotten forever.
 
-Do not match on future citations, future prestige, awakening time, awards, or
-Prince variables.
+### M2 — SB vs Forgotten
 
-### M2 — SB vs Immediate Hit
+Secondary/extreme contrast:
+
+> Why did one later awaken while an extremely low-attention paper remained
+> forgotten through the observation endpoint?
+
+Forgotten controls remain useful for descriptive mechanism contrasts but are
+often much more deeply uncited than robust SBs, so they are not required to be
+the primary matched-control set.
+
+### M3 — SB vs Immediate Hit
 
 Both eventually receive high attention.
 
@@ -244,7 +252,7 @@ readiness / communication / network position.
 Early citation level is intentionally not matched here because it is the
 defining contrast.
 
-### M3 — Immediate Hit vs Fading
+### M4 — Immediate Hit vs Fading
 
 Secondary comparison:
 
@@ -336,18 +344,27 @@ This can reveal technology-first rediscovery.
 
 ## Matching architecture
 
-The deterministic reference matcher implements:
+The matching layer implements two related designs.
 
-- exact field match;
-- exact publication year by default;
-- nearest-neighbour matching on case-specific sleep-window citation rate for
-  SB vs Forgotten;
-- optional reference-count / author-count / early-count distance;
-- no arbitrary hard sleep-rate caliper in the exploratory pilot;
-- no replacement by default;
-- explicit unmatched-case reporting;
-- post-match standardized-mean-difference diagnostics.
+**Primary event-time risk set**
+- exact field;
+- exact publication year;
+- control still dormant at the case awakening age;
+- control may awaken later;
+- nearest sleep-rate / reference-count / author-count matching;
+- no use of post-event control outcomes during match selection.
 
+**Secondary retrospective contrasts**
+- SB vs Forgotten;
+- SB vs Immediate Hit.
+
+All matched designs report:
+- match yield;
+- unmatched cases;
+- standardized mean differences for observed covariates;
+- explicit balance failure.
+
+A successful match is not automatically an acceptable mechanism comparison.
 Hard calipers can be prespecified later as sensitivity analyses after empirical
 support for a defensible threshold.
 
