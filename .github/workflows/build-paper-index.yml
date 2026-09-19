@@ -7,6 +7,7 @@ on:
       - 'papers/**/paper.json'
       - 'papers/dashboard.json'
       - 'tools/build_papers_index.py'
+      - 'tools/audit_command_center.py'
       - 'docs/command-center.css'
       - 'docs/command-center.js'
       - 'tools/build_readme.py'
@@ -59,6 +60,8 @@ jobs:
             python tools/audit_paper_outputs.py
             python tools/sync_progress_history.py
             python tools/build_papers_index.py
+            node --check docs/command-center.js
+            python tools/audit_command_center.py
             python tools/build_readme_assets.py
             python tools/build_readme.py
             python tools/audit_readme.py
