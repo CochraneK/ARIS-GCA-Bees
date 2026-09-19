@@ -2,6 +2,9 @@ name: ARIS4C011 short manager notice excerpts
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["ARIS4C011 confirmatory notice evidence"]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -15,6 +18,7 @@ permissions:
 
 jobs:
   excerpts:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     defaults:
