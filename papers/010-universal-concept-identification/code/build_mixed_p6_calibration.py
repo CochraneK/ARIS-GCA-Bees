@@ -1,4 +1,4 @@
-"""Build the mixed P6 response-state calibration packet.
+"""Build the mixed response-state calibration packet.
 
 This packet is intentionally NOT an identification benchmark. It calibrates
 whether human annotators can distinguish NO / BORDERLINE / UNKNOWN / UNDEFINED /
@@ -40,7 +40,7 @@ def main():
                 "query_id":probe["query_id"],
                 "query_text":probe["text"],
                 "query_kind":probe["kind"],
-                "protocols":["P2","P6","P6_CONTEXT"],
+                "protocols":["P2","P3","P6","P6_CONTEXT"],
                 "response":None,
                 "confidence":None,
                 "response_time_ms":None,
@@ -67,7 +67,7 @@ def main():
     }
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
-    print("PASS mixed P6 calibration build")
+    print("PASS mixed response-state calibration build")
     print("scenarios:",len(scenarios))
     print("queries:",len(probes))
     print("pairs:",len(rows))
