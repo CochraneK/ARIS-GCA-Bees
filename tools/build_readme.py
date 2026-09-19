@@ -31,9 +31,8 @@ ZH_TITLES = {
 
 STATE = {
     "active": ("🟢 Active", "🟢 进行中"),
-    "gated": ("🟡 At gate", "🟡 待过门"),
+    "waiting": ("🟡 Waiting", "🟡 等待中"),
     "quiet": ("⚪ Quiet", "⚪ 静默"),
-    "blocked": ("🔴 Blocked", "🔴 阻塞"),
 }
 
 
@@ -138,6 +137,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 | Check current portfolio state | [`papers/dashboard.json`](papers/dashboard.json) |
 | Understand final-output requirements | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
 | Understand continuity requirements | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
+| Understand portfolio activity states | [`ARIS4C_STATUS_MODEL.md`](ARIS4C_STATUS_MODEL.md) |
 
 ## Portfolio at a glance
 
@@ -153,7 +153,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
   <img src="./docs/assets/readme/en/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
-> Progress is a **portfolio-management estimate**, not a scientific result. `100%` means the repository-level final output contract is satisfied. **Quiet** includes submission-ready/completed tracks that do not need active execution.
+> Progress is a **portfolio-management estimate**, not a scientific result. `100%` means the repository-level final output contract is satisfied. Activity uses exactly three states: **Active** = the next meaningful step can run now; **Waiting** = progress depends on an external/human/data/review dependency; **Quiet** = complete or intentionally parked. Freshness and running CI are separate signals.
 
 ## Publication-ready outputs
 
@@ -317,6 +317,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | 查看当前 portfolio 状态 | [`papers/dashboard.json`](papers/dashboard.json) |
 | 查看最终输出标准 | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
 | 查看跨 Agent 接管标准 | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
+| 查看项目状态分类规则 | [`ARIS4C_STATUS_MODEL.md`](ARIS4C_STATUS_MODEL.md) |
 
 ## 当前研究组合
 
@@ -332,7 +333,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
   <img src="./docs/assets/readme/zh/delivery-readiness.svg" width="100%" alt="ARIS4C delivery and continuity readiness">
 </p>
 
-> Progress 是**项目管理估计**，不是科学结果。`100%` 表示仓库层面的最终输出契约已经满足。**Quiet** 表示 submission-ready / completed、当前不再需要主动执行的项目。
+> Progress 是**项目管理估计**，不是科学结果。`100%` 表示仓库层面的最终输出契约已经满足。主状态固定为三类：**Active / 进行中** = 现在就能执行下一步；**Waiting / 等待中** = 必须等待外部、人类、独立审查、数据传输等依赖；**Quiet / 静默** = 已完成或主动暂存。最近是否更新、CI 是否正在运行属于独立信号。
 
 ## 已达到公开交付状态的论文
 
