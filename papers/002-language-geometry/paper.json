@@ -57,9 +57,19 @@
     "final_artifact_id": 10575195098,
     "artifact_digest": "sha256:d43a6c0e3a136ff71d918a8ce07df05f2a22dead5c38789457b9c3710007d192",
     "blocking_items": [
+      "refresh/re-QA Linguistic Typology package against canonical six-figure manuscript",
       "author metadata/declarations",
       "actual ScholarOne submission"
-    ]
+    ],
+    "package_refresh_required": true,
+    "package_refresh_reason": "Canonical EN/ZH manuscripts expanded from the previously QA'd three-figure journal package to a six-figure visual narrative after build commit 608bc871fd4a634a0906b93aeabcd47675e8cb08.",
+    "technical_package_scope": "TECHNICAL_SUBMISSION_PACKAGE_PASS is historical for workflow run 35412714647 / build commit 608bc871fd4a634a0906b93aeabcd47675e8cb08 (3-figure package); re-QA required before ScholarOne.",
+    "latest_verified_manuscript_ci": {
+      "run": 35422718503,
+      "run_number": 114,
+      "commit": "99568d00fa33b6dd8bae7610965d32d5bac213c2",
+      "conclusion": "success"
+    }
   },
   "bilingual_delivery": {
     "english": true,
