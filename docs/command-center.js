@@ -123,7 +123,7 @@
     const meceTotal=Object.values(statusCounts).reduce((sum,n)=>sum+n,0);
 
     $("navAllCount").textContent=cards.length;
-    $("navFinishCount").textContent=statusCounts.finish;
+    $("navFinishCount")?.textContent=statusCounts.finish;
     $("navActiveCount").textContent=statusCounts.active;
     $("navWaitCount").textContent=statusCounts.wait;
     $("navBlockCount").textContent=statusCounts.block;
