@@ -67,6 +67,8 @@ POSITIVE_FINDING_CONTEXT = vocab(
 
 FLAG_FIELDS = (
     "e1s_narrow_auto",
+    "e1m_strong_auto",
+    "e1p_strong_auto",
     "paper_mill_signal",
     "e3_error_signal",
     "manual_scientific_review",
@@ -104,6 +106,8 @@ def candidate_queue(
     flags: dict[str, int],
 ) -> tuple[str, str]:
     e1s = bool(flags.get("e1s_narrow_auto")) or bool(reasons & E1S_NARROW)
+    e1m = bool(flags.get("e1m_strong_auto"))
+    e1p = bool(flags.get("e1p_strong_auto"))
     e3 = bool(flags.get("e3_error_signal")) or bool(reasons & E3_ERROR)
     manual_scientific = bool(flags.get("manual_scientific_review")) or bool(
         reasons & MANUAL_SCIENTIFIC_REVIEW
@@ -204,7 +208,8 @@ def collapse_rows(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], dic
         "P_HIGH_REVIEW": 1,
         "P_REVIEW": 2,
         "N_PROCESS_REVIEW": 3,
-        "U_REVIEW": 4,
+        "N_ERROR_REVIEW": 4,
+        "U_REVIEW": 5,
     }
 
     for doi, rec in papers.items():
@@ -276,12 +281,16 @@ def collapse_rows(rows: list[dict[str, str]]) -> tuple[list[dict[str, Any]], dic
             "N_PROCESS_REVIEW": (
                 "narrow process-only reason family with no scientific unreliability signal"
             ),
+            "N_ERROR_REVIEW": (
+                "E3 error/reproducibility signal without strong integrity flags; requires confirmation that the error is non-severe/non-misconduct"
+            ),
             "U_REVIEW": "mixed/ambiguous/insufficient screening evidence",
         },
         "warnings": [
             "Retraction Watch reasons are screening metadata, not calibration truth.",
             "P candidates require notice/institutional primary-evidence confirmation and materiality review.",
             "N_PROCESS_REVIEW requires explicit evidence that the scientific claim is unaffected.",
+            "N_ERROR_REVIEW is not automatically honest error; it requires primary evidence excluding severe integrity failure.",
             "Absence of a scientific flag is not a negative reference standard.",
             "Provisional cluster IDs are only de-duplication/review aids and do not prove statistical independence.",
             "Do not commit or publicly release the row-level candidate queue from a public repository.",
