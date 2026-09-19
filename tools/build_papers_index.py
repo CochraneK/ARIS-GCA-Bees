@@ -105,23 +105,6 @@ def card(p: dict, dashboard: dict) -> str:
         str(stage),
         " ".join(str(t) for t in p.get("tags", [])),
     ])
-    outputs = p.get("outputs", {})
-    fig_meta = outputs.get("figures", {}) if isinstance(outputs.get("figures"), dict) else {}
-    tab_meta = outputs.get("tables", {}) if isinstance(outputs.get("tables"), dict) else {}
-    en_complete = outputs.get("paper_en") in {"complete", "final"}
-    zh_complete = outputs.get("paper_zh") in {"complete", "final"}
-    fig_count = int(fig_meta.get("count", 0) or 0)
-    tab_count = int(tab_meta.get("count", 0) or 0)
-    output_items = [
-        ("EN", "ok" if en_complete else ("partial" if links.get("paper_en") else "open"), "full" if en_complete else ("draft" if links.get("paper_en") else "—")),
-        ("中文", "ok" if zh_complete else ("partial" if links.get("paper_zh") else "open"), "full" if zh_complete else ("draft" if links.get("paper_zh") else "—")),
-        ("FIG", "ok" if fig_count > 0 else ("partial" if links.get("figures") else "open"), str(fig_count) if fig_count else ("present" if links.get("figures") else "—")),
-        ("TAB", "ok" if tab_count > 0 else ("partial" if links.get("tables") else "open"), str(tab_count) if tab_count else ("present" if links.get("tables") else "—")),
-    ]
-    output_badges = "".join(
-        f'<span class="output-badge {state}"><b>{esc(label)}</b>{esc(value)}</span>'
-        for label, state, value in output_items
-    )
     en_href = links.get("paper_en_full") or links.get("paper_en", "")
     zh_href = links.get("paper_zh_full") or links.get("paper_zh", "")
     buttons = "".join([
@@ -146,7 +129,6 @@ def card(p: dict, dashboard: dict) -> str:
         <div class="evidence-cell"><span>Next gate</span><strong>{esc(next_gate)}</strong></div>
       </div>
       <div class="{blocker_class}"><span>Blocker</span>{esc(blocker)}</div>
-      <div class="output-strip" aria-label="Final output readiness">{output_badges}</div>
       <div class="meta"><span class="commit-heartbeat" data-commit-time="{esc(last_commit)}">Last commit · —</span><span>{esc(p.get('year'))}</span><span>{esc(p.get('domain'))}</span><span>ARIS {esc(aris.get('version'))}</span></div>
       <div class="tags">{tags}</div>
       <div class="actions">{buttons}</div>
@@ -219,7 +201,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <section class="hero">
           <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
           <h1>Research as a living system.</h1>
-          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, gates, blockers, and final-output readiness. Final papers target English + 中文 + Figures + Tables; scientific claims remain anchored to each project's evidence and process files.</p>
+          <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity, evidence state, gates and blockers. Each project exposes only the English and Chinese full-text paper entrances on the public card.</p>
           <div class="overview">
             <div class="metric"><strong>{len(papers)}</strong><span>tracked projects</span></div>
             <div class="metric"><strong>{avg}%</strong><span>mean portfolio maturity</span></div>
@@ -242,7 +224,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
       </main>
 
-      <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Final-output requirements follow <code>ARIS4C_OUTPUT_STANDARD.md</code>: English + 中文 + Figures + Tables.</footer>
+      <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Public project cards expose only English and Chinese full-text paper entrances.</footer>
     </section>
   </div>
   <script src="./command-center.js" defer></script>
