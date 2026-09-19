@@ -65,6 +65,23 @@ An adjudicated edge enters primary Scientific Contamination Footprint only when:
 
 `CRITIQUE_OR_CORRECTION` is corrective propagation, not contamination.
 
+## Batch-output integrity gate
+
+Before semantic merging, name completed files:
+
+- `CIT_AI_A_batch_001_output.csv` … `CIT_AI_A_batch_005_output.csv`
+- `CIT_AI_B_batch_001_output.csv` … `CIT_AI_B_batch_005_output.csv`
+
+Run:
+
+`python code/collect_ai_batch_outputs.py data/pilot/citation_ai_batch_manifest.json <completed_output_dir> <collected_dir> <collection_summary.json> --mode citation`
+
+The collector verifies exact edge assignments/checksums, row counts, adjudicator and prompt identity, controlled semantic vocabularies, duplicate assignments and abstention requirements before creating collected A/B outputs.
+
+Successful collection is an integrity check on the files, not evidence that semantic labels are correct.
+
+---
+
 ## After both AI passes
 
 Preserve A/B outputs separately and build a disagreement/arbitration layer before calling `citation_dependence.py`.
