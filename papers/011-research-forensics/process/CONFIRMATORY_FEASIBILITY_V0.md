@@ -10,10 +10,11 @@ This checkpoint freezes a detector-output-blind acquisition/adjudication frame. 
 
 ## Frozen frame
 
-- 80 target papers.
+- 80 unique target works / papers.
 - 20 balanced calendar-year × update-type strata: 2016–2025 × correction/retraction.
 - 4 papers per stratum.
 - 42 development-exposed DOIs excluded by the development exclusion registry.
+- 80/80 unique target DOIs and 80/80 unique target-notice event keys after the deduplication hardening.
 - Selection is deterministic within each stratum and does not use detector output or review priority.
 - All 80 rows remain issue-adjudication **UNASSESSED**, required-artifact-role **UNASSESSED**, and artifact-state **UNASSESSED**.
 
@@ -22,14 +23,14 @@ This checkpoint freezes a detector-output-blind acquisition/adjudication frame. 
 These fields are workload/provenance signals only:
 
 - Crossref full-text link present: **79 / 80**.
-- Crossref abstract present: **33 / 80**.
-- Current title contains a correction/retraction/status marker: **25 / 80**.
+- Crossref abstract present: **37 / 80**.
+- Current title contains a correction/retraction/status marker: **28 / 80**.
 - Current Crossref metadata has an updated-by relation: **80 / 80**.
-- Article type: **80 / 80 journal-article**.
-- Distinct journals: **70**.
+- Crossref work type: **79 journal-article + 1 proceedings-article**.
+- Distinct containers: **71**.
 - Target publication years represented: **2000–2025**.
 
-The 25 current-title status markers are direct evidence that current metadata cannot be treated as Track-A-safe. Historical version qualification and the existing Track-A allowlist remain mandatory.
+The 28 current-title status markers are direct evidence that current metadata cannot be treated as Track-A-safe. Historical version qualification and the existing Track-A allowlist remain mandatory.
 
 ## Allowed uses
 
