@@ -289,10 +289,15 @@ Stable surname vulnerability:
 
 Model:
 
-`logit(Persistence5_i) = alpha + beta1 InitialRankNorm_i + beta2 MeanEarlyExposure_i + beta3(InitialRankNorm_i × MeanEarlyExposure_i) + EntryYearFE + EntryPrimaryFieldFE + f(EntryWorkCount_i)`
+`logit(Persistence5_i) = alpha + beta1 InitialRankNorm_i + beta2 MeanEarlyExposure_i + beta3(InitialRankNorm_i × MeanEarlyExposure_i) + EntryYearFE + EntryPrimaryFieldFE + log1p(EntryWorkCount_i)`
 
 Secondary-2 estimand:
 - `beta3`.
+
+H3 inference:
+- two-sided test;
+- cluster-robust covariance by `EntryPrimaryField × EntryYear`;
+- H3 raw p-value enters the frozen Holm-adjusted secondary family jointly with H2.
 
 ### Frozen H3 sampling frame
 
@@ -473,6 +478,11 @@ No focal surname × outcome estimate may be opened until all are complete:
 - [x] finalize deterministic identity-risk QA flags for the longitudinal secondary and report only their prevalence (120/120 hard-QA pass; no persistence/effect opened);
 After all outcome-blind execution checks above pass, generate the deterministic preregistration lock/hash with `code/27_prereg_lock.py --lock`. The existence and SHA-256 content of `PREREGISTRATION_LOCK.json`—not a checkbox in this locked document—records completion. Confirmatory unlock remains a separate later repository change.
 
-Until then:
+Until then, the locked design snapshot retains:
 
 `confirmatory_outcomes_unlocked = false`.
+
+After the preregistration lock is committed, confirmatory execution is enabled
+only through a separate `process/CONFIRMATORY_UNLOCK.json` whose lock label
+and SHA-256 match the committed preregistration lock. The hashed design files
+are not edited merely to unlock analysis. Full rule: `UNLOCK_PROTOCOL.md`.
