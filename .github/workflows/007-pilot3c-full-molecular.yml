@@ -100,11 +100,10 @@ jobs:
             test -s "data/pilot3c_full/idats/$filename"
           done
 
-          find data/pilot3c_full/idats -type f -name '*.idat.gz' -print0 | xargs -0 -r gzip -d
           EXPECTED="$(tail -n +2 data/pilot3c_full/download_manifest.tsv | wc -l)"
-          ACTUAL="$(find data/pilot3c_full/idats -type f -name '*.idat' | wc -l)"
+          ACTUAL="$(find data/pilot3c_full/idats -type f -name '*.idat.gz' | wc -l)"
           test "$ACTUAL" -eq "$EXPECTED"
-          echo "Expanded IDAT files: $ACTUAL"
+          echo "Downloaded gzipped IDAT files: $ACTUAL"
           du -sh data/pilot3c_full/idats
 
       - name: Normalize raw IDATs and compute molecular linear predictors
