@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "as_of": "2026-09-19",
-  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the current repository-level final output contract is satisfied (English + Chinese full papers, bilingual public PDFs when final/submission-ready, appropriate adaptive figures/tables, required review/reproducibility gates, and continuity/handoff readiness). Activity is a MECE management state with exactly three values: active, waiting, or quiet. Active means the next meaningful step is executable now; waiting means progress depends on an external, human, independent-review, data-transfer, permission, or similar dependency; quiet means intentionally not under active execution, including submission-ready/completed or deliberately parked tracks. Freshness and running CI are separate signals, not activity states.",
+  "note": "Portfolio-management estimates for ARIS4C 000. Progress is not a scientific result; 100 means the current repository-level final output contract is satisfied. Activity is a live execution state with exactly four values: finish, active, waiting, or block. Finish means the current final/output contract is complete. Active means meaningful research work is running now or has produced a recent substantive paper-folder update. Waiting means the next meaningful step is executable but is not currently being advanced. Block means meaningful progress depends on an external/human/independent-review/data-transfer/permission or similar dependency. Metadata-only, README, Pages, and handoff-sync commits do not make a project Active.",
   "projects": {
     "001": {
       "progress": 100,
       "stage": "Submission package ready · output gate PASS",
-      "activity": "quiet",
+      "activity": "finish",
       "evidence": "Final EN + ZH manuscripts and PDFs, reproducible synthesis, 5 figures, 3 tables, journal package",
       "next_gate": "Author portal submission",
       "blocker": "None scientific; author-only portal/contact fields"
@@ -14,7 +14,7 @@
     "002": {
       "progress": 100,
       "stage": "Submission package ready · output gate PASS",
-      "activity": "quiet",
+      "activity": "finish",
       "evidence": "Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS",
       "next_gate": "Author metadata/declarations + ScholarOne submission",
       "blocker": "None scientific; author-only metadata/declarations and portal submission"
@@ -22,7 +22,7 @@
     "003": {
       "progress": 70,
       "stage": "Outcome materialization · locked first confirmatory run",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "COLDAT + CEPII audited · blind Coder A/B + adjudicated IKES frozen · strict gate unlocked · OpenAlex scan running",
       "next_gate": "Complete OpenAlex country/dyad panels, 3 headline PPMLs, 3×999 permutations, LOO and first-result hash lock",
       "blocker": "None · public OpenAlex snapshot scan is compute/network intensive"
@@ -30,7 +30,7 @@
     "004": {
       "progress": 74,
       "stage": "Network100 acquired · work audit + independent second review",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "Identity100: 52 verified; second-review blind set 40. Network100: 2,956 unique works, 0 fetch errors; 334-work deterministic triage sample across 37 held people.",
       "next_gate": "Prioritize and audit the 334 held-work sample; complete independent 40-case identity second review",
       "blocker": "Independent identity judgments and work-level contamination decisions are still required before exposure coding"
@@ -38,7 +38,7 @@
     "005": {
       "progress": 68,
       "stage": "Confirmatory adjudication ready · independent dual-AI gate",
-      "activity": "waiting",
+      "activity": "block",
       "evidence": "10k random audit + 20k dual-AI assignments + 486 citation-edge packet + burden scaffolds",
       "next_gate": "Run genuinely independent dual-AI adjudication + arbitration + calibration",
       "blocker": "Second independent adjudicator execution surface is not available in the current control thread; do not duplicate one model as two."
@@ -46,7 +46,7 @@
     "006": {
       "progress": 62,
       "stage": "Identification feasibility · historical window frozen",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "CCNC Romanization audit + 26-field OpenAlex historical coverage PASS; focal window 2011–2025",
       "next_gate": "Finish validated author-order/identity exposure pipeline and unlock longitudinal outcome design",
       "blocker": "Exposure/identity validation before confirmatory career outcomes"
@@ -54,7 +54,7 @@
     "007": {
       "progress": 76,
       "stage": "Pilot 3A molecular reproduction",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "785-species Pilot0 + 88-species demography + 945 held-out events + universal-clock implementation parity PASS",
       "next_gate": "Materialise molecular/epigenetic age axes and compare independent clocks",
       "blocker": "Independent molecular-axis data/reproduction"
@@ -62,7 +62,7 @@
     "008": {
       "progress": 60,
       "stage": "Pilot 8 · atomic A–F deep-coding queue",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "238-taxa screen + 79 Tier-1 panel + architecture-balanced recoverability + 399 explicit open A–F cells",
       "next_gate": "Fill priority-1 tested-negative/positive A–F cells, then rebuild empirical matrix",
       "blocker": "399 A–F cells remain open; 150 calibration cells are highest priority"
@@ -70,7 +70,7 @@
     "009": {
       "progress": 56,
       "stage": "Design hardened · pilot-gated",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "Prereg skeleton + fidelity metrics + synthetic pilot + query/power gates + novelty/acquisition boundary hardening",
       "next_gate": "Acquire real pilot material and independent raters",
       "blocker": "Real phenomenological corpus + reliability calibration"
@@ -78,7 +78,7 @@
     "010": {
       "progress": 72,
       "stage": "Source-derived Pilot 2 + calibration60",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "Formal model + Pilots 0–2 + pinned OEWN 60-target calibration build; current CI PASS",
       "next_gate": "Human-calibrate P2/P6 responses, then expand toward mixed Benchmark v0",
       "blocker": "Human semantic calibration before benchmark-scale claims"
@@ -86,7 +86,7 @@
     "011": {
       "progress": 72,
       "stage": "Pilot 3 · object-level historical table qualification",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "Priority PLOS case has frozen pre-correction t001 wrapper provenance; table-image object qualification is now separated from F3 value extraction",
       "next_gate": "Qualify archived Table-1 image object as SAFE_EXACT, then run F3 content extraction",
       "blocker": "Historical table image replay/qualification remains the object-level gate"
@@ -94,7 +94,7 @@
     "012": {
       "progress": 66,
       "stage": "Pilot 0B complete · adjudication gate",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "165-record reproducible retrieval + Coder A + genuinely independent 30-record Coder B; reliability summary READY_FOR_ADJUDICATION with 141 disagreement cells",
       "next_gate": "Adjudicate disagreements, reconcile mechanism taxonomy, and freeze post-adjudication reliability before broader claims",
       "blocker": "No missing independent coder; current gate is substantive adjudication, especially low-agreement mechanism/causal-strength fields"
@@ -102,7 +102,7 @@
     "013": {
       "progress": 50,
       "stage": "Public NUMIDENT transfer · Pilot 1 ready",
-      "activity": "waiting",
+      "activity": "block",
       "evidence": "Raw NUMIDENT parser/tests + locked 1988–1996 discovery + public OpenICPSR V3 death-file provenance manifest",
       "next_gate": "Transfer two public-use NUMIDENT V3 death archives, verify layout/hashes, run frozen Pilot 1",
       "blocker": "~1.88 GB file transfer into execution environment; no identity/permission blocker"
@@ -110,7 +110,7 @@
     "014": {
       "progress": 69,
       "stage": "China Pilot 1 · conservative cross-source entity layer",
-      "activity": "active",
+      "activity": "waiting",
       "evidence": "CCGP/CAS/USCC live graph + stable-ID-only auto-merge resolver under CI",
       "next_gate": "Run cross-source enrichment with exact stable IDs; route name-only matches to review",
       "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
@@ -126,7 +126,7 @@
     "016": {
       "progress": 55,
       "stage": "Empirical Phase 0 working manuscript",
-      "activity": "waiting",
+      "activity": "block",
       "evidence": "Public-data audit + ontology/harmonisation + genealogy + item-FE model + phonology feasibility + draft manuscript",
       "next_gate": "Independent dual-coder ontology audit and end-to-end variance decomposition",
       "blocker": "Independent/native-speaker annotation and Phase-0 reliability"
