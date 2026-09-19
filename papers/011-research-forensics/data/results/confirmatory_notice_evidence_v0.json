@@ -7,30 +7,30 @@
   "claim_boundary": "Evidence acquisition only. No issue family, artifact role, detector performance, or confirmatory eligibility is inferred here.",
   "route_counts": {
     "PUBMED": 26,
-    "PMC_JATS": 20,
-    "PUBLISHER_DOI": 34
+    "PUBLISHER_DOI": 33,
+    "PMC_JATS": 21
   },
   "rows_with_any_acquisition_error": 0,
   "rows": [
     {
       "feasibility_id": "F001",
-      "target_doi": "10.1039/c6dt03024f",
-      "notice_or_source_doi": "10.1039/c6dt90217k",
+      "target_doi": "10.1080/00223891.2015.1076430",
+      "notice_or_source_doi": "10.1080/00223891.2016.1149433",
       "update_type": "correction",
-      "outcome_date": "2016-11-22",
+      "outcome_date": "2016-03-16",
       "crossref": {
-        "title": "Correction: Characteristics and reactivity of ruthenium–oxo complexes",
+        "title": "Correction to: Refining the Openness–Performance Relationship: Construct Specificity, Contextualization, Social Skill, and the Combination of Trait Self- and Other-Ratings",
         "type": "journal-article",
-        "publisher": "Royal Society of Chemistry (RSC)",
-        "abstract_present": true,
+        "publisher": "Informa UK Limited",
+        "abstract_present": false,
         "link_count": 1,
-        "url": "https://doi.org/10.1039/c6dt90217k"
+        "url": "https://doi.org/10.1080/00223891.2016.1149433"
       },
       "pubmed_exact_doi_pmids": [
-        "27874135"
+        "26983368"
       ],
       "pubmed": {
-        "pmid": "27874135",
+        "pmid": "26983368",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -39,8 +39,8 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Dalton Trans. 2016 Nov 14;45(42):16727-16750. doi: 10.1039/c6dt03024f.",
-            "linked_pmid": "27711754"
+            "ref_source": "J Pers Assess. 2016;98(3):277-88. doi: 10.1080/00223891.2015.1076430.",
+            "linked_pmid": "26407664"
           }
         ],
         "pmc_id": "",
@@ -54,23 +54,23 @@
     },
     {
       "feasibility_id": "F002",
-      "target_doi": "10.1371/journal.pone.0147986",
-      "notice_or_source_doi": "10.1371/journal.pone.0154549",
+      "target_doi": "10.1007/s10886-016-0696-9",
+      "notice_or_source_doi": "10.1007/s10886-016-0710-2",
       "update_type": "correction",
-      "outcome_date": "2016-04-25",
+      "outcome_date": "2016-06-07",
       "crossref": {
-        "title": "Correction: Song Perception by Professional Singers and Actors: An MEG Study",
+        "title": "Erratum to: Western Pine Beetle Populations in Arizona and California Differ in the Composition of Their Aggregation Pheromones",
         "type": "journal-article",
-        "publisher": "Public Library of Science (PLoS)",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 0,
-        "url": "https://doi.org/10.1371/journal.pone.0154549"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s10886-016-0710-2"
       },
       "pubmed_exact_doi_pmids": [
-        "27111658"
+        "27271254"
       ],
       "pubmed": {
-        "pmid": "27111658",
+        "pmid": "27271254",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -78,83 +78,32 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "PLoS One. 2016 Feb 10;11(2):e0147986. doi: 10.1371/journal.pone.0147986.",
-            "linked_pmid": "26863437"
+            "ref_source": "J Chem Ecol. 2016 May;42(5):404-13. doi: 10.1007/s10886-016-0696-9.",
+            "linked_pmid": "27125814"
           }
         ],
-        "pmc_id": "PMC4844125",
-        "pmc_id_count": 1
+        "pmc_id": "",
+        "pmc_id_count": 0
       },
-      "pmc": {
-        "pmc_id": "PMC4844125",
-        "jats_available": true,
-        "jats_sha256": "1abeba5b659f40bf334fc14277d609ec73cc9c87b1e5b8c74f153231e408cd7d",
-        "body_char_count": 143,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC4844125&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
+      "pmc": null,
+      "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F003",
-      "target_doi": "10.1038/srep14229",
-      "notice_or_source_doi": "10.1038/srep17243",
+      "target_doi": "10.2514/6.2016-3928",
+      "notice_or_source_doi": "10.2514/6.2016-3928.c1",
       "update_type": "correction",
-      "outcome_date": "2016-01-07",
+      "outcome_date": "2020-03-18",
       "crossref": {
-        "title": "Correction: Corrigendum: 3D hierarchical porous graphene aerogel with tunable meso-pores on graphene nanosheets for high-performance energy storage",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": true,
-        "link_count": 3,
-        "url": "https://doi.org/10.1038/srep17243"
-      },
-      "pubmed_exact_doi_pmids": [
-        "26738604"
-      ],
-      "pubmed": {
-        "pmid": "26738604",
-        "title": "",
-        "publication_types": [
-          "Published Erratum"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "ErratumFor",
-            "ref_source": "Sci Rep. 2015 Sep 18;5:14229. doi: 10.1038/srep14229.",
-            "linked_pmid": "26382852"
-          }
-        ],
-        "pmc_id": "PMC4704069",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC4704069",
-        "jats_available": true,
-        "jats_sha256": "e5e7c61abf56172db9389e2c4489adedccb934a0f4cad73661fa3bf76f6d032f",
-        "body_char_count": 678,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC4704069&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F004",
-      "target_doi": "10.1190/tle35060528.1",
-      "notice_or_source_doi": "10.1190/tle35080719.1",
-      "update_type": "correction",
-      "outcome_date": "2016-08-02",
-      "crossref": {
-        "title": "Erratum",
-        "type": "journal-article",
-        "publisher": "Society of Exploration Geophysicists",
-        "abstract_present": true,
-        "link_count": 2,
-        "url": "https://doi.org/10.1190/tle35080719.1"
+        "title": "Correction: A Comparative Study of Hybrid Flow Control System Architectures for an A320 Aircraft",
+        "type": "proceedings-article",
+        "publisher": "American Institute of Aeronautics and Astronautics",
+        "abstract_present": false,
+        "link_count": 0,
+        "url": "https://doi.org/10.2514/6.2016-3928.c1"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -165,25 +114,71 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F005",
-      "target_doi": "10.3390/ijerph5030152",
-      "notice_or_source_doi": "10.3390/ijerph13070646",
-      "update_type": "retraction",
-      "outcome_date": "2016-06-28",
+      "feasibility_id": "F004",
+      "target_doi": "10.1073/pnas.1507647113",
+      "notice_or_source_doi": "10.1073/pnas.1606259113",
+      "update_type": "correction",
+      "outcome_date": "2016-05-16",
       "crossref": {
-        "title": "RETRACTED: Rabi, A.; Khader, Y.; Alkafajei, A.; Aqoulah, A.A. Sanitary Conditions of Public Swimming Pools in Amman, Jordan. Int. J. Environ. Res. Public Health 2008, 5, 152–157",
+        "title": "Correction for Buhrman et al., Quantum communication complexity advantage implies violation of a Bell inequality",
         "type": "journal-article",
-        "publisher": "MDPI AG",
-        "abstract_present": true,
+        "publisher": "National Academy of Sciences",
+        "abstract_present": false,
         "link_count": 1,
-        "url": "https://doi.org/10.3390/ijerph13070646"
+        "url": "https://doi.org/10.1073/pnas.1606259113"
       },
       "pubmed_exact_doi_pmids": [
-        "29874308"
+        "27185927"
       ],
       "pubmed": {
-        "pmid": "29874308",
-        "title": "Retraction: Rabi, A.; Khader, Y.; Alkafajei, A.; Aqoulah, A.A. Sanitary Conditions of Public Swimming Pools in Amman, Jordan. Int. J. Environ. Res. Public Health 2008, 5, 152-157.",
+        "pmid": "27185927",
+        "title": "",
+        "publication_types": [
+          "Journal Article",
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Proc Natl Acad Sci U S A. 2016 Mar 22;113(12):3191-6. doi: 10.1073/pnas.1507647113.",
+            "linked_pmid": "26957600"
+          }
+        ],
+        "pmc_id": "PMC4889419",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC4889419",
+        "jats_available": false,
+        "jats_sha256": "63451886971b795ed12541782ea1b60baae160773d7282dfda798ddb8fff8da8",
+        "body_char_count": 0,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC4889419&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PUBMED",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F005",
+      "target_doi": "10.2147/ott.s96925",
+      "notice_or_source_doi": "10.2147/ott.s121862",
+      "update_type": "retraction",
+      "outcome_date": "2016-09-08",
+      "crossref": {
+        "title": "Expression of PER, CRY, and TIM genes for the pathological features of colorectal cancer patients [Retraction]",
+        "type": "journal-article",
+        "publisher": "Informa UK Limited",
+        "abstract_present": false,
+        "link_count": 1,
+        "url": "https://doi.org/10.2147/ott.s121862"
+      },
+      "pubmed_exact_doi_pmids": [
+        "27703370"
+      ],
+      "pubmed": {
+        "pmid": "27703370",
+        "title": "",
         "publication_types": [
           "Journal Article",
           "Retraction Notice"
@@ -191,19 +186,19 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "Int J Environ Res Public Health. 2008 Sep;5(3):152-7. doi: 10.3390/ijerph5030152.",
-            "linked_pmid": "19139533"
+            "ref_source": "Onco Targets Ther. 2016 Apr 05;9:1997-2005. doi: 10.2147/OTT.S96925.",
+            "linked_pmid": "27103825"
           }
         ],
-        "pmc_id": "PMC4962187",
+        "pmc_id": "PMC5036571",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC4962187",
+        "pmc_id": "PMC5036571",
         "jats_available": true,
-        "jats_sha256": "c88256613f23227875a3b5965f78b92a375f90686a7aafcfb4037815262bed36",
-        "body_char_count": 380,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC4962187&retmode=xml&tool=aris4c011"
+        "jats_sha256": "b6a471c8c2133ff4f17c77f58d88ced54548cf51c8437bd43d89da8f83d7fd1c",
+        "body_char_count": 740,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC5036571&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -212,17 +207,17 @@
     },
     {
       "feasibility_id": "F006",
-      "target_doi": "10.1007/s11205-016-1296-3",
-      "notice_or_source_doi": "10.1007/s11205-016-1296-3",
+      "target_doi": "10.1016/j.microc.2015.11.046",
+      "notice_or_source_doi": "10.1016/j.microc.2015.11.046",
       "update_type": "retraction",
-      "outcome_date": "2016-04-05",
+      "outcome_date": "2016-05-01",
       "crossref": {
-        "title": "RETRACTED ARTICLE: Probability of Being ‘Multidimensional’ Poor",
+        "title": "RETRACTED: Monitoring and Analyzing Volatile Organic Compounds in Fabs by Gas Chromatograph/Surface Acoustic Wave sensors",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "Elsevier BV",
         "abstract_present": false,
-        "link_count": 4,
-        "url": "https://doi.org/10.1007/s11205-016-1296-3"
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.microc.2015.11.046"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -234,45 +229,63 @@
     },
     {
       "feasibility_id": "F007",
-      "target_doi": "10.1007/s11205-016-1296-3",
-      "notice_or_source_doi": "10.1007/s11205-016-1296-3",
+      "target_doi": "10.1016/j.bios.2015.11.092",
+      "notice_or_source_doi": "10.1016/j.bios.2015.11.092",
       "update_type": "retraction",
-      "outcome_date": "2016-04-05",
+      "outcome_date": "2018-04-21",
       "crossref": {
-        "title": "RETRACTED ARTICLE: Probability of Being ‘Multidimensional’ Poor",
+        "title": "RETRACTED: A fluorescent molecularly-imprinted polymer gate with temperature and pH as inputs for detection of alpha-fetoprotein",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "Elsevier BV",
         "abstract_present": false,
-        "link_count": 4,
-        "url": "https://doi.org/10.1007/s11205-016-1296-3"
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.bios.2015.11.092"
       },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
+      "pubmed_exact_doi_pmids": [
+        "26657588"
+      ],
+      "pubmed": {
+        "pmid": "26657588",
+        "title": "",
+        "publication_types": [
+          "Journal Article",
+          "Retracted Publication"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "RetractionIn",
+            "ref_source": "Biosens Bioelectron. 2019 Jan 15;124-125:268. doi: 10.1016/j.bios.2018.10.058.",
+            "linked_pmid": "30446082"
+          }
+        ],
+        "pmc_id": "",
+        "pmc_id_count": 0
+      },
       "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
+      "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F008",
-      "target_doi": "10.1007/s12035-016-9837-y",
-      "notice_or_source_doi": "10.1007/s12035-016-9837-y",
+      "target_doi": "10.1016/j.molcel.2012.03.002",
+      "notice_or_source_doi": "10.1016/j.molcel.2016.06.013",
       "update_type": "retraction",
-      "outcome_date": "2016-03-11",
+      "outcome_date": "2016-07-01",
       "crossref": {
-        "title": "RETRACTED ARTICLE: MiR-124 Functions as a Tumor Suppressor via Targeting hCLOCK1 in Glioblastoma",
+        "title": "Retraction Notice to: Lysyl Oxidase-like 2 Deaminates Lysine 4 in Histone H3",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "Elsevier BV",
         "abstract_present": false,
-        "link_count": 4,
-        "url": "https://doi.org/10.1007/s12035-016-9837-y"
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.molcel.2016.06.013"
       },
       "pubmed_exact_doi_pmids": [
-        "26969602"
+        "27392148"
       ],
       "pubmed": {
-        "pmid": "26969602",
+        "pmid": "27392148",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -281,8 +294,8 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "10.1007/s12035-016-9837-y",
-            "linked_pmid": ""
+            "ref_source": "Mol Cell. 2012 May 11;46(3):369-76. doi: 10.1016/j.molcel.2012.03.002.",
+            "linked_pmid": "22483618"
           }
         ],
         "pmc_id": "",
@@ -296,39 +309,63 @@
     },
     {
       "feasibility_id": "F009",
-      "target_doi": "10.1080/14689367.2016.1207753",
-      "notice_or_source_doi": "10.1080/14689367.2017.1322774",
+      "target_doi": "10.2337/dc16-1558",
+      "notice_or_source_doi": "10.2337/dc17-er05a",
       "update_type": "correction",
-      "outcome_date": "2017-05-02",
+      "outcome_date": "2017-05-01",
       "crossref": {
-        "title": "Corrigendum",
+        "title": "Erratum. 2016 Presidential Address: Diabetes at 212°—Confronting the Invisible Disease. Diabetes Care 2016;39:1657–1663",
         "type": "journal-article",
-        "publisher": "Informa UK Limited",
+        "publisher": "American Diabetes Association",
         "abstract_present": false,
         "link_count": 1,
-        "url": "https://doi.org/10.1080/14689367.2017.1322774"
+        "url": "https://doi.org/10.2337/dc17-er05a"
       },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
+      "pubmed_exact_doi_pmids": [
+        "28302650"
+      ],
+      "pubmed": {
+        "pmid": "28302650",
+        "title": "",
+        "publication_types": [
+          "Journal Article",
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Diabetes Care. 2016 Oct;39(10):1657-63. doi: 10.2337/dc16-1558.",
+            "linked_pmid": "27660119"
+          }
+        ],
+        "pmc_id": "PMC5399652",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC5399652",
+        "jats_available": true,
+        "jats_sha256": "dc177cb0acb7cf0b935fd1d3707cc6a96687efbc49adf10dbe7ed0b86d642b99",
+        "body_char_count": 508,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC5399652&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F010",
-      "target_doi": "10.1080/0966369x.2016.1204999",
-      "notice_or_source_doi": "10.1080/0966369x.2017.1302558",
+      "target_doi": "10.1080/00049182.2016.1256750",
+      "notice_or_source_doi": "10.1080/00049182.2016.1270265",
       "update_type": "correction",
-      "outcome_date": "2017-03-16",
+      "outcome_date": "2017-02-13",
       "crossref": {
-        "title": "Corrigendum",
+        "title": "Erratum",
         "type": "journal-article",
         "publisher": "Informa UK Limited",
         "abstract_present": false,
         "link_count": 1,
-        "url": "https://doi.org/10.1080/0966369x.2017.1302558"
+        "url": "https://doi.org/10.1080/00049182.2016.1270265"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -340,23 +377,68 @@
     },
     {
       "feasibility_id": "F011",
-      "target_doi": "10.1038/nature.2017.21536",
-      "notice_or_source_doi": "10.1038/543163b",
+      "target_doi": "10.1177/2041669517707769",
+      "notice_or_source_doi": "10.1177/2041669517716557",
       "update_type": "correction",
-      "outcome_date": "2017-03-09",
+      "outcome_date": "2017-06-14",
       "crossref": {
-        "title": "Corrections",
+        "title": "Corrigendum",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "SAGE Publications",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1038/543163b"
+        "url": "https://doi.org/10.1177/2041669517716557"
       },
       "pubmed_exact_doi_pmids": [
-        "28277524"
+        "28664945"
       ],
       "pubmed": {
-        "pmid": "28277524",
+        "pmid": "28664945",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Iperception. 2017 May 18;8(3):2041669517707769. doi: 10.1177/2041669517707769.",
+            "linked_pmid": "28660068"
+          }
+        ],
+        "pmc_id": "PMC5476333",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC5476333",
+        "jats_available": true,
+        "jats_sha256": "d3f7823a5338fb6d000a6223f19a3257f9388d3d10055742008369ed4975d8f6",
+        "body_char_count": 321,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC5476333&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F012",
+      "target_doi": "10.1080/08870446.2017.1290243",
+      "notice_or_source_doi": "10.1080/08870446.2017.1352219",
+      "update_type": "correction",
+      "outcome_date": "2017-07-26",
+      "crossref": {
+        "title": "Corrigendum",
+        "type": "journal-article",
+        "publisher": "Informa UK Limited",
+        "abstract_present": false,
+        "link_count": 1,
+        "url": "https://doi.org/10.1080/08870446.2017.1352219"
+      },
+      "pubmed_exact_doi_pmids": [
+        "28743194"
+      ],
+      "pubmed": {
+        "pmid": "28743194",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -365,8 +447,8 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Nature. 2017 Feb 28;543(7643):18-19. doi: 10.1038/nature.2017.21536.",
-            "linked_pmid": "28252082"
+            "ref_source": "Psychol Health. 2017 Oct;32(10):1266-1287. doi: 10.1080/08870446.2017.1290243.",
+            "linked_pmid": "28276739"
           }
         ],
         "pmc_id": "",
@@ -379,46 +461,24 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F012",
-      "target_doi": "10.1556/084.2016.17.1.5",
-      "notice_or_source_doi": "10.1556/084.2017.18.1.10",
-      "update_type": "correction",
-      "outcome_date": "2017-06-01",
-      "crossref": {
-        "title": "Errata",
-        "type": "journal-article",
-        "publisher": "Akademiai Kiado Zrt.",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1556/084.2017.18.1.10"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
       "feasibility_id": "F013",
-      "target_doi": "10.1123/jpah.2015-0702",
-      "notice_or_source_doi": "10.1123/jpah.2017-0254",
+      "target_doi": "10.1002/cnm.2805",
+      "notice_or_source_doi": "10.1002/cnm.2902",
       "update_type": "retraction",
-      "outcome_date": "2017-05-01",
+      "outcome_date": "2017-07-12",
       "crossref": {
-        "title": "Withdrawal: Van Kann, de Vries Schipperijn et al (2017)",
+        "title": "Retraction statement: Mathematical‐based modeling and prediction of the effect of external stimuli on human gait",
         "type": "journal-article",
-        "publisher": "Human Kinetics",
+        "publisher": "Wiley",
         "abstract_present": false,
         "link_count": 2,
-        "url": "https://doi.org/10.1123/jpah.2017-0254"
+        "url": "https://doi.org/10.1002/cnm.2902"
       },
       "pubmed_exact_doi_pmids": [
-        "28548031"
+        "28558418"
       ],
       "pubmed": {
-        "pmid": "28548031",
+        "pmid": "28558418",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -427,8 +487,8 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "J Phys Act Health. 2016 Oct 24:1-28. doi: 10.1123/jpah.2015-0702.",
-            "linked_pmid": "27775465"
+            "ref_source": "Int J Numer Method Biomed Eng. 2017 Mar;33(3). doi: 10.1002/cnm.2805.",
+            "linked_pmid": "27229881"
           }
         ],
         "pmc_id": "",
@@ -442,33 +502,33 @@
     },
     {
       "feasibility_id": "F014",
-      "target_doi": "10.1016/j.ygcen.2017.09.006",
-      "notice_or_source_doi": "10.1016/j.ygcen.2017.09.006",
+      "target_doi": "10.1126/science.aaa2655",
+      "notice_or_source_doi": "10.1126/science.aap7423",
       "update_type": "retraction",
-      "outcome_date": "2017-12-01",
+      "outcome_date": "2017-09-03",
       "crossref": {
-        "title": "RETRACTED: Testosterone promotes anxiolytic-like behavior in gonadectomized male rats via blockade of the 5-HT1A receptors",
+        "title": "Retraction",
         "type": "journal-article",
-        "publisher": "Elsevier BV",
+        "publisher": "American Association for the Advancement of Science (AAAS)",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.ygcen.2017.09.006"
+        "link_count": 1,
+        "url": "https://doi.org/10.1126/science.aap7423"
       },
       "pubmed_exact_doi_pmids": [
-        "28919453"
+        "28874501"
       ],
       "pubmed": {
-        "pmid": "28919453",
-        "title": "Testosterone promotes anxiolytic-like behavior in gonadectomized male rats via blockade of the 5-HT1A receptors.",
+        "pmid": "28874501",
+        "title": "",
         "publication_types": [
-          "Journal Article",
-          "Retracted Publication"
+          "Letter",
+          "Retraction Notice"
         ],
         "comments_corrections": [
           {
-            "ref_type": "RetractionIn",
-            "ref_source": "Gen Comp Endocrinol. 2019 Apr 1;274:113. doi: 10.1016/j.ygcen.2018.12.010.",
-            "linked_pmid": "30773171"
+            "ref_type": "RetractionOf",
+            "ref_source": "Science. 2015 Sep 11;349(6253):1237-40. doi: 10.1126/science.aaa2655.",
+            "linked_pmid": "26359403"
           }
         ],
         "pmc_id": "",
@@ -482,33 +542,33 @@
     },
     {
       "feasibility_id": "F015",
-      "target_doi": "10.1016/j.apjtm.2015.11.006",
-      "notice_or_source_doi": "10.1016/j.apjtm.2017.06.015",
+      "target_doi": "10.1007/s00104-017-0386-3",
+      "notice_or_source_doi": "10.1007/s00104-017-0451-y",
       "update_type": "retraction",
-      "outcome_date": "2017-07-28",
+      "outcome_date": "2017-06-12",
       "crossref": {
-        "title": "Retraction notice to: Effect of transplantation of BMMSCs on pathological change of gastric precancerous lesions of rats [Asian Pac J Trop Med 8(12) (2015) 1060–1063]",
+        "title": "Retraction Note to: New worldwide guidelines for treatment of inguinal hernia. The most important recommendations from HerniaSurge",
         "type": "journal-article",
-        "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.apjtm.2017.06.015"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s00104-017-0451-y"
       },
       "pubmed_exact_doi_pmids": [
-        "28756930"
+        "28608270"
       ],
       "pubmed": {
-        "pmid": "28756930",
+        "pmid": "28608270",
         "title": "",
         "publication_types": [
           "Journal Article",
-          "Retracted Publication"
+          "Retraction Notice"
         ],
         "comments_corrections": [
           {
-            "ref_type": "RetractionIn",
-            "ref_source": "Asian Pac J Trop Med. 2015 Dec;8(12):1060-1063. doi: 10.1016/j.apjtm.2015.11.006.",
-            "linked_pmid": "26706680"
+            "ref_type": "RetractionOf",
+            "ref_source": "Chirurg. 2017 Jul;88(7):628. doi: 10.1007/s00104-017-0386-3.",
+            "linked_pmid": "28258383"
           }
         ],
         "pmc_id": "",
@@ -522,23 +582,23 @@
     },
     {
       "feasibility_id": "F016",
-      "target_doi": "10.1074/jbc.m910060199",
-      "notice_or_source_doi": "10.1074/jbc.a117.910060",
+      "target_doi": "10.1016/j.neulet.2017.02.059",
+      "notice_or_source_doi": "10.1016/j.neulet.2017.07.011",
       "update_type": "retraction",
-      "outcome_date": "2017-04-27",
+      "outcome_date": "2017-03-01",
       "crossref": {
-        "title": "ERK1b, a 46-kDa ERK isoform that is differentially regulated by MEK.",
+        "title": "NSL_ 32671: Retraction notice to Early hyperbaric oxygen therapy may improve the long term neurological consequences of diabetic patients suffering from hemorrhagic stroke [Neuroscience Letters 644 (2017) 83–86]",
         "type": "journal-article",
         "publisher": "Elsevier BV",
         "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1074/jbc.a117.910060"
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.neulet.2017.07.011"
       },
       "pubmed_exact_doi_pmids": [
-        "28550140"
+        "28739152"
       ],
       "pubmed": {
-        "pmid": "28550140",
+        "pmid": "28739152",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -547,20 +607,14 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "J Biol Chem. 2000 May 26;275(21):15799-808. doi: 10.1074/jbc.M910060199.",
-            "linked_pmid": "10748187"
+            "ref_source": "Neurosci Lett. 2017 Mar 22;644:83-86. doi: 10.1016/j.neulet.2017.02.059.",
+            "linked_pmid": "28237802"
           }
         ],
-        "pmc_id": "PMC5448118",
-        "pmc_id_count": 1
+        "pmc_id": "",
+        "pmc_id_count": 0
       },
-      "pmc": {
-        "pmc_id": "PMC5448118",
-        "jats_available": false,
-        "jats_sha256": "fa2b73a23c1cc3a771269f0d220974d0e48811f4ba9e0b2c7a70c31acbcc0648",
-        "body_char_count": 0,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC5448118&retmode=xml&tool=aris4c011"
-      },
+      "pmc": null,
       "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
@@ -568,17 +622,63 @@
     },
     {
       "feasibility_id": "F017",
-      "target_doi": "10.1049/iet-rpg.2017.0351",
-      "notice_or_source_doi": "10.1049/iet-rpg.2018.5568",
+      "target_doi": "10.1371/journal.pone.0200569",
+      "notice_or_source_doi": "10.1371/journal.pone.0202835",
       "update_type": "correction",
-      "outcome_date": "2018-09-20",
+      "outcome_date": "2018-08-16",
       "crossref": {
-        "title": "Corrigendum: Comparison of stability service cost in power grids considering different types of WTs",
+        "title": "Correction: Molecular characterization and sensitivity to demethylation inhibitor fungicides of Aspergillus fumigatus from orange-based compost",
         "type": "journal-article",
-        "publisher": "Institution of Engineering and Technology (IET)",
+        "publisher": "Public Library of Science (PLoS)",
+        "abstract_present": false,
+        "link_count": 1,
+        "url": "https://doi.org/10.1371/journal.pone.0202835"
+      },
+      "pubmed_exact_doi_pmids": [
+        "30114245"
+      ],
+      "pubmed": {
+        "pmid": "30114245",
+        "title": "",
+        "publication_types": [
+          "Journal Article",
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "PLoS One. 2018 Jul 12;13(7):e0200569. doi: 10.1371/journal.pone.0200569.",
+            "linked_pmid": "30001414"
+          }
+        ],
+        "pmc_id": "PMC6095602",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC6095602",
+        "jats_available": true,
+        "jats_sha256": "0674b26d335d01d0f302f5a75b6d94455d9bcd99ee2b0c7f44728e835c3eef03",
+        "body_char_count": 1566,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6095602&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F018",
+      "target_doi": "10.1007/s10973-018-7296-6",
+      "notice_or_source_doi": "10.1007/s10973-018-7465-7",
+      "update_type": "correction",
+      "outcome_date": "2018-06-11",
+      "crossref": {
+        "title": "Correction to: Ethylethanolammonium 4-nitrobenzoate",
+        "type": "journal-article",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1049/iet-rpg.2018.5568"
+        "url": "https://doi.org/10.1007/s10973-018-7465-7"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -589,24 +689,24 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F018",
-      "target_doi": "10.1136/bmj.k913",
-      "notice_or_source_doi": "10.1136/bmj.k1083",
+      "feasibility_id": "F019",
+      "target_doi": "10.1007/s10068-018-0353-x",
+      "notice_or_source_doi": "10.1007/s10068-018-0398-x",
       "update_type": "correction",
-      "outcome_date": "2018-03-06",
+      "outcome_date": "2018-06-12",
       "crossref": {
-        "title": "Correction",
+        "title": "Publisher Correction to: Multiple articles in Food Science and Biotechnology",
         "type": "journal-article",
-        "publisher": "BMJ",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1136/bmj.k1083"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s10068-018-0398-x"
       },
       "pubmed_exact_doi_pmids": [
-        "29510976"
+        "30265261"
       ],
       "pubmed": {
-        "pmid": "29510976",
+        "pmid": "30265261",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -615,53 +715,85 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "BMJ. 2018 Feb 23;360:k913. doi: 10.1136/bmj.k913.",
-            "linked_pmid": "29475830"
-          }
-        ],
-        "pmc_id": "",
-        "pmc_id_count": 0
-      },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F019",
-      "target_doi": "10.1007/s11695-018-3163-6",
-      "notice_or_source_doi": "10.1007/s11695-018-3202-3",
-      "update_type": "correction",
-      "outcome_date": "2018-03-16",
-      "crossref": {
-        "title": "Correction to: Which Bariatric Procedure Is the Most Popular in the World? A Bibliometric Comparison",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1007/s11695-018-3202-3"
-      },
-      "pubmed_exact_doi_pmids": [
-        "29549659"
-      ],
-      "pubmed": {
-        "pmid": "29549659",
-        "title": "",
-        "publication_types": [
-          "Published Erratum"
-        ],
-        "comments_corrections": [
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 15;27(2):401-409. doi: 10.1007/s10068-018-0353-x.",
+            "linked_pmid": "30263763"
+          },
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Obes Surg. 2018 Aug;28(8):2339-2352. doi: 10.1007/s11695-018-3163-6.",
-            "linked_pmid": "29512038"
+            "ref_source": "Food Sci Biotechnol. 2017 Dec 12;27(2):461-466. doi: 10.1007/s10068-017-0270-4.",
+            "linked_pmid": "30263770"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 17;27(4):929-938. doi: 10.1007/s10068-018-0354-9.",
+            "linked_pmid": "30263821"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 3;27(4):939-945. doi: 10.1007/s10068-018-0333-1.",
+            "linked_pmid": "30263822"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Apr 11;27(4):997-1005. doi: 10.1007/s10068-018-0365-6.",
+            "linked_pmid": "30263828"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Feb 24;27(4):1015-1022. doi: 10.1007/s10068-018-0338-9.",
+            "linked_pmid": "30263830"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 28;27(4):1047-1055. doi: 10.1007/s10068-018-0357-6.",
+            "linked_pmid": "30263834"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 24;27(4):1067-1073. doi: 10.1007/s10068-018-0340-2.",
+            "linked_pmid": "30263836"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Feb 28;27(4):1129-1136. doi: 10.1007/s10068-018-0343-z.",
+            "linked_pmid": "30263843"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Apr 10;27(4):1137-1144. doi: 10.1007/s10068-018-0366-5.",
+            "linked_pmid": "30263844"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 1;27(4):1175-1184. doi: 10.1007/s10068-018-0342-0.",
+            "linked_pmid": "30263848"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Apr 4;27(4):1193-1200. doi: 10.1007/s10068-018-0362-9.",
+            "linked_pmid": "30263850"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Feb 24;27(4):1227-1237. doi: 10.1007/s10068-018-0336-y.",
+            "linked_pmid": "30263854"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 17;27(4):1239-1244. doi: 10.1007/s10068-018-0351-z.",
+            "linked_pmid": "30263855"
           }
         ],
-        "pmc_id": "",
-        "pmc_id_count": 0
+        "pmc_id": "PMC6085255",
+        "pmc_id_count": 1
       },
-      "pmc": null,
+      "pmc": {
+        "pmc_id": "PMC6085255",
+        "jats_available": false,
+        "jats_sha256": "dee8ec46aae098685468bc5938105c9003171be22b41ebabad9ab918f4af3082",
+        "body_char_count": 0,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6085255&retmode=xml&tool=aris4c011"
+      },
       "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
@@ -669,38 +801,110 @@
     },
     {
       "feasibility_id": "F020",
-      "target_doi": "10.1038/s41579-018-0048-6",
-      "notice_or_source_doi": "10.1038/s41579-018-0060-x",
+      "target_doi": "10.1007/s10068-018-0342-0",
+      "notice_or_source_doi": "10.1007/s10068-018-0398-x",
       "update_type": "correction",
-      "outcome_date": "2018-07-18",
+      "outcome_date": "2018-06-12",
       "crossref": {
-        "title": "Author Correction: Multidrug efflux pumps: structure, function and regulation",
+        "title": "Publisher Correction to: Multiple articles in Food Science and Biotechnology",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1038/s41579-018-0060-x"
+        "url": "https://doi.org/10.1007/s10068-018-0398-x"
       },
       "pubmed_exact_doi_pmids": [
-        "30022105"
+        "30265261"
       ],
       "pubmed": {
-        "pmid": "30022105",
+        "pmid": "30265261",
         "title": "",
         "publication_types": [
+          "Journal Article",
           "Published Erratum"
         ],
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Nat Rev Microbiol. 2018 Sep;16(9):523-539. doi: 10.1038/s41579-018-0048-6.",
-            "linked_pmid": "30002505"
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 15;27(2):401-409. doi: 10.1007/s10068-018-0353-x.",
+            "linked_pmid": "30263763"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2017 Dec 12;27(2):461-466. doi: 10.1007/s10068-017-0270-4.",
+            "linked_pmid": "30263770"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 17;27(4):929-938. doi: 10.1007/s10068-018-0354-9.",
+            "linked_pmid": "30263821"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 3;27(4):939-945. doi: 10.1007/s10068-018-0333-1.",
+            "linked_pmid": "30263822"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Apr 11;27(4):997-1005. doi: 10.1007/s10068-018-0365-6.",
+            "linked_pmid": "30263828"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Feb 24;27(4):1015-1022. doi: 10.1007/s10068-018-0338-9.",
+            "linked_pmid": "30263830"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 28;27(4):1047-1055. doi: 10.1007/s10068-018-0357-6.",
+            "linked_pmid": "30263834"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 24;27(4):1067-1073. doi: 10.1007/s10068-018-0340-2.",
+            "linked_pmid": "30263836"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Feb 28;27(4):1129-1136. doi: 10.1007/s10068-018-0343-z.",
+            "linked_pmid": "30263843"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Apr 10;27(4):1137-1144. doi: 10.1007/s10068-018-0366-5.",
+            "linked_pmid": "30263844"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 1;27(4):1175-1184. doi: 10.1007/s10068-018-0342-0.",
+            "linked_pmid": "30263848"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Apr 4;27(4):1193-1200. doi: 10.1007/s10068-018-0362-9.",
+            "linked_pmid": "30263850"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Feb 24;27(4):1227-1237. doi: 10.1007/s10068-018-0336-y.",
+            "linked_pmid": "30263854"
+          },
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Food Sci Biotechnol. 2018 Mar 17;27(4):1239-1244. doi: 10.1007/s10068-018-0351-z.",
+            "linked_pmid": "30263855"
           }
         ],
-        "pmc_id": "",
-        "pmc_id_count": 0
+        "pmc_id": "PMC6085255",
+        "pmc_id_count": 1
       },
-      "pmc": null,
+      "pmc": {
+        "pmc_id": "PMC6085255",
+        "jats_available": false,
+        "jats_sha256": "dee8ec46aae098685468bc5938105c9003171be22b41ebabad9ab918f4af3082",
+        "body_char_count": 0,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6085255&retmode=xml&tool=aris4c011"
+      },
       "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
@@ -708,17 +912,17 @@
     },
     {
       "feasibility_id": "F021",
-      "target_doi": "10.1190/geo2017-0028.1",
-      "notice_or_source_doi": "10.1190/geo2018-0614-retraction.1",
+      "target_doi": "10.1007/bf03028212",
+      "notice_or_source_doi": "10.1007/s12540-018-0048-0",
       "update_type": "retraction",
-      "outcome_date": "2018-07-13",
+      "outcome_date": "2018-02-26",
       "crossref": {
-        "title": "<b>To: “On vertical resolution of seismic acquisition geometries in complex 3D media,”</b>\n                    Jun Su, Li-Yun Fu, Wei Wei, Weijia Sun, and Junhua Hu, G\n                    <scp>eophysics</scp>\n                    ,\n                    <b>82</b>\n                    , no. 6, P75–P87, doi: 10.1190/geo2017-0028.1.",
+        "title": "Retraction Note to: Experimental and Simulation Studies on Grain Growth in TiC- and WC-Based Cermets During Liquid Phase Sintering",
         "type": "journal-article",
-        "publisher": "Society of Exploration Geophysicists",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1190/geo2018-0614-retraction.1"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s12540-018-0048-0"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -730,23 +934,23 @@
     },
     {
       "feasibility_id": "F022",
-      "target_doi": "10.1093/carcin/bgy036",
-      "notice_or_source_doi": "10.1093/carcin/bgy036",
+      "target_doi": "10.1016/j.biopha.2018.04.051",
+      "notice_or_source_doi": "10.1016/j.biopha.2018.04.051",
       "update_type": "retraction",
-      "outcome_date": "2019-04-29",
+      "outcome_date": "2018-07-01",
       "crossref": {
-        "title": "Retraction: A005, a novel inhibitor of phosphatidylinositol 3-kinase/mammalian target of rapamycin, prevents osteosarcoma-induced osteolysis",
+        "title": "RETRACTED: Tanshinone IIA protects murine chondrogenic ATDC5 cells from lipopolysaccharide-induced inflammatory injury by down-regulating microRNA-203a",
         "type": "journal-article",
-        "publisher": "Oxford University Press (OUP)",
+        "publisher": "Elsevier BV",
         "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1093/carcin/bgy036"
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.biopha.2018.04.051"
       },
       "pubmed_exact_doi_pmids": [
-        "29635391"
+        "29679904"
       ],
       "pubmed": {
-        "pmid": "29635391",
+        "pmid": "29679904",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -755,8 +959,8 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionIn",
-            "ref_source": "10.1093/carcin/bgy036",
-            "linked_pmid": ""
+            "ref_source": "Biomed Pharmacother. 2022 Sep;153:113352. doi: 10.1016/j.biopha.2022.113352.",
+            "linked_pmid": "35835661"
           }
         ],
         "pmc_id": "",
@@ -770,33 +974,44 @@
     },
     {
       "feasibility_id": "F023",
-      "target_doi": "10.3758/s13423-017-1319-3",
-      "notice_or_source_doi": "10.3758/s13423-018-1505-y",
+      "target_doi": "10.1016/j.jclinane.2018.04.009",
+      "notice_or_source_doi": "10.1016/j.jclinane.2018.04.009",
       "update_type": "retraction",
-      "outcome_date": "2018-07-17",
+      "outcome_date": "2018-08-01",
       "crossref": {
-        "title": "Retraction Note: Unexpected events disrupt visuomotor working memory and increase guessing",
+        "title": "RETRACTED: Pneumothorax after the erector spinae plane block",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "Elsevier BV",
         "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.3758/s13423-018-1505-y"
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.jclinane.2018.04.009"
       },
       "pubmed_exact_doi_pmids": [
-        "30030715"
+        "29684727"
       ],
       "pubmed": {
-        "pmid": "30030715",
+        "pmid": "29684727",
         "title": "",
         "publication_types": [
-          "Journal Article",
-          "Retraction Notice"
+          "Case Reports",
+          "Letter",
+          "Retracted Publication"
         ],
         "comments_corrections": [
           {
-            "ref_type": "RetractionOf",
-            "ref_source": "Psychon Bull Rev. 2018 Apr;25(2):651-657. doi: 10.3758/s13423-017-1319-3.",
-            "linked_pmid": "28577274"
+            "ref_type": "CommentIn",
+            "ref_source": "J Clin Anesth. 2019 Feb;52:17. doi: 10.1016/j.jclinane.2018.08.026.",
+            "linked_pmid": "30153535"
+          },
+          {
+            "ref_type": "CommentIn",
+            "ref_source": "J Clin Anesth. 2019 May;54:130-131. doi: 10.1016/j.jclinane.2018.11.007.",
+            "linked_pmid": "30496919"
+          },
+          {
+            "ref_type": "RetractionIn",
+            "ref_source": "J Clin Anesth. 2022 Aug;79:110763. doi: 10.1016/j.jclinane.2022.110763.",
+            "linked_pmid": "35393181"
           }
         ],
         "pmc_id": "",
@@ -810,57 +1025,17 @@
     },
     {
       "feasibility_id": "F024",
-      "target_doi": "10.3758/s13423-017-1319-3",
-      "notice_or_source_doi": "10.3758/s13423-018-1505-y",
+      "target_doi": "10.1557/adv.2018.524",
+      "notice_or_source_doi": "10.1557/adv.2018.561",
       "update_type": "retraction",
-      "outcome_date": "2018-07-17",
+      "outcome_date": "2018-09-19",
       "crossref": {
-        "title": "Retraction Note: Unexpected events disrupt visuomotor working memory and increase guessing",
+        "title": "Retraction Note: Conformal Coating of Metallic Shells on Carbon Nanotube Turfs – RETRACTION",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.3758/s13423-018-1505-y"
-      },
-      "pubmed_exact_doi_pmids": [
-        "30030715"
-      ],
-      "pubmed": {
-        "pmid": "30030715",
-        "title": "",
-        "publication_types": [
-          "Journal Article",
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Psychon Bull Rev. 2018 Apr;25(2):651-657. doi: 10.3758/s13423-017-1319-3.",
-            "linked_pmid": "28577274"
-          }
-        ],
-        "pmc_id": "",
-        "pmc_id_count": 0
-      },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F025",
-      "target_doi": "10.1007/s12237-017-0258-6",
-      "notice_or_source_doi": "10.1007/s12237-018-00497-8",
-      "update_type": "correction",
-      "outcome_date": "2019-01-07",
-      "crossref": {
-        "title": "Correction to: Impact of Armored Shorelines on Shore-Zone Fish Density in a Mid-Atlantic, USA, Estuary: Modulation by Hypoxia and Temperature",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1007/s12237-018-00497-8"
+        "link_count": 4,
+        "url": "https://doi.org/10.1557/adv.2018.561"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -871,64 +1046,24 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F026",
-      "target_doi": "10.1007/s13304-014-0251-6",
-      "notice_or_source_doi": "10.1007/s13304-019-00638-z",
+      "feasibility_id": "F025",
+      "target_doi": "10.1038/s41598-017-12720-w",
+      "notice_or_source_doi": "10.1038/s41598-019-42589-w",
       "update_type": "correction",
-      "outcome_date": "2019-05-08",
+      "outcome_date": "2019-04-17",
       "crossref": {
-        "title": "Retraction Note to: Contrast-enhanced ultrasound appearances of enhancement patterns of intrahepatic cholangiocarcinoma: correlation with pathological findings",
+        "title": "Author Correction: Effect of Low-Dose Alcohol Consumption on Inflammation Following Transient Focal Cerebral Ischemia in Rats",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
+        "abstract_present": true,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s13304-019-00638-z"
+        "url": "https://doi.org/10.1038/s41598-019-42589-w"
       },
       "pubmed_exact_doi_pmids": [
-        "31069719"
+        "30996243"
       ],
       "pubmed": {
-        "pmid": "31069719",
-        "title": "",
-        "publication_types": [
-          "Journal Article",
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Updates Surg. 2015 Sep;67(3):329. doi: 10.1007/s13304-015-0326-z.",
-            "linked_pmid": "26242544"
-          }
-        ],
-        "pmc_id": "",
-        "pmc_id_count": 0
-      },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F027",
-      "target_doi": "10.1038/s41409-019-0649-3",
-      "notice_or_source_doi": "10.1038/s41409-019-0767-y",
-      "update_type": "correction",
-      "outcome_date": "2019-12-10",
-      "crossref": {
-        "title": "Correction to: Acute respiratory failure and the kinetics of neutrophil recovery in pediatric hematopoietic cell transplantation: a multicenter study",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1038/s41409-019-0767-y"
-      },
-      "pubmed_exact_doi_pmids": [
-        "31822810"
-      ],
-      "pubmed": {
-        "pmid": "31822810",
+        "pmid": "30996243",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -936,19 +1071,19 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Bone Marrow Transplant. 2020 Feb;55(2):341-348. doi: 10.1038/s41409-019-0649-3.",
-            "linked_pmid": "31527817"
+            "ref_source": "Sci Rep. 2017 Oct 2;7(1):12547. doi: 10.1038/s41598-017-12720-w.",
+            "linked_pmid": "28970514"
           }
         ],
-        "pmc_id": "PMC7608367",
+        "pmc_id": "PMC6470153",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC7608367",
+        "pmc_id": "PMC6470153",
         "jats_available": true,
-        "jats_sha256": "baca0cada832d60c551a6312dbc47a0a572464d05ad9d0cf56cae744f53e9d7b",
-        "body_char_count": 498,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC7608367&retmode=xml&tool=aris4c011"
+        "jats_sha256": "abcf90a8d75806997768f736d82dacce291d8f00cdc86ddea6aeae47dbb879f7",
+        "body_char_count": 614,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6470153&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -956,34 +1091,100 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F028",
-      "target_doi": "10.1158/2159-8290.cd-17-0228",
-      "notice_or_source_doi": "10.1158/2159-8290.cd-18-1516",
+      "feasibility_id": "F026",
+      "target_doi": "10.1186/s13075-019-1880-4",
+      "notice_or_source_doi": "10.1186/s13075-019-1897-8",
       "update_type": "correction",
-      "outcome_date": "2019-02-08",
+      "outcome_date": "2019-05-06",
       "crossref": {
-        "title": "Correction: Neoadjuvant Trials in ER+ Breast Cancer: A Tool for Acceleration of Drug Development and Discovery",
+        "title": "Correction to: Drug tolerability and reasons for discontinuation of seven biologics in 4466 treatment courses of rheumatoid arthritis—the ANSWER cohort study",
         "type": "journal-article",
-        "publisher": "American Association for Cancer Research (AACR)",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1158/2159-8290.cd-18-1516"
+        "link_count": 3,
+        "url": "https://doi.org/10.1186/s13075-019-1897-8"
       },
       "pubmed_exact_doi_pmids": [
-        "30737218"
+        "31060597"
       ],
       "pubmed": {
-        "pmid": "30737218",
-        "title": "Correction: Neoadjuvant Trials in ER+ Breast Cancer: A Tool for Acceleration of Drug Development and Discovery.",
+        "pmid": "31060597",
+        "title": "",
         "publication_types": [
-          "Journal Article",
           "Published Erratum"
         ],
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Cancer Discov. 2017 Jun;7(6):561-574. doi: 10.1158/2159-8290.CD-17-0228.",
-            "linked_pmid": "28495849"
+            "ref_source": "Arthritis Res Ther. 2019 Apr 11;21(1):91. doi: 10.1186/s13075-019-1880-4.",
+            "linked_pmid": "30971306"
+          }
+        ],
+        "pmc_id": "PMC6503435",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC6503435",
+        "jats_available": true,
+        "jats_sha256": "6793497f1152caab6e15116811c668439a3f2eda14bb0a72bb0fb267685fe24f",
+        "body_char_count": 3244,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6503435&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F027",
+      "target_doi": "10.1017/s0021875818001470",
+      "notice_or_source_doi": "10.1017/s0021875819000495",
+      "update_type": "correction",
+      "outcome_date": "2019-05-28",
+      "crossref": {
+        "title": "Whiteness and Masculinity in Richard Lou’s\n                    <i>ReCovering Memphis: ReContexting Bodies</i>\n                    – CORRIGENDUM",
+        "type": "journal-article",
+        "publisher": "Cambridge University Press (CUP)",
+        "abstract_present": false,
+        "link_count": 1,
+        "url": "https://doi.org/10.1017/s0021875819000495"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F028",
+      "target_doi": "10.1038/s41371-019-0166-2",
+      "notice_or_source_doi": "10.1038/s41371-019-0278-8",
+      "update_type": "correction",
+      "outcome_date": "2019-10-23",
+      "crossref": {
+        "title": "Correction: The effects of melatonin supplementation on blood pressure in patients with metabolic disorders: a systematic review and meta-analysis of randomized controlled trials",
+        "type": "journal-article",
+        "publisher": "Springer Science and Business Media LLC",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1038/s41371-019-0278-8"
+      },
+      "pubmed_exact_doi_pmids": [
+        "31645639"
+      ],
+      "pubmed": {
+        "pmid": "31645639",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "J Hum Hypertens. 2019 Mar;33(3):202-209. doi: 10.1038/s41371-019-0166-2.",
+            "linked_pmid": "30647466"
           }
         ],
         "pmc_id": "",
@@ -997,17 +1198,17 @@
     },
     {
       "feasibility_id": "F029",
-      "target_doi": "10.3390/app8112184",
-      "notice_or_source_doi": "10.3390/app9040633",
+      "target_doi": "10.1016/j.matpr.2019.07.369",
+      "notice_or_source_doi": "10.1016/j.matpr.2019.07.369",
       "update_type": "retraction",
-      "outcome_date": "2019-02-14",
+      "outcome_date": "2019-08-13",
       "crossref": {
-        "title": "RETRACTED: Rezig et al. Using Data Mining Methods for Predicting Sequential Maintenance Activities. Appl. Sci. 2018, 8, 2184",
+        "title": "WITHDRAWN: Cutting force analysis in hard turning of AISI 52100 steel using multi-layer coated carbide inserts-RSM approach",
         "type": "journal-article",
-        "publisher": "MDPI AG",
-        "abstract_present": true,
-        "link_count": 1,
-        "url": "https://doi.org/10.3390/app9040633"
+        "publisher": "Elsevier BV",
+        "abstract_present": false,
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.matpr.2019.07.369"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1019,17 +1220,17 @@
     },
     {
       "feasibility_id": "F030",
-      "target_doi": "10.3390/ijgi8010039",
-      "notice_or_source_doi": "10.3390/ijgi8090402",
+      "target_doi": "10.1016/j.cja.2018.12.013",
+      "notice_or_source_doi": "10.1016/j.cja.2018.12.013",
       "update_type": "retraction",
-      "outcome_date": "2019-09-11",
+      "outcome_date": "2019-03-01",
       "crossref": {
-        "title": "RETRACTED: Li et al. Identifying Asphalt Pavement Distress Using UAV LiDAR Point Cloud Data and Random Forest Classification. ISPRS Int. J. Geo-Inf. 2019, 8, 39",
+        "title": "RETRACTED: A new dynamic pushback control method for reducing fuel-burn costs: Using predicted taxi-out time",
         "type": "journal-article",
-        "publisher": "MDPI AG",
-        "abstract_present": true,
-        "link_count": 1,
-        "url": "https://doi.org/10.3390/ijgi8090402"
+        "publisher": "Elsevier BV",
+        "abstract_present": false,
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.cja.2018.12.013"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1041,17 +1242,17 @@
     },
     {
       "feasibility_id": "F031",
-      "target_doi": "10.1016/j.drugpo.2018.11.009",
-      "notice_or_source_doi": "10.1016/j.drugpo.2018.11.009",
+      "target_doi": "10.1139/cjp-2017-0896",
+      "notice_or_source_doi": "10.1139/cjp-2019-0106",
       "update_type": "retraction",
-      "outcome_date": "2019-01-15",
+      "outcome_date": "2019-02-26",
       "crossref": {
-        "title": "WITHDRAWN: CALL FOR PAPERS SPECIAL ISSUE: The risk environment in rural areas",
+        "title": "Retraction: Einstein–Maxwell theory without symmetry and examples of geodesics in space with torsion",
         "type": "journal-article",
-        "publisher": "Elsevier BV",
+        "publisher": "Canadian Science Publishing",
         "abstract_present": false,
         "link_count": 2,
-        "url": "https://doi.org/10.1016/j.drugpo.2018.11.009"
+        "url": "https://doi.org/10.1139/cjp-2019-0106"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1063,32 +1264,38 @@
     },
     {
       "feasibility_id": "F032",
-      "target_doi": "10.1159/000085681",
-      "notice_or_source_doi": "10.1159/000500102",
+      "target_doi": "10.1016/j.biopha.2019.108683",
+      "notice_or_source_doi": "10.1016/j.biopha.2019.108683",
       "update_type": "retraction",
-      "outcome_date": "2019-05-24",
+      "outcome_date": "2019-06-01",
       "crossref": {
-        "title": "Retraction Statement",
+        "title": "RETRACTED: Up-regulation of microRNA-223 inhibits brain injury and hippocampal neuron apoptosis of rats after febrile seizure through the NLRP3-Caspase-1 signaling pathway",
         "type": "journal-article",
-        "publisher": "S. Karger AG",
+        "publisher": "Elsevier BV",
         "abstract_present": false,
         "link_count": 2,
-        "url": "https://doi.org/10.1159/000500102"
+        "url": "https://doi.org/10.1016/j.biopha.2019.108683"
       },
       "pubmed_exact_doi_pmids": [
-        "34554130"
+        "30947016"
       ],
       "pubmed": {
-        "pmid": "34554130",
+        "pmid": "30947016",
         "title": "",
         "publication_types": [
-          "Retraction Notice"
+          "Journal Article",
+          "Retracted Publication"
         ],
         "comments_corrections": [
           {
-            "ref_type": "RetractionOf",
-            "ref_source": "Horm Res. 2005;63(5):211-9. doi: 10.1159/000085681.",
-            "linked_pmid": "15886487"
+            "ref_type": "ExpressionOfConcernIn",
+            "ref_source": "Biomed Pharmacother. 2022 Nov;155:113824. doi: 10.1016/j.biopha.2022.113824.",
+            "linked_pmid": "36271529"
+          },
+          {
+            "ref_type": "RetractionIn",
+            "ref_source": "Biomed Pharmacother. 2023 Aug;164:114727. doi: 10.1016/j.biopha.2023.114727.",
+            "linked_pmid": "37087337"
           }
         ],
         "pmc_id": "",
@@ -1102,23 +1309,23 @@
     },
     {
       "feasibility_id": "F033",
-      "target_doi": "10.1038/s41419-019-2106-z",
-      "notice_or_source_doi": "10.1038/s41419-019-2220-y",
+      "target_doi": "10.1177/0192623319867322",
+      "notice_or_source_doi": "10.1177/0192623320965619",
       "update_type": "correction",
-      "outcome_date": "2020-01-14",
+      "outcome_date": "2020-10-07",
       "crossref": {
-        "title": "Correction: Autoantibodies to synapsin I sequestrate synapsin I and alter synaptic function",
+        "title": "Corrigendum",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": true,
+        "publisher": "SAGE Publications",
+        "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1038/s41419-019-2220-y"
+        "url": "https://doi.org/10.1177/0192623320965619"
       },
       "pubmed_exact_doi_pmids": [
-        "31937775"
+        "33025852"
       ],
       "pubmed": {
-        "pmid": "31937775",
+        "pmid": "33025852",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -1126,54 +1333,47 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Cell Death Dis. 2019 Nov 14;10(11):864. doi: 10.1038/s41419-019-2106-z.",
-            "linked_pmid": "31727880"
+            "ref_source": "Toxicol Pathol. 2020 Jan;48(1):105-131. doi: 10.1177/0192623319867322.",
+            "linked_pmid": "31426727"
           }
         ],
-        "pmc_id": "PMC6960144",
-        "pmc_id_count": 1
+        "pmc_id": "",
+        "pmc_id_count": 0
       },
-      "pmc": {
-        "pmc_id": "PMC6960144",
-        "jats_available": true,
-        "jats_sha256": "fe45bfc7292a00cf809f2ec591b2c2f59d9c4e75ba7c85b3e8271f945c0cafe1",
-        "body_char_count": 1874,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6960144&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
+      "pmc": null,
+      "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F034",
-      "target_doi": "10.1212/wnl.0000000000009919",
-      "notice_or_source_doi": "10.1212/wnl.0000000000010883",
+      "target_doi": "10.3758/s13414-020-02025-y",
+      "notice_or_source_doi": "10.3758/s13414-020-02165-1",
       "update_type": "correction",
-      "outcome_date": "2020-09-16",
+      "outcome_date": "2020-10-19",
       "crossref": {
-        "title": "Nusinersen in SMA 2 and 3",
+        "title": "Correction to: Audiotactile integration in the Pacinian corpuscle’s maximum sensitivity frequency range",
         "type": "journal-article",
-        "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1212/wnl.0000000000010883"
+        "link_count": 3,
+        "url": "https://doi.org/10.3758/s13414-020-02165-1"
       },
       "pubmed_exact_doi_pmids": [
-        "32938786"
+        "33078382"
       ],
       "pubmed": {
-        "pmid": "32938786",
+        "pmid": "33078382",
         "title": "",
         "publication_types": [
-          "Journal Article",
           "Published Erratum"
         ],
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Neurology. 2020 Jul 28;95(4):151-152. doi: 10.1212/WNL.0000000000009919.",
-            "linked_pmid": "32665409"
+            "ref_source": "Atten Percept Psychophys. 2020 Aug;82(6):3250-3257. doi: 10.3758/s13414-020-02025-y.",
+            "linked_pmid": "32342343"
           }
         ],
         "pmc_id": "",
@@ -1187,84 +1387,107 @@
     },
     {
       "feasibility_id": "F035",
-      "target_doi": "10.1007/s10198-019-01144-0",
-      "notice_or_source_doi": "10.1007/s10198-020-01210-y",
+      "target_doi": "10.1177/1533033818791500",
+      "notice_or_source_doi": "10.1177/1533033820973812",
       "update_type": "correction",
-      "outcome_date": "2020-07-01",
+      "outcome_date": "2020-11-15",
       "crossref": {
-        "title": "Correction to: Defensive medicine in Europe: a ‘full circle’?",
+        "title": "Corrigendum to “Prognostic Role of Neutrophil to Lymphocyte Ratio in Ovarian Cancer: A Meta-Analysis”",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "SAGE Publications",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s10198-020-01210-y"
+        "url": "https://doi.org/10.1177/1533033820973812"
       },
       "pubmed_exact_doi_pmids": [
-        "32613284"
+        "33191876"
       ],
       "pubmed": {
-        "pmid": "32613284",
+        "pmid": "33191876",
         "title": "",
         "publication_types": [
-          "Journal Article",
           "Published Erratum"
         ],
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Eur J Health Econ. 2020 Mar;21(2):165-170. doi: 10.1007/s10198-019-01144-0.",
-            "linked_pmid": "31879861"
-          },
-          {
-            "ref_type": "ErratumFor",
-            "ref_source": "Eur J Health Econ. 2020 Jun;21(4):477-482. doi: 10.1007/s10198-019-01151-1.",
-            "linked_pmid": "31919702"
+            "ref_source": "Technol Cancer Res Treat. 2018 Jan 1;17:1533033818791500. doi: 10.1177/1533033818791500.",
+            "linked_pmid": "30145940"
           }
         ],
-        "pmc_id": "",
-        "pmc_id_count": 0
+        "pmc_id": "PMC7675895",
+        "pmc_id_count": 1
       },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
+      "pmc": {
+        "pmc_id": "PMC7675895",
+        "jats_available": true,
+        "jats_sha256": "7fbda7688ebedf6a5646ecded6d6a1037884724b2c03b183c66d1cc281b87c0a",
+        "body_char_count": 1701,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC7675895&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F036",
-      "target_doi": "10.1007/s10750-020-04418-4",
-      "notice_or_source_doi": "10.1007/s10750-020-04485-7",
+      "target_doi": "10.1371/journal.pone.0208952",
+      "notice_or_source_doi": "10.1371/journal.pone.0230384",
       "update_type": "correction",
-      "outcome_date": "2020-12-22",
+      "outcome_date": "2020-03-06",
       "crossref": {
-        "title": "Correction to: The intertidal mudflats of Barr Al Hikman, Sultanate of Oman, as feeding, reproduction and nursery grounds for brachyuran crabs",
+        "title": "Correction: Magic roundabout is an endothelial-specific ohnolog of ROBO1 which neo-functionalized to an essential new role in angiogenesis",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "Public Library of Science (PLoS)",
         "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1007/s10750-020-04485-7"
+        "link_count": 1,
+        "url": "https://doi.org/10.1371/journal.pone.0230384"
       },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
+      "pubmed_exact_doi_pmids": [
+        "32142557"
+      ],
+      "pubmed": {
+        "pmid": "32142557",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "PLoS One. 2019 Feb 25;14(2):e0208952. doi: 10.1371/journal.pone.0208952.",
+            "linked_pmid": "30802244"
+          }
+        ],
+        "pmc_id": "PMC7059946",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC7059946",
+        "jats_available": true,
+        "jats_sha256": "4415c9d0a5a5059b6c8485c3803ab1e1f2d36bc7f6eb2e53b347f0d6fd6edf12",
+        "body_char_count": 508,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC7059946&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F037",
-      "target_doi": "10.1016/j.ijhydene.2020.05.261",
-      "notice_or_source_doi": "10.1016/j.ijhydene.2020.05.261",
+      "target_doi": "10.1177/0268396219881455",
+      "notice_or_source_doi": "10.1177/0268396219890541",
       "update_type": "retraction",
-      "outcome_date": "2020-08-21",
+      "outcome_date": "2020-02-11",
       "crossref": {
-        "title": "RETRACTED: Designing a miniaturized photoacoustic sensor for detecting hydrogen gas",
+        "title": "WITHDRAWAL – Administrative Duplicate Publication: Robotics process automation at TECHSERV: An implementation case study",
         "type": "journal-article",
-        "publisher": "Elsevier BV",
+        "publisher": "SAGE Publications",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.ijhydene.2020.05.261"
+        "link_count": 3,
+        "url": "https://doi.org/10.1177/0268396219890541"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1276,17 +1499,17 @@
     },
     {
       "feasibility_id": "F038",
-      "target_doi": "10.1016/j.chemosphere.2020.127653",
-      "notice_or_source_doi": "10.1016/j.chemosphere.2020.127653",
+      "target_doi": "10.1016/j.matpr.2020.10.076",
+      "notice_or_source_doi": "10.1016/j.matpr.2020.10.076",
       "update_type": "retraction",
-      "outcome_date": "2020-07-11",
+      "outcome_date": "2020-11-10",
       "crossref": {
-        "title": "WITHDRAWN: Abundance and characteristics of microplastics in the Bellingshausen Sea, Antarctica, are distinguished by the Southern Antarctic Circumpolar Current Front",
+        "title": "WITHDRAWN: Critical review on software reliability models: Importance and application of reliability analysis in software development",
         "type": "journal-article",
         "publisher": "Elsevier BV",
         "abstract_present": false,
         "link_count": 2,
-        "url": "https://doi.org/10.1016/j.chemosphere.2020.127653"
+        "url": "https://doi.org/10.1016/j.matpr.2020.10.076"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1298,39 +1521,56 @@
     },
     {
       "feasibility_id": "F039",
-      "target_doi": "10.1142/s0217751x20501341",
-      "notice_or_source_doi": "10.1142/s0217751x2093001x",
+      "target_doi": "10.1007/s13577-019-00256-2",
+      "notice_or_source_doi": "10.1007/s13577-020-00386-y",
       "update_type": "retraction",
-      "outcome_date": "2020-10-02",
+      "outcome_date": "2020-06-18",
       "crossref": {
-        "title": "Notice of Retraction “U(1) gauged model of FJ-type chiral boson based on Batalin–Fradkin–Vilkovisky formalism”",
+        "title": "Retraction Note to: miR-376a inhibits the proliferation and invasion of osteosarcoma by targeting FBXO11",
         "type": "journal-article",
-        "publisher": "World Scientific Pub Co Pte Lt",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1142/s0217751x2093001x"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s13577-020-00386-y"
       },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
+      "pubmed_exact_doi_pmids": [
+        "32557220"
+      ],
+      "pubmed": {
+        "pmid": "32557220",
+        "title": "",
+        "publication_types": [
+          "Retraction Notice"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "RetractionOf",
+            "ref_source": "Hum Cell. 2019 Jul;32(3):390-396. doi: 10.1007/s13577-019-00256-2.",
+            "linked_pmid": "31079326"
+          }
+        ],
+        "pmc_id": "",
+        "pmc_id_count": 0
+      },
       "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
+      "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F040",
-      "target_doi": "10.1016/j.physb.2020.412002",
-      "notice_or_source_doi": "10.1016/j.physb.2020.412002",
+      "target_doi": "10.5267/j.msl.2019.7.038",
+      "notice_or_source_doi": "10.5267/j.msl.2020.10.0r3",
       "update_type": "retraction",
-      "outcome_date": "2020-01-08",
+      "outcome_date": "2020-10-28",
       "crossref": {
-        "title": "WITHDRAWN: Assessment of ionizing radiation attenuation features of zirconolite silicate glasses using XCOM and FLUKA simulation code",
+        "title": "Retraction Note: Teacher’s performance management: The role of principal’s leadership, work environment and motivation in Tegal City, Indonesia",
         "type": "journal-article",
-        "publisher": "Elsevier BV",
+        "publisher": "Growing Science",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.physb.2020.412002"
+        "link_count": 0,
+        "url": "https://doi.org/10.5267/j.msl.2020.10.0r3"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1342,23 +1582,23 @@
     },
     {
       "feasibility_id": "F041",
-      "target_doi": "10.1038/s41598-021-92676-0",
-      "notice_or_source_doi": "10.1038/s41598-021-94669-5",
+      "target_doi": "10.1186/s12859-021-04365-4",
+      "notice_or_source_doi": "10.1186/s12859-021-04495-9",
       "update_type": "correction",
-      "outcome_date": "2021-07-21",
+      "outcome_date": "2021-12-07",
       "crossref": {
-        "title": "Author Correction: The use of N-acetylcysteine in the prevention of hangover: a randomized trial",
+        "title": "Correction to: ncDLRES: a novel method for non‑coding RNAs family prediction based on dynamic LSTM and ResNet",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1038/s41598-021-94669-5"
+        "url": "https://doi.org/10.1186/s12859-021-04495-9"
       },
       "pubmed_exact_doi_pmids": [
-        "34290383"
+        "34876017"
       ],
       "pubmed": {
-        "pmid": "34290383",
+        "pmid": "34876017",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -1366,19 +1606,19 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Sci Rep. 2021 Jun 28;11(1):13397. doi: 10.1038/s41598-021-92676-0.",
-            "linked_pmid": "34183702"
+            "ref_source": "BMC Bioinformatics. 2021 Sep 20;22(1):447. doi: 10.1186/s12859-021-04365-4.",
+            "linked_pmid": "34544356"
           }
         ],
-        "pmc_id": "PMC8295345",
+        "pmc_id": "PMC8653598",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC8295345",
+        "pmc_id": "PMC8653598",
         "jats_available": true,
-        "jats_sha256": "a24bb7250a27a4bd61459a7d03262dc03f2a807386b5fddff85291f48d4fb637",
-        "body_char_count": 2269,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8295345&retmode=xml&tool=aris4c011"
+        "jats_sha256": "50e1c6d442f32ec8e9398ee8d71853ae00af9e06176fa49bd2f27e9094876c0d",
+        "body_char_count": 351,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8653598&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -1387,66 +1627,39 @@
     },
     {
       "feasibility_id": "F042",
-      "target_doi": "10.1038/s41440-020-00571-4",
-      "notice_or_source_doi": "10.1038/s41440-021-00622-4",
+      "target_doi": "10.1007/s10479-020-03680-y",
+      "notice_or_source_doi": "10.1007/s10479-021-04248-0",
       "update_type": "correction",
-      "outcome_date": "2021-02-08",
+      "outcome_date": "2021-10-20",
       "crossref": {
-        "title": "Correction: Accuracy of the FMF Bayes theorem-based model for predicting preeclampsia at 11–13 weeks of gestation in a Japanese population",
+        "title": "Correction to: Financial modelling, risk management of energy instruments and the role of cryptocurrencies",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1038/s41440-021-00622-4"
+        "url": "https://doi.org/10.1007/s10479-021-04248-0"
       },
-      "pubmed_exact_doi_pmids": [
-        "33558669"
-      ],
-      "pubmed": {
-        "pmid": "33558669",
-        "title": "",
-        "publication_types": [
-          "Published Erratum"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "ErratumFor",
-            "ref_source": "Hypertens Res. 2021 Jun;44(6):685-691. doi: 10.1038/s41440-020-00571-4.",
-            "linked_pmid": "33154593"
-          },
-          {
-            "ref_type": "ErratumFor",
-            "ref_source": "Hypertens Res. 2021 Jun;44(6):730. doi: 10.1038/s41440-020-00593-y.",
-            "linked_pmid": "33361826"
-          },
-          {
-            "ref_type": "ErratumIn",
-            "ref_source": "Hypertens Res. 2021 Jun;44(6):732. doi: 10.1038/s41440-021-00653-x.",
-            "linked_pmid": "33837281"
-          }
-        ],
-        "pmc_id": "",
-        "pmc_id_count": 0
-      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
       "pmc": null,
-      "manager_evidence_route": "PUBMED",
+      "manager_evidence_route": "PUBLISHER_DOI",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F043",
-      "target_doi": "10.1007/s10851-020-01015-x",
-      "notice_or_source_doi": "10.1007/s10851-021-01028-0",
+      "target_doi": "10.1080/03087298.2021.1989904",
+      "notice_or_source_doi": "10.1080/03087298.2021.2015900",
       "update_type": "correction",
-      "outcome_date": "2021-04-07",
+      "outcome_date": "2022-01-10",
       "crossref": {
-        "title": "Correction to: Non-congruent non-degenerate curves with identical signatures",
+        "title": "Correction",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "Informa UK Limited",
         "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1007/s10851-021-01028-0"
+        "link_count": 1,
+        "url": "https://doi.org/10.1080/03087298.2021.2015900"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1458,23 +1671,23 @@
     },
     {
       "feasibility_id": "F044",
-      "target_doi": "10.1038/s41598-020-75103-8",
-      "notice_or_source_doi": "10.1038/s41598-021-83230-z",
+      "target_doi": "10.1038/s41416-021-01318-9",
+      "notice_or_source_doi": "10.1038/s41416-021-01426-6",
       "update_type": "correction",
-      "outcome_date": "2021-02-08",
+      "outcome_date": "2021-05-10",
       "crossref": {
-        "title": "Author Correction: A nanocomposite hydrogel with catalytic properties for trace-element detection in real-world samples",
+        "title": "Correction: Kinome-wide analysis of the effect of statins in colorectal cancer",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": true,
+        "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1038/s41598-021-83230-z"
+        "url": "https://doi.org/10.1038/s41416-021-01426-6"
       },
       "pubmed_exact_doi_pmids": [
-        "33558549"
+        "33972748"
       ],
       "pubmed": {
-        "pmid": "33558549",
+        "pmid": "33972748",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -1482,38 +1695,38 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Sci Rep. 2020 Oct 27;10(1):18340. doi: 10.1038/s41598-020-75103-8.",
-            "linked_pmid": "33110162"
+            "ref_source": "Br J Cancer. 2021 Jun;124(12):1978-1987. doi: 10.1038/s41416-021-01318-9.",
+            "linked_pmid": "33742146"
           }
         ],
-        "pmc_id": "PMC7870976",
+        "pmc_id": "PMC8257588",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC7870976",
-        "jats_available": true,
-        "jats_sha256": "536547e16891f58a46ee5e06338a386f552bebaa1f3a1e1b37b69371dffba3b1",
-        "body_char_count": 435,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC7870976&retmode=xml&tool=aris4c011"
+        "pmc_id": "PMC8257588",
+        "jats_available": false,
+        "jats_sha256": "694e6cd9e97e7282c7695f8176d99f0ee9dc27afa63933a9079cdb68b9f925ca",
+        "body_char_count": 0,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8257588&retmode=xml&tool=aris4c011"
       },
-      "manager_evidence_route": "PMC_JATS",
+      "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F045",
-      "target_doi": "10.1088/1757-899x/1145/1/012055",
-      "notice_or_source_doi": "10.1088/1757-899x/1145/1/012174",
+      "target_doi": "10.1007/s10772-021-09863-7",
+      "notice_or_source_doi": "10.1007/s10772-021-09863-7",
       "update_type": "retraction",
-      "outcome_date": "2022-02-23",
+      "outcome_date": "2021-07-09",
       "crossref": {
-        "title": "Retraction: Synthesis, identification and study of mesomorphic properties of compounds containing two C2H2N2O rings (IOP Conf. Ser.: Mater. Sci. Eng.\n                  1145 012055)",
+        "title": "RETRACTED ARTICLE: Construction of voice access clustering model for online shopping user groups based on electronic communication data mining algorithm",
         "type": "journal-article",
-        "publisher": "IOP Publishing",
-        "abstract_present": true,
-        "link_count": 4,
-        "url": "https://doi.org/10.1088/1757-899x/1145/1/012174"
+        "publisher": "Springer Science and Business Media LLC",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s10772-021-09863-7"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1525,43 +1738,144 @@
     },
     {
       "feasibility_id": "F046",
-      "target_doi": "10.4102/jamba.v11i1.725",
-      "notice_or_source_doi": "10.4102/jamba.v13i1.1036",
+      "target_doi": "10.1007/s12652-021-02990-8",
+      "notice_or_source_doi": "10.1007/s12652-021-02990-8",
       "update_type": "retraction",
-      "outcome_date": "2021-03-10",
+      "outcome_date": "2021-03-14",
       "crossref": {
-        "title": "Retraction notice to: ‘Monitoring droughts in Eswatini: A spatiotemporal variability analysis using the Standard Precipitation Index’, Jàmbá: Journal of Disaster Risk Studies 11(1), a725",
+        "title": "RETRACTED ARTICLE: How avatar gender may influence users’ intention to use the second life environment: an empirical study",
         "type": "journal-article",
-        "publisher": "AOSIS",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 5,
-        "url": "https://doi.org/10.4102/jamba.v13i1.1036"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s12652-021-02990-8"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F047",
+      "target_doi": "10.1111/1753-0407.12554",
+      "notice_or_source_doi": "10.1111/1753-0407.13170",
+      "update_type": "retraction",
+      "outcome_date": "2021-03-24",
+      "crossref": {
+        "title": "RETRACTION",
+        "type": "journal-article",
+        "publisher": "Wiley",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1111/1753-0407.13170"
       },
       "pubmed_exact_doi_pmids": [
-        "33824701"
+        "40908591"
       ],
       "pubmed": {
-        "pmid": "33824701",
-        "title": "Retraction notice to: 'Monitoring droughts in Eswatini: A spatiotemporal variability analysis using the Standard Precipitation Index', Jàmbá: Journal of Disaster Risk Studies 11(1), a725.",
+        "pmid": "40908591",
+        "title": "",
+        "publication_types": [
+          "Journal Article",
+          "Retraction Notice"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "RetractionOf",
+            "ref_source": "J Diabetes. 2018 Jan;10(1):28-42. doi: 10.1111/1753-0407.12554.",
+            "linked_pmid": "28323393"
+          }
+        ],
+        "pmc_id": "",
+        "pmc_id_count": 0
+      },
+      "pmc": null,
+      "manager_evidence_route": "PUBMED",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F048",
+      "target_doi": "10.1159/000494472",
+      "notice_or_source_doi": "10.33594/000000464",
+      "update_type": "retraction",
+      "outcome_date": "2021-11-02",
+      "crossref": {
+        "title": "Retraction of: Erinacine Facilitates the Opening of the Mitochondrial Permeability Transition Pore Through the Inhibition of the PI3K/ Akt/GSK-3β Signaling Pathway in Human Hepatocellular Carcinoma",
+        "type": "journal-article",
+        "publisher": "Cell Physiol Biochem Press GmbH and Co KG",
+        "abstract_present": false,
+        "link_count": 0,
+        "url": "https://doi.org/10.33594/000000464"
+      },
+      "pubmed_exact_doi_pmids": [
+        "34727448"
+      ],
+      "pubmed": {
+        "pmid": "34727448",
+        "title": "",
         "publication_types": [
           "Retraction Notice"
         ],
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "Jamba. 2019 Oct 03;11(1):725. doi: 10.4102/jamba.v11i1.725.",
-            "linked_pmid": "31616546"
+            "ref_source": "Cell Physiol Biochem. 2018;50(3):851-867. doi: 10.1159/000494472.",
+            "linked_pmid": "30355923"
           }
         ],
-        "pmc_id": "PMC8007990",
+        "pmc_id": "",
+        "pmc_id_count": 0
+      },
+      "pmc": null,
+      "manager_evidence_route": "PUBMED",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F049",
+      "target_doi": "10.1038/s41598-020-70924-z",
+      "notice_or_source_doi": "10.1038/s41598-022-15043-7",
+      "update_type": "correction",
+      "outcome_date": "2022-06-28",
+      "crossref": {
+        "title": "Author Correction: ROR1 is upregulated in endometrial cancer and represents a novel therapeutic target",
+        "type": "journal-article",
+        "publisher": "Springer Science and Business Media LLC",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1038/s41598-022-15043-7"
+      },
+      "pubmed_exact_doi_pmids": [
+        "35764678"
+      ],
+      "pubmed": {
+        "pmid": "35764678",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Sci Rep. 2020 Aug 17;10(1):13906. doi: 10.1038/s41598-020-70924-z.",
+            "linked_pmid": "32807831"
+          }
+        ],
+        "pmc_id": "PMC9240005",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC8007990",
+        "pmc_id": "PMC9240005",
         "jats_available": true,
-        "jats_sha256": "70862a7f7fa05e3a8f7f0d5530397ac453a4892ac3c171ce63407b883b0d9918",
-        "body_char_count": 827,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8007990&retmode=xml&tool=aris4c011"
+        "jats_sha256": "c49e5da26af5dbe7b9bbccaba9d41316dc994b50b1be0d003405f435450d2b4b",
+        "body_char_count": 1436,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9240005&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -1569,107 +1883,24 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F047",
-      "target_doi": "10.1007/s12517-021-06789-x",
-      "notice_or_source_doi": "10.1007/s12517-021-09025-8",
-      "update_type": "retraction",
-      "outcome_date": "2021-11-23",
-      "crossref": {
-        "title": "Retraction Note to: Marine climate prediction based on satellite remote sensing and landscape design of green space in coastal areas",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1007/s12517-021-09025-8"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F048",
-      "target_doi": "10.1007/s12517-021-06789-x",
-      "notice_or_source_doi": "10.1007/s12517-021-09025-8",
-      "update_type": "retraction",
-      "outcome_date": "2021-11-23",
-      "crossref": {
-        "title": "Retraction Note to: Marine climate prediction based on satellite remote sensing and landscape design of green space in coastal areas",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1007/s12517-021-09025-8"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F049",
-      "target_doi": "10.1111/ced.14339",
-      "notice_or_source_doi": "10.1111/ced.15282",
-      "update_type": "correction",
-      "outcome_date": "2022-07-08",
-      "crossref": {
-        "title": "Corrigendum",
-        "type": "journal-article",
-        "publisher": "Oxford University Press (OUP)",
-        "abstract_present": false,
-        "link_count": 4,
-        "url": "https://doi.org/10.1111/ced.15282"
-      },
-      "pubmed_exact_doi_pmids": [
-        "35802026"
-      ],
-      "pubmed": {
-        "pmid": "35802026",
-        "title": "",
-        "publication_types": [
-          "Published Erratum"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "ErratumFor",
-            "ref_source": "Clin Exp Dermatol. 2021 Jan;46(1):166-169. doi: 10.1111/ced.14339.",
-            "linked_pmid": "32557734"
-          }
-        ],
-        "pmc_id": "",
-        "pmc_id_count": 0
-      },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
       "feasibility_id": "F050",
-      "target_doi": "10.1002/smtd.202100938",
-      "notice_or_source_doi": "10.1002/smtd.202200739",
+      "target_doi": "10.1038/srep16813",
+      "notice_or_source_doi": "10.1038/s41598-022-06468-1",
       "update_type": "correction",
-      "outcome_date": "2022-07-01",
+      "outcome_date": "2022-02-11",
       "crossref": {
-        "title": "Isolation and Genomic Analysis of Single Circulating Tumor Cell Using Human Telomerase Reverse Transcriptase and Desmoglein‐2",
+        "title": "Author Correction: Crosstalk between SDF-1/CXCR4 and SDF-1/CXCR7 in cardiac stem cell migration",
         "type": "journal-article",
-        "publisher": "Wiley",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1002/smtd.202200739"
+        "url": "https://doi.org/10.1038/s41598-022-06468-1"
       },
       "pubmed_exact_doi_pmids": [
-        "35778831"
+        "35149767"
       ],
       "pubmed": {
-        "pmid": "35778831",
+        "pmid": "35149767",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -1677,60 +1908,44 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Small Methods. 2022 Apr;6(4):e2100938. doi: 10.1002/smtd.202100938.",
-            "linked_pmid": "35038250"
+            "ref_source": "Sci Rep. 2015 Nov 18;5:16813. doi: 10.1038/srep16813.",
+            "linked_pmid": "26578388"
           }
         ],
-        "pmc_id": "",
-        "pmc_id_count": 0
+        "pmc_id": "PMC8837748",
+        "pmc_id_count": 1
       },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
+      "pmc": {
+        "pmc_id": "PMC8837748",
+        "jats_available": true,
+        "jats_sha256": "619bcf6671585e49032c435e3fc46fddbf2e2526e6583983c6ee83b916bd82b6",
+        "body_char_count": 2206,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8837748&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F051",
-      "target_doi": "10.1080/00914037.2015.1055631",
-      "notice_or_source_doi": "10.1080/00914037.2022.2060646",
+      "target_doi": "10.1186/s13567-022-01058-5",
+      "notice_or_source_doi": "10.1186/s13567-022-01131-z",
       "update_type": "correction",
-      "outcome_date": "2022-04-07",
+      "outcome_date": "2022-12-19",
       "crossref": {
-        "title": "Correction",
-        "type": "journal-article",
-        "publisher": "Informa UK Limited",
-        "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1080/00914037.2022.2060646"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F052",
-      "target_doi": "10.1007/s00266-022-02778-x",
-      "notice_or_source_doi": "10.1007/s00266-022-02831-9",
-      "update_type": "correction",
-      "outcome_date": "2022-03-14",
-      "crossref": {
-        "title": "Correction: Clinical Efficacy Analysis of Augmentation Mammoplasty with Cell-Assisted Autologous Fat Transplantation",
+        "title": "Correction: HA gene amino acid mutations contribute to antigenic variation and immune escape of H9N2 influenza virus",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s00266-022-02831-9"
+        "url": "https://doi.org/10.1186/s13567-022-01131-z"
       },
       "pubmed_exact_doi_pmids": [
-        "35286416"
+        "36536473"
       ],
       "pubmed": {
-        "pmid": "35286416",
+        "pmid": "36536473",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -1738,60 +1953,89 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Aesthetic Plast Surg. 2022 Oct;46(5):2218-2227. doi: 10.1007/s00266-022-02778-x.",
-            "linked_pmid": "35169917"
+            "ref_source": "Vet Res. 2022 Jun 15;53(1):43. doi: 10.1186/s13567-022-01058-5.",
+            "linked_pmid": "35706014"
           }
         ],
-        "pmc_id": "",
-        "pmc_id_count": 0
+        "pmc_id": "PMC9764737",
+        "pmc_id_count": 1
       },
-      "pmc": null,
-      "manager_evidence_route": "PUBMED",
+      "pmc": {
+        "pmc_id": "PMC9764737",
+        "jats_available": true,
+        "jats_sha256": "33953122b2b7dd04a9843068f4f59fc6310040c730fa3a435f68b1d3b51859ca",
+        "body_char_count": 308,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9764737&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F052",
+      "target_doi": "10.1038/s41598-022-10225-9",
+      "notice_or_source_doi": "10.1038/s41598-022-11195-8",
+      "update_type": "correction",
+      "outcome_date": "2022-04-25",
+      "crossref": {
+        "title": "Author Correction: Exploring cellulose nanocrystals obtained from olive tree wastes as sustainable crop protection tool against bacterial diseases",
+        "type": "journal-article",
+        "publisher": "Springer Science and Business Media LLC",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1038/s41598-022-11195-8"
+      },
+      "pubmed_exact_doi_pmids": [
+        "35468991"
+      ],
+      "pubmed": {
+        "pmid": "35468991",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Sci Rep. 2022 Apr 12;12(1):6149. doi: 10.1038/s41598-022-10225-9.",
+            "linked_pmid": "35413981"
+          }
+        ],
+        "pmc_id": "PMC9038749",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC9038749",
+        "jats_available": true,
+        "jats_sha256": "e8e3e2e4e3e41bf2d6e94d1926d0ae5046038e5731aa1ae1357fc1666d40b781",
+        "body_char_count": 1095,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9038749&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F053",
-      "target_doi": "10.1016/j.cplett.2022.139863",
-      "notice_or_source_doi": "10.1016/j.cplett.2022.139863",
+      "target_doi": "10.1155/2022/1581282",
+      "notice_or_source_doi": "10.1155/2022/9780218",
       "update_type": "retraction",
-      "outcome_date": "2022-09-16",
+      "outcome_date": "2022-12-08",
       "crossref": {
-        "title": "RETRACTED: A FRET-based dual fluorescent probe with nitrogen doped carbon dots as the energy donor for selective detection of Fe3+",
+        "title": "Retracted: Research on the Current Situation of College Students’ Physical Health under the Background of the Integration of Sports and Medicine",
         "type": "journal-article",
-        "publisher": "Elsevier BV",
+        "publisher": "Wiley",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.cplett.2022.139863"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F054",
-      "target_doi": "10.1158/0008-5472.can-08-2780",
-      "notice_or_source_doi": "10.1158/0008-5472.can-22-2399",
-      "update_type": "retraction",
-      "outcome_date": "2022-09-16",
-      "crossref": {
-        "title": "Retraction: CXCR6 Induces Prostate Cancer Progression by the AKT/Mammalian Target of Rapamycin Signaling Pathway",
-        "type": "journal-article",
-        "publisher": "American Association for Cancer Research (AACR)",
-        "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1158/0008-5472.can-22-2399"
+        "link_count": 3,
+        "url": "https://doi.org/10.1155/2022/9780218"
       },
       "pubmed_exact_doi_pmids": [
-        "36111403"
+        "36530789"
       ],
       "pubmed": {
-        "pmid": "36111403",
+        "pmid": "36530789",
         "title": "",
         "publication_types": [
           "Retraction Notice"
@@ -1799,19 +2043,64 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "Cancer Res. 2008 Dec 15;68(24):10367-76. doi: 10.1158/0008-5472.CAN-08-2780.",
-            "linked_pmid": "19074906"
+            "ref_source": "J Healthc Eng. 2022 Apr 13;2022:1581282. doi: 10.1155/2022/1581282.",
+            "linked_pmid": "35463664"
           }
         ],
-        "pmc_id": "PMC9527645",
+        "pmc_id": "PMC9754846",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC9527645",
+        "pmc_id": "PMC9754846",
+        "jats_available": true,
+        "jats_sha256": "91458edfe4f7beeb7606c100603c0884c766de1261bc7af3d9c1cc5f7ef38d8e",
+        "body_char_count": 694,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9754846&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F054",
+      "target_doi": "10.1002/hep.24293",
+      "notice_or_source_doi": "10.1002/hep.32736",
+      "update_type": "retraction",
+      "outcome_date": "2022-09-08",
+      "crossref": {
+        "title": "Retracted: Antitumor effects of OSU‐2S, a nonimmunosuppressive analogue of FTY720, in hepatocellular carcinoma",
+        "type": "journal-article",
+        "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1002/hep.32736"
+      },
+      "pubmed_exact_doi_pmids": [
+        "36073981"
+      ],
+      "pubmed": {
+        "pmid": "36073981",
+        "title": "",
+        "publication_types": [
+          "Retraction Notice"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "RetractionOf",
+            "ref_source": "Hepatology. 2011 Jun;53(6):1943-58. doi: 10.1002/hep.24293.",
+            "linked_pmid": "21391227"
+          }
+        ],
+        "pmc_id": "PMC9588647",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC9588647",
         "jats_available": false,
-        "jats_sha256": "a9d3cbd404e008653ba3576813a806fe109bdd1a002f079807d302e527e12405",
+        "jats_sha256": "056decdf018e2eb2ae0c3c43345c336f0a1240aa666dca7b8676736a88e733ce",
         "body_char_count": 0,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9527645&retmode=xml&tool=aris4c011"
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9588647&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
@@ -1820,79 +2109,28 @@
     },
     {
       "feasibility_id": "F055",
-      "target_doi": "10.1158/0008-5472.can-08-2780",
-      "notice_or_source_doi": "10.1158/0008-5472.can-22-2399",
+      "target_doi": "10.1002/cbin.11349",
+      "notice_or_source_doi": "10.1002/cbin.11349",
       "update_type": "retraction",
-      "outcome_date": "2022-09-16",
+      "outcome_date": "2020-03-28",
       "crossref": {
-        "title": "Retraction: CXCR6 Induces Prostate Cancer Progression by the AKT/Mammalian Target of Rapamycin Signaling Pathway",
+        "title": "Withdrawal: “Long Non‐coding RNA NEAT1 Drives the Development of Polycystic Ovary Syndrome via Sponging Multiple MicroRNAs” by Xia Sang and Yuzhen Zhang",
         "type": "journal-article",
-        "publisher": "American Association for Cancer Research (AACR)",
-        "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1158/0008-5472.can-22-2399"
-      },
-      "pubmed_exact_doi_pmids": [
-        "36111403"
-      ],
-      "pubmed": {
-        "pmid": "36111403",
-        "title": "",
-        "publication_types": [
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Cancer Res. 2008 Dec 15;68(24):10367-76. doi: 10.1158/0008-5472.CAN-08-2780.",
-            "linked_pmid": "19074906"
-          }
-        ],
-        "pmc_id": "PMC9527645",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC9527645",
-        "jats_available": false,
-        "jats_sha256": "a9d3cbd404e008653ba3576813a806fe109bdd1a002f079807d302e527e12405",
-        "body_char_count": 0,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9527645&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PUBMED",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F056",
-      "target_doi": "10.1007/s11046-004-1820-x",
-      "notice_or_source_doi": "10.1007/s11046-022-00641-w",
-      "update_type": "retraction",
-      "outcome_date": "2022-05-26",
-      "crossref": {
-        "title": "Retraction Note to: Epidemiology and molecular typing of Candida isolates from burn patients",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
+        "publisher": "Wiley",
+        "abstract_present": true,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s11046-022-00641-w"
+        "url": "https://doi.org/10.1002/cbin.11349"
       },
       "pubmed_exact_doi_pmids": [
-        "35616806"
+        "32222120"
       ],
       "pubmed": {
-        "pmid": "35616806",
+        "pmid": "32222120",
         "title": "",
         "publication_types": [
-          "Retraction Notice"
+          "Journal Article"
         ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Mycopathologia. 2004 Nov;158(4):397-405. doi: 10.1007/s11046-004-1820-x.",
-            "linked_pmid": "15630548"
-          }
-        ],
+        "comments_corrections": [],
         "pmc_id": "",
         "pmc_id_count": 0
       },
@@ -1903,18 +2141,40 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F057",
-      "target_doi": "10.1080/10447318.2022.2143027",
-      "notice_or_source_doi": "10.1080/10447318.2023.2170002",
-      "update_type": "correction",
-      "outcome_date": "2023-01-17",
+      "feasibility_id": "F056",
+      "target_doi": "10.1007/s00521-018-3466-5",
+      "notice_or_source_doi": "10.1007/s00521-022-08144-x",
+      "update_type": "retraction",
+      "outcome_date": "2022-12-19",
       "crossref": {
-        "title": "Correction",
+        "title": "Retraction Note: An Automatic Tamil Speech Recognition system by using Bidirectional Recurrent Neural Network with Self-Organizing Map",
         "type": "journal-article",
-        "publisher": "Informa UK Limited",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1080/10447318.2023.2170002"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s00521-022-08144-x"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F057",
+      "target_doi": "10.1088/1538-3873/acf40c",
+      "notice_or_source_doi": "10.1088/1538-3873/ad09d5",
+      "update_type": "correction",
+      "outcome_date": "2023-11-16",
+      "crossref": {
+        "title": "Erratum: “The Steward Observatory LEO Satellite Photometric Survey” (2023, PASP, 135, 095003)",
+        "type": "journal-article",
+        "publisher": "IOP Publishing",
+        "abstract_present": false,
+        "link_count": 4,
+        "url": "https://doi.org/10.1088/1538-3873/ad09d5"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1926,17 +2186,17 @@
     },
     {
       "feasibility_id": "F058",
-      "target_doi": "10.1097/jdn.0000000000000750",
-      "notice_or_source_doi": "10.1097/jdn.0000000000000762",
+      "target_doi": "10.1007/s43994-023-00087-w",
+      "notice_or_source_doi": "10.1007/s43994-023-00102-0",
       "update_type": "correction",
-      "outcome_date": "2023-09-01",
+      "outcome_date": "2023-11-17",
       "crossref": {
-        "title": "Tips and Tricks: Erratum",
+        "title": "Correction: Employing plant DNA barcodes for pomegranate species identification in Al-Baha Region, Saudi Arabia",
         "type": "journal-article",
-        "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1097/jdn.0000000000000762"
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s43994-023-00102-0"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -1948,45 +2208,23 @@
     },
     {
       "feasibility_id": "F059",
-      "target_doi": "10.1007/s00170-023-12215-1",
-      "notice_or_source_doi": "10.1007/s00170-023-12362-5",
+      "target_doi": "10.1038/s41598-022-26292-x",
+      "notice_or_source_doi": "10.1038/s41598-023-39073-x",
       "update_type": "correction",
-      "outcome_date": "2023-09-28",
+      "outcome_date": "2023-07-25",
       "crossref": {
-        "title": "Correction to: Influence of the material manufacturing process on micromilling Ti6Al4V alloy",
+        "title": "Author Correction: Low-energy shock wave therapy ameliorates ischemic-induced overactive bladder in a rat model",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s00170-023-12362-5"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F060",
-      "target_doi": "10.1038/s41598-023-47880-5",
-      "notice_or_source_doi": "10.1038/s41598-023-50297-9",
-      "update_type": "correction",
-      "outcome_date": "2023-12-21",
-      "crossref": {
-        "title": "Author Correction: An investigation on humans’ sensitivity to environmental temperature",
-        "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
-        "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1038/s41598-023-50297-9"
+        "url": "https://doi.org/10.1038/s41598-023-39073-x"
       },
       "pubmed_exact_doi_pmids": [
-        "38129573"
+        "37491578"
       ],
       "pubmed": {
-        "pmid": "38129573",
+        "pmid": "37491578",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -1994,19 +2232,19 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Sci Rep. 2023 Dec 4;13(1):21353. doi: 10.1038/s41598-023-47880-5.",
-            "linked_pmid": "38049468"
+            "ref_source": "Sci Rep. 2022 Dec 19;12(1):21960. doi: 10.1038/s41598-022-26292-x.",
+            "linked_pmid": "36536004"
           }
         ],
-        "pmc_id": "PMC10739790",
+        "pmc_id": "PMC10368732",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC10739790",
+        "pmc_id": "PMC10368732",
         "jats_available": true,
-        "jats_sha256": "9ff59e4b61a9c6e78f9312e3f9fbb3cf076ef797740f803fd9eb8cc3a05c143a",
-        "body_char_count": 673,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10739790&retmode=xml&tool=aris4c011"
+        "jats_sha256": "60a53f575f0e766ecc526332152176110b08fea1dff1190a6fb4d5a9118878f2",
+        "body_char_count": 279,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10368732&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -2014,18 +2252,18 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F061",
-      "target_doi": "10.1080/24701556.2020.1799398",
-      "notice_or_source_doi": "10.1080/24701556.2024.2327709",
-      "update_type": "retraction",
-      "outcome_date": "2024-04-01",
+      "feasibility_id": "F060",
+      "target_doi": "10.1080/10447318.2023.2169527",
+      "notice_or_source_doi": "10.1080/10447318.2023.2201014",
+      "update_type": "correction",
+      "outcome_date": "2023-04-10",
       "crossref": {
-        "title": "Statement of Retraction: Zn(II) and Co(II)-based coordination polymers: anesthesia effect by regulating animal blood pressure in hip replacement operation",
+        "title": "Correction",
         "type": "journal-article",
         "publisher": "Informa UK Limited",
         "abstract_present": false,
         "link_count": 1,
-        "url": "https://doi.org/10.1080/24701556.2024.2327709"
+        "url": "https://doi.org/10.1080/10447318.2023.2201014"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -2036,24 +2274,24 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F062",
-      "target_doi": "10.1155/2022/2084276",
-      "notice_or_source_doi": "10.1155/2023/9768716",
+      "feasibility_id": "F061",
+      "target_doi": "10.1155/2022/2604302",
+      "notice_or_source_doi": "10.1155/2023/9823972",
       "update_type": "retraction",
-      "outcome_date": "2023-10-04",
+      "outcome_date": "2023-08-09",
       "crossref": {
-        "title": "Retracted: Prediction Value of Epilepsy Secondary to Inferior Cavity Hemorrhage Based on Scalp EEG Wave Pattern in Deep Learning",
+        "title": "Retracted: The Computer‐Aided Design Algorithm of Dyeing and Weaving Graphics from the Perspective of Public Art",
         "type": "journal-article",
         "publisher": "Wiley",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1155/2023/9768716"
+        "url": "https://doi.org/10.1155/2023/9823972"
       },
       "pubmed_exact_doi_pmids": [
-        "37829420"
+        "37600246"
       ],
       "pubmed": {
-        "pmid": "37829420",
+        "pmid": "37600246",
         "title": "",
         "publication_types": [
           "Retraction Notice"
@@ -2061,19 +2299,19 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "J Healthc Eng. 2022 Mar 15;2022:2084276. doi: 10.1155/2022/2084276.",
-            "linked_pmid": "35340252"
+            "ref_source": "Comput Intell Neurosci. 2022 May 25;2022:2604302. doi: 10.1155/2022/2604302.",
+            "linked_pmid": "35665278"
           }
         ],
-        "pmc_id": "PMC10567295",
+        "pmc_id": "PMC10432771",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC10567295",
+        "pmc_id": "PMC10432771",
         "jats_available": true,
-        "jats_sha256": "20c2f907ed885d64377aa2c065b1883107f8df92fe14e84ae06046f750bf91ce",
+        "jats_sha256": "0fb81d63485d489a019c96e70e6e19e276836ac089bbc53f9f3d74fb071c5fe1",
         "body_char_count": 1487,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10567295&retmode=xml&tool=aris4c011"
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10432771&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -2081,24 +2319,46 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F063",
-      "target_doi": "10.1155/2022/2084276",
-      "notice_or_source_doi": "10.1155/2023/9768716",
+      "feasibility_id": "F062",
+      "target_doi": "10.1155/2022/2301322",
+      "notice_or_source_doi": "10.1155/2023/9790764",
       "update_type": "retraction",
-      "outcome_date": "2023-10-04",
+      "outcome_date": "2023-09-20",
       "crossref": {
-        "title": "Retracted: Prediction Value of Epilepsy Secondary to Inferior Cavity Hemorrhage Based on Scalp EEG Wave Pattern in Deep Learning",
+        "title": "Retracted: Reconstruction and Utilization of Energy Economy Information Resources against Humanistic Background",
         "type": "journal-article",
         "publisher": "Wiley",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1155/2023/9768716"
+        "url": "https://doi.org/10.1155/2023/9790764"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F063",
+      "target_doi": "10.1155/2022/7143786",
+      "notice_or_source_doi": "10.1155/2023/9809563",
+      "update_type": "retraction",
+      "outcome_date": "2023-10-04",
+      "crossref": {
+        "title": "Retracted: Thinking and Research on Ideology Education of University Student Based on Deep Learning in Small Sample Environment",
+        "type": "journal-article",
+        "publisher": "Wiley",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1155/2023/9809563"
       },
       "pubmed_exact_doi_pmids": [
-        "37829420"
+        "37829458"
       ],
       "pubmed": {
-        "pmid": "37829420",
+        "pmid": "37829458",
         "title": "",
         "publication_types": [
           "Retraction Notice"
@@ -2106,19 +2366,19 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "J Healthc Eng. 2022 Mar 15;2022:2084276. doi: 10.1155/2022/2084276.",
-            "linked_pmid": "35340252"
+            "ref_source": "J Environ Public Health. 2022 Sep 9;2022:7143786. doi: 10.1155/2022/7143786.",
+            "linked_pmid": "36120147"
           }
         ],
-        "pmc_id": "PMC10567295",
+        "pmc_id": "PMC10567169",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC10567295",
+        "pmc_id": "PMC10567169",
         "jats_available": true,
-        "jats_sha256": "20c2f907ed885d64377aa2c065b1883107f8df92fe14e84ae06046f750bf91ce",
+        "jats_sha256": "5b81c5582e7599ee77c740a6f7d5ae179890f3ad438bac93ae4f488483794506",
         "body_char_count": 1487,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10567295&retmode=xml&tool=aris4c011"
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10567169&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -2127,133 +2387,88 @@
     },
     {
       "feasibility_id": "F064",
-      "target_doi": "10.1155/2022/3053694",
-      "notice_or_source_doi": "10.1155/2023/9783091",
+      "target_doi": "10.1155/2021/6337431",
+      "notice_or_source_doi": "10.1155/2023/9759738",
       "update_type": "retraction",
-      "outcome_date": "2023-07-26",
+      "outcome_date": "2023-08-16",
       "crossref": {
-        "title": "Retracted: Study of the Effectiveness of 5G Mobile Internet Technology to Promote the Reform of English Teaching in the Universities and Colleges",
+        "title": "Retracted: Multimedia Digital Signal Processing of Infrared Chemical Remote Sensing Based on Piecewise Linear Discriminant Algorithm",
         "type": "journal-article",
         "publisher": "Wiley",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1155/2023/9783091"
+        "url": "https://doi.org/10.1155/2023/9759738"
       },
-      "pubmed_exact_doi_pmids": [
-        "37538693"
-      ],
-      "pubmed": {
-        "pmid": "37538693",
-        "title": "",
-        "publication_types": [
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Comput Intell Neurosci. 2022 Jul 13;2022:3053694. doi: 10.1155/2022/3053694.",
-            "linked_pmid": "35875756"
-          }
-        ],
-        "pmc_id": "PMC10396755",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC10396755",
-        "jats_available": true,
-        "jats_sha256": "2d708ca9ec65394bdbc4a3425e1c692f3cc1c9aafbb8227fb48f5429d591ada8",
-        "body_char_count": 1836,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10396755&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F065",
-      "target_doi": "10.1186/s12939-024-02229-w",
-      "notice_or_source_doi": "10.1186/s12939-024-02330-0",
+      "target_doi": "10.1007/s11631-024-00713-2",
+      "notice_or_source_doi": "10.1007/s11631-024-00736-9",
       "update_type": "correction",
-      "outcome_date": "2024-11-15",
+      "outcome_date": "2024-09-19",
       "crossref": {
-        "title": "Correction: Making health inequality analysis accessible: WHO tools and resources using Microsoft Excel",
+        "title": "Correction: Alkaline igneous rocks, a potential source of rare metals and radioactive minerals: Case study at Amreit area, south Eastern Desert, Egypt",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1186/s12939-024-02330-0"
+        "url": "https://doi.org/10.1007/s11631-024-00736-9"
       },
-      "pubmed_exact_doi_pmids": [
-        "39548473"
-      ],
-      "pubmed": {
-        "pmid": "39548473",
-        "title": "",
-        "publication_types": [
-          "Published Erratum"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "ErratumFor",
-            "ref_source": "Int J Equity Health. 2024 Oct 9;23(1):205. doi: 10.1186/s12939-024-02229-w.",
-            "linked_pmid": "39385198"
-          }
-        ],
-        "pmc_id": "PMC11566815",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC11566815",
-        "jats_available": true,
-        "jats_sha256": "f5a5b4231b4c9248dec8bfe798788a5a31e11b80edc97683d81eb9eede0a74bc",
-        "body_char_count": 512,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11566815&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F066",
-      "target_doi": "10.1186/s12967-022-03317-7",
-      "notice_or_source_doi": "10.1186/s12967-024-05632-7",
+      "target_doi": "10.1126/sciadv.adl2232",
+      "notice_or_source_doi": "10.1126/sciadv.adq4290",
       "update_type": "correction",
-      "outcome_date": "2024-09-13",
+      "outcome_date": "2024-05-31",
       "crossref": {
-        "title": "Correction to: Lenvatinib inhibits the growth of gastric cancer patient‑derived xenografts generated from a heterogeneous populations",
+        "title": "Erratum for the Research Article: “Acoustic hologram–induced virtual in vivo enhanced waveguide (AH-VIEW)” by Lin\n                    <i>et al</i>\n                    .",
         "type": "journal-article",
-        "publisher": "Springer Science and Business Media LLC",
+        "publisher": "American Association for the Advancement of Science (AAAS)",
         "abstract_present": false,
-        "link_count": 3,
-        "url": "https://doi.org/10.1186/s12967-024-05632-7"
+        "link_count": 1,
+        "url": "https://doi.org/10.1126/sciadv.adq4290"
       },
       "pubmed_exact_doi_pmids": [
-        "39272170"
+        "38820167"
       ],
       "pubmed": {
-        "pmid": "39272170",
-        "title": "",
+        "pmid": "38820167",
+        "title": "Erratum for the Research Article: \"Acoustic hologram-induced virtual in vivo enhanced waveguide (AH-VIEW)\" by Lin et al.",
         "publication_types": [
+          "Journal Article",
           "Published Erratum"
         ],
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "J Transl Med. 2022 Mar 7;20(1):116. doi: 10.1186/s12967-022-03317-7.",
-            "linked_pmid": "35255940"
+            "ref_source": "Sci Adv. 2024 Feb 16;10(7):eadl2232. doi: 10.1126/sciadv.adl2232.",
+            "linked_pmid": "38354252"
           }
         ],
-        "pmc_id": "PMC11396437",
+        "pmc_id": "PMC11141619",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC11396437",
+        "pmc_id": "PMC11141619",
         "jats_available": true,
-        "jats_sha256": "962b1bfa40d1d59bb8fa1a50ca46c4e1020480c6b28ba36d74a9238e6cadd728",
-        "body_char_count": 1746,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11396437&retmode=xml&tool=aris4c011"
+        "jats_sha256": "41be67de77b29f3e99536876e710271d94881a3570f548d32f9b8abcf7c8d12c",
+        "body_char_count": 544,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11141619&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -2262,17 +2477,17 @@
     },
     {
       "feasibility_id": "F067",
-      "target_doi": "10.1088/1475-7516/2023/09/044",
-      "notice_or_source_doi": "10.1088/1475-7516/2024/02/e01",
+      "target_doi": "10.3847/1538-3881/acda26",
+      "notice_or_source_doi": "10.3847/1538-3881/ad1f68",
       "update_type": "correction",
-      "outcome_date": "2024-02-22",
+      "outcome_date": "2024-02-29",
       "crossref": {
-        "title": "Erratum: New method to revisit the gravitational lensing analysis of the Bullet Cluster using radio waves",
+        "title": "Erratum: “Variability of Known Exoplanet Host Stars Observed by TESS” (2023, AJ, 166, 72)",
         "type": "journal-article",
-        "publisher": "IOP Publishing",
+        "publisher": "American Astronomical Society",
         "abstract_present": false,
         "link_count": 4,
-        "url": "https://doi.org/10.1088/1475-7516/2024/02/e01"
+        "url": "https://doi.org/10.3847/1538-3881/ad1f68"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -2284,23 +2499,155 @@
     },
     {
       "feasibility_id": "F068",
-      "target_doi": "10.1007/s12013-024-01403-9",
-      "notice_or_source_doi": "10.1007/s12013-024-01490-8",
+      "target_doi": "10.1080/23808985.2024.2323739",
+      "notice_or_source_doi": "10.1080/23808985.2024.2327193",
       "update_type": "correction",
-      "outcome_date": "2024-08-28",
+      "outcome_date": "2024-03-06",
       "crossref": {
-        "title": "Correction: In Silico Investigation against Inhibitors of Alpha-Amylase Using Structure-based Screening, Molecular Docking, and Molecular Simulations Studies",
+        "title": "Correction",
+        "type": "journal-article",
+        "publisher": "Oxford University Press (OUP)",
+        "abstract_present": false,
+        "link_count": 1,
+        "url": "https://doi.org/10.1080/23808985.2024.2327193"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F069",
+      "target_doi": "10.1155/2021/9988623",
+      "notice_or_source_doi": "10.1155/2024/9821284",
+      "update_type": "retraction",
+      "outcome_date": "2024-01-24",
+      "crossref": {
+        "title": "Retracted: Real-Time Animation Complexity of Interactive Clothing Design Based on Computer Simulation",
+        "type": "journal-article",
+        "publisher": "Wiley",
+        "abstract_present": true,
+        "link_count": 3,
+        "url": "https://doi.org/10.1155/2024/9821284"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F070",
+      "target_doi": "10.1016/j.phycom.2024.102288",
+      "notice_or_source_doi": "10.1016/j.phycom.2024.102288",
+      "update_type": "retraction",
+      "outcome_date": "2024-04-01",
+      "crossref": {
+        "title": "RETRACTED: DL-SCA: An deep learning based approach for intra-class CutMix data augmentation",
+        "type": "journal-article",
+        "publisher": "Elsevier BV",
+        "abstract_present": false,
+        "link_count": 2,
+        "url": "https://doi.org/10.1016/j.phycom.2024.102288"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F071",
+      "target_doi": "10.1007/s11082-023-05787-5",
+      "notice_or_source_doi": "10.1007/s11082-024-07598-8",
+      "update_type": "retraction",
+      "outcome_date": "2024-09-26",
+      "crossref": {
+        "title": "Retraction Note: Evaluation of infrared image detection based on HOG feature extraction in swimmer training effectiveness",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s12013-024-01490-8"
+        "url": "https://doi.org/10.1007/s11082-024-07598-8"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F072",
+      "target_doi": "10.1007/s00500-023-08206-9",
+      "notice_or_source_doi": "10.1007/s00500-024-09988-2",
+      "update_type": "retraction",
+      "outcome_date": "2024-07-22",
+      "crossref": {
+        "title": "Retraction Note: Unsupervised machine learning and image recognition model application in English part-of-speech feature learning under the open platform environment",
+        "type": "journal-article",
+        "publisher": "Springer Science and Business Media LLC",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s00500-024-09988-2"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F073",
+      "target_doi": "10.3847/1538-4357/acffbd",
+      "notice_or_source_doi": "10.3847/1538-4357/adc813",
+      "update_type": "correction",
+      "outcome_date": "2025-04-18",
+      "crossref": {
+        "title": "Erratum: “Evidence of Ultrafaint Radio Frequency Interference in Deep 21 cm Epoch of Reionization Power Spectra with the Murchison Wide-field Array” (2023, ApJ, 957, 78)",
+        "type": "journal-article",
+        "publisher": "American Astronomical Society",
+        "abstract_present": false,
+        "link_count": 4,
+        "url": "https://doi.org/10.3847/1538-4357/adc813"
+      },
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
+      "acquisition_errors": [],
+      "issue_adjudication_state": "UNASSESSED",
+      "detector_output_used": false
+    },
+    {
+      "feasibility_id": "F074",
+      "target_doi": "10.1007/s12094-025-03850-z",
+      "notice_or_source_doi": "10.1007/s12094-025-03911-3",
+      "update_type": "correction",
+      "outcome_date": "2025-04-04",
+      "crossref": {
+        "title": "Correction: Clinical advances and practice updates in genitourinary cancers: a 2024 review from the multidisciplinary Spanish ‘Cambados annual meeting’",
+        "type": "journal-article",
+        "publisher": "Springer Science and Business Media LLC",
+        "abstract_present": false,
+        "link_count": 3,
+        "url": "https://doi.org/10.1007/s12094-025-03911-3"
       },
       "pubmed_exact_doi_pmids": [
-        "39196290"
+        "40184016"
       ],
       "pubmed": {
-        "pmid": "39196290",
+        "pmid": "40184016",
         "title": "",
         "publication_types": [
           "Published Erratum"
@@ -2308,8 +2655,8 @@
         "comments_corrections": [
           {
             "ref_type": "ErratumFor",
-            "ref_source": "Cell Biochem Biophys. 2024 Sep;82(3):2873-2888. doi: 10.1007/s12013-024-01403-9.",
-            "linked_pmid": "38982021"
+            "ref_source": "Clin Transl Oncol. 2025 Aug;27(8):3307-3324. doi: 10.1007/s12094-025-03850-z.",
+            "linked_pmid": "39961959"
           }
         ],
         "pmc_id": "",
@@ -2322,291 +2669,128 @@
       "detector_output_used": false
     },
     {
-      "feasibility_id": "F069",
-      "target_doi": "10.1016/j.energy.2021.120910",
-      "notice_or_source_doi": "10.1016/j.energy.2024.130381",
-      "update_type": "retraction",
-      "outcome_date": "2024-01-23",
-      "crossref": {
-        "title": "Retraction notice to “Analysis of the performance of the multi-objective hybrid hydropower-photovoltaic-wind system to reduce variance and maximum power generation by developed owl search algorithm” [Energy 231 (2021) 120910]",
-        "type": "journal-article",
-        "publisher": "Elsevier BV",
-        "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.energy.2024.130381"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F070",
-      "target_doi": "10.1371/journal.pone.0292680",
-      "notice_or_source_doi": "10.1371/journal.pone.0312330",
-      "update_type": "retraction",
-      "outcome_date": "2024-10-14",
-      "crossref": {
-        "title": "Retraction: GIS-statically-based modelling the groundwater quality assessment coupled with soil and terrain attributes data",
-        "type": "journal-article",
-        "publisher": "Public Library of Science (PLoS)",
-        "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1371/journal.pone.0312330"
-      },
-      "pubmed_exact_doi_pmids": [
-        "39401202"
-      ],
-      "pubmed": {
-        "pmid": "39401202",
-        "title": "",
-        "publication_types": [
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "PLoS One. 2023 Nov 30;18(11):e0292680. doi: 10.1371/journal.pone.0292680.",
-            "linked_pmid": "38033022"
-          }
-        ],
-        "pmc_id": "PMC11472931",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC11472931",
-        "jats_available": true,
-        "jats_sha256": "94de6e2ecd140284eb482119c387a51092e2955f1bc0e85d1708400be3c2a04a",
-        "body_char_count": 425,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11472931&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F071",
-      "target_doi": "10.1371/journal.pone.0292680",
-      "notice_or_source_doi": "10.1371/journal.pone.0312330",
-      "update_type": "retraction",
-      "outcome_date": "2024-10-14",
-      "crossref": {
-        "title": "Retraction: GIS-statically-based modelling the groundwater quality assessment coupled with soil and terrain attributes data",
-        "type": "journal-article",
-        "publisher": "Public Library of Science (PLoS)",
-        "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1371/journal.pone.0312330"
-      },
-      "pubmed_exact_doi_pmids": [
-        "39401202"
-      ],
-      "pubmed": {
-        "pmid": "39401202",
-        "title": "",
-        "publication_types": [
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "PLoS One. 2023 Nov 30;18(11):e0292680. doi: 10.1371/journal.pone.0292680.",
-            "linked_pmid": "38033022"
-          }
-        ],
-        "pmc_id": "PMC11472931",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC11472931",
-        "jats_available": true,
-        "jats_sha256": "94de6e2ecd140284eb482119c387a51092e2955f1bc0e85d1708400be3c2a04a",
-        "body_char_count": 425,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11472931&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F072",
-      "target_doi": "10.1155/2023/1287325",
-      "notice_or_source_doi": "10.1155/2024/9859620",
-      "update_type": "retraction",
-      "outcome_date": "2024-01-24",
-      "crossref": {
-        "title": "Retracted: Bioinspired Synthesis of Zinc Molybdate Nanoparticles: An Efficient Material for Growth Inhibition of Escherichia coli, Staphylococcus aureus, and Dye Remediation",
-        "type": "journal-article",
-        "publisher": "Wiley",
-        "abstract_present": true,
-        "link_count": 3,
-        "url": "https://doi.org/10.1155/2024/9859620"
-      },
-      "pubmed_exact_doi_pmids": [
-        "38298491"
-      ],
-      "pubmed": {
-        "pmid": "38298491",
-        "title": "Retracted: Bioinspired Synthesis of Zinc Molybdate Nanoparticles: An Efficient Material for Growth Inhibition of Escherichia coli, Staphylococcus aureus, and Dye Remediation.",
-        "publication_types": [
-          "Journal Article",
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Bioinorg Chem Appl. 2023 May 18;2023:1287325. doi: 10.1155/2023/1287325.",
-            "linked_pmid": "38623482"
-          }
-        ],
-        "pmc_id": "PMC10830320",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC10830320",
-        "jats_available": true,
-        "jats_sha256": "e1dba8fd1bed5a878effece5af159598d4ed20eba63b70987c0bf67e4bf5e7ee",
-        "body_char_count": 1501,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10830320&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F073",
-      "target_doi": "10.1080/00223131.2024.2402366",
-      "notice_or_source_doi": "10.1080/00223131.2025.2485652",
-      "update_type": "correction",
-      "outcome_date": "2025-06-17",
-      "crossref": {
-        "title": "Correction",
-        "type": "journal-article",
-        "publisher": "Informa UK Limited",
-        "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1080/00223131.2025.2485652"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
-      "feasibility_id": "F074",
-      "target_doi": "10.1080/23306343.2025.2495492",
-      "notice_or_source_doi": "10.1080/23306343.2025.2517422",
-      "update_type": "correction",
-      "outcome_date": "2025-06-18",
-      "crossref": {
-        "title": "Correction",
-        "type": "journal-article",
-        "publisher": "Informa UK Limited",
-        "abstract_present": false,
-        "link_count": 1,
-        "url": "https://doi.org/10.1080/23306343.2025.2517422"
-      },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
-      "acquisition_errors": [],
-      "issue_adjudication_state": "UNASSESSED",
-      "detector_output_used": false
-    },
-    {
       "feasibility_id": "F075",
-      "target_doi": "10.1002/bsd2.70047",
-      "notice_or_source_doi": "10.1002/bsd2.70073",
+      "target_doi": "10.1038/s41598-021-04096-9",
+      "notice_or_source_doi": "10.1038/s41598-025-89839-8",
       "update_type": "correction",
-      "outcome_date": "2025-02-05",
+      "outcome_date": "2025-04-15",
       "crossref": {
-        "title": "Correction to “Sustainable Consumer Behaviour in the Fast‐Moving Consumer Goods Sector: Moderating Role of Competitive Intensity in Green Marketing”",
+        "title": "Author Correction: O-ring-induced transverse aortic constriction (OTAC) is a new simple method to develop cardiac hypertrophy and heart failure in mice",
         "type": "journal-article",
-        "publisher": "Wiley",
+        "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1002/bsd2.70073"
+        "url": "https://doi.org/10.1038/s41598-025-89839-8"
       },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
-      "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
+      "pubmed_exact_doi_pmids": [
+        "40234484"
+      ],
+      "pubmed": {
+        "pmid": "40234484",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Sci Rep. 2022 Jan 7;12(1):85. doi: 10.1038/s41598-021-04096-9.",
+            "linked_pmid": "34997065"
+          }
+        ],
+        "pmc_id": "PMC12000300",
+        "pmc_id_count": 1
+      },
+      "pmc": {
+        "pmc_id": "PMC12000300",
+        "jats_available": true,
+        "jats_sha256": "ee154cac6696c7667c6251a11e940b5d2a7e29619b9281dcd1ee184582ee4cbe",
+        "body_char_count": 1075,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC12000300&retmode=xml&tool=aris4c011"
+      },
+      "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F076",
-      "target_doi": "10.1007/s10896-024-00797-7",
-      "notice_or_source_doi": "10.1007/s10896-025-00845-w",
+      "target_doi": "10.1007/s00266-024-04631-9",
+      "notice_or_source_doi": "10.1007/s00266-025-04709-y",
       "update_type": "correction",
-      "outcome_date": "2025-02-25",
+      "outcome_date": "2025-02-06",
       "crossref": {
-        "title": "Correction: Experiences of Intimate-Partner Violence and Violence from a Family Member During COVID-19 Among LGBTQ Adults in Australia",
+        "title": "Correction: Versatility of Diagon\\Gel 4Two Implants in Aesthetic and Reconstructive Breast Surgery",
         "type": "journal-article",
         "publisher": "Springer Science and Business Media LLC",
         "abstract_present": false,
         "link_count": 3,
-        "url": "https://doi.org/10.1007/s10896-025-00845-w"
+        "url": "https://doi.org/10.1007/s00266-025-04709-y"
       },
-      "pubmed_exact_doi_pmids": [],
-      "pubmed": null,
+      "pubmed_exact_doi_pmids": [
+        "39915310"
+      ],
+      "pubmed": {
+        "pmid": "39915310",
+        "title": "",
+        "publication_types": [
+          "Published Erratum"
+        ],
+        "comments_corrections": [
+          {
+            "ref_type": "ErratumFor",
+            "ref_source": "Aesthetic Plast Surg. 2025 May;49(9):2467-2475. doi: 10.1007/s00266-024-04631-9.",
+            "linked_pmid": "39715866"
+          }
+        ],
+        "pmc_id": "",
+        "pmc_id_count": 0
+      },
       "pmc": null,
-      "manager_evidence_route": "PUBLISHER_DOI",
+      "manager_evidence_route": "PUBMED",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
     },
     {
       "feasibility_id": "F077",
-      "target_doi": "10.3390/molecules25245875",
-      "notice_or_source_doi": "10.3390/molecules30173542",
+      "target_doi": "10.3390/ijms18040732",
+      "notice_or_source_doi": "10.3390/ijms26010347",
       "update_type": "retraction",
-      "outcome_date": "2025-08-29",
+      "outcome_date": "2025-01-03",
       "crossref": {
-        "title": "RETRACTED: Rahimifard et al. Therapeutic Effects of Gallic Acid in Regulating Senescence and Diabetes; an In Vitro Study. Molecules 2020, 25, 5875",
+        "title": "RETRACTED: Gu et al. Long Coding RNA XIST Contributes to Neuronal Apoptosis through the Downregulation of AKT Phosphorylation and Is Negatively Regulated by miR-494 in Rat Spinal Cord Injury. Int. J. Mol. Sci. 2017, 18, 732",
         "type": "journal-article",
         "publisher": "MDPI AG",
         "abstract_present": true,
         "link_count": 1,
-        "url": "https://doi.org/10.3390/molecules30173542"
+        "url": "https://doi.org/10.3390/ijms26010347"
       },
       "pubmed_exact_doi_pmids": [
-        "40920860"
+        "39796288"
       ],
       "pubmed": {
-        "pmid": "40920860",
-        "title": "RETRACTED: Rahimifard et al. Therapeutic Effects of Gallic Acid in Regulating Senescence and Diabetes; an In Vitro Study. Molecules 2020, 25, 5875.",
+        "pmid": "39796288",
+        "title": "RETRACTED: Gu et al. Long Coding RNA XIST Contributes to Neuronal Apoptosis through the Downregulation of AKT Phosphorylation and Is Negatively Regulated by miR-494 in Rat Spinal Cord Injury. Int. J. Mol. Sci. 2017, 18, 732.",
         "publication_types": [
-          "Journal Article",
           "Retraction Notice"
         ],
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "Molecules. 2020 Dec 11;25(24):E5875. doi: 10.3390/molecules25245875.",
-            "linked_pmid": "33322612"
+            "ref_source": "Int J Mol Sci. 2017 Apr 01;18(4):E732. doi: 10.3390/ijms18040732.",
+            "linked_pmid": "28368292"
           }
         ],
-        "pmc_id": "PMC12416822",
+        "pmc_id": "PMC11719766",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC12416822",
+        "pmc_id": "PMC11719766",
         "jats_available": true,
-        "jats_sha256": "2ed70ac1b8e22a97248f28b36e3a44e3477eefe297a386d1f7cc33737b399fbe",
-        "body_char_count": 1021,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC12416822&retmode=xml&tool=aris4c011"
+        "jats_sha256": "151f34a5f4a8d1c98e85f54afa44c0180afc7d1caa9b43fdf3b914c2ac77576d",
+        "body_char_count": 1176,
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11719766&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -2615,23 +2799,23 @@
     },
     {
       "feasibility_id": "F078",
-      "target_doi": "10.3389/fpsyg.2022.999953",
-      "notice_or_source_doi": "10.3389/fpsyg.2025.1675526",
+      "target_doi": "10.3389/fpsyg.2021.709678",
+      "notice_or_source_doi": "10.3389/fpsyg.2025.1675312",
       "update_type": "retraction",
       "outcome_date": "2025-08-07",
       "crossref": {
-        "title": "Retraction: Does industrial up-gradation, environment regulations, and resource allocation impact on foreign direct investment: empirical evidence from China",
+        "title": "Retraction: Examining the relationship between product market competition and Chinese firms performance: the mediating impact of capital structure and moderating influence of firm size",
         "type": "journal-article",
         "publisher": "Frontiers Media SA",
         "abstract_present": false,
         "link_count": 1,
-        "url": "https://doi.org/10.3389/fpsyg.2025.1675526"
+        "url": "https://doi.org/10.3389/fpsyg.2025.1675312"
       },
       "pubmed_exact_doi_pmids": [
-        "40851604"
+        "40851593"
       ],
       "pubmed": {
-        "pmid": "40851604",
+        "pmid": "40851593",
         "title": "",
         "publication_types": [
           "Journal Article",
@@ -2640,19 +2824,19 @@
         "comments_corrections": [
           {
             "ref_type": "RetractionOf",
-            "ref_source": "Front Psychol. 2022 Oct 24;13:999953. doi: 10.3389/fpsyg.2022.999953.",
-            "linked_pmid": "36353083"
+            "ref_source": "Front Psychol. 2022 May 17;12:709678. doi: 10.3389/fpsyg.2021.709678.",
+            "linked_pmid": "35662855"
           }
         ],
-        "pmc_id": "PMC12368424",
+        "pmc_id": "PMC12368340",
         "pmc_id_count": 1
       },
       "pmc": {
-        "pmc_id": "PMC12368424",
+        "pmc_id": "PMC12368340",
         "jats_available": true,
-        "jats_sha256": "7aa50b8e4a04e78a9e3ed3a0e0270b46ad5a5e8f489a27ba1199b664e76869fc",
+        "jats_sha256": "f6d2267c41319866b3dbeda158552e291a4e9e4fb5bc0fa94df05e35b4681d45",
         "body_char_count": 1125,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC12368424&retmode=xml&tool=aris4c011"
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC12368340&retmode=xml&tool=aris4c011"
       },
       "manager_evidence_route": "PMC_JATS",
       "acquisition_errors": [],
@@ -2661,17 +2845,17 @@
     },
     {
       "feasibility_id": "F079",
-      "target_doi": "10.1016/j.tsep.2025.103276",
-      "notice_or_source_doi": "10.1016/j.tsep.2025.103276",
+      "target_doi": "10.3389/fenrg.2023.1061221",
+      "notice_or_source_doi": "10.3389/fenrg.2025.1764701",
       "update_type": "retraction",
-      "outcome_date": "2025-03-01",
+      "outcome_date": "2025-12-18",
       "crossref": {
-        "title": "RETRACTED: Simulation of infrared radiation images based on wearable device fiber optic temperature sensing in motion training state: Thermal energy image detection",
+        "title": "Retraction: Spatial and temporal effects of China’s digital economy on rural revitalization",
         "type": "journal-article",
-        "publisher": "Elsevier BV",
+        "publisher": "Frontiers Media SA",
         "abstract_present": false,
-        "link_count": 2,
-        "url": "https://doi.org/10.1016/j.tsep.2025.103276"
+        "link_count": 1,
+        "url": "https://doi.org/10.3389/fenrg.2025.1764701"
       },
       "pubmed_exact_doi_pmids": [],
       "pubmed": null,
@@ -2683,45 +2867,22 @@
     },
     {
       "feasibility_id": "F080",
-      "target_doi": "10.3390/toxics10050203",
-      "notice_or_source_doi": "10.3390/toxics13020074",
+      "target_doi": "10.1111/coin.12297",
+      "notice_or_source_doi": "10.1111/coin.70116",
       "update_type": "retraction",
-      "outcome_date": "2022-04-20",
+      "outcome_date": "2025-08-28",
       "crossref": {
-        "title": "RETRACTED: Di Paola et al. Combined Effects of Potassium Perchlorate and a Neonicotinoid on Zebrafish Larvae (Danio rerio). Toxics 2022, 10, 203",
+        "title": "Retraction",
         "type": "journal-article",
-        "publisher": "MDPI AG",
+        "publisher": "Wiley",
         "abstract_present": true,
         "link_count": 1,
-        "url": "https://doi.org/10.3390/toxics13020074"
+        "url": "https://doi.org/10.1111/coin.70116"
       },
-      "pubmed_exact_doi_pmids": [
-        "39846263"
-      ],
-      "pubmed": {
-        "pmid": "39846263",
-        "title": "RETRACTED: Di Paola et al. Combined Effects of Potassium Perchlorate and a Neonicotinoid on Zebrafish Larvae (Danio rerio). Toxics 2022, 10, 203.",
-        "publication_types": [
-          "Retraction Notice"
-        ],
-        "comments_corrections": [
-          {
-            "ref_type": "RetractionOf",
-            "ref_source": "Toxics. 2022 Apr 20;10(5):203. doi: 10.3390/toxics10050203.",
-            "linked_pmid": "35622618"
-          }
-        ],
-        "pmc_id": "PMC11755090",
-        "pmc_id_count": 1
-      },
-      "pmc": {
-        "pmc_id": "PMC11755090",
-        "jats_available": true,
-        "jats_sha256": "92e358765b01bb26d62048c766fef0469554702d766c4d96b2967afbfb1b9824",
-        "body_char_count": 1096,
-        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11755090&retmode=xml&tool=aris4c011"
-      },
-      "manager_evidence_route": "PMC_JATS",
+      "pubmed_exact_doi_pmids": [],
+      "pubmed": null,
+      "pmc": null,
+      "manager_evidence_route": "PUBLISHER_DOI",
       "acquisition_errors": [],
       "issue_adjudication_state": "UNASSESSED",
       "detector_output_used": false
