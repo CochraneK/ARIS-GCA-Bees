@@ -2,6 +2,10 @@ name: ARIS4C006 aggregate field36 repair
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/006-chinese-alphabetical-exposure/process/TRIGGER_REPAIR_AGGREGATE"
 
 permissions:
   actions: read
