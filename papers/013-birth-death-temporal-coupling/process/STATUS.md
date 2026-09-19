@@ -27,6 +27,9 @@
 - [x] Froze the ordinary birthday-effect SESOI at **±1%** (O/E 0.99–1.01), including practical-null equivalence rules.
 - [x] Built a **mechanically gated temporal holdout runner** for raw NUMIDENT.
 - [x] Added a two-step holdout release protocol; the repository default remains locked and CI treats an accidental unlock as failure.
+- [x] Drafted the H3/H4 traditional-calendar feature schema with official-calendar vs Bazi-style boundary conventions kept separate.
+- [x] Added the identifiability rule that free 60/12-level categorical cycles cannot by themselves support traditional semantic claims.
+- [x] Added a **traditional-feature execution gate**; H3/H4 remains mechanically locked until implementation/test-vector/pseudo-control hashes are frozen.
 
 ## Pilot 0A result
 The naive same-month/day observed/expected ratio was 2.6768. This is **not evidence of a birthday or astrological effect** because the source is dominated by low-precision date heaping. Excluding all records with day-of-month 1 reduced the ratio to 1.8250 but did not remove the anomaly, so further precision filtering is required.
@@ -49,7 +52,7 @@ OpenICPSR hosts two death archives, approximately 938 MB each, but its download 
 - **C — Precision audit:** quantify prespecified day 1/4/15 heaping and report exception/source fields before interpreting offset 0.
 - **D — Discovery freeze:** commit discovery results and freeze any justified sensitivity analyses without altering the locked primary specification.
 - **E — Temporal holdout:** after discovery freeze and two-step release authorization, evaluate 1997–2005 exactly once under the fixed ±1% benchmark.
-- **F — Traditional-calendar feature freeze:** only after the ordinary calendar/anniversary model is established.
+- **F — Traditional-calendar feature freeze:** schema drafted and mechanically locked; next freeze step is deterministic conversion code + reference vectors + matched pseudo-system generators.
 - **G — External replication:** seek an independent country/registry.
 
 ## Claim ceiling

@@ -115,3 +115,13 @@ Even if M3 improves prediction:
 **SCHEMA DRAFTED; NOT YET CONFIRMATORY-LOCKED.**
 
 The representation families above can be prepared before Pilot 1, but exact algorithms, boundary conventions, and any directional traditional predictions must be locked before the confirmatory H4 holdout is opened.
+
+## Operational feature freeze
+
+The executable H3/H4 feature families and exclusions are now maintained in:
+
+- TRADITIONAL_FEATURE_FREEZE.md
+- TRADITIONAL_FEATURE_SCHEMA.json
+- TRADITIONAL_FEATURE_SOURCES.md
+
+The schema is intentionally still locked. No H3/H4 outcome code should run until the feature implementation and reference vectors are frozen.

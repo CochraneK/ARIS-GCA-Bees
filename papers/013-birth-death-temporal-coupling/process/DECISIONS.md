@@ -91,3 +91,26 @@ Release requires:
 3. a still-later release-manifest commit referencing both commits.
 
 The holdout runner validates this chain before opening any data archive.
+
+## D017 · Official and Bazi year boundaries stay separate
+
+The official Chinese-calendar Gan-Zhi year and a Bazi-style Gan-Zhi year are separate feature families.
+
+- official cultural-calendar encoding: year changes on the first day of the first Chinese-calendar month;
+- Bazi-style encoding: Li Chun / Spring Commences boundary.
+
+They are never silently substituted for one another.
+
+## D018 · Free categorical cycles are not evidence for traditional semantics
+
+A fully free 60-level Gan-Zhi category model, 12-level zodiac model, or similar categorical model is invariant to relabeling of its categories.
+
+Therefore generic predictive value of such a categorical cycle is evidence only for periodic/cohort structure, not for the traditional semantic labeling.
+
+Confirmatory H4 evidence must use prespecified semantic maps, directional predictions, or relational structures that are not mathematically equivalent under arbitrary relabeling.
+
+## D019 · H3/H4 execution remains mechanically locked
+
+TRADITIONAL_FEATURE_SCHEMA.json remains frozen = false until the conversion implementation, reference test vectors, ambiguity rules, and pseudo-system generators are committed and hashed.
+
+CI treats an accidental early unlock as a failure.
