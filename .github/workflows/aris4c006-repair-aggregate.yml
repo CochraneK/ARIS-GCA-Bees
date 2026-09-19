@@ -119,3 +119,22 @@ jobs:
           path: ${{ env.PAPER_DIR }}/data/repair_aggregate/execution_gate_evaluation.json
           if-no-files-found: error
           retention-days: 30
+
+      - name: Generate candidate prelock promotion files
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/32_promote_prelock_gates.py \
+            --evaluation data/repair_aggregate/execution_gate_evaluation.json \
+            --aggregate-run-id ${{ github.run_id }} \
+            --apply
+
+      - name: Upload candidate prelock promotion files
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-prelock-promotion-candidate
+          path: |
+            ${{ env.PAPER_DIR }}/process/DESIGN_GATES.json
+            ${{ env.PAPER_DIR }}/process/PREREGISTRATION_DRAFT.md
+            ${{ env.PAPER_DIR }}/process/STATUS.md
+          if-no-files-found: error
+          retention-days: 30
