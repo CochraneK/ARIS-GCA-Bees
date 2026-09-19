@@ -2,6 +2,9 @@ name: ARIS4C006 aggregate field36 repair
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["ARIS4C006 field36 repair build"]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -13,6 +16,7 @@ permissions:
 
 jobs:
   aggregate-repair:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -80,10 +84,38 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+      - name: Download identity-risk prevalence artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: CochraneK/ARIS4C
+          run-id: 35421240300
+          name: aris4c006-identity-risk-prevalence
+          path: ${{ env.PAPER_DIR }}/data/repair_aggregate/identity_risk
+
+      - name: Evaluate frozen execution gates
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/28_evaluate_execution_gates.py \
+            --convention-manifest data/repair_aggregate/convention_aggregate/manifest.json \
+            --primary-frame-manifest data/repair_aggregate/primary_frame_aggregate/manifest.json \
+            --identity-manifest data/repair_aggregate/identity_risk/manifest.json \
+            --convention-rolling-csv data/repair_aggregate/convention_aggregate/rolling_exposure_all_fields.csv \
+            --primary-frame-counts-csv data/repair_aggregate/primary_frame_aggregate/field_year_counts_all_fields.csv \
+            --out data/repair_aggregate/execution_gate_evaluation.json
+
       - name: Upload repaired aggregate primary frame
         uses: actions/upload-artifact@v4
         with:
           name: aris4c006-primary-frame-aggregate-repaired
           path: ${{ env.PAPER_DIR }}/data/repair_aggregate/primary_frame_aggregate/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload frozen execution-gate evaluation
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-execution-gate-evaluation-repaired
+          path: ${{ env.PAPER_DIR }}/data/repair_aggregate/execution_gate_evaluation.json
           if-no-files-found: error
           retention-days: 30
