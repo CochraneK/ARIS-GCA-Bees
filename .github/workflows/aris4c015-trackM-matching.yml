@@ -1,0 +1,140 @@
+name: ARIS4C015 Track M Matched Controls
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/015-sleeping-beauty-miner/code/trackM_openalex_matched_controls.py"
+      - ".github/workflows/aris4c015-trackM-matching.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - slug: physics_1980
+            year: 1980
+            field_id: 31
+            field: Physics and Astronomy
+            case_seed: 15150
+            control_seed: 15151
+          - slug: medicine_1980
+            year: 1980
+            field_id: 27
+            field: Medicine
+            case_seed: 27150
+            control_seed: 27151
+          - slug: computer_science_1990
+            year: 1990
+            field_id: 17
+            field: Computer Science
+            case_seed: 17150
+            control_seed: 17151
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build matched-control mechanism pilot
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python trackM_openalex_matched_controls.py \
+            --base-filters "publication_year:${{ matrix.year }},type:article,primary_topic.field.id:${{ matrix.field_id }}" \
+            --field "${{ matrix.field }}" \
+            --case-seed ${{ matrix.case_seed }} \
+            --control-seed ${{ matrix.control_seed }} \
+            --sample-size 50 \
+            --end-year 2025 \
+            --output "../data/trackM_${{ matrix.slug }}.json"
+      - name: Validate mechanism boundary
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads((Path("papers/015-sleeping-beauty-miner/data")/f"trackM_{os.environ['SLUG']}.json").read_text())
+          assert r["track"]=="M_CASE_ENRICHED_MATCHED_CONTROL_PILOT"
+          assert r["case_selection_on_present_day_citations"] is True
+          assert r["control_selection_on_present_day_citations"] is False
+          assert r["prevalence_estimation_allowed"] is False
+          assert r["prospective_performance_allowed"] is False
+          assert r["case_pool_analyzed_n"]>=40
+          assert r["unselected_control_pool_analyzed_n"]>=40
+          print(json.dumps({
+            "slug":os.environ["SLUG"],
+            "robust_case_n":r["robust_case_n"],
+            "forgotten_control_n":r["forgotten_control_n"],
+            "matched_n":r["matched_n"],
+            "match_rate":r["match_rate"],
+            "balance_pass":r["balance"].get("balance_pass"),
+            "ready":r["mechanism_analysis_ready"],
+          },indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-trackM-${{ matrix.slug }}
+          path: papers/015-sleeping-beauty-miner/data/trackM_${{ matrix.slug }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: match
+    if: ${{ always() && needs.match.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c015-trackM-*
+          path: trackM
+          merge-multiple: true
+      - name: Aggregate matching gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rows=[]
+          for p in sorted(Path("trackM").glob("trackM_*.json")):
+              r=json.loads(p.read_text())
+              rows.append({
+                "file":p.name,
+                "robust_case_n":r["robust_case_n"],
+                "forgotten_control_n":r["forgotten_control_n"],
+                "matched_n":r["matched_n"],
+                "match_rate":r["match_rate"],
+                "balance_pass":r["balance"].get("balance_pass"),
+                "ready":r["mechanism_analysis_ready"],
+              })
+          s={
+            "track":"M_CASE_ENRICHED_MATCHED_CONTROL_PILOT",
+            "n_strata":len(rows),
+            "robust_cases":sum(x["robust_case_n"] for x in rows),
+            "matched_cases":sum(x["matched_n"] for x in rows),
+            "analysis_ready_strata":sum(bool(x["ready"]) for x in rows),
+            "prevalence_estimation_allowed":False,
+            "prospective_performance_allowed":False,
+            "strata":rows,
+          }
+          Path("trackM_summary.json").write_text(json.dumps(s,indent=2)+"\n")
+          assert s["n_strata"]==3
+          print(json.dumps(s,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-trackM-summary
+          path: trackM_summary.json
+          if-no-files-found: error
+          retention-days: 30
