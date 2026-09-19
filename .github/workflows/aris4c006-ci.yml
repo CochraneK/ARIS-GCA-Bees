@@ -64,6 +64,7 @@ jobs:
               "LOAO_EXPOSURE_RULE.md",
               "WORK_TYPE_RULE.md",
               "INFERENCE_RULE.md",
+              "LONGITUDINAL_SAMPLING_RULE.md",
           ]
           missing = [x for x in required if not (root / "process" / x).exists()]
           assert not missing, f"missing required process files: {missing}"
@@ -82,6 +83,11 @@ jobs:
           assert analysis_spec["primary_model"]["inference"]["cluster"] == ["canonical_author_id", "work_id", "primary_field_x_year"]
           assert "ChineseNames-mappable" in analysis_spec["primary_frame"]["population"]
           assert analysis_spec["primary_predictor"]["rank_reference"].startswith("entire actual author list")
+          assert analysis_spec["downstream_longitudinal"]["sampling"]["status"] == "frozen_preoutcome"
+          assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["validated_entry_authors"] == 1000
+          assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["final_h3_authors"] == 750
+          assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["entry_years_required"] == 7
+          assert analysis_spec["downstream_longitudinal"]["sampling"]["minimum_structural_adequacy"]["entry_fields_required"] == 20
           assert analysis_spec["confirmatory_outcomes_unlocked"] is False
           if not gates.get("confirmatory_outcomes_unlocked", False):
               assert manifest["status"] not in {"analysis", "manuscript"}, "analysis/manuscript status forbidden while outcome gate is locked"
