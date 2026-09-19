@@ -3,7 +3,7 @@ name: ARIS4C006 aggregate field36 repair
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["ARIS4C006 field36 repair build", "ARIS4C006 field36 chunked fallback"]
+    workflows: ["ARIS4C006 field36 repair build", "ARIS4C006 field36 chunked fallback", "ARIS4C006 field36 hybrid completion"]
     types: [completed]
   push:
     branches: [main]
