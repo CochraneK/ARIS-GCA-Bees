@@ -46,6 +46,30 @@ This result complements the unselected 500-paper mechanism-yield diagnostic (0 r
 
 Successful workflow run: `35407583375`.
 
+## Track M matched-control gate · first empirical pass
+
+A same-field/year matched-control mechanism pilot was completed using:
+- retrospectively outcome-enriched strict SB cases;
+- independently sampled **unselected** control pools;
+- exact field/year matching;
+- prespecified early-attention caliper = 0.15;
+- no control replacement.
+
+Result across three strata:
+- robust SB cases: **13**;
+- Forgotten controls available: **67**;
+- matched SB cases: **1/13**;
+- analysis-ready strata: **0/3**.
+
+By stratum:
+- Computer Science 1990: 6 SB, 23 Forgotten, 0 matched;
+- Medicine 1980: 3 SB, 22 Forgotten, 0 matched;
+- Physics 1980: 4 SB, 22 Forgotten, 1 matched (25%).
+
+Interpretation: the current **50-paper unselected control reservoir per stratum is insufficient under the frozen matching rule**. This is a matching-support failure, not evidence against an SB mechanism. The next step is to enlarge the unselected control reservoir while holding the caliper and matching variables fixed; the gate must not be rescued by outcome-driven relaxation.
+
+Workflow run: `35412163832`.
+
 ## Completed
 
 ### Core agent / engineering
