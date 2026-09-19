@@ -1,0 +1,17 @@
+{
+  "rows": 334,
+  "people": 37,
+  "priority_tiers": {
+    "P1": 135,
+    "P2": 71,
+    "P3": 128
+  },
+  "people_with_P1": 20,
+  "machine_verdicts": {
+    "NONE": 334
+  },
+  "auto_release_rows": 0,
+  "auto_exclusion_rows": 0,
+  "mental_health_information_used": false,
+  "interpretation": "Review ordering only. Scores/signals are not work-authorship decisions and cannot change network release state."
+}
