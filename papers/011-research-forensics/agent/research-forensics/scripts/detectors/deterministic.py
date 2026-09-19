@@ -523,6 +523,41 @@ class TableArithmeticDetector:
                         "prespecified valid range."
                     )
 
+                elif kind == "integer_list_token":
+                    raw_value = record.get("reported_value", "")
+                    token = unicodedata.normalize(
+                        "NFKC", str(raw_value if raw_value is not None else "")
+                    ).strip()
+                    allow_blank = bool(record.get("allow_blank", True))
+                    if not token:
+                        ok = allow_blank
+                        parsed_values = []
+                    else:
+                        ok = bool(re.fullmatch(r"\d+(?:/\d+)*", token))
+                        parsed_values = (
+                            [int(x) for x in token.split("/")]
+                            if ok else []
+                        )
+                    evidence = {
+                        "reported_value": str(raw_value),
+                        "normalized_token": token,
+                        "allow_blank": allow_blank,
+                        "expected_syntax": (
+                            "blank or slash-separated non-negative integer tokens"
+                            if allow_blank
+                            else "slash-separated non-negative integer tokens"
+                        ),
+                        "parsed_integer_values": parsed_values,
+                    }
+                    claim_pass = (
+                        "Displayed token is structurally compatible with the "
+                        "prespecified integer-list field syntax."
+                    )
+                    claim_flag = (
+                        "Displayed token is not structurally compatible with the "
+                        "prespecified integer-list field syntax."
+                    )
+
                 elif kind == "rank_sequence":
                     ranks = sorted(int(x) for x in record["observed_ranks"])
                     expected_start = int(record.get("expected_start", ranks[0]))
