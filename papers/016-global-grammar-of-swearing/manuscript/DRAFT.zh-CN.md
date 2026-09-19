@@ -386,19 +386,49 @@ CONTEXT_REQUIRED，而不是猜测。
 
 ## 8. 音系验证路线
 
-原始数据的 `transcription` 并不是全球统一的 IPA 层。几乎只有
-Cantonese 和 Mandarin 有高覆盖，其他 16 个社区基本为空，因此不能
-直接用这一字段做全球音系检验。
+原始数据的 `transcription` 不能被当作全球统一的 IPA 层：它主要集中在
+中文样本，而且不同语言之间并不是同一种表征。因此，本项目没有直接在
+该字段上做“全球音系比较”，而是另建 pronunciation layer。
 
-后续将构造独立 pronunciation layer：
+这一层已经从“计划”推进到实际执行。我们对 Study 1 的全部 8,190 行
+跑了一次完整技术路线：
 
-- 语言特定 G2P / Epitran；
-- PHOIBLE 用于 inventory / feature 标准化；
-- 母语/来源语言抽样验证；
-- 明确记录 slang、错拼、code-switching 与 multiword 的失败率。
+- Epitran 版本：1.35.2；
+- English：`eng-Latn` + 按 Epitran 官方说明从 Flite 源码编译的
+  `lex_lookup`；
+- 冻结 Flite commit：
+  `6c9f20dc915b17f5619340069889db0aa007fcdc`；
+- Cantonese：使用原研究已有 romanization → `yue-Latn`；
+- Mandarin：使用原研究已有 romanization → `cmn-Latn`；
+- 其余语言：language/script-specific Epitran route。
 
-首要 confirmatory phonology test 是复现 Lev-Ari 与 McKay 的
-approximant hypothesis。其他音类只做探索，除非另行 preregister。
+结果为：
+
+- 技术成功：**8,187 / 8,190 = 99.9634%**；
+- 2 个 Singapore English 行返回空/非字母输出；
+- 1 个 Mandarin 行缺少 source transcription；
+- 全路由审计中没有 backend exception。
+
+这个结果说明：**13 种语言在工程上都已经有可执行的 pronunciation
+路线**。但它绝不等于“99.9634% 的发音是正确的”。
+
+真正需要继续验证的是：
+
+- slang 与创造性拼写；
+- borrowings / code-switching；
+- multiword expressions；
+- English 方言差异；
+- 法语等正字法歧义；
+- 中文 romanization 的分词/音调表示；
+- 自动 IPA 中异常 segment。
+
+因此，下一关已经从“有没有 G2P 工具”变成：
+**stratified native/source-language pronunciation-validity audit**。
+
+首要 confirmatory phonology test 仍然是复现 Lev-Ari 与 McKay 的
+approximant hypothesis，而不是把这一假说当作 016 的新发现。在完成
+发音有效性审计、segment normalization、matched neutral controls 和
+confirmatory freeze 之前，不进入强音系结论。
 
 ---
 
@@ -472,7 +502,7 @@ label，第三个站点大量留空，那么直接比较 category proportions �
 - family diversity 有限；
 - 原始 flat taxonomy 无法恢复大量 insult/slur 行的 semantic source；
 - filler negative control 稀疏且不是专门匹配设计；
-- phonology 仍需新建统一 pronunciation layer。
+- pronunciation layer 已在技术上跑通，但仍缺独立/母语层面的发音有效性审计。
 
 ---
 
@@ -484,7 +514,7 @@ label，第三个站点大量留空，那么直接比较 category proportions �
 4. 生成第一版 measurement-corrected semantic fingerprints；
 5. 运行 ontology-domain × community repeated-item 模型；
 6. 构建 purpose-built matched taboo/neutral control；
-7. 完成 G2P/IPA approximant replication；
+7. 先完成分层 pronunciation-validity audit，再进行 G2P/IPA approximant replication；
 8. 冻结确认性假设；
 9. 设计 crossed language × country 扩展样本。
 
