@@ -4,14 +4,14 @@
   "title": "Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification",
   "short_title": "Universal Concept Identification",
   "year": 2026,
-  "status": "human-calibration-ready",
+  "status": "human-calibration-ready-p2-p3-p6",
   "domain": "information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition",
-  "summary": "A formal and empirical research program asking what semantic structure is necessary to identify arbitrary human-representable concepts under finite query budgets, how much natural semantic questions cost relative to unrestricted information-theoretic queries, and where identification fails for vague, contextual, empty, contradictory, self-referential, undecidable, or ineffable targets.",
+  "summary": "A formal and empirical research program measuring the query cost imposed by semantic admissibility across heterogeneous concept regimes, with source-locked lexical calibration and a three-protocol human design (P2 binary, P3 coarse MAYBE, P6 fine-grained semantic states) that isolates whether semantic state distinctions add value beyond a generic non-binary escape response.",
   "authors": [
     "Cochrane Kang"
   ],
   "aris": {
-    "provenance": "ARIS4C guided design; live prior-art audit; Pilots 0–2; pinned OEWN 2025 Calibration60; mixed P6 calibration; balanced P2/P6 human forms; all current engineering gates verified in GitHub Actions through run 43",
+    "provenance": "ARIS4C guided design; live prior-art audit through 2026; Pilots 0–2; pinned OEWN 2025 Calibration60; mixed response-state calibration; balanced P2/P3/P6 human forms; engineering chain verified through CI run 61; protocol power-sensitivity verified through run 62",
     "version": "v0.4.26",
     "commit": ""
   },
