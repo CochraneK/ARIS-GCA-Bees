@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/aris4c006-analysis-r-syntax.yml"
       - "papers/006-chinese-alphabetical-exposure/code/30_confirmatory_h1_h2.R"
+      - "papers/006-chinese-alphabetical-exposure/code/37_confirmatory_h3.R"
+      - "papers/006-chinese-alphabetical-exposure/code/38_secondary_holm.R"
   pull_request:
     paths:
       - "papers/006-chinese-alphabetical-exposure/code/30_confirmatory_h1_h2.R"
