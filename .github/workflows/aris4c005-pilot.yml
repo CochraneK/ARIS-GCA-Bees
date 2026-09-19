@@ -8,6 +8,8 @@ on:
       - "papers/005-hidden-burden-bad-science/code/build_universe.py"
       - "papers/005-hidden-burden-bad-science/code/classify_retractions.py"
       - "papers/005-hidden-burden-bad-science/code/summarize_retractions.py"
+      - "papers/005-hidden-burden-bad-science/code/build_calibration_candidates.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_build_calibration_candidates.py"
   workflow_dispatch:
 
 permissions:
@@ -70,6 +72,10 @@ jobs:
           python "$PAPER_DIR/code/summarize_retractions.py" \
             "$RUNNER_TEMP/rw/retraction_watch_classified.csv" \
             "$PAPER_DIR/data/pilot/retraction_watch_snapshot_summary.json"
+          python "$PAPER_DIR/code/build_calibration_candidates.py" \
+            "$RUNNER_TEMP/rw/retraction_watch_classified.csv" \
+            "$RUNNER_TEMP/rw/calibration_candidates_private.csv" \
+            "$PAPER_DIR/data/pilot/ai_calibration_candidate_summary.json"
 
       - name: Add Retraction Watch snapshot provenance
         shell: bash
@@ -107,13 +113,15 @@ jobs:
               'warnings': [
                   'Retraction Watch records are detected correction events, not underlying prevalence.',
                   'Automatic exposure flags are screening variables; ambiguous records require manual adjudication.',
-                  'OpenAlex counts are versioned metadata counts under the documented article+review/core definition.'
+                  'OpenAlex counts are versioned metadata counts under the documented article+review/core definition.',
+                  'Calibration candidate rows remain private/ephemeral; only aggregate queue counts are committed or uploaded.'
               ]
           }
           for rel in [
               'data/pilot/openalex_universe_counts.csv',
               'data/pilot/openalex_universe_provenance.json',
               'data/pilot/retraction_watch_snapshot_summary.json',
+              'data/pilot/ai_calibration_candidate_summary.json',
           ]:
               p = paper / rel
               manifest['outputs'][rel] = {'exists': p.exists(), 'bytes': p.stat().st_size if p.exists() else None}
@@ -135,6 +143,7 @@ jobs:
             "$PAPER_DIR/data/pilot/openalex_universe_counts.csv" \
             "$PAPER_DIR/data/pilot/openalex_universe_provenance.json" \
             "$PAPER_DIR/data/pilot/retraction_watch_snapshot_summary.json" \
+            "$PAPER_DIR/data/pilot/ai_calibration_candidate_summary.json" \
             "$PAPER_DIR/data/pilot/pilot_a_manifest.json"
           if git diff --cached --quiet; then
             echo "No Pilot A output changes to commit."
@@ -153,6 +162,7 @@ jobs:
             ${{ env.PAPER_DIR }}/data/pilot/openalex_universe_counts.csv
             ${{ env.PAPER_DIR }}/data/pilot/openalex_universe_provenance.json
             ${{ env.PAPER_DIR }}/data/pilot/retraction_watch_snapshot_summary.json
+            ${{ env.PAPER_DIR }}/data/pilot/ai_calibration_candidate_summary.json
             ${{ env.PAPER_DIR }}/data/pilot/pilot_a_manifest.json
           if-no-files-found: warn
           retention-days: 30
