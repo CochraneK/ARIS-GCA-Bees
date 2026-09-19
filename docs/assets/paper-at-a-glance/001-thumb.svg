@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="96" viewBox="0 0 260 96" role="img" aria-label="001 Bee cognition paper at a glance">
+<rect width="260" height="96" rx="14" fill="#f8fbff"/>
+<rect x="1" y="1" width="258" height="94" rx="13" fill="none" stroke="#d9e6f5"/>
+<text x="14" y="23" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#0f5fbf">001</text>
+<text x="52" y="23" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#18324a">Bee cognition</text>
+<g font-family="Arial,sans-serif" font-size="10.5">
+  <rect x="12" y="35" width="72" height="45" rx="9" fill="#eaf4ff"/>
+  <text x="20" y="52" font-weight="700" fill="#1d4f91">Learning</text>
+  <text x="20" y="67" fill="#305b7d">structure ✓</text>
+  <rect x="94" y="35" width="72" height="45" rx="9" fill="#f4edff"/>
+  <text x="102" y="52" font-weight="700" fill="#6937a6">Boundary</text>
+  <text x="102" y="67" fill="#604c75">GCA ≠ uncertainty</text>
+  <rect x="176" y="35" width="72" height="45" rx="9" fill="#fff3e4"/>
+  <text x="184" y="52" font-weight="700" fill="#9a5b0a">Next test</text>
+  <text x="184" y="67" fill="#775b36">same bee → both</text>
+</g>
+</svg>
