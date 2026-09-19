@@ -1,0 +1,20 @@
+{
+  "classification": "SB1_LANDMARK_DATASET_NOT_CAUSAL_SUPPRESSION",
+  "papers_total": 200,
+  "papers_eligible_for_horizon": 200,
+  "landmark_age": 5,
+  "horizon_years": 10,
+  "observation_end_year_override": 2025,
+  "eligible_outcomes": {
+    "awakening_after_landmark_within_horizon": 56,
+    "late_peak_after_landmark_within_horizon": 74
+  },
+  "feature_boundary": "All feature_* columns use annual citations only through landmark age.",
+  "outcome_boundary": "Full-history Beauty Coefficient, awakening age and peak age are outcomes only.",
+  "warnings": [
+    "The binary awakening/late-peak outcomes are engineering targets, not universal Sleeping Beauty labels.",
+    "No natural Beauty Coefficient cutoff is imposed.",
+    "Papers without follow-up through landmark+horizon are censored and have blank binary outcomes.",
+    "Semantic/network predictors must later be frozen at the same landmark date to avoid future leakage."
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "classification": "MATURE_RANDOM_DELAYED_RECOGNITION_PILOT_NOT_LOST_DISCOVERY_COUNT",
-  "generated_at_utc": "2026-09-18T06:35:57.697915+00:00",
+  "generated_at_utc": "2026-09-19T04:25:48.746779+00:00",
   "sampling": {
     "database": "OpenAlex",
     "corpus": "core",
@@ -20,29 +20,29 @@
   },
   "citation_history_method": "live incoming-citation works grouped by publication_year for each source; nested Work counts_by_year is not used",
   "domain_counts": {
-    "Physical Sciences": 72,
-    "Life Sciences": 35,
-    "Health Sciences": 51,
-    "Social Sciences": 41,
+    "Physical Sciences": 69,
+    "Life Sciences": 36,
+    "Health Sciences": 52,
+    "Social Sciences": 42,
     "missing": 1
   },
   "beauty_coefficient": {
     "min": -6.777562724603118,
-    "q25": 0.6972222222222221,
-    "median": 2.9999999999999996,
-    "q75": 9.705357142857142,
-    "q90": 20.07513784461153,
-    "q95": 28.14999999999995,
-    "q99": 65.37577665130551,
+    "q25": 0.5,
+    "median": 2.5,
+    "q75": 9.098000841750842,
+    "q90": 18.443025210084024,
+    "q95": 26.779166666666654,
+    "q99": 60.06449159084637,
     "max": 85.0
   },
   "peak_citation_age": {
     "median": 6.0,
-    "q90": 21.0,
+    "q90": 20.099999999999994,
     "max": 33.0
   },
   "awakening_age": {
-    "median": 5.0,
+    "median": 4.5,
     "q90": 17.0,
     "max": 31.0
   },
