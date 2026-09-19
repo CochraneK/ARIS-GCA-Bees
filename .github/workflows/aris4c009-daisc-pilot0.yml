@@ -6,6 +6,7 @@ on:
     paths:
       - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_structure.py'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_episode_inventory.py'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_DATA_OPTIONS.md'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_RUNBOOK_009A1.md'
       - '.github/workflows/aris4c009-daisc-pilot0.yml'
@@ -51,7 +52,7 @@ jobs:
             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
 
-      - name: Classify canonical transcript structures
+      - name: Classify transcript structures
         shell: bash
         run: |
           python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_structure.py \
@@ -59,7 +60,15 @@ jobs:
             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
 
-      - name: Assert no raw transcript files were staged
+      - name: Build episode inventory
+        shell: bash
+        run: |
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_episode_inventory.py \
+            --root "$RUNNER_TEMP/daisc" \
+            --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json \
+            --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
+
+      - name: Assert only aggregate outputs are staged
         shell: bash
         run: |
           set -euo pipefail
@@ -67,12 +76,14 @@ jobs:
             papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
             papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md \
             papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
-            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
+            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md \
+            papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json \
+            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
 
           staged="$(git diff --cached --name-only)"
           echo "$staged"
           unexpected="$(echo "$staged" | grep -Ev \
-            '(^|/)(pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md|pilot0_daisc_structure\.json|PILOT0_DAISC_STRUCTURE\.md)$' || true)"
+            '(^|/)(pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md|pilot0_daisc_structure\.json|PILOT0_DAISC_STRUCTURE\.md|pilot0_daisc_episodes\.json|PILOT0_DAISC_EPISODES\.md)$' || true)"
           if [ -n "$unexpected" ]; then
             echo "Unexpected file staged; refusing to publish:" >&2
             echo "$unexpected" >&2
@@ -90,6 +101,8 @@ jobs:
           cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md "$RUNNER_TEMP/inventory.md"
           cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json "$RUNNER_TEMP/structure.json"
           cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md "$RUNNER_TEMP/structure.md"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json "$RUNNER_TEMP/episodes.json"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md "$RUNNER_TEMP/episodes.md"
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -101,24 +114,26 @@ jobs:
             cp "$RUNNER_TEMP/inventory.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
             cp "$RUNNER_TEMP/structure.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json
             cp "$RUNNER_TEMP/structure.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
+            cp "$RUNNER_TEMP/episodes.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json
+            cp "$RUNNER_TEMP/episodes.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
 
             git add \
               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
               papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md \
               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
-              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
+              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md \
+              papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json \
+              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
 
             if git diff --cached --quiet; then
               echo "Aggregate outputs already current."
               exit 0
             fi
 
-            git commit -m "data: record ARIS4C009 DAIS-C aggregate structure"
-
+            git commit -m "data: record ARIS4C009 DAIS-C episode inventory"
             if git push origin HEAD:main; then
               exit 0
             fi
-
             echo "Concurrent main update; retrying on newest main."
           done
 

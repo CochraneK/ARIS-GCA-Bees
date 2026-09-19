@@ -1,6 +1,6 @@
 # ARIS4C009 · Status
 
-**Current stage:** design hardened / pilot-gated  
+**Current stage:** empirical Pilot-0 / rater-gated  
 **ARIS baseline:** v0.4.26  
 **Canonical scope:** quantify acquisition and encoding divergence separately before mechanistic expansion.
 
@@ -18,87 +18,108 @@
 - [x] Power/precision sensitivity framework added.
 - [x] Adversarial audit completed and fatal-design confounds corrected.
 - [x] Expanded Gate A novelty review completed; broad novelty claims retired.
-- [x] PNDI, clinical summarization and intended-use validity incorporated as prior art.
 - [x] 009A1 preregistration-ready protocol skeleton revised.
-- [x] 009A2 matched-content + native-instrument acquisition protocol drafted.
-- [x] Counterbalanced order / first-method estimands specified for 009A2.
-- [x] Physical-context constraint layer specified separately from phenomenological fidelity.
-- [x] Public paper metadata moved to pilot-gated.
+- [x] 009A2 acquisition protocol drafted.
+- [x] Physical-context constraint layer specified separately.
+- [x] DAIS-C selected as open real-clinical Pilot-0 engineering corpus.
+- [x] Official DAIS-C archive downloaded successfully in GitHub Actions.
+- [x] Raw psychiatric transcript publication blocked by an allowlist privacy gate.
+- [x] Archive SHA-256 and aggregate structural inventory recorded.
+- [x] TXT/RTF/DOCX transcript representations structurally classified.
+- [x] 28 unique full-interaction transcript files recovered in the public archive layer.
+- [x] Full-interaction participant-word scale cross-checked against speaker-only representation.
+- [x] Privacy-preserving candidate-episode parser implemented.
 
 ## Gate A — novelty
 
 **Status:** conditional pass for research development.
 
-The defensible candidate contribution is the integrated experimental architecture, not phenomenology, computational phenomenology, narrative loss or fidelity individually.
+The defensible candidate contribution is the integrated acquisition/encoding benchmark architecture, not any single component.
 
-Before submission, complete formal searches in MEDLINE, PsycINFO, Scopus/Web of Science and a phenomenology/philosophy index, plus citation chaining.
+Formal manuscript-stage multi-database screening remains required.
 
-## Gate B — 009A1 fidelity calibration
+## Gate B — 009A1 source engineering
 
-**Status:** design complete; empirical calibration required.
+**Status:** passed for Pilot-0 engineering.
 
-Need pilot estimates of:
+DAIS-C is adequate for:
+
+- parser testing;
+- source provenance;
+- episode-boundary calibration;
+- query-bank feasibility;
+- relation-graph feasibility;
+- R3P/R4P projection feasibility;
+- evaluator-blinding workflow.
+
+DAIS-C is **not** treated as an EASE/EAWE/STEP corpus.
+
+## Gate C — episode-boundary validation
+
+**Status:** next blocker.
+
+The machine parser defines a candidate episode as:
+
+> one interviewer block + all immediately following participant blocks until the next interviewer block.
+
+Before semantic fidelity scoring:
+
+1. sample calibration episodes;
+2. two trained raters judge split/merge/reject;
+3. quantify boundary agreement/error;
+4. revise if needed;
+5. freeze parser rule.
+
+## Gate D — source/query/relation calibration
+
+After episode boundaries are frozen, estimate:
 
 - source answerability;
 - query redundancy;
 - adjudication agreement;
+- relation-annotation reliability;
+- usable query yield;
 - evaluator variance;
-- usable queries per episode;
-- R3P/R4P projection feasibility;
-- participant meaning-check feasibility.
+- R3P/R4P projection feasibility.
 
-## Gate C — 009A1 pilot material
-
-**Status:** primary blocker.
-
-Need independent, ethically usable, sufficiently rich source episodes plus trained/adjudicating raters.
-
-## Gate D — 009A1 reliability
-
-Freeze thresholds after calibration and before confirmatory scoring.
-
-## Gate E — 009A1 confirmatory benchmark
+## Gate E — 009A1 confirmatory representation benchmark
 
 Minimum conditions:
 
 - R0 rich source;
 - R1 episode graph;
-- R2 phenomenological code;
+- R2 phenomenology-informed structured code;
 - R3P questionnaire-format projection;
-- R4P symptom-code projection.
+- R4P conventional symptom-code projection.
 
-## Gate F — 009A2 acquisition pilot
+For DAIS-C, R2 is explicitly **R2-lite**, not an EASE score.
 
-**Status:** protocol drafted; data/ethics not started.
+## Gate F — richer psychosis Pilot-1
 
-Primary acquisition experiment:
+**Preferred target:** AMP-SCZ under approved NIMH Data Archive access.
 
-- M1 self-administered matched content;
-- M2 fully structured matched-content interview;
-- M3 phenomenological semi-structured interview;
-- six counterbalanced orders;
-- randomized first-method estimand;
-- full crossover method/order analysis.
+Rationale:
 
-Native-instrument/EMA comparison is secondary A2b.
+- PSYCHS;
+- open-ended interview language samples;
+- transcript-level psychosis-risk material;
+- multimodal clinical/contextual data.
 
-## Gate G — multimodal/mechanistic extension
+Pilot-1 is where direct psychosis-risk measurement claims should be tested.
+
+## Gate G — 009A2 acquisition pilot
+
+Purpose-collected randomized matched-content acquisition study remains separate and requires ethics/data collection.
+
+## Gate H — multimodal/mechanistic extension
 
 Deferred until measurement layers survive.
 
-Candidate later additions:
+## Current blocker
 
-- EMA dynamics;
-- passive contextual anchors;
-- EEG/fMRI/physiology;
-- computational model competition;
-- intervention perturbation.
+The project now has real Pilot-0 data.
 
-## Current main blocker
-
-More conceptual expansion is now lower value than obtaining **pilot source material and independent raters**.
-
-009A1 can proceed before 009A2 because it can use existing ethically permissible records.
+The next high-value input is **independent human boundary/adjudication work**, not more conceptual expansion.
 
 ## Scope control
 
