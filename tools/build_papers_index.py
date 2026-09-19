@@ -219,15 +219,8 @@ def showcase_card(p: dict, dashboard: dict) -> str:
 def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     projects = dashboard.get("projects", {})
 
-    # Public command center is an execution surface, not an archive:
-    # hide untouched (0%) and completed (100%) projects while keeping the
-    # canonical dashboard unchanged for scheduling/audit/history.
-    papers = [
-        p for p in papers
-        if 0 < int(projects.get(str(p.get("id")), {}).get("progress", 0)) < 100
-    ]
-    visible_ids = {str(p.get("id")) for p in papers}
-
+    # The command center itself remains a complete portfolio surface.
+    # Visibility filtering belongs ONLY to today's progress chart.
     cards = "\n".join(card(p, dashboard) for p in papers)
     showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
@@ -237,24 +230,51 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     wait = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "wait")
     block = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "block")
     mature = sum(1 for v in progresses if v >= 45)
+
+    # Today's curve intentionally excludes:
+    #   1) projects whose CURRENT activity is Finish;
+    #   2) projects whose progress percentage did not change at any checkpoint today.
+    # All of those projects remain visible everywhere else in the command center.
     day_history = latest_day_history(history)
+    finish_ids = {
+        str(pid)
+        for pid, meta in projects.items()
+        if str(meta.get("activity", "")).lower() == "finish"
+    }
+    daily_values: dict[str, list[int]] = {}
+    for point in day_history.get("points", []):
+        for pid, value in (point.get("projects", {}) or {}).items():
+            if pid in finish_ids:
+                continue
+            try:
+                numeric = int(value)
+            except (TypeError, ValueError):
+                continue
+            daily_values.setdefault(str(pid), []).append(numeric)
+    changed_today_ids = {
+        pid
+        for pid, values in daily_values.items()
+        if len(values) >= 2 and len(set(values)) > 1
+    }
     day_history["points"] = [
         {
             **point,
             "projects": {
-                pid: value
+                str(pid): value
                 for pid, value in (point.get("projects", {}) or {}).items()
-                if pid in visible_ids and 0 < int(value) < 100
+                if str(pid) in changed_today_ids
             },
         }
         for point in day_history.get("points", [])
     ]
+    day_history["chart_project_ids"] = sorted(changed_today_ids)
+    day_history["chart_rule"] = "hide_finish_and_no_progress_today"
     history_json = json.dumps(day_history, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     css_version = asset_version(OUT.parent / "command-center.css")
     js_version = asset_version(OUT.parent / "command-center.js")
     history_summary = (
         f"{day_history.get('date') or 'Today'} · {len(day_history.get('points', []))} checkpoints · "
-        f"{len(papers)} papers on one chart"
+        f"{len(changed_today_ids)} changed-today papers"
     )
 
     return f"""<!doctype html>
@@ -274,6 +294,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
       <div class="identity"><span class="avatar">A4</span><div class="identity-copy"><strong>ARIS4C</strong><span>Research command center</span></div></div>
       <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">{len(papers)}</span></button>
+        <button class="nav-item" type="button" data-filter="finish" data-label="Finish"><span class="nav-icon">✓</span><span>Finish</span><span id="navFinishCount" class="nav-count">{finish}</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">{active}</span></button>
         <button class="nav-item" type="button" data-filter="wait" data-label="Wait"><span class="nav-icon">◇</span><span>Wait</span><span id="navWaitCount" class="nav-count">{wait}</span></button>
         <button class="nav-item" type="button" data-filter="block" data-label="Block"><span class="nav-icon">×</span><span>Block</span><span id="navBlockCount" class="nav-count">{block}</span></button>
@@ -281,6 +302,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
+          <div class="legend-row"><i class="dot finish"></i><span>Final/output contract complete</span></div>
           <div class="legend-row"><i class="dot active"></i><span>Meaningful work is moving now</span></div>
           <div class="legend-row"><i class="dot wait"></i><span>Can continue, but not moving now</span></div>
           <div class="legend-row"><i class="dot block"></i><span>External dependency prevents progress</span></div>
@@ -309,13 +331,14 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
           <div class="hero-main">
             <p class="eyebrow">ARIS4C · RESEARCH BRIDGE</p>
             <h1>Research as a living system.</h1>
-            <p class="hero-copy">A portfolio of ARIS-driven papers and agents currently in motion: moving now, ready but idle, or externally blocked. Untouched and 100% completed projects stay in Git but are intentionally omitted here.</p>
+            <p class="hero-copy">A portfolio of ARIS-driven papers and agents with visible maturity and live execution state: finished, moving now, ready but idle, or externally blocked. The progress curve is intentionally quieter and shows only papers that actually moved today.</p>
             <div class="overview">
+              <div class="metric"><strong>{finish}</strong><span>finish</span></div>
               <div class="metric"><strong>{active}</strong><span>active now</span></div>
               <div class="metric"><strong>{wait}</strong><span>wait</span></div>
               <div class="metric"><strong>{block}</strong><span>block</span></div>
             </div>
-            <div class="portfolio-progress"><div class="row"><span>{len(papers)} in-progress papers · {active} active now · {wait} wait · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
+            <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {wait} wait · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
           </div>
 
           <section id="progressHistorySection" class="progress-history-panel hero-history" aria-labelledby="progressHistoryTitle">
@@ -323,7 +346,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
               <div>
                 <p class="eyebrow">TODAY · GIT-DERIVED</p>
                 <h2 id="progressHistoryTitle">Today's progress</h2>
-                <p>In-progress papers only · today's dashboard checkpoints.</p>
+                <p>Only papers whose progress changed today · Finish is hidden from this curve only.</p>
               </div>
               <strong class="progress-history-day">{esc(day_history.get("date", ""))}</strong>
             </div>
@@ -348,7 +371,7 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
             <div>
               <p class="eyebrow">LIVE RESEARCH SHOWCASE</p>
               <h2 id="showcaseTitle">ARIS4C rolling research board</h2>
-              <p>All in-progress papers, continuously rotating. Hover, focus, drag or use the arrows to pause and explore.</p>
+              <p>All current papers, continuously rotating. Hover, focus, drag or use the arrows to pause and explore.</p>
             </div>
             <div class="showcase-controls" aria-label="Showcase controls">
               <button id="showcasePrev" class="showcase-arrow" type="button" aria-label="Previous projects">←</button>
