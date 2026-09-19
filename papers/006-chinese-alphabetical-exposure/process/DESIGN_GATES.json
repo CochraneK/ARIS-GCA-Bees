@@ -134,5 +134,10 @@
       "note": "Outcome-blind audit: 120/120 candidate authors passed hard identity QA; 0 hard exclusions; low-risk subset=91; ORCID-anchored subset=92. R1-R6 prevalence reported without persistence or effect estimation."
     }
   },
-  "hard_rule": "Do not run or inspect focal surname-rank × exposure career-effect estimates until confirmatory_outcomes_unlocked is explicitly set true after preregistration freeze."
+  "hard_rule": "Do not estimate or inspect H1/H2/H3 until PREREGISTRATION_LOCK.json exists, every locked-file SHA still matches, and a separate valid process/CONFIRMATORY_UNLOCK.json explicitly references that lock. Locked design files themselves are never edited merely to unlock.",
+  "unlock_protocol": {
+    "status": "frozen-preoutcome",
+    "evidence": "process/UNLOCK_PROTOCOL.md",
+    "note": "Locked DESIGN_GATES/ANALYSIS_SPEC booleans remain false after preregistration. Confirmatory execution is enabled only by a separate CONFIRMATORY_UNLOCK.json pointing to the committed preregistration lock SHA after byte-for-byte locked-file verification."
+  }
 }
