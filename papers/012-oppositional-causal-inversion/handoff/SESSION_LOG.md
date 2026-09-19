@@ -54,3 +54,15 @@ Append substantial execution sessions in chronological order.
 - Froze a deterministic 30-record validation sample with 5 records in each of six strata and zero Pilot 0B overlap.
 - Added a reproducible draw script, manifest, freeze contract, and audit note.
 - Next bounded unit is to materialize identical blind evidence packets and hash them before independent A2/B2 coding.
+
+## 2026-09-19 · Final blind bundle and independent-coder gate
+
+- Built and unit-tested the v2 blind-packet materializer, exact-token coder completion freezer, v2 reliability scorer, and GitHub Actions guards.
+- Debugged the live packet workflow without changing scientific design: added compatibility with the frozen `record_id` response template and corrected newline serialization; the blind-packet workflow then passed.
+- First immutable packet contained 24 abstract excerpts and 6 bibliographic-only records, so independent coding was correctly kept locked.
+- Amendment 01 tried public landing-page record metadata for the six missing slots and recovered 0/6; this negative acquisition result was persisted rather than hidden.
+- Froze Amendment 02 before any new coding: same stratum, same original fixed-seed/FNV hash order, first candidate with materializable record-level evidence, no label/outcome inspection.
+- Amendment 02 deterministically replaced V215, V216, V219, V224, V225 and V227 and produced 30/30 abstract excerpts.
+- Final A2/B2 evidence/form inputs are byte-identical under bundle SHA-256 `9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51`.
+- Added an independence guard: partial completed A2/B2 state on `main` fails CI; scoring occurs only after both completed files and both completion freezes exist.
+- No genuinely independent second coder surface is available in the current controller context, so ARIS4C012 now blocks at the independent A2/B2 gate rather than fabricating independence.
