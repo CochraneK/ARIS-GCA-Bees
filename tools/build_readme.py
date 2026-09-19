@@ -82,7 +82,8 @@ def paper_rows(rows: list[dict], zh: bool = False) -> str:
         visual = r.get("one_page_visual", "")
         if visual:
             alt = ("一图读懂 " if zh else "One-page visual ") + r["id"]
-            visual_cell = f'<a href="{visual}"><img src="{visual}" height="40" alt="{alt}"></a>'
+            visual_href = "./" + visual.lstrip("./")
+            visual_cell = f'<a href="{visual_href}"><img src="{visual_href}" height="40" alt="{alt}"></a>'
         else:
             visual_cell = "—"
         lines.append(
