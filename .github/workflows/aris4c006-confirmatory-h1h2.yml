@@ -49,9 +49,9 @@ jobs:
         run: |
           mkdir -p data/confirmatory/h1h2
           python code/29_build_confirmatory_loao_frame.py \
-            --focal-rows "../../../frozen/frame/primary_focal_rows_all_fields.csv" \
-            --rolling-exposure "../../../frozen/convention/rolling_exposure_all_fields.csv" \
-            --convention-contributions "../../../frozen/convention/convention_work_contributions_all_fields.csv" \
+            --focal-rows "../../frozen/frame/primary_focal_rows_all_fields.csv" \
+            --rolling-exposure "../../frozen/convention/rolling_exposure_all_fields.csv" \
+            --convention-contributions "../../frozen/convention/convention_work_contributions_all_fields.csv" \
             --out data/confirmatory/h1h2/loao_frame.csv \
             --manifest data/confirmatory/h1h2/loao_frame_manifest.json
 
