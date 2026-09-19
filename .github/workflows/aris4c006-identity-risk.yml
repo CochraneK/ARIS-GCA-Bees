@@ -1,0 +1,55 @@
+name: ARIS4C006 identity-risk prevalence audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c006-identity-risk.yml"
+      - "papers/006-chinese-alphabetical-exposure/code/26_identity_risk_prevalence.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identity-risk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PAPER_DIR: papers/006-chinese-alphabetical-exposure
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download frozen surname inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$PAPER_DIR/data/raw"
+          curl -L --fail --retry 5 --retry-delay 2 \
+            "https://raw.githubusercontent.com/robertostling/chinese-names/main/src/chinese_names/data/familyname.csv" \
+            -o "$PAPER_DIR/data/raw/familyname.csv"
+          curl -L --fail --retry 5 --retry-delay 2 \
+            "https://raw.githubusercontent.com/jaaack-wang/ccnc/a14520b9cc8bd6b251aeb4a7453ab1a45f23aa15/Ch-Last-Names-Dict/ChineseLastNamesNoTones.json" \
+            -o "$PAPER_DIR/data/raw/ccnc_lastnames.json"
+      - name: Run outcome-blind identity-risk prevalence audit
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          python code/26_identity_risk_prevalence.py \
+            --familyname-csv data/raw/familyname.csv \
+            --ccnc-json data/raw/ccnc_lastnames.json \
+            --seed-works-per-year 15 \
+            --max-authors 180 \
+            --outdir data/pilot/identity_risk
+      - name: Remove raw surname inputs
+        if: always()
+        working-directory: ${{ env.PAPER_DIR }}
+        run: rm -rf data/raw
+      - name: Upload aggregate-only identity-risk artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c006-identity-risk-prevalence
+          path: ${{ env.PAPER_DIR }}/data/pilot/identity_risk/manifest.json
+          if-no-files-found: error
+          retention-days: 30
