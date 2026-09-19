@@ -19,6 +19,7 @@ def main():
     p.add_argument("--identities",type=Path,required=True)
     p.add_argument("--work-summary",type=Path,required=True)
     p.add_argument("--audit-sample",type=Path,required=True)
+    p.add_argument("--reviewed-audit-evidence",type=Path,required=True)
     p.add_argument("--prior-work-decisions",type=Path,required=True)
     p.add_argument("--full-work-review",type=Path,required=True)
     a=p.parse_args()
@@ -26,6 +27,7 @@ def main():
     ids={r["person_id"]:r for r in read(a.identities)}
     ws={r["person_id"]:r for r in read(a.work_summary)}
     sample=read(a.audit_sample)
+    reviewed_sample=read(a.reviewed_audit_evidence)
     prior=read(a.prior_work_decisions)
     full=read(a.full_work_review)
     decisions=read(a.decisions)
@@ -41,6 +43,8 @@ def main():
 
     sample_by={}
     for r in sample: sample_by.setdefault(r["person_id"],[]).append(r)
+    reviewed_sample_by={}
+    for r in reviewed_sample: reviewed_sample_by.setdefault(r["person_id"],[]).append(r)
     prior_keep=Counter()
     for r in prior:
         if r.get("work_decision") in {"KEEP_ORIGINAL","KEEP_POSTHUMOUS_ORIGINAL"} and truthy(r.get("include_in_network")):
@@ -72,7 +76,7 @@ def main():
             errors.append(f"{pid}: reviewer/evidence required")
 
         if dec=="RELEASE_SAMPLE_PASS":
-            rows=sample_by.get(pid,[])
+            rows=reviewed_sample_by.get(pid,[])
             if plausible<5: errors.append(f"{pid}: release requires >=5 plausible works, got {plausible}")
             if not rows: errors.append(f"{pid}: release requires deterministic audit sample")
             bad=[x for x in rows if not truthy(x.get("work_belongs_to_focal_person"))]
