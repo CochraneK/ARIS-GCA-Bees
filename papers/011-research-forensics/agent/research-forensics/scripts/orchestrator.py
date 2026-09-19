@@ -29,6 +29,7 @@ STRUCTURED_INPUT_KEYS = {
     "doi_resolutions",
     "cross_source_records",
     "categorical_aggregate_checks",
+    "cross_section_scope_checks",
 }
 
 

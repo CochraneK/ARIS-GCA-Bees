@@ -338,6 +338,18 @@ This case also provides a concrete complementarity result. The historical table 
 
 These two pre-outcome true-positive cases remain development examples rather than an estimate of sensitivity or precision. Their value is to show two independent evidence routes—cited-source consistency and deposited-data recomputation—and to demonstrate that detector-family complementarity can occur in real corrections rather than only synthetic examples.
 
+### 7.8 Third pre-outcome true-positive: cross-section scope coherence
+
+A third development case illustrates issue decomposition within a single correction notice. The PLOS ONE article with DOI 10.1371/journal.pone.0180906 was published on 21 July 2017. A publisher HTML snapshot captured by the Wayback Machine on 24 July 2017 (digest MTJNXHVAUJZCTOAR47PRAO7AVYGIDJ7O) provides SAFE_EXACT body-text and table-caption roles before the 5 February 2018 correction.
+
+Within the historical artifact, the Results section reports a multiple analysis of household seropositivity, gives model p-values and confidence intervals, and explicitly points the reader to Table 1. The Table 1 caption on the same archived page, however, describes the table as results of univariate logistic regression analysis. We therefore implemented a deterministic cross-section scope-coherence adapter. The adapter does not infer scientific semantics from free text at run time; it consumes source-verified canonical scope labels, requires that the body explicitly point to the target table, and requires both locations to belong to the same time-safe artifact. The historical body requires a multiple-logistic-regression scope that is absent from the historical caption, producing an E1 FLAG and MODERATE review priority.
+
+The later PLOS correction explicitly states that the Table 1 caption was erroneous and presents a corrected caption covering univariate and logistic regression analysis. This correction is used only as ground truth, not detector input.
+
+The same correction notice also states that two columns were missing from Table 1B. That sub-issue is not counted as detected. Although the 2017 HTML preserves the table link and caption, the historical Table 1 image object could not be independently recovered from Wayback; direct replay returned 404 and CDX queries for the table image variants returned no pre-correction object. Thus the caption/scope error is SAFE_EXACT-ready while the missing-column error remains BLOCKED_REQUIRED_ROLE.
+
+This case demonstrates why a correction notice should not be treated as one indivisible label. Distinct sub-issues can require different historical artifact roles and can have different eligibility states even within the same paper.
+
 ## 8. Detector versioning and defect governance
 
 An integrated system inherits the failure modes of its components. Detector version and known defects are therefore part of evidence provenance.

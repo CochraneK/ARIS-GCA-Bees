@@ -1,10 +1,10 @@
 # STATUS — ARIS4C011
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## State
 
-**SECOND PRE-OUTCOME REAL TRUE-POSITIVE · RAW-DATA↔TABLE CHECK ADDED**
+**THIRD PRE-OUTCOME REAL TRUE-POSITIVE · ISSUE DECOMPOSITION DEMONSTRATED**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -64,6 +64,9 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - New F3 categorical_aggregate_recompute adapter added with complete-frequency-table, hash, date, alias and provenance requirements.
 - Second real Track A true-positive: historical Table 1 reports Mexico 16 / 4.5%, while case/diacritic-normalized deposited data deterministically yield 17 / 4.8%; the 2025 official correction independently confirms those values.
 - The same historical table remains internally arithmetic-consistent because Mexico -1 is compensated by Other +1; this is a real complementarity example where within-table arithmetic can PASS while raw-data-to-table consistency FLAGs.
+- Third real Track A true-positive: PLOS 10.1371/journal.pone.0180906 has a SAFE_EXACT 2017-07-24 publisher HTML snapshot whose Results text attributes multiple-analysis findings to Table 1 while the same historical Table 1 caption describes only univariate logistic regression.
+- New F8 cross_section_scope_coherence adapter flags that body-to-caption scope mismatch as E1 / MODERATE; the 2018 correction later independently confirms that the Table 1 caption was erroneous.
+- The same correction's two-missing-columns sub-issue remains BLOCKED because the historical Table 1 image object was not archived. One correction notice is now explicitly decomposed into independently eligible/ineligible sub-issues.
 
 ## Critical design findings already established
 
@@ -119,8 +122,8 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Work the updated Pilot 3 queue with Toxoplasma Table 1B as the new active rank 1.
-2. Seek a third substantive SAFE_EXACT_READY case from a detector route independent of the first two where feasible.
-3. Run the construction decimal-separator CONTROL through the same reporting stack and verify it is not escalated as a scientific contradiction.
-4. Begin a small no-known-concern matched comparator set only after at least three substantive issue-ready cases exist.
+1. Work the updated Pilot 3 queue with the adaptive-p-value correction as active rank 1.
+2. Run the construction decimal-separator CONTROL through the same reporting stack and verify it is not escalated as a scientific contradiction.
+3. Begin a small no-known-concern matched comparator set now that three substantive SAFE_EXACT_READY development cases exist.
+4. Quantify descriptive detector-family yield only as a development summary; do not estimate confirmatory sensitivity/precision from Pilot 3.
 5. Keep Pilot 3 explicitly separate from the later frozen confirmatory cohort.

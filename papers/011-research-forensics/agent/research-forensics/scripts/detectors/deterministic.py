@@ -1037,6 +1037,117 @@ class CategoricalAggregateRecomputeDetector:
         return findings
 
 
+def _normalize_scope_label(value: Any) -> str:
+    return re.sub(r"\s+", "_", str(value or "").strip().casefold())
+
+
+class CrossSectionScopeCoherenceDetector:
+    """Check whether a table caption covers analysis scope explicitly attributed to it.
+
+    The detector consumes source-verified canonical scope labels rather than
+    inferring scientific semantics itself. It is intended for contradictions
+    within the same time-safe historical artifact.
+    """
+
+    detector_id = "cross_section_scope_coherence"
+    detector_version = "pilot3c-0.1.0"
+    family = "methods_results_coherence"
+
+    def applicability(self, context: ForensicContext) -> Applicability:
+        records = context.content.get("cross_section_scope_checks") or []
+        if not records:
+            return Applicability(False, "No cross-section scope checks were supplied.")
+        return Applicability(True, "At least one source-verified body-to-caption scope check is available.")
+
+    def run(self, context: ForensicContext) -> Sequence[Finding]:
+        findings: List[Finding] = []
+        for i, record in enumerate(context.content.get("cross_section_scope_checks") or []):
+            locator = str(record.get("source_locator") or f"cross_section_scope_checks[{i}]")
+            body_locator = str(record.get("body_source_locator") or "")
+            caption_locator = str(record.get("caption_source_locator") or "")
+            body_labels = record.get("body_scope_labels")
+            caption_labels = record.get("caption_scope_labels")
+            missing_requirements: List[str] = []
+
+            if not body_locator:
+                missing_requirements.append("body_source_locator")
+            if not caption_locator:
+                missing_requirements.append("caption_source_locator")
+            if not isinstance(body_labels, list) or not body_labels:
+                missing_requirements.append("body_scope_labels")
+            if not isinstance(caption_labels, list) or not caption_labels:
+                missing_requirements.append("caption_scope_labels")
+            if record.get("body_points_to_target") is not True:
+                missing_requirements.append("body_points_to_target=true")
+            if record.get("same_historical_artifact") is not True:
+                missing_requirements.append("same_historical_artifact=true")
+            if record.get("labels_source_verified") is not True:
+                missing_requirements.append("labels_source_verified=true")
+            if record.get("provenance_verified") is not True:
+                missing_requirements.append("provenance_verified=true")
+
+            if missing_requirements:
+                findings.append(Finding(
+                    detector_id=self.detector_id,
+                    detector_version=self.detector_version,
+                    family=self.family,
+                    applicable=False,
+                    applicability_reason="Cross-section scope evidence is incomplete or not source-verified.",
+                    status="ABSTAIN",
+                    evidence_class="E0",
+                    claim="Body-to-caption scope coherence was not evaluated.",
+                    source_locator=locator,
+                    evidence={"missing_requirements": missing_requirements},
+                    reproducible="yes",
+                    benign_explanations=[],
+                    dependency_group=f"scope:{locator}",
+                    next_action="Verify the body/table link, both source locations, and canonical scope labels from the same historical artifact.",
+                    misconduct_inference=False,
+                ))
+                continue
+
+            body_set = {_normalize_scope_label(x) for x in body_labels}
+            caption_set = {_normalize_scope_label(x) for x in caption_labels}
+            missing_scope = sorted(body_set - caption_set)
+            ok = not missing_scope
+
+            findings.append(Finding(
+                detector_id=self.detector_id,
+                detector_version=self.detector_version,
+                family=self.family,
+                applicable=True,
+                applicability_reason="The body explicitly points to the target table and both scope labels were source-verified within the same historical artifact.",
+                status="PASS" if ok else "FLAG",
+                evidence_class="E1",
+                claim=(
+                    "The target caption covers all source-verified analysis scopes that the body explicitly attributes to the table."
+                    if ok else
+                    "The body explicitly attributes an analysis scope to the table that is not represented in the historical table caption."
+                ),
+                source_locator=caption_locator,
+                evidence={
+                    "body_source_locator": body_locator,
+                    "caption_source_locator": caption_locator,
+                    "body_scope_labels": sorted(body_set),
+                    "caption_scope_labels": sorted(caption_set),
+                    "missing_scope_labels": missing_scope,
+                    "body_excerpt": record.get("body_excerpt"),
+                    "caption_excerpt": record.get("caption_excerpt"),
+                },
+                reproducible="yes",
+                benign_explanations=[] if ok else [
+                    "The body-to-table citation may itself be wrong.",
+                    "The caption may intentionally describe only one panel of a multi-panel table.",
+                    "The canonical scope labels may have been extracted or adjudicated incorrectly.",
+                    "The discrepancy may be a caption or layout error rather than an analysis error.",
+                ],
+                dependency_group=f"scope:{locator}",
+                next_action=None if ok else "Inspect the historical body citation and table caption together, then verify whether the table contains the omitted analysis scope.",
+                misconduct_inference=False,
+            ))
+        return findings
+
+
 DEFAULT_DETERMINISTIC_DETECTORS = [
     NHSTConsistencyDetector(),
     GRIMItemMeanDetector(),
@@ -1045,4 +1156,5 @@ DEFAULT_DETERMINISTIC_DETECTORS = [
     ReferenceMetadataDetector(),
     CrossSourceFieldConsistencyDetector(),
     CategoricalAggregateRecomputeDetector(),
+    CrossSectionScopeCoherenceDetector(),
 ]

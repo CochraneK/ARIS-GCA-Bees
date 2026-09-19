@@ -27,6 +27,7 @@ MODE_WEIGHTS = {
     "DETERMINISTIC_INTERNAL": 6,
     "RAW_DATA_RECOMPUTE": 6,
     "CROSS_SOURCE": 5,
+    "CROSS_SECTION": 5,
     "STRUCTURED_RECOMPUTE": 4,
     "REANALYSIS": 1,
     "FORMAT_CONTROL": 0,
@@ -81,16 +82,8 @@ def score_candidate(row: Dict[str, str]) -> Dict[str, str]:
         _require(ARTIFACT_WEIGHTS, row["artifact_state"], "artifact_state")
         + _require(MODE_WEIGHTS, row["verification_mode"], "verification_mode")
         + _require(ROLE_WEIGHTS, row["required_role"], "required_role")
-        + _require(
-            SCIENTIFIC_CONTENT_WEIGHTS,
-            row["scientific_content"],
-            "scientific_content",
-        )
-        + _require(
-            BENCHMARK_ROLE_WEIGHTS,
-            row["benchmark_role"],
-            "benchmark_role",
-        )
+        + _require(SCIENTIFIC_CONTENT_WEIGHTS, row["scientific_content"], "scientific_content")
+        + _require(BENCHMARK_ROLE_WEIGHTS, row["benchmark_role"], "benchmark_role")
         + lag_points(lag_days)
     )
 
@@ -114,21 +107,8 @@ def score_candidate(row: Dict[str, str]) -> Dict[str, str]:
 
 def build_queue(rows: Iterable[Dict[str, str]]) -> List[Dict[str, str]]:
     scored = [score_candidate(row) for row in rows]
-    order = {
-        "PRIORITY": 0,
-        "SECONDARY": 1,
-        "CONTROL": 2,
-        "DEFER": 3,
-        "COMPLETE": 4,
-    }
-    scored.sort(
-        key=lambda r: (
-            order[r["queue_status"]],
-            -int(r["priority_score"]),
-            r["candidate_id"],
-        )
-    )
-
+    order = {"PRIORITY": 0, "SECONDARY": 1, "CONTROL": 2, "DEFER": 3, "COMPLETE": 4}
+    scored.sort(key=lambda r: (order[r["queue_status"]], -int(r["priority_score"]), r["candidate_id"]))
     active_rank = 0
     for row in scored:
         if row["queue_status"] in {"PRIORITY", "SECONDARY"}:
@@ -148,9 +128,8 @@ def write_csv(rows: List[Dict[str, str]], path: Path) -> None:
     if not rows:
         raise ValueError("Refusing to write an empty Pilot 3 queue")
     path.parent.mkdir(parents=True, exist_ok=True)
-    fields = list(rows[0].keys())
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
 

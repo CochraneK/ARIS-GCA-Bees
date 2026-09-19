@@ -78,3 +78,19 @@ New evidence changed its routing:
 - raw-data normalization of Mexico/México/MÉXICO yields 17/4.8%.
 
 Accordingly, the candidate was reclassified from DETERMINISTIC_INTERNAL to RAW_DATA_RECOMPUTE and from ACTIVE to COMPLETE. This demonstrates why candidate routing is provisional during pipeline development: source anatomy can change which detector is actually capable of detecting a documented error.
+
+
+## Pilot 3C resolution of the Toxoplasma candidate
+
+The former active-rank-1 Toxoplasma case (10.1371/journal.pone.0180906) produced a valid Track A signal, but not through the originally targeted missing-column route.
+
+A PLOS publisher HTML snapshot from 2017-07-24 (Wayback digest MTJNXHVAUJZCTOAR47PRAO7AVYGIDJ7O) predates the 2018 correction. In that same historical artifact:
+
+- the Results text explicitly attributes multiple-analysis household findings to Table 1 and reports model p-values/confidence intervals;
+- the Table 1 caption describes the table only as results of univariate logistic regression analysis.
+
+A cross-section scope-coherence detector therefore flags a body-to-caption scope mismatch without access to the later correction. The 2018 correction subsequently states that the Table 1 caption was wrong and changes it to cover univariate and logistic regression analysis.
+
+The historical Table 1 image endpoint itself was not preserved in the archive. Therefore the correction's separate statement that two columns were missing from Table 1B remains **BLOCKED** for primary Track A evaluation. Pilot 3C is counted only for the independently documented caption error.
+
+This case illustrates issue decomposition: one correction notice can contain multiple sub-issues with different artifact requirements and different Track A eligibility.
