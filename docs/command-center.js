@@ -46,11 +46,25 @@
     });
   }
 
+  function sortCards(cards, sort){
+    if(sort === "progress-desc") cards.sort((a,b)=>Number(b.dataset.progress)-Number(a.dataset.progress));
+    else if(sort === "progress-asc") cards.sort((a,b)=>Number(a.dataset.progress)-Number(b.dataset.progress));
+    else if(sort === "recent") cards.sort((a,b)=>new Date(b.dataset.lastCommit||0)-new Date(a.dataset.lastCommit||0));
+    else if(sort === "activity"){
+      const rank={active:0,gated:1,blocked:2,quiet:3};
+      cards.sort((a,b)=>(rank[a.dataset.activity]??9)-(rank[b.dataset.activity]??9)||String(a.dataset.id).localeCompare(String(b.dataset.id)));
+    }else cards.sort((a,b)=>String(a.dataset.id).localeCompare(String(b.dataset.id)));
+    return cards;
+  }
+
   function apply(){
     const q = ($("searchInput")?.value || "").trim().toLowerCase();
     const sort = $("sortFilter")?.value || "id";
     const grid = $("paperGrid");
-    let cards = [...document.querySelectorAll(".paper-card")];
+    const showcaseTrack = $("showcaseTrack");
+    const showcaseSection = $("showcaseSection");
+    const portfolioSection = $("portfolioSection");
+    const cards = [...grid.querySelectorAll(".paper-card")];
 
     cards.forEach(card => {
       const hay = (card.dataset.search || "").toLowerCase();
@@ -59,17 +73,19 @@
     });
 
     const visible = cards.filter(c => !c.classList.contains("hidden"));
-    if(sort === "progress-desc") cards.sort((a,b)=>Number(b.dataset.progress)-Number(a.dataset.progress));
-    else if(sort === "progress-asc") cards.sort((a,b)=>Number(a.dataset.progress)-Number(b.dataset.progress));
-    else if(sort === "recent") cards.sort((a,b)=>new Date(b.dataset.lastCommit||0)-new Date(a.dataset.lastCommit||0));
-    else if(sort === "activity"){
-      const rank={active:0,gated:1,blocked:2,quiet:3};
-      cards.sort((a,b)=>(rank[a.dataset.activity]??9)-(rank[b.dataset.activity]??9)||String(a.dataset.id).localeCompare(String(b.dataset.id)));
-    }else cards.sort((a,b)=>String(a.dataset.id).localeCompare(String(b.dataset.id)));
+    sortCards(cards, sort).forEach(c=>grid.appendChild(c));
 
-    cards.forEach(c=>grid.appendChild(c));
-    $("resultCount").textContent = visible.length + " / " + cards.length + " projects";
-    $("emptyState").classList.toggle("hidden", visible.length !== 0);
+    const useShowcase = currentFilter === "all" && !q;
+    showcaseSection?.classList.toggle("hidden", !useShowcase);
+    portfolioSection?.classList.toggle("hidden", useShowcase);
+
+    if(useShowcase && showcaseTrack){
+      const showcaseCards=[...showcaseTrack.querySelectorAll('.showcase-card[data-showcase-original="true"]')];
+      sortCards(showcaseCards, sort).forEach(c=>showcaseTrack.appendChild(c));
+    }
+
+    $("resultCount").textContent = (useShowcase ? cards.length : visible.length) + " / " + cards.length + " projects";
+    $("emptyState").classList.toggle("hidden", useShowcase || visible.length !== 0);
     refreshShowcase();
   }
 
@@ -86,9 +102,10 @@
 
 
   function initShowcase(){
+    const section=$("showcaseSection");
     const viewport=$("showcaseViewport");
-    const track=$("paperGrid");
-    if(!viewport || !track) return;
+    const track=$("showcaseTrack");
+    if(!section || !viewport || !track) return;
 
     const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf=0;
@@ -98,42 +115,19 @@
     let resizeTimer=0;
     const speedPxPerSecond=22;
 
-    const originals=()=>[...track.querySelectorAll('.paper-card[data-showcase-original="true"]:not(.hidden)')];
+    const originals=()=>[...track.querySelectorAll('.showcase-card[data-showcase-original="true"]')];
 
     const removeClones=()=>{
       track.querySelectorAll(".showcase-clone").forEach(x=>x.remove());
     };
 
-    const rebuild=()=>{
-      const keepPaused=paused;
+    const stopLoop=()=>{
+      paused=true;
       if(raf){ cancelAnimationFrame(raf); raf=0; }
-      removeClones();
-      viewport.scrollLeft=0;
-      loopWidth=0;
-
-      const cards=originals();
-      if(!cards.length || prefersReduced){
-        document.querySelector(".showcase")?.classList.toggle("is-paused",prefersReduced || keepPaused);
-        return;
-      }
-
-      cards.forEach(card=>{
-        const clone=card.cloneNode(true);
-        clone.classList.remove("paper-card");
-        clone.classList.add("showcase-clone");
-        clone.removeAttribute("data-showcase-original");
-        clone.setAttribute("aria-hidden","true");
-        clone.querySelectorAll("a,button,[tabindex]").forEach(el=>el.tabIndex=-1);
-        track.appendChild(clone);
-      });
-
-      loopWidth=track.scrollWidth/2;
-      lastTs=0;
-      if(!keepPaused) startLoop();
     };
 
     const frame=ts=>{
-      if(paused || prefersReduced){ raf=0; return; }
+      if(paused || prefersReduced || section.classList.contains("hidden")){ raf=0; return; }
       if(!lastTs) lastTs=ts;
       const dt=Math.min(50,ts-lastTs);
       lastTs=ts;
@@ -146,16 +140,33 @@
 
     function startLoop(){
       paused=false;
-      document.querySelector(".showcase")?.classList.remove("is-paused");
-      if(prefersReduced || raf) return;
+      if(prefersReduced || raf || section.classList.contains("hidden")) return;
       lastTs=0;
       raf=requestAnimationFrame(frame);
     }
 
-    const stopLoop=()=>{
-      paused=true;
-      document.querySelector(".showcase")?.classList.add("is-paused");
+    const rebuild=()=>{
       if(raf){ cancelAnimationFrame(raf); raf=0; }
+      removeClones();
+      viewport.scrollLeft=0;
+      loopWidth=0;
+
+      if(section.classList.contains("hidden") || prefersReduced) return;
+
+      const cards=originals();
+      if(!cards.length) return;
+
+      cards.forEach(card=>{
+        const clone=card.cloneNode(true);
+        clone.classList.add("showcase-clone");
+        clone.removeAttribute("data-showcase-original");
+        clone.setAttribute("aria-hidden","true");
+        clone.querySelectorAll("a,button,[tabindex]").forEach(el=>el.tabIndex=-1);
+        track.appendChild(clone);
+      });
+
+      loopWidth=track.scrollWidth/2;
+      if(!paused) startLoop();
     };
 
     const stepSize=()=>{
@@ -191,11 +202,10 @@
     });
 
     refreshShowcase=()=>{
-      const wasPaused=paused;
-      paused=true;
+      const shouldRun=!section.classList.contains("hidden");
+      paused=!shouldRun;
       rebuild();
-      paused=wasPaused;
-      if(!wasPaused) startLoop();
+      if(shouldRun) startLoop();
     };
 
     paused=false;
