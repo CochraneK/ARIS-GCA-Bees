@@ -1,0 +1,16 @@
+{
+  "people": 37,
+  "person_tiers": {
+    "P1": 20,
+    "P2": 6,
+    "P3": 11
+  },
+  "P1_sample_rows": 135,
+  "machine_verdicts": {
+    "NONE": 37
+  },
+  "auto_release_people": 0,
+  "auto_exclusion_people": 0,
+  "mental_health_information_used": false,
+  "interpretation": "Person-level review ordering only; independent evidence review is still required."
+}

@@ -1,0 +1,38 @@
+person_review_rank,person_id,canonical_name,identity_status,person_review_tier,max_row_priority_score,sample_rows_n,P1_rows_n,P2_rows_n,P3_rows_n,plausible_unique_works_n,accepted_author_ids_n,mechanical_min_works_met,top_priority_signals,review_status,machine_verdict,auto_release_allowed,auto_exclusion_allowed
+1,cv_Q2641681,Alexander Aigner,VERIFIED_CLUSTER,P1,14,12,12,0,0,84,7,true,identity_note_risk:excluded|fragment|mixed|namesake;verified_cluster;lexical_topic_outlier_review_only;fragment_anchor;container_like_title;posthumous_year:+3,PENDING,NONE,false,false
+2,cv_Q594723,Anton Tautscher,VERIFIED_CLUSTER,P1,13,12,12,0,0,15,3,true,identity_note_risk:fragment;verified_cluster;lexical_topic_outlier_review_only;fragment_anchor;posthumous_year:+2,PENDING,NONE,false,false
+3,cv_Q104271,Michael Theunissen,VERIFIED_CLUSTER,P1,12,12,12,0,0,74,2,true,identity_note_risk:excluded|fragment|namesake;verified_cluster;lexical_topic_outlier_review_only;fragment_anchor;posthumous_year:+5,PENDING,NONE,false,false
+4,cv_Q95927,Robert Gaupp,VERIFIED_CLUSTER,P1,12,12,12,0,0,75,2,true,identity_note_risk:fragment;verified_cluster;lexical_topic_outlier_review_only;fragment_anchor;posthumous_year:+1,PENDING,NONE,false,false
+5,cv_Q6225153,John Carl Parish,VERIFIED_SINGLE,P1,11,12,2,10,0,72,1,true,identity_note_risk:namesake;lexical_topic_outlier_review_only;posthumous_year:+4;posthumous_year:+5;fragment_anchor,PENDING,NONE,false,false
+6,cv_Q43568051,Michael J. Wargo,VERIFIED_SINGLE,P1,11,12,1,11,0,47,1,true,identity_note_risk:contamination|mixed|namesake;lexical_topic_outlier_review_only;posthumous_year:+2;fragment_anchor,PENDING,NONE,false,false
+7,cv_Q47216729,Alfonso W. Quiroz,VERIFIED_CLUSTER,P1,10,12,12,0,0,67,3,true,identity_note_risk:fragment;verified_cluster;lexical_topic_outlier_review_only;fragment_anchor;near_death_boundary,PENDING,NONE,false,false
+8,cv_Q7416679,Sandra Leiblum,VERIFIED_CLUSTER,P1,10,12,12,0,0,160,2,true,identity_note_risk:fragment;verified_cluster;lexical_topic_outlier_review_only;near_death_boundary;fragment_anchor,PENDING,NONE,false,false
+9,cv_Q1839062,Torkel Franzén,VERIFIED_SINGLE,P1,10,12,6,6,0,19,1,true,identity_note_risk:posthumous;near_death_boundary;posthumous_year:+2;lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+10,cv_Q18738873,Robert R. Squires,VERIFIED_SINGLE,P1,10,12,3,9,0,169,1,true,identity_note_risk:excluded|fragment|namesake;near_death_boundary;posthumous_year:+4;fragment_anchor;lexical_topic_outlier_review_only,PENDING,NONE,false,false
+11,cv_Q23059458,Minoo Lenarz,VERIFIED_SINGLE,P1,10,12,2,10,0,75,1,true,identity_note_risk:namesake;lexical_topic_outlier_review_only;posthumous_year:+1;fragment_anchor,PENDING,NONE,false,false
+12,cv_Q2545268,Walter L. Bühl,VERIFIED_CLUSTER,P1,9,12,12,0,0,36,4,true,identity_note_risk:excluded|fragment;verified_cluster;fragment_anchor;lexical_topic_outlier_review_only,PENDING,NONE,false,false
+13,cv_Q118326,Ernst Rexer,VERIFIED_CLUSTER,P1,8,12,12,0,0,16,3,true,identity_note_risk:fragment;verified_cluster;fragment_anchor;lexical_topic_outlier_review_only,PENDING,NONE,false,false
+14,cv_Q3052265,Émile Haumant,VERIFIED_CLUSTER,P1,8,11,11,0,0,11,2,true,identity_note_risk:fragment;verified_cluster;lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+15,cv_Q693932,Arnim Bechmann,VERIFIED_CLUSTER,P1,8,4,4,0,0,4,3,false,identity_note_risk:fragment;verified_cluster;fragment_anchor,PENDING,NONE,false,false
+16,cv_Q15440160,Hans Arnsperger,VERIFIED_CLUSTER,P1,8,3,3,0,0,3,2,false,identity_note_risk:fragment;verified_cluster;fragment_anchor,PENDING,NONE,false,false
+17,cv_Q16945536,Algot Werin,VERIFIED_CLUSTER,P1,8,2,2,0,0,2,2,false,identity_note_risk:fragment;verified_cluster;fragment_anchor,PENDING,NONE,false,false
+18,cv_Q19850025,Oskar Simony,VERIFIED_CLUSTER,P1,8,2,2,0,0,2,2,false,identity_note_risk:dedup;verified_cluster;fragment_anchor,PENDING,NONE,false,false
+19,cv_Q3385700,Pierre L. G. Benoit,VERIFIED_CLUSTER,P1,8,2,2,0,0,2,2,false,identity_note_risk:fragment;verified_cluster;fragment_anchor,PENDING,NONE,false,false
+20,cv_Q3611354,Alfredo Boni,VERIFIED_SINGLE,P1,7,7,1,6,0,7,1,true,identity_note_risk:namesake;lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+21,cv_Q56329881,Armin Buschauer,VERIFIED_SINGLE,P2,6,12,0,3,9,315,1,true,lexical_topic_outlier_review_only;posthumous_year:+1;posthumous_year:+4;fragment_anchor,PENDING,NONE,false,false
+22,cv_Q313061,Aurel Stein,VERIFIED_SINGLE,P2,6,12,0,1,11,71,1,true,lexical_topic_outlier_review_only;near_death_boundary;posthumous_year:+1;fragment_anchor,PENDING,NONE,false,false
+23,cv_Q5712976,Folke Engström,VERIFIED_SINGLE,P2,6,12,0,12,0,14,1,true,identity_note_risk:excluded|fragment|namesake;lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+24,cv_Q1729753,Karl-Franz Busch,VERIFIED_SINGLE,P2,6,8,0,1,7,8,1,true,container_like_title;lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+25,cv_Q108651,Valentin Haecker,VERIFIED_SINGLE,P2,6,12,0,1,11,45,1,true,lexical_topic_outlier_review_only;posthumous_year:+2;fragment_anchor,PENDING,NONE,false,false
+26,cv_Q7926394,Victor Thébault,VERIFIED_SINGLE,P2,5,12,0,1,11,405,1,true,posthumous_year:+2;lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+27,cv_Q5553312,Gertrude Elles,VERIFIED_SINGLE,P3,2,12,0,0,12,43,1,true,lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+28,cv_Q1737527,Kazimierz Urbanik,VERIFIED_SINGLE,P3,2,12,0,0,12,97,1,true,lexical_topic_outlier_review_only;fragment_anchor;near_death_boundary,PENDING,NONE,false,false
+29,cv_Q40700285,Paul J. Torpey,VERIFIED_SINGLE,P3,2,3,0,0,3,3,1,false,lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+30,cv_Q18822352,Vikram Marwah,VERIFIED_SINGLE,P3,2,3,0,0,3,3,1,false,near_death_boundary;fragment_anchor;lexical_topic_outlier_review_only,PENDING,NONE,false,false
+31,cv_Q4937482,Bogdan Zakrzewski,VERIFIED_SINGLE,P3,1,12,0,0,12,22,1,true,fragment_anchor,PENDING,NONE,false,false
+32,cv_Q1717446,Jürgen Manthey,VERIFIED_SINGLE,P3,1,12,0,0,12,32,1,true,lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+33,cv_Q19287605,Karl Erich Hupka,VERIFIED_SINGLE,P3,1,1,0,0,1,1,1,false,fragment_anchor,PENDING,NONE,false,false
+34,cv_Q1621300,Konrad Oberhuber,VERIFIED_SINGLE,P3,1,12,0,0,12,27,1,true,lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
+35,cv_Q1795953,Otto Siebert,VERIFIED_SINGLE,P3,1,3,0,0,3,3,1,false,fragment_anchor,PENDING,NONE,false,false
+36,cv_Q57447297,Thomas Aisu,VERIFIED_SINGLE,P3,1,4,0,0,4,4,1,false,fragment_anchor,PENDING,NONE,false,false
+37,cv_Q15488589,Ulrike Toellner-Bauer,VERIFIED_SINGLE,P3,1,5,0,0,5,5,1,true,lexical_topic_outlier_review_only;fragment_anchor,PENDING,NONE,false,false
