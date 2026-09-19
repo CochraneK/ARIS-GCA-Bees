@@ -1,0 +1,13 @@
+{
+  "classification": "V2_INDEPENDENT_CODER_INPUT_FREEZE",
+  "coder": "A2",
+  "frozen_at": "2026-09-19T12:34:15.255185+00:00",
+  "evidence_packet_sha256": "4e35532d431ab96b5cddb1c66090fdc595e7fa2a655c3174f9361099f6a350dc",
+  "schema_sha256": "066f3e42aeda4fc5842abd2d44310a3da45588ecc41e466282b93af1e960f681",
+  "response_form": "papers/012-oppositional-causal-inversion/data/v2_blind/A2_response.csv",
+  "response_form_sha256": "c5d4e626e03835a07e17fc623bb2174c24fd47da73da8e813820a069d70c0e13",
+  "bundle_sha256": "62006415127acc5a8d9385067691dad1a0d7592382b188dba926c364b921662a",
+  "must_remain_blind_to_other_coder": true,
+  "must_remain_blind_to_pilot0_labels_and_adjudication": true,
+  "ready_for_independent_coding": false
+}

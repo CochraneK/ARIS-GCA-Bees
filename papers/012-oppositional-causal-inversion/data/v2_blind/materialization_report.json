@@ -1,0 +1,47 @@
+{
+  "classification": "V2_BLIND_EVIDENCE_MATERIALIZATION",
+  "retrieved_at": "2026-09-19T12:34:15.255185+00:00",
+  "sample_count": 30,
+  "evidence_state_counts": {
+    "ABSTRACT_EXCERPT": 24,
+    "BIBLIOGRAPHIC_ONLY": 6
+  },
+  "evidence_source_counts": {
+    "semantic_scholar": 2,
+    "openalex": 19,
+    "crossref": 3,
+    "none": 6
+  },
+  "abstract_excerpt_count": 24,
+  "bibliographic_only_count": 6,
+  "max_evidence_words": 180,
+  "blind_fields_excluded": [
+    "actor_switch",
+    "causal_claim_strength",
+    "cited_by_count",
+    "construct_switch",
+    "dedupe_key",
+    "draw_score",
+    "environment_switch",
+    "evidence_tier",
+    "feedback",
+    "level_switch",
+    "nonlinearity",
+    "oci_candidate",
+    "opposition_valid",
+    "power_asymmetry",
+    "primary_mechanism",
+    "provider",
+    "provider_id",
+    "query",
+    "query_index",
+    "result_support",
+    "selection_filtering",
+    "selection_rank",
+    "source_rank",
+    "stratum",
+    "time_switch"
+  ],
+  "ready_for_independent_coding": false,
+  "note": "If bibliographic_only_count > 0, do not start A2/B2. First apply a pre-coding evidence-availability amendment or acquire equivalent blinded evidence without inspecting labels."
+}
