@@ -1,0 +1,18 @@
+{
+  "analysis": "ARIS4C011 feasibility manager-packet build",
+  "state": "MANAGER_ONLY_PRE_ADJUDICATION",
+  "input_state": "FEASIBILITY_ONLY_NOT_CONFIRMATORY",
+  "records": 80,
+  "update_type_counts": {
+    "correction": 40,
+    "retraction": 40
+  },
+  "current_title_status_markers": 25,
+  "crossref_fulltext_link_available": 79,
+  "issue_family_adjudicated": 0,
+  "required_artifact_role_adjudicated": 0,
+  "artifact_state_assessed": 0,
+  "detector_visible_records": 0,
+  "claim_boundary": "These packets are manager/acquisition surfaces only. Outcome/update metadata must never be passed to Track A detectors. UNADJUDICATED or UNASSESSED values are not negatives and must not be imputed.",
+  "input_sha256": "92f04b58718997866d637b82f48c54c4358c3ad6006e405eb5b2f59603065350"
+}
