@@ -1,6 +1,6 @@
 # ARIS4C007 · Literature and method matrix
 
-Last updated: 2026-09-18
+Last updated: 2026-09-19
 
 This is a working closest-prior-work matrix. It is designed to distinguish **age estimation within a species** from **age equivalence across species**.
 
@@ -23,6 +23,9 @@ This is a working closest-prior-work matrix. It is designed to distinguish **age
 | Haller et al., 2025, great tit | one bird species | separate developmental vs ageing DNAm clocks | no direct human translation | separates developmental clock from post-fledging ageing clock | supports phase-specific rather than single-clock design |
 | Bock et al., 2026, zebra shark | one shark species | DNAm chronological age | no | expands vertebrate clock coverage | future non-mammal extension |
 | Asian elephant epigenetic clock, 2026 | one long-lived mammal | DNAm chronological age | no | long-lived species age estimation | future validation/extension |
+| Cagan et al., 2022, *Nature* somatic mutation/lifespan study | 16 mammal species with deep individual survival records | robust adult lifespan (age by which 80% of adults died) | comparative, not translator | avoids relying on a single maximum-longevity record and shows an alternative survival-derived longevity denominator | candidate robustness denominator for A1 where adequate life tables exist |
+| AnAge / de Magalhães & Costa longevity-record methodology | thousands of vertebrates | maximum longevity with record sample-size and confidence qualifiers | no | explicitly documents population-size/captive-wild sampling bias in record longevity | requires A1 uncertainty/sampling-effort sensitivity rather than treating maximum lifespan as error-free |
+| 2026 mammalian lifespan phylogenetic reconstruction | 968 mammals across 24 orders | maximum lifespan and longevity quotient | comparative, not translator | demonstrates strong phylogenetic structure in mammalian lifespan and uses sample-size filtering | supports mandatory phylogenetic correction and longevity-record quality filtering in 007 |
 
 ## Provisional novelty boundary
 
