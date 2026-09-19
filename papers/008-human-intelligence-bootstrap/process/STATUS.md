@@ -1,182 +1,188 @@
 # STATUS · ARIS4C008
 
-Updated: 2026-09-18
+Updated: 2026-09-19
 
 ## Canonical question
 
 **Which configurations of cognitive, social, embodied, life-history, energetic, ecological, demographic and externalized-information capacities are candidate necessary, enabling, bottleneck, amplifying or jointly sufficient components for transitions toward open-ended cumulative intelligence?**
 
-The project does not assume a fixed evolutionary “skill-point budget” and does not define intelligence by resemblance to humans.
+The motivating question is also practical: **what makes humans unusually capable of open-ended cumulative intelligence, which conditions are necessary versus sufficient, and which nonhuman animals already share substantial subsets of the configuration?**
+
+The project does **not** assume a fixed evolutionary “skill-point budget”, a ladder with humans at the top, or that similarity implies an evolutionary destination.
 
 ## Current stage
 
-**Pilot 8 · configuration-diverse screening and Tier-1 deep-coding design.**
+**Pilot 9 · all 50 Tier-1 additions have completed standardized A–F first-pass deep coding.**
 
-Confirmatory necessary/sufficient inference remains **BLOCKED**, but the design is now substantially closer to an identifiable study.
+Confirmatory necessary/sufficient inference remains **BLOCKED**.
+
+The immediate work is no longer “finish the remaining21 first pass”. It is now:
+
+1. backfill the retained 29 A–F gaps;
+2. targeted second-pass searches on the new 50;
+3. expand O1–O7 outcome coding to the full 79;
+4. then rerun recoverability on the updated observed matrix.
 
 ## Sampling architecture
 
-### Retained deep seed
-- 29 exact species from Pilot 7.
-- 29/29 have an exact-species evidence route.
+- Retained Pilot-7 seed: **29 exact species**.
+- Broad screening pool: **238 operational taxa**.
+- Tier-1 deep panel: **79 taxa = retained 29 + 50 additions**.
+- New 50 composition: 14 theory-discriminating candidates, 15 underrepresented-clade calibration taxa, 10 matched ordinary controls, 11 data-driven source candidates.
 
-### Broad screening pool
-- **238 operational taxa** in `screening_pool_expanded_v1.csv`.
-- Roles include ACDB/ASNR source candidates, matched ordinary controls, underrepresented-clade controls and theory-discriminating counterexamples.
-- Absence from ACDB/ASNR is never interpreted as trait absence.
+The 79 are a staged deep-coding panel, not a claimed universally optimal final N.
 
-### Tier-1 staged expansion
-- retain the original 29;
-- add **50 new taxa**;
-- resulting staged panel: **79 taxa**.
+## Taxonomy rule
 
-The new 50 comprise:
-- 14 theory-discriminating candidates;
-- 15 data-rich underrepresented-clade calibration taxa;
-- 10 same-family/body-mass-matched ordinary controls;
-- 11 data-driven source candidates.
+Use exact-species evidence wherever possible.
 
-This 79 is a deep-coding wave, not a claimed universally optimal final sample size.
+- Current-name / synonym crosswalks are allowed only when explicitly documented.
+- Near-neighbour, same-genus or same-family findings do **not** substitute for focal-species evidence.
+- Scientific-name retrieval must use common-name fallback when indexing is weak (especially cetaceans).
+- not_located_first_pass means retrieval failure / evidence not located, **never biological absence**.
 
-## Taxonomy
+## Tier-1 79-taxon matrix · current v2
 
-The canonical 238-taxon pool was rerun through OpenTree 3.7 with approximate matching disabled:
+Canonical file: data/module_evidence_state_tier1_v2.csv.
 
-- 222 clean non-synonym self species matches;
-- 15 explicit synonym / operational-taxonomy cases;
-- 3 multi-match queries resolved by a unique non-synonym self match;
-- 1 OpenTree exact-TNRS gap: *Serracutisoma proximum*, retained with a documented legacy OTT crosswalk.
+| Module | Observed / 79 | Missing |
+|---|---:|---:|
+| A · generative cognition | **21** | 58 |
+| B · social transmission | **22** | 57 |
+| C · communication | **34** | 45 |
+| D · manipulation / embodiment | **18** | 61 |
+| E · persistent externalization | **17** | 62 |
+| F · social architecture | **32** | 47 |
+| G · life history / learning opportunity | **60** | 19 |
+| H · energetics / neural budget | **55** | 24 |
+| I · ecological challenge / opportunity | **53** | 26 |
+| J · demography / cultural population | **41** | 38 |
 
-Domestic dog/chicken and other below-species/duplicate operational forms are prevented from becoming fake independent phylogenetic terminals.
+A–F currently contain **144 observed cells and 330 unobserved cells**.
 
-## Low-cost screening layer
+By cohort:
+- retained29 A–F: 46 observed / 174; **128 missing**;
+- new50 A–F: 98 observed / 300; **202 missing**.
 
-`build_screening_features.py` rebuilds the 238-taxon screen from standardized public sources.
+The dominant gaps are still A–F, especially **E, D, A and B**. For architecture discrimination, A/B/E remain a high-value bundle, but single-column completion should be avoided.
 
-Current matching:
-- AnAge: 142 / 238;
-- AnimalTraits: 80 / 238;
-- EltonTraits: 179 / 238;
-- PanTHERIA: 118 / 238;
-- ASNR network metrics: 87 / 238.
+## New50 first-pass closure
 
-Proxy-block coverage:
-- F network: 87;
-- G life history: 139;
-- H neural/energetic: 101;
-- I ecology: 179;
-- J demography: 89.
+All 50 additions have completed standardized first-pass A–F coding.
 
-Database presence affects **feasibility only**, never biological configuration distance.
+The last remaining21 grid is closed:
+- **126/126 cells have a state**;
+- **0 pending_first_pass**;
+- 97 are not_located_first_pass;
+- 17 positive;
+- 9 positive_proxy;
+- 3 measured_context.
 
-## Tier-1 79-taxon empirical starting mask
+These states are evidence states, not organism scores.
 
-Current observed/proxy coverage:
+Recent exact-species examples:
+- blue/gray/right whales: direct acoustic communication evidence;
+- guppy: innovation, social learning, visual signalling and social-network evidence;
+- common vampire bat: demonstrator-based social learning plus long-term cooperative relationships;
+- three-spined stickleback: social learning plus persistent nest construction;
+- bison: memory-guided foraging, acoustic communication and collective movement decision-making;
+- spotted hyena: innovation, communication and cooperation, plus a directed-social-learning boundary;
+- sloth bear: positive spatial-transposition evidence coexisting with failure on one novel-problem task.
 
-| Module | Coverage |
-|---|---:|
-| A · generative cognition | 9 / 79 |
-| B · social transmission | 16 / 79 |
-| C · communication | 11 / 79 |
-| D · manipulation / embodiment | 8 / 79 |
-| E · persistent externalization | 10 / 79 |
-| F · social architecture | 21 / 79 |
-| G · life history / learning opportunity | 60 / 79 |
-| H · energetics / neural budget | 55 / 79 |
-| I · ecological challenge / opportunity | 53 / 79 |
-| J · demography / cultural population | 41 / 79 |
+## Tested-negative policy
 
-The dominant empirical gap is now clearly A–E, not basic ecology/life history.
+Negative evidence is coded only when a relevant subindicator was explicitly tested and failed.
 
-## Theory-counterexample seed
+Examples now preserved:
+- sloth bear: failure to spontaneously solve a specific novel problem despite social cues / relevant experience;
+- three-spined stickleback: no evidence for individual recognition in the tested paradigm;
+- spotted hyena: demonstrator opportunity did not increase novel technical-problem success, despite partial social effects;
+- Nephila: prior experience did not increase site tenacity;
+- Hyla: a specific auditory-streaming effect was not supported.
 
-The 14 theory-discriminating candidates now have 21 source-traceable exact-species module evidence rows.
+A tested negative narrows a module; it does not automatically set the whole module to zero.
 
-Examples of deliberate dissociations include:
-- scrub-jay future planning;
-- sea-otter habitual stone tool use;
-- beaver persistent dam construction;
-- zebra-finch and sac-winged-bat vocal learning;
-- naked-mole-rat culturally transmitted vocal dialect;
-- cleaner-fish social learning;
-- wolf and African-wild-dog cooperation;
-- leaf-cutter-ant persistent cultivation/division of labour.
+## Deep-coding queue · current v2
 
-These are candidate anti-sufficiency contrasts, not automatic proofs of insufficiency.
+Canonical queue: data/deep_coding_cell_queue_v2.csv.
 
-## Recoverability · methodological correction
+There are **330 currently unobserved A–F cells**:
+- 128 retained29 systematic backfill;
+- 202 new50 targeted second pass.
 
-### Legacy diagnostic
+The queue is for **search allocation only**, not biological importance.
 
-The Pilot-7/early Pilot-8 simulation let a flexible three-feature “interaction” model compete with simpler models and let threshold share features with weakest-link. Its low complete-data recovery therefore mixed:
-- panel/missingness limitations;
-- genuine signature overlap;
-- unequal model flexibility.
+Work in balanced bundles:
+- **ABE core:** generative cognition, social transmission, persistent externalization;
+- **CDF support:** communication, manipulation/embodiment, social architecture.
 
-Those results remain archived for audit but are **not the final gate definition**.
+Do not exhaust one module globally before the others.
 
-### Architecture-balanced v2 gate
+## Recoverability status
 
-The primary static recoverability diagnostic now gives additive, weakest-link and threshold equal fitted complexity: each is a fixed one-dimensional architecture signature with intercept + slope.
+The architecture-balanced simulation framework is valid as a **design diagnostic**, not a biological power calculation.
 
-Dynamic interaction/feedback is retained as a substantive hypothesis but must be modeled with explicit temporal/network structure rather than as a static catch-all polynomial.
+Key lessons already established:
+- taxa count alone is insufficient;
+- uneven missingness can make threshold / weakest-link architectures harder to recover even when total coverage rises;
+- balanced A–F completion is more useful than opportunistic single-column completion;
+- configuration geometry matters strongly.
 
-V2 recovery:
+Important provenance note:
+- tier1_recoverability_v3.csv was generated **before the final all-new50 first-pass closure**.
+- It should therefore be treated as an interim design diagnostic.
+- Do **not** describe it as the latest recovery estimate for the current v2 matrix.
+- Rerun recoverability after a balanced backfill batch, and ultimately on empirical module values rather than binary evidence-presence masks.
 
-| Scenario | Additive | Weakest | Threshold |
-|---|---:|---:|---:|
-| 29 current | 0.642 | 0.478 | 0.386 |
-| 79 current | 0.768 | 0.414 | 0.448 |
-| new 50 A–F complete | 0.994 | 0.526 | 0.310 |
-| all 79 A–F complete | 1.000 | 0.742 | 0.550 |
-| 79 × 10 complete, random configurations | 1.000 | 0.850 | 0.748 |
-| 79 × 10 complete, oracle configuration geometry | 1.000 | 1.000 | 0.915 |
+## Outcome coding
 
-The oracle row is an upper bound using latent architecture signatures and is not directly implementable before measurement.
+O1–O7 is partly developed for theory and calibration cohorts but is **not yet complete for all 79 taxa**.
 
-## What the v2 gate says
+This remains a major blocker. Presence of A–J conditions cannot answer necessary/sufficient questions without independent outcome coding.
 
-1. **79 taxa can be enough in principle** for the primary static architecture question.
-2. Merely adding taxa without balanced module coding is not enough.
-3. Deep-coding only the new 50 leaves old-panel A–F and G–J imbalance; it does not solve identifiability.
-4. After A–F are complete, J and H are high-priority remaining gaps; G is no longer a major bottleneck.
-5. Configuration geometry still matters strongly: random complete 79 < deliberately discriminating complete 79.
+## G–J priority after A–F
 
-## Current design gates
+Among remaining G–J gaps, current design logic prioritizes:
+1. **J · demography / cultural population**;
+2. **H · energetics / neural budget**;
+3. I;
+4. G last.
+
+## Design gates
 
 ### Passed
 - ARIS provenance freeze.
 
 ### Provisional pass
-- outcome codebook;
 - condition ontology;
+- outcome codebook;
 - research-effort framework;
 - screening taxonomy;
-- phylogenetic topology;
-- broad screening pool construction;
-- Tier-1 selection algorithm;
+- broad 238-taxon pool;
+- Tier-1 selection logic;
+- theory-counterexample and underrepresented-calibration architecture;
+- staged phylogenetic topology;
 - hominin temporal layer;
 - novelty boundary;
 - neural harmonization.
 
 ### BLOCKED
-- **confirmatory model recoverability / minimal necessary-sufficient configuration inference.**
+- confirmatory minimal necessary/sufficient configuration inference.
 
 ## Unblock plan
 
-1. Deep-code A–F for the 50 Tier-1 additions.
-2. Backfill A–F gaps in the original 29, rather than treating the old panel as finished.
-3. Prioritize standardized J and H expansion; I next; G last among G–J.
-4. Code O1–O7 outcomes independently for all Tier-1 taxa.
-5. Search explicitly for tested-negative evidence, especially in ordinary/underrepresented calibration taxa.
-6. Add dated/justified phylogenetic branch lengths.
-7. Recompute empirical configuration geometry after A–J values exist.
-8. Rerun the architecture-balanced gate on observed data and missingness.
-9. Model interaction/feedback separately using temporal/network structure.
-10. Only then estimate candidate necessary/sufficient sets.
+1. Execute data/deep_coding_cell_queue_v2.csv in balanced ABE/CDF batches.
+2. Backfill the retained29; do not treat Pilot 7 as finished.
+3. Run targeted second-pass searches on new50 not_located_first_pass cells.
+4. Expand O1–O7 outcomes to all 79 taxa, independently from condition coding.
+5. Continue explicit tested-negative retrieval.
+6. Expand J and H, then I/G as needed.
+7. Add dated / justified phylogenetic branch lengths and propagate measurement uncertainty.
+8. Replace evidence-presence masks with empirical / ordinal / latent module values.
+9. Recompute configuration geometry and rerun the architecture-balanced gate.
+10. Model temporal/network feedback separately from static architectures.
+11. Only then estimate candidate necessary, sufficient, bottleneck or enabling sets.
 
-## Current scientific assessment
+## Scientific assessment
 
-**Framing: strong. Counterexample design: strong. Data infrastructure: advanced. Tier-1 behavioral coding: incomplete. Confirmatory causal/configurational claims: not ready.**
-
-The project can already reject several naive single-factor stories, but it cannot yet state the minimal sufficient or necessary architecture of human-like open-ended cumulative intelligence.
+**Framing: strong. Counterexample design: strong. Data infrastructure: advanced. New50 first-pass A–F: complete. Retained29 A–F backfill / new50 second pass / full outcome coding: incomplete. Confirmatory configurational claims: not ready.**
