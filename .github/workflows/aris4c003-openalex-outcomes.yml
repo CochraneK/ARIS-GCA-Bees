@@ -1,0 +1,266 @@
+name: ARIS4C003 materialize OpenAlex outcomes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/aris4c003-openalex-outcomes.yml"
+
+permissions:
+  contents: write
+
+env:
+  OPENALEX_WORKS: "s3://openalex/data/parquet/works/**/*.parquet"
+
+jobs:
+  country-cells:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - name: Require frozen unlocked design
+        run: python code/preoutcome_gate.py --strict
+      - name: Materialize country discipline cells
+        run: |
+          mkdir -p data/derived/openalex
+          python code/materialize_openalex_cells.py "$OPENALEX_WORKS" \
+            --output-dir data/derived/openalex
+      - name: Audit country materialization
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          import duckdb
+          root=Path("data/derived/openalex")
+          cells=root/"COUNTRY_DISCIPLINE_WINDOW.parquet"
+          cov=root/"COVERAGE_DIAGNOSTICS.parquet"
+          con=duckdb.connect()
+          q=lambda p: str(p).replace("'","''")
+          s=con.execute(f"""
+            SELECT
+              count(*) rows,
+              count(DISTINCT iso3c) countries,
+              count(DISTINCT concept_id) concepts,
+              count(DISTINCT period) periods,
+              sum(fractional_output) fractional_output
+            FROM read_parquet('{q(cells)}')
+          """).fetchone()
+          def sha(p):
+            h=hashlib.sha256()
+            with p.open("rb") as f:
+              for b in iter(lambda:f.read(1<<20),b""): h.update(b)
+            return h.hexdigest()
+          audit={
+            "status":"PASS",
+            "cells_rows":s[0],
+            "countries":s[1],
+            "concepts":s[2],
+            "periods":s[3],
+            "fractional_output_mass":s[4],
+            "cells_bytes":cells.stat().st_size,
+            "cells_sha256":sha(cells),
+            "coverage_bytes":cov.stat().st_size,
+            "coverage_sha256":sha(cov),
+          }
+          Path("data/derived/openalex/COUNTRY_MATERIALIZATION_AUDIT.json").write_text(
+            json.dumps(audit,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(audit,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-country-cells
+          path: |
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/COUNTRY_DISCIPLINE_WINDOW.parquet
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/COVERAGE_DIAGNOSTICS.parquet
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/COUNTRY_MATERIALIZATION_AUDIT.json
+          retention-days: 30
+          compression-level: 1
+
+  dyad-cells:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - name: Require frozen unlocked design
+        run: python code/preoutcome_gate.py --strict
+      - name: Materialize positive dyad discipline cells
+        run: |
+          mkdir -p data/derived/openalex
+          python code/materialize_openalex_dyads.py "$OPENALEX_WORKS" \
+            --output data/derived/openalex/DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet
+      - name: Audit dyad materialization
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          import duckdb
+          p=Path("data/derived/openalex/DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet")
+          con=duckdb.connect()
+          q=str(p).replace("'","''")
+          s=con.execute(f"""
+            SELECT
+              count(*) rows,
+              count(DISTINCT pair_id) positive_pairs,
+              count(DISTINCT concept_id) concepts,
+              count(DISTINCT period) periods,
+              sum(fractional_collaboration_mass) collaboration_mass
+            FROM read_parquet('{q}')
+          """).fetchone()
+          h=hashlib.sha256()
+          with p.open("rb") as f:
+            for b in iter(lambda:f.read(1<<20),b""): h.update(b)
+          audit={
+            "status":"PASS",
+            "positive_rows":s[0],
+            "positive_pairs":s[1],
+            "concepts":s[2],
+            "periods":s[3],
+            "fractional_collaboration_mass":s[4],
+            "bytes":p.stat().st_size,
+            "sha256":h.hexdigest(),
+          }
+          Path("data/derived/openalex/DYAD_MATERIALIZATION_AUDIT.json").write_text(
+            json.dumps(audit,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(audit,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-dyad-cells
+          path: |
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/DYAD_MATERIALIZATION_AUDIT.json
+          retention-days: 30
+          compression-level: 1
+
+  build-panels:
+    needs: [country-cells, dyad-cells]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-country-cells
+          path: papers/003-colonial-disciplinary-advantage
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-dyad-cells
+          path: papers/003-colonial-disciplinary-advantage
+      - name: Locate downloaded outcome artifacts
+        run: |
+          find . -maxdepth 6 -type f | sort | grep -E 'COUNTRY_DISCIPLINE|COVERAGE|DYAD_DISCIPLINE|MATERIALIZATION'
+      - name: Require frozen unlocked design
+        run: python code/preoutcome_gate.py --strict
+      - name: Build zero-filled confirmatory panels
+        run: python code/prepare_confirmatory_panels.py
+      - name: Create materialization audit
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import duckdb
+          root=Path("data")
+          c=root/"analysis/COUNTRY_DISCIPLINE_PANEL.parquet"
+          d=root/"analysis/DYAD_DISCIPLINE_PANEL.parquet"
+          source_country=root/"derived/openalex/COUNTRY_MATERIALIZATION_AUDIT.json"
+          source_dyad=root/"derived/openalex/DYAD_MATERIALIZATION_AUDIT.json"
+          con=duckdb.connect()
+          def q(p): return str(p).replace("'","''")
+          cs=con.execute(f"""
+            SELECT count(*), count(DISTINCT iso3c), count(DISTINCT concept_id),
+                   count(DISTINCT period)
+            FROM read_parquet('{q(c)}')
+          """).fetchone()
+          ds=con.execute(f"""
+            SELECT count(*), count(DISTINCT pair_id), count(DISTINCT concept_id),
+                   count(DISTINCT period), sum(col_dep_ever)
+            FROM read_parquet('{q(d)}')
+          """).fetchone()
+          def sha(p):
+            h=hashlib.sha256()
+            with p.open("rb") as f:
+              for b in iter(lambda:f.read(1<<20),b""): h.update(b)
+            return h.hexdigest()
+          audit={
+            "created_utc":datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "status":"PASS",
+            "first_contemporary_outcome_materialization":True,
+            "design_changed_after_outcome_unlock":False,
+            "country_panel":{
+              "rows":cs[0],"countries":cs[1],"concepts":cs[2],"periods":cs[3],
+              "bytes":c.stat().st_size,"sha256":sha(c)
+            },
+            "dyad_panel":{
+              "rows":ds[0],"pairs":ds[1],"concepts":ds[2],"periods":ds[3],
+              "sum_col_dep_ever_cells":ds[4],
+              "bytes":d.stat().st_size,"sha256":sha(d)
+            },
+            "country_materialization":json.loads(source_country.read_text()),
+            "dyad_materialization":json.loads(source_dyad.read_text()),
+            "modern_effect_estimates_inspected_at_this_stage":False
+          }
+          out=Path("process/OUTCOME_MATERIALIZATION_AUDIT.json")
+          out.write_text(json.dumps(audit,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(audit,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: |
+            papers/003-colonial-disciplinary-advantage/data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet
+            papers/003-colonial-disciplinary-advantage/data/analysis/DYAD_DISCIPLINE_PANEL.parquet
+            papers/003-colonial-disciplinary-advantage/process/OUTCOME_MATERIALIZATION_AUDIT.json
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/COUNTRY_DISCIPLINE_WINDOW.parquet
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet
+          retention-days: 30
+          compression-level: 1
+      - name: Commit compact materialization audit only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add process/OUTCOME_MATERIALIZATION_AUDIT.json
+          if git diff --cached --quiet; then
+            echo "Audit already current."
+          else
+            git commit -m "ARIS4C003 record first OpenAlex outcome materialization audit"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt * 2))
+            done
+            test "$pushed" -eq 1
+          fi
