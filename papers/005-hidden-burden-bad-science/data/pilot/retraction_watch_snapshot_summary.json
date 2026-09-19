@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-09-17T21:28:18.588395+00:00",
+  "generated_at_utc": "2026-09-19T05:12:03.457339+00:00",
   "classification": "DETECTED_CORRECTION_SNAPSHOT_SUMMARY_NOT_PREVALENCE",
-  "source_file_sha256": "2d74d3faffa6e0ea99f714f23e7fb3746b2a32b1450b74bf0b02504c186a8338",
-  "rows": 72577,
+  "source_file_sha256": "275619aee7af068bc00459d5362a25278f1aa11d3570e037dc09e2e40f538383",
+  "rows": 72621,
   "columns": [
     "Record ID",
     "Title",
@@ -36,69 +36,69 @@
     "context_only_reasons",
     "manual_review_required"
   ],
-  "unique_original_paper_dois": 63434,
-  "rows_without_resolvable_original_doi": 6110,
-  "duplicate_original_doi_rows_after_normalization": 3033,
+  "unique_original_paper_dois": 63504,
+  "rows_without_resolvable_original_doi": 6080,
+  "duplicate_original_doi_rows_after_normalization": 3037,
   "event_row_counts_by_nature": {
-    "Retraction": 67013,
+    "Retraction": 67083,
     "Expression of concern": 3718,
-    "Correction": 1522,
-    "UNKNOWN": 164,
-    "Reinstatement": 160
+    "Correction": 1526,
+    "Reinstatement": 160,
+    "UNKNOWN": 134
   },
   "unique_original_doi_counts_by_nature": {
-    "Retraction": 60971,
+    "Retraction": 61041,
     "Expression of concern": 3378,
-    "Correction": 1436,
+    "Correction": 1440,
     "Reinstatement": 155
   },
   "auto_flag_event_row_counts": {
-    "e1s_narrow_auto": 2130,
-    "e1m_strong_auto": 20524,
-    "e1p_strong_auto": 21105,
+    "e1s_narrow_auto": 2131,
+    "e1m_strong_auto": 20532,
+    "e1p_strong_auto": 21117,
     "paper_mill_signal": 11798,
-    "e3_error_signal": 7156,
-    "manual_scientific_review": 32328,
-    "manual_process_review": 26798,
-    "context_only_reasons": 5000,
-    "manual_review_required": 52528
+    "e3_error_signal": 7167,
+    "manual_scientific_review": 32385,
+    "manual_process_review": 26826,
+    "context_only_reasons": 5001,
+    "manual_review_required": 52563
   },
   "auto_flag_unique_original_doi_counts": {
-    "e1s_narrow_auto": 2020,
-    "e1m_strong_auto": 18863,
-    "e1p_strong_auto": 20417,
+    "e1s_narrow_auto": 2021,
+    "e1m_strong_auto": 18871,
+    "e1p_strong_auto": 20429,
     "paper_mill_signal": 11706,
-    "e3_error_signal": 6459,
-    "manual_scientific_review": 31113,
-    "manual_process_review": 26239,
-    "context_only_reasons": 2971,
-    "manual_review_required": 47869
+    "e3_error_signal": 6470,
+    "manual_scientific_review": 31170,
+    "manual_process_review": 26267,
+    "context_only_reasons": 2972,
+    "manual_review_required": 47934
   },
   "top_reasons_by_event_rows": [
     {
       "reason": "Investigation by Journal/Publisher",
-      "event_rows": 32165,
-      "unique_original_dois": 30899
+      "event_rows": 32193,
+      "unique_original_dois": 30927
     },
     {
       "reason": "Unreliable Results and/or Conclusions",
-      "event_rows": 21982,
-      "unique_original_dois": 21905
+      "event_rows": 22001,
+      "unique_original_dois": 21924
     },
     {
       "reason": "Investigation by Third Party",
-      "event_rows": 17966,
-      "unique_original_dois": 17612
+      "event_rows": 17970,
+      "unique_original_dois": 17616
     },
     {
       "reason": "Concerns/Issues about Data",
-      "event_rows": 15922,
-      "unique_original_dois": 15201
+      "event_rows": 15934,
+      "unique_original_dois": 15213
     },
     {
       "reason": "Concerns/Issues about Referencing/Attributions",
-      "event_rows": 15308,
-      "unique_original_dois": 15252
+      "event_rows": 15315,
+      "unique_original_dois": 15259
     },
     {
       "reason": "Notice - Limited or No Information",
@@ -107,8 +107,8 @@
     },
     {
       "reason": "Compromised Peer Review",
-      "event_rows": 11863,
-      "unique_original_dois": 11321
+      "event_rows": 11875,
+      "unique_original_dois": 11333
     },
     {
       "reason": "Paper Mill",
@@ -117,18 +117,18 @@
     },
     {
       "reason": "Concerns/Issues about Peer Review",
-      "event_rows": 11716,
-      "unique_original_dois": 11700
+      "event_rows": 11720,
+      "unique_original_dois": 11704
     },
     {
       "reason": "Concerns/Issues about Results and/or Conclusions",
-      "event_rows": 10034,
-      "unique_original_dois": 9639
+      "event_rows": 10046,
+      "unique_original_dois": 9651
     },
     {
       "reason": "Computer-Aided Content or Computer-Generated Content",
-      "event_rows": 9267,
-      "unique_original_dois": 9247
+      "event_rows": 9280,
+      "unique_original_dois": 9260
     },
     {
       "reason": "Date of Article and/or Notice Unknown",
@@ -137,8 +137,8 @@
     },
     {
       "reason": "Duplication of/in Image",
-      "event_rows": 5662,
-      "unique_original_dois": 5490
+      "event_rows": 5687,
+      "unique_original_dois": 5515
     },
     {
       "reason": "Breach of Policy by Author",
@@ -147,13 +147,13 @@
     },
     {
       "reason": "Removed",
-      "event_rows": 4071,
-      "unique_original_dois": 3434
+      "event_rows": 4073,
+      "unique_original_dois": 3436
     },
     {
       "reason": "Objections by Author(s)",
-      "event_rows": 3856,
-      "unique_original_dois": 3826
+      "event_rows": 3882,
+      "unique_original_dois": 3852
     },
     {
       "reason": "Investigation by Company/Institution",
@@ -162,63 +162,63 @@
     },
     {
       "reason": "Euphemisms for Plagiarism",
-      "event_rows": 3813,
-      "unique_original_dois": 2685
+      "event_rows": 3819,
+      "unique_original_dois": 2691
     },
     {
       "reason": "Duplication of/in Article",
-      "event_rows": 3722,
-      "unique_original_dois": 2933
+      "event_rows": 3723,
+      "unique_original_dois": 2934
     },
     {
       "reason": "Concerns/Issues about Image",
-      "event_rows": 3619,
-      "unique_original_dois": 3482
+      "event_rows": 3630,
+      "unique_original_dois": 3493
     },
     {
       "reason": "Rogue Editor",
-      "event_rows": 3521,
-      "unique_original_dois": 3003
+      "event_rows": 3522,
+      "unique_original_dois": 3004
     },
     {
       "reason": "Author Unresponsive",
-      "event_rows": 3340,
-      "unique_original_dois": 3281
+      "event_rows": 3346,
+      "unique_original_dois": 3287
     },
     {
       "reason": "Concerns/Issues about Authorship/Affiliation",
-      "event_rows": 3160,
-      "unique_original_dois": 2975
+      "event_rows": 3161,
+      "unique_original_dois": 2976
     },
     {
       "reason": "Plagiarism of/in Article",
-      "event_rows": 2897,
-      "unique_original_dois": 2580
+      "event_rows": 2898,
+      "unique_original_dois": 2581
     },
     {
       "reason": "Lack of IRB/IACUC Approval and/or Compliance",
-      "event_rows": 2655,
-      "unique_original_dois": 2637
+      "event_rows": 2659,
+      "unique_original_dois": 2641
     },
     {
       "reason": "Original Data and/or Images not Provided and/or not Available",
-      "event_rows": 2598,
-      "unique_original_dois": 2530
+      "event_rows": 2606,
+      "unique_original_dois": 2538
     },
     {
       "reason": "Upgrade/Update of Prior Notice(s)",
-      "event_rows": 2389,
-      "unique_original_dois": 2309
+      "event_rows": 2393,
+      "unique_original_dois": 2313
     },
     {
       "reason": "Unreliable Data",
-      "event_rows": 2384,
-      "unique_original_dois": 2325
+      "event_rows": 2392,
+      "unique_original_dois": 2333
     },
     {
       "reason": "Euphemisms for Duplication",
-      "event_rows": 2326,
-      "unique_original_dois": 2246
+      "event_rows": 2340,
+      "unique_original_dois": 2260
     },
     {
       "reason": "Plagiarism of Text",
@@ -227,18 +227,18 @@
     },
     {
       "reason": "Error in Data",
-      "event_rows": 2145,
-      "unique_original_dois": 2054
+      "event_rows": 2146,
+      "unique_original_dois": 2055
     },
     {
       "reason": "Updated to Retraction",
-      "event_rows": 2118,
-      "unique_original_dois": 2048
+      "event_rows": 2122,
+      "unique_original_dois": 2052
     },
     {
       "reason": "Concerns/Issues about Third Party Involvement",
-      "event_rows": 1959,
-      "unique_original_dois": 1934
+      "event_rows": 1960,
+      "unique_original_dois": 1935
     },
     {
       "reason": "Misconduct by Author",
@@ -247,13 +247,13 @@
     },
     {
       "reason": "Concerns/Issues about Article",
-      "event_rows": 1877,
-      "unique_original_dois": 1845
+      "event_rows": 1883,
+      "unique_original_dois": 1851
     },
     {
       "reason": "Falsification/Fabrication of Data",
-      "event_rows": 1739,
-      "unique_original_dois": 1640
+      "event_rows": 1740,
+      "unique_original_dois": 1641
     },
     {
       "reason": "Misconduct - Official Investigation(s) and/or Finding(s)",
@@ -267,8 +267,8 @@
     },
     {
       "reason": "Error in Image",
-      "event_rows": 1557,
-      "unique_original_dois": 1479
+      "event_rows": 1562,
+      "unique_original_dois": 1484
     },
     {
       "reason": "Error in Results and/or Conclusions",
@@ -276,12 +276,12 @@
       "unique_original_dois": 1309
     }
   ],
-  "parsed_retraction_date_rows": 72412,
+  "parsed_retraction_date_rows": 72486,
   "unparsed_retraction_date_rows": 1,
   "retraction_date_min": "1927-04-01",
   "retraction_date_max": "2026-09-11",
   "warning": "Counts describe Retraction Watch/Crossref detected correction records. They are not estimates of underlying misconduct prevalence. Event-row counts must not be substituted for unique-work counts. Auto flags are screening variables and ambiguous records require adjudication.",
-  "retraction_watch_git_commit": "448a0ed262c6348dd6f06ac03f5602bae4ef2d01",
+  "retraction_watch_git_commit": "8324ad5ae03519e1f213d417c6cf3e02d7dc5d1f",
   "source_repository": "https://gitlab.com/crossref/retraction-watch-data",
   "redistribution_note": "Raw Retraction Watch CSV intentionally excluded from artifact/repository; summary and provenance only."
 }

@@ -1,0 +1,27 @@
+{
+  "classification": "CALIBRATION_CANDIDATE_QUEUE_NOT_REFERENCE_TRUTH",
+  "unique_resolvable_dois": 63504,
+  "event_rows_without_resolvable_doi": 6080,
+  "candidate_queue_counts": {
+    "U_REVIEW": 56169,
+    "N_PROCESS_REVIEW": 5314,
+    "P_REVIEW": 586,
+    "P_HIGH_REVIEW": 1435
+  },
+  "reference_truth_labels_assigned": 0,
+  "public_row_level_release_allowed": false,
+  "candidate_rules": {
+    "P_HIGH_REVIEW": "narrow fabrication/falsification screening signal plus official/misconduct context",
+    "P_REVIEW": "narrow fabrication/falsification screening signal",
+    "N_PROCESS_REVIEW": "narrow process-only reason family with no scientific unreliability signal",
+    "U_REVIEW": "mixed/ambiguous/insufficient screening evidence"
+  },
+  "warnings": [
+    "Retraction Watch reasons are screening metadata, not calibration truth.",
+    "P candidates require notice/institutional primary-evidence confirmation and materiality review.",
+    "N_PROCESS_REVIEW requires explicit evidence that the scientific claim is unaffected.",
+    "Absence of a scientific flag is not a negative reference standard.",
+    "Provisional cluster IDs are only de-duplication/review aids and do not prove statistical independence.",
+    "Do not commit or publicly release the row-level candidate queue from a public repository."
+  ]
+}
