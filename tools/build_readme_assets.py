@@ -15,12 +15,12 @@ BG="#07162b"; PANEL="#0d2442"; PANEL2="#102c50"; GRID="#245d95"
 TEXT="#f8fafc"; MUTED="#a9bfe0"; FINISH="#7c8cff"; ACTIVE="#48e996"; WAIT="#f2c14e"; BLOCK="#ef6a6a"; ACCENT="#54a9ff"
 
 ZH_TITLES={
-"001":"蜜蜂 GCA × 不确定性","002":"语言周期性检验","003":"殖民遗产 × 学科优势",
+"001":"蜜蜂 GCA × 不确定性","002":"LING-01 · 语言周期性检验","003":"殖民遗产 × 学科优势",
 "004":"排斥的反事实知识网络成本","005":"坏科学的全球隐性负担","006":"中国姓名字母顺序暴露",
 "007":"跨物种年龄等价","008":"人类高级智力演化","009":"现象学保持型计算精神病学",
 "010":"Universal Concept Identification","011":"Research Forensics","012":"Oppositional Causal Inversion",
 "013":"出生—死亡时间耦合","014":"Public Integrity Forensics","015":"Sleeping Beauty Miner",
-"016":"全球脏话 / 禁忌语言语法"}
+"016":"全球脏话 / 禁忌语言语法","017":"LING-02 · 预测性语言空间"}
 
 def esc(x): return html.escape(str(x),quote=True)
 
@@ -76,7 +76,7 @@ def status(rows,lang):
     s += [f'<text x="1510" y="327" text-anchor="end" class="m">Total {total}</text>','</svg>']; return "\n".join(s)
 
 def maturity(rows,lang):
-    zh=lang=="zh"; title="16 个 Paper 的成熟度" if zh else "Portfolio maturity by paper"
+    zh=lang=="zh"; title=f"{len(rows)} 个 Paper 的成熟度" if zh else "Portfolio maturity by paper"
     subtitle="项目管理估计，不是科学结果；100% 表示仓库层最终输出契约满足" if zh else "Management estimate, not a scientific result; 100% means the repository-level final output contract is satisfied"
     colors={"finish":FINISH,"active":ACTIVE,"wait":WAIT,"block":BLOCK}; s=head(title,subtitle,1600,880)
     for i,r in enumerate(rows):
