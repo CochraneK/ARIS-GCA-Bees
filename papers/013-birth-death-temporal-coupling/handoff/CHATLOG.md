@@ -20,3 +20,15 @@ For every future material conversation, append:
 - important user correction/constraint;
 - decision/result;
 - affected files/commits where known.
+
+
+## 2026-09-19 · Delete-safe recovery checkpoint for legacy “013死日” chat
+
+- **Surface:** ChatGPT / ARIS4C continuity rescue
+- **Participants:** Cochrane Kang + ChatGPT
+- **Trigger:** The legacy 013 conversation became inaccessible and remained in a loading/spinning state; the user requested Git verification and synchronization before deleting it.
+- **Research motivation preserved:** The originating question asked whether birth and death timing are associated and whether a robust relation could have implications for Bazi/astrological claims.
+- **Interpretation boundary preserved:** A raw association is not treated as proof of astrology/Bazi. The canonical H1→H4 ladder, conventional controls, pseudo-calendar controls, holdouts, and independent replication remain required.
+- **Repository state verified:** 50% / block; Public NUMIDENT transfer · Pilot 1 ready; parser/tests + locked 1988–1996 discovery + public OpenICPSR V3 provenance manifest already established.
+- **Next gate verified:** Transfer two public-use NUMIDENT V3 death archives (~1.88 GB), verify layout/hashes, then run frozen Pilot 1.
+- **Outcome:** Added `process/DELETE_SAFE_CHECKPOINT.md`. Git is sufficient as the recovery surface; the legacy chat is non-canonical.
