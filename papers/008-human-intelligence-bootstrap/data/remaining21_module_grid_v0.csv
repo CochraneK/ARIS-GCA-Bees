@@ -53,42 +53,42 @@ Procyon cancrivorus,C,not_located_first_pass,,,scientific_name_plus_common_name_
 Procyon cancrivorus,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Procyon cancrivorus,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Procyon cancrivorus,F,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
-Hyaena brunnea,A,pending_first_pass,,,pending,not_searched,
-Hyaena brunnea,B,pending_first_pass,,,pending,not_searched,
-Hyaena brunnea,C,pending_first_pass,,,pending,not_searched,
-Hyaena brunnea,D,pending_first_pass,,,pending,not_searched,
-Hyaena brunnea,E,pending_first_pass,,,pending,not_searched,
-Hyaena brunnea,F,pending_first_pass,,,pending,not_searched,
-Poecilia reticulata,A,pending_first_pass,,,pending,not_searched,
-Poecilia reticulata,B,pending_first_pass,,,pending,not_searched,
-Poecilia reticulata,C,pending_first_pass,,,pending,not_searched,
-Poecilia reticulata,D,pending_first_pass,,,pending,not_searched,
-Poecilia reticulata,E,pending_first_pass,,,pending,not_searched,
-Poecilia reticulata,F,pending_first_pass,,,pending,not_searched,
-Dendrobates pumilio,A,pending_first_pass,,,pending,not_searched,
-Dendrobates pumilio,B,pending_first_pass,,,pending,not_searched,
-Dendrobates pumilio,C,pending_first_pass,,,pending,not_searched,
-Dendrobates pumilio,D,pending_first_pass,,,pending,not_searched,
-Dendrobates pumilio,E,pending_first_pass,,,pending,not_searched,
-Dendrobates pumilio,F,pending_first_pass,,,pending,not_searched,
+Hyaena brunnea,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Hyaena brunnea,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Hyaena brunnea,C,positive_proxy,doi:10.1080/02541858.1980.11447718,scent marking / pasting communication,evidence_located,not_searched,Direct chemical social signalling evidence; not symbolic or learned communication.
+Hyaena brunnea,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Hyaena brunnea,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Hyaena brunnea,F,positive,doi:10.1111/j.1365-2028.1979.tb00454.x,communal denning and clan associations,evidence_located,not_searched,Direct clan/social-organization evidence; not equivalent to large multilevel societies.
+Poecilia reticulata,A,positive,pmid:10049472,foraging innovation,evidence_located,not_searched,Direct innovation evidence; not a global intelligence score.
+Poecilia reticulata,B,positive,pmid:9236013,social learning of foraging routes,evidence_located,not_searched,Direct social learning; long-term stable tradition is a separate outcome.
+Poecilia reticulata,C,positive_proxy,pmid:20646155,visual courtship ornament/display receiver preference,evidence_located,not_searched,Supports visual signalling and receiver sensitivity in courtship; not referential/compositional communication.
+Poecilia reticulata,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Poecilia reticulata,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Poecilia reticulata,F,positive_proxy,pmcid:PMC5719178,social network structure and social information acquisition,evidence_located,not_searched,Direct group-network/social information evidence; not high-level cooperation.
+Dendrobates pumilio,A,positive_proxy,pmid:41537843,visual homing/navigation after displacement,evidence_located,not_searched,Direct Oophaga pumilio spatial-navigation evidence; operational name Dendrobates pumilio is retained with taxonomic crosswalk.
+Dendrobates pumilio,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Dendrobates pumilio,C,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Dendrobates pumilio,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Dendrobates pumilio,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Dendrobates pumilio,F,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Balaenoptera musculus,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Balaenoptera musculus,B,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Balaenoptera musculus,C,positive,pmcid:PMC6124089,context-dependent blue-whale acoustic communication,evidence_located,not_searched,Direct call-production/context evidence; not proof of socially learned song culture.
 Balaenoptera musculus,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Balaenoptera musculus,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Balaenoptera musculus,F,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
-Desmodus rotundus,A,pending_first_pass,,,pending,not_searched,
-Desmodus rotundus,B,pending_first_pass,,,pending,not_searched,
-Desmodus rotundus,C,pending_first_pass,,,pending,not_searched,
-Desmodus rotundus,D,pending_first_pass,,,pending,not_searched,
-Desmodus rotundus,E,pending_first_pass,,,pending,not_searched,
-Desmodus rotundus,F,pending_first_pass,,,pending,not_searched,
-Gasterosteus aculeatus,A,pending_first_pass,,,pending,not_searched,
-Gasterosteus aculeatus,B,pending_first_pass,,,pending,not_searched,
-Gasterosteus aculeatus,C,pending_first_pass,,,pending,not_searched,
-Gasterosteus aculeatus,D,pending_first_pass,,,pending,not_searched,
-Gasterosteus aculeatus,E,pending_first_pass,,,pending,not_searched,
-Gasterosteus aculeatus,F,pending_first_pass,,,pending,not_searched,
+Desmodus rotundus,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Desmodus rotundus,B,positive,pmcid:PMC6030285,social learning of maze exit from demonstrator with retention,evidence_located,not_searched,Demonstrator presence increased naive exit rates and most successful observers retained the solution after demonstrator removal.
+Desmodus rotundus,C,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Desmodus rotundus,D,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Desmodus rotundus,E,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Desmodus rotundus,F,positive,pmcid:PMC8460024,long-term cooperative relationships predict social foraging,evidence_located,not_searched,Strong cooperative/social-network evidence; not culturally distributed cognition.
+Gasterosteus aculeatus,A,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Gasterosteus aculeatus,B,positive,pmcid:PMC9988244,social learning from demonstrators,evidence_located,not_searched,Direct social-learning evidence; persistence across generations not established.
+Gasterosteus aculeatus,C,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,specific_subindicator_tested_negative: individual recognition,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
+Gasterosteus aculeatus,D,positive_proxy,pmcid:PMC4020685,environment-responsive nest construction / spiggin-mediated material joining,evidence_located,not_searched,Direct construction physiology/behavior context; not tool manufacture.
+Gasterosteus aculeatus,E,positive,pmcid:PMC4020685,constructed nest as persistent externalized structure,evidence_located,not_searched,Persistent nest construction is established; not cumulative cultural construction.
+Gasterosteus aculeatus,F,not_located_first_pass,,,scientific_name_plus_common_name_search_complete_no_exact_direct_evidence,not_searched,No direct exact-species evidence located in first-pass plus common-name fallback; missing is not biological absence.
 Bison bison,A,pending_first_pass,,,pending,not_searched,
 Bison bison,B,pending_first_pass,,,pending,not_searched,
 Bison bison,C,pending_first_pass,,,pending,not_searched,
