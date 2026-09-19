@@ -8,18 +8,18 @@ A locked, outcome-unblinded cross-national and cross-disciplinary test of whethe
 
 ## Current state
 
-- Activity: **wait**
+- Activity: **ready-to-resume**
 - Progress: **70%**
-- Stage: **Outcome materialization · locked first confirmatory run**
-- Evidence: COLDAT + CEPII audited · blind Coder A/B + adjudicated IKES frozen · strict gate unlocked · OpenAlex scan running
+- Stage: **Outcome materialization recovery · deterministic sharded fallback**
+- Evidence: COLDAT + CEPII audited · confirmatory Qoder/Qwen Flash 3.8 Coder B validated · 12-cell outcome-blind adjudication · IKES frozen with SHA-256 provenance · strict gate DESIGN_LOCKED/OUTCOME_UNLOCKED
 
 ## Immediate next action
 
-**Complete OpenAlex country/dyad panels, 3 headline PPMLs, 3×999 permutations, LOO and first-result hash lock**
+**Validate repaired country materializer on a real shard, then dispatch 32-way sharded OpenAlex fallback; on success auto-chain headline PPMLs, 3×999 permutations, LOO and FIRST_RESULT_LOCK**
 
 ## Current blocker / gate
 
-None · public OpenAlex snapshot scan is compute/network intensive
+Engineering validation only: monolithic run 35423271792 failed on invalid DuckDB WITH...COPY syntax; fixed in fe82cb54 but real-shard validation remains
 
 ## Canonical files / entry points
 
