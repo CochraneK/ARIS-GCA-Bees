@@ -3,36 +3,37 @@
   "dataset_id": "ucid-human-calibration-forms-v0",
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35406457235,
-    "run_number": 43,
-    "head_sha": "9632c2992e951463fe8e75829cd3781122af6acf",
+    "run_id": 35424073432,
+    "run_number": 61,
+    "head_sha": "28f81b871ae46666ed0386ed50ad779c18f051ee",
     "conclusion": "success",
-    "artifact_id": 10572466809,
+    "artifact_id": 10578897208,
     "artifact_name": "aris4c010-human-forms",
-    "artifact_sha256": "44b15795ccd000dc47140620a6f0f82af1265f5c736370e73291310c98091aa3",
+    "artifact_sha256": "c33b1904d1988dc246dc757c02024367c7202c0b8031771178a9c353ea384565",
     "forms_json": {
-      "sha256": "9d721b37d33b0fdcedc999932e424571de0fcbac131dcfecbb85b76ec9fc8a64",
-      "bytes": 5214493,
-      "forms": 72,
+      "sha256": "667db27d14c1bf68f070981297edee1a75ee323b8b7d6195527f1e1ad28af8e6",
+      "bytes": 7735859,
+      "forms": 108,
       "p2_forms": 36,
+      "p3_forms": 36,
       "p6_forms": 36,
       "trials_per_form": 92,
       "main_trials_per_form": 84,
       "retests_per_form": 8
     },
     "csv_export": {
-      "form_csv_files": 72,
+      "form_csv_files": 108,
       "index_csv_files": 1
     },
     "dryrun": {
       "conclusion": "success",
-      "retest_matches": 32,
       "protocols_analyzed": [
         "P2",
+        "P3",
         "P6"
       ],
       "note": "Synthetic plumbing check only; no scientific evidence."
     }
   },
-  "design_warning": "One 72-form cycle is a balanced assignment cycle, not a powered sample-size recommendation."
+  "design_warning": "One 108-form three-protocol cycle is a balanced assignment cycle, not a powered sample-size recommendation."
 }
