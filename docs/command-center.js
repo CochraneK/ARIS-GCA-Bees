@@ -250,68 +250,85 @@
   function initProgressHistory(){
     const raw=$("progressHistoryData")?.textContent || "";
     const svg=$("progressHistoryChart");
-    const select=$("progressHistorySeries");
+    const legend=$("progressHistoryLegend");
     const summary=$("progressHistorySummary");
-    if(!raw || !svg || !select) return;
+    if(!raw || !svg || !legend) return;
 
     let data;
     try{ data=JSON.parse(raw); }catch(err){ console.warn("Invalid progress history",err); return; }
-    const allPoints=Array.isArray(data.points)?data.points:[];
-
-    const escHtml=value=>String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
-    const fmtDate=value=>{
-      const d=new Date(value);
-      if(!Number.isFinite(d.getTime())) return "—";
-      return d.toLocaleString(undefined,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
-    };
-
-    function render(){
-      const series=select.value;
-      const points=allPoints.map(p=>{
-        const value=series==="__mean__" ? Number(p.mean_progress) : Number(p.projects?.[series]);
-        return {...p,value};
-      }).filter(p=>Number.isFinite(p.value));
-
-      if(!points.length){
-        svg.innerHTML='<text x="500" y="135" text-anchor="middle" class="history-empty">No history for this series yet.</text>';
-        if(summary) summary.textContent="No historical checkpoints";
-        return;
-      }
-
-      const W=1000,H=260,L=54,R=18,T=22,B=42;
-      const innerW=W-L-R, innerH=H-T-B;
-      const times=points.map(p=>new Date(p.timestamp).getTime()).filter(Number.isFinite);
-      let minT=Math.min(...times), maxT=Math.max(...times);
-      if(minT===maxT) maxT=minT+1;
-      const x=t=>L+(new Date(t).getTime()-minT)/(maxT-minT)*innerW;
-      const y=v=>T+(100-v)/100*innerH;
-      const path=points.map((p,i)=>`${i?"L":"M"} ${x(p.timestamp).toFixed(1)} ${y(p.value).toFixed(1)}`).join(" ");
-      const area=`${path} L ${x(points.at(-1).timestamp).toFixed(1)} ${(T+innerH).toFixed(1)} L ${x(points[0].timestamp).toFixed(1)} ${(T+innerH).toFixed(1)} Z`;
-      const grid=[0,25,50,75,100].map(v=>`
-        <line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" class="history-grid-line"/>
-        <text x="${L-10}" y="${y(v)+4}" text-anchor="end" class="history-axis-label">${v}</text>
-      `).join("");
-      const dateTicks=[points[0],points[Math.floor((points.length-1)/2)],points.at(-1)];
-      const labels=dateTicks.map((p,i)=>`<text x="${x(p.timestamp)}" y="${H-12}" text-anchor="${i===0?"start":i===2?"end":"middle"}" class="history-axis-label">${escHtml(fmtDate(p.timestamp))}</text>`).join("");
-      const dots=points.map(p=>`<circle cx="${x(p.timestamp)}" cy="${y(p.value)}" r="3.2" class="history-dot"><title>${escHtml(fmtDate(p.timestamp))} · ${p.value.toFixed(1)}% · ${escHtml(p.commit)}</title></circle>`).join("");
-
-      svg.innerHTML=`
-        <g>${grid}</g>
-        <path d="${area}" class="history-area"/>
-        <path d="${path}" class="history-line"/>
-        <g>${dots}</g>
-        <g>${labels}</g>
-      `;
-
-      if(summary){
-        const first=points[0].value,last=points.at(-1).value,delta=last-first;
-        const label=series==="__mean__"?"Portfolio mean":`#${series}`;
-        summary.textContent=`${label}: ${first.toFixed(1)}% → ${last.toFixed(1)}% (${delta>=0?"+":""}${delta.toFixed(1)} pp) · ${points.length} checkpoints`;
-      }
+    const points=Array.isArray(data.points)?data.points:[];
+    if(!points.length){
+      svg.innerHTML='<text x="500" y="165" text-anchor="middle" class="history-empty">No dashboard checkpoints for today yet.</text>';
+      if(summary) summary.textContent="No checkpoints today";
+      return;
     }
 
-    select.addEventListener("change",render);
-    render();
+    const ids=[...new Set(points.flatMap(p=>Object.keys(p.projects||{})))].sort((a,b)=>a.localeCompare(b));
+    const palette=[
+      "#2563eb","#7c3aed","#0891b2","#059669","#65a30d","#ca8a04",
+      "#ea580c","#dc2626","#db2777","#9333ea","#4f46e5","#0284c7",
+      "#0d9488","#16a34a","#84cc16","#d97706","#e11d48","#6366f1"
+    ];
+    const colorFor=id=>palette[Math.max(0,ids.indexOf(id))%palette.length];
+    const escHtml=value=>String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+    const fmtTime=value=>{
+      const d=new Date(value);
+      if(!Number.isFinite(d.getTime())) return "—";
+      return d.toLocaleTimeString(undefined,{hour:"2-digit",minute:"2-digit"});
+    };
+
+    const W=1000,H=330,L=50,R=20,T=20,B=36;
+    const innerW=W-L-R, innerH=H-T-B;
+    const times=points.map(p=>new Date(p.timestamp).getTime()).filter(Number.isFinite);
+    let minT=Math.min(...times), maxT=Math.max(...times);
+    if(minT===maxT) maxT=minT+1;
+    const x=t=>L+(new Date(t).getTime()-minT)/(maxT-minT)*innerW;
+    const y=v=>T+(100-v)/100*innerH;
+
+    const grid=[0,25,50,75,100].map(v=>`
+      <line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" class="history-grid-line"/>
+      <text x="${L-9}" y="${y(v)+4}" text-anchor="end" class="history-axis-label">${v}%</text>
+    `).join("");
+
+    const tickIndexes=[0,Math.floor((points.length-1)/3),Math.floor((points.length-1)*2/3),points.length-1]
+      .filter((v,i,a)=>a.indexOf(v)===i);
+    const labels=tickIndexes.map((idx,i)=>{
+      const p=points[idx];
+      const anchor=i===0?"start":i===tickIndexes.length-1?"end":"middle";
+      return `<text x="${x(p.timestamp)}" y="${H-11}" text-anchor="${anchor}" class="history-axis-label">${escHtml(fmtTime(p.timestamp))}</text>`;
+    }).join("");
+
+    const paths=ids.map(id=>{
+      const sp=points.map(p=>({p,value:Number(p.projects?.[id])})).filter(row=>Number.isFinite(row.value));
+      if(!sp.length) return "";
+      const d=sp.map((row,i)=>`${i?"L":"M"} ${x(row.p.timestamp).toFixed(1)} ${y(row.value).toFixed(1)}`).join(" ");
+      const changed=sp.filter((row,i)=>i===0 || i===sp.length-1 || row.value!==sp[i-1].value);
+      const dots=changed.map(row=>`<circle cx="${x(row.p.timestamp)}" cy="${y(row.value)}" r="2.8" fill="${colorFor(id)}" class="history-series-dot"><title>#${id} · ${row.value}% · ${escHtml(fmtTime(row.p.timestamp))}</title></circle>`).join("");
+      return `<g data-history-series="${id}"><path d="${d}" class="history-series-line" stroke="${colorFor(id)}"><title>#${id}</title></path>${dots}</g>`;
+    }).join("");
+
+    svg.innerHTML=`<g>${grid}</g><g>${paths}</g><g>${labels}</g>`;
+
+    const latest=points.at(-1)?.projects||{};
+    legend.innerHTML=ids.map(id=>`
+      <span class="history-legend-item" data-series="${id}">
+        <i style="background:${colorFor(id)}"></i>
+        <strong>#${id}</strong>
+        <span>${Number.isFinite(Number(latest[id]))?Number(latest[id])+"%":"—"}</span>
+      </span>
+    `).join("");
+
+    legend.querySelectorAll(".history-legend-item").forEach(item=>{
+      item.addEventListener("mouseenter",()=>{
+        const id=item.dataset.series;
+        svg.querySelectorAll("[data-history-series]").forEach(g=>g.classList.toggle("history-series-muted",g.dataset.historySeries!==id));
+      });
+      item.addEventListener("mouseleave",()=>svg.querySelectorAll("[data-history-series]").forEach(g=>g.classList.remove("history-series-muted")));
+    });
+
+    if(summary){
+      summary.textContent=`${data.date||"Today"} · ${points.length} checkpoints · ${ids.length} papers on one chart`;
+    }
   }
 
   function wire(){
