@@ -85,7 +85,7 @@
 
   function initShowcase(){
     const viewport=$("showcaseViewport");
-    const track=$("showcaseTrack");
+    const track=$("paperGrid");
     if(!viewport || !track) return;
 
     const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -104,9 +104,9 @@
       if(max<=2) return;
       const next=viewport.scrollLeft + dir*stepSize();
       if(dir>0 && next>=max-4){
-        viewport.scrollTo({left:0,behavior:prefersReduced?"auto":"smooth"});
+        viewport.scrollTo({left:0,behavior:"auto"});
       }else if(dir<0 && next<=0){
-        viewport.scrollTo({left:max,behavior:prefersReduced?"auto":"smooth"});
+        viewport.scrollTo({left:max,behavior:"auto"});
       }else{
         viewport.scrollBy({left:dir*stepSize(),behavior:prefersReduced?"auto":"smooth"});
       }
@@ -124,13 +124,20 @@
       timer=setInterval(()=>go(1),4200);
     };
 
-    $("showcasePrev")?.addEventListener("click",()=>{stop();go(-1);});
-    $("showcaseNext")?.addEventListener("click",()=>{stop();go(1);});
+    const nudge=dir=>{
+      stop();
+      go(dir);
+      window.setTimeout(start,1800);
+    };
+    $("showcasePrev")?.addEventListener("click",()=>nudge(-1));
+    $("showcaseNext")?.addEventListener("click",()=>nudge(1));
     viewport.addEventListener("mouseenter",stop);
     viewport.addEventListener("mouseleave",start);
     viewport.addEventListener("focusin",stop);
     viewport.addEventListener("focusout",start);
     viewport.addEventListener("pointerdown",stop,{passive:true});
+    viewport.addEventListener("pointerup",()=>setTimeout(start,900),{passive:true});
+    viewport.addEventListener("pointercancel",()=>setTimeout(start,900),{passive:true});
     viewport.addEventListener("touchstart",stop,{passive:true});
     viewport.addEventListener("touchend",()=>setTimeout(start,900),{passive:true});
     document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
