@@ -90,6 +90,7 @@ def build_mechanism_cohort(
     sb_min_wake_rate: float = 5.0,
     sb_min_total_citations: int = 50,
     controls_per_case: int = 1,
+    primary_risk_set_case_ids: set[str] | None = None,
     matching_year_tolerance: int = 0,
     matching_early_percentile_caliper: float = 0.15,
     matching_max_abs_smd: float = 0.10,
@@ -101,12 +102,11 @@ def build_mechanism_cohort(
     Normalization strata are exact (field, publication_year). Papers in strata
     below min_stratum_size are returned as ABSTAIN_STRATUM_TOO_SMALL.
 
-    SLEEPING_BEAUTY requires:
-    - early attention <= 25th percentile;
-    - late attention >= 75th percentile;
-    - robust retrospective SB gate.
+    Robust SLEEPING_BEAUTY identity is determined by the retrospective
+    full-trajectory gate. The normalized early/late quadrant is retained as a
+    separate descriptive state and does not veto robust identity.
 
-    Other canonical states use normalized early/late attention only:
+    Other canonical quadrant states use normalized early/late attention:
     - FORGOTTEN: low -> low
     - IMMEDIATE_HIT: high -> high
     - FADING: high -> low
@@ -265,6 +265,7 @@ def build_mechanism_cohort(
         build_awakening_risk_set_contrast(
             matching_rows,
             controls_per_case=controls_per_case,
+            case_ids=primary_risk_set_case_ids,
             max_sleep_rate=sb_max_sleep_rate,
             wake_years=sb_wake_years,
             min_wake_rate=sb_min_wake_rate,
@@ -320,6 +321,11 @@ def build_mechanism_cohort(
         ),
         "n_input_papers": len(rows),
         "n_robust_sleeping_beauties": n_sb,
+        "primary_risk_set_case_ids": (
+            sorted(primary_risk_set_case_ids)
+            if primary_risk_set_case_ids is not None
+            else None
+        ),
         "state_counts": dict(sorted(state_counts.items())),
         "stratum_counts": stratum_counts,
         "definitions": {
