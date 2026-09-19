@@ -10,6 +10,10 @@ permissions:
   contents: write
   actions: read
 
+concurrency:
+  group: aris4c003-confirmatory-recovery
+  cancel-in-progress: true
+
 env:
   MATERIALIZATION_RUN_ID: "35436625005"
   DISTRIBUTED_SENSITIVITY_RUN_ID: "35438449846"
@@ -66,8 +70,57 @@ jobs:
           retention-days: 30
           compression-level: 1
 
+  permutation-shard3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: papers/003-colonial-disciplinary-advantage
+          run-id: ${{ env.MATERIALIZATION_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Re-run only missing/slow permutation shard 3 on latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="data/results/components/perm-recovery-03"
+          mkdir -p "$out"
+          for model in output impact dyad; do
+            python code/run_confirmatory_component.py \
+              --country-panel data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet \
+              --dyad-panel data/analysis/DYAD_DISCIPLINE_PANEL.parquet \
+              --output-dir "$out" \
+              --component permutation \
+              --model "$model" \
+              --start-rep 151 \
+              --end-rep 200
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-model-perm-recovery-3
+          path: papers/003-colonial-disciplinary-advantage/data/results/components/perm-recovery-03
+          retention-days: 30
+          compression-level: 1
+
   aggregate:
-    needs: core
+    needs: [core, permutation-shard3]
     runs-on: ubuntu-latest
     timeout-minutes: 360
     defaults:
@@ -86,23 +139,6 @@ jobs:
           cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
 
       - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
-
-      - name: Wait for original distributed sensitivity run to finish
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          for attempt in $(seq 1 360); do
-            status="$(gh run view "$DISTRIBUTED_SENSITIVITY_RUN_ID" --json status --jq '.status')"
-            echo "sensitivity run status=$status attempt=$attempt"
-            if [ "$status" = "completed" ]; then
-              exit 0
-            fi
-            sleep 30
-          done
-          echo "Timed out waiting for distributed sensitivity run" >&2
-          exit 1
 
       - uses: actions/download-artifact@v4
         with:
@@ -133,6 +169,21 @@ jobs:
           run-id: ${{ env.DISTRIBUTED_SENSITIVITY_RUN_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Replace shard 3 with latest-code recovery output
+        shell: bash
+        run: |
+          set -euo pipefail
+          find data/results/distributed -type f \
+            \( -name '*__IKES_PERMUTATION__0151_0200.csv' -o \
+               -name '*__IKES_PERMUTATION__0151_0200.json' \) \
+            -print -delete
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-model-perm-recovery-3
+          path: papers/003-colonial-disciplinary-advantage/data/results/distributed
+          merge-multiple: true
+
       - name: Aggregate under the original completeness gates
         run: |
           rm -rf data/results/confirmatory
@@ -156,10 +207,11 @@ jobs:
             "design_changed":False,
             "materialization_run_id":os.environ["MATERIALIZATION_RUN_ID"],
             "distributed_sensitivity_run_id":os.environ["DISTRIBUTED_SENSITIVITY_RUN_ID"],
+            "recovered_permutation_range":"151-200 for all three headline models",
             "core_recovery_run_id":"${{ github.run_id }}",
             "core_recovery_head_sha":"${{ github.sha }}",
             "core_numerical_rule":"default MAP first; LSMR-within additive fallback only for explicit demeaning non-convergence",
-            "aggregation_rule":"original completeness gates; exactly D01-D21 LOO and reps 1-999 with no failed refits; shard/core observed headline estimates must agree",
+            "aggregation_rule":"original completeness gates; exactly D01-D21 LOO and reps 1-999 with no failed refits; old shard 151-200 is removed before adding latest-code recovery shard; shard/core observed headline estimates must agree",
           }
           Path("data/results/confirmatory/RECOVERY_PROVENANCE.json").write_text(
             json.dumps(payload,indent=2)+"\n",encoding="utf-8")
@@ -194,6 +246,7 @@ jobs:
             "locked_utc":datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
             "source_materialization_run_id":"${{ env.MATERIALIZATION_RUN_ID }}",
             "source_distributed_sensitivity_run_id":"${{ env.DISTRIBUTED_SENSITIVITY_RUN_ID }}",
+            "recovered_permutation_range":"151-200",
             "core_recovery_run_id":"${{ github.run_id }}",
             "core_recovery_head_sha":"${{ github.sha }}",
             "human_inspection_before_lock":False,
