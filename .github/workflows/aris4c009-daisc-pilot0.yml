@@ -7,6 +7,7 @@ on:
       - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_structure.py'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_episode_inventory.py'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_segmentation_sensitivity.py'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_DATA_OPTIONS.md'
       - 'papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT_RUNBOOK_009A1.md'
       - '.github/workflows/aris4c009-daisc-pilot0.yml'
@@ -32,7 +33,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y p7zip-full
 
-      - name: Download DAIS-C from official UK Data Service source
+      - name: Download DAIS-C
         shell: bash
         run: |
           set -euo pipefail
@@ -43,8 +44,7 @@ jobs:
           7z x -y "$RUNNER_TEMP/DAIS-C-Annotated-Upload.7z" \
             -o"$RUNNER_TEMP/daisc" >/dev/null
 
-      - name: Build privacy-preserving inventory
-        shell: bash
+      - name: Build inventory
         run: |
           python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_inventory.py \
             --root "$RUNNER_TEMP/daisc" \
@@ -52,21 +52,26 @@ jobs:
             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_INVENTORY.md
 
-      - name: Classify transcript structures
-        shell: bash
+      - name: Classify structures
         run: |
           python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_structure.py \
             --root "$RUNNER_TEMP/daisc" \
             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
 
-      - name: Build episode inventory
-        shell: bash
+      - name: Build microepisode inventory
         run: |
           python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_episode_inventory.py \
             --root "$RUNNER_TEMP/daisc" \
             --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json \
             --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
+
+      - name: Run segmentation sensitivity
+        run: |
+          python papers/009-phenomenology-preserving-computational-psychiatry/code/daisc_segmentation_sensitivity.py \
+            --root "$RUNNER_TEMP/daisc" \
+            --json-out papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_segmentation.json \
+            --md-out papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_SEGMENTATION.md
 
       - name: Assert only aggregate outputs are staged
         shell: bash
@@ -78,14 +83,14 @@ jobs:
             papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
             papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md \
             papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json \
-            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
+            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md \
+            papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_segmentation.json \
+            papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_SEGMENTATION.md
 
           staged="$(git diff --cached --name-only)"
-          echo "$staged"
           unexpected="$(echo "$staged" | grep -Ev \
-            '(^|/)(pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md|pilot0_daisc_structure\.json|PILOT0_DAISC_STRUCTURE\.md|pilot0_daisc_episodes\.json|PILOT0_DAISC_EPISODES\.md)$' || true)"
+            '(^|/)(pilot0_daisc_inventory\.json|PILOT0_DAISC_INVENTORY\.md|pilot0_daisc_structure\.json|PILOT0_DAISC_STRUCTURE\.md|pilot0_daisc_episodes\.json|PILOT0_DAISC_EPISODES\.md|pilot0_daisc_segmentation\.json|PILOT0_DAISC_SEGMENTATION\.md)$' || true)"
           if [ -n "$unexpected" ]; then
-            echo "Unexpected file staged; refusing to publish:" >&2
             echo "$unexpected" >&2
             exit 1
           fi
@@ -103,6 +108,8 @@ jobs:
           cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md "$RUNNER_TEMP/structure.md"
           cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json "$RUNNER_TEMP/episodes.json"
           cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md "$RUNNER_TEMP/episodes.md"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_segmentation.json "$RUNNER_TEMP/segmentation.json"
+          cp papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_SEGMENTATION.md "$RUNNER_TEMP/segmentation.md"
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -116,6 +123,8 @@ jobs:
             cp "$RUNNER_TEMP/structure.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md
             cp "$RUNNER_TEMP/episodes.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json
             cp "$RUNNER_TEMP/episodes.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
+            cp "$RUNNER_TEMP/segmentation.json" papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_segmentation.json
+            cp "$RUNNER_TEMP/segmentation.md" papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_SEGMENTATION.md
 
             git add \
               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_inventory.json \
@@ -123,19 +132,17 @@ jobs:
               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_structure.json \
               papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_STRUCTURE.md \
               papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_episodes.json \
-              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md
+              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_EPISODES.md \
+              papers/009-phenomenology-preserving-computational-psychiatry/data/pilot0_daisc_segmentation.json \
+              papers/009-phenomenology-preserving-computational-psychiatry/process/PILOT0_DAISC_SEGMENTATION.md
 
             if git diff --cached --quiet; then
-              echo "Aggregate outputs already current."
               exit 0
             fi
 
-            git commit -m "data: record ARIS4C009 DAIS-C episode inventory"
+            git commit -m "data: record ARIS4C009 DAIS-C segmentation sensitivity"
             if git push origin HEAD:main; then
               exit 0
             fi
-            echo "Concurrent main update; retrying on newest main."
           done
-
-          echo "Could not publish aggregate outputs after retries." >&2
           exit 1
