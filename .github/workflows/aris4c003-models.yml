@@ -1,0 +1,264 @@
+name: ARIS4C003 distributed confirmatory models
+
+on:
+  workflow_run:
+    workflows: ["ARIS4C003 materialize OpenAlex outcomes"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Successful ARIS4C003 materialization workflow run id"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    if: >-
+      (github.event_name == 'workflow_dispatch') ||
+      (github.event.workflow_run.conclusion == 'success')
+    outputs:
+      source_run_id: ${{ steps.id.outputs.source_run_id }}
+    steps:
+      - id: id
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "source_run_id=${{ inputs.source_run_id }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "source_run_id=${{ github.event.workflow_run.id }}" >> "$GITHUB_OUTPUT"
+          fi
+
+  core:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: papers/003-colonial-disciplinary-advantage
+          run-id: ${{ needs.resolve.outputs.source_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run core frozen fits
+        run: |
+          mkdir -p data/results/components/core
+          python code/run_confirmatory_component.py \
+            --country-panel data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet \
+            --dyad-panel data/analysis/DYAD_DISCIPLINE_PANEL.parquet \
+            --output-dir data/results/components/core \
+            --component core
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-model-core
+          path: papers/003-colonial-disciplinary-advantage/data/results/components/core
+          retention-days: 30
+          compression-level: 1
+
+  loo:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [output, impact, dyad]
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: papers/003-colonial-disciplinary-advantage
+          run-id: ${{ needs.resolve.outputs.source_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run complete leave-one-discipline-out
+        run: |
+          mkdir -p "data/results/components/loo-${{ matrix.model }}"
+          python code/run_confirmatory_component.py \
+            --country-panel data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet \
+            --dyad-panel data/analysis/DYAD_DISCIPLINE_PANEL.parquet \
+            --output-dir "data/results/components/loo-${{ matrix.model }}" \
+            --component loo \
+            --model "${{ matrix.model }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-model-loo-${{ matrix.model }}
+          path: papers/003-colonial-disciplinary-advantage/data/results/components/loo-${{ matrix.model }}
+          retention-days: 30
+          compression-level: 1
+
+  permutation:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: papers/003-colonial-disciplinary-advantage
+          run-id: ${{ needs.resolve.outputs.source_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run fixed permutation shard
+        shell: bash
+        run: |
+          shard=${{ matrix.shard }}
+          start=$((shard * 50 + 1))
+          end=$(((shard + 1) * 50))
+          if [ "$end" -gt 999 ]; then end=999; fi
+          out="data/results/components/perm-$(printf '%02d' "$shard")"
+          mkdir -p "$out"
+          for model in output impact dyad; do
+            python code/run_confirmatory_component.py \
+              --country-panel data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet \
+              --dyad-panel data/analysis/DYAD_DISCIPLINE_PANEL.parquet \
+              --output-dir "$out" \
+              --component permutation \
+              --model "$model" \
+              --start-rep "$start" \
+              --end-rep "$end"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-model-perm-${{ matrix.shard }}
+          path: papers/003-colonial-disciplinary-advantage/data/results/components/perm-*
+          retention-days: 30
+          compression-level: 1
+
+  aggregate:
+    needs: [resolve, core, loo, permutation]
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: papers/003-colonial-disciplinary-advantage
+          run-id: ${{ needs.resolve.outputs.source_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c003-model-*
+          path: papers/003-colonial-disciplinary-advantage/data/results/distributed
+          merge-multiple: true
+      - name: Aggregate only complete frozen sensitivities
+        run: |
+          rm -rf data/results/confirmatory
+          mkdir -p data/results/confirmatory
+          python code/aggregate_confirmatory_components.py \
+            --components-root data/results/distributed \
+            --country-panel data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet \
+            --dyad-panel data/analysis/DYAD_DISCIPLINE_PANEL.parquet \
+            --output-dir data/results/confirmatory
+      - name: Run small-N imperial-center corroboration
+        run: |
+          rm -rf data/results/imperial_corroboration
+          python code/run_imperial_corroboration.py \
+            --country-cells data/derived/openalex/COUNTRY_DISCIPLINE_WINDOW.parquet \
+            --output-dir data/results/imperial_corroboration
+      - name: Lock first result package before human inspection
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          roots=[
+            Path("data/results/confirmatory"),
+            Path("data/results/imperial_corroboration"),
+          ]
+          files=sorted(p for root in roots for p in root.rglob("*") if p.is_file())
+          def sha(p):
+            h=hashlib.sha256()
+            with p.open("rb") as f:
+              for b in iter(lambda:f.read(1<<20),b""): h.update(b)
+            return h.hexdigest()
+          payload={
+            "paper":"ARIS4C003",
+            "locked_utc":datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "source_materialization_run_id":"${{ needs.resolve.outputs.source_run_id }}",
+            "human_inspection_before_lock":False,
+            "design_status":"DESIGN_LOCKED",
+            "outcome_status":"OUTCOME_UNLOCKED",
+            "files":{str(p):{"sha256":sha(p),"bytes":p.stat().st_size} for p in files},
+          }
+          out=Path("process/FIRST_RESULT_LOCK.json")
+          out.write_text(json.dumps(payload,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({"status":"LOCKED","files":len(files)},indent=2))
+          PY
+      - name: Commit compact frozen result package
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/confirmatory
+          git add data/results/imperial_corroboration
+          git add process/FIRST_RESULT_LOCK.json
+          if git diff --cached --quiet; then
+            echo "Results already current."
+          else
+            git commit -m "ARIS4C003 lock first confirmatory result package"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt * 2))
+            done
+            test "$pushed" -eq 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-first-results
+          path: |
+            papers/003-colonial-disciplinary-advantage/data/results/confirmatory
+            papers/003-colonial-disciplinary-advantage/data/results/imperial_corroboration
+            papers/003-colonial-disciplinary-advantage/process/FIRST_RESULT_LOCK.json
+          retention-days: 90
+          compression-level: 1
