@@ -21,3 +21,12 @@
   - public paper actions → English / 中文 only.
 - Verified representative handoff snapshots for 004, 011, 014, 015, 016 and 017 are synchronized to current dashboard state.
 - Added `PRE_DELETE_CHECKPOINT_2026-09-19.md` as the deletion-safe recovery point.
+
+## 2026-09-19 · Command-center visibility correction
+
+- User clarified that Finish and no-progress-today projects should be hidden **only from the time progress curve**, not from the rest of the command center.
+- Removed the accidental global `0 < progress < 100` filtering from the portfolio generator.
+- Restored Finish navigation, Finish legend/overview counts, and complete All-projects showcase/card visibility.
+- Changed today's chart payload to include only non-Finish projects with an actual percentage change across today's checkpoints.
+- Hardened command-center JS so theme/storage/chart/showcase failures cannot prevent navigation, Reset, search, sorting, or other controls from receiving listeners.
+- Added CI audit for complete portfolio visibility, chart-only filtering, control presence, and JavaScript syntax.
