@@ -1,4 +1,4 @@
-name: ARIS4C015 Pilot M known-SB case enrichment
+name: ARIS4C015 Pilot M known-SB case enrichment v2
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run known-SB case-enriched pilot
+      - name: Run known-SB case-enriched pilot with robust identity separation
         working-directory: papers/015-sleeping-beauty-miner/code
         run: |
           python pilotM_known_case_enrichment.py             --controls-per-case-pool 50             --observation-end-year 2011             --output ../data/pilotM_known_cases_openalex.json
@@ -106,7 +106,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilotM-known-cases
+          name: aris4c015-pilotM-known-cases-v2
           path: papers/015-sleeping-beauty-miner/data/pilotM_known_cases_openalex.json
           if-no-files-found: error
           retention-days: 30
