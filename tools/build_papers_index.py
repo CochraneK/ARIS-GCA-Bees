@@ -122,13 +122,11 @@ def card(p: dict, dashboard: dict) -> str:
         f'<span class="output-badge {state}"><b>{esc(label)}</b>{esc(value)}</span>'
         for label, state, value in output_items
     )
+    en_href = links.get("paper_en_full") or links.get("paper_en", "")
+    zh_href = links.get("paper_zh_full") or links.get("paper_zh", "")
     buttons = "".join([
-        link(paper_display_link(p, links.get("paper_en", "")), "Paper", True),
-        link(paper_display_link(p, links.get("paper_zh", "")), "中文"),
-        link(links.get("figures", ""), "Figures"),
-        link(links.get("tables", ""), "Tables"),
-        link(paper_repo_file_link(p, links.get("pipeline", "")), "Pipeline"),
-        link(links.get("source", ""), "Source"),
+        link(paper_display_link(p, en_href), "English", True),
+        link(paper_display_link(p, zh_href), "中文"),
     ])
     blocker_class = "blocker is-clear" if str(blocker).lower().startswith("none") else "blocker"
     last_commit = p.get("_last_commit", "")
