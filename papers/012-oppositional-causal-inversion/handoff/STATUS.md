@@ -1,7 +1,7 @@
 # ARIS4C012 · Current status
 
 - **Title:** When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion
-- **Project status:** retrieval-pass-priorart-audited-coderb-output-missing
+- **Project status:** coderb-complete-ready-for-adjudication
 - **Activity:** active
 - **Portfolio progress:** 66%
 - **Current stage:** Pilot 0B complete · adjudication gate

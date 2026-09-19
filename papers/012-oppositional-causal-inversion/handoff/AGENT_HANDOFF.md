@@ -4,7 +4,7 @@
 
 **When Opposites Become Causes: An Indexed Cross-Domain Framework for Oppositional Causal Inversion**
 
-An indexed, falsification-first framework for a restricted class of functional-opposite-producing causal effects. Prior-art and retrieval-frame audits are complete; 165 reproducible candidates are available. A post-Gate-B orthogonal schema v2 is pre-specified, but the canonical ARIS4C012 Coder B output is still missing, so independent construct validation remains the decisive hard gate.
+An indexed, falsification-first framework for a restricted class of functional-opposite-producing causal effects. Prior-art and retrieval-frame audits are complete; 165 reproducible candidates are available. A genuinely independent 30-record Coder B pass is complete, and the reliability summary is READY_FOR_ADJUDICATION; the current task is to adjudicate disagreements and reconcile low-agreement mechanism and causal-strength fields before broader claims.
 
 ## Current state
 
