@@ -116,12 +116,12 @@
       "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
     },
     "015": {
-      "progress": 82,
-      "stage": "Track M · matched-control support gate",
+      "progress": 83,
+      "stage": "Track M · case-definition harmonization rerun",
       "activity": "active",
-      "evidence": "Unselected 500-paper diagnostic: 0 strict SB; enriched Track A: 13 strict SB/150; first matched-control pass: 1/13 matched, 0/3 strata ready",
-      "next_gate": "Expand unselected control reservoir while holding matching caliper/variables fixed",
-      "blocker": "Control support is too sparse under the frozen matching rule; do not relax criteria post hoc"
+      "evidence": "Track A: 13 retrospective robust-gate candidates/150. Artifact audit found some have high early-attention percentiles; canonical SB now requires robust gate + early-low + late-high versus unselected field/year reference.",
+      "next_gate": "Complete corrected canonical-state rerun; only then assess control-support expansion",
+      "blocker": "Absolute robust gate and cohort-relative mechanism state must agree before substantive matching"
     },
     "016": {
       "progress": 55,
