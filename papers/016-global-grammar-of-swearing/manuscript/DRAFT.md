@@ -274,6 +274,36 @@ more residual variation in concreteness than in tabooness or offensiveness.
 This warns against interpreting every cross-community rating difference as a
 specific taboo-cultural effect.
 
+### 6.4 Balanced-item sensitivity and filler negative control
+
+The primary model is unbalanced because many lexical items occur in only two
+to four English community samples. We therefore repeated the item-fixed-effects
+analysis on the 23 taboo items observed in all five English communities
+(115 item × community observations). Community partial R² remained non-zero
+and was somewhat larger for the taboo-specific outcomes: .0537 for tabooness
+and .0532 for offensiveness. The corresponding item-bootstrap intervals were
+wide (.0273–.1941 and .0128–.2373), as expected from the much smaller balanced
+subset. Thus the qualitative finding does not depend on partially shared items,
+but the balanced subset does not support a more precise effect estimate.
+
+More importantly, we applied the same item-fixed-effects diagnostic to shared
+non-taboo filler words. The filler design is sparse—35 shared lexical items,
+73 item × community observations, and no item represented in all five
+communities—but community effects were larger rather than smaller:
+partial R² = .2965 for tabooness ratings and .1583 for offensiveness ratings,
+with similarly elevated estimates for valence, arousal, concreteness and age
+of acquisition.
+
+This negative control changes the interpretation of the repeated-language
+result. The current data establish that aggregate lexical ratings are
+community-sensitive after item identity is controlled, but they do **not**
+establish that the community effect is specific to taboo language. Participant
+composition, rating-scale calibration, procedure, dialect/register, lexical
+sampling and other site-level factors can generate community-associated
+variation in both taboo and neutral items. A stronger confirmatory design
+therefore requires matched taboo/neutral items with comparable community
+coverage and an explicit taboo-status × community interaction.
+
 ---
 
 ## 7. Reliability gate
