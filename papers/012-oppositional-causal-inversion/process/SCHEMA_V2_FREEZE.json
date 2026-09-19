@@ -1,0 +1,26 @@
+{
+  "schema": "ARIS4C012_SCHEMA_V2",
+  "version": "2.0.0",
+  "frozen_at": "2026-09-19",
+  "status": "FROZEN_FOR_FRESH_A2_B2_VALIDATION",
+  "source_proposal": "process/SCHEMA_V2_PROPOSAL.md",
+  "frozen_spec": "process/SCHEMA_V2_FROZEN.md",
+  "coding_template": "data/v2_validation_coding_template.csv",
+  "raw_pilot0b_reliability_immutable": true,
+  "pilot0b_disagreement_cells": 141,
+  "diagnostic_partition": {
+    "lexical_token_vocabulary_mismatch": 30,
+    "schema_category_overlap": 24,
+    "source_metadata_disagreement": 26,
+    "genuine_conceptual_disagreement": 61
+  },
+  "reliability_gate": {
+    "opposition_valid_cohen_kappa_min": 0.7,
+    "informative_axis_cohen_kappa_min": 0.6,
+    "informative_axis_raw_agreement_min": 0.8,
+    "median_informative_axis_kappa_min": 0.7,
+    "minimum_pairwise_complete_for_axis_gate": 20,
+    "undefined_kappa_not_counted_as_pass": true
+  },
+  "validation_rule": "fresh sample; blind independent A2/B2; freeze both coder files before comparison"
+}
