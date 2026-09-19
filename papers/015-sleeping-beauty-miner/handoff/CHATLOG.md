@@ -20,3 +20,23 @@ For every future material conversation, append:
 - important user correction/constraint;
 - decision/result;
 - affected files/commits where known.
+
+## 2026-09-19 · Pilot-M risk-set common-support hardening
+
+- **Surface:** ChatGPT ARIS4C 000 controller + GitHub Actions.
+- **User request:** Continue advancing the project in GO mode.
+- **Work performed:** expanded Pilot-M control acquisition, identified the
+  non-nested OpenAlex sample-size problem, implemented deterministic multi-seed
+  reservoirs, corrected incidence-density control reuse, compared 1:1 and 1:4
+  risk-set matching, froze the primary case set to the three literature-known
+  SBs, and added offline artifact reanalysis.
+- **Key result:** the frozen 3-case 1:1 comparison matches all cases but still
+  has max abs SMD 1.633; 1:4 worsens to 2.417. Common-support diagnostics show
+  the strongest shortage in the Washburn 1921 stratum.
+- **Constraint preserved:** abs SMD < 0.10 was not relaxed and substantive
+  mechanism regression remains blocked.
+- **Additional validation:** publisher identity and independent evidence of
+  later use were cross-checked for two provisional candidates, but their
+  annual trajectories / Beauty Coefficients remain unvalidated.
+- **Operational result:** the live v8 reacquisition hit an OpenAlex HTTP 429
+  rate limit; saved-artifact analysis continues without API calls.
