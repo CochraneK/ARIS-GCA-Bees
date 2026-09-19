@@ -1,0 +1,11 @@
+{
+  "candidate_n": 100,
+  "verified_n": 52,
+  "network_observable_n": 25,
+  "no_graph_n": 38,
+  "collision_n": 8,
+  "identity_error_n": 2,
+  "provisional_n": 0,
+  "mental_health_information_used": false,
+  "interpretation": "Descriptive pre-exposure identity/network observability in the frozen 100-person contributor frame; not a contribution or field-importance comparison."
+}
