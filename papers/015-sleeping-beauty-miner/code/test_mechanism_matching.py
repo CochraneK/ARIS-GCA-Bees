@@ -20,6 +20,9 @@ class MechanismMatchingTests(unittest.TestCase):
             reference_count=20,
             author_count=2,
             early_citation_count=1,
+            annual_citation_counts=tuple([0] * 20),
+            robust_sleep_years=10,
+            robust_sleep_rate=0.0,
         )
         self.forgotten_close = MechanismPaper(
             paper_id="f_close",
@@ -30,6 +33,7 @@ class MechanismMatchingTests(unittest.TestCase):
             reference_count=21,
             author_count=2,
             early_citation_count=1,
+            annual_citation_counts=tuple([0] * 20),
         )
         self.forgotten_far = MechanismPaper(
             paper_id="f_far",
@@ -40,6 +44,7 @@ class MechanismMatchingTests(unittest.TestCase):
             reference_count=50,
             author_count=6,
             early_citation_count=4,
+            annual_citation_counts=tuple([1] * 20),
         )
         self.hit = MechanismPaper(
             paper_id="hit",
@@ -50,6 +55,7 @@ class MechanismMatchingTests(unittest.TestCase):
             reference_count=22,
             author_count=2,
             early_citation_count=30,
+            annual_citation_counts=tuple([10] * 20),
         )
 
     def test_nearest_forgotten_control_is_selected(self):
@@ -85,6 +91,9 @@ class MechanismMatchingTests(unittest.TestCase):
             publication_year=1980,
             field="physics",
             early_citation_percentile=0.12,
+            annual_citation_counts=tuple([0] * 20),
+            robust_sleep_years=10,
+            robust_sleep_rate=0.0,
         )
         matches, unmatched = nearest_controls(
             [self.sb, sb2],
