@@ -82,14 +82,14 @@ def paper_display_link(p: dict, href: str) -> str:
 
 
 def activity_label(value: str) -> tuple[str, str]:
-    key = (value or "waiting").lower()
+    key = (value or "wait").lower()
     labels = {
         "finish": ("Finish", "finish"),
         "active": ("Active", "active"),
-        "waiting": ("Waiting", "waiting"),
+        "wait": ("Wait", "wait"),
         "block": ("Block", "block"),
     }
-    return labels.get(key, ("Waiting", "waiting"))
+    return labels.get(key, ("Wait", "wait"))
 
 
 def card(p: dict, dashboard: dict) -> str:
@@ -190,7 +190,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
     finish = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "finish")
     active = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "active")
-    waiting = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "waiting")
+    wait = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "wait")
     block = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "block")
     mature = sum(1 for v in progresses if v >= 45)
 
@@ -213,7 +213,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">{len(papers)}</span></button>
         <button class="nav-item" type="button" data-filter="finish" data-label="Finish"><span class="nav-icon">✓</span><span>Finish</span><span id="navFinishCount" class="nav-count">{finish}</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">{active}</span></button>
-        <button class="nav-item" type="button" data-filter="waiting" data-label="Waiting"><span class="nav-icon">◇</span><span>Waiting</span><span id="navWaitingCount" class="nav-count">{waiting}</span></button>
+        <button class="nav-item" type="button" data-filter="wait" data-label="Wait"><span class="nav-icon">◇</span><span>Wait</span><span id="navWaitCount" class="nav-count">{wait}</span></button>
         <button class="nav-item" type="button" data-filter="block" data-label="Block"><span class="nav-icon">×</span><span>Block</span><span id="navBlockCount" class="nav-count">{block}</span></button>
       </nav>
       <div class="sidebar-section">
@@ -221,7 +221,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
         <div class="legend">
           <div class="legend-row"><i class="dot finish"></i><span>Final/output contract complete</span></div>
           <div class="legend-row"><i class="dot active"></i><span>Meaningful work is moving now</span></div>
-          <div class="legend-row"><i class="dot waiting"></i><span>Can continue, but not moving now</span></div>
+          <div class="legend-row"><i class="dot wait"></i><span>Can continue, but not moving now</span></div>
           <div class="legend-row"><i class="dot block"></i><span>External dependency prevents progress</span></div>
         </div>
       </div>
@@ -251,10 +251,10 @@ def build(papers: list[dict], dashboard: dict) -> str:
           <div class="overview">
             <div class="metric"><strong>{finish}</strong><span>finish</span></div>
             <div class="metric"><strong>{active}</strong><span>active now</span></div>
-            <div class="metric"><strong>{waiting}</strong><span>waiting</span></div>
+            <div class="metric"><strong>{wait}</strong><span>wait</span></div>
             <div class="metric"><strong>{block}</strong><span>block</span></div>
           </div>
-          <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {waiting} waiting · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
+          <div class="portfolio-progress"><div class="row"><span>{len(papers)} papers · {finish} finish · {active} active now · {wait} wait · {block} block</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
         </section>
 
         <div class="control-bar">
