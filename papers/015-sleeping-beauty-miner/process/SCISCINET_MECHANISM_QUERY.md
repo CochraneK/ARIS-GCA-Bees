@@ -210,6 +210,8 @@ Default:
   sleep regime;
 - control must not already have a qualifying awakening burst;
 - a control may awaken later;
+- a control may be reused across distinct case risk sets if it is eligible at
+  each event time; controls remain unique within a single case risk set;
 - nearest pre-event sleep-rate, reference-count, and author-count profile;
 - no post-event control outcome is used for selection.
 
