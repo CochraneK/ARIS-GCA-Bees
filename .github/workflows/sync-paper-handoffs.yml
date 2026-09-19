@@ -1,0 +1,56 @@
+name: Sync ARIS4C paper handoffs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/dashboard.json'
+      - 'papers/*/paper.json'
+      - 'tools/sync_paper_handoffs.py'
+      - 'tools/audit_paper_handoffs.py'
+      - 'ARIS4C_CONTINUITY_STANDARD.md'
+      - '.github/workflows/sync-paper-handoffs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c-paper-handoffs-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Synchronize handoff packages
+        run: python tools/sync_paper_handoffs.py
+
+      - name: Audit continuity packages
+        run: python tools/audit_paper_handoffs.py
+
+      - name: Commit synchronized handoffs
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add papers/*/handoff
+          if git diff --cached --quiet; then
+            echo "Handoff packages already current"
+            exit 0
+          fi
+          git commit -m "handoff: synchronize ARIS4C paper continuity packages"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Failed to publish synchronized handoffs after 5 attempts." >&2
+          exit 1
