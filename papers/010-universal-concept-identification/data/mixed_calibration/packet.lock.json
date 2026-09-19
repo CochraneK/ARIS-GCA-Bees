@@ -3,17 +3,17 @@
   "dataset_id": "ucid-mixed-p6-stress-calibration-v0",
   "verified_ci": {
     "workflow": "ARIS4C010 CI",
-    "run_id": 35406060244,
-    "run_number": 30,
-    "head_sha": "f5ab0973ba588ce13de2e3f82a849797e589459c",
+    "run_id": 35424073432,
+    "run_number": 61,
+    "head_sha": "28f81b871ae46666ed0386ed50ad779c18f051ee",
     "conclusion": "success",
-    "artifact_id": 10572661164,
+    "artifact_id": 10577937884,
     "artifact_name": "aris4c010-mixed-p6-calibration",
-    "artifact_sha256": "ec316c72192038b7a5dfe42fac4a33e37d25cba68a1ffd993f93e9e50856c552",
+    "artifact_sha256": "799add257f40c1f5cb2a090f6b4d6622686d346f0f78dd500fa5e322128454b4",
     "generated_json": {
       "file": "annotation_packet.generated.json",
-      "sha256": "7e2f66e3d84878ae76a275b31f4dcf5ad449cb7921d0c6bf9079191880ef4368",
-      "bytes": 182918,
+      "sha256": "ac1b46663b8838b645101853d548bbca5dad9cd9302e8737327bb03ef9a2bb9a",
+      "bytes": 185942,
       "scenarios": 24,
       "query_bank_size": 18,
       "pairs": 216,
@@ -27,5 +27,11 @@
     "Phenomenon tags document inclusion rationale, not expected responses.",
     "All scenarios are constructed calibration cases.",
     "The packet is for response-state reliability, not concept-frequency inference."
+  ],
+  "protocols": [
+    "P2",
+    "P3",
+    "P6",
+    "P6_CONTEXT"
   ]
 }
