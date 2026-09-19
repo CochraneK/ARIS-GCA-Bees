@@ -1,6 +1,6 @@
 # ARIS4C010 · Literature / prior-art matrix
 
-**Audit date:** 2026-09-18  
+**Audit date:** 2026-09-19  
 **Purpose:** prevent novelty inflation by separating already-solved subproblems from the integration gap.
 
 | Strand | Representative source | What is already established | Consequence for 010 |
@@ -22,25 +22,36 @@
 | BIG-bench Twenty Questions | BIG-bench `twenty_questions` task | Two model instances communicate a concept via yes/no turns; authors explicitly note arbitrary categories and suggest a more comprehensive ontology | Very close motivation; ontology completion remains open in that benchmark |
 | 20Q world-knowledge benchmark | De Bruyn et al., GEM 2022 | Twenty Questions used to probe LM world knowledge with overlap controls | LLM 20Q benchmarking is established |
 | Adaptive elicitation | Wang, Zollo, Zemel & Namkoong, ICML 2025, *Adaptive Elicitation of Latent Information Using Natural Language* | Natural-language question selection that actively reduces uncertainty; Twenty Questions benchmark uses hundreds of concrete objects and a large question bank | Strategic next-question optimization is established and should be a strong baseline |
+| Ontology-guided hierarchical elicitation | Agafonov, Ponomarev & Smirnov, *Ontology-Guided Hierarchical Preference Elicitation with Bayesian Active Querying*, ICAART 2026, DOI 10.5220/0014476800004052 | Starts from semantically retrieved candidates in a rooted product ontology, then asks binary subtree-relevance questions chosen with Bayesian active-query strategies under a turn budget | **Major structural collision:** ontology-guided active querying in a hierarchy is already published; 010 must not claim this. Difference must come from heterogeneous semantic regimes, admissibility/error states, open-world/pathological cases, and explicit overhead versus unrestricted partitions |
+| Proactive information gathering | Huang et al., *Teaching Language Models To Gather Information Proactively*, Findings of EMNLP 2025, DOI 10.18653/v1/2025.findings-emnlp.843 | Trains LMs to identify missing task information and ask targeted clarification questions; includes human evaluation of question quality | Proactive clarification and elicitation of missing information are established; 010 is about hidden-target identifiability/query cost and semantic answer-state validity, not general assistant proactivity |
+| Referential ambiguity + clarification | *Referential ambiguity and clarification requests: comparing human and LLM behaviour*, CRAC 2025, DOI 10.18653/v1/2025.crac-1.1 | Empirically studies when humans and LLMs issue clarification requests under referential ambiguity and finds weak human ambiguity→clarification linkage / low human–LLM correlation | Supports treating context requests as an empirical behavior rather than an axiom; useful comparator for P6+CONTEXT |
+| Adaptive group elicitation | Ding et al., *Whom to Query for What: Adaptive Group Elicitation via Multi-Turn LLM Interactions*, ICML 2026 / arXiv:2602.14279 | Jointly selects what question to ask and which respondent to query under explicit query/participation budgets, using LLM information-gain scoring and graph propagation | Reinforces that adaptive natural-language elicitation is a mature area; not a hidden-concept semantic-identifiability benchmark, but blocks broad novelty claims about budgeted multi-turn elicitation |
 | Current public LLM benchmark | Deep20Bench v1.1, Sept 2026 (non-peer-reviewed benchmark) | Multi-turn hidden-subject identification with graded YES/NO directions plus UNKNOWN | Confirms active current interest; not evidence for semantic universality |
-| Separating systems / identifying codes | Katona (1966) and later separating-system/search literature | Pairwise separation by query sets is a classical combinatorial object; constrained query families such as metric balls have their own bounds | UCID's separability theorem is baseline mathematics, not novelty |\n| Clarification question generation | White et al., EMNLP 2021, DOI 10.18653/v1/2021.emnlp-main.44 | Expected-information-gain polar clarification questions can resolve ambiguity in a goal-oriented 20-questions-style task | Clarification-by-EIG is an established baseline; UCID must differentiate semantic regime coverage and boundary handling |\n| Active feature acquisition | Melville et al. (2004); Li & Oliva, ICML 2021; Rahbar et al., IJCAI 2023 | Sequentially acquire costly missing feature values to improve prediction/decision quality | Cost-aware query choice is established; semantic validity and concept-space coverage are the target contribution |\n| Open-set / open-world active learning | Open-world recognition literature; e.g. Safaei et al., AAAI 2024 | Unknown classes can occur outside the known label set; query/rejection strategies explicitly model known versus unknown samples | OUT-OF-SUPPORT detection is not novel; UCID studies its interaction with semantic querying and ontology expansion |\n| Vagueness / sorites | Formal semantics and philosophical logic | Borderline cases and competing semantics for vague predicates | Do not collapse borderline into ordinary false/unknown |
+| Separating systems / identifying codes | Katona (1966) and later separating-system/search literature | Pairwise separation by query sets is a classical combinatorial object; constrained query families such as metric balls have their own bounds | UCID's separability theorem is baseline mathematics, not novelty |
+| Clarification question generation | White et al., EMNLP 2021, DOI 10.18653/v1/2021.emnlp-main.44 | Expected-information-gain polar clarification questions can resolve ambiguity in a goal-oriented 20-questions-style task | Clarification-by-EIG is an established baseline; UCID must differentiate semantic regime coverage and boundary handling |
+| Active feature acquisition | Melville et al. (2004); Li & Oliva, ICML 2021; Rahbar et al., IJCAI 2023 | Sequentially acquire costly missing feature values to improve prediction/decision quality | Cost-aware query choice is established; semantic validity and concept-space coverage are the target contribution |
+| Open-set / open-world active learning | Open-world recognition literature; e.g. Safaei et al., AAAI 2024 | Unknown classes can occur outside the known label set; query/rejection strategies explicitly model known versus unknown samples | OUT-OF-SUPPORT detection is not novel; UCID studies its interaction with semantic querying and ontology expansion |
+| Open-world active learning | Xie et al., *Deep Active Learning in the Open World* (2024/2025 preprint lineage) and Hu et al., *Uncertainty-driven active developmental learning*, Pattern Recognition 2024 | Explicitly discover/annotate unknown classes under constrained labeling budgets | Unknown-class discovery and budgeted open-world active learning are established; 010 contribution can only be the coupling to semantic question languages/response semantics, not OOS itself |
+| Vagueness / sorites | Formal semantics and philosophical logic | Borderline cases and competing semantics for vague predicates | Do not collapse borderline into ordinary false/unknown |
 | Paraconsistency | Paraconsistent-logic literature | Contradictory information need not entail arbitrary conclusions (non-explosion) | Useful for inconsistent targets/knowledge states; theory itself is not new |
 | Ineffability | Sebastian Gäb, *Ineffability: the Very Concept*, Philosophia 48 (2020), DOI 10.1007/s11406-020-00198-2 | Distinguishes weak from strong ineffability and linguistic from cognitive limits | Strong ineffability should be modeled as an outer boundary, not an ordinary target label |
 
 ## Closest technical neighbors after the expanded audit
 
-There is no longer one single closest neighbor; 010 sits at the intersection of four mature lines.
+There is no longer one single closest neighbor; after the 2026 re-audit, 010 sits at the intersection of at least six mature lines.
 
-1. **Wang et al. (ICML 2025):** strongest adaptive natural-language elicitation neighbor.
-2. **Referring Expression Generation:** strongest static semantic-discrimination neighbor.
-3. **Description-logic active learning:** strongest formal ontology + interactive-query neighbor.
-4. **RSA/reference games:** strongest efficient-communication/pragmatic neighbor.
+1. **Wang et al. (ICML 2025):** strongest general adaptive natural-language elicitation neighbor.
+2. **Agafonov et al. (ICAART 2026):** strongest *tree ontology + active binary refinement* neighbor and the most important new collision found in the 2026 pass.
+3. **Referring Expression Generation:** strongest static semantic-discrimination neighbor.
+4. **Description-logic active learning:** strongest formal ontology + interactive-query-learning neighbor.
+5. **RSA/reference games:** strongest efficient-communication/pragmatic neighbor.
+6. **Huang et al. (EMNLP 2025) + clarification literature:** strongest proactive missing-information/clarification neighbor.
 
-The project survives only if it does not repackage any one of these.
+The project survives only if it does not repackage any one of these. In particular, **“ontology-guided active questioning” is no longer available as a novelty claim after ICAART 2026**.
 
 ## Current integration gap
 
-The live audit has not yet found a work whose primary object is all of the following together:
+The expanded audit, including 2025–2026 adaptive-elicitation work, has not yet found a work whose primary object is all of the following together:
 
 > adaptive identification of a hidden target across deliberately heterogeneous concept regimes, with an explicit admissible semantic query language, response states that distinguish false/unknown/borderline/undefined/inconsistent, open-world withholding, pathological semantic cases, and query cost measured against an unrestricted information-theoretic baseline.
 
@@ -54,7 +65,8 @@ This is a **provisional gap**, not a final novelty claim.
 - open-world active concept learning;
 - clarification-question generation optimized for disambiguation;
 - diagnostic questioning over knowledge graphs;
-- multi-valued interactive diagnosis;
+- multi-valued interactive diagnosis and explicit not-applicable/undefined answer semantics;
+- semantic query cost / constrained twenty-questions work using vague, contextual or contradictory targets;
 - reference games with compositional or paradoxical meanings;
 - minimum identifying codes / separating systems beyond binary Test Cover.
 
