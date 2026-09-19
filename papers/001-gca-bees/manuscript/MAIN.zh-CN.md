@@ -51,10 +51,6 @@ Perry and Barron (2013) 表明蜜蜂会根据试次难度调整 opt-out 使用�
 
 近期昆虫意识综述把预测、注意、情绪样状态、自我相关加工和元认知等都视为可能有关的证据来源，但没有任何单一行为任务可以直接确立主观体验。本文因此不从学习协变或 opt-out 行为推出蜜蜂具有现象意识或自我意识。类似地，复杂社会学习可以证明文化传递能力，却不能自动成为自我意识或单一“precision”变量的证据。
 
-![图 4：两条证据链之间的边界](../figures/figure4_evidence_boundary.svg)
-
-**图 4｜两条证据链之间的边界。** 现有研究分别支持结构化学习协变和难度敏感的 opt-out 行为，但缺少“同一只蜜蜂身上两类表型如何耦合”的直接证据。因此，不能仅凭物种层面的共存推断单一机制、元认知、意识或共享的 precision/confidence 变量。
-
 ---
 
 ## 3. 已发表学习协变的定量综合
@@ -86,6 +82,10 @@ Perry and Barron (2013) 表明蜜蜂会根据试次难度调整 opt-out 使用�
 ![Figure 2. Cross-modality factor loading structure](../figures/figure2_factor_loading_congruence.svg)
 
 这说明因子可以非常紧凑地概括协方差，但并不能唯一说明协方差的生物学来源。
+
+![图 4：两条证据链之间的边界](../figures/figure4_evidence_boundary.svg)
+
+**图 4｜两条证据链之间的边界。** 现有研究分别支持结构化学习协变和难度敏感的 opt-out 行为，但缺少“同一只蜜蜂身上两类表型如何耦合”的直接证据。因此，不能仅凭物种层面的共存推断单一机制、元认知、意识或共享的 precision/confidence 变量。
 
 ---
 
