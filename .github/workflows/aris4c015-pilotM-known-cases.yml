@@ -1,4 +1,4 @@
-name: ARIS4C015 Pilot M known-SB case enrichment v5
+name: ARIS4C015 Pilot M known-SB case enrichment v6
 
 on:
   workflow_dispatch:
@@ -94,6 +94,12 @@ jobs:
                           "SB_vs_AT_RISK_DORMANT"
                       ]["matches"]
                   ),
+                  "rules": result["contrasts"][
+                      "SB_vs_AT_RISK_DORMANT"
+                  ]["rules"],
+                  "matches": result["contrasts"][
+                      "SB_vs_AT_RISK_DORMANT"
+                  ]["matches"],
                   "balance": result["contrasts"][
                       "SB_vs_AT_RISK_DORMANT"
                   ]["balance"],
@@ -126,7 +132,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aris4c015-pilotM-known-cases-v5
+          name: aris4c015-pilotM-known-cases-v6
           path: papers/015-sleeping-beauty-miner/data/pilotM_known_cases_openalex.json
           if-no-files-found: error
           retention-days: 30
