@@ -1,7 +1,7 @@
 person_id,canonical_name,identity_status,accepted_author_ids_n,raw_work_records_n,unique_work_records_n,duplicate_records_removed_n,plausible_unique_works_n,outside_window_unique_works_n,undated_unique_works_n,manual_work_review_required,mechanical_min_works_met,network_observable_before_work_audit,auto_release_after_mechanical_cleaning
 cv_Q1038195,Carl Föhl,VERIFIED_SINGLE,1,5,5,0,5,0,0,false,true,true,false
 cv_Q15488589,Ulrike Toellner-Bauer,VERIFIED_SINGLE,1,5,5,0,5,0,0,false,true,true,false
-cv_Q1839062,Torkel Franzén,VERIFIED_SINGLE,1,38,38,0,19,19,0,true,true,false,false
+cv_Q1839062,Torkel Franzén,VERIFIED_SINGLE,1,38,38,0,19,19,0,false,true,true,false
 cv_Q2545268,Walter L. Bühl,VERIFIED_CLUSTER,4,38,38,0,36,2,0,false,true,true,false
 cv_Q40700285,Paul J. Torpey,VERIFIED_SINGLE,1,3,3,0,3,0,0,true,false,false,false
 cv_Q5712976,Folke Engström,VERIFIED_SINGLE,1,14,14,0,14,0,0,false,true,true,false
@@ -20,12 +20,12 @@ cv_Q3052265,Émile Haumant,VERIFIED_CLUSTER,2,11,11,0,11,0,0,true,true,true,fals
 cv_Q47216729,Alfonso W. Quiroz,VERIFIED_CLUSTER,3,71,71,0,67,4,0,false,true,true,false
 cv_Q5932286,Dan Laksov,VERIFIED_SINGLE,1,76,76,0,76,0,0,false,true,true,false
 cv_Q7926394,Victor Thébault,VERIFIED_SINGLE,1,406,406,0,405,1,0,true,true,false,false
-cv_Q118326,Ernst Rexer,VERIFIED_CLUSTER,3,16,16,0,16,0,0,true,true,false,false
+cv_Q118326,Ernst Rexer,VERIFIED_CLUSTER,3,16,16,0,16,0,0,false,true,true,false
 cv_Q16945536,Algot Werin,VERIFIED_CLUSTER,2,2,2,0,2,0,0,true,false,false,false
 cv_Q19287605,Karl Erich Hupka,VERIFIED_SINGLE,1,1,1,0,1,0,0,true,false,false,false
 cv_Q3076441,James S. Albus,VERIFIED_SINGLE,1,312,312,0,311,1,0,false,true,true,false
 cv_Q47504806,Hannah Gavron,VERIFIED_SINGLE,1,10,10,0,7,3,0,false,true,true,false
-cv_Q594723,Anton Tautscher,VERIFIED_CLUSTER,3,15,15,0,15,0,0,true,true,false,false
+cv_Q594723,Anton Tautscher,VERIFIED_CLUSTER,3,15,15,0,15,0,0,false,true,true,false
 cv_Q95927,Robert Gaupp,VERIFIED_CLUSTER,2,84,84,0,75,9,0,true,true,false,false
 cv_Q124897,Anton Moortgat,VERIFIED_CLUSTER,5,29,29,0,29,0,0,true,true,true,false
 cv_Q1717446,Jürgen Manthey,VERIFIED_SINGLE,1,32,32,0,32,0,0,false,true,true,false
