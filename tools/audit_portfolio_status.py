@@ -10,8 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "papers" / "dashboard.json"
-ALLOWED = {"active", "waiting", "quiet"}
-LEGACY = {"gated", "blocked"}
+ALLOWED = {"finish", "active", "wait", "block"}
+LEGACY = {"quiet", "waiting", "gated", "blocked"}
 
 
 def main() -> int:
@@ -39,9 +39,15 @@ def main() -> int:
     legacy_patterns = [
         r'data-filter=["\']gated["\']',
         r'data-filter=["\']blocked["\']',
+        r'data-filter=["\']waiting["\']',
+        r'data-filter=["\']quiet["\']',
+        r'navWaitingCount',
+        r'navQuietCount',
         r'navGatedCount',
         r'navBlockedCount',
         r'\bAt gate\b',
+        r'\bWaiting\b',
+        r'\bQuiet\b',
     ]
     for path in checks:
         if not path.exists():
@@ -64,7 +70,7 @@ def main() -> int:
 
     print(
         "Portfolio status audit PASS: "
-        + ", ".join(f"{k}={counts[k]}" for k in ("active", "waiting", "quiet"))
+        + ", ".join(f"{k}={counts[k]}" for k in ("finish", "active", "wait", "block"))
     )
     return 0
 
