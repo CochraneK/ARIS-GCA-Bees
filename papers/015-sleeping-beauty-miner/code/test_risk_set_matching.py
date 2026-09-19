@@ -119,6 +119,33 @@ class RiskSetMatchingTests(unittest.TestCase):
             result["rules"]["control_reuse_across_case_risk_sets"]
         )
 
+    def test_explicit_primary_case_set_excludes_other_robust_sbs(self):
+        second_case = MechanismPaper(
+            paper_id="sb2",
+            state="SLEEPING_BEAUTY",
+            publication_year=1980,
+            field="physics",
+            early_citation_percentile=0.75,
+            reference_count=20,
+            author_count=2,
+            annual_citation_counts=tuple(
+                [1] * 10 + [9, 9, 9, 9] + [20] * 6
+            ),
+            robust_sleep_years=10,
+            robust_sleep_rate=1.0,
+        )
+        result = build_awakening_risk_set_contrast(
+            [self.case, second_case, self.dormant],
+            case_ids={"sb"},
+        )
+        self.assertEqual(result["case_set"], "frozen_explicit_case_ids")
+        self.assertEqual(result["n_cases"], 1)
+        self.assertEqual(result["case_ids"], ["sb"])
+        self.assertEqual(
+            {row["case_id"] for row in result["matches"]},
+            {"sb"},
+        )
+
     def test_primary_contrast_allows_control_reuse_across_risk_sets(self):
         second_case = MechanismPaper(
             paper_id="sb2",
