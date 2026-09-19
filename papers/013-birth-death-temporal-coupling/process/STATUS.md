@@ -29,7 +29,11 @@
 - [x] Added a two-step holdout release protocol; the repository default remains locked and CI treats an accidental unlock as failure.
 - [x] Drafted the H3/H4 traditional-calendar feature schema with official-calendar vs Bazi-style boundary conventions kept separate.
 - [x] Added the identifiability rule that free 60/12-level categorical cycles cannot by themselves support traditional semantic claims.
-- [x] Added a **traditional-feature execution gate**; H3/H4 remains mechanically locked until implementation/test-vector/pseudo-control hashes are frozen.
+- [x] Added a **traditional-feature execution gate**.
+- [x] Implemented the allowed date-only traditional features with pinned `lunar_python==1.4.8` and passed reference-vector CI across Li-Chun/Lunar-New-Year boundaries.
+- [x] Implemented 1,000 deterministic matched pseudo systems for semantic-map/boundary controls.
+- [x] Feature construction is now **FROZEN v1.0** with Git blob verification; any implementation/vector/pseudo-generator edit invalidates the gate.
+- [x] Split feature materialization from H3/H4 outcome analysis: `TRADITIONAL_MODEL_SCHEMA.json` remains **frozen=false**, so mortality-outcome peeking is still mechanically blocked.
 
 ## Pilot 0A result
 The naive same-month/day observed/expected ratio was 2.6768. This is **not evidence of a birthday or astrological effect** because the source is dominated by low-precision date heaping. Excluding all records with day-of-month 1 reduced the ratio to 1.8250 but did not remove the anomaly, so further precision filtering is required.
@@ -52,7 +56,7 @@ OpenICPSR hosts two death archives, approximately 938 MB each, but its download 
 - **C — Precision audit:** quantify prespecified day 1/4/15 heaping and report exception/source fields before interpreting offset 0.
 - **D — Discovery freeze:** commit discovery results and freeze any justified sensitivity analyses without altering the locked primary specification.
 - **E — Temporal holdout:** after discovery freeze and two-step release authorization, evaluate 1997–2005 exactly once under the fixed ±1% benchmark.
-- **F — Traditional-calendar feature freeze:** schema drafted and mechanically locked; next freeze step is deterministic conversion code + reference vectors + matched pseudo-system generators.
+- **F — Traditional-calendar feature layer:** **frozen v1.0**. Outcome model remains locked; next step is source-specific H3/H4 model freeze after administrative source metadata are available, without inspecting H3/H4 outcomes.
 - **G — External replication:** seek an independent country/registry.
 
 ## Claim ceiling
@@ -61,4 +65,4 @@ OpenICPSR hosts two death archives, approximately 938 MB each, but its download 
 Current justified claim: apparent birth–death coupling can be extremely large when date precision is mishandled; the hypothesis is now operationalized for a population-scale administrative test, but the full administrative dataset bytes are not yet present in the execution environment.
 
 ## Immediate next action
-The data-independent safeguards are now implemented. The remaining external blocker is administrative data transfer; once bytes are available, run Pilot 1 v2, freeze discovery, then use the mechanical release chain for the untouched holdout.
+The data-independent H2 safeguards and the H3/H4 feature-construction freeze are now implemented. The main external blocker remains administrative data transfer. Once a source is acquired, audit its schema/covariates, freeze the still-locked H3/H4 outcome model without looking at H3/H4 results, then run Pilot 1 v2 and preserve the temporal holdout chain.

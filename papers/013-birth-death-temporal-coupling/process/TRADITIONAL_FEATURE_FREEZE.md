@@ -2,9 +2,9 @@
 
 ## Status
 
-**DRAFT / NOT YET FROZEN.**
+**FROZEN v1.0 · FEATURE CONSTRUCTION ONLY.**
 
-This document is created before any H3/H4 outcome analysis. It defines the admissible feature families and, equally importantly, the families that are excluded from confirmatory testing unless their exact algorithms are frozen first.
+This document was frozen before any H3/H4 outcome analysis. It defines the admissible feature families and their exact construction. **Freezing this layer does not authorize mortality-outcome analysis**; that remains controlled by `TRADITIONAL_MODEL_SCHEMA.json`.
 
 ## Why this layer is separate
 
@@ -215,16 +215,22 @@ H3/H4 comparisons occur only after ordinary timing is frozen.
 
 The key question is incremental held-out information, not isolated category p-values.
 
-## Freeze requirements
+## Frozen v1.0 artifacts
 
-This schema cannot change to frozen = true until all of the following are committed:
+The feature layer is cryptographically anchored to three Git blobs:
 
-1. exact conversion algorithms or pinned library versions;
-2. source references for every convention;
-3. known-date test vectors;
-4. ambiguity rules for boundary dates;
-5. pseudo-system generator algorithms;
-6. complete feature list and multiplicity families;
-7. confirmation that no H3/H4 mortality outcome has been inspected.
+- implementation `traditional_features.py`: `bae8175c91e011bee5fcd5be3d0a1215cc22cb95`;
+- reference vectors `TRADITIONAL_REFERENCE_VECTORS.json`: `f080632929b0dc2d916b9915dcbc1f055bd5a7a5`;
+- pseudo-system generator `pseudo_calendars.py`: `54d6afcd935f88130c941b36b1e5003ec03422c4`.
 
-Until then, H3/H4 execution remains mechanically locked.
+Dependency: `lunar_python==1.4.8`.
+
+The feature gate recomputes the Git blob hash of each current file. Editing any frozen file invalidates the gate until a new explicit feature-freeze version is created.
+
+## Outcome model remains locked
+
+Feature construction and outcome analysis are deliberately separated.
+
+`TRADITIONAL_MODEL_SCHEMA.json` is still `frozen=false`. Its gate prevents these frozen features from being connected to H3/H4 mortality outcomes until the source-specific conventional baseline, estimator, scoring rule, analysis code, and multiplicity plan are frozen.
+
+This preserves the pre-outcome status while allowing date encodings themselves to be reproducible and testable.

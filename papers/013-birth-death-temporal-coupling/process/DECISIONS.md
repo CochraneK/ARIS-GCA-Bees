@@ -114,3 +114,34 @@ Confirmatory H4 evidence must use prespecified semantic maps, directional predic
 TRADITIONAL_FEATURE_SCHEMA.json remains frozen = false until the conversion implementation, reference test vectors, ambiguity rules, and pseudo-system generators are committed and hashed.
 
 CI treats an accidental early unlock as a failure.
+
+## D020 · Traditional feature construction frozen v1.0
+
+Before any H3/H4 mortality-outcome analysis, the date-only traditional feature layer is frozen to:
+
+- `traditional_features.py` blob `bae8175c91e011bee5fcd5be3d0a1215cc22cb95`;
+- `TRADITIONAL_REFERENCE_VECTORS.json` blob `f080632929b0dc2d916b9915dcbc1f055bd5a7a5`;
+- `pseudo_calendars.py` blob `54d6afcd935f88130c941b36b1e5003ec03422c4`;
+- dependency `lunar_python==1.4.8`.
+
+The repository gate recomputes these blob hashes. Any change requires an explicit new freeze version.
+
+## D021 · Deterministic-calendar features test structure, not new information
+
+Date-only Gan-Zhi, zodiac, Five-Element, lunar-date and solar-term features are deterministic functions of civil birth date under frozen conventions.
+
+Therefore they cannot contain additional information beyond an unrestricted model of DOB in the mathematical sense.
+
+H3/H4 is consequently framed as a **representation / structural compression test**:
+
+- does the traditional representation capture reproducible structure under a controlled finite-complexity model;
+- does it outperform matched nontraditional representations of the same complexity;
+- does any advantage replicate out of sample?
+
+A positive result cannot be described as mystical information appearing beyond the birth date.
+
+## D022 · Feature freeze and outcome-model freeze are separate
+
+Feature materialization is frozen v1.0, but H3/H4 mortality-outcome analysis remains locked by `TRADITIONAL_MODEL_SCHEMA.json`.
+
+The outcome model may be frozen only after source metadata/covariates are known and the conventional baseline, estimator, scoring metric, multiplicity families and analysis code are committed **without inspecting H3/H4 outcome results**.
