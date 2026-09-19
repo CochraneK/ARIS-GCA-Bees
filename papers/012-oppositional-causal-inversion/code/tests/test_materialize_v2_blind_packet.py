@@ -36,13 +36,14 @@ class BlindPacketTests(unittest.TestCase):
 
     def test_response_forms_are_byte_identical(self):
         with tempfile.TemporaryDirectory() as td:
-            p=Path(td)/"template.csv"
-            p.write_text("sample_id,title,opposition_valid,coder_note\n",encoding="utf-8")
             records=[{"sample_id":"V201","title":"A"},{"sample_id":"V202","title":"B"}]
-            a=m.build_response_csv(p,records)
-            b=m.build_response_csv(p,list(reversed(records)))
-            self.assertEqual(a,b)
-            self.assertIn(b"V201,A",a)
+            for id_field in ("sample_id","record_id"):
+                p=Path(td)/f"{id_field}.csv"
+                p.write_text(f"{id_field},title,opposition_valid,coder_note\\n",encoding="utf-8")
+                a=m.build_response_csv(p,records)
+                b=m.build_response_csv(p,list(reversed(records)))
+                self.assertEqual(a,b)
+                self.assertIn(b"V201,A",a)
 
 if __name__=="__main__":
     unittest.main()
