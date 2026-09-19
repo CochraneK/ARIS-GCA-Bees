@@ -57,16 +57,25 @@ def fixed_margin_mean_variance(
         return 0.0, 0.0
 
     target_d = np.roll(d, -int(offset))
-    a = b * target_d
-    s = int(a.sum())
+
+    # Use Python integers for fourth-order count products. Exact-year strata
+    # are normally far below int64 limits, but this keeps the implementation
+    # safe even if a future source has unusually concentrated date counts.
+    b_py = [int(x) for x in b]
+    d_py = [int(x) for x in target_d]
+    products = [bi * di for bi, di in zip(b_py, d_py)]
+    s = sum(products)
     mean = s / n_b
     if n_b == 1:
         variance = mean * (1.0 - mean)
         return float(mean), float(max(variance, 0.0))
 
-    cross_distinct_birth_categories = s * s - int((a * a).sum())
-    same_birth_category = int(
-        (b * (b - 1) * target_d * (target_d - 1)).sum()
+    cross_distinct_birth_categories = (
+        s * s - sum(x * x for x in products)
+    )
+    same_birth_category = sum(
+        bi * (bi - 1) * di * (di - 1)
+        for bi, di in zip(b_py, d_py)
     )
     factorial_second = (
         cross_distinct_birth_categories + same_birth_category
