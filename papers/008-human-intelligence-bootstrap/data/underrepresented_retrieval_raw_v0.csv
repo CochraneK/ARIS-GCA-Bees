@@ -1,0 +1,375 @@
+scientific_name,retrieval_rank,paper_id,title,screening_status
+Acris crepitans,1,pmid:9878274,The effects of arginine vasotocin on the calling behavior of male cricket frogs in changing social contexts.,pending
+Acris crepitans,2,pmcid:PMC5321284,The significance of spatial memory for water finding in a tadpole-transporting frog.,pending
+Acris crepitans,3,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Acris crepitans,4,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Acris crepitans,5,pmid:22890833,Spatial behavior in male and female crayfish (Orconectes rusticus): learning strategies and memory duration.,pending
+Acris crepitans,6,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Acris crepitans,7,pmcid:PMC5617642,Responses of male cricket frogs (Acris crepitans) to attenuated and degraded advertisement calls.,pending
+Acris crepitans,8,pmid:10219047,Like frogs disguised as leaves,pending
+Acris crepitans,9,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Acris crepitans,10,pmid:38229576,"Evidence for individual vocal recognition in a pair-bonding poison frog, Ranitomeya imitator.",pending
+Acris crepitans,11,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Acris crepitans,12,pmid:2886261,A comparison of energy substrates and reproductive patterns of two anurans. Acris crepitans and Bufo woodhousei.,pending
+Acris crepitans,13,pmid:31770764,"The Mating Call of the Terrestrial Toad, Rhinella arenarum, as a Cue for Spatial Orientation and Its Associated Brain Activity.",pending
+Acris crepitans,14,pmid:35570086,Social cognition in insects.,pending
+Acris crepitans,15,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Acris crepitans,16,pmcid:PMC5458138,"Take the long way home: Behaviour of a neotropical frog, Allobates femoralis, in a detour task.",pending
+Acris crepitans,17,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Acris crepitans,18,pmid:10433886,Forebrain arginine vasotocin correlates of alternative mating strategies in cricket frogs.,pending
+Acris crepitans,19,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Acris crepitans,20,pmcid:PMC12165976,Context-dependent frequency alteration in a treefrog.,pending
+Acris crepitans,21,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Acris crepitans,22,pmcid:PMC5580388,Relying on known or exploring for new? Movement patterns and reproductive resource use in a tadpole-transporting frog.,pending
+Acris crepitans,23,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Acris crepitans,24,pmcid:PMC2599942,Place memory in crickets.,pending
+Acris crepitans,25,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Birgus latro,1,pmid:16816091,"Dimensions of cognition in an insect, the honeybee.",pending
+Birgus latro,2,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Birgus latro,3,pmid:815017,"[L'""apprentissage social"" chez le termite de santonge].",pending
+Birgus latro,4,pmcid:PMC4967082,Sedentary antlion larvae (Neuroptera: Myrmeleontidae) use vibrational cues to modify their foraging strategies.,pending
+Birgus latro,5,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Birgus latro,6,pmid:20522313,Learning in a sedentary insect predator: antlions (Neuroptera: Myrmeleontidae) anticipate a long wait.,pending
+Birgus latro,7,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Birgus latro,8,pmid:28950082,Collective Behavior: Social Digging in Drosophila Larvae.,pending
+Birgus latro,9,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Birgus latro,10,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Birgus latro,11,pmcid:PMC9346082,Behavioural mechanisms underlying the evolution of cooperative burrowing in Peromyscus mice,pending
+Birgus latro,12,pmid:35570086,Social cognition in insects.,pending
+Birgus latro,13,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Birgus latro,14,pmid:28918946,Cooperative Behavior Emerges among Drosophila Larvae.,pending
+Birgus latro,15,pmid:11074286,Sticking to their routes,pending
+Birgus latro,16,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Birgus latro,17,doi:10.1101/2024.06.12.598721,Spatio-temporal learning in a mass-recruiting leaf-cutting ant (Acromyrmex subterraneus),pending
+Birgus latro,18,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Birgus latro,19,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Birgus latro,20,pmid:12086998,Dynamics of aggregation and emergence of cooperation.,pending
+Birgus latro,21,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Birgus latro,22,pmcid:PMC9894586,Dynamics of cooperative excavation in ant and robot collectives.,pending
+Birgus latro,23,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Birgus latro,24,doi:10.1101/2025.09.08.674840,Caste-specific processing of construction pheromones in mound-building termites,pending
+Camponotus sericeiventris,1,pmid:35570086,Social cognition in insects.,pending
+Camponotus sericeiventris,2,pmcid:PMC12246152,Context-dependent effects of formic acid on olfactory learning and generalisation in ants.,pending
+Camponotus sericeiventris,3,pmid:23860601,"Sucrose responsiveness, learning success, and task specialization in ants.",pending
+Camponotus sericeiventris,4,pmcid:PMC6476803,Ants Use Multiple Spatial Memories and Chemical Pointers to Navigate Their Nest.,pending
+Camponotus sericeiventris,5,pmcid:PMC10468611,Ants combine object affordance with latent learning to make efficient foraging decisions.,pending
+Camponotus sericeiventris,6,pmcid:PMC12202405,Ants engaged in cooperative food transport show anticipatory and nest-oriented clearing of the obstacles surrounding the food: goal-directed behavior emerging from collective cognition.,pending
+Camponotus sericeiventris,7,pmcid:PMC6123487,Learning Distinct Chemical Labels of Nestmates in Ants.,pending
+Camponotus sericeiventris,8,pmid:19801426,Olfactory memory established during trophallaxis affects food search behaviour in ants.,pending
+Camponotus sericeiventris,9,pmcid:PMC6408593,Distributed plasticity in ant visual pathways following colour learning.,pending
+Camponotus sericeiventris,10,pmid:19800887,Associative learning in ants: conditioning of the maxilla-labium extension response in Camponotus aethiops.,pending
+Camponotus sericeiventris,11,pmid:19483008,Differential conditioning and long-term olfactory memory in individual Camponotus fellah ants.,pending
+Camponotus sericeiventris,12,pmid:21900478,Long-term olfactory memories are stabilised via protein synthesis in Camponotus fellah ants.,pending
+Camponotus sericeiventris,13,pmcid:PMC6235424,Visual Classical Conditioning in Wood Ants.,pending
+Camponotus sericeiventris,14,pmcid:PMC2176157,Reconnaissance and latent learning in ants.,pending
+Camponotus sericeiventris,15,pmid:22067290,Learning and perceptual similarity among cuticular hydrocarbons in ants.,pending
+Camponotus sericeiventris,16,pmid:29097594,Aversive learning of odor-heat associations in ants.,pending
+Camponotus sericeiventris,17,pmid:18927055,"Memory span for heterospecific individuals' odors in an ant, Cataglyphis cursor.",pending
+Camponotus sericeiventris,18,pmid:22328072,Collective retention and transmission of chemical signals in a social insect.,pending
+Camponotus sericeiventris,19,pmid:38493970,Termites can learn.,pending
+Camponotus sericeiventris,20,pmid:29222129,Visual associative learning in wood ants.,pending
+Camponotus sericeiventris,21,pmid:28931719,"Innate colour preference, individual learning and memory retention in the ant Camponotus blandus.",pending
+Camponotus sericeiventris,22,pmid:17639411,Reformation process of the neuronal template for nestmate-recognition cues in the carpenter ant Camponotus floridanus.,pending
+Camponotus sericeiventris,23,pmid:29981324,Appetitive and aversive learning of plants odors inside different nest compartments by foraging leaf-cutting ants.,pending
+Camponotus sericeiventris,24,pmid:19135366,A motor component to the memories of habitual foraging routes in wood ants?,pending
+Camponotus sericeiventris,25,pmid:24896019,Cognitive approach of spatial and temporal information processing in insects.,pending
+Chelydra serpentina,1,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Chelydra serpentina,2,pmid:17433570,Training and long-term memory of a novel food acquisition task in a turtle (Pseudemys nelsoni).,pending
+Chelydra serpentina,3,pmid:21842979,Turtles (Pseudemys nelsoni) learn about visual cues indicating food from experienced turtles.,pending
+Chelydra serpentina,4,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Chelydra serpentina,5,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Chelydra serpentina,6,pmid:31720927,"The underestimated giants: operant conditioning, visual discrimination and long-term memory in giant tortoises.",pending
+Chelydra serpentina,7,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Chelydra serpentina,8,pmid:25578905,The role of age-specific learning and experience for turtles navigating a changing landscape.,pending
+Chelydra serpentina,9,pmid:22582817,"Long-term retention of visual tasks by two species of emydid turtles, Pseudemys nelsoni and Trachemys scripta.",pending
+Chelydra serpentina,10,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Chelydra serpentina,11,pmid:25649816,Animal navigation: memories of home.,pending
+Chelydra serpentina,12,pmid:35570086,Social cognition in insects.,pending
+Chelydra serpentina,13,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Chelydra serpentina,14,pmid:7186502,Evidence for auditory localization ability in the turtle.,pending
+Chelydra serpentina,15,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Chelydra serpentina,16,pmid:14294140,PROBABILITY-LEARNING BY THE TURTLE.,pending
+Chelydra serpentina,17,pmcid:PMC4802741,Turtles outsmart rapid environmental change: The role of cognition in navigation.,pending
+Chelydra serpentina,18,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Chelydra serpentina,19,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Chelydra serpentina,20,pmid:18085925,Spatial learning and memory in the tortoise (Geochelone carbonaria).,pending
+Chelydra serpentina,21,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Chelydra serpentina,22,pmcid:PMC2936136,Social learning in a non-social reptile (Geochelone carbonaria).,pending
+Chelydra serpentina,23,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Chelydra serpentina,24,pmid:23339559,Relational responding by eastern box turtles (Terrapene carolina) in a series of color discrimination tasks.,pending
+Chelydra serpentina,25,pmid:22426631,"Visual wavelength discrimination by the loggerhead turtle, Caretta caretta.",pending
+Ctenophorus nuchalis,1,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Ctenophorus nuchalis,2,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Ctenophorus nuchalis,3,pmid:22890833,Spatial behavior in male and female crayfish (Orconectes rusticus): learning strategies and memory duration.,pending
+Ctenophorus nuchalis,4,pmid:21244140,Spatial learning in a T-maze by the crayfish Orconectes rusticus.,pending
+Ctenophorus nuchalis,5,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Ctenophorus nuchalis,6,pmcid:PMC10602228,Evidence of long-term allocentric spatial memory in the Terrestrial Hermit Crab Coenobita compressus.,pending
+Ctenophorus nuchalis,7,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Ctenophorus nuchalis,8,pmcid:PMC4555858,Rival assessment among northern elephant seals: evidence of associative learning during male-male contests.,pending
+Ctenophorus nuchalis,9,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Ctenophorus nuchalis,10,pmid:3769447,Socially mediated learning in male Betta splendens.,pending
+Ctenophorus nuchalis,11,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Ctenophorus nuchalis,12,pmid:10794916,"Use of cues by Lipophrys pholis L. (Teleostei, Blenniidae) in learning the position of a refuge.",pending
+Ctenophorus nuchalis,13,pmid:35570086,Social cognition in insects.,pending
+Ctenophorus nuchalis,14,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Ctenophorus nuchalis,15,pmid:31545992,Rapid learning of a spatial memory task in a lacertid lizard (Podarcis liolepis).,pending
+Ctenophorus nuchalis,16,pmid:23239735,Pheromonal induction of spatial learning in mice.,pending
+Ctenophorus nuchalis,17,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Ctenophorus nuchalis,18,pmid:18824187,Spatial learning and memory in African mole-rats: the role of sociality and sex.,pending
+Ctenophorus nuchalis,19,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Ctenophorus nuchalis,20,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Ctenophorus nuchalis,21,pmcid:PMC4985696,Social context affects tail displays by Phrynocephalus vlangalii lizards from China.,pending
+Ctenophorus nuchalis,22,pmid:23354759,Social learning of an associative foraging task in zebrafish.,pending
+Ctenophorus nuchalis,23,pmcid:PMC13106993,"Insights Into Spatial Orientation and Cognition in Tarantulas (Araneae: Theraphosidae) Under Natural Conditions, With Notes on Possible Ontogenetic Niche Shifts.",pending
+Ctenophorus nuchalis,24,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Ctenophorus nuchalis,25,pmcid:PMC6832187,Maze learning and memory in a decapod crustacean.,pending
+Hyla versicolor,1,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Hyla versicolor,2,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Hyla versicolor,3,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Hyla versicolor,4,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Hyla versicolor,5,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Hyla versicolor,6,pmid:35570086,Social cognition in insects.,pending
+Hyla versicolor,7,pmid:35051940,"Ecology, Cognition, and the Hippocampus: A Tale of Two Frogs.",pending
+Hyla versicolor,8,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Hyla versicolor,9,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Hyla versicolor,10,pmid:40592222,Two-year-olds' social learning from others' mistakes in the context of a modified trap-tube task.,pending
+Hyla versicolor,11,pmid:7636766,Selective phonotaxis to advertisement calls in the grey treefrog Hyla versicolor: behavioral experiments and neurophysiological correlates.,pending
+Hyla versicolor,12,pmid:21382262,"Innovation, imitation, and problem-solving in a networked group.",pending
+Hyla versicolor,13,pmid:20206525,Complexity increases working memory for mating signals.,pending
+Hyla versicolor,14,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Hyla versicolor,15,pmid:34626427,"Woe is the loner: Female treefrogs prefer clusters of displaying males over single ""hotshot"" males.",pending
+Hyla versicolor,16,pmcid:PMC2898283,"A precedence effect underlies preferences for calls with leading pulses in the grey treefrog, Hyla versicolor.",pending
+Hyla versicolor,17,pmcid:PMC4810823,Young children spontaneously invent wild great apes' tool-use behaviours.,pending
+Hyla versicolor,18,pmid:18729654,Assessment of distance to potential mates by female barking treefrogs (Hyla gratiosa).,pending
+Hyla versicolor,19,pmcid:PMC6409507,Do Green Treefrogs Use Social Information to Orient Outside the Breeding Season?,pending
+Hyla versicolor,20,pmid:20577882,"Phonotaxis to male's calls embedded within a chorus by female gray treefrogs, Hyla versicolor.",pending
+Hyla versicolor,21,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Hyla versicolor,22,doi:10.1101/2025.08.23.670182,Treefrogs exploit temporal onset synchrony and harmonicity in forming auditory objects of vocal communication signals,pending
+Hyla versicolor,23,pmid:27040522,Evolution of costly explicit memory and cumulative culture.,pending
+Hyla versicolor,24,pmcid:PMC4096220,Treefrogs as animal models for research on auditory scene analysis and the cocktail party problem.,pending
+Hyla versicolor,25,pmid:42114360,"Insightful problem solving and social learning in children's tool making: Exploring the role of napping, night sleep, age, and gender.",pending
+Metazygia rogenhoferi,1,pmid:16816091,"Dimensions of cognition in an insect, the honeybee.",pending
+Metazygia rogenhoferi,2,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Metazygia rogenhoferi,3,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Metazygia rogenhoferi,4,pmid:5363237,Learning in spiders.,pending
+Metazygia rogenhoferi,5,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Metazygia rogenhoferi,6,pmcid:PMC13106993,"Insights Into Spatial Orientation and Cognition in Tarantulas (Araneae: Theraphosidae) Under Natural Conditions, With Notes on Possible Ontogenetic Niche Shifts.",pending
+Metazygia rogenhoferi,7,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Metazygia rogenhoferi,8,pmcid:PMC3730619,Spatial learning affects thread tension control in orb-web spiders.,pending
+Metazygia rogenhoferi,9,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Metazygia rogenhoferi,10,pmcid:PMC4323732,Solving a novel confinement problem by spartaeine salticids that are predisposed to solve problems in the context of predation.,pending
+Metazygia rogenhoferi,11,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Metazygia rogenhoferi,12,pmid:42235898,Where am I? Where was I going? What was I doing? Memories that guide orb web construction.,pending
+Metazygia rogenhoferi,13,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Metazygia rogenhoferi,14,pmid:24896019,Cognitive approach of spatial and temporal information processing in insects.,pending
+Metazygia rogenhoferi,15,pmid:35570086,Social cognition in insects.,pending
+Metazygia rogenhoferi,16,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Metazygia rogenhoferi,17,pmid:815017,"[L'""apprentissage social"" chez le termite de santonge].",pending
+Metazygia rogenhoferi,18,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Metazygia rogenhoferi,19,pmid:10877905,Age-related sequential web building in the colonial spider Metepeira incrassata (Araneidae): an adaptive spacing strategy.,pending
+Metazygia rogenhoferi,20,pmid:37552941,Long-term spatial memory across large spatial scales in Heliconius butterflies.,pending
+Metazygia rogenhoferi,21,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Metazygia rogenhoferi,22,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Metazygia rogenhoferi,23,pmid:15714883,[Maternal inheritance in a subsocial spider: web for collective prey capturing of the young].,pending
+Metazygia rogenhoferi,24,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Metazygia rogenhoferi,25,pmcid:PMC5394149,Extended spider cognition.,pending
+Natrix natrix,1,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Natrix natrix,2,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Natrix natrix,3,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Natrix natrix,4,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Natrix natrix,5,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Natrix natrix,6,pmid:35570086,Social cognition in insects.,pending
+Natrix natrix,7,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Natrix natrix,8,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Natrix natrix,9,pmcid:PMC4126636,Age-dependent social learning in a lizard.,pending
+Natrix natrix,10,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Natrix natrix,11,pmcid:PMC4810823,Young children spontaneously invent wild great apes' tool-use behaviours.,pending
+Natrix natrix,12,pmid:33073470,Learning in non-avian reptiles 40 years on: advances and promising new directions.,pending
+Natrix natrix,13,pmcid:PMC12404675,Diverse and flexible strategies enable successful cooperation in marmoset dyads.,pending
+Natrix natrix,14,pmcid:PMC12247960,Diverse and Flexible Strategies Enable Successful Cooperation in Marmoset Dyads,pending
+Natrix natrix,15,pmid:17205290,Social learning and innovation are positively correlated in pigeons (Columba livia).,pending
+Natrix natrix,16,pmcid:PMC8666913,Complex foraging behaviours in wild birds emerge from social learning and recombination of components.,pending
+Natrix natrix,17,pmid:21898514,Sex ratio affects sex-specific innovation and learning in captive ruffed lemurs (Varecia variegata and Varecia rubra).,pending
+Natrix natrix,18,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Natrix natrix,19,pmid:21382262,"Innovation, imitation, and problem-solving in a networked group.",pending
+Natrix natrix,20,pmcid:PMC6227858,Learning from others: an invasive lizard uses social information from both conspecifics and heterospecifics.,pending
+Natrix natrix,21,pmcid:PMC12440625,Better together than alone: sociality mitigates the negative impact of early family disruption on adult problem-solving performance in zebra finches.,pending
+Natrix natrix,22,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Natrix natrix,23,pmid:36893231,Social signal learning of the waggle dance in honey bees.,pending
+Natrix natrix,24,pmid:25199480,Social learning by imitation in a reptile (Pogona vitticeps).,pending
+Natrix natrix,25,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Nephila clavipes,1,pmid:23771493,The role of learning in risk-avoidance strategies during spider-ant interactions.,pending
+Nephila clavipes,2,pmid:25164624,Nephila clavipes spiders (Araneae: Nephilidae) keep track of captured prey counts: testing for a sense of numerosity in an orb-weaver.,pending
+Nephila clavipes,3,pmcid:PMC5394149,Extended spider cognition.,pending
+Nephila clavipes,4,pmid:35570086,Social cognition in insects.,pending
+Nephila clavipes,5,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Nephila clavipes,6,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Nephila clavipes,7,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Nephila clavipes,8,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Nephila clavipes,9,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Nephila clavipes,10,pmcid:PMC4751061,The execution of planned detours by spider-eating predators.,pending
+Nephila clavipes,11,pmcid:PMC4323732,Solving a novel confinement problem by spartaeine salticids that are predisposed to solve problems in the context of predation.,pending
+Nephila clavipes,12,pmid:18654806,Constructive and deconstructive tool modification by chimpanzees (Pan troglodytes).,pending
+Nephila clavipes,13,pmcid:PMC12440625,Better together than alone: sociality mitigates the negative impact of early family disruption on adult problem-solving performance in zebra finches.,pending
+Nephila clavipes,14,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Nephila clavipes,15,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Nephila clavipes,16,pmcid:PMC10703848,Long-term memory of experienced jays facilitates problem-solving by naïve group members in the wild.,pending
+Nephila clavipes,17,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Nephila clavipes,18,pmcid:PMC4810823,Young children spontaneously invent wild great apes' tool-use behaviours.,pending
+Nephila clavipes,19,pmid:17205290,Social learning and innovation are positively correlated in pigeons (Columba livia).,pending
+Nephila clavipes,20,pmid:28311674,"Previous experience and site tenacity in the orb spider Nephila (Araneae, Araneidae).",pending
+Nephila clavipes,21,pmid:15714883,[Maternal inheritance in a subsocial spider: web for collective prey capturing of the young].,pending
+Nephila clavipes,22,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Nephila clavipes,23,pmcid:PMC11111793,Heuristic test reveals little effect of learning and maturation on early prey capture experiences in a web-building spider.,pending
+Nephila clavipes,24,pmcid:PMC10567780,"Widow spiders alter web architecture and attractiveness in response to same-sex competition for prey and mates, and predation risk.",pending
+Nephila clavipes,25,pmid:24406509,Association and reversal learning abilities in a jumping spider.,pending
+Paraponera clavata,1,pmid:16816091,"Dimensions of cognition in an insect, the honeybee.",pending
+Paraponera clavata,2,doi:10.1101/2022.07.03.498617,Characterization of an ant colony (Paraponera clavata) during rest and relocation phases: an experimentally induced protocol,pending
+Paraponera clavata,3,pmcid:PMC6578179,Learning and memory in the honeybee.,pending
+Paraponera clavata,4,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Paraponera clavata,5,pmid:38713323,"Low Intraspecific Aggression Level, Cuticular Hydrocarbons, and Polydomy in the Bullet Ant.",pending
+Paraponera clavata,6,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Paraponera clavata,7,pmid:815017,"[L'""apprentissage social"" chez le termite de santonge].",pending
+Paraponera clavata,8,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Paraponera clavata,9,pmid:16527728,Ants.,pending
+Paraponera clavata,10,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Paraponera clavata,11,pmid:8673461,Neuroanatomy: mushrooming mushroom bodies.,pending
+Paraponera clavata,12,pmcid:PMC5570381,"The interplay between maze complexity, colony size, learning and memory in ants while solving a maze: A test at the colony level.",pending
+Paraponera clavata,13,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Paraponera clavata,14,pmid:24896019,Cognitive approach of spatial and temporal information processing in insects.,pending
+Paraponera clavata,15,pmid:35570086,Social cognition in insects.,pending
+Paraponera clavata,16,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Paraponera clavata,17,doi:10.1101/2023.03.09.531867,Neurons from pre-motor areas to the Mushroom bodies can orchestrate latent visual learning in navigating insects.,pending
+Paraponera clavata,18,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Paraponera clavata,19,pmid:21849606,Distributed representation of social odors indicates parallel processing in the antennal lobe of ants.,pending
+Paraponera clavata,20,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Paraponera clavata,21,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Paraponera clavata,22,pmid:20522313,Learning in a sedentary insect predator: antlions (Neuroptera: Myrmeleontidae) anticipate a long wait.,pending
+Paraponera clavata,23,pmid:19467202,Colony-level cognition.,pending
+Paraponera clavata,24,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Paraponera clavata,25,pmcid:PMC2176157,Reconnaissance and latent learning in ants.,pending
+Periplaneta americana,1,pmid:14668320,Antennal movements reveal associative learning in the American cockroach Periplaneta americana.,pending
+Periplaneta americana,2,pmid:16458018,"Studying primate learning in group contexts: Tests of social foraging, response to novelty, and cooperative problem solving.",pending
+Periplaneta americana,3,pmid:35570086,Social cognition in insects.,pending
+Periplaneta americana,4,pmid:16816091,"Dimensions of cognition in an insect, the honeybee.",pending
+Periplaneta americana,5,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Periplaneta americana,6,pmid:14668321,Spatial learning in the restrained American cockroach Periplaneta americana.,pending
+Periplaneta americana,7,pmcid:PMC8666914,Collective minds: social network topology shapes collective cognition.,pending
+Periplaneta americana,8,pmid:14709809,Classical olfactory conditioning in the cockroach Periplaneta americana.,pending
+Periplaneta americana,9,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Periplaneta americana,10,pmcid:PMC6077775,"Multiple Representations of Space by the Cockroach, Periplaneta americana.",pending
+Periplaneta americana,11,pmcid:PMC5605539,Gender differences measured by the MATRICS consensus cognitive battery in chronic schizophrenia patients.,pending
+Periplaneta americana,12,pmid:3228423,Learned helplessness in the cockroach (Periplaneta americana).,pending
+Periplaneta americana,13,pmid:32309965,Shared worlds and shared minds: A theory of collective learning and a psychology of common knowledge.,pending
+Periplaneta americana,14,pmcid:PMC10325095,Emergence and retention of a collective memory in cockroaches.,pending
+Periplaneta americana,15,pmid:18840365,Cognitive and psychomotor effects of risperidone in schizophrenia and schizoaffective disorder.,pending
+Periplaneta americana,16,pmid:5433111,"The retention of shock avoidance learning in the cockroach, P. americana.",pending
+Periplaneta americana,17,pmcid:PMC1885829,Pavlov's cockroach: classical conditioning of salivation in an insect.,pending
+Periplaneta americana,18,pmid:19237643,The effect of age on a visual learning task in the American cockroach.,pending
+Periplaneta americana,19,pmid:27311315,"Lions (Panthera leo) solve, learn, and remember a novel resource acquisition problem.",pending
+Periplaneta americana,20,pmid:38128351,Inference of social cognition in schizophrenia patients with neurocognitive domains and neurocognitive tests using automated machine learning.,pending
+Periplaneta americana,21,pmid:21753041,"Associative olfactory learning in the desert locust, Schistocerca gregaria.",pending
+Periplaneta americana,22,pmcid:PMC5348754,Group-housed females promote production of asexual ootheca in American cockroaches.,pending
+Periplaneta americana,23,pmcid:PMC12534598,Primary and secondary caregiver burden of cognitive impairment associated with schizophrenia: a qualitative study based on caregiver interviews.,pending
+Periplaneta americana,24,pmid:9862324,Mushroom bodies of the cockroach: their participation in place memory.,pending
+Periplaneta americana,25,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Platymantis vitiensis,1,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Platymantis vitiensis,2,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Platymantis vitiensis,3,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Platymantis vitiensis,4,pmid:35570086,Social cognition in insects.,pending
+Platymantis vitiensis,5,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Platymantis vitiensis,6,pmid:32413121,Cognitive Phenotype and Differential Gene Expression in a Hippocampal Homologue in Two Species of Frog.,pending
+Platymantis vitiensis,7,pmid:40592222,Two-year-olds' social learning from others' mistakes in the context of a modified trap-tube task.,pending
+Platymantis vitiensis,8,pmcid:PMC6409507,Do Green Treefrogs Use Social Information to Orient Outside the Breeding Season?,pending
+Platymantis vitiensis,9,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Platymantis vitiensis,10,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Platymantis vitiensis,11,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Platymantis vitiensis,12,pmcid:PMC1540457,"The role of social context and individual experience in novel task acquisition in cottontop tamarins, Saguinus oedipus.",pending
+Platymantis vitiensis,13,pmid:24399272,Semaphoring in an earless frog: the origin of a novel visual signal.,pending
+Platymantis vitiensis,14,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Platymantis vitiensis,15,pmcid:PMC12404675,Diverse and flexible strategies enable successful cooperation in marmoset dyads.,pending
+Platymantis vitiensis,16,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Platymantis vitiensis,17,pmcid:PMC12440625,Better together than alone: sociality mitigates the negative impact of early family disruption on adult problem-solving performance in zebra finches.,pending
+Platymantis vitiensis,18,pmcid:PMC12247960,Diverse and Flexible Strategies Enable Successful Cooperation in Marmoset Dyads,pending
+Platymantis vitiensis,19,pmid:21382262,"Innovation, imitation, and problem-solving in a networked group.",pending
+Platymantis vitiensis,20,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Platymantis vitiensis,21,pmcid:PMC10703848,Long-term memory of experienced jays facilitates problem-solving by naïve group members in the wild.,pending
+Platymantis vitiensis,22,pmid:24030652,Male vocal competition is dynamic and strongly affected by social contexts in music frogs.,pending
+Platymantis vitiensis,23,pmid:17205290,Social learning and innovation are positively correlated in pigeons (Columba livia).,pending
+Platymantis vitiensis,24,pmid:42114360,"Insightful problem solving and social learning in children's tool making: Exploring the role of napping, night sleep, age, and gender.",pending
+Platymantis vitiensis,25,pmcid:PMC12165976,Context-dependent frequency alteration in a treefrog.,pending
+Porcellio laevis,1,pmid:35570086,Social cognition in insects.,pending
+Porcellio laevis,2,pmid:26391028,Evidence of self-organization in a gregarious land-dwelling crustacean (Isopoda: Oniscidea).,pending
+Porcellio laevis,3,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Porcellio laevis,4,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Porcellio laevis,5,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Porcellio laevis,6,pmid:23124016,"Sensitivity to tactile novelty in the terrestrial isopod, Porcellio scaber.",pending
+Porcellio laevis,7,pmid:17714664,Social learning in insects--from miniature brains to consensus building.,pending
+Porcellio laevis,8,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Porcellio laevis,9,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Porcellio laevis,10,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Porcellio laevis,11,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Porcellio laevis,12,pmid:16816091,"Dimensions of cognition in an insect, the honeybee.",pending
+Porcellio laevis,13,pmcid:PMC2817167,A potent effect of observational learning on chimpanzee tool construction.,pending
+Porcellio laevis,14,pmid:16521567,[The study of tool use as the way for general estimation of cognitive abilities in animals].,pending
+Porcellio laevis,15,pmid:40592222,Two-year-olds' social learning from others' mistakes in the context of a modified trap-tube task.,pending
+Porcellio laevis,16,pmcid:PMC4810823,Young children spontaneously invent wild great apes' tool-use behaviours.,pending
+Porcellio laevis,17,pmcid:PMC7521350,Exploring the role of individual learning in animal tool-use.,pending
+Porcellio laevis,18,pmid:17205290,Social learning and innovation are positively correlated in pigeons (Columba livia).,pending
+Porcellio laevis,19,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Porcellio laevis,20,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Porcellio laevis,21,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Porcellio laevis,22,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Porcellio laevis,23,pmcid:PMC12440625,Better together than alone: sociality mitigates the negative impact of early family disruption on adult problem-solving performance in zebra finches.,pending
+Porcellio laevis,24,pmcid:PMC4371577,Long-term fidelity of foraging techniques in common marmosets (Callithrix jacchus).,pending
+Porcellio laevis,25,pmid:21382262,"Innovation, imitation, and problem-solving in a networked group.",pending
+Trichoniscus pusillus,1,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Trichoniscus pusillus,2,pmid:35570086,Social cognition in insects.,pending
+Trichoniscus pusillus,3,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Trichoniscus pusillus,4,pmcid:PMC5049772,Associative Mechanisms Allow for Social Learning and Cultural Transmission of String Pulling in an Insect.,pending
+Trichoniscus pusillus,5,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Trichoniscus pusillus,6,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Trichoniscus pusillus,7,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Trichoniscus pusillus,8,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Trichoniscus pusillus,9,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Trichoniscus pusillus,10,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Trichoniscus pusillus,11,pmid:40592222,Two-year-olds' social learning from others' mistakes in the context of a modified trap-tube task.,pending
+Trichoniscus pusillus,12,pmcid:PMC12404675,Diverse and flexible strategies enable successful cooperation in marmoset dyads.,pending
+Trichoniscus pusillus,13,pmcid:PMC12440625,Better together than alone: sociality mitigates the negative impact of early family disruption on adult problem-solving performance in zebra finches.,pending
+Trichoniscus pusillus,14,pmcid:PMC4810823,Young children spontaneously invent wild great apes' tool-use behaviours.,pending
+Trichoniscus pusillus,15,pmcid:PMC12247960,Diverse and Flexible Strategies Enable Successful Cooperation in Marmoset Dyads,pending
+Trichoniscus pusillus,16,pmcid:PMC12364576,Wild jackdaws learn to tolerate juveniles to exploit new information,pending
+Trichoniscus pusillus,17,pmcid:PMC9845967,Social learning in a nocturnal marsupial: is it a possum-ability?,pending
+Trichoniscus pusillus,18,pmid:17624451,"Communal nesting, an early social enrichment, affects social competences but not learning and memory abilities at adulthood.",pending
+Trichoniscus pusillus,19,pmcid:PMC4045399,"Memory, transmission and persistence of alternative foraging techniques in wild common marmosets.",pending
+Trichoniscus pusillus,20,pmcid:PMC5611899,"Spontaneous reoccurrence of ""scooping"", a wild tool-use behaviour, in naïve chimpanzees.",pending
+Trichoniscus pusillus,21,pmcid:PMC4371577,Long-term fidelity of foraging techniques in common marmosets (Callithrix jacchus).,pending
+Trichoniscus pusillus,22,pmcid:PMC4932492,Evidence for social cooperation in rodents by automated maze.,pending
+Trichoniscus pusillus,23,pmid:15125208,[Social learning in animals: comparative analysis of different forms and levels].,pending
+Trichoniscus pusillus,24,pmid:17714664,Social learning in insects--from miniature brains to consensus building.,pending
+Trichoniscus pusillus,25,pmid:17205290,Social learning and innovation are positively correlated in pigeons (Columba livia).,pending
+Zosis geniculata,1,pmid:41538034,Dynamic strategic social learning in nest-building zebra finches and its generalizability.,pending
+Zosis geniculata,2,doi:10.1101/2025.06.06.658225,Dynamic strategic social learning in nest-building zebra finches and its generalisability,pending
+Zosis geniculata,3,pmid:35570086,Social cognition in insects.,pending
+Zosis geniculata,4,pmid:29436762,Social learning in nest-building birds watching live-streaming video demonstrators.,pending
+Zosis geniculata,5,pmid:33959875,Learning about construction behaviour from observing an artefact: can experience with conspecifics aid in artefact recognition?,pending
+Zosis geniculata,6,pmcid:PMC5049772,Associative Mechanisms Allow for Social Learning and Cultural Transmission of String Pulling in an Insect.,pending
+Zosis geniculata,7,pmcid:PMC12440625,Better together than alone: sociality mitigates the negative impact of early family disruption on adult problem-solving performance in zebra finches.,pending
+Zosis geniculata,8,pmcid:PMC123666,"Social intelligence, innovation, and enhanced brain size in primates.",pending
+Zosis geniculata,9,pmid:12357287,Opportunistic use of cognitive smokescreens by araneophagic jumping spiders.,pending
+Zosis geniculata,10,pmid:27639446,Social manipulation in nonhuman primates: Cognitive and motivational determinants.,pending
+Zosis geniculata,11,pmid:42169389,Creative problem solving in a jumping spider.,pending
+Zosis geniculata,12,pmcid:PMC5611899,"Spontaneous reoccurrence of ""scooping"", a wild tool-use behaviour, in naïve chimpanzees.",pending
+Zosis geniculata,13,pmcid:PMC4810823,Young children spontaneously invent wild great apes' tool-use behaviours.,pending
+Zosis geniculata,14,pmcid:PMC5134038,The effects of tradition on problem solving by two wild populations of bearded capuchin monkeys in a probing task.,pending
+Zosis geniculata,15,pmid:40592222,Two-year-olds' social learning from others' mistakes in the context of a modified trap-tube task.,pending
+Zosis geniculata,16,arxiv:2510.18515,Socialized Learning and Emergent Behaviors in Multi-Agent Systems based on Multimodal Large Language Models,pending
+Zosis geniculata,17,pmcid:PMC12364576,Wild jackdaws learn to tolerate juveniles to exploit new information,pending
+Zosis geniculata,18,pmid:17205290,Social learning and innovation are positively correlated in pigeons (Columba livia).,pending
+Zosis geniculata,19,pmcid:PMC12404675,Diverse and flexible strategies enable successful cooperation in marmoset dyads.,pending
+Zosis geniculata,20,pmcid:PMC3662090,The Drosophila DmGluRA is required for social interaction and memory.,pending
+Zosis geniculata,21,pmcid:PMC9198510,Conceptual preferences can be transmitted via selective social information use between competing wild bird species.,pending
+Zosis geniculata,22,pmid:17714664,Social learning in insects--from miniature brains to consensus building.,pending
+Zosis geniculata,23,pmcid:PMC1540457,"The role of social context and individual experience in novel task acquisition in cottontop tamarins, Saguinus oedipus.",pending
+Zosis geniculata,24,pmcid:PMC12247960,Diverse and Flexible Strategies Enable Successful Cooperation in Marmoset Dyads,pending
+Zosis geniculata,25,pmid:42114360,"Insightful problem solving and social learning in children's tool making: Exploring the role of napping, night sleep, age, and gender.",pending
