@@ -51,6 +51,10 @@ Perry and Barron (2013) 表明蜜蜂会根据试次难度调整 opt-out 使用�
 
 近期昆虫意识综述把预测、注意、情绪样状态、自我相关加工和元认知等都视为可能有关的证据来源，但没有任何单一行为任务可以直接确立主观体验。本文因此不从学习协变或 opt-out 行为推出蜜蜂具有现象意识或自我意识。类似地，复杂社会学习可以证明文化传递能力，却不能自动成为自我意识或单一“precision”变量的证据。
 
+![图 4：两条证据链之间的边界](../figures/figure4_evidence_boundary.svg)
+
+**图 4｜两条证据链之间的边界。** 现有研究分别支持结构化学习协变和难度敏感的 opt-out 行为，但缺少“同一只蜜蜂身上两类表型如何耦合”的直接证据。因此，不能仅凭物种层面的共存推断单一机制、元认知、意识或共享的 precision/confidence 变量。
+
 ---
 
 ## 3. 已发表学习协变的定量综合
@@ -124,6 +128,10 @@ Perry and Barron (2013) 表明蜜蜂会根据试次难度调整 opt-out 使用�
 confirmatory analysis 应使用 held-out predictive performance、calibration 和 posterior predictive checks 比较 M1–M5。对 opt-out 行为，可用 hierarchical logistic model 建模 trial difficulty 与 reinforcement history，同时允许 bee-level 与 colony-level variation。在联结学习 baseline 尚未指定前，不应直接加入抽象的 latent uncertainty term。
 
 主要 falsifier 也应提前写清：若 uncertainty 指标具有可靠个体差异但与 learning/GCA 的潜在相关接近 0，M1 会被削弱；若 learned value 与 stimulus similarity 不能解释 opt-out 的迁移，则纯 M4 会被削弱；若控制 reliability 和 selection 后跨任务协变消失，广义 GCA 解释会被削弱；若不同任务需要不同 latent parameter 或更简单模型预测同样好，则 unitary precision account 会被削弱。
+
+![图 5：决定性的同一个体实验](../figures/figure5_same_individual_experiment.svg)
+
+**图 5｜决定性的同一个体实验。** 新设计在同一批可识别蜜蜂上同时测量学习和不确定性敏感选择，并保留关键 nuisance variables，再通过 held-out prediction、reliability、calibration 与 transfer 对 M1–M5 进行竞争比较。该图把当前文献中缺失的推断桥梁直接可视化。
 
 ---
 
