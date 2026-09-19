@@ -471,10 +471,10 @@ The study does not establish:
 No focal surname × outcome estimate may be opened until all are complete:
 
 - [x] reproduce the ChineseNames baseline from the pinned 2025.8 R package, not only the engineering mirror (Pilot 18 PASS);
-- [ ] materialize the final primary-field convention/exposure build under article+conference-paper types;
+- [x] materialize the final primary-field convention/exposure build under article+conference-paper types;
 - [x] validate the LOAO implementation against hand/synthetic checks (PASS);
 - [x] run a synthetic-only model smoke test for work FE + interaction + frozen multiway clustering (PASS);
-- [ ] materialize the primary work frame and report sample/cluster counts **without calculating H1/H2 coefficients**;
+- [x] materialize the primary work frame and report sample/cluster counts **without calculating H1/H2 coefficients**;
 - [x] finalize deterministic identity-risk QA flags for the longitudinal secondary and report only their prevalence (120/120 hard-QA pass; no persistence/effect opened);
 After all outcome-blind execution checks above pass, generate the deterministic preregistration lock/hash with `code/27_prereg_lock.py --lock`. The existence and SHA-256 content of `PREREGISTRATION_LOCK.json`—not a checkbox in this locked document—records completion. Confirmatory unlock remains a separate later repository change.
 
