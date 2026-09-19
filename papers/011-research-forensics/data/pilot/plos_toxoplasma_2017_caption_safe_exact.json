@@ -1,0 +1,60 @@
+{
+  "artifact_id": "plos0180906-html-20170724",
+  "target_doi": "10.1371/journal.pone.0180906",
+  "target_publication_date": "2017-07-21",
+  "correction_doi": "10.1371/journal.pone.0192570",
+  "correction_date": "2018-02-05",
+  "issue_code": "table_caption_analysis_scope_mismatch",
+  "ground_truth_tier": "GT-B",
+  "archive": {
+    "source": "Internet Archive Wayback Machine",
+    "snapshot_timestamp": "20170724151640",
+    "original_url": "http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180906",
+    "content_type": "text/html",
+    "digest_type": "wayback_cdx_digest",
+    "digest": "MTJNXHVAUJZCTOAR47PRAO7AVYGIDJ7O",
+    "status": "SAFE_EXACT",
+    "roles": [
+      "body_text",
+      "table_caption"
+    ]
+  },
+  "supporting_information": {
+    "figshare_article_id": 5232229,
+    "version": 1,
+    "published_date": "2017-07-21T17:33:06Z",
+    "note": "Version-1 supporting files were verified as publication-day assets but are not required by this detector."
+  },
+  "structured_detector_inputs": {
+    "cross_section_scope_checks": [
+      {
+        "source_locator": "Archived 2017 Results paragraph 4 -> Table 1 caption",
+        "body_source_locator": "Archived HTML #section3 Results paragraph 4",
+        "caption_source_locator": "Archived HTML #pone-0180906-t001 figcaption",
+        "body_scope_labels": [
+          "multiple_logistic_regression"
+        ],
+        "caption_scope_labels": [
+          "univariate_logistic_regression"
+        ],
+        "body_points_to_target": true,
+        "same_historical_artifact": true,
+        "labels_source_verified": true,
+        "provenance_verified": true,
+        "body_excerpt": "Multiple analysis showed significant concomitant variables for seropositivity in the household",
+        "caption_excerpt": "Results of univariate logistic regression analysis of 564 households"
+      }
+    ]
+  },
+  "expected_result": {
+    "detector_id": "cross_section_scope_coherence",
+    "status": "FLAG",
+    "evidence_class": "E1",
+    "missing_scope_labels": [
+      "multiple_logistic_regression"
+    ],
+    "misconduct_inference": false
+  },
+  "adjudication_note": "The 2018 correction later states that the Table 1 caption was erroneous and gives a corrected caption covering univariate and logistic regression analysis. The correction is not detector input.",
+  "boundary_note": "The historical Table 1 image object could not be independently recovered. This case demonstrates the caption/scope error only; it does not claim pre-outcome detection of the two missing Table 1B columns."
+}

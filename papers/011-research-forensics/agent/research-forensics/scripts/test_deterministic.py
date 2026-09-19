@@ -3,6 +3,7 @@ import math
 from orchestrator import ForensicContext, run_forensics
 from detectors.deterministic import (
     CategoricalAggregateRecomputeDetector,
+    CrossSectionScopeCoherenceDetector,
     CrossSourceFieldConsistencyDetector,
     DebitStyleBinaryDetector,
     GRIMItemMeanDetector,
@@ -293,6 +294,63 @@ def test_categorical_aggregate_recompute_abstains_on_incomplete_counts():
         "data_sha256": "c" * 64,
         "data_created_at": "2023-07-28T22:30:28Z",
         "source_available_at_target_time": True,
+        "provenance_verified": True,
+    }])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "ABSTAIN"
+
+
+def test_cross_section_scope_coherence_flags_omitted_scope():
+    d = CrossSectionScopeCoherenceDetector()
+    ctx = context(cross_section_scope_checks=[{
+        "source_locator": "Results p4 -> Table 1 caption",
+        "body_source_locator": "Results p4",
+        "caption_source_locator": "Table 1 caption",
+        "body_scope_labels": ["multiple_logistic_regression"],
+        "caption_scope_labels": ["univariate_logistic_regression"],
+        "body_points_to_target": True,
+        "same_historical_artifact": True,
+        "labels_source_verified": True,
+        "provenance_verified": True,
+        "body_excerpt": "Multiple analysis showed significant concomitant variables",
+        "caption_excerpt": "Results of univariate logistic regression analysis",
+    }])
+    out = run_forensics(ctx, [d])
+    f = out["findings"][0]
+    assert f["status"] == "FLAG"
+    assert f["evidence_class"] == "E1"
+    assert f["evidence"]["missing_scope_labels"] == ["multiple_logistic_regression"]
+    assert f["misconduct_inference"] is False
+
+
+def test_cross_section_scope_coherence_passes_when_caption_covers_body_scope():
+    d = CrossSectionScopeCoherenceDetector()
+    ctx = context(cross_section_scope_checks=[{
+        "source_locator": "Results -> Table",
+        "body_source_locator": "Results",
+        "caption_source_locator": "Table caption",
+        "body_scope_labels": ["multiple_logistic_regression"],
+        "caption_scope_labels": ["univariate_logistic_regression", "multiple_logistic_regression"],
+        "body_points_to_target": True,
+        "same_historical_artifact": True,
+        "labels_source_verified": True,
+        "provenance_verified": True,
+    }])
+    out = run_forensics(ctx, [d])
+    assert out["findings"][0]["status"] == "PASS"
+
+
+def test_cross_section_scope_coherence_abstains_without_verified_labels():
+    d = CrossSectionScopeCoherenceDetector()
+    ctx = context(cross_section_scope_checks=[{
+        "source_locator": "Results -> Table",
+        "body_source_locator": "Results",
+        "caption_source_locator": "Table caption",
+        "body_scope_labels": ["multiple_logistic_regression"],
+        "caption_scope_labels": ["univariate_logistic_regression"],
+        "body_points_to_target": True,
+        "same_historical_artifact": True,
+        "labels_source_verified": False,
         "provenance_verified": True,
     }])
     out = run_forensics(ctx, [d])
