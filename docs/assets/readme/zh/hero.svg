@@ -14,12 +14,12 @@
 <text x="392" y="288" class="b">平均成熟度</text>
 <rect x="670" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
 <text x="692" y="255" class="metric">11</text>
-<text x="692" y="288" class="b">Active</text>
+<text x="692" y="288" class="b">进行中</text>
 <rect x="970" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
 <text x="992" y="255" class="metric">3</text>
-<text x="992" y="288" class="b">Waiting</text>
+<text x="992" y="288" class="b">等待中</text>
 <rect x="1270" y="205" width="255" height="110" rx="20" fill="#0d2442" stroke="#245d95"/>
 <text x="1292" y="255" class="metric">16/16</text>
-<text x="1292" y="288" class="b">handoff ready</text>
+<text x="1292" y="288" class="b">可接管</text>
 <text x="70" y="455" class="m">当前 2 个项目已提供 EN + ZH PDF · continuity 16/16</text>
 </svg>
