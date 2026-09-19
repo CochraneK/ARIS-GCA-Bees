@@ -1,0 +1,67 @@
+name: ARIS4C011 Pilot 3 development summary
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-pilot3-development-summary.yml"
+      - "papers/011-research-forensics/code/pilot3_development_summary.py"
+      - "papers/011-research-forensics/code/test_pilot3_development_summary.py"
+      - "papers/011-research-forensics/data/results/pilot3_comparator_fulltext_freeze.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-pilot3-development-summary
+  cancel-in-progress: true
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test descriptive summary
+        run: python code/test_pilot3_development_summary.py -q
+      - name: Build descriptive summary
+        run: python code/pilot3_development_summary.py
+      - name: Audit claim boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("data/results/pilot3_development_summary.json").read_text())
+          assert x["development_only"] is True
+          assert x["confirmatory_performance_estimate"] is False
+          assert x["misconduct_inference"] is False
+          assert x["true_positive_evaluations"]["count"]==5
+          assert x["negative_side_development_comparators"]["count"]==4
+          print("claim boundary OK")
+          PY
+      - name: Commit descriptive summary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/pilot3_development_summary.json process/PILOT3_DEVELOPMENT_SUMMARY.md
+          if git diff --cached --quiet; then
+            echo "Summary current."
+          else
+            git commit -m "ARIS4C011 summarize Pilot 3 development evidence"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
