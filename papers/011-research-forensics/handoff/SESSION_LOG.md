@@ -33,3 +33,16 @@ Append substantial execution sessions in reverse chronological order or chronolo
 - DOI 10.1371/journal.pone.0263337 produced 10 PASS findings, 0 flags, review priority NONE, and no misconduct inference; correction metadata was not detector-visible.
 - Preserved the development-only claim boundary: no specificity or superiority estimate was made.
 - Promoted ARIS4C011 from Wait to Active at 80%; next bounded unit is a small matched no-known-integrity-concern comparator set.
+
+
+## 2026-09-19 · Comparator freeze, development summary, and voxel BA completion
+
+- Resumed ARIS4C011 from the Git-backed checkpoint after the prior controller chat reached its context limit.
+- Added and tested a comparator full-text provenance freeze. An initial CI failure exposed an over-broad PubMed XML query that included reference-list PMCIDs; the parser was narrowed to the primary `PubmedData/ArticleIdList`, after which all four selected comparators froze successfully.
+- Comparator result: 4/4 matched no-known-integrity-concern development comparators passed the indexed notice screen and current retrieved full-text freeze; hashes and provenance were persisted without committing full text.
+- Added a reproducible Pilot 3 development-summary generator, tests, and CI. It now records six pre-outcome FLAG evaluations across five target papers, family counts F1=1 / F3=3 / F5=1 / F8=1, four development comparators, five genuine abstention checks, and the formatting-control non-escalation result.
+- Added CI for the preserved-original voxel/Brodmann-area case. The SAFE_EXACT PMC Table 2 fixture produced 6 findings: 5 PASS and exactly 1 FLAG on original token `9月8日`; correction metadata was not detector-visible and no misconduct inference was produced.
+- Fixed a status-layer bug caught by CI: voxel evaluation `status=PASS` denotes evaluation-contract success and must not be mistaken for detector PASS; the summary now uses the one detector FLAG explicitly.
+- Refreshed the Pilot 3 acquisition queue. Voxel and formatting-control cases are COMPLETE; all previously completed positive cases remain COMPLETE; the only remaining candidates are low-priority DEFER entries with no active rank.
+- Advanced canonical portfolio state from 80% to 84%, stage `Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition`.
+- Updated `paper.json`, `papers/dashboard.json`, generated development artifacts, process status, TODO, decisions, and handoff snapshots. Confirmatory scoring remains locked pending broader corpus scale-up and protocol freeze.
