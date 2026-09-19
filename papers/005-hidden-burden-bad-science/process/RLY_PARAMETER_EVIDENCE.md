@@ -78,6 +78,49 @@ Historical US biomedical context only.
 
 ---
 
+
+## Direct researcher-time anchors now available
+
+### Retrospective-study production time
+
+Song et al. (2013) surveyed 13 surgeons about 171 published retrospective studies and reported a median **177 team-hours per publication** (range 29–1287) from study planning through post-submission work.
+
+Use status: **NARROW_EMPIRICAL_ANCHOR**.
+
+Allowed use:
+
+- sensitivity/calibration for comparable retrospective clinical/surgical research;
+- decomposition sanity checks for RLY-P;
+- demonstrating that published-paper production embeds substantial human labor.
+
+Not allowed:
+
+- treating 177 h as the global mean for all science;
+- treating all 177 h as innocent-victim time;
+- multiplying global problematic-paper count by 177 h without field/design calibration.
+
+### Manuscript-formatting time
+
+LeBlanc et al. (2019), using 372 respondents from 41 countries, reported a median **14 h per manuscript** spent formatting from initial submission through publication.
+
+Use status: **NARROW_EMPIRICAL_ANCHOR / PUBLICATION-PROCESS BURDEN**.
+
+Important overlap rule:
+
+> Do not add the 14 h formatting anchor on top of a full idea-to-publication production-time estimate when the latter already includes manuscript preparation/submission/revision.
+
+That would double-count publication-process labor.
+
+### Peer-review time
+
+Huisman & Smits (2017) summarize peer-review writing as commonly taking roughly **4–8 h**.
+
+Use status: **CONTEXT_RANGE** only.
+
+The range is useful for sensitivity analysis but is not treated as a globally calibrated per-review distribution. Global peer-review-hour totals remain context denominators until the fraction causally attributable to problematic submissions is independently estimated.
+
+---
+
 ## Primary RLY reporting rule
 
 The dashboard/paper should show a vector:
