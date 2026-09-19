@@ -1,13 +1,13 @@
 scientific_name,module_id,evidence_state,source_ids,evidence_traits,first_pass_status,tested_negative_status,notes
 Acris crepitans,A,pending_first_pass,,,pending,not_searched,
 Acris crepitans,B,pending_first_pass,,,pending,not_searched,
-Acris crepitans,C,pending_first_pass,,,pending,not_searched,
+Acris crepitans,C,positive,pmcid:PMC5617642,response to conspecific advertisement calls under degraded/attenuated signal conditions,evidence_located,not_searched,Direct acoustic social communication; not vocal learning.
 Acris crepitans,D,pending_first_pass,,,pending,not_searched,
 Acris crepitans,E,pending_first_pass,,,pending,not_searched,
 Acris crepitans,F,pending_first_pass,,,pending,not_searched,
 Birgus latro,A,pending_first_pass,,,pending,not_searched,
 Birgus latro,B,pending_first_pass,,,pending,not_searched,
-Birgus latro,C,pending_first_pass,,,pending,not_searched,
+Birgus latro,C,measured,pmid:31634694,sound production system and acoustic repertoire,evidence_located,not_searched,Sound production is directly measured; communicative function/learning is not fully established by this source.
 Birgus latro,D,pending_first_pass,,,pending,not_searched,
 Birgus latro,E,pending_first_pass,,,pending,not_searched,
 Birgus latro,F,pending_first_pass,,,pending,not_searched,
@@ -31,7 +31,7 @@ Ctenophorus nuchalis,E,pending_first_pass,,,pending,not_searched,
 Ctenophorus nuchalis,F,pending_first_pass,,,pending,not_searched,
 Hyla versicolor,A,pending_first_pass,,,pending,not_searched,
 Hyla versicolor,B,pending_first_pass,,,pending,not_searched,
-Hyla versicolor,C,pending_first_pass,,,pending,not_searched,
+Hyla versicolor,C,positive,pmid:12784054,socially regulated advertisement calling,evidence_located,not_searched,Direct acoustic communication in social context; not vocal learning.
 Hyla versicolor,D,pending_first_pass,,,pending,not_searched,
 Hyla versicolor,E,pending_first_pass,,,pending,not_searched,
 Hyla versicolor,F,pending_first_pass,,,pending,not_searched,
@@ -47,24 +47,24 @@ Natrix natrix,C,pending_first_pass,,,pending,not_searched,
 Natrix natrix,D,pending_first_pass,,,pending,not_searched,
 Natrix natrix,E,pending_first_pass,,,pending,not_searched,
 Natrix natrix,F,pending_first_pass,,,pending,not_searched,
-Nephila clavipes,A,pending_first_pass,,,pending,not_searched,
+Nephila clavipes,A,positive_proxy,pmid:25164624,prey-count tracking / numerosity-related memory,evidence_located,not_searched,Supports quantitative memory/representation; not global generative cognition.
 Nephila clavipes,B,pending_first_pass,,,pending,not_searched,
 Nephila clavipes,C,pending_first_pass,,,pending,not_searched,
 Nephila clavipes,D,pending_first_pass,,,pending,not_searched,
-Nephila clavipes,E,pending_first_pass,,,pending,not_searched,
+Nephila clavipes,E,positive,pmcid:PMC7716925,orb-web construction under altered gravity,evidence_located,not_searched,Persistent externalized web construction is direct; not cumulative construction.
 Nephila clavipes,F,pending_first_pass,,,pending,not_searched,
 Paraponera clavata,A,pending_first_pass,,,pending,not_searched,
 Paraponera clavata,B,pending_first_pass,,,pending,not_searched,
-Paraponera clavata,C,pending_first_pass,,,pending,not_searched,
+Paraponera clavata,C,positive_proxy,pmid:28313225,resource recruitment,evidence_located,not_searched,Recruitment implies information transfer/coordination; signalling mechanism is not fully decomposed here.
 Paraponera clavata,D,pending_first_pass,,,pending,not_searched,
 Paraponera clavata,E,pending_first_pass,,,pending,not_searched,
-Paraponera clavata,F,pending_first_pass,,,pending,not_searched,
-Periplaneta americana,A,pending_first_pass,,,pending,not_searched,
+Paraponera clavata,F,positive,doi:10.1101/2022.07.03.498617,colony relocation and distributed social organization,evidence_located,not_searched,Direct colony-level organization; source is a preprint and does not imply cumulative culture.
+Periplaneta americana,A,positive_proxy,pmid:14668320,associative learning and retention,evidence_located,not_searched,Learning/memory proxy only; not generative problem solving.
 Periplaneta americana,B,pending_first_pass,,,pending,not_searched,
-Periplaneta americana,C,pending_first_pass,,,pending,not_searched,
+Periplaneta americana,C,positive,pmid:26313978,aggregation pheromone communication,evidence_located,not_searched,Direct chemical communication; not symbolic/compositional signalling.
 Periplaneta americana,D,pending_first_pass,,,pending,not_searched,
 Periplaneta americana,E,pending_first_pass,,,pending,not_searched,
-Periplaneta americana,F,pending_first_pass,,,pending,not_searched,
+Periplaneta americana,F,positive_proxy,pmcid:PMC10325095,collective shelter-choice memory,evidence_located,not_searched,Group-level collective-memory dynamics; not evidence of distributed cultural knowledge across generations.
 Platymantis vitiensis,A,pending_first_pass,,,pending,not_searched,
 Platymantis vitiensis,B,pending_first_pass,,,pending,not_searched,
 Platymantis vitiensis,C,pending_first_pass,,,pending,not_searched,
