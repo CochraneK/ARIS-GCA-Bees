@@ -1,0 +1,59 @@
+name: ARIS4C004 Person Work Review Queue
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_work_review_priority.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/code/analysis/summarize_work_review_priority.py"
+      - ".github/workflows/aris4c004-person-work-review.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build person-level review queue
+        run: |
+          python "$PAPER_DIR/code/analysis/summarize_work_review_priority.py" \
+            --rows "$PAPER_DIR/data/derived/network100_work_review_priority.csv" \
+            --work-summary "$PAPER_DIR/data/derived/network100_verified_work_summary.csv" \
+            --output "$PAPER_DIR/data/derived/network100_person_work_review_queue.csv" \
+            --summary-json "$PAPER_DIR/data/derived/network100_person_work_review_summary.json"
+      - name: Enforce review-only boundary
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          root=Path("papers/004-counterfactual-cost-of-exclusion/data/derived")
+          rows=list(csv.DictReader((root/"network100_person_work_review_queue.csv").open(encoding="utf-8")))
+          s=json.loads((root/"network100_person_work_review_summary.json").read_text())
+          assert len(rows)==37
+          assert all(r["machine_verdict"]=="NONE" for r in rows)
+          assert all(r["review_status"]=="PENDING" for r in rows)
+          assert s["auto_release_people"]==0 and s["auto_exclusion_people"]==0
+          assert s["mental_health_information_used"] is False
+          print(json.dumps(s,indent=2))
+          PY
+      - name: Commit queue
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            "$PAPER_DIR/data/derived/network100_person_work_review_queue.csv" \
+            "$PAPER_DIR/data/derived/network100_person_work_review_summary.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "004: aggregate work audit to person-level review queue"
+            git pull --rebase origin main
+            git push
+          fi
