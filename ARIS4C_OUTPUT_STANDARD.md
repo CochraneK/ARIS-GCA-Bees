@@ -143,7 +143,7 @@ Requirements:
 - clearly separate supported findings from boundaries, uncertainty, or next-step claims;
 - stored as a repository asset and declared in `paper.json -> outputs.one_page_visual`;
 - displayed as a small clickable thumbnail in the portfolio README so the table remains compact;
-- use a dedicated crisp thumbnail (preferably SVG/vector or another small-format asset designed for thumbnail legibility) rather than simply shrinking a dense full-page infographic;
+- the portfolio table should reuse the same one-page visual as the preview, displayed at a compact size with lazy loading; do not create a second redesigned thumbnail unless a future accessibility need requires it;
 - regenerated when a material manuscript change makes the old summary misleading.
 
 Preferred metadata:
@@ -153,7 +153,6 @@ Preferred metadata:
   "one_page_visual": {
     "status": "complete",
     "repo_path": "docs/assets/paper-at-a-glance/00X.webp",
-    "thumbnail_path": "docs/assets/paper-at-a-glance/00X-thumb.svg",
     "language": "zh-CN",
     "purpose": "one-page visual explanation of the complete paper for the portfolio table"
   }
