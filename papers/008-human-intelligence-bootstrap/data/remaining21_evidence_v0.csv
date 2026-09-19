@@ -1,0 +1,6 @@
+scientific_name,module_id,evidence_state,evidence_scope,source_id,doi,trait_name,year,claim_limit
+Balaenoptera musculus,C,positive,exact_species,pmcid:PMC6124089,10.1098/rsos.180241,context-dependent blue-whale acoustic communication,2018,Direct call-production/context evidence; not proof of socially learned song culture.
+Eschrichtius robustus,C,positive,exact_species,pmid:8817910,10.1121/1.416006,gray-whale acoustic repertoire along migration,1996,Direct acoustic communication evidence; not social-learning evidence.
+Eubalaena australis,C,positive,exact_species,pmid:27914379,10.1121/1.4962231,mother-calf vocal repertoire,2016,Direct acoustic communication evidence; not vocal production learning.
+Eubalaena glacialis,C,positive,exact_species,pmid:31370578,10.1121/1.5115332,calving-ground acoustic behavior,2019,Direct acoustic behavior evidence; not evidence for cumulative vocal culture.
+Galerella sanguinea,F,measured_context,exact_species_field,pmcid:PMC6549956,10.1098/rsos.182160,social organization of a solitary carnivore,2019,"Direct social-architecture measurement; solitary structure is a measured low-sociality context, not absence of all social cognition."
