@@ -1,4 +1,4 @@
-# ARIS4C Final Output Standard · v2
+# ARIS4C Final Output Standard · v3
 
 **Effective:** 2026-09-18  
 **Owner:** Cochrane Kang  
@@ -127,7 +127,29 @@ Preferred manifest fields:
 
 The public Research Command Center is **PDF-first**: when a PDF link exists, the English / 中文 buttons point directly to the PDF. HTML or Markdown full text remains a fallback and source-friendly companion, not the preferred final public reading surface.
 
-## 5. Page contract
+## 5. Continuity / cross-agent handoff contract
+
+Every numbered ARIS4C paper, including early-stage projects, must maintain the handoff package defined in `ARIS4C_CONTINUITY_STANDARD.md`:
+
+```
+handoff/
+  README.md
+  STATUS.md
+  TODO.md
+  DECISIONS.md
+  CONTEXT.md
+  CHATLOG.md
+  AGENT_HANDOFF.md
+  SESSION_LOG.md
+```
+
+This requirement exists so another ChatGPT conversation/account, computer, external agent, or human collaborator can resume the project from Git without depending on one conversation's memory.
+
+Material research conversations must be preserved as public-safe summaries in `CHATLOG.md`; important choices belong in `DECISIONS.md`; substantial execution sessions belong in `SESSION_LOG.md`. Current state and next actions must remain recoverable from `STATUS.md`, `TODO.md`, and `AGENT_HANDOFF.md`.
+
+A project missing the required package is **continuity-incomplete** even if its manuscript is otherwise scientifically mature.
+
+## 6. Page contract
 
 The ARIS4C public hub should expose, when available:
 
@@ -140,7 +162,7 @@ The ARIS4C public hub should expose, when available:
 
 The dashboard should also make output completeness visible rather than treating manuscript progress alone as completion.
 
-## 6. Final-status gate
+## 7. Final-status gate
 
 A project may be marked `submission-ready` / `final` only if all applicable items pass:
 
@@ -156,5 +178,8 @@ A project may be marked `submission-ready` / `final` only if all applicable item
 - [ ] reproducibility artifacts present where applicable
 - [ ] independent/reviewer gate complete where required
 - [ ] Page/index links current
+- [ ] per-paper continuity/handoff audit PASS
+- [ ] current TODO / next gate does not contradict the declared final state
+- [ ] material conversation and execution history preserved in public-safe Git records
 
 A journal portal submission itself remains an author action and is not required for repository-level scientific completion.
