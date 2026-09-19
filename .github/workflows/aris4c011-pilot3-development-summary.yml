@@ -9,6 +9,7 @@ on:
       - "papers/011-research-forensics/code/pilot3_development_summary.py"
       - "papers/011-research-forensics/code/test_pilot3_development_summary.py"
       - "papers/011-research-forensics/data/results/pilot3_comparator_fulltext_freeze.json"
+      - "papers/011-research-forensics/data/results/pilot3_voxel_ba_evaluation.json"
 
 permissions:
   contents: write
@@ -44,7 +45,7 @@ jobs:
           assert x["development_only"] is True
           assert x["confirmatory_performance_estimate"] is False
           assert x["misconduct_inference"] is False
-          assert x["true_positive_evaluations"]["count"]==5
+          assert x["true_positive_evaluations"]["count"]==6
           assert x["negative_side_development_comparators"]["count"]==4
           print("claim boundary OK")
           PY
