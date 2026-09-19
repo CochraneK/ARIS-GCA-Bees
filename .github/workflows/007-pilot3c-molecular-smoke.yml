@@ -128,6 +128,7 @@ jobs:
           cat pilot3c_summary.csv
 
       - name: Record environment
+        if: always()
         working-directory: papers/007-cross-species-age-equivalence
         shell: bash
         run: |
@@ -135,6 +136,7 @@ jobs:
           cp data/upstream/pilot3b_run.json data/pilot3c_smoke/upstream_pilot3b_run.json
 
       - name: Upload Pilot 3C smoke artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: aris4c007-pilot3c-molecular-smoke
@@ -144,8 +146,9 @@ jobs:
             papers/007-cross-species-age-equivalence/data/pilot3c_smoke/species_traits.csv
             papers/007-cross-species-age-equivalence/data/pilot3c_smoke/mmc/sha256.txt
             papers/007-cross-species-age-equivalence/data/pilot3c_smoke/pilot3c_predictions.csv
+            papers/007-cross-species-age-equivalence/data/pilot3c_smoke/pilot3c_probe_coverage_diagnostics.csv
             papers/007-cross-species-age-equivalence/data/pilot3c_smoke/pilot3c_summary.csv
             papers/007-cross-species-age-equivalence/data/pilot3c_smoke/R_sessionInfo.txt
             papers/007-cross-species-age-equivalence/data/pilot3c_smoke/upstream_pilot3b_run.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
