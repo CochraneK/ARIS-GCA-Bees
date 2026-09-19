@@ -1,0 +1,7 @@
+ford_broad_field,candidate_n,verified_n,verified_rate,network_observable_n,network_observable_rate,no_graph_n,no_graph_rate,collision_n,identity_error_n,provisional_n
+1 Natural sciences,27,15,0.555556,8,0.296296,8,0.296296,4,0,0
+2 Engineering and technology,7,2,0.285714,1,0.142857,3,0.428571,2,0,0
+3 Medical and health sciences,13,6,0.461538,1,0.076923,6,0.461538,1,0,0
+5 Social sciences,20,9,0.450000,7,0.350000,10,0.500000,0,1,0
+6 Humanities and the arts,16,10,0.625000,2,0.125000,6,0.375000,0,0,0
+unclassified,17,10,0.588235,6,0.352941,5,0.294118,1,1,0
