@@ -65,8 +65,8 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 
 | ID | 项目 | 状态 | 进度 | 接管入口 | 一图读懂 |
 |---|---|---:|---:|---|---:|
-| **001** | [蜜蜂 GCA × 不确定性](papers/001-gca-bees/) | 🔵 完成 | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) | <a href="./docs/assets/paper-at-a-glance/001.webp"><img src="./docs/assets/paper-at-a-glance/001-thumb.svg" height="56" alt="一图读懂 001" title="Click to open the full one-page visual"></a> |
-| **002** | [LING-01 · 语言周期性检验](papers/002-language-geometry/) | 🔵 完成 | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) | <a href="./docs/assets/paper-at-a-glance/002.webp"><img src="./docs/assets/paper-at-a-glance/002-thumb.svg" height="56" alt="一图读懂 002" title="Click to open the full one-page visual"></a> |
+| **001** | [蜜蜂 GCA × 不确定性](papers/001-gca-bees/) | 🔵 完成 | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) | <a href="./docs/assets/paper-at-a-glance/001.webp"><img src="./docs/assets/paper-at-a-glance/001.webp" height="80" loading="lazy" decoding="async" alt="一图读懂 001" title="Click to open the full one-page visual"></a> |
+| **002** | [LING-01 · 语言周期性检验](papers/002-language-geometry/) | 🔵 完成 | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) | <a href="./docs/assets/paper-at-a-glance/002.webp"><img src="./docs/assets/paper-at-a-glance/002.webp" height="80" loading="lazy" decoding="async" alt="一图读懂 002" title="Click to open the full one-page visual"></a> |
 | **003** | [殖民遗产 × 学科优势](papers/003-colonial-disciplinary-advantage/) | 🟢 正在推进 | 78% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) | — |
 | **004** | [排斥的反事实知识网络成本](papers/004-counterfactual-cost-of-exclusion/) | 🔴 阻塞 | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) | — |
 | **005** | [坏科学的全球隐性负担](papers/005-hidden-burden-bad-science/) | 🔴 阻塞 | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) | — |
