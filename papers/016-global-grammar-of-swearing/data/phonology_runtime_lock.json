@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-09-19",
+  "purpose": "ARIS4C016 Phase-0 pronunciation technical-feasibility smoke",
+  "source_data": {
+    "osf_guid": "8nyga",
+    "sha256": "c725a30913e604e8344f4990c8d63990dcf0271e3a65765ddc3fa591b8cb1387"
+  },
+  "epitran": {
+    "version": "1.35.2",
+    "source": "PyPI installation in disposable Linux execution sandbox"
+  },
+  "english_flite": {
+    "repository": "https://github.com/festvox/flite.git",
+    "commit": "6c9f20dc915b17f5619340069889db0aa007fcdc",
+    "build": "./configure && make; testsuite/make lex_lookup; lex_lookup placed on PATH",
+    "note": "Debian flite packages alone did not provide lex_lookup, so the official Epitran source-build instructions were followed."
+  },
+  "chinese_route": {
+    "cantonese": "source Study-1 transcription -> Epitran yue-Latn, tones enabled",
+    "mandarin": "source Study-1 transcription -> Epitran cmn-Latn, tones enabled",
+    "note": "This avoids character-level CC-Canto/CC-CEDict lookup for the Phase-0 rows that already contain source romanization."
+  },
+  "caution": "This lock reproduces engineering feasibility only. Native/source-language pronunciation validation remains mandatory before confirmatory phonology."
+}
