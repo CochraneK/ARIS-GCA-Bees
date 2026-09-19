@@ -6,7 +6,7 @@
   "year": 2026,
   "status": "working-manuscript-phase0",
   "domain": "linguistics / psycholinguistics / sociolinguistics / cross-cultural psychology / linguistic typology / cultural evolution",
-  "summary": "A falsification-first cross-linguistic program testing which properties of taboo language are stable across communities, genealogically structured, or context-sensitive. Phase 0 now audits the open 18-community/13-language Sulpizio et al. dataset, exposes substantial cross-lab annotation heterogeneity, introduces an orthogonal multi-axis ontology, links samples to Glottolog, and builds reproducible harmonization and reliability gates before any cultural-prevalence claim.",
+  "summary": "A measurement-first cross-linguistic study of taboo language using an open 18-community/13-language dataset. Phase 0 now includes a reproducible annotation audit, orthogonal ontology, Glottolog linkage, item-fixed-effects English comparisons, balanced and filler negative controls, a frozen 300-row independent-coder sample, three public-safe figures, and parallel English/Chinese working manuscripts. Confirmatory semantic fingerprints remain gated on genuinely independent/native-language reliability.",
   "authors": [
     "Cochrane Kang"
   ],
@@ -20,7 +20,7 @@
   },
   "links": {
     "paper_en": "manuscript/DRAFT.md",
-    "paper_zh": "",
+    "paper_zh": "manuscript/DRAFT.zh-CN.md",
     "pipeline": "process/RESEARCH_PLAN.md",
     "status": "process/STATUS.md",
     "prior_art": "process/PRIOR_ART_MATRIX.md",
@@ -37,7 +37,8 @@
     "paper_architecture": "process/PAPER_ARCHITECTURE.md",
     "repeated_item_model": "process/REPEATED_ITEM_MODEL.md",
     "repeated_item_sensitivity": "process/REPEATED_ITEM_SENSITIVITY.md",
-    "audit_sample_freeze": "process/AUDIT_SAMPLE_FREEZE.md"
+    "audit_sample_freeze": "process/AUDIT_SAMPLE_FREEZE.md",
+    "figures": "figures/README.md"
   },
   "tags": [
     "ARIS",
