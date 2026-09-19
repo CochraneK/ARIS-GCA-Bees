@@ -1,0 +1,61 @@
+name: ARIS4C004 Work Audit Priority
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/004-counterfactual-cost-of-exclusion/code/analysis/prioritize_work_audit.py"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/network100_held_work_audit_sample.csv"
+      - "papers/004-counterfactual-cost-of-exclusion/data/derived/identity_decisions_100.csv"
+      - ".github/workflows/aris4c004-work-audit-priority.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/004-counterfactual-cost-of-exclusion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build review-ordering queue
+        run: |
+          python "$PAPER_DIR/code/analysis/prioritize_work_audit.py" \
+            --audit "$PAPER_DIR/data/derived/network100_held_work_audit_sample.csv" \
+            --identities "$PAPER_DIR/data/derived/identity_decisions_100.csv" \
+            --output "$PAPER_DIR/data/derived/network100_work_review_priority.csv" \
+            --summary-json "$PAPER_DIR/data/derived/network100_work_review_priority_summary.json"
+      - name: Enforce non-decision boundary
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          root=Path("papers/004-counterfactual-cost-of-exclusion/data/derived")
+          rows=list(csv.DictReader((root/"network100_work_review_priority.csv").open(encoding="utf-8")))
+          s=json.loads((root/"network100_work_review_priority_summary.json").read_text())
+          assert len(rows)==334
+          assert s["machine_verdicts"]=={"NONE":334}
+          assert s["auto_release_rows"]==0
+          assert s["auto_exclusion_rows"]==0
+          assert s["mental_health_information_used"] is False
+          assert all(r["work_belongs_to_focal_person"]=="" for r in rows)
+          print(json.dumps(s,indent=2))
+          PY
+      - name: Commit review-ordering queue
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            "$PAPER_DIR/data/derived/network100_work_review_priority.csv" \
+            "$PAPER_DIR/data/derived/network100_work_review_priority_summary.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "004: prioritize network100 work audit without auto-decisions"
+            git pull --rebase origin main
+            git push
+          fi
