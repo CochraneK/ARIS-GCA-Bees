@@ -77,6 +77,10 @@ jobs:
             curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30               "$url" -o "data/pilot3c_smoke/idats/$filename"
             test -s "data/pilot3c_smoke/idats/$filename"
           done
+
+          echo "Expanding gzip-compressed IDATs for deterministic SeSAMe input"
+          find data/pilot3c_smoke/idats -type f -name '*.idat.gz' -print0 | xargs -0 -r gzip -d
+          test "$(find data/pilot3c_smoke/idats -type f -name '*.idat' | wc -l)" -eq "$(($(tail -n +2 data/pilot3c_smoke/download_manifest.tsv | wc -l)))"
           du -sh data/pilot3c_smoke/idats
 
       - name: Fetch canonical MMC v3.0.0 Clock 2/3 coefficients
