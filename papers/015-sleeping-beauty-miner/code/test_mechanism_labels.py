@@ -4,6 +4,7 @@ from mechanism_labels import (
     SCISCINET_V1_CALIBRATION,
     classify_mechanism_state,
     early_late_percentiles,
+    post_awakening_fate,
     robust_sleeping_beauty_gate,
     van_raan_gate,
     variable_van_raan_gate,
@@ -65,6 +66,25 @@ class MechanismLabelTests(unittest.TestCase):
         self.assertEqual(result.van_raan.mode, "VARIABLE_SLEEP")
         self.assertTrue(result.van_raan.passed)
         self.assertTrue(result.robust_sb)
+
+    def test_post_awakening_fate_separates_transient_from_expanded(self):
+        transient = post_awakening_fate(
+            [0] * 10 + [10, 10, 10, 10] + [0, 0, 0, 0, 1],
+            sleep_years=10,
+            wake_years=4,
+            terminal_years=5,
+        )
+        expanded = post_awakening_fate(
+            [0] * 10 + [6, 6, 6, 6] + [20, 20, 20, 20, 20],
+            sleep_years=10,
+            wake_years=4,
+            terminal_years=5,
+        )
+        self.assertEqual(transient.state, "TRANSIENT_OR_FADED")
+        self.assertEqual(
+            expanded.state,
+            "EXPANDED_AFTER_AWAKENING",
+        )
 
     def test_high_b_alone_is_not_enough(self):
         counts = [0] * 10 + [6, 6, 6, 6]
