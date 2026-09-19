@@ -22,6 +22,7 @@ import json
 from pathlib import Path
 
 from mechanism_cohort import CorpusPaper, build_mechanism_cohort
+from mechanism_labels import OPENALEX_PROVISIONAL_CALIBRATION
 from openalex_adapter import (
     reconstruct_history_for_known_work,
     sample_works,
@@ -113,6 +114,7 @@ def run_smoke(
         matching_early_percentile_caliper=0.15,
         matching_max_abs_smd=0.10,
         min_primary_match_rate=0.50,
+        b_calibration=OPENALEX_PROVISIONAL_CALIBRATION,
     )
     result["smoke_design"] = {
         "source": "OpenAlex live API",
