@@ -104,6 +104,9 @@ def valid_detail_materiality(detail: str, materiality: str) -> bool:
 
 
 def validate_review(row: dict[str, str]) -> None:
+    assignment_id = (row.get("assignment_id") or "").strip()
+    if not assignment_id:
+        raise ValueError("assignment_id required")
     cid = (row.get("candidate_id") or "").strip()
     if not cid:
         raise ValueError("candidate_id required")
