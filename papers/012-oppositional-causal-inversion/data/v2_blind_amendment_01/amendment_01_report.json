@@ -1,0 +1,30 @@
+{
+  "classification": "V2_BLIND_EVIDENCE_AMENDMENT_01",
+  "frozen_at": "2026-09-19T12:37:27.287911+00:00",
+  "prior_bundle_sha256": "62006415127acc5a8d9385067691dad1a0d7592382b188dba926c364b921662a",
+  "attempted_ids": [
+    "V215",
+    "V216",
+    "V219",
+    "V224",
+    "V225",
+    "V227"
+  ],
+  "recovered_ids": [],
+  "remaining_bibliographic_only_ids": [
+    "V215",
+    "V216",
+    "V219",
+    "V224",
+    "V225",
+    "V227"
+  ],
+  "evidence_state_counts": {
+    "ABSTRACT_EXCERPT": 24,
+    "BIBLIOGRAPHIC_ONLY": 6
+  },
+  "sample_changed": false,
+  "labels_or_adjudication_inspected": false,
+  "ready_for_independent_coding": false,
+  "next_if_not_ready": "Apply a separately frozen, outcome-blind deterministic same-stratum evidence-availability replacement rule; do not start A2/B2."
+}
