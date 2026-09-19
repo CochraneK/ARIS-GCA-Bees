@@ -301,6 +301,7 @@ def build_awakening_risk_set_contrast(
     papers: Sequence[MechanismPaper],
     *,
     controls_per_case: int = 1,
+    with_replacement_across_risk_sets: bool = True,
     max_sleep_rate: float = 2.0,
     wake_years: int = 4,
     min_wake_rate: float = 5.0,
@@ -310,6 +311,7 @@ def build_awakening_risk_set_contrast(
     matches, unmatched = match_awakening_risk_sets(
         papers,
         controls_per_case=controls_per_case,
+        with_replacement=with_replacement_across_risk_sets,
         max_sleep_rate=max_sleep_rate,
         wake_years=wake_years,
         min_wake_rate=min_wake_rate,
@@ -334,6 +336,9 @@ def build_awakening_risk_set_contrast(
             "same_publication_year": True,
             "control_must_be_dormant_at_case_event": True,
             "control_may_awaken_later": True,
+            "control_reuse_across_case_risk_sets": (
+                with_replacement_across_risk_sets
+            ),
             "max_sleep_rate_to_case_event": max_sleep_rate,
             "wake_years": wake_years,
             "min_wake_rate": min_wake_rate,
