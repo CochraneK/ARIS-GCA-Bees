@@ -143,9 +143,39 @@ def card(p: dict, dashboard: dict) -> str:
     </article>"""
 
 
+
+def showcase_card(p: dict, dashboard: dict) -> str:
+    links = p.get("links", {})
+    d = dashboard.get("projects", {}).get(str(p.get("id")), {})
+    progress = max(0, min(100, int(d.get("progress", 0))))
+    stage = d.get("stage") or p.get("status") or "Unclassified"
+    activity_text, activity_class = activity_label(d.get("activity", ""))
+    en_href = links.get("paper_en_full") or links.get("paper_en", "")
+    zh_href = links.get("paper_zh_full") or links.get("paper_zh", "")
+    buttons = "".join([
+        paper_button(paper_display_link(p, en_href) if en_href else "", "English", True),
+        paper_button(paper_display_link(p, zh_href) if zh_href else "", "中文"),
+    ])
+    return f"""
+      <article class="showcase-card" data-activity="{esc(activity_class)}">
+        <div class="showcase-top">
+          <span class="showcase-id">#{esc(p.get('id'))}</span>
+          <span class="showcase-state"><i></i>{esc(activity_text)}</span>
+        </div>
+        <h3>{esc(p.get('short_title') or p.get('title'))}</h3>
+        <p>{esc(stage)}</p>
+        <div class="showcase-progress"><span style="width:{progress}%"></span></div>
+        <div class="showcase-bottom">
+          <strong>{progress}%</strong>
+          <div class="showcase-actions">{buttons}</div>
+        </div>
+      </article>"""
+
+
 def build(papers: list[dict], dashboard: dict) -> str:
     projects = dashboard.get("projects", {})
     cards = "\n".join(card(p, dashboard) for p in papers)
+    showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
     active = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "active")
@@ -217,6 +247,25 @@ def build(papers: list[dict], dashboard: dict) -> str:
             <div class="metric"><strong>{near_final}</strong><span>near-final manuscripts</span></div>
           </div>
           <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · {mature} projects at ≥45% · {gated + blocked} at gate/blocker</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
+        </section>
+
+        <section class="showcase" aria-labelledby="showcaseTitle">
+          <div class="showcase-head">
+            <div>
+              <p class="eyebrow">LIVE RESEARCH SHOWCASE</p>
+              <h2 id="showcaseTitle">ARIS4C rolling research board</h2>
+              <p>All current papers, continuously rotating. Hover, focus, drag or use the arrows to pause and explore.</p>
+            </div>
+            <div class="showcase-controls" aria-label="Showcase controls">
+              <button id="showcasePrev" class="showcase-arrow" type="button" aria-label="Previous projects">←</button>
+              <button id="showcaseNext" class="showcase-arrow" type="button" aria-label="Next projects">→</button>
+            </div>
+          </div>
+          <div id="showcaseViewport" class="showcase-viewport" tabindex="0" aria-label="Rolling ARIS4C project showcase">
+            <div id="showcaseTrack" class="showcase-track">
+              {showcase}
+            </div>
+          </div>
         </section>
 
         <div class="control-bar">
