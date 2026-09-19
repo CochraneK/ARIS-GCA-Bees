@@ -1,7 +1,7 @@
 # ARIS4C Final Output Standard · v3
 
 **Effective:** 2026-09-18  
-**Owner:** Cochrane Kang  
+**Owner:** CochraneK  
 **Scope:** every numbered ARIS4C research project
 
 ARIS4C treats a research project as complete only when the scientific work and the public-facing output package are both explicit. A project may be scientifically mature before it is publication-ready, but `submission-ready` / `final` status requires the output contract below.
