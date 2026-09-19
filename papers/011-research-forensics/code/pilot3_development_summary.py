@@ -100,7 +100,7 @@ def build():
         "hashes_frozen":[{"candidate_doi":x["candidate_doi"],"pmc_id":x["pmc_id"],"sha256":x["fulltext_sha256"]} for x in comp["frozen_comparators"]],
         "interpretation":"Matched no-known-integrity-concern development comparators were selected without detector output, notice-screened, and frozen by hash. They are not clean controls and do not support specificity or false-positive-rate estimates."},
       "misconduct_inference":False,
-      "next_gate":"Continue unresolved voxel/Brodmann-area structured-content acquisition, then expand and freeze the broader time-safe comparator corpus and confirmatory protocol."
+      "next_gate":"Expand and freeze the broader time-safe comparator corpus, grouped/temporal splits, detector versions/applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring."
     }
 
 def markdown(x):
