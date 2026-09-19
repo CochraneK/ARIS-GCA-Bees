@@ -97,12 +97,25 @@
   function counts(){
     const cards=[...document.querySelectorAll(".paper-card")];
     const count = activity => cards.filter(c=>c.dataset.activity===activity).length;
+    const statusCounts={
+      active:count("active"),
+      gated:count("gated"),
+      quiet:count("quiet"),
+      blocked:count("blocked")
+    };
+    const meceTotal=Object.values(statusCounts).reduce((sum,n)=>sum+n,0);
+
     $("navAllCount").textContent=cards.length;
-    $("navActiveCount").textContent=count("active");
-    $("navGatedCount").textContent=count("gated");
-    $("navQuietCount").textContent=count("quiet");
-    $("navBlockedCount").textContent=count("blocked");
+    $("navActiveCount").textContent=statusCounts.active;
+    $("navGatedCount").textContent=statusCounts.gated;
+    $("navQuietCount").textContent=statusCounts.quiet;
+    $("navBlockedCount").textContent=statusCounts.blocked;
     $("navNearCount").textContent=cards.filter(c=>Number(c.dataset.progress)>=85).length;
+
+    document.documentElement.dataset.statusMece=meceTotal===cards.length?"valid":"invalid";
+    if(meceTotal!==cards.length){
+      console.warn("ARIS4C status taxonomy is not MECE:", {all:cards.length, ...statusCounts, total:meceTotal});
+    }
   }
 
 
