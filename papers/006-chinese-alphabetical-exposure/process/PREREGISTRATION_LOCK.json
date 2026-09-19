@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "paper_id": "006",
+  "lock_label": "ARIS4C006-prereg-v1",
+  "combined_sha256": "c416b84523d30346a46e5779fb55393af63bae0f578ca71a19c4671325e21ffd",
+  "file_sha256": {
+    "PREREGISTRATION_DRAFT.md": "b772f9acd6b5e9e984ac27965dae4e147d750714348b6417228d14b0661de130",
+    "ANALYSIS_SPEC.json": "31c50be45f55930012ac9bf6d9f88ea0ea9c4cda97019544023df4a4a639c55c",
+    "DESIGN_GATES.json": "0684ca93652c331b37ce63dcfb90bf3f27b0e554348cc4cfefba790d4752e454",
+    "COHORT_DEFINITION.json": "3e9dc6483cecb495adca3d28b3f07e4d5039ba7c5c443c47ca51fd86abad32be",
+    "COHORT_PROTOCOL.md": "a4e9af1a69fec319e95762972e31f91a33a8171ed805abd90268c0dfca8814a7",
+    "POPULATION_FRAME.md": "d61db107065edfcc578e2960397d0d45b62f3ca7a3026119b5febde27e511a2c",
+    "SURNAME_ROMANIZATION_RULE.md": "7295dcb19bbf391a548d64cdf3c88431091c0b2b829a5d429ac4ce980b13116d",
+    "SURNAME_PARSING_PROTOCOL.md": "a1b9263c079f440b8b6de7b03ab6292e68e5643b437fcfe030d0f21b73836295",
+    "EXPOSURE_ESTIMATOR.md": "ae18255c0a7b893dc52ec7525e69a11ae251ee763042e20546e2bf2baebdd062",
+    "LOAO_EXPOSURE_RULE.md": "632a635d6f1b960036fd6e098215d149063594f667003316aecae9c2643369ee",
+    "WORK_TYPE_RULE.md": "7e3d3eb354c5f16534b827a66bef536711065fd5b71ad86742e0cbef1fd98b0e",
+    "INFERENCE_RULE.md": "4f1c3c74cec03211fd4dc4efacb8aa927493194cc3fca3b535f045e247cfdb65",
+    "IDENTITY_RISK_RULE.md": "f01081484f5835d3a81e0b3803f286669ddf2a792d1c94ce24a49c3b8492a89a",
+    "PRIMARY_FRAME_SAMPLING_RULE.md": "8edb4f1bd14fe955cd4241ecaec93326aec8f10941440298ef910d0d0f8e30e4",
+    "EXECUTION_ACCEPTANCE_RULE.md": "73faa9f8ced4140489e614bec3a8e7263e5c5a200494ddca6ece4c9927be3ac4",
+    "LONGITUDINAL_SAMPLING_RULE.md": "50c40d1c31dc4729926be6af9bd701f76f635c2adaae98aa166f55fb428595d4",
+    "PUBLICATION_PLAN.md": "8067980891579c13cbd72568463ae2ad9d960fe50cac641fc438a5d14f1674ec"
+  },
+  "confirmatory_outcomes_unlocked_at_lock_creation": false,
+  "effect_estimation_performed": false,
+  "note": "This hash freezes the canonical pre-outcome design. Unlock is a separate explicit repository change after lock creation."
+}
