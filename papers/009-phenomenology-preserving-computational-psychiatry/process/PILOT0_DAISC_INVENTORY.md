@@ -1,6 +1,6 @@
 # ARIS4C009 Pilot-0 · DAIS-C inventory
 
-**Generated:** 2026-09-18T23:41:01.738506+00:00  
+**Generated:** 2026-09-19T05:12:31.927282+00:00  
 **Source:** UK Data Service ReShare 855021  
 **DOI:** 10.5255/UKDA-SN-855021
 
