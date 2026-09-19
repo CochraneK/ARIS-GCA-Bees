@@ -23,7 +23,9 @@
     "figures": "https://github.com/CochraneK/ARIS4C/tree/main/papers/001-gca-bees/figures",
     "tables": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/tables/TABLES.md",
     "paper_zh_full": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/manuscript/MAIN.zh-CN.md",
-    "paper_en_full": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/manuscript/MAIN.md"
+    "paper_en_full": "https://github.com/CochraneK/ARIS4C/blob/main/papers/001-gca-bees/manuscript/MAIN.md",
+    "paper_en_pdf": "paper/001/en/main.pdf",
+    "paper_zh_pdf": "paper/001/zh/main.pdf"
   },
   "tags": [
     "ARIS",
@@ -46,6 +48,12 @@
       "status": "complete",
       "count": 3
     },
-    "exception": ""
+    "exception": "",
+    "pdf": {
+      "status": "complete",
+      "english": true,
+      "chinese": true,
+      "builder": "tools/build_public_pdfs.py"
+    }
   }
 }
