@@ -40,6 +40,16 @@ class ConfirmatoryFeasibilityFrameTests(unittest.TestCase):
                         }
                         for i in range(5)
                     ],
+                    {
+                        "target_doi":f"10.2/{year}-{update_type}-1",
+                        "notice_or_source_doi":f"10.9/{year}-{update_type}-duplicate",
+                        "update_type":update_type,
+                        "outcome_date":f"{year}-03-01",
+                        "assertion_source":"publisher",
+                        "relation_label":update_type,
+                        "source_work_title":"duplicate target second event",
+                        "source_work_date":f"{year}-03-01",
+                    },
                 ]
 
             def fake_resolve(doi):
@@ -71,6 +81,11 @@ class ConfirmatoryFeasibilityFrameTests(unittest.TestCase):
             [x["target_doi"] for x in b["rows"]],
         )
         self.assertNotIn("10.1/exposed",{x["target_doi"] for x in a["rows"]})
+        self.assertEqual(len({x["target_doi"] for x in a["rows"]}),len(a["rows"]))
+        self.assertEqual(
+            len({(x["target_doi"],x["notice_or_source_doi"],x["update_type"],x["outcome_date"]) for x in a["rows"]}),
+            len(a["rows"]),
+        )
         self.assertTrue(all(x["detector_output_visible"] is False for x in a["rows"]))
         self.assertTrue(all(x["artifact_state"]=="UNASSESSED" for x in a["rows"]))
         self.assertEqual(a["state"],"FEASIBILITY_ONLY_NOT_CONFIRMATORY")
