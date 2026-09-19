@@ -75,7 +75,9 @@ jobs:
           # 2023 Universal Clock release reports SeSAMe 1.18.4.
           stopifnot(as.character(packageVersion("sesame")) == "1.18.4")
           stopifnot(as.character(packageVersion("dbplyr")) == "2.3.4")
+          stopifnot("sesameDataCache" %in% getNamespaceExports("sesameData"))
           sesameData::sesameDataCache()
+          cat("clock-era sesameData cache PASS\n")
 
           probe <- matrix(seq_len(200), nrow=20, ncol=10)
           target <- sort(rowMeans(probe))
