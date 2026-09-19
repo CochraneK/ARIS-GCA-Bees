@@ -1,0 +1,122 @@
+{
+  "dataset_id": "ucid-protocol-training-v1",
+  "purpose": "Constructed practice items teaching response-label semantics before formal calibration trials. Practice responses are not scientific outcomes.",
+  "protocols": {
+    "P2": [
+      {
+        "practice_id": "p2-yes",
+        "target": "an ordinary triangle",
+        "definition": "A triangle in ordinary Euclidean geometry.",
+        "context": {},
+        "query": "Does the target have three sides?",
+        "correct": "YES",
+        "explanation": "YES: the question clearly applies and is true."
+      },
+      {
+        "practice_id": "p2-no",
+        "target": "the number seven",
+        "definition": "The ordinary integer 7.",
+        "context": {},
+        "query": "Is the target a mammal?",
+        "correct": "NO",
+        "explanation": "NO: in P2 you must use the binary response alphabet."
+      }
+    ],
+    "P3": [
+      {
+        "practice_id": "p3-yes",
+        "target": "an ordinary triangle",
+        "definition": "A triangle in ordinary Euclidean geometry.",
+        "context": {},
+        "query": "Does the target have three sides?",
+        "correct": "YES",
+        "explanation": "YES: the question clearly applies and is true."
+      },
+      {
+        "practice_id": "p3-no",
+        "target": "the number seven",
+        "definition": "The ordinary integer 7.",
+        "context": {},
+        "query": "Is the target a mammal?",
+        "correct": "NO",
+        "explanation": "NO: the intended judgment is a confident negative."
+      },
+      {
+        "practice_id": "p3-maybe",
+        "target": "sealed envelope E",
+        "definition": "Envelope E contains either a red or blue card, but you are not allowed to open it.",
+        "context": {
+          "oracle_access": "contents hidden"
+        },
+        "query": "Does E contain a red card?",
+        "correct": "MAYBE",
+        "explanation": "MAYBE: P3 deliberately uses one coarse escape response whenever a confident YES/NO is not appropriate; it does not distinguish why."
+      }
+    ],
+    "P6": [
+      {
+        "practice_id": "p6-yes",
+        "target": "an ordinary triangle",
+        "definition": "A triangle in ordinary Euclidean geometry.",
+        "context": {},
+        "query": "Does the target have three sides?",
+        "correct": "YES",
+        "explanation": "YES: the question applies and is true."
+      },
+      {
+        "practice_id": "p6-no",
+        "target": "the number seven",
+        "definition": "The ordinary integer 7.",
+        "context": {},
+        "query": "Is the target an even number?",
+        "correct": "NO",
+        "explanation": "NO: the question applies and has a determinate negative answer."
+      },
+      {
+        "practice_id": "p6-borderline",
+        "target": "Person T",
+        "definition": "Person T is 175 cm tall. For this practice item, 173–177 cm is explicitly stipulated as the borderline region for the predicate 'tall'.",
+        "context": {
+          "comparison_class": "practice adult population"
+        },
+        "query": "Is Person T tall?",
+        "correct": "BORDERLINE",
+        "explanation": "BORDERLINE: the supplied semantics explicitly place the case in a graded boundary region. This is not merely lack of knowledge."
+      },
+      {
+        "practice_id": "p6-unknown",
+        "target": "sealed envelope E",
+        "definition": "Envelope E contains either a red or blue card, but the designated oracle is not allowed to open it.",
+        "context": {
+          "oracle_access": "contents hidden"
+        },
+        "query": "Does E contain a red card?",
+        "correct": "UNKNOWN",
+        "explanation": "UNKNOWN: there is a determinate answer in principle, but it is unavailable to this oracle."
+      },
+      {
+        "practice_id": "p6-undefined",
+        "target": "tomorrow",
+        "definition": "The ordinary temporal indexical 'tomorrow', with its reference date fixed.",
+        "context": {
+          "reference_date": "practice date"
+        },
+        "query": "Is the target north of the table?",
+        "correct": "UNDEFINED",
+        "explanation": "UNDEFINED: the spatial relation is not properly applicable to this temporal target as posed; this is not ordinary falsehood."
+      },
+      {
+        "practice_id": "p6-both",
+        "target": "Badge X",
+        "definition": "In this practice knowledge base, 'Badge X is valid' and 'Badge X is not valid' are both explicitly recorded. The benchmark uses a non-explosive interpretation.",
+        "context": {
+          "logic": "paraconsistent practice case"
+        },
+        "query": "Is Badge X valid?",
+        "correct": "BOTH",
+        "explanation": "BOTH: positive and negative support are simultaneously present under the supplied non-explosive representation. BOTH does not mean 'I am confused'."
+      }
+    ]
+  },
+  "boundary": "These items are researcher-constructed instruction examples. They are not benchmark targets, calibration outcomes, or empirical gold for natural-language semantics."
+}
