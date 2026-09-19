@@ -1,7 +1,7 @@
 # ARIS4C010 · Novelty audit
 
 **Current verdict:** PROMISING, NARROWED, NOT YET FROZEN  
-**Date:** 2026-09-18
+**Date:** 2026-09-19
 
 ## Claims that are already taken
 
@@ -24,6 +24,9 @@ ARIS4C010 must not claim novelty for any of the following:
 - letting LLMs play Twenty Questions;
 - using Twenty Questions to evaluate world knowledge;
 - adaptive natural-language elicitation via LLMs;
+- ontology-guided active binary category refinement;
+- proactive clarification for missing information;
+- budgeted selection of questions and respondents in multi-turn elicitation;
 - the philosophical existence of vagueness, paradox, non-classical logics or ineffability.
 
 ## Completed collision audit
@@ -72,17 +75,45 @@ Consequence:
 
 010 should compare its semantic-query cost to pragmatic efficient-communication baselines, while keeping the distinction between **speaker-chosen messages** and **listener-chosen diagnostic questions** explicit.
 
+### E. ICAART 2026 ontology-guided hierarchical elicitation — major new collision, still not fatal
+
+Agafonov, Ponomarev & Smirnov (ICAART 2026) start from a semantically retrieved candidate set inside a rooted product ontology and iteratively ask binary subtree-relevance questions. They explicitly use Bayesian belief tracking and active acquisition strategies under an interaction budget.
+
+Consequence:
+
+> 010 **cannot** claim novelty for combining an ontology/hierarchy with active binary questioning, semantic retrieval, Bayesian uncertainty, or limited-turn category refinement.
+
+Why the project still differs:
+
+- their hypothesis space is a closed rooted product taxonomy;
+- queries test membership/relevance of ontology subtrees;
+- responses are binary;
+- the target is preference/category refinement;
+- the evaluation does not center semantic type errors, borderline/unknown/undefined/both distinctions, open-world withholding, paradox/undecidability, or overhead against unrestricted partitions.
+
+This finding makes the single-tree condition a **baseline**, not part of 010's novelty.
+
+### F. 2025–2026 proactive and group elicitation — narrows broad elicitation claims
+
+Huang et al. (Findings of EMNLP 2025) train models to proactively gather missing information through clarification questions. Ding et al. (ICML 2026) jointly optimize which question to ask and which respondent to query under budgets.
+
+Consequence:
+
+> “LLMs can strategically ask questions to reduce uncertainty under a budget” is a mature research direction, not a 010 contribution.
+
+010 must instead make the measured object **semantic admissibility and identifiability across heterogeneous concept regimes**.
+
 ## Surviving novelty wedge
 
 A defensible contribution is now narrower and stronger.
 
-### N1 · Semantic admissibility as a restriction on adaptive query complexity
+### N1 · Semantic admissibility overhead across heterogeneous regimes — not generic active querying
 
 Define \(Q_{sem}\subset Q_{all}\), where questions must be meaningful for the target type, interpretable, answerable under an explicit context/oracle model, and compliant with a response protocol.
 
-Measure **Semantic Query Overhead** relative to unrestricted partitions.
+Measure **Semantic Query Overhead** relative to unrestricted partitions, while explicitly measuring invalid/type-mismatched questions and oracle/context dependence.
 
-This is more specific than generic information gain, Test Cover, REG or description-logic query learning.
+This is more specific than generic information gain, Test Cover, REG, description-logic query learning, ICML-style adaptive elicitation, or ICAART-style ontology refinement.
 
 ### N2 · Controlled semantic breadth
 
@@ -169,7 +200,7 @@ Finding isolated versions of these components does not establish novelty of thei
 
 ## Current recommendation
 
-Proceed to Benchmark v0.
+Proceed, but treat the project as **human-calibration-ready rather than novelty-frozen**. The strongest manuscript claim should be delayed until the P2/P6 human calibration establishes whether the richer response semantics are reproducible and useful.
 
 Use **"Universal Concept Identification" only as a working program name**. In formal claims, always qualify universality as:
 
