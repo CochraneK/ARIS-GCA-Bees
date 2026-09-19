@@ -2,9 +2,10 @@
   "dataset_id": "ucid-mixed-p6-stress-calibration-v0",
   "evidence_class": "constructed_response_state_calibration",
   "created_on": "2026-09-19",
-  "purpose": "Calibrate use of P2 versus P6 semantic response states on deliberately heterogeneous cases; not an identification-performance benchmark.",
+  "purpose": "Calibrate P2, coarse P3 (YES/NO/MAYBE), and fine-grained P6 semantic response states on deliberately heterogeneous cases; not an identification-performance benchmark.",
   "protocols": [
     "P2",
+    "P3",
     "P6",
     "P6_CONTEXT"
   ],
@@ -29,6 +30,11 @@
       "UNDEFINED",
       "BOTH",
       "CONTEXT_REQUEST"
+    ],
+    "P3": [
+      "YES",
+      "NO",
+      "MAYBE"
     ]
   },
   "no_gold_answers": true,
