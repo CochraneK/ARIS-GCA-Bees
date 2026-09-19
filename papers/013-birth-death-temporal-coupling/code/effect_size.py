@@ -139,7 +139,19 @@ def infer_offset(
         strata, offset=offset
     )
     if expected <= 0:
-        raise ValueError("expected count must be positive")
+        return OffsetInference(
+            observed=int(observed),
+            expected=float(expected),
+            variance_null=float(var_null),
+            oe=math.nan,
+            z_null=math.nan,
+            ci90_lower=math.nan,
+            ci90_upper=math.nan,
+            ci95_lower=math.nan,
+            ci95_upper=math.nan,
+            practical_class="inconclusive",
+        )
+
     oe = observed / expected
     sd_null = math.sqrt(var_null)
     z_null = (observed - expected) / sd_null if sd_null > 0 else math.nan
