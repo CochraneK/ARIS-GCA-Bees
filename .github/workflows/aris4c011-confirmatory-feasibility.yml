@@ -60,6 +60,11 @@ jobs:
           assert "detector performance estimation" in x["forbidden_uses"]
           assert all(r["detector_output_visible"] is False for r in x["rows"])
           assert all(r["artifact_state"]=="UNASSESSED" for r in x["rows"])
+          assert len({r["target_doi"] for r in x["rows"]})==80
+          assert len({
+              (r["target_doi"],r["notice_or_source_doi"],r["update_type"],r["outcome_date"])
+              for r in x["rows"]
+          })==80
           print(json.dumps({
               "candidate_count":x["candidate_count"],
               "strata":len(x["counts_by_stratum"]),
