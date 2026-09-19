@@ -1,0 +1,645 @@
+{
+  "classification": "V2_INDEPENDENT_RELIABILITY",
+  "input_bundle_sha256": "9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51",
+  "sample_count": 30,
+  "fields": {
+    "opposition_valid": {
+      "n": 30,
+      "raw_agreement": 0.7333333333333333,
+      "cohen_kappa": 0.4805194805194804,
+      "krippendorff_alpha_nominal": 0.471444568868981,
+      "categories_a2": {
+        "yes": 16,
+        "no": 12,
+        "uncertain": 2
+      },
+      "categories_b2": {
+        "yes": 22,
+        "no": 7,
+        "uncertain": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": null
+    },
+    "oci_candidate": {
+      "n": 30,
+      "raw_agreement": 0.7333333333333333,
+      "cohen_kappa": 0.4805194805194804,
+      "krippendorff_alpha_nominal": 0.471444568868981,
+      "categories_a2": {
+        "yes": 16,
+        "no": 12,
+        "uncertain": 2
+      },
+      "categories_b2": {
+        "yes": 22,
+        "no": 7,
+        "uncertain": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "rel_same_construct_reversal": {
+      "n": 30,
+      "raw_agreement": 0.5666666666666667,
+      "cohen_kappa": 0.3298969072164948,
+      "krippendorff_alpha_nominal": 0.32482394366197176,
+      "categories_a2": {
+        "1": 3,
+        "0": 16,
+        "uncertain": 11
+      },
+      "categories_b2": {
+        "1": 9,
+        "0": 12,
+        "uncertain": 9
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "rel_target_reversal": {
+      "n": 30,
+      "raw_agreement": 0.5666666666666667,
+      "cohen_kappa": 0.34673366834170855,
+      "krippendorff_alpha_nominal": 0.3336229365768896,
+      "categories_a2": {
+        "0": 17,
+        "1": 9,
+        "uncertain": 4
+      },
+      "categories_b2": {
+        "0": 11,
+        "uncertain": 11,
+        "1": 8
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "rel_functional_reversal": {
+      "n": 30,
+      "raw_agreement": 0.6,
+      "cohen_kappa": 0.368421052631579,
+      "krippendorff_alpha_nominal": 0.31726133076181295,
+      "categories_a2": {
+        "0": 16,
+        "1": 10,
+        "uncertain": 4
+      },
+      "categories_b2": {
+        "1": 21,
+        "0": 7,
+        "uncertain": 2
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "rel_relational_reversal": {
+      "n": 30,
+      "raw_agreement": 0.7,
+      "cohen_kappa": 0.43396226415094336,
+      "krippendorff_alpha_nominal": 0.4247020585048754,
+      "categories_a2": {
+        "0": 19,
+        "uncertain": 11
+      },
+      "categories_b2": {
+        "0": 13,
+        "uncertain": 16,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "rel_proxy_reversal": {
+      "n": 30,
+      "raw_agreement": 0.6666666666666666,
+      "cohen_kappa": 0.3865030674846625,
+      "krippendorff_alpha_nominal": 0.39237899073120497,
+      "categories_a2": {
+        "0": 17,
+        "uncertain": 11,
+        "1": 2
+      },
+      "categories_b2": {
+        "0": 15,
+        "uncertain": 14,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "idx_actor_switch": {
+      "n": 30,
+      "raw_agreement": 0.7,
+      "cohen_kappa": 0.45121951219512196,
+      "krippendorff_alpha_nominal": 0.4564994882292732,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 16
+      },
+      "categories_b2": {
+        "0": 12,
+        "uncertain": 15,
+        "1": 3
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "idx_level_switch": {
+      "n": 30,
+      "raw_agreement": 0.8,
+      "cohen_kappa": 0.6319018404907977,
+      "krippendorff_alpha_nominal": 0.635427394438723,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 15,
+        "1": 1
+      },
+      "categories_b2": {
+        "0": 11,
+        "uncertain": 17,
+        "1": 2
+      },
+      "informative": true,
+      "secondary_gate_pass": true
+    },
+    "idx_time_switch": {
+      "n": 30,
+      "raw_agreement": 0.7666666666666667,
+      "cohen_kappa": 0.5464362850971923,
+      "krippendorff_alpha_nominal": 0.5525460455037919,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 15,
+        "1": 1
+      },
+      "categories_b2": {
+        "0": 13,
+        "uncertain": 17
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "idx_construct_switch": {
+      "n": 30,
+      "raw_agreement": 0.7333333333333333,
+      "cohen_kappa": 0.49579831932773094,
+      "krippendorff_alpha_nominal": 0.5021097046413502,
+      "categories_a2": {
+        "1": 2,
+        "0": 13,
+        "uncertain": 15
+      },
+      "categories_b2": {
+        "0": 13,
+        "uncertain": 17
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "idx_environment_switch": {
+      "n": 30,
+      "raw_agreement": 0.7333333333333333,
+      "cohen_kappa": 0.49044585987261136,
+      "krippendorff_alpha_nominal": 0.4984059511158342,
+      "categories_a2": {
+        "0": 13,
+        "uncertain": 16,
+        "1": 1
+      },
+      "categories_b2": {
+        "0": 12,
+        "uncertain": 17,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_strategic_adaptive_feedback": {
+      "n": 30,
+      "raw_agreement": 0.4,
+      "cohen_kappa": 0.03743315508021388,
+      "krippendorff_alpha_nominal": 0.03190519598906105,
+      "categories_a2": {
+        "0": 11,
+        "uncertain": 12,
+        "1": 7
+      },
+      "categories_b2": {
+        "uncertain": 17,
+        "0": 11,
+        "1": 2
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_capacity_overload": {
+      "n": 30,
+      "raw_agreement": 0.43333333333333335,
+      "cohen_kappa": -0.0408163265306122,
+      "krippendorff_alpha_nominal": -0.026612077789150534,
+      "categories_a2": {
+        "0": 14,
+        "1": 1,
+        "uncertain": 15
+      },
+      "categories_b2": {
+        "uncertain": 16,
+        "0": 12,
+        "1": 2
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_nonlinear_ecological_dynamics": {
+      "n": 30,
+      "raw_agreement": 0.5666666666666667,
+      "cohen_kappa": 0.17894736842105263,
+      "krippendorff_alpha_nominal": 0.1849096705632306,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 15,
+        "1": 1
+      },
+      "categories_b2": {
+        "uncertain": 18,
+        "0": 11,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_information_filtering": {
+      "n": 30,
+      "raw_agreement": 0.5333333333333333,
+      "cohen_kappa": 0.16666666666666663,
+      "krippendorff_alpha_nominal": 0.16481294236602628,
+      "categories_a2": {
+        "0": 13,
+        "uncertain": 16,
+        "1": 1
+      },
+      "categories_b2": {
+        "uncertain": 18,
+        "0": 8,
+        "1": 4
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_norm_motivational_reactance": {
+      "n": 30,
+      "raw_agreement": 0.5,
+      "cohen_kappa": 0.025974025974026028,
+      "krippendorff_alpha_nominal": 0.034896401308615044,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 15,
+        "1": 1
+      },
+      "categories_b2": {
+        "uncertain": 18,
+        "0": 12
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_exposure_induced_adaptation": {
+      "n": 30,
+      "raw_agreement": 0.5333333333333333,
+      "cohen_kappa": 0.05405405405405417,
+      "krippendorff_alpha_nominal": 0.06561085972850667,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 16
+      },
+      "categories_b2": {
+        "uncertain": 18,
+        "0": 12
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_intervention_toxicity": {
+      "n": 30,
+      "raw_agreement": 0.5,
+      "cohen_kappa": 0.07975460122699386,
+      "krippendorff_alpha_nominal": 0.08856848609680734,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 15,
+        "1": 1
+      },
+      "categories_b2": {
+        "uncertain": 17,
+        "0": 11,
+        "1": 2
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "mech_coordination_externality": {
+      "n": 30,
+      "raw_agreement": 0.4666666666666667,
+      "cohen_kappa": 0.05511811023622044,
+      "krippendorff_alpha_nominal": 0.05976095617529886,
+      "categories_a2": {
+        "0": 14,
+        "uncertain": 13,
+        "1": 3
+      },
+      "categories_b2": {
+        "uncertain": 17,
+        "0": 12,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_randomized_experiment": {
+      "n": 30,
+      "raw_agreement": 0.7,
+      "cohen_kappa": 0.47162426614481406,
+      "krippendorff_alpha_nominal": 0.43570669500531356,
+      "categories_a2": {
+        "0": 12,
+        "uncertain": 17,
+        "1": 1
+      },
+      "categories_b2": {
+        "0": 21,
+        "uncertain": 8,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_quasi_experiment": {
+      "n": 30,
+      "raw_agreement": 0.6666666666666666,
+      "cohen_kappa": 0.3902439024390243,
+      "krippendorff_alpha_nominal": 0.33257918552036203,
+      "categories_a2": {
+        "0": 12,
+        "uncertain": 18
+      },
+      "categories_b2": {
+        "0": 22,
+        "uncertain": 8
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_longitudinal_observational": {
+      "n": 30,
+      "raw_agreement": 0.6333333333333333,
+      "cohen_kappa": 0.41592920353982293,
+      "krippendorff_alpha_nominal": 0.36310107948969583,
+      "categories_a2": {
+        "1": 3,
+        "0": 10,
+        "uncertain": 17
+      },
+      "categories_b2": {
+        "1": 2,
+        "0": 21,
+        "uncertain": 7
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_cross_sectional_observational": {
+      "n": 30,
+      "raw_agreement": 0.6333333333333333,
+      "cohen_kappa": 0.37381404174573046,
+      "krippendorff_alpha_nominal": 0.32606438213914846,
+      "categories_a2": {
+        "0": 12,
+        "1": 1,
+        "uncertain": 17
+      },
+      "categories_b2": {
+        "0": 21,
+        "1": 2,
+        "uncertain": 7
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_formal_model": {
+      "n": 30,
+      "raw_agreement": 0.6333333333333333,
+      "cohen_kappa": 0.35546874999999994,
+      "krippendorff_alpha_nominal": 0.2953311617806732,
+      "categories_a2": {
+        "0": 12,
+        "uncertain": 16,
+        "1": 2
+      },
+      "categories_b2": {
+        "0": 23,
+        "uncertain": 7
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_simulation": {
+      "n": 30,
+      "raw_agreement": 0.6333333333333333,
+      "cohen_kappa": 0.33734939759036137,
+      "krippendorff_alpha_nominal": 0.25828571428571445,
+      "categories_a2": {
+        "0": 12,
+        "uncertain": 18
+      },
+      "categories_b2": {
+        "0": 23,
+        "uncertain": 7
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_qualitative_process": {
+      "n": 30,
+      "raw_agreement": 0.5666666666666667,
+      "cohen_kappa": 0.3719806763285024,
+      "krippendorff_alpha_nominal": 0.3157894736842105,
+      "categories_a2": {
+        "0": 8,
+        "uncertain": 17,
+        "1": 5
+      },
+      "categories_b2": {
+        "0": 19,
+        "1": 5,
+        "uncertain": 6
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_systematic_review": {
+      "n": 30,
+      "raw_agreement": 0.6,
+      "cohen_kappa": 0.3023255813953488,
+      "krippendorff_alpha_nominal": 0.21245828698553937,
+      "categories_a2": {
+        "0": 12,
+        "uncertain": 18
+      },
+      "categories_b2": {
+        "0": 23,
+        "uncertain": 6,
+        "1": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_meta_analysis": {
+      "n": 30,
+      "raw_agreement": 0.6333333333333333,
+      "cohen_kappa": 0.33734939759036137,
+      "krippendorff_alpha_nominal": 0.25828571428571445,
+      "categories_a2": {
+        "0": 12,
+        "uncertain": 18
+      },
+      "categories_b2": {
+        "0": 23,
+        "uncertain": 7
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "ev_conceptual_theory": {
+      "n": 30,
+      "raw_agreement": 0.7333333333333333,
+      "cohen_kappa": 0.5869191049913941,
+      "krippendorff_alpha_nominal": 0.5804444444444445,
+      "categories_a2": {
+        "0": 6,
+        "1": 13,
+        "uncertain": 11
+      },
+      "categories_b2": {
+        "0": 9,
+        "1": 17,
+        "uncertain": 4
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "evidence_strength": {
+      "n": 30,
+      "raw_agreement": 0.36666666666666664,
+      "cohen_kappa": 0.18103448275862066,
+      "krippendorff_alpha_nominal": 0.17208271787296903,
+      "categories_a2": {
+        "strong": 2,
+        "none": 6,
+        "moderate": 11,
+        "weak": 8,
+        "uncertain": 3
+      },
+      "categories_b2": {
+        "moderate": 8,
+        "none": 2,
+        "weak": 9,
+        "uncertain": 10,
+        "strong": 1
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "result_direction": {
+      "n": 30,
+      "raw_agreement": 0.7,
+      "cohen_kappa": 0.4026548672566371,
+      "krippendorff_alpha_nominal": 0.3938356164383562,
+      "categories_a2": {
+        "supports_reversal": 16,
+        "not_tested": 12,
+        "uncertain": 2
+      },
+      "categories_b2": {
+        "supports_reversal": 22,
+        "not_tested": 8
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    },
+    "normative_valence": {
+      "n": 30,
+      "raw_agreement": 0.6,
+      "cohen_kappa": 0.4478527607361963,
+      "krippendorff_alpha_nominal": 0.4511627906976744,
+      "categories_a2": {
+        "mixed": 2,
+        "not_normatively_classified": 9,
+        "harmful": 14,
+        "beneficial": 4,
+        "uncertain": 1
+      },
+      "categories_b2": {
+        "mixed": 3,
+        "beneficial": 7,
+        "harmful": 10,
+        "not_normatively_classified": 8,
+        "uncertain": 2
+      },
+      "informative": true,
+      "secondary_gate_pass": false
+    }
+  },
+  "gate": {
+    "primary_opposition_valid_kappa": 0.4805194805194804,
+    "primary_pass": false,
+    "informative_axes": [
+      "opposition_valid",
+      "oci_candidate",
+      "rel_same_construct_reversal",
+      "rel_target_reversal",
+      "rel_functional_reversal",
+      "rel_relational_reversal",
+      "rel_proxy_reversal",
+      "idx_actor_switch",
+      "idx_level_switch",
+      "idx_time_switch",
+      "idx_construct_switch",
+      "idx_environment_switch",
+      "mech_strategic_adaptive_feedback",
+      "mech_capacity_overload",
+      "mech_nonlinear_ecological_dynamics",
+      "mech_information_filtering",
+      "mech_norm_motivational_reactance",
+      "mech_exposure_induced_adaptation",
+      "mech_intervention_toxicity",
+      "mech_coordination_externality",
+      "ev_randomized_experiment",
+      "ev_quasi_experiment",
+      "ev_longitudinal_observational",
+      "ev_cross_sectional_observational",
+      "ev_formal_model",
+      "ev_simulation",
+      "ev_qualitative_process",
+      "ev_systematic_review",
+      "ev_meta_analysis",
+      "ev_conceptual_theory",
+      "evidence_strength",
+      "result_direction",
+      "normative_valence"
+    ],
+    "informative_axis_count": 33,
+    "all_secondary_informative_axes_pass": false,
+    "median_informative_kappa": 0.3719806763285024,
+    "median_pass": false,
+    "thresholds": {
+      "opposition_valid_kappa": 0.7,
+      "secondary_kappa": 0.6,
+      "secondary_raw_agreement": 0.8,
+      "median_informative_kappa": 0.7
+    }
+  },
+  "status": "REVISE_V2_INSTRUMENT",
+  "full_165_screening_unlocked": false,
+  "disagreement_cells": 380
+}
