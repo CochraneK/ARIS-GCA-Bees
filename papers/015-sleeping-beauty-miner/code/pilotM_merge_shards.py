@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from mechanism_cohort_cli import run_payload
+from mechanism_labels import OPENALEX_PROVISIONAL_CALIBRATION
 
 
 def merge_shards(payloads: Iterable[dict[str, Any]]) -> dict[str, Any]:
@@ -50,6 +51,7 @@ def merge_shards(payloads: Iterable[dict[str, Any]]) -> dict[str, Any]:
         early_percentile_caliper=0.15,
         max_abs_smd=0.10,
         min_primary_match_rate=0.50,
+        b_calibration=OPENALEX_PROVISIONAL_CALIBRATION,
     )
     return result
 
