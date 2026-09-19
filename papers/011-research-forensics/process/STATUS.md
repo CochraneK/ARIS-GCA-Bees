@@ -4,7 +4,7 @@ Updated: 2026-09-19
 
 ## State
 
-**FIVE PRE-OUTCOME DEVELOPMENT TRUE-POSITIVE EVALUATIONS · FORMAT-CONTROL NON-ESCALATION PASS · COMPARATOR CONSTRUCTION**
+**SIX PRE-OUTCOME DEVELOPMENT FLAG EVALUATIONS · FORMAT-CONTROL NON-ESCALATION PASS · MATCHED COMPARATOR FREEZE · CONFIRMATORY TRANSITION**
 
 The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
 
@@ -68,9 +68,9 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - New F8 cross_section_scope_coherence adapter flags that body-to-caption scope mismatch as E1 / MODERATE; the 2018 correction later independently confirms that the Table 1 caption was erroneous.
 - The Toxoplasma correction was further decomposed: a preserved-original PMC Table 1 object was subsequently qualified SAFE_EXACT, allowing the correction-blind F3_TABLE_SCHEMA_COLUMN_DROP_V1 detector to FLAG the section-A vs section-B schema drop. Manager-only correction metadata later confirmed the two-column omission. This supersedes the earlier temporary BLOCKED state for that sub-issue.
 - Fourth target paper / fifth development true-positive evaluation: PLOS 10.1371/journal.pone.0180395 has a preserved-original PMC body-text object (SAFE_EXACT) containing the sentence "There were significant increases ... (p>.05)". F1_SIGNIFICANCE_P_DIRECTION_V1 flags the internal significance-direction inconsistency without correction metadata; the later correction independently confirms the direction fix.
-- Development evidence now spans five pre-outcome true-positive detector evaluations across four target papers and multiple evidence routes: cited-source consistency (F5), deposited-data recomputation (F3), body↔caption scope coherence (F8), table-schema structure (F3), and significance-claim/p-direction consistency (F1).
+- Development evidence now spans six pre-outcome FLAG evaluations across five target papers and multiple evidence routes: cited-source consistency (F5), deposited-data recomputation (F3), body↔caption scope coherence (F8), table-schema structure (F3), significance-claim/p-direction consistency (F1), and malformed preserved-original Brodmann-area token syntax (F3).
 - These Pilot 2/3 cases are deliberately enriched development examples and remain ineligible for confirmatory sensitivity, precision, or superiority claims.
-- The SAFE_EXACT formatting/honest-error control DOI 10.1371/journal.pone.0263337 was executed through the real Track-A reporting stack with correction metadata hidden: all 10 locale-formatted Cronbach-alpha checks PASS, flag_count=0, review_priority=NONE, and misconduct_inference=false. This validates conservative non-escalation for this development control only; it is not a specificity estimate.
+- The SAFE_EXACT formatting/honest-error control DOI 10.1371/journal.pone.0263337 was executed through the real Track-A reporting stack with correction metadata hidden: all 10 locale-formatted Cronbach-alpha checks PASS, flag_count=0, review_priority=NONE, and misconduct_inference=false. This validates conservative non-escalation for this development control only; it is not a specificity estimate.\n- Four matched no-known-integrity-concern development comparators were selected independently of detector output, passed Crossref/PubMed notice-negative screening, and had their retrieved PMC full-text versions frozen by SHA-256. These are development provenance objects, not clean controls and not a specificity/FPR sample.\n- The voxel/Brodmann-area case DOI 10.1371/journal.pone.0163749 is now COMPLETE: preserved-original PMC Table 2 is SAFE_EXACT for the BA-cell role; correction-blind F3 evaluates six cells, yields five PASS and exactly one FLAG on original token `9月8日`, with manager-only correction metadata excluded. Later row-shift fixes remain outside this syntax-check claim.\n- `process/PILOT3_DEVELOPMENT_SUMMARY.md` and machine-readable `pilot3_development_summary.json` now summarize complementarity, five genuine ABSTAIN checks, non-escalation, six FLAG evaluations across five target papers, and four matched development comparators while explicitly forbidding confirmatory performance inference.\n- The Pilot 3 acquisition queue has no PRIORITY/SECONDARY active case remaining: completed development cases/controls are marked COMPLETE; the two remaining low-yield candidates are DEFER. The bounded development-acquisition loop is therefore closed.
 
 ## Critical design findings already established
 
@@ -126,7 +126,7 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Build a small matched **no-known-integrity-concern comparator** development set; do not call it a clean-control set and do not estimate specificity from it.
-2. Continue the Pilot 3 acquisition queue with the voxel/Brodmann-area table case as the next unresolved structured-content candidate; demote cases that cannot satisfy object-level time safety.
-3. Produce only a descriptive development summary of detector-family yield/complementarity, conservative non-escalation and abstention; do not estimate confirmatory sensitivity, precision, or superiority from the enriched Pilot 3 set.
-4. Prepare the transition to a frozen broader confirmatory cohort: grouped/temporal splits, no label-bearing features, frozen detector versions/applicability rules, and human-review protocol.
+1. Expand the time-safe positive/comparator corpus beyond the enriched development examples and quantify SAFE_EXACT / PROXY_ONLY / BLOCKED attrition at scale.
+2. Freeze grouped and temporal split manifests plus detector versions, known-defect registry, applicability rules, thresholds, and target-metadata completeness criteria.
+3. Run a leakage audit proving that correction/retraction/label-bearing metadata cannot reach model-visible features.
+4. Finalize the human-review experiment and reviewer-burden measures, then freeze the confirmatory protocol before any confirmatory scoring.
