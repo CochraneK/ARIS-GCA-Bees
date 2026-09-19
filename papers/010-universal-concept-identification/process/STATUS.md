@@ -7,6 +7,10 @@
 ## Completed
 
 - [x] canonical project folder and `paper.json`
+- [x] 2025 proactive information-gathering and 2026 group-elicitation neighbors added to novelty boundary
+- [x] 2026 nearest-neighbor re-audit: ICAART ontology-guided Bayesian active querying added as major structural collision
+- [x] all Python tools compile successfully; full pipeline + power sensitivity verified in CI run #49
+- [x] standalone no-backend 72-form annotation UI generated and validated in CI run #47
 - [x] finite/infinite/open-world problem separation
 - [x] formal separability criterion
 - [x] static Test-Cover connection
@@ -247,3 +251,49 @@ or:
 > the final Benchmark v0 semantic response matrix has been validated.
 
 Those require real human data.
+
+
+## 2026 novelty re-audit
+
+A September 2026 nearest-neighbor pass found a particularly important published collision:
+
+- **Agafonov, Ponomarev & Smirnov, ICAART 2026** already combine a rooted ontology, semantic retrieval, binary relevance questions, Bayesian belief tracking and budgeted active refinement.
+
+Therefore 010 must **not** claim “ontology-guided active questioning” as novel.
+
+Additional current neighbors:
+
+- **Wang et al., ICML 2025:** adaptive natural-language elicitation of latent information;
+- **Huang et al., Findings of EMNLP 2025:** proactive clarification / information gathering;
+- **Ding et al., ICML 2026:** adaptive group elicitation choosing both questions and respondents;
+- **CRAC 2025 referential ambiguity work:** clarification behavior is empirically variable across humans and LLMs.
+
+The surviving candidate contribution is narrower:
+
+> quantify the cost and failure modes introduced by **semantic admissibility** across heterogeneous concept regimes, including non-classical response states and open-world/pathological boundaries, relative to unrestricted identification.
+
+This remains a provisional integration gap, not a frozen novelty claim.
+
+## Final engineering verification
+
+ARIS4C010 CI run **#49** completed successfully.
+
+It verifies:
+
+- all Python tools compile with `py_compile`;
+- Pilots and source validators;
+- pinned OEWN Calibration60;
+- mixed P6 packet;
+- 72 balanced participant forms;
+- CSV export;
+- synthetic analysis dry-run;
+- standalone no-backend annotation HTML;
+- retest power-sensitivity calculator.
+
+Illustrative retest sensitivity, assuming P2 consistency 0.80, 8 retests/person, two-sided alpha=.05, power=.80:
+
+- target P6=.85, ICC=.05 → ~153 participants/arm;
+- target P6=.88, ICC=.05 → ~56 participants/arm;
+- target P6=.90, ICC=.05 → ~34 participants/arm.
+
+These are crude design-effect approximations, not final sample-size requirements.
