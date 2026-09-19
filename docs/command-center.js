@@ -19,7 +19,6 @@
     const activity = card.dataset.activity || "";
     const progress = Number(card.dataset.progress || 0);
     if(currentFilter === "all") return true;
-    if(currentFilter === "near-final") return progress >= 85;
     return activity === currentFilter;
   }
 
@@ -110,7 +109,6 @@
     $("navGatedCount").textContent=statusCounts.gated;
     $("navQuietCount").textContent=statusCounts.quiet;
     $("navBlockedCount").textContent=statusCounts.blocked;
-    $("navNearCount").textContent=cards.filter(c=>Number(c.dataset.progress)>=85).length;
 
     document.documentElement.dataset.statusMece=meceTotal===cards.length?"valid":"invalid";
     if(meceTotal!==cards.length){
