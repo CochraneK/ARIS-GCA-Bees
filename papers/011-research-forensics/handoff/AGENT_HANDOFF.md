@@ -4,22 +4,22 @@
 
 **Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening**
 
-A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now includes five time-safe pre-outcome development true-positive evaluations plus a SAFE_EXACT formatting/honest-error control that correctly produced zero flags and review priority NONE; confirmatory performance inference remains frozen pending a broader comparator corpus and protocol lock.
+A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now has six time-safe pre-outcome development FLAG evaluations across five target papers, a SAFE_EXACT formatting/honest-error control with zero flags, and four matched no-known-integrity-concern development comparators frozen by full-text hash; confirmatory performance inference remains frozen pending a broader time-safe corpus and protocol lock.
 
 ## Current state
 
 - Activity: **active**
-- Progress: **80%**
-- Stage: **Pilot 3 · formatting control passed · comparator construction**
-- Evidence: Five SAFE_EXACT/time-safe development true-positive evaluations across F5/F3/F8/F3/F1 plus a SAFE_EXACT formatting/honest-error control: DOI 10.1371/journal.pone.0263337 yielded 10/10 PASS findings, 0 flags, review priority NONE, and no misconduct inference with correction metadata hidden
+- Progress: **84%**
+- Stage: **Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition**
+- Evidence: Six time-safe pre-outcome development FLAG evaluations across five target papers (F5/F3/F8/F3/F1/F3); SAFE_EXACT formatting/honest-error control remains 10 PASS, 0 FLAG, review priority NONE; four matched no-known-integrity-concern development comparators selected independently of detector output passed notice screening and had retrieved full-text versions frozen by SHA-256. The descriptive development summary records complementarity and five real ABSTAIN checks without confirmatory performance claims.
 
 ## Immediate next action
 
-**Build a small matched no-known-integrity-concern comparator set, then continue the unresolved voxel/Brodmann-area table acquisition and produce a descriptive development complementarity/abstention summary before confirmatory freeze**
+**Expand the broader time-safe comparator/case corpus, then freeze grouped/temporal splits, detector versions and applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring.**
 
 ## Current blocker / gate
 
-No immediate hard blocker; confirmatory inference remains gated on a broader time-safe corpus, grouped/temporal split freeze, detector/version/applicability freeze, leakage audit, and human-review protocol
+No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus scale-up and a complete protocol freeze.
 
 ## Canonical files / entry points
 

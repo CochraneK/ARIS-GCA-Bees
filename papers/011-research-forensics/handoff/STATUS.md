@@ -1,13 +1,13 @@
 # ARIS4C011 · Current status
 
 - **Title:** Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening
-- **Project status:** methods-draft-agent-skill-pilot3-control-passed
+- **Project status:** methods-draft-agent-skill-pilot3-development-summary
 - **Activity:** active
-- **Portfolio progress:** 80%
-- **Current stage:** Pilot 3 · formatting control passed · comparator construction
-- **Evidence established:** Five SAFE_EXACT/time-safe development true-positive evaluations across F5/F3/F8/F3/F1 plus a SAFE_EXACT formatting/honest-error control: DOI 10.1371/journal.pone.0263337 yielded 10/10 PASS findings, 0 flags, review priority NONE, and no misconduct inference with correction metadata hidden
-- **Next gate:** Build a small matched no-known-integrity-concern comparator set, then continue the unresolved voxel/Brodmann-area table acquisition and produce a descriptive development complementarity/abstention summary before confirmatory freeze
-- **Blocker:** No immediate hard blocker; confirmatory inference remains gated on a broader time-safe corpus, grouped/temporal split freeze, detector/version/applicability freeze, leakage audit, and human-review protocol
+- **Portfolio progress:** 84%
+- **Current stage:** Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition
+- **Evidence established:** Six time-safe pre-outcome development FLAG evaluations across five target papers (F5/F3/F8/F3/F1/F3); SAFE_EXACT formatting/honest-error control remains 10 PASS, 0 FLAG, review priority NONE; four matched no-known-integrity-concern development comparators selected independently of detector output passed notice screening and had retrieved full-text versions frozen by SHA-256. The descriptive development summary records complementarity and five real ABSTAIN checks without confirmatory performance claims.
+- **Next gate:** Expand the broader time-safe comparator/case corpus, then freeze grouped/temporal splits, detector versions and applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring.
+- **Blocker:** No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus scale-up and a complete protocol freeze.
 
 ## Source of truth
 
