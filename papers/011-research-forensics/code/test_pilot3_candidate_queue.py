@@ -30,57 +30,44 @@ def test_high_value_table_case_is_priority():
 
 
 def test_completed_case_stays_complete_even_with_high_score():
-    out = score_candidate(base(
-        candidate_state="COMPLETE",
-        artifact_state="SAFE_EXACT_READY",
-        verification_mode="CROSS_SOURCE",
-    ))
+    out = score_candidate(base(candidate_state="COMPLETE", artifact_state="SAFE_EXACT_READY", verification_mode="CROSS_SOURCE"))
     assert out["queue_status"] == "COMPLETE"
 
 
 def test_format_only_case_is_control_not_priority():
-    out = score_candidate(base(
-        benchmark_role="FORMAT_CONTROL",
-        scientific_content="NO",
-        verification_mode="FORMAT_CONTROL",
-        artifact_state="SAFE_EXACT_TARGET",
-    ))
+    out = score_candidate(base(benchmark_role="FORMAT_CONTROL", scientific_content="NO", verification_mode="FORMAT_CONTROL", artifact_state="SAFE_EXACT_TARGET"))
     assert out["queue_status"] == "CONTROL"
 
 
 def test_longer_archive_window_scores_higher():
-    long_case = score_candidate(base(
-        target_published="2020-01-01",
-        correction_published="2025-01-01",
-    ))
-    short_case = score_candidate(base(
-        target_published="2024-12-01",
-        correction_published="2025-01-01",
-    ))
+    long_case = score_candidate(base(target_published="2020-01-01", correction_published="2025-01-01"))
+    short_case = score_candidate(base(target_published="2024-12-01", correction_published="2025-01-01"))
     assert int(long_case["priority_score"]) > int(short_case["priority_score"])
 
 
 def test_queue_ranks_priority_before_secondary_and_controls():
     rows = [
-        base(candidate_id="control", benchmark_role="FORMAT_CONTROL",
-             scientific_content="NO", verification_mode="FORMAT_CONTROL",
-             artifact_state="SAFE_EXACT_TARGET"),
+        base(candidate_id="control", benchmark_role="FORMAT_CONTROL", scientific_content="NO", verification_mode="FORMAT_CONTROL", artifact_state="SAFE_EXACT_TARGET"),
         base(candidate_id="priority"),
-        base(candidate_id="secondary", artifact_state="UNKNOWN",
-             verification_mode="STRUCTURED_RECOMPUTE"),
+        base(candidate_id="secondary", artifact_state="UNKNOWN", verification_mode="STRUCTURED_RECOMPUTE"),
     ]
     out = build_queue(rows)
-    assert [r["candidate_id"] for r in out] == [
-        "priority", "secondary", "control"
-    ]
+    assert [r["candidate_id"] for r in out] == ["priority", "secondary", "control"]
     assert out[0]["active_rank"] == "1"
     assert out[1]["active_rank"] == "2"
     assert out[2]["active_rank"] == ""
 
 
 def test_raw_data_recompute_mode_is_supported():
+    out = score_candidate(base(verification_mode="RAW_DATA_RECOMPUTE", artifact_state="SAFE_EXACT_READY", candidate_state="COMPLETE"))
+    assert out["queue_status"] == "COMPLETE"
+    assert int(out["priority_score"]) >= 20
+
+
+def test_cross_section_mode_is_supported():
     out = score_candidate(base(
-        verification_mode="RAW_DATA_RECOMPUTE",
+        verification_mode="CROSS_SECTION",
+        required_role="body_text",
         artifact_state="SAFE_EXACT_READY",
         candidate_state="COMPLETE",
     ))

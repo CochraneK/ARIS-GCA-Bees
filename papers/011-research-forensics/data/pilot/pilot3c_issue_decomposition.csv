@@ -1,0 +1,3 @@
+target_doi,ground_truth_tier,correction_doi,sub_issue_code,track_a_issue_status,required_roles,detector_family,current_readiness,note
+10.1371/journal.pone.0180906,GT-B,10.1371/journal.pone.0192570,table_caption_analysis_scope_mismatch,CONTENT_ELIGIBLE,body_text;table_caption,F8,SAFE_EXACT_READY,"2017-07-24 publisher HTML contains both the Results-to-Table-1 attribution and historical caption."
+10.1371/journal.pone.0180906,GT-B,10.1371/journal.pone.0192570,table_1b_missing_columns,CONTENT_ELIGIBLE,table,F3,BLOCKED_REQUIRED_ROLE,"Correction documents two missing columns, but no independently archived pre-correction Table 1 image object has been recovered."
