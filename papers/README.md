@@ -15,7 +15,7 @@ This directory is the canonical registry of research projects produced with ARIS
 | 007 | formal research design | papers/007-cross-species-age-equivalence/ |
 | 008 | formal research design | papers/008-human-intelligence-bootstrap/ |
 | 009 | formal research design | papers/009-phenomenology-preserving-computational-psychiatry/ |
-| 010 | formal research design / combinatorial Pilot 0 complete | papers/010-universal-concept-identification/ |
+| 010 | human-calibration-ready · P2/P3/P6 mechanism design | papers/010-universal-concept-identification/ |
 | 011 | formal research design / benchmark specification locked | papers/011-research-forensics/ |
 | 012 | Pilot 0B complete / v1 reliability revision + fresh-v2-pilot gate | papers/012-oppositional-causal-inversion/ |
 | 013 | formal research design / administrative Pilot 1 discovery | papers/013-birth-death-temporal-coupling/ |
