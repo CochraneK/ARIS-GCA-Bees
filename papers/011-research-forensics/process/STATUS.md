@@ -4,9 +4,9 @@ Updated: 2026-09-19
 
 ## State
 
-**SIX PRE-OUTCOME DEVELOPMENT FLAG EVALUATIONS · FORMAT-CONTROL NON-ESCALATION PASS · MATCHED COMPARATOR FREEZE · CONFIRMATORY TRANSITION**
+**DEVELOPMENT CYCLE CLOSED · BLINDED 80-RECORD CONFIRMATORY FEASIBILITY FRAME FROZEN · CONFIRMATORY SCORING LOCKED**
 
-The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a reusable Agent Skills-compatible skill, machine-readable finding/report schemas, a reference orchestrator, an implementation/defect registry, a full methods manuscript draft, and a real-data source-anatomy seed. Confirmatory detector-performance results are still pending and no superiority claims are permitted.
+ARIS4C011 has closed the enriched development cycle and moved into confirmatory-corpus construction. A detector-output-blind 80-record feasibility frame is frozen across 20 balanced 2016–2025 × correction/retraction strata after excluding 42 development-exposed DOIs. This frame is for acquisition/adjudication/missingness planning only: confirmatory detector-performance scoring remains disabled and no superiority claim is permitted.
 
 ## Completed
 
@@ -72,6 +72,11 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 - These Pilot 2/3 cases are deliberately enriched development examples and remain ineligible for confirmatory sensitivity, precision, or superiority claims.
 - The SAFE_EXACT formatting/honest-error control DOI 10.1371/journal.pone.0263337 was executed through the real Track-A reporting stack with correction metadata hidden: all 10 locale-formatted Cronbach-alpha checks PASS, flag_count=0, review_priority=NONE, and misconduct_inference=false. This validates conservative non-escalation for this development control only; it is not a specificity estimate.\n- Four matched no-known-integrity-concern development comparators were selected independently of detector output, passed Crossref/PubMed notice-negative screening, and had their retrieved PMC full-text versions frozen by SHA-256. These are development provenance objects, not clean controls and not a specificity/FPR sample.\n- The voxel/Brodmann-area case DOI 10.1371/journal.pone.0163749 is now COMPLETE: preserved-original PMC Table 2 is SAFE_EXACT for the BA-cell role; correction-blind F3 evaluates six cells, yields five PASS and exactly one FLAG on original token `9月8日`, with manager-only correction metadata excluded. Later row-shift fixes remain outside this syntax-check claim.\n- `process/PILOT3_DEVELOPMENT_SUMMARY.md` and machine-readable `pilot3_development_summary.json` now summarize complementarity, five genuine ABSTAIN checks, non-escalation, six FLAG evaluations across five target papers, and four matched development comparators while explicitly forbidding confirmatory performance inference.\n- The Pilot 3 acquisition queue has no PRIORITY/SECONDARY active case remaining: completed development cases/controls are marked COMPLETE; the two remaining low-yield candidates are DEFER. The bounded development-acquisition loop is therefore closed.
 
+- Confirmatory pre-freeze contract, conservative development-exclusion registry (42 exposed DOIs), split/cluster leakage preflight, temporal-test rule, and Track-A manifest/feature allowlists are machine-readable and CI-tested.
+- Blinded confirmatory-feasibility frame v0 frozen: 80 journal articles across every 2016–2025 × correction/retraction stratum (4 per stratum), selected deterministically without detector output or review priority.
+- Feasibility metadata show 79/80 Crossref full-text links, 33/80 abstracts, 70 distinct journals, and 25/80 current titles carrying a correction/retraction/status marker; the latter is direct evidence that current metadata cannot substitute for historical Track-A artifact qualification.
+- Feasibility-frame uses are restricted to acquisition/adjudication workload, artifact-missingness estimation, and sample-size planning without detector-effect peeking; performance estimation, threshold tuning, sensitivity/specificity estimates, and confirmatory hypothesis testing are forbidden.
+
 ## Critical design findings already established
 
 1. **Current metadata is outcome-contaminated in some cases.** Track A must use time-safe artifacts, not simply remove a retraction-reason column.
@@ -126,7 +131,7 @@ The conceptual framework is no longer only an idea/outline. ARIS4C011 now has a 
 
 ## Immediate next execution
 
-1. Expand the time-safe positive/comparator corpus beyond the enriched development examples and quantify SAFE_EXACT / PROXY_ONLY / BLOCKED attrition at scale.
-2. Freeze grouped and temporal split manifests plus detector versions, known-defect registry, applicability rules, thresholds, and target-metadata completeness criteria.
-3. Run a leakage audit proving that correction/retraction/label-bearing metadata cannot reach model-visible features.
-4. Finalize the human-review experiment and reviewer-burden measures, then freeze the confirmatory protocol before any confirmatory scoring.
+1. Build manager-only issue-adjudication packets for the frozen 80-record frame and assign issue family, ground-truth tier, and required artifact role without detector outputs.
+2. Qualify the required historical artifacts and freeze SAFE_EXACT / PROXY_ONLY / BLOCKED attrition for the broader frame.
+3. Freeze grouped and temporal split manifests plus detector versions, known-defect registry, applicability rules, thresholds, and target-metadata completeness criteria.
+4. Run the Track-A leakage audit and finalize/freeze the human-review and reviewer-burden protocol before any confirmatory scoring.
