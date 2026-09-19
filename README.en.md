@@ -37,6 +37,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 | Understand final-output requirements | [`ARIS4C_OUTPUT_STANDARD.md`](ARIS4C_OUTPUT_STANDARD.md) |
 | Understand continuity requirements | [`ARIS4C_CONTINUITY_STANDARD.md`](ARIS4C_CONTINUITY_STANDARD.md) |
 | Understand portfolio activity states | [`ARIS4C_STATUS_MODEL.md`](ARIS4C_STATUS_MODEL.md) |
+| Understand 000 scheduling / checkpoint rules | [`ARIS4C_OPERATING_MODEL.md`](ARIS4C_OPERATING_MODEL.md) |
 
 ## Portfolio at a glance
 
@@ -169,6 +170,7 @@ ARIS4C/
 ├── ARIS4C_OUTPUT_STANDARD.md
 ├── ARIS4C_CONTINUITY_STANDARD.md
 ├── ARIS4C_STATUS_MODEL.md
+├── ARIS4C_OPERATING_MODEL.md
 └── aris.lock.json                 # pinned ARIS lineage
 ```
 
@@ -181,6 +183,7 @@ python tools/build_readme.py
 python tools/audit_paper_outputs.py
 python tools/audit_paper_handoffs.py
 python tools/sync_paper_handoffs.py
+python tools/portfolio_queue.py
 ```
 
 ## Design principles
@@ -191,6 +194,7 @@ python tools/sync_paper_handoffs.py
 4. **Bilingual by default at completion.** Final public delivery is English + Chinese and PDF-first.
 5. **Research must be resumable.** A project that another agent cannot safely continue is operationally incomplete.
 6. **Anomalies are not verdicts.** Forensics-oriented projects preserve human review and explicit uncertainty.
+7. **Finish what is closest first.** 000 continues genuine Active work first, then promotes the highest-progress Wait paper, with bounded-unit Git checkpoints before switching.
 
 ---
 
