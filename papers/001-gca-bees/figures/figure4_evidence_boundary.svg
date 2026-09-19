@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">Figure 4 · What is measured, and what remains unmeasured</title><desc id="desc">Separates empirical learning covariance, uncertainty-sensitive choice, and the unmeasured same-individual bridge.</desc>
+<rect width="1200" height="760" fill="#ffffff"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#17201f}.title{font-size:30px;font-weight:700}.sub{font-size:16px;fill:#66706c}.label{font-size:18px;font-weight:600}.body{font-size:15px}.small{font-size:13px;fill:#66706c}.box{fill:#f7f8f6;stroke:#9aa09c;stroke-width:1.5}.box2{fill:#eef4f2;stroke:#5f827b;stroke-width:1.5}.box3{fill:#f3f0f7;stroke:#80729a;stroke-width:1.5}.arrow{stroke:#5f6763;stroke-width:2.5;fill:none;marker-end:url(#arr)}.dash{stroke-dasharray:8 7}
+</style><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6763"/></marker></defs>
+<text x="60" y="58" class="title">Figure 4 · Evidence boundary: two literatures, one missing bridge</text>
+<text x="60" y="88" class="sub">Existing studies establish each side separately; no dataset here measures their coupling in the same bees.</text>
+<rect x="80" y="155" width="420" height="250" rx="18" class="box2"/>
+<text x="110" y="195" class="label">Learning / GCA literature</text>
+<text x="110" y="230" class="body">• discrimination, reversal, negative patterning</text>
+<text x="110" y="262" class="body">• positive individual covariance</text>
+<text x="110" y="294" class="body">• similar one-factor loading pattern across modalities</text>
+<text x="110" y="340" class="small">Measured: statistical organization of learning performance</text>
+<rect x="700" y="155" width="420" height="250" rx="18" class="box3"/>
+<text x="730" y="195" class="label">Uncertainty-sensitive choice literature</text>
+<text x="730" y="230" class="body">• opt-out use increases on harder trials</text>
+<text x="730" y="262" class="body">• performance improves when opt-out is available</text>
+<text x="730" y="294" class="body">• associative explanations remain viable</text>
+<text x="730" y="340" class="small">Measured: difficulty-sensitive decision avoidance</text>
+<line x1="500" y1="280" x2="700" y2="280" class="arrow dash"/>
+<rect x="485" y="455" width="230" height="105" rx="16" class="box"/>
+<text x="600" y="490" text-anchor="middle" class="label">Missing bridge</text>
+<text x="600" y="520" text-anchor="middle" class="body">same identified bees</text>
+<text x="600" y="546" text-anchor="middle" class="body">learning ↔ uncertainty coupling</text>
+<line x1="365" y1="405" x2="520" y2="455" class="arrow"/>
+<line x1="835" y1="405" x2="680" y2="455" class="arrow"/>
+<rect x="235" y="610" width="730" height="85" rx="15" class="box"/>
+<text x="600" y="644" text-anchor="middle" class="label">Therefore not yet established</text>
+<text x="600" y="674" text-anchor="middle" class="body">one mechanism · metacognition · consciousness · a shared precision/confidence variable</text>
+</svg>
