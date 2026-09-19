@@ -1,0 +1,130 @@
+{
+  "analysis": "ARIS4C011 enriched-development descriptive summary",
+  "development_only": true,
+  "confirmatory_performance_estimate": false,
+  "claim_boundary": "Enriched development evidence may demonstrate feasibility, complementarity, abstention, conservative non-escalation, provenance discipline and failure modes, but must not estimate sensitivity, precision, specificity, false-positive rate, prevalence or superiority.",
+  "true_positive_evaluations": {
+    "count": 5,
+    "unique_target_papers": 4,
+    "family_counts": {
+      "F5": 1,
+      "F3": 2,
+      "F8": 1,
+      "F1": 1
+    },
+    "records": [
+      {
+        "family_id": "F5",
+        "family_name": "Citation forensics",
+        "target_doi": "10.1371/journal.pone.0258910",
+        "detector": "cross_source_field_consistency",
+        "result": "FLAG",
+        "misconduct_inference": false,
+        "source_file": "data/results/pilot2b_first_true_positive.json"
+      },
+      {
+        "family_id": "F3",
+        "family_name": "Table and arithmetic consistency",
+        "target_doi": "10.1371/journal.pone.0293412",
+        "detector": "categorical_aggregate_recompute",
+        "result": "FLAG",
+        "misconduct_inference": false,
+        "source_file": "data/results/pilot3b_second_true_positive.json"
+      },
+      {
+        "family_id": "F8",
+        "family_name": "Methods-results semantic coherence",
+        "target_doi": "10.1371/journal.pone.0180906",
+        "detector": "cross_section_scope_coherence",
+        "result": "FLAG",
+        "misconduct_inference": false,
+        "source_file": "data/results/pilot3c_third_true_positive.json"
+      },
+      {
+        "family_id": "F3",
+        "family_name": "Table and arithmetic consistency",
+        "target_doi": "10.1371/journal.pone.0180906",
+        "detector": "F3_TABLE_SCHEMA_COLUMN_DROP_V1",
+        "result": "FLAG",
+        "misconduct_inference": false,
+        "source_file": "data/results/pilot3_toxo_f3_evaluation.json"
+      },
+      {
+        "family_id": "F1",
+        "family_name": "Statistical inference consistency",
+        "target_doi": "10.1371/journal.pone.0180395",
+        "detector": "F1_SIGNIFICANCE_P_DIRECTION_V1",
+        "result": "FLAG",
+        "misconduct_inference": false,
+        "source_file": "data/results/pilot3_adaptive_f1_evaluation.json"
+      }
+    ]
+  },
+  "complementarity_examples": [
+    {
+      "target_doi": "10.1371/journal.pone.0293412",
+      "families": [
+        "F3"
+      ],
+      "observation": "Within-table arithmetic stayed internally consistent (count sum 353; percent sum 100.0), while raw-data-to-table recomputation FLAGged Mexico 16/4.5 versus 17/4.8."
+    },
+    {
+      "target_doi": "10.1371/journal.pone.0180906",
+      "families": [
+        "F8",
+        "F3"
+      ],
+      "observation": "Distinct routes FLAGged separate documented sub-issues: body-caption model-scope coherence (F8) and preserved-original table-schema column drop (F3)."
+    }
+  ],
+  "abstention_example": {
+    "target_doi": "10.1538/expanim.54.1",
+    "artifact_state": "SAFE_EXACT",
+    "abstained_checks": [
+      "F1 NHST recomputation",
+      "F2 GRIM discrete mean",
+      "F2 binary mean/SD feasibility",
+      "F3 table arithmetic/completeness",
+      "F5 DOI metadata"
+    ],
+    "review_priority": "NONE",
+    "interpretation": "ABSTAIN reflects non-applicability or insufficient structured inputs and is a coverage observation, not a false negative against a process/authorship-level issue."
+  },
+  "conservative_non_escalation": {
+    "target_doi": "10.1371/journal.pone.0263337",
+    "finding_count": 10,
+    "flag_count": 0,
+    "review_priority": "NONE",
+    "status": "PASS"
+  },
+  "negative_side_development_comparators": {
+    "count": 4,
+    "selection_independent_of_detector_output": true,
+    "qualification_state": "FROZEN_NOTICE_NEGATIVE_FULLTEXT",
+    "hashes_frozen": [
+      {
+        "candidate_doi": "10.1371/journal.pone.0257671",
+        "pmc_id": "PMC8528273",
+        "sha256": "6d6a0174ab483961f1b70ba9cd62cacdc681169f3d0553516f9f6843f032085f"
+      },
+      {
+        "candidate_doi": "10.1371/journal.pone.0262972",
+        "pmc_id": "PMC10602317",
+        "sha256": "f05ada299f7f3a42f65efc8786caa1952d875113362dbf2f30ef3e72c4b7b843"
+      },
+      {
+        "candidate_doi": "10.1371/journal.pone.0180490",
+        "pmc_id": "PMC5519030",
+        "sha256": "be50f13b9c84d851b5738e1995f25e9ff2151c5d3487797d868eec6c6a537cdd"
+      },
+      {
+        "candidate_doi": "10.1371/journal.pone.0181889",
+        "pmc_id": "PMC5538665",
+        "sha256": "c1e555b0b66a5afcf68f019c2c417b05773a02f975b28f3ccc049c7efbccd342"
+      }
+    ],
+    "interpretation": "Matched no-known-integrity-concern development comparators were selected without detector output, notice-screened, and frozen by hash. They are not clean controls and do not support specificity or false-positive-rate estimates."
+  },
+  "misconduct_inference": false,
+  "next_gate": "Continue unresolved voxel/Brodmann-area structured-content acquisition, then expand and freeze the broader time-safe comparator corpus and confirmatory protocol."
+}
