@@ -148,10 +148,27 @@ pass.
 This strict gate is for mechanism enrichment, not for prospective candidate
 ranking.
 
+## Robust identity versus relative trajectory quadrant
+
+ARIS4C015 treats these as two separate variables.
+
+**Robust SB identity** is determined from the complete retrospective trajectory:
+sleep depth/length, awakening intensity, B, and later-recognition floor.
+
+**Relative trajectory quadrant** describes where the same paper sits compared
+with its field × publication-year cohort on early and late attention.
+
+The quadrant cannot veto a robust SB identity. This matters especially in old,
+sparse cohorts: a paper can rank high on early citation percentile despite
+having only a handful of early citations and then remaining dormant for
+decades.
+
+Both variables are retained for analysis.
+
 ## Four canonical trajectory states
 
-Mechanism comparisons are built from field × publication-year normalized
-early/late attention.
+Controls and descriptive quadrants are built from field × publication-year
+normalized early/late attention.
 
 ### 1. SLEEPING_BEAUTY
 
@@ -198,11 +215,17 @@ Match on pre-outcome characteristics such as:
 
 - field;
 - publication year;
-- early citation level;
+- **case-specific sleep-depth citation rate**: for an SB sleeping s years,
+  compare a control's citation rate across its own first s years;
 - reference count;
 - author count;
 - document type;
 - source/journal as sensitivity or exact-match stratum where feasible.
+
+A fixed first-5-year citation percentile is retained as a descriptive variable,
+not the primary SB-vs-Forgotten matching gate. Long sleepers such as classic
+cases can have a relatively high first-5-year percentile in historically
+sparse cohorts while remaining low-attention over a much longer sleep period.
 
 Do not match on future citations, future prestige, awakening time, awards, or
 Prince variables.
@@ -317,10 +340,16 @@ The deterministic reference matcher implements:
 
 - exact field match;
 - exact publication year by default;
-- early-citation percentile caliper for SB vs Forgotten;
+- nearest-neighbour matching on case-specific sleep-window citation rate for
+  SB vs Forgotten;
 - optional reference-count / author-count / early-count distance;
+- no arbitrary hard sleep-rate caliper in the exploratory pilot;
 - no replacement by default;
-- explicit unmatched-case reporting.
+- explicit unmatched-case reporting;
+- post-match standardized-mean-difference diagnostics.
+
+Hard calipers can be prespecified later as sensitivity analyses after empirical
+support for a defensible threshold.
 
 A later confirmatory analysis may use:
 
