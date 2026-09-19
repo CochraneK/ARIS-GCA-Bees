@@ -1,0 +1,79 @@
+name: ARIS4C015 Pilot M complete control-frame inventory
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_records_per_case:
+        description: "Optional bounded smoke limit per case; leave empty for complete frame"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Enumerate exact publication-year x field frames
+        working-directory: papers/015-sleeping-beauty-miner/code
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          MAX_RECORDS_PER_CASE: ${{ inputs.max_records_per_case }}
+        run: |
+          args=(
+            --output ../data/pilotM_full_frame_inventory.json
+          )
+          if [ -n "${OPENALEX_API_KEY:-}" ]; then
+            args+=(--api-key "$OPENALEX_API_KEY")
+          fi
+          if [ -n "${MAX_RECORDS_PER_CASE:-}" ]; then
+            args+=(--max-records-per-case "$MAX_RECORDS_PER_CASE")
+          fi
+          python pilotM_full_frame_inventory.py "${args[@]}"
+
+      - name: Audit inventory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilotM_full_frame_inventory.json"
+          )
+          x = json.loads(path.read_text(encoding="utf-8"))
+          assert len(x["frozen_primary_case_ids"]) == 3
+          assert len(x["frames"]) == 3
+          for frame in x["frames"]:
+              assert frame["api_reported_count"] >= frame["enumerated_count"]
+              assert len(frame["works"]) == frame["enumerated_count"]
+              ids = [w["openalex_id"] for w in frame["works"]]
+              assert len(ids) == len(set(ids))
+          print(json.dumps({
+              "frames": [
+                  {
+                      "case_id": f["case_id"],
+                      "reported": f["api_reported_count"],
+                      "enumerated": f["enumerated_count"],
+                      "complete": f["complete"],
+                  }
+                  for f in x["frames"]
+              ]
+          }, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-full-frame-inventory
+          path: papers/015-sleeping-beauty-miner/data/pilotM_full_frame_inventory.json
+          if-no-files-found: error
+          retention-days: 30
