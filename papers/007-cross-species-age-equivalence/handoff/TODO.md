@@ -2,14 +2,16 @@
 
 ## P0 · Current gate
 
-- [ ] Inspect corrected Pilot 3C smoke run `35433019496`.
-- [ ] Require every smoke sample to produce finite Clock 2/3 linear predictors with >=95% required-CpG coverage.
-- [ ] If smoke passes, confirm `.github/workflows/007-pilot3c-full-molecular.yml` auto-starts the frozen 50-sample / 6-species `panmammalianclocktrainingset = no` holdout.
-- [ ] If smoke still fails, debug only the first newly failing layer; do **not** redesign the already-passed Pilot 3A/3B protocol.
+- [x] Inspect the corrected modern Pilot 3C smoke path through run `35438430019`; IDAT download, CRLF handling, SeSAMe execution and probe-name mapping are resolved.
+- [x] Separate required-probe name coverage, raw finite coverage, species-structural 0.5 imputation and residual QC missingness. All Clock2/3 required probe names are present in all 10 samples.
+- [ ] Require every smoke sample to produce finite Clock 2/3 linear predictors with >=95% required-CpG coverage; modern SHCDPB still fails this frozen gate (min final coverage 0.8971 / 0.8895).
+- [ ] Execute the independent clock-era replication workflow under R 4.3 / Bioconductor 3.17 / SeSAMe 1.18.4 / SHCDPM on the same frozen 10-sample set.
+- [ ] If the clock-era smoke passes, run the frozen 50-sample / 6-species `panmammalianclocktrainingset = no` holdout under the same clock-era preprocessing and retain modern SHCDPB as sensitivity/QC.
+- [ ] If clock-era smoke still fails, debug only the first newly failing layer; do **not** relax the 0.95 threshold or redesign the already-passed Pilot 3A/3B protocol.
 
 ## P1 · Full molecular benchmark
 
-- [ ] Run all 50 independent holdout samples through SeSAMe `SHCDPB` with compressed GEO IDATs read directly and `collapseToPfx=TRUE`.
+- [ ] Run all 50 independent holdout samples through the clock-era primary preprocessing if its smoke gate passes; keep modern SeSAMe `SHCDPB` as a sensitivity route, with compressed GEO IDATs read directly and `collapseToPfx=TRUE`.
 - [ ] Preserve Clock2/3 molecular linear predictors before applying any life-history inverse transform.
 - [ ] Use MMC v3.0.0 `anage49.csv` clock-era gestation/maturity/max-age traits for the primary reproduction.
 - [ ] Re-express the same molecular predictors with current Pilot0/AnAge traits as a trait-version sensitivity analysis.
