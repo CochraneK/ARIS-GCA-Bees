@@ -107,6 +107,49 @@ def validate_repository_release(
                 f"{label} is not an ancestor of current HEAD"
             ) from exc
 
+    try:
+        run_git(
+            repo_root,
+            "merge-base",
+            "--is-ancestor",
+            discovery_commit,
+            release_commit,
+        )
+    except subprocess.CalledProcessError as exc:
+        raise HoldoutLocked(
+            "release decision must be committed after discovery freeze"
+        ) from exc
+
+    decision_rel = (
+        "papers/013-birth-death-temporal-coupling/process/"
+        "HOLDOUT_RELEASE_DECISION.json"
+    )
+    try:
+        decision_text = run_git(
+            repo_root,
+            "show",
+            f"{release_commit}:{decision_rel}",
+        )
+        decision = json.loads(decision_text)
+    except (subprocess.CalledProcessError, json.JSONDecodeError) as exc:
+        raise HoldoutLocked(
+            "release decision commit lacks a valid decision record"
+        ) from exc
+
+    if decision.get("authorized") is not True:
+        raise HoldoutLocked("release decision is not authorized")
+    if decision.get("pilot1_lock_version") != EXPECTED_SPEC_VERSION:
+        raise HoldoutLocked("release decision does not bind Pilot 1 v2")
+    if decision.get("pilot1_lock_blob_sha") != obj["pilot1_lock_blob_sha"]:
+        raise HoldoutLocked("release decision lock blob mismatch")
+    if (
+        decision.get("discovery_result_blob_sha")
+        != obj["discovery_result_blob_sha"]
+    ):
+        raise HoldoutLocked("release decision discovery blob mismatch")
+    if decision.get("holdout_years") != EXPECTED_HOLDOUT_YEARS:
+        raise HoldoutLocked("release decision holdout years changed")
+
     frozen_at_discovery = run_git(
         repo_root,
         "rev-parse",
