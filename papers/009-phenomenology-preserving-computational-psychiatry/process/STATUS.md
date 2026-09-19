@@ -1,5 +1,6 @@
 # ARIS4C009 · Status
 
+**Last updated:** 2026-09-19  
 **Current stage:** empirical Pilot-0 / multi-model AI boundary-calibration gate  
 **ARIS baseline:** v0.4.26  
 **Canonical scope:** quantify acquisition and encoding divergence separately before mechanistic expansion.
@@ -23,8 +24,9 @@
 - [x] Private local 140-item A/B primary/stress packet generator implemented.
 - [x] 20 disjoint real-data dry-run windows included.
 - [x] Aggregate agreement scorer implemented.
-- [x] Real-DAIS-C packet/scorer smoke workflow passed.
+- [x] Pre-AI-redesign real-DAIS-C packet/scorer smoke workflow passed.
 - [x] Smoke workflow has read-only repository permission and deletes private text.
+- [x] PR #90 updated the smoke workflow to three mock AI judges; post-PR90 workflow success has not yet been independently observed through the GitHub connector.
 - [x] Boundary-judge manual and synthetic practice cases completed.
 - [x] DAIS-C disease-effect interpretation limits frozen.
 - [x] AMP-SCZ Release-4 Pilot-1 minimum-access plan and variable-family map drafted.
@@ -126,6 +128,8 @@ Purpose-collected human study remains separate and requires ethics approval.
 
 ## Current blocker
 
+Deletion-safe recovery file: `process/CHAT_HANDOFF_2026-09-19.md`.
+
 There is no longer a human-rater blocker.
 
 The remaining Gate-C implementation task is:
@@ -141,3 +145,8 @@ If external APIs are used, DAIS-C source text must only be sent through endpoint
 009B = cross-level mechanism.  
 009C = longitudinal idiographic dynamics.  
 009D = perturbation/intervention validation.
+
+
+## Handoff sentence
+
+If this chat is lost, resume from `process/CHAT_HANDOFF_2026-09-19.md` plus this file. **Do not redesign 009.** The next empirical step is the actual three-or-more-model blinded Gate-C run; only after those judge outputs are frozen should the project select 20 vs 40 words and advance to Gate D.
