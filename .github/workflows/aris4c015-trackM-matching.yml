@@ -71,7 +71,9 @@ jobs:
           assert r["unselected_control_pool_analyzed_n"]>=40
           print(json.dumps({
             "slug":os.environ["SLUG"],
-            "robust_case_n":r["robust_case_n"],
+            "robust_gate_case_n":r["robust_gate_case_n"],
+            "canonical_sb_case_n":r["canonical_sb_case_n"],
+            "robust_noncanonical_n":r["robust_noncanonical_n"],
             "forgotten_control_n":r["forgotten_control_n"],
             "matched_n":r["matched_n"],
             "match_rate":r["match_rate"],
@@ -111,7 +113,9 @@ jobs:
               r=json.loads(p.read_text())
               rows.append({
                 "file":p.name,
-                "robust_case_n":r["robust_case_n"],
+                "robust_gate_case_n":r["robust_gate_case_n"],
+                "canonical_sb_case_n":r["canonical_sb_case_n"],
+                "robust_noncanonical_n":r["robust_noncanonical_n"],
                 "forgotten_control_n":r["forgotten_control_n"],
                 "matched_n":r["matched_n"],
                 "match_rate":r["match_rate"],
@@ -121,7 +125,9 @@ jobs:
           s={
             "track":"M_CASE_ENRICHED_MATCHED_CONTROL_PILOT",
             "n_strata":len(rows),
-            "robust_cases":sum(x["robust_case_n"] for x in rows),
+            "robust_gate_cases":sum(x["robust_gate_case_n"] for x in rows),
+            "canonical_sb_cases":sum(x["canonical_sb_case_n"] for x in rows),
+            "robust_noncanonical_cases":sum(x["robust_noncanonical_n"] for x in rows),
             "matched_cases":sum(x["matched_n"] for x in rows),
             "analysis_ready_strata":sum(bool(x["ready"]) for x in rows),
             "prevalence_estimation_allowed":False,
