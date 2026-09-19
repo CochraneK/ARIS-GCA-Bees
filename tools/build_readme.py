@@ -30,10 +30,10 @@ ZH_TITLES = {
 }
 
 STATE = {
-    "active": ("🟢 Active", "🟢 Active"),
-    "gated": ("🟡 At gate", "🟡 At gate"),
-    "quiet": ("⚪ Quiet", "⚪ Quiet"),
-    "blocked": ("🔴 Blocked", "🔴 Blocked"),
+    "active": ("🟢 Active", "🟢 进行中"),
+    "gated": ("🟡 At gate", "🟡 待过门"),
+    "quiet": ("⚪ Quiet", "⚪ 静默"),
+    "blocked": ("🔴 Blocked", "🔴 阻塞"),
 }
 
 
