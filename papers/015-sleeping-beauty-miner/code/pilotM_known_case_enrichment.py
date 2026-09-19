@@ -1,0 +1,257 @@
+"""Case-enriched real-data mechanism pilot for ARIS4C015.
+
+Three literature-reference Sleeping Beauties already replicated in Pilot 0 are
+inserted as cases. For each case, controls are sampled from the same
+publication year and current OpenAlex primary field.
+
+This is a mechanism-plumbing / matched-control pilot. It is not a population
+prevalence study and the OpenAlex B threshold remains provisional.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+from typing import Any
+
+from mechanism_cohort import CorpusPaper, build_mechanism_cohort
+from mechanism_labels import OPENALEX_PROVISIONAL_CALIBRATION
+from openalex_adapter import (
+    OpenAlexError,
+    fetch_work,
+    reconstruct_history_for_known_work,
+    sample_works,
+)
+
+
+KNOWN_CASES = (
+    {
+        "case_id": "ke2015_02_hummers",
+        "doi": "10.1021/ja01539a017",
+        "publication_year": 1958,
+        "published_b": 10769.0,
+        "published_awakening_year": 2007,
+        "seed": 2158,
+    },
+    {
+        "case_id": "ke2015_06_epr",
+        "doi": "10.1103/PhysRev.47.777",
+        "publication_year": 1935,
+        "published_b": 2258.0,
+        "published_awakening_year": 1994,
+        "seed": 61935,
+    },
+    {
+        "case_id": "ke2015_07_washburn",
+        "doi": "10.1103/PhysRev.17.273",
+        "publication_year": 1921,
+        "published_b": 2184.0,
+        "published_awakening_year": 1995,
+        "seed": 71921,
+    },
+)
+
+
+def _corpus_paper(
+    work,
+    history,
+    *,
+    field_label: str,
+) -> CorpusPaper:
+    return CorpusPaper(
+        paper_id=work.openalex_id,
+        publication_year=int(work.publication_year),
+        field=field_label,
+        annual_citation_counts=history.counts,
+        reference_count=work.referenced_works_count,
+        author_count=work.authorship_count,
+        source_id=None,
+    )
+
+
+def run_known_case_enrichment(
+    *,
+    controls_per_case_pool: int = 50,
+    observation_end_year: int = 2011,
+    api_key: str | None = None,
+) -> dict[str, Any]:
+    if controls_per_case_pool < 20 or controls_per_case_pool > 100:
+        raise ValueError("controls_per_case_pool must be between 20 and 100")
+
+    papers: list[CorpusPaper] = []
+    known_case_meta = []
+    control_meta = []
+    seen_ids: set[str] = set()
+
+    for spec in KNOWN_CASES:
+        identifier = f"https://doi.org/{spec['doi']}"
+        case_work = fetch_work(identifier, api_key=api_key)
+        if case_work.publication_year is None:
+            raise OpenAlexError(f"{spec['case_id']} has no publication year")
+        if case_work.primary_field_id is None:
+            raise OpenAlexError(f"{spec['case_id']} has no primary field")
+
+        year = int(spec["publication_year"])
+        field_id = case_work.primary_field_id
+        field_label = f"OPENALEX_FIELD_{field_id}"
+
+        case_history = reconstruct_history_for_known_work(
+            case_work,
+            publication_year=year,
+            end_year=observation_end_year,
+            api_key=api_key,
+            max_records=None,
+        )
+        papers.append(
+            _corpus_paper(
+                case_work,
+                case_history,
+                field_label=field_label,
+            )
+        )
+        seen_ids.add(case_work.openalex_id)
+
+        known_case_meta.append(
+            {
+                **spec,
+                "openalex_id": case_work.openalex_id,
+                "title": case_work.title,
+                "primary_topic": case_work.primary_topic,
+                "primary_field_id": field_id,
+                "reference_count": case_work.referenced_works_count,
+                "author_count": case_work.authorship_count,
+                "citations_through_endpoint": case_history.total_citations,
+            }
+        )
+
+        filters = (
+            f"publication_year:{year},type:article,"
+            f"primary_topic.field.id:{field_id}"
+        )
+        sampled = sample_works(
+            filters=filters,
+            sample_size=controls_per_case_pool,
+            seed=int(spec["seed"]),
+            api_key=api_key,
+        )
+
+        for control in sampled:
+            if not control.openalex_id:
+                continue
+            if control.openalex_id in seen_ids:
+                continue
+            if control.publication_year is None:
+                continue
+
+            history = reconstruct_history_for_known_work(
+                control,
+                publication_year=year,
+                end_year=observation_end_year,
+                api_key=api_key,
+                max_records=None,
+            )
+            papers.append(
+                _corpus_paper(
+                    control,
+                    history,
+                    field_label=field_label,
+                )
+            )
+            seen_ids.add(control.openalex_id)
+            control_meta.append(
+                {
+                    "paper_id": control.openalex_id,
+                    "title": control.title,
+                    "doi": control.doi,
+                    "publication_year": year,
+                    "field_id": field_id,
+                    "primary_topic": control.primary_topic,
+                    "citations_through_endpoint": history.total_citations,
+                }
+            )
+
+    min_stratum_size = max(20, min(40, controls_per_case_pool - 5))
+    result = build_mechanism_cohort(
+        papers,
+        min_stratum_size=min_stratum_size,
+        b_calibration=OPENALEX_PROVISIONAL_CALIBRATION,
+        sb_sleep_mode="VARIABLE_SLEEP",
+        sb_min_sleep_years=5,
+        sb_wake_years=4,
+        sb_max_sleep_rate=2.0,
+        sb_min_wake_rate=5.0,
+        sb_min_total_citations=50,
+        controls_per_case=1,
+        matching_early_percentile_caliper=0.15,
+        matching_max_abs_smd=0.10,
+        min_primary_match_rate=0.50,
+        require_validated_b_calibration_for_analysis=True,
+    )
+
+    by_id = {
+        row["paper_id"]: row
+        for row in result["records"]
+        if row.get("paper_id")
+    }
+    case_assessment = []
+    for meta in known_case_meta:
+        record = by_id.get(meta["openalex_id"])
+        case_assessment.append(
+            {
+                **meta,
+                "mechanism_state": (
+                    record.get("state") if record else "MISSING_RECORD"
+                ),
+                "robust_sb_gate": (
+                    record.get("robust_sb_gate") if record else None
+                ),
+                "early_citation_count": (
+                    record.get("early_citation_count") if record else None
+                ),
+                "late_citation_count": (
+                    record.get("late_citation_count") if record else None
+                ),
+            }
+        )
+
+    result["pilot_design"] = {
+        "type": "literature-known case-enriched matched-control smoke",
+        "known_case_source": "Ke et al. 2015 PNAS",
+        "n_known_cases": len(KNOWN_CASES),
+        "controls_per_case_pool_requested": controls_per_case_pool,
+        "observation_end_year": observation_end_year,
+        "control_frame": "same publication year x current OpenAlex primary field",
+        "case_selection_is_retrospective": True,
+        "population_prevalence_estimable": False,
+        "openalex_b_calibration_validated": False,
+    }
+    result["known_case_assessment"] = case_assessment
+    result["control_metadata"] = control_meta
+    return result
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--controls-per-case-pool", type=int, default=50)
+    parser.add_argument("--observation-end-year", type=int, default=2011)
+    parser.add_argument("--api-key", default=None)
+    parser.add_argument("--output", type=Path, required=True)
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    result = run_known_case_enrichment(
+        controls_per_case_pool=args.controls_per_case_pool,
+        observation_end_year=args.observation_end_year,
+        api_key=args.api_key,
+    )
+    args.output.write_text(
+        json.dumps(result, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
+if __name__ == "__main__":
+    main()
