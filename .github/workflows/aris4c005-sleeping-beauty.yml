@@ -7,13 +7,16 @@ on:
       - aris4c005-sleeping-beauty-20260918
       - aris4c005-sleeping-beauty-final-20260918
       - aris4c005-sb-landmark-20260919
+      - aris4c005-sb1-baseline-20260919
     paths:
       - ".github/workflows/aris4c005-sleeping-beauty.yml"
       - "papers/005-hidden-burden-bad-science/code/sleeping_beauty.py"
       - "papers/005-hidden-burden-bad-science/code/build_sleeping_beauty_pilot.py"
       - "papers/005-hidden-burden-bad-science/code/build_sb_landmark_dataset.py"
+      - "papers/005-hidden-burden-bad-science/code/sb1_baseline.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_sleeping_beauty.py"
       - "papers/005-hidden-burden-bad-science/code/tests/test_sb_landmark_dataset.py"
+      - "papers/005-hidden-burden-bad-science/code/tests/test_sb1_baseline.py"
   workflow_dispatch:
 
 permissions:
@@ -64,6 +67,15 @@ jobs:
             --horizon-years 10 \
             --observation-end-year 2025
 
+      - name: Run SB1 early-citation prediction baseline
+        run: |
+          python "$PAPER_DIR/code/sb1_baseline.py" \
+            "$RUNNER_TEMP/aris4c005_sb_landmark.csv" \
+            "$RUNNER_TEMP/aris4c005_sb1_predictions.csv" \
+            "$PAPER_DIR/data/pilot/sb1_baseline_summary.json" \
+            --target outcome_awakening_within_horizon_after_landmark \
+            --folds 5
+
       - name: Validate summary
         run: |
           python - <<'PY'
@@ -77,7 +89,11 @@ jobs:
           l = json.load(open(q, encoding='utf-8'))
           assert l["classification"] == "SB1_LANDMARK_DATASET_NOT_CAUSAL_SUPPRESSION"
           assert l["papers_eligible_for_horizon"] > 0
-          print(json.dumps({"sb0": d, "sb1": l}, indent=2))
+          r = 'papers/005-hidden-burden-bad-science/data/pilot/sb1_baseline_summary.json'
+          b = json.load(open(r, encoding='utf-8'))
+          assert b["classification"] == "SB1_EARLY_CITATION_BASELINE_ENGINEERING_NOT_CAUSAL"
+          assert b["rows_eligible"] == l["papers_eligible_for_horizon"]
+          print(json.dumps({"sb0": d, "sb1": l, "baseline": b}, indent=2))
           PY
 
       - name: Upload row-level historical pilot
@@ -88,6 +104,7 @@ jobs:
             ${{ runner.temp }}/aris4c005_sb_history.csv
             ${{ runner.temp }}/aris4c005_sb_metrics.csv
             ${{ runner.temp }}/aris4c005_sb_landmark.csv
+            ${{ runner.temp }}/aris4c005_sb1_predictions.csv
           retention-days: 30
           if-no-files-found: error
 
@@ -98,11 +115,11 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$PAPER_DIR/data/pilot/sleeping_beauty_pilot_summary.json" "$PAPER_DIR/data/pilot/sb_landmark_pilot_summary.json"
+          git add "$PAPER_DIR/data/pilot/sleeping_beauty_pilot_summary.json" "$PAPER_DIR/data/pilot/sb_landmark_pilot_summary.json" "$PAPER_DIR/data/pilot/sb1_baseline_summary.json"
           if git diff --cached --quiet; then
             echo "No Sleeping Beauty summary change."
             exit 0
           fi
-          git commit -m "Update ARIS4C005 Sleeping Beauty and landmark summaries [skip ci]"
+          git commit -m "Update ARIS4C005 Sleeping Beauty, landmark and baseline summaries [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
