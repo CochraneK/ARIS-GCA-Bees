@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">Figure 5 · Decisive same-individual experiment</title><desc id="desc">A same-bee design linking learning indicators and uncertainty-sensitive choice with nuisance controls and competing model comparison.</desc>
+<rect width="1200" height="760" fill="#ffffff"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#17201f}.title{font-size:30px;font-weight:700}.sub{font-size:16px;fill:#66706c}.label{font-size:18px;font-weight:600}.body{font-size:15px}.box{fill:#f7f8f6;stroke:#9aa09c;stroke-width:1.5}.box2{fill:#eef4f2;stroke:#5f827b;stroke-width:1.5}.box3{fill:#f3f0f7;stroke:#80729a;stroke-width:1.5}.arrow{stroke:#5f6763;stroke-width:2.5;fill:none;marker-end:url(#arr)}
+</style><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6763"/></marker></defs>
+<text x="60" y="58" class="title">Figure 5 · Decisive same-individual experiment</text>
+<text x="60" y="88" class="sub">The key design change is to measure both construct families in the same identified individuals.</text>
+<rect x="65" y="150" width="205" height="130" rx="16" class="box2"/><text x="168" y="188" text-anchor="middle" class="label">Identified bee</text><text x="168" y="220" text-anchor="middle" class="body">colony · motivation</text><text x="168" y="246" text-anchor="middle" class="body">sensory / reward covariates</text>
+<line x1="270" y1="215" x2="365" y2="215" class="arrow"/>
+<rect x="365" y="125" width="270" height="180" rx="16" class="box2"/><text x="500" y="165" text-anchor="middle" class="label">Learning battery</text><text x="500" y="202" text-anchor="middle" class="body">initial discrimination</text><text x="500" y="230" text-anchor="middle" class="body">reversal learning</text><text x="500" y="258" text-anchor="middle" class="body">negative patterning</text>
+<line x1="635" y1="215" x2="730" y2="215" class="arrow"/>
+<rect x="730" y="125" width="390" height="180" rx="16" class="box3"/><text x="925" y="165" text-anchor="middle" class="label">Uncertainty-choice battery</text><text x="925" y="202" text-anchor="middle" class="body">opt-out difficulty slope</text><text x="925" y="230" text-anchor="middle" class="body">hard-trial benefit when opt-out is available</text><text x="925" y="258" text-anchor="middle" class="body">novel-confusion transfer</text>
+<line x1="500" y1="305" x2="500" y2="405" class="arrow"/><line x1="925" y1="305" x2="925" y2="405" class="arrow"/>
+<rect x="300" y="405" width="700" height="105" rx="16" class="box"/><text x="650" y="442" text-anchor="middle" class="label">Joint same-individual model comparison</text><text x="650" y="474" text-anchor="middle" class="body">M1 one factor · M2 correlated factors · M3 independent factors · M4 associative · M5 hybrid</text>
+<line x1="650" y1="510" x2="650" y2="595" class="arrow"/>
+<rect x="245" y="595" width="810" height="95" rx="16" class="box"/><text x="650" y="630" text-anchor="middle" class="label">Decisive evidence</text><text x="650" y="660" text-anchor="middle" class="body">held-out prediction + reliability + nuisance control + transfer tests decide whether coupling exists and what explains it</text>
+</svg>
