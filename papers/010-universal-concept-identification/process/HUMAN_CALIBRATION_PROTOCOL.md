@@ -2,7 +2,7 @@
 
 ## Goal
 
-Estimate whether UCID's richer response states are reproducible enough to support scientific comparison with strict binary Twenty Questions.
+Estimate whether UCID's response-state distinctions are reproducible enough to justify moving from strict binary answers to coarse and then fine-grained semantic alternatives.
 
 The annotation study is calibration, not a survey of personal beliefs.
 
@@ -76,17 +76,25 @@ At minimum compare:
 ### Condition P2
 YES / NO only.
 
+### Condition P3
+YES / NO / MAYBE.
+
+P3 is the coarse non-binary baseline. MAYBE intentionally does not diagnose *why* a binary judgment is inappropriate.
+
 ### Condition P6
 YES / NO / BORDERLINE / UNKNOWN / UNDEFINED / BOTH.
 
 ### Optional P6+context
 Adds CONTEXT_REQUEST and typed context resolution.
 
-The main empirical question is not whether P6 has more categories. It is whether richer categories:
-- reduce contradiction/retest error;
-- reduce invalid forced answers;
-- improve target identifiability;
-- do so at acceptable time/cognitive cost.
+The main mechanism question is whether P6 provides value **beyond P3**, not merely beyond binary P2.
+
+Primary contrasts:
+- P2→P3: benefit of any coarse escape from binary forcing;
+- P3→P6: benefit of distinguishing BORDERLINE / UNKNOWN / UNDEFINED / BOTH rather than collapsing them into MAYBE;
+- P2→P6: total effect.
+
+Evaluate whether the richer protocol reduces contradiction/invalid forced answers or improves identifiability at acceptable time/cognitive cost.
 
 ## Primary reliability measures
 
@@ -166,4 +174,4 @@ For model oracles record:
 
 ## Promotion gate
 
-The P6 response protocol is retained for publication only if the calibration data show that annotators can use the categories with interpretable reliability and that the richer protocol improves at least one preregistered validity/efficiency outcome after accounting for response cost.
+The P6 response protocol is retained for publication only if human calibration shows interpretable fine-state use and an incremental benefit over P3 after accounting for reliability, response time, and cognitive cost. If P3 captures essentially all benefit over P2, prefer the simpler P3 protocol.
