@@ -11,7 +11,7 @@ import argparse, json
 from pathlib import Path
 
 from mechanism_cohort import CorpusPaper, build_mechanism_cohort
-from mechanism_labels import robust_sleeping_beauty_gate
+from mechanism_labels import classify_mechanism_state, robust_sleeping_beauty_gate
 from mechanism_matching import MechanismPaper, nearest_controls, match_balance_diagnostics
 from openalex_adapter import reconstruct_history_for_known_work, sample_works
 
@@ -97,16 +97,42 @@ def run(*, base_filters: str, field: str, case_seed: int, control_seed: int,
         r for r in control_result["records"]
         if r.get("state")=="FORGOTTEN"
     ]
-    early_reference=[
-        sum(p.annual_citation_counts[:5])
-        for p in control_papers
-    ]
+    early_reference=[sum(p.annual_citation_counts[:5]) for p in control_papers]
+    late_reference=[sum(p.annual_citation_counts[-5:]) for p in control_papers]
 
     case_models=[]
     case_detail=[]
+    robust_noncanonical=[]
     for work,h,gate in robust_cases:
         early=sum(h.counts[:5])
+        late=sum(h.counts[-5:])
         ep=empirical_percentile(early,early_reference)
+        lp=empirical_percentile(late,late_reference)
+        state=classify_mechanism_state(
+            early_percentile=ep,
+            late_percentile=lp,
+            robust_sb=True,
+            early_count=early,
+            late_count=late,
+            zero_counts_are_low=True,
+            require_robust_sb_for_sleeping_beauty=True,
+        )
+        detail={
+            "paper_id":work.openalex_id,
+            "doi":work.doi,
+            "title":work.title,
+            "early_citation_count":early,
+            "late_citation_count":late,
+            "early_percentile_vs_unselected_reference":ep,
+            "late_percentile_vs_unselected_reference":lp,
+            "canonical_mechanism_state":state.state,
+            "beauty_coefficient":gate.beauty_coefficient,
+            "awakening_age":gate.awakening_age,
+        }
+        case_detail.append(detail)
+        if state.state!="SLEEPING_BEAUTY":
+            robust_noncanonical.append(detail)
+            continue
         case_models.append(MechanismPaper(
             paper_id=work.openalex_id,
             state="SLEEPING_BEAUTY",
@@ -117,15 +143,6 @@ def run(*, base_filters: str, field: str, case_seed: int, control_seed: int,
             author_count=work.authorship_count,
             early_citation_count=early,
         ))
-        case_detail.append({
-            "paper_id":work.openalex_id,
-            "doi":work.doi,
-            "title":work.title,
-            "early_citation_count":early,
-            "early_percentile_vs_unselected_reference":ep,
-            "beauty_coefficient":gate.beauty_coefficient,
-            "awakening_age":gate.awakening_age,
-        })
 
     control_models=[]
     for r in forgotten:
@@ -173,7 +190,10 @@ def run(*, base_filters: str, field: str, case_seed: int, control_seed: int,
         "prospective_performance_allowed":False,
         "case_pool_analyzed_n":len(case_raw),
         "unselected_control_pool_analyzed_n":len(control_raw),
-        "robust_case_n":len(case_models),
+        "robust_gate_case_n":len(robust_cases),
+        "canonical_sb_case_n":len(case_models),
+        "robust_noncanonical_n":len(robust_noncanonical),
+        "canonical_state_rule":"robust gate + early<=25th percentile + late>=75th percentile versus unselected same-field/year reference pool",
         "forgotten_control_n":len(control_models),
         "matched_n":len(matches),
         "match_rate":match_rate,
@@ -185,6 +205,7 @@ def run(*, base_filters: str, field: str, case_seed: int, control_seed: int,
             and balance.get("balance_pass") is True
         ),
         "cases":case_detail,
+        "robust_noncanonical_cases":robust_noncanonical,
         "matches":[m.as_dict() for m in matches],
     }
     output.parent.mkdir(parents=True,exist_ok=True)
@@ -193,7 +214,9 @@ def run(*, base_filters: str, field: str, case_seed: int, control_seed: int,
         "field":field,
         "case_pool":len(case_raw),
         "control_pool":len(control_raw),
-        "robust_cases":len(case_models),
+        "robust_gate_cases":len(robust_cases),
+        "canonical_sb_cases":len(case_models),
+        "robust_noncanonical":len(robust_noncanonical),
         "forgotten_controls":len(control_models),
         "matched":len(matches),
         "match_rate":match_rate,
