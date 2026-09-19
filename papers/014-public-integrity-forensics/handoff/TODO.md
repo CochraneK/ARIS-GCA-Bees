@@ -2,15 +2,41 @@
 
 ## P0 · Next gate
 
-- [ ] Run cross-source enrichment with exact stable IDs; route name-only matches to review
+- [ ] Bootstrap a standalone `OpenIntegrity` repository from the reusable ARIS4C014 implementation.
+- [ ] Migrate reusable core, China adapters, identity resolver, graph, detectors, tests and relevant workflows without changing scientific semantics.
+- [ ] Verify parity under CI before deleting or delegating any working ARIS4C014 implementation.
+- [ ] Continue cross-source enrichment using exact stable IDs; route name-only matches to review.
 
-## P1 · Enabling work
+## P1 · China institution universe
 
-- [ ] **P1 · Remove/resolve blocker:** Authoritative stable identifiers and source coverage vary by organization type
-- [ ] Keep `STATUS.md` and `AGENT_HANDOFF.md` synchronized after the next material state change.
-- [ ] Append the next material ChatGPT/human/agent exchange to `CHATLOG.md`.
-- [ ] Append the next substantial execution session to `SESSION_LOG.md`.
+- [ ] Implement the two-axis legal-identity × functional-domain model from `process/CHINA_INSTITUTION_ONTOLOGY.md`.
+- [ ] Add authoritative university universe / stable school identifiers.
+- [ ] Add hospital / medical-institution universe coverage, preserving subset-vs-universe semantics.
+- [ ] Add social-organization / charity stable-ID coverage.
+- [ ] Add local SOE / LGFV coverage.
+- [ ] Add rural collective economic organizations.
+- [ ] Add government investment / guidance funds.
+- [ ] Add primary/secondary/vocational education.
+- [ ] Add professional intermediary nodes.
+- [ ] Add research peripheral / commercialization entities.
+- [ ] **Resolve coverage blocker conservatively:** unavailable sources remain explicit coverage gaps / ABSTAIN; do not bypass CAPTCHAs, authentication or anti-automation controls.
 
-## P2 · Packaging / optional
+## P1 · Cross-source evidence
 
-- [ ] Keep public outputs, figures/tables, bilingual delivery, and repository links consistent with the current ARIS4C output standard when applicable.
+- [ ] Implement National Public Resource Trading Platform federation / selected provincial adapters.
+- [ ] Enrich exact CN-USCC supplier identities from lawful official/public corporate sources.
+- [ ] Add audit / discipline / administrative / judicial outcome adapters with distinct outcome classes.
+- [ ] Add research grant / patent / technology-transfer edges and delegate publication forensics to ARIS4C011.
+- [ ] Freeze China Pilot 1 as a stratified cross-institution dataset focused on coverage, joinability, parser misses and identity resolution—not targeting “suspicious” people.
+
+## P1 · Repository separation
+
+- [ ] Keep ARIS4C014 as scientific source of truth for papers, pilots, protocols and frozen results.
+- [ ] Add reciprocal links between ARIS4C014 and OpenIntegrity after repository creation.
+- [ ] Run repo-auditor against OpenIntegrity after extraction.
+- [ ] Do not merge OpenIntegrity into repo-auditor.
+
+## P2 · Continuity / packaging
+
+- [ ] Keep `STATUS.md`, `AGENT_HANDOFF.md`, `DECISIONS.md`, `CHATLOG.md` and `SESSION_LOG.md` synchronized after material changes.
+- [ ] Keep public outputs, figures/tables, bilingual delivery and repository links consistent with the ARIS4C output standard.
