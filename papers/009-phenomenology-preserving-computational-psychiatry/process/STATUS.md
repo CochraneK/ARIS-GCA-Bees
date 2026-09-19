@@ -20,13 +20,16 @@
 - [x] 1,908 microepisodes inventoried; one-turn rule rejected as too granular.
 - [x] 20/40/80-word segmentation sensitivity completed.
 - [x] 20- and 40-word strategies advanced to blinded human calibration.
-- [x] Private local 140-item A/B calibration packet generator implemented.
+- [x] Private local 140-item A/B primary/stress packet generator implemented.
+- [x] 20 disjoint real-data training windows added to the private generator.
+- [x] Training windows are excluded from primary agreement estimates.
 - [x] Aggregate Gwet-AC1 scorer implemented.
-- [x] Real-DAIS-C boundary-packet smoke workflow passed end-to-end.
-- [x] Smoke workflow deletes private text and finishes with a clean Git working tree.
+- [x] Real-DAIS-C packet/scorer smoke workflow passed.
+- [x] Smoke workflow has read-only repository permission and deletes private text.
+- [x] Boundary-rater manual completed.
+- [x] Synthetic practice cases and answer key completed.
 - [x] DAIS-C disease-effect interpretation limits frozen.
-- [x] AMP-SCZ Release-4 Pilot-1 minimum-access plan drafted.
-- [x] AMP-SCZ variable-family request map drafted with data minimization.
+- [x] AMP-SCZ Release-4 Pilot-1 minimum-access plan and variable-family map drafted.
 
 ## Current empirical facts from Pilot-0
 
@@ -34,7 +37,7 @@
 
 - 28 usable full-interaction transcripts in the public archive layer;
 - raw texts remain outside Git;
-- full-interaction participant-word scale matches the speaker-only representation closely enough for engineering use.
+- participant-word scale is consistent across full-interaction and speaker-only representations for engineering purposes.
 
 ### Microepisode layer
 
@@ -42,7 +45,7 @@
 - 1,871 with participant response;
 - participant words median 14, IQR 2–50.
 
-Conclusion: turn-pair units are too often trivial for source-reconstruction fidelity.
+Turn-pair units are too often trivial for fidelity scoring.
 
 ### Segmentation sensitivity
 
@@ -50,7 +53,7 @@ Conclusion: turn-pair units are too often trivial for source-reconstruction fide
 - target 40 → 745 windows; median 79 words; median 2 microepisodes/window;
 - target 80 → 550 windows; median 116 words; median 3 microepisodes/window.
 
-20 and 40 proceed to human boundary calibration. 80 is held as a rescue condition.
+20 and 40 proceed to human boundary calibration. 80 is a rescue condition only.
 
 ## Gate A — novelty
 
@@ -62,19 +65,27 @@ Formal manuscript-stage multi-database screening remains required.
 
 **Passed for DAIS-C Pilot-0.**
 
-Data retrieval, structural classification, segmentation sensitivity, privacy controls and
-private calibration-pack generation have all run successfully on real source data.
+All currently automatable source, privacy, segmentation and private-packet engineering
+steps have run successfully on real data.
 
-## Gate C — human boundary calibration
+## Gate C — rater training and boundary calibration
 
 **Current blocker.**
 
-Need two independent raters to complete the blinded 20-vs-40 packet.
+Required sequence:
+
+1. two raters read `RATER_MANUAL_BOUNDARY.md`;
+2. independently complete synthetic practice;
+3. discuss using `RATER_PRACTICE_KEY.md`;
+4. independently rate 20 private real-data training windows;
+5. discuss/freeze rule;
+6. independently rate 140 primary/stress items;
+7. run aggregate scorer.
 
 Primary outputs:
 
 - coherent boundary;
-- sufficient information for a nontrivial query;
+- sufficient nontrivial information;
 - mixed-topic judgment;
 - keep/merge/split/reject;
 - Gwet AC1.
@@ -93,24 +104,20 @@ After segmentation is frozen:
 
 Run R0/R1/R2-lite/R3P/R4P as an engineering benchmark.
 
-DAIS-C is not an EASE corpus and is not used for schizophrenia-vs-control disease-effect inference.
+No schizophrenia-vs-control disease-effect inference is permitted from this Pilot-0
+because acquisition/topic structure differs between groups.
 
 ## Gate F — AMP-SCZ Pilot-1
 
 **Design/access plan ready.**
 
-Tiered request:
+Minimum first request:
 
-1. transcripts + PSYCHS + minimal linkage/covariates;
-2. derived EMA/actigraphy/phone context;
-3. derived EEG/imaging;
-4. raw high-dimensional modalities only if later hypotheses require them.
+- open/PSYCHS language evidence;
+- PSYCHS structured measures;
+- minimal participant/visit linkage and covariates.
 
-The public Release-4 availability record supports open/PSYCHS language structures,
-PSYCHS through month 3, smartphone survey/sensors, actigraphy, EEG features and imaging
-structures.
-
-Controlled-access data require approved NDA access and must never enter public ARIS4C.
+Context and neural modalities are requested only in later tiers.
 
 ## Gate G — 009A2 randomized acquisition study
 
@@ -118,9 +125,11 @@ Purpose-collected human study remains separate and requires ethics approval.
 
 ## Current blocker
 
-The irreducible near-term input is **two independent human raters** for DAIS-C boundary calibration.
+The irreducible near-term input is now exactly:
 
-All currently automatable Pilot-0 engineering gates are operational.
+> **two independent human raters completing the frozen boundary-calibration workflow.**
+
+There is no remaining high-value automated Pilot-0 step before this gate.
 
 ## Scope control
 

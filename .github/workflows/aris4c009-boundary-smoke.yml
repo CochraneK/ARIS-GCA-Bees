@@ -54,8 +54,13 @@ jobs:
 
           root = Path(os.environ["RUNNER_TEMP"]) / "boundary_packet"
           key = json.loads((root / "private_key.json").read_text(encoding="utf-8"))
+          training_key = json.loads((root / "training_key.json").read_text(encoding="utf-8"))
 
           assert len(key["items"]) == 140, len(key["items"])
+          assert len(training_key["items"]) == 20, len(training_key["items"])
+          with (root / "training.tsv").open("r", encoding="utf-8", newline="") as f:
+              training_rows = list(csv.DictReader(f, delimiter="\t"))
+          assert len(training_rows) == 20, len(training_rows)
           assert set(key["condition_map"]) == {"A", "B"}
           assert sorted(key["condition_map"].values()) == [20, 40]
 

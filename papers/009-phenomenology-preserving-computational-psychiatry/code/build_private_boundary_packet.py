@@ -223,6 +223,7 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=20260919)
     ap.add_argument("--regular-per-condition", type=int, default=60)
     ap.add_argument("--stress-per-condition", type=int, default=10)
+    ap.add_argument("--training-items", type=int, default=20)
     args = ap.parse_args()
 
     rng = random.Random(args.seed)
@@ -281,12 +282,38 @@ def main() -> None:
             x["stratum"] = "stress"
             selected.append(x)
 
+    # Draw discussion-allowed training items from source regions not used by the
+    # independent primary/stress packet.
+    if args.training_items % 4 != 0:
+        raise ValueError("--training-items must be divisible by 4 for target/cohort balance")
+
+    training = []
+    training_per_target_cohort = args.training_items // 4
+    for target in TARGETS:
+        cond = target_to_condition[target]
+        for group in ("clinical", "comparison"):
+            candidates = [
+                x for x in by_target[target]
+                if x["cohort"] == group
+                and target <= x["participant_words"] <= 250
+            ]
+            chosen = take_nonoverlap(candidates, training_per_target_cohort, used, rng)
+            for x in chosen:
+                x["condition"] = cond
+                x["stratum"] = "training"
+                training.append(x)
+
     rng.shuffle(selected)
     for i, x in enumerate(selected, 1):
         x["item_id"] = f"BC{i:04d}"
 
+    rng.shuffle(training)
+    for i, x in enumerate(training, 1):
+        x["item_id"] = f"TR{i:03d}"
+
     write_rater(out / "rater_A.tsv", selected, random.Random(args.seed + 1))
     write_rater(out / "rater_B.tsv", selected, random.Random(args.seed + 2))
+    write_rater(out / "training.tsv", training, random.Random(args.seed + 3))
 
     key = {
         "seed": args.seed,
@@ -310,11 +337,45 @@ def main() -> None:
         json.dumps(key, indent=2) + "\n", encoding="utf-8"
     )
 
+    training_key = {
+        "seed": args.seed,
+        "warning": "PRIVATE TRAINING KEY. MAY BE OPENED ONLY FOR DISCUSSION TRAINING.",
+        "condition_map": {v: k for k, v in target_to_condition.items()},
+        "items": {
+            x["item_id"]: {
+                "condition": x["condition"],
+                "target": x["target"],
+                "cohort": x["cohort"],
+                "source": x["source"],
+                "start_micro": x["start_micro"],
+                "end_micro": x["end_micro"],
+                "participant_words": x["participant_words"],
+            }
+            for x in training
+        },
+    }
+    (out / "training_key.json").write_text(
+        json.dumps(training_key, indent=2) + "\n", encoding="utf-8"
+    )
+
     readme = """# ARIS4C009 boundary calibration packet — PRIVATE
 
 Do not commit or upload this directory.
 
-Two raters independently complete their TSV file.
+## Training phase
+
+Both raters first complete `training.tsv` independently.
+
+After both finish the training file, they may open `training_key.json`, discuss
+disagreements, and align on the written boundary rules. Training items are disjoint
+from all primary/stress source regions and never enter the primary agreement result.
+
+## Primary phase
+
+Raters then independently complete their own primary file:
+
+- `rater_A.tsv`
+- `rater_B.tsv`
 
 Allowed values:
 
@@ -324,7 +385,7 @@ Allowed values:
 - recommended_action: keep / merge / split / reject
 - confidence_1_5: 1–5
 
-Raters should not inspect private_key.json until both rating files are frozen.
+Do not inspect `private_key.json` until both primary rating files are frozen.
 
 Primary calibration excludes items marked as stress in the private key; stress items
 probe tails and very long windows.
@@ -334,7 +395,10 @@ public-safe summary.
 """
     (out / "README_PRIVATE.md").write_text(readme, encoding="utf-8")
 
-    print(f"Wrote private calibration packet with {len(selected)} items to {out}")
+    print(
+        f"Wrote private packet with {len(selected)} primary/stress items "
+        f"and {len(training)} disjoint training items to {out}"
+    )
     print("Do not commit or upload the packet directory.")
 
 
