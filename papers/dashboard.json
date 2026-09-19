@@ -20,12 +20,12 @@
       "blocker": "None scientific; author-only metadata/declarations and portal submission"
     },
     "003": {
-      "progress": 58,
-      "stage": "Pre-outcome design · independent coding gate",
-      "activity": "gated",
-      "evidence": "Historical exposures + OpenAlex schema + PPML/model lock + Coder A",
-      "next_gate": "Fresh blind Coder B retry and adjudication before modern outcomes",
-      "blocker": "Independent Coder B; prior attempt intentionally invalidated for contamination"
+      "progress": 70,
+      "stage": "Outcome materialization · locked first confirmatory run",
+      "activity": "active",
+      "evidence": "COLDAT + CEPII audited · blind Coder A/B + adjudicated IKES frozen · strict gate unlocked · OpenAlex scan running",
+      "next_gate": "Complete OpenAlex country/dyad panels, 3 headline PPMLs, 3×999 permutations, LOO and first-result hash lock",
+      "blocker": "None · public OpenAlex snapshot scan is compute/network intensive"
     },
     "004": {
       "progress": 74,
