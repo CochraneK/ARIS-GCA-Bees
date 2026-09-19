@@ -4,22 +4,39 @@
 
 **Beyond Twenty Questions: Semantic Limits and Query Complexity of Universal Concept Identification**
 
-## Compact scope
+## Scientific object
 
-A formal and empirical research program measuring the query cost imposed by semantic admissibility across heterogeneous concept regimes, with source-locked lexical calibration and a three-protocol human design (P2 binary, P3 coarse MAYBE, P6 fine-grained semantic states) that isolates whether semantic state distinctions add value beyond a generic non-binary escape response.
+The project asks how concept identification changes when questions are constrained to be semantically interpretable, target-type appropriate, context-resolved and answerable rather than arbitrary partitions of a candidate set.
 
-## Domain
+Primary quantity:
 
-information theory / active learning / lexical semantics / ontology / philosophy of language / computational cognition
+`Semantic Query Overhead = optimal semantic-query cost − optimal unrestricted identification cost`.
 
-## Working tags
+Universality is always qualified as relative to an explicit representable concept universe, query language, response protocol, context model and oracle.
 
-ARIS, ARIS4C, Twenty Questions, query complexity, active learning, ontology, lexical semantics, concept identification, information theory, vagueness, paraconsistent logic, ineffability
+## Representation stance
 
-## Construct / claim discipline
+Do not build or claim one metaphysically final universal taxonomy. The candidate architecture is a typed multi-axis semantic graph/coordinate system with compositional operators.
 
-Read `DECISIONS.md` before changing construct definitions or claim strength. The current manuscript, preregistration/design files, and machine-readable results remain canonical.
+Strong ineffability is treated as a boundary of ordinary target representability, not a normal benchmark class.
 
-## Where to continue
+## Evidence ladder
 
-Start from `AGENT_HANDOFF.md`, then inspect the project-specific `process/`, manuscript, data, code, figure, table, and agent directories referenced by `paper.json`.
+- Pilot 0: combinatorial code sanity.
+- Pilot 1: constructed heterogeneous semantic seed.
+- Pilot 2: 15 source-derived OEWN senses; exploratory semantic-overhead estimate.
+- Calibration60: pinned OEWN 2025, 10 polysemous lemmas × 6 noun senses.
+- Mixed response-state calibration: 24 constructed stress scenarios, 216 blank pairs.
+- Human design: P2/P3/P6, 108 balanced forms, covert retests, training, standalone UI and canonical ingestion.
+- Next: real human Stage A.
+- Later: mixed ~300-target Benchmark v0 and representation/query-policy comparisons.
+
+## Current novelty position
+
+Broad active elicitation, ontology-guided questioning, information gain, Test Cover, coarse MAYBE answers and OOS detection already have prior art.
+
+The candidate integration gap is narrower: **measured semantic-admissibility overhead plus explicit failure-mode semantics across heterogeneous/open-world/pathological targets.**
+
+## Recovery rule
+
+Start from `AGENT_HANDOFF.md`, then read canonical `process/` files. Do not infer scientific progress from chat history alone.
