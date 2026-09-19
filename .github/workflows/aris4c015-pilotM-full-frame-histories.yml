@@ -1,0 +1,115 @@
+name: ARIS4C015 Pilot M full-frame history batches
+
+on:
+  workflow_dispatch:
+    inputs:
+      inventory_run_id:
+        description: "Run ID containing aris4c015-pilotM-full-frame-inventory"
+        required: true
+      resume_run_id:
+        description: "Optional prior history-batch run ID to resume"
+        required: false
+        default: ""
+      case_id:
+        description: "Optional one-case restriction (e.g. ke2015_07_washburn)"
+        required: false
+        default: ""
+      max_new_records:
+        description: "Maximum new histories to reconstruct this run"
+        required: false
+        default: "50"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  histories:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download complete-frame inventory
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c015-pilotM-full-frame-inventory
+          path: tmp/inventory
+          github-token: ${{ github.token }}
+          repository: CochraneK/ARIS4C
+          run-id: ${{ inputs.inventory_run_id }}
+
+      - name: Restore prior checkpoint artifact
+        if: ${{ inputs.resume_run_id != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: aris4c015-pilotM-full-frame-history-checkpoint
+          path: tmp/checkpoint
+          github-token: ${{ github.token }}
+          repository: CochraneK/ARIS4C
+          run-id: ${{ inputs.resume_run_id }}
+
+      - name: Ensure checkpoint path exists
+        run: |
+          mkdir -p tmp/checkpoint
+          touch tmp/checkpoint/pilotM_full_frame_histories.jsonl
+
+      - name: Reconstruct a resumable bounded history batch
+        working-directory: papers/015-sleeping-beauty-miner/code
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          CASE_ID: ${{ inputs.case_id }}
+          MAX_NEW_RECORDS: ${{ inputs.max_new_records }}
+        run: |
+          args=(
+            --inventory ../../../tmp/inventory/pilotM_full_frame_inventory.json
+            --checkpoint ../../../tmp/checkpoint/pilotM_full_frame_histories.jsonl
+            --observation-end-year 2011
+          )
+          if [ -n "${OPENALEX_API_KEY:-}" ]; then
+            args+=(--api-key "$OPENALEX_API_KEY")
+          fi
+          if [ -n "${CASE_ID:-}" ]; then
+            args+=(--only-case-id "$CASE_ID")
+          fi
+          if [ -n "${MAX_NEW_RECORDS:-}" ]; then
+            args+=(--max-new-records "$MAX_NEW_RECORDS")
+          fi
+          python pilotM_full_frame_histories.py "${args[@]}"
+
+      - name: Checkpoint summary
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path("tmp/checkpoint/pilotM_full_frame_histories.jsonl")
+          rows = []
+          if p.exists():
+              for line in p.read_text(encoding="utf-8").splitlines():
+                  if line.strip():
+                      rows.append(json.loads(line))
+          by_case = {}
+          for row in rows:
+              key = row["frame_case_id"]
+              by_case[key] = by_case.get(key, 0) + 1
+          print(json.dumps({
+              "checkpoint_records": len(rows),
+              "records_by_frame_case": by_case,
+          }, indent=2))
+          PY
+
+      - name: Upload resumable checkpoint
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-full-frame-history-checkpoint
+          path: tmp/checkpoint/pilotM_full_frame_histories.jsonl
+          if-no-files-found: error
+          retention-days: 30
