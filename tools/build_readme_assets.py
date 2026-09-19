@@ -189,6 +189,72 @@ def readiness(rows: list[dict]) -> str:
     return "\n".join(s)
 
 
+
+def architecture(rows: list[dict]) -> str:
+    w, h = 1200, 560
+    s = svg_start(w, h, "ARIS4C research system architecture")
+    s += [
+        '<text x="50" y="55" class="title">A research system, not a pile of papers</text>',
+        '<text x="50" y="82" class="sub">Scientific work flows forward; handoff context loops back so another executor can safely continue.</text>',
+    ]
+
+    # primary spine
+    cards = [
+        (50, 150, 180, 112, "01", "Research question", "Idea · hypothesis · scope"),
+        (280, 150, 180, 112, "02", "ARIS engine", "Search · design · critique"),
+        (510, 128, 220, 156, "03", "Paper workspace", "Canonical evidence hub"),
+        (780, 150, 180, 112, "04", "Review gates", "Science · reproducibility"),
+        (1010, 150, 140, 112, "05", "Public output", "EN + ZH PDF"),
+    ]
+    for x, y, cw, ch, num, title, note in cards:
+        fill = "#13233c" if num != "03" else "#17365b"
+        stroke = "#2b466c" if num != "03" else "#77a7ff"
+        s += [
+            f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" rx="18" fill="{fill}" stroke="{stroke}" stroke-width="1.5"/>',
+            f'<text x="{x+18}" y="{y+27}" class="small">{num}</text>',
+            f'<text x="{x+18}" y="{y+58}" class="label" style="font-size:17px;font-weight:700">{esc(title)}</text>',
+            f'<text x="{x+18}" y="{y+84}" class="small">{esc(note)}</text>',
+        ]
+    # arrows
+    for x1, x2 in [(230,280),(460,510),(730,780),(960,1010)]:
+        s += [
+            f'<line x1="{x1}" y1="206" x2="{x2-12}" y2="206" stroke="#6f86a8" stroke-width="3"/>',
+            f'<path d="M{x2-12} 200 L{x2} 206 L{x2-12} 212 Z" fill="#6f86a8"/>',
+        ]
+
+    # paper workspace sublayers
+    subcards = [
+        (385, 348, 195, 90, "Evidence", "data · code · provenance"),
+        (600, 348, 195, 90, "Bilingual paper", "English + 中文"),
+        (815, 348, 195, 90, "Visual narrative", "figures · tables"),
+        (1030, 348, 120, 90, "Handoff", "8-file pack"),
+    ]
+    for x, y, cw, ch, title, note in subcards:
+        s += [
+            f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" rx="16" fill="{PANEL}" stroke="{GRID}"/>',
+            f'<text x="{x+16}" y="{y+35}" class="label" style="font-weight:700">{esc(title)}</text>',
+            f'<text x="{x+16}" y="{y+61}" class="small">{esc(note)}</text>',
+        ]
+    # branch from workspace
+    s += [
+        '<path d="M620 284 C620 320 482 320 482 348" stroke="#466486" stroke-width="2.5" fill="none"/>',
+        '<path d="M620 284 C620 320 697 320 697 348" stroke="#466486" stroke-width="2.5" fill="none"/>',
+        '<path d="M620 284 C620 320 912 320 912 348" stroke="#466486" stroke-width="2.5" fill="none"/>',
+        '<path d="M620 284 C620 320 1090 320 1090 348" stroke="#466486" stroke-width="2.5" fill="none"/>',
+    ]
+
+    # continuity loop / command-center bar
+    s += [
+        '<rect x="50" y="475" width="1100" height="48" rx="14" fill="#0f1a2b" stroke="#20304b"/>',
+        '<text x="72" y="505" class="label" style="font-weight:700">Cross-agent continuity</text>',
+        '<text x="245" y="505" class="small">Git → handoff/ → next computer / account / agent → same canonical paper workspace</text>',
+        '<path d="M1090 438 C1090 468 270 468 270 430" stroke="#77a7ff" stroke-width="2.5" fill="none" stroke-dasharray="8 7"/>',
+        '<path d="M264 437 L270 425 L276 437 Z" fill="#77a7ff"/>',
+        '</svg>',
+    ]
+    return "\n".join(s)
+
+
 def main() -> int:
     _, rows = load()
     ASSET_DIR.mkdir(parents=True, exist_ok=True)
@@ -197,6 +263,7 @@ def main() -> int:
         "portfolio-status.svg": status(rows),
         "portfolio-maturity.svg": maturity(rows),
         "delivery-readiness.svg": readiness(rows),
+        "architecture.svg": architecture(rows),
     }
     for name, content in outputs.items():
         path = ASSET_DIR / name
