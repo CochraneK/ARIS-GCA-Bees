@@ -35,7 +35,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run comparator discovery unit tests
-        run: python -m unittest -q code/test_pilot3_comparator_discovery.py
+        run: python code/test_pilot3_comparator_discovery.py -q
 
       - name: Discover provisional matched comparator candidates
         run: |
