@@ -159,6 +159,7 @@ def match_awakening_risk_sets(
     papers: Sequence[MechanismPaper],
     *,
     controls_per_case: int = 1,
+    case_ids: set[str] | None = None,
     with_replacement: bool = False,
     max_sleep_rate: float = 2.0,
     wake_years: int = 4,
@@ -167,7 +168,12 @@ def match_awakening_risk_sets(
     if controls_per_case < 1:
         raise ValueError("controls_per_case must be >= 1")
 
-    cases = [p for p in papers if p.state == "SLEEPING_BEAUTY"]
+    cases = [
+        p
+        for p in papers
+        if p.state == "SLEEPING_BEAUTY"
+        and (case_ids is None or p.paper_id in case_ids)
+    ]
     used: set[str] = set()
     matches: list[RiskSetMatch] = []
     unmatched: list[str] = []
@@ -301,16 +307,23 @@ def build_awakening_risk_set_contrast(
     papers: Sequence[MechanismPaper],
     *,
     controls_per_case: int = 1,
+    case_ids: set[str] | None = None,
     with_replacement_across_risk_sets: bool = True,
     max_sleep_rate: float = 2.0,
     wake_years: int = 4,
     min_wake_rate: float = 5.0,
     max_abs_smd: float = 0.10,
 ) -> dict:
-    cases = [p for p in papers if p.state == "SLEEPING_BEAUTY"]
+    cases = [
+        p
+        for p in papers
+        if p.state == "SLEEPING_BEAUTY"
+        and (case_ids is None or p.paper_id in case_ids)
+    ]
     matches, unmatched = match_awakening_risk_sets(
         papers,
         controls_per_case=controls_per_case,
+        case_ids=case_ids,
         with_replacement=with_replacement_across_risk_sets,
         max_sleep_rate=max_sleep_rate,
         wake_years=wake_years,
@@ -323,6 +336,13 @@ def build_awakening_risk_set_contrast(
             "from same-field/year papers that were still dormant and at risk?"
         ),
         "design": "event-time risk-set matching",
+        "case_set": (
+            "all_robust_sb"
+            if case_ids is None
+            else "frozen_explicit_case_ids"
+        ),
+        "n_cases": len(cases),
+        "case_ids": sorted(p.paper_id for p in cases),
         "matches": [m.as_dict() for m in matches],
         "unmatched_cases": unmatched,
         "match_rate": len(matched_cases) / len(cases) if cases else 0.0,
