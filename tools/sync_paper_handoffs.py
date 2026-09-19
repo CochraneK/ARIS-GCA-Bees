@@ -27,6 +27,7 @@ BOOTSTRAP_CHAT = {
     "014": "Reuse the research-forensics architecture for public-integrity/corruption-risk screening across government, hospitals, SOEs, research institutes, universities, NGOs/social organizations, and suppliers, with strong China-web coverage and human-review safeguards.",
     "015": "Reuse the research-forensics architecture to discover sleeping-beauty science, keeping retrospective identification, mechanism analysis, and time-safe prospective rediscovery as separate tracks.",
     "016": "Develop a cross-linguistic grammar/atlas of swearing and taboo language, with an orthogonal ontology, cross-community comparability, genealogy, harmonization, and independent/native-speaker reliability gates.",
+    "017": "Extend the language-periodic-table thread into a distinct predictive-language-space paper: test whether typological constraints can forecast held-out, missing, extinct-proxy, and unrealized language configurations without assuming the global circular geometry rejected by ARIS4C002.",
 }
 
 BOOTSTRAP_DECISIONS = {
@@ -54,6 +55,11 @@ BOOTSTRAP_DECISIONS = {
     "014": ["Treat public-data anomalies as auditable leads, never as corruption findings.", "Prefer authoritative stable identifiers; route name-only entity matches to human review."],
     "015": ["Separate retrospective SB identification, mechanism inference, and prospective rediscovery.", "Do not infer mechanisms when the robust SB case set is empty or unstable."],
     "016": ["Build a multi-axis ontology before global prevalence claims.", "Independent/native-speaker reliability is required before treating community labels as comparable."],
+    "017": [
+        "Keep ARIS4C017 distinct from ARIS4C002: 002 tests a simple global circular geometry; 017 tests predictive constraint structure over observed and unobserved typological configurations.",
+        "Treat held-out observed languages and masked feature combinations as the primary falsifiable target before making stronger claims about extinct or unrealized languages.",
+        "Use ARIS4C-017 as the permanent global ID and LING-02 as the thematic series ID; ARIS4C-002 is LING-01."
+    ],
 }
 
 
