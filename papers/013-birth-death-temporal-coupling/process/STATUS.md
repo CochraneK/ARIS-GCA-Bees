@@ -1,7 +1,7 @@
 # STATUS · ARIS4C013
 
 **Project:** Born to Die? Birth–Death Temporal Coupling  
-**Stage:** public NUMIDENT transfer / administrative Pilot 1 gate  
+**Stage:** empirical feasibility / administrative-data transfer gate  
 **Date:** 2026-09-18
 
 ## Completed
@@ -19,6 +19,10 @@
 - [x] Probed guestbook 506: name, email, institution, and position are all required; ARIS4C will not fabricate those fields.
 - [x] Built and CI-tested a raw NUMIDENT fixed-width Pilot 1 parser using the published death-file layout.
 - [x] Preserved the locked discovery window (1988–1996), untouched holdout (1997–2005), and prespecified date-heaping filters in the raw parser.
+- [x] Completed a pre-outcome null-model stress test and upgraded Pilot 1 to **null-model v2** before any administrative coupling outcome was available.
+- [x] Removed exact-age boundary selection from the primary sample: year-gap 19–110 is now the phase-safe primary eligibility rule.
+- [x] Promoted **exact birth year × death year × sex** to the primary marginal-independence null; birth-decade × death-year × sex is retained as a visible sensitivity null.
+- [x] Added a deterministic toy audit showing that an exact-age boundary filter can manufacture an offset-0 O/E of about **2.98** under a true no-effect data-generating process.
 
 ## Pilot 0A result
 The naive same-month/day observed/expected ratio was 2.6768. This is **not evidence of a birthday or astrological effect** because the source is dominated by low-precision date heaping. Excluding all records with day-of-month 1 reduced the ratio to 1.8250 but did not remove the anomaly, so further precision filtering is required.
@@ -33,11 +37,11 @@ Scientifically suitable and unrestricted, but the Harvard Dataverse download is 
 ### Raw NUMIDENT
 The public-use death files are a viable fallback and independent audit source. The death record itself contains birth month/day/year and death month/day/year, plus proof-of-death, DOB-exception, death-source, and verified-EDR fields. The parser and synthetic fixed-width tests are ready.
 
-OpenICPSR V3 publicly lists two NUMIDENT death archives, `NUMDEATH01-10_PU.zip` (~938.4 MB) and `NUMDEATH11-20_PU.zip` (~938.1 MB), under DOI `10.3886/E207202V3`. External replication documentation states that the Public-Use NUMIDENT files have no access or use restrictions and explicitly directs replicators to this OpenICPSR deposit. The remaining blocker is file transfer into the execution environment, not scientific eligibility or a BUNMD identity form. Canonical provenance is frozen in `data/numident_source_manifest.json`.
+OpenICPSR hosts two death archives, approximately 938 MB each, but its download flow requires an authenticated browser/terms session rather than a stable anonymous file API.
 
 ## Open gates
-- **A — Administrative data transfer:** transfer the two public-use raw NUMIDENT V3 death archives into the execution environment and verify archive/file-layout hashes. BUNMD remains an optional cleaned replication route, not a prerequisite.
-- **B — Administrative Pilot 1:** run the locked 1988–1996 discovery immediately after either source is available.
+- **A — Administrative data transfer:** obtain either BUNMD through a truthful guestbook submission or the two raw NUMIDENT death archives through OpenICPSR's authenticated download flow.
+- **B — Administrative Pilot 1:** run the **v2-locked** 1988–1996 discovery immediately after either source is available.
 - **C — Precision audit:** quantify prespecified day 1/4/15 heaping and report exception/source fields before interpreting offset 0.
 - **D — Discovery freeze:** commit discovery results and freeze any justified sensitivity analyses without altering the locked primary specification.
 - **E — Temporal holdout:** evaluate 1997–2005 exactly once.
@@ -50,4 +54,4 @@ OpenICPSR V3 publicly lists two NUMIDENT death archives, `NUMDEATH01-10_PU.zip` 
 Current justified claim: apparent birth–death coupling can be extremely large when date precision is mishandled; the hypothesis is now operationalized for a population-scale administrative test, but the full administrative dataset bytes are not yet present in the execution environment.
 
 ## Immediate next action
-Acquire the two public-use NUMIDENT V3 death archives from OpenICPSR, verify the raw layout, and run the already-locked 1988–1996 Pilot 1. Do not change the design while waiting for file transfer. BUNMD can be added later as a cleaned-source replication.
+The administrative data-transfer gate remains external. While it is unresolved, finish data-independent safeguards (effect-size benchmarks and a mechanically gated holdout runner); once bytes are available, run Pilot 1 v2 without redesigning it from the observed result.
