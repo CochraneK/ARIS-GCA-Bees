@@ -11,8 +11,8 @@
   - source/metadata disagreement.
 - [x] Preserve raw v1 reliability outputs unchanged.
 - [x] Convert `SCHEMA_V2_PROPOSAL.md` into a frozen controlled-vocabulary v2 coding specification (`process/SCHEMA_V2_FROZEN.md` + freeze JSON + blank coding template).
-- [ ] Draw a fresh balanced validation sample. **NEXT bounded unit.**
-- [ ] Run genuinely independent A2/B2 coding under v2.
+- [x] Draw and freeze a fresh 30-record balanced validation sample (5 per stratum; zero Pilot 0B overlap).
+- [ ] Materialize identical blinded evidence packets for the frozen 30-record v2 sample, freeze packet hashes, then run genuinely independent A2/B2 coding under v2.
 - [ ] Require revised reliability to pass before full evidence-map screening.
 
 ## P1 · Evidence-map expansion after schema validation
