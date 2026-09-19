@@ -91,6 +91,14 @@ def main():
         assert summary["retest"]["matched"]==3*8
         assert summary["retest"]["exact_consistency"]==1.0
 
+        protocol_compare=subprocess.run(
+            [sys.executable,str(HERE/"compare_response_protocols.py"),
+             str(combined),"--min-ratings","1"],
+            text=True,capture_output=True,check=True
+        )
+        comparison=json.loads(protocol_compare.stdout)
+        assert comparison["comparable_pairs"]>0
+
         # Tampering check: alter one pair_id and make sure ingest rejects it.
         bad=json.loads(Path(files[0]).read_text(encoding="utf-8"))
         bad["rows"][0]["pair_id"]="tampered-pair"
@@ -107,6 +115,7 @@ def main():
     print("protocols: P2/P3/P6")
     print("synthetic participants: 3")
     print("retest matches: 24")
+    print("P3/coarsened-P6 comparison: PASS")
     print("tampered trial metadata rejected: yes")
 
 
