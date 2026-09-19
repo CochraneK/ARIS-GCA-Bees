@@ -203,6 +203,18 @@ def run_known_case_enrichment(
                 "mechanism_state": (
                     record.get("state") if record else "MISSING_RECORD"
                 ),
+                "relative_quadrant": (
+                    (record.get("mechanism_state") or {}).get(
+                        "quadrant_state"
+                    )
+                    if record
+                    else None
+                ),
+                "post_awakening_fate": (
+                    record.get("post_awakening_fate")
+                    if record
+                    else None
+                ),
                 "robust_sb_gate": (
                     record.get("robust_sb_gate") if record else None
                 ),
