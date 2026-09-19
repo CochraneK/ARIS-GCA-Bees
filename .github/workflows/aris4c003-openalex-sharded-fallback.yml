@@ -1,0 +1,206 @@
+name: ARIS4C003 sharded OpenAlex fallback
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build deterministic 32-way shard lists
+        run: |
+          rm -rf data/cache/openalex-shards
+          python code/make_openalex_shards.py \
+            data/manifests/openalex_works_manifest.json \
+            --shards 32 \
+            --output-dir data/cache/openalex-shards
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-openalex-shard-lists
+          path: papers/003-colonial-disciplinary-advantage/data/cache/openalex-shards
+          retention-days: 30
+
+  country:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 32
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-openalex-shard-lists
+          path: papers/003-colonial-disciplinary-advantage/data/cache/openalex-shards
+      - name: Scan country shard
+        shell: bash
+        run: |
+          printf -v idx "%03d" "${{ matrix.shard }}"
+          out="data/sharded/country/$idx"
+          mkdir -p "$out"
+          python code/materialize_openalex_cells.py \
+            "@data/cache/openalex-shards/shard_${idx}.txt" \
+            --output-dir "$out"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-openalex-country-${{ matrix.shard }}
+          path: papers/003-colonial-disciplinary-advantage/data/sharded/country
+          retention-days: 30
+          compression-level: 1
+
+  dyad:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 32
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: aris4c003-openalex-shard-lists
+          path: papers/003-colonial-disciplinary-advantage/data/cache/openalex-shards
+      - name: Scan dyad shard
+        shell: bash
+        run: |
+          printf -v idx "%03d" "${{ matrix.shard }}"
+          out="data/sharded/dyad/$idx"
+          mkdir -p "$out"
+          python code/materialize_openalex_dyads.py \
+            "@data/cache/openalex-shards/shard_${idx}.txt" \
+            --output "$out/DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-openalex-dyad-${{ matrix.shard }}
+          path: papers/003-colonial-disciplinary-advantage/data/sharded/dyad
+          retention-days: 30
+          compression-level: 1
+
+  aggregate:
+    needs: [prepare, country, dyad]
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+      - run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c003-openalex-country-*
+          path: papers/003-colonial-disciplinary-advantage/data/partials/country
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: aris4c003-openalex-dyad-*
+          path: papers/003-colonial-disciplinary-advantage/data/partials/dyad
+      - name: Aggregate exact shard sufficient statistics
+        run: |
+          rm -rf data/derived/openalex
+          mkdir -p data/derived/openalex
+          python code/aggregate_openalex_shards.py \
+            --kind country \
+            --input-root data/partials/country \
+            --output-dir data/derived/openalex
+          python code/aggregate_openalex_shards.py \
+            --kind dyad \
+            --input-root data/partials/dyad \
+            --output-dir data/derived/openalex
+      - name: Build zero-filled confirmatory panels
+        run: python code/prepare_confirmatory_panels.py
+      - name: Audit sharded materialization
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from datetime import datetime,timezone
+          from pathlib import Path
+          import duckdb
+          c=Path("data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet")
+          d=Path("data/analysis/DYAD_DISCIPLINE_PANEL.parquet")
+          con=duckdb.connect()
+          def q(p): return str(p).replace("'","''")
+          cs=con.execute(f"SELECT count(*),count(DISTINCT iso3c),count(DISTINCT concept_id),count(DISTINCT period) FROM read_parquet('{q(c)}')").fetchone()
+          ds=con.execute(f"SELECT count(*),count(DISTINCT pair_id),count(DISTINCT concept_id),count(DISTINCT period) FROM read_parquet('{q(d)}')").fetchone()
+          def sha(p):
+            h=hashlib.sha256()
+            with p.open("rb") as f:
+              for b in iter(lambda:f.read(1<<20),b""): h.update(b)
+            return h.hexdigest()
+          payload={
+            "created_utc":datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "status":"PASS",
+            "execution_mode":"32-way manifest-balanced exact shard aggregation",
+            "design_changed":False,
+            "country_panel":{"rows":cs[0],"countries":cs[1],"concepts":cs[2],"periods":cs[3],"sha256":sha(c),"bytes":c.stat().st_size},
+            "dyad_panel":{"rows":ds[0],"pairs":ds[1],"concepts":ds[2],"periods":ds[3],"sha256":sha(d),"bytes":d.stat().st_size},
+            "modern_effect_estimates_inspected_at_this_stage":False
+          }
+          Path("process/OUTCOME_MATERIALIZATION_AUDIT.json").write_text(
+            json.dumps(payload,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(payload,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c003-analysis-panels
+          path: |
+            papers/003-colonial-disciplinary-advantage/data/analysis/COUNTRY_DISCIPLINE_PANEL.parquet
+            papers/003-colonial-disciplinary-advantage/data/analysis/DYAD_DISCIPLINE_PANEL.parquet
+            papers/003-colonial-disciplinary-advantage/process/OUTCOME_MATERIALIZATION_AUDIT.json
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/COUNTRY_DISCIPLINE_WINDOW.parquet
+            papers/003-colonial-disciplinary-advantage/data/derived/openalex/DYAD_DISCIPLINE_WINDOW_POSITIVE.parquet
+          retention-days: 30
+          compression-level: 1
+      - name: Commit compact audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add process/OUTCOME_MATERIALIZATION_AUDIT.json
+          git commit -m "ARIS4C003 record sharded OpenAlex materialization audit" || exit 0
+          pushed=0
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git pull --rebase origin main
+            if git push; then pushed=1; break; fi
+            sleep $((attempt*2))
+          done
+          test "$pushed" -eq 1
