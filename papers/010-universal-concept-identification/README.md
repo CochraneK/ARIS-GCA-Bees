@@ -142,7 +142,7 @@ The next scientific gate is human P2/P3/P6 calibration, not further ontology pro
 
 ## Human calibration readiness
 
-The current engineering chain is CI-verified through ARIS4C010 CI run **#43**.
+The current three-protocol engineering chain is recorded as CI-verified through ARIS4C010 runs **#61/#62** in canonical metadata.
 
 Ready artifacts:
 
@@ -150,15 +150,15 @@ Ready artifacts:
 - 1,440-pair full lexical matrix;
 - 720-pair answer-blind lexical calibration subset;
 - 24 mixed semantic stress scenarios;
-- 216-pair blank P6 stress calibration packet;
+- 216-pair blank mixed response-state calibration packet shared across P2/P3/P6;
 - 108 balanced participant forms: 36 P2 + 36 P3 + 36 P6;
 - 84 unique main trials + 8 covert retests per form;
-- 72 platform-neutral form CSV files + index;
+- 108 platform-neutral form CSV files + index;
 - descriptive analysis, retest, and adjudication-triage code;
 - English and Chinese pre-results manuscript scaffolds;
 - figure/table plan.
 
-The next empirical gate requires real human responses. No synthetic/model-generated response is permitted to fill that role.
+The next empirical gate requires ethics/recruitment setup and real human P2/P3/P6 responses. No synthetic/model-generated response is permitted to fill that role.
 
 
 ### Why P3 was added
