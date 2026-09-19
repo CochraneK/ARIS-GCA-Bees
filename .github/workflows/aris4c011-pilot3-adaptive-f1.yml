@@ -1,0 +1,99 @@
+name: ARIS4C011 Pilot 3 Adaptive F1
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/011-research-forensics/code/pilot3_qualify_adaptive_pmc.py"
+      - "papers/011-research-forensics/code/pilot3_f1_significance_direction.py"
+      - ".github/workflows/aris4c011-pilot3-adaptive-f1.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Freeze preserved-original body-text object
+        working-directory: papers/011-research-forensics/code
+        run: |
+          python pilot3_qualify_adaptive_pmc.py \
+            --qualification ../data/results/pilot3_adaptive_body_qualification.json \
+            --detector-object ../data/results/pilot3_adaptive_body_trackA_object.json
+
+      - name: Enforce leakage boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("papers/011-research-forensics/data/results")
+          q=json.loads((root/"pilot3_adaptive_body_qualification.json").read_text())
+          d=json.loads((root/"pilot3_adaptive_body_trackA_object.json").read_text())
+          assert q["qualification"]=="SAFE_EXACT"
+          assert q["track_a_eligible"] is True
+          assert q["defect_state_preserved"] is True
+          assert q["manager_correction_confirms_direction_fix"] is True
+          assert d["safe_exact"] is True
+          assert d["outcome_or_correction_metadata_included"] is False
+          forbidden={"correction_url_manager_only","outcome_date","manager_correction_confirms_direction_fix"}
+          assert forbidden.isdisjoint(d.keys())
+          print(json.dumps({"qualification":q["qualification"],"text":d["text"]},indent=2))
+          PY
+
+      - name: Run content-only F1 detector
+        run: |
+          python "$PAPER_DIR/code/pilot3_f1_significance_direction.py" \
+            --input "$PAPER_DIR/data/results/pilot3_adaptive_body_trackA_object.json" \
+            --output "$PAPER_DIR/data/results/pilot3_adaptive_f1_detection.json"
+
+      - name: Manager-only evaluation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("papers/011-research-forensics/data/results")
+          d=json.loads((root/"pilot3_adaptive_f1_detection.json").read_text())
+          q=json.loads((root/"pilot3_adaptive_body_qualification.json").read_text())
+          assert d["outcome_metadata_used"] is False
+          assert d["correction_metadata_used"] is False
+          label=bool(q["manager_correction_confirms_direction_fix"])
+          flagged=d["finding"]=="FLAG"
+          e={
+            "paper_id":d["paper_id"],
+            "detector_id":d["detector_id"],
+            "detector_output":d["finding"],
+            "frozen_manager_label":"DOCUMENTED_SIGNIFICANCE_P_DIRECTION_ERROR" if label else "LABEL_NOT_CONFIRMED",
+            "true_positive":bool(flagged and label),
+            "false_negative":bool((not flagged) and label),
+            "label_visible_to_detector":False,
+            "misconduct_inference":False,
+          }
+          (root/"pilot3_adaptive_f1_evaluation.json").write_text(json.dumps(e,indent=2)+"\n")
+          print(json.dumps(e,indent=2))
+          assert e["true_positive"] is True
+          PY
+
+      - name: Persist qualification and F1 result
+        run: |
+          git config user.name "ARIS4C Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            "$PAPER_DIR/data/results/pilot3_adaptive_body_qualification.json" \
+            "$PAPER_DIR/data/results/pilot3_adaptive_body_trackA_object.json" \
+            "$PAPER_DIR/data/results/pilot3_adaptive_f1_detection.json" \
+            "$PAPER_DIR/data/results/pilot3_adaptive_f1_evaluation.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "011: add pre-outcome F1 significance-direction true positive"
+            git pull --rebase origin main
+            git push
+          fi
