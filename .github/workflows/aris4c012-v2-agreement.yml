@@ -1,0 +1,95 @@
+name: ARIS4C012 v2 independent reliability
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c012-v2-agreement.yml"
+      - "papers/012-oppositional-causal-inversion/code/freeze_v2_coder.py"
+      - "papers/012-oppositional-causal-inversion/code/score_v2_agreement.py"
+      - "papers/012-oppositional-causal-inversion/code/tests/test_freeze_v2_coder.py"
+      - "papers/012-oppositional-causal-inversion/code/tests/test_score_v2_agreement.py"
+      - "papers/012-oppositional-causal-inversion/data/v2_coding/A2_completed.csv"
+      - "papers/012-oppositional-causal-inversion/data/v2_coding/B2_completed.csv"
+      - "papers/012-oppositional-causal-inversion/process/A2_COMPLETED_FREEZE.json"
+      - "papers/012-oppositional-causal-inversion/process/B2_COMPLETED_FREEZE.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c012-v2-agreement
+  cancel-in-progress: true
+
+jobs:
+  reliability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAPER_DIR: papers/012-oppositional-causal-inversion
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and unit-test v2 reliability tooling
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_freeze_v2_coder.py' -v
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_score_v2_agreement.py' -v
+
+      - name: Enforce no partial coder integration
+        id: state
+        shell: bash
+        run: |
+          set -euo pipefail
+          paths=(
+            "$PAPER_DIR/data/v2_coding/A2_completed.csv"
+            "$PAPER_DIR/data/v2_coding/B2_completed.csv"
+            "$PAPER_DIR/process/A2_COMPLETED_FREEZE.json"
+            "$PAPER_DIR/process/B2_COMPLETED_FREEZE.json"
+          )
+          present=0
+          for p in "${paths[@]}"; do
+            if [ -f "$p" ]; then present=$((present+1)); fi
+          done
+          if [ "$present" -ne 0 ] && [ "$present" -ne 4 ]; then
+            echo "::error::INDEPENDENCE VIOLATION: partial A2/B2 completed state is on main ($present/4 files). Do not expose one coder before the other is frozen."
+            exit 1
+          fi
+          if [ "$present" -eq 4 ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "No completed coder labels on main yet; unit tests only."
+          fi
+
+      - name: Score frozen independent coders
+        if: steps.state.outputs.ready == 'true'
+        run: |
+          mkdir -p "$PAPER_DIR/data/reliability"
+          python "$PAPER_DIR/code/score_v2_agreement.py" \
+            --a2 "$PAPER_DIR/data/v2_coding/A2_completed.csv" \
+            --b2 "$PAPER_DIR/data/v2_coding/B2_completed.csv" \
+            --a2-freeze "$PAPER_DIR/process/A2_COMPLETED_FREEZE.json" \
+            --b2-freeze "$PAPER_DIR/process/B2_COMPLETED_FREEZE.json" \
+            --summary "$PAPER_DIR/data/reliability/v2_reliability_summary.json" \
+            --disagreements "$PAPER_DIR/data/reliability/v2_disagreements.csv"
+
+      - name: Persist v2 reliability only after both freezes
+        if: steps.state.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/reliability/v2_reliability_summary.json" "$PAPER_DIR/data/reliability/v2_disagreements.csv"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ARIS4C012 score frozen v2 independent reliability [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
