@@ -20,20 +20,40 @@ def main() -> int:
         outputs = p.get('outputs', {})
         en = outputs.get('paper_en') in {'complete','final'}
         zh = outputs.get('paper_zh') in {'complete','final'}
+        en_pdf_link = str(links.get('paper_en_pdf', '') or '').strip()
+        zh_pdf_link = str(links.get('paper_zh_pdf', '') or '').strip()
+
+        def pdf_exists(link: str) -> bool:
+            if not link:
+                return False
+            if link.startswith('paper/'):
+                return (ROOT / 'docs' / link).is_file()
+            if link.startswith(('https://', 'http://')):
+                # External PDFs are link-audited elsewhere; presence of a declared stable URL
+                # satisfies the local output audit.
+                return True
+            return (manifest.parent / link).is_file()
+
+        en_pdf = pdf_exists(en_pdf_link)
+        zh_pdf = pdf_exists(zh_pdf_link)
         fig = outputs.get('figures', {}) if isinstance(outputs.get('figures'), dict) else {}
         tab = outputs.get('tables', {}) if isinstance(outputs.get('tables'), dict) else {}
         fig_count = int(fig.get('count', 0) or 0)
         tab_count = int(tab.get('count', 0) or 0)
         exception = str(outputs.get('exception', '') or '').strip()
-        complete = en and zh and ((fig_count > 0 and tab_count > 0) or bool(exception))
-        rows.append((p['id'], p.get('status',''), en, zh, fig_count, tab_count, complete, exception))
+        visuals_ok = (fig_count > 0 and tab_count > 0) or bool(exception)
+        status = p.get('status','')
+        pdf_required = bool(FINAL_RE.search(status))
+        pdf_ok = (en_pdf and zh_pdf) if pdf_required else True
+        complete = en and zh and visuals_ok and pdf_ok
+        rows.append((p['id'], status, en, zh, en_pdf, zh_pdf, fig_count, tab_count, complete, exception))
 
-    print('| ID | status | EN | ZH | figures | tables | output gate |')
-    print('|---|---|---:|---:|---:|---:|---|')
+    print('| ID | status | EN | ZH | EN PDF | ZH PDF | figures | tables | output gate |')
+    print('|---|---|---:|---:|---:|---:|---:|---:|---|')
     failures = []
-    for pid,status,en,zh,figs,tabs,complete,exception in rows:
+    for pid,status,en,zh,en_pdf,zh_pdf,figs,tabs,complete,exception in rows:
         gate = 'PASS' if complete else ('OPEN' if not FINAL_RE.search(status) else 'FAIL')
-        print(f'| {pid} | {status} | {"Y" if en else "N"} | {"Y" if zh else "N"} | {figs} | {tabs} | {gate} |')
+        print(f'| {pid} | {status} | {"Y" if en else "N"} | {"Y" if zh else "N"} | {"Y" if en_pdf else "N"} | {"Y" if zh_pdf else "N"} | {figs} | {tabs} | {gate} |')
         if FINAL_RE.search(status) and not complete:
             failures.append(pid)
     if failures:
