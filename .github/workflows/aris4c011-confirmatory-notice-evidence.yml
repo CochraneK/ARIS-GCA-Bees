@@ -1,0 +1,75 @@
+name: ARIS4C011 confirmatory notice evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c011-confirmatory-notice-evidence.yml"
+      - "papers/011-research-forensics/code/confirmatory_notice_evidence.py"
+      - "papers/011-research-forensics/code/test_confirmatory_notice_evidence.py"
+      - "papers/011-research-forensics/data/protocol/confirmatory_adjudication_packet_v0.csv"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c011-confirmatory-notice-evidence
+  cancel-in-progress: true
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: papers/011-research-forensics
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test manager-side evidence acquisition
+        run: python code/test_confirmatory_notice_evidence.py -q
+      - name: Acquire Crossref PubMed PMC notice evidence availability
+        run: |
+          python code/confirmatory_notice_evidence.py \
+            --input data/protocol/confirmatory_adjudication_packet_v0.csv \
+            --output data/results/confirmatory_notice_evidence_v0.json
+      - name: Audit label-side boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path("data/results/confirmatory_notice_evidence_v0.json").read_text(encoding="utf-8"))
+          assert x["state"]=="MANAGER_EVIDENCE_ACQUIRED_UNADJUDICATED"
+          assert x["row_count"]==80
+          assert x["detector_output_used"] is False
+          assert x["full_notice_text_committed"] is False
+          assert all(r["issue_adjudication_state"]=="UNASSESSED" for r in x["rows"])
+          assert all(r["detector_output_used"] is False for r in x["rows"])
+          print(json.dumps({
+            "rows":80,
+            "route_counts":x["route_counts"],
+            "rows_with_any_acquisition_error":x["rows_with_any_acquisition_error"],
+          },indent=2))
+          PY
+      - name: Commit compact manager-side evidence metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/results/confirmatory_notice_evidence_v0.json
+          if git diff --cached --quiet; then
+            echo "Notice evidence current."
+          else
+            git commit -m "ARIS4C011 acquire manager-side notice evidence v0"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then pushed=1; break; fi
+              sleep $((attempt*2))
+            done
+            test "$pushed" -eq 1
+          fi
