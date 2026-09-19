@@ -50,6 +50,7 @@ jobs:
 
           df = pd.read_csv(base)
           dec = pd.read_csv(decisions)
+          df["adjudication_note"] = df["adjudication_note"].astype("object")
           keys = ["concept_id", "dimension"]
 
           if dec.duplicated(keys).any():
