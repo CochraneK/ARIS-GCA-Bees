@@ -63,8 +63,8 @@ jobs:
       - name: Build human annotation packets
         run: python build_calibration_annotation_packet.py
 
-      - name: Build mixed P6 calibration packet
-        run: python build_mixed_p6_calibration.py
+      - name: Build mixed response-state calibration packet
+        run: python build_mixed_response_calibration.py
 
       - name: Build balanced human participant forms
         run: python build_human_forms.py
@@ -97,10 +97,10 @@ jobs:
             papers/010-universal-concept-identification/data/calibration60/calibration_subset.generated.json
           if-no-files-found: error
 
-      - name: Upload mixed P6 calibration artifact
+      - name: Upload mixed response calibration artifact
         uses: actions/upload-artifact@v4
         with:
-          name: aris4c010-mixed-p6-calibration
+          name: aris4c010-mixed-response-calibration
           path: papers/010-universal-concept-identification/data/mixed_calibration/annotation_packet.generated.json
           if-no-files-found: error
 
