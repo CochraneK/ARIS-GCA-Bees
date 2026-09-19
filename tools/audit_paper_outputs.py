@@ -11,7 +11,13 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ROOT / "papers"
 DASHBOARD = PAPERS / "dashboard.json"
 
-FINAL_RE = re.compile(r"(^|[-_])(final|final-manuscript|submission-ready|submission-package-ready)($|[-_])", re.I)
+# Final-output status is a project-level state, not any internal milestone token.
+# Prefix-anchor it so statuses such as "v2-final-blind-bundle-..." do not
+# accidentally trigger the repository final-output contract.
+FINAL_RE = re.compile(
+    r"^(?:final(?:-manuscript)?|submission-(?:ready|package-ready))(?:$|[-_])",
+    re.I,
+)
 HANDOFF_REQUIRED = [
     "README.md", "STATUS.md", "TODO.md", "DECISIONS.md",
     "CONTEXT.md", "CHATLOG.md", "AGENT_HANDOFF.md", "SESSION_LOG.md",
