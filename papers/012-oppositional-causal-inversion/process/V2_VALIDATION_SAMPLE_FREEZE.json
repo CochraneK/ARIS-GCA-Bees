@@ -1,0 +1,27 @@
+{
+  "sample": "ARIS4C012_V2_FRESH_VALIDATION",
+  "frozen_at": "2026-09-19",
+  "seed": "ARIS4C012-V2-A2B2-20260919",
+  "algorithm": "FNV-1a 32-bit over seed + '|' + dedupe_key; ascending score; tie-break selection_rank",
+  "source_frame": "data/retrieval_v0_2_0/retrieval_candidates.csv",
+  "source_frame_sha": "42c7eb99dedc5927c1541b8b5b19e68617e06d5b",
+  "pilot0_exclusion_source": "data/pilot0_coderA_feasibility.csv",
+  "pilot0_source_sha": "fa733b2532f1ec9666e4414e924923a82d075674",
+  "sample_size": 30,
+  "per_stratum": 5,
+  "strata": [
+    "autonomy_choice",
+    "backfire_iatrogenic",
+    "conflict_security",
+    "economic_network_rebound",
+    "information_attention",
+    "organization_measurement"
+  ],
+  "providers": {
+    "openalex": 14,
+    "crossref": 16
+  },
+  "overlap_with_pilot0": 0,
+  "status": "SAMPLE_FROZEN_EVIDENCE_PACKET_NOT_YET_MATERIALIZED",
+  "next_gate": "materialize identical blinded evidence packets for independent A2/B2 coding under SCHEMA_V2_FROZEN"
+}
