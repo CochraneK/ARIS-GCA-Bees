@@ -20,11 +20,21 @@ Everything else in the scientific manuscript can proceed without additional auth
 
 ## Final upload set
 
-- [ ] Blinded manuscript PDF/Word generated from `MANUSCRIPT_BLINDED.md`.
-- [ ] Separate title page generated from `TITLE_PAGE.template.md`.
-- [ ] Cover letter.
-- [ ] Figure 1 SVG/PDF.
-- [ ] Figure 2 SVG/PDF.
-- [ ] Figure 3 SVG/PDF.
-- [ ] Anonymised supplementary code/results bundle.
+- [x] Blinded manuscript PDF/Word generated from `MANUSCRIPT_BLINDED.md`.
+- [x] Separate title page generated from `TITLE_PAGE.template.md` (author placeholders intentionally remain).
+- [x] Cover letter template generated (author confirmation placeholders intentionally remain).
+- [x] Figure 1 generated as separate uploadable PNG (source SVG retained).
+- [x] Figure 2 generated as separate uploadable PNG (source SVG retained).
+- [x] Figure 3 generated as separate uploadable PNG (source SVG retained).
+- [x] Anonymised supplementary code/results ZIP generated and CI-validated.
 - [ ] Any ScholarOne metadata copied from the title page.
+
+
+## Final reviewed artifact
+
+- Workflow run: `35412714647`
+- Artifact ID: `10575195098`
+- Artifact digest: `sha256:d43a6c0e3a136ff71d918a8ce07df05f2a22dead5c38789457b9c3710007d192`
+- QA verdict: `TECHNICAL_SUBMISSION_PACKAGE_PASS`
+
+Only the author-specific metadata/declarations above and the actual ScholarOne submission remain.
