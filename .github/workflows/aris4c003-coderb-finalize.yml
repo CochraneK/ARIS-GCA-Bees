@@ -1,0 +1,90 @@
+name: ARIS4C003 finalize confirmatory Coder B
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/aris4c003-coderb-finalize.yml"
+      - "papers/003-colonial-disciplinary-advantage/process/gptpage/2026-09-19_ikes-coder-b-qoder-raw.md"
+
+permissions:
+  contents: write
+
+jobs:
+  coder-b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: papers/003-colonial-disciplinary-advantage
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: papers/003-colonial-disciplinary-advantage/code/requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r code/requirements.txt
+
+      - name: Validate blind bundle integrity
+        run: python code/validate_coder_b_blind_bundle.py
+
+      - name: Ingest confirmatory Coder B
+        run: |
+          python code/ingest_coder_b.py \
+            process/gptpage/2026-09-19_ikes-coder-b-qoder-raw.md \
+            --output-csv process/IKES_CODER_B.csv \
+            --output-notes process/IKES_CODER_B.md
+
+      - name: Compute A/B agreement and adjudication queue
+        run: |
+          rm -rf process/ikes_adjudication
+          python code/adjudicate_ikes.py \
+            process/IKES_CODER_A.csv \
+            process/IKES_CODER_B.csv \
+            --output-dir process/ikes_adjudication
+
+      - name: Assert no outcome unlock yet
+        run: |
+          python code/preoutcome_gate.py > process/PREOUTCOME_GATE_AFTER_CODER_B.json || true
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("process/PREOUTCOME_GATE_AFTER_CODER_B.json")
+          obj=json.loads(p.read_text())
+          assert obj["design_status"] == "DESIGN_LOCKED"
+          assert obj["outcome_status"] == "OUTCOME_LOCKED"
+          print(json.dumps(obj, indent=2))
+          PY
+
+      - name: Commit validated Coder B and agreement artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add process/IKES_CODER_B.csv
+          git add process/IKES_CODER_B.md
+          git add process/ikes_adjudication/AGREEMENT_SUMMARY.json
+          git add process/ikes_adjudication/IKES_DISAGREEMENTS.csv
+          git add process/ikes_adjudication/IKES_UNADJUDICATED_MEAN.csv
+          git add process/PREOUTCOME_GATE_AFTER_CODER_B.json
+          if git diff --cached --quiet; then
+            echo "Coder B artifacts already current."
+          else
+            git commit -m "ARIS4C003 ingest confirmatory Coder B and agreement audit"
+            pushed=0
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git pull --rebase origin main
+              if git push; then
+                pushed=1
+                break
+              fi
+              sleep $((attempt * 2))
+            done
+            test "$pushed" -eq 1
+          fi
