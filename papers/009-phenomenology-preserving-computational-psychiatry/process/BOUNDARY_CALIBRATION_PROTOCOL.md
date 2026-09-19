@@ -154,11 +154,41 @@ Therefore:
 
 After locally extracting DAIS-C:
 
-`python code/build_private_boundary_packet.py --root /path/to/daisc --judge-count 3`
+`python code/build_private_boundary_packet.py --root /path/to/daisc --judge-count 6`
 
-After all AI judges finish:
+Start more judges than the ensemble needs, because endpoint quota routinely prevents some from
+finishing. Packet contents are deterministic in the seed: drawing extra judge files does not
+change `judge_01..NN` or `private_key.json`.
 
-`python code/score_boundary_ratings.py --judge judge_01.tsv --judge judge_02.tsv --judge judge_03.tsv --key private_key.json --json-out boundary_score.json --md-out boundary_score.md`
+Then run each judge independently (the executor resumes already-rated items, so the packet can be
+completed across as many runs as endpoint throttling requires):
+
+`python code/run_ai_boundary_judges.py --packet-dir <packet> --prompt-file process/AI_JUDGE_PROMPT_BOUNDARY.md --judge judge_01=MODEL_A --out-dir <ratings> --data-handling "<endpoint retention statement>"`
+
+Freeze inclusion **before unblinding**: a judge enters the ensemble only if
+`items_rated == items_total` and `items_failed == 0`. Partial runs are excluded, never scored on
+the item subset they happened to finish, and must be disclosed to the publisher so the exclusion
+is auditable rather than invisible.
+
+Only after every included judge file is complete and frozen:
+
+`python code/score_boundary_ratings.py --judge <ratings>/rated_judge_01__MODEL_A.tsv --judge ... --key <packet>/private_key.json --json-out boundary_score.json --md-out boundary_score.md`
+
+Publish aggregate-only artifacts (the publisher refuses to write if a judge is incomplete, if the
+judges did not share one frozen prompt hash, if the committed prompt no longer matches what the
+judges were given, or if anything contains source speech):
+
+`python code/publish_boundary_ai_calibration.py --score-json boundary_score.json --score-md boundary_score.md --manifest <ratings>/judge_01__MODEL_A.manifest.json ... --excluded-manifest ... --reason "<disclosure>" --out-dir data/derived/boundary_ai_judges --run-date YYYY-MM-DD`
+
+## Executed outcome — 2026-09-19
+
+Three complete judges (`gpt-oss-120b`, `nemotron-3-ultra`, `stepfun-3.7-flash`), 140/140 items
+each, 0 failures; three further families were started and excluded for quota/route failures.
+Aggregate artifacts live in `data/derived/boundary_ai_judges/`.
+
+Decisions taken under the rules above, and the caveats that survive them, are recorded in
+`AI_JUDGE_CALIBRATION_RESULTS_2026-09-19.md`. The prompt is now history: it cannot be revised
+against these items, so any rerubrication requires a new frozen prompt and a new packet.
 
 ## Interpretation boundary
 

@@ -1,0 +1,105 @@
+name: ARIS4C009 AI-judge calibration audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/data/derived/boundary_ai_judges/**'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/run_ai_boundary_judges.py'
+      - '.github/workflows/aris4c009-ai-judge-audit.yml'
+  pull_request:
+    paths:
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/data/derived/boundary_ai_judges/**'
+      - 'papers/009-phenomenology-preserving-computational-psychiatry/code/run_ai_boundary_judges.py'
+      - '.github/workflows/aris4c009-ai-judge-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assert no private packet material is tracked
+        shell: bash
+        run: |
+          set -euo pipefail
+          paper=papers/009-phenomenology-preserving-computational-psychiatry
+          tracked="$(git ls-files "$paper" | grep -E 'data/raw/|judge_[0-9]+\.tsv|private_key\.json|training_key\.json' || true)"
+          if [ -n "$tracked" ]; then
+            echo "private calibration material is tracked:" >&2
+            echo "$tracked" >&2
+            exit 1
+          fi
+
+      - name: Assert published calibration artifacts carry no interview text
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          root = Path("papers/009-phenomenology-preserving-computational-psychiatry/data/derived/boundary_ai_judges")
+          files = sorted(root.rglob("*"))
+          assert files, f"no published artifacts under {root}"
+          marker = re.compile(r"INTERVIEWER:|PARTICIPANT:", re.IGNORECASE)
+          for path in (p for p in files if p.is_file()):
+              text = path.read_text(encoding="utf-8", errors="replace")
+              assert not marker.search(text), f"source-speech marker found in {path}"
+              longest = max((len(line) for line in text.splitlines()), default=0)
+              assert longest <= 400, f"suspiciously long line ({longest}) in {path}"
+          print(f"checked {sum(1 for p in files if p.is_file())} aggregate artifacts")
+          PY
+
+      - name: Validate published agreement summary structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          root = Path("papers/009-phenomenology-preserving-computational-psychiatry/data/derived/boundary_ai_judges")
+          summary = json.loads((root / "boundary_score.json").read_text(encoding="utf-8"))
+          registry = json.loads((root / "judge_registry.json").read_text(encoding="utf-8"))
+
+          assert summary["judge_count"] >= 3, summary["judge_count"]
+          assert summary["regular_items_scored"] > 0
+          assert set(summary["by_condition"]) == {"A", "B"}, summary["by_condition"]
+          for field, stats in summary["agreement"].items():
+              assert stats["judges"] == summary["judge_count"], (field, stats)
+              assert stats["ac1"] is None or -1 <= stats["ac1"] <= 1, (field, stats)
+          for condition, data in summary["by_condition"].items():
+              assert len(data["judge_usable_rate"]) == summary["judge_count"], condition
+              assert set(data) >= {"majority_modified_rate", "unanimous_modified_rate"}, condition
+
+          judges = registry["judges"]
+          assert len(judges) == summary["judge_count"], (len(judges), summary["judge_count"])
+          assert {j["judge_label"] for j in judges} == set(summary["judge_labels"]), "label mismatch"
+          families = {j["model_family"] for j in judges}
+          assert len(families) >= 3, families
+          for judge in judges:
+              assert judge["model_family"] and judge["execution_date"], judge
+              assert judge["items_failed"] == 0, judge
+              assert judge["items_rated"] == judge["items_total"], judge
+              assert judge["prompt_sha256"] == registry["prompt_sha256"], judge
+
+          if registry["excluded_runs"]:
+              assert registry["exclusion_reason"], "excluded judge runs must be disclosed"
+              for judge in registry["excluded_runs"]:
+                  assert judge["items_rated"] < judge["items_total"], judge
+
+          # The judge run must demonstrably used the prompt now committed in the repository.
+          prompt = Path("papers/009-phenomenology-preserving-computational-psychiatry/"
+                        "process/AI_JUDGE_PROMPT_BOUNDARY.md")
+          frozen = hashlib.sha256(prompt.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+          assert frozen == registry["prompt_sha256"], (frozen, registry["prompt_sha256"])
+          print(f"OK: {summary['judge_count']} judges, {len(families)} model families, "
+                f"{summary['regular_items_scored']} regular items scored, prompt {frozen[:12]}")
+          PY

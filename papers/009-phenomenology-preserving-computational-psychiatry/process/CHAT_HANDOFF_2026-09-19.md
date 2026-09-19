@@ -442,3 +442,15 @@ builder, frozen AI-judge prompt, N-judge scorer, and AMP-SCZ access plan are alr
 Git. The next empirical task is to run the frozen private packet through at least three
 approved heterogeneous AI models, score cross-model agreement, freeze 20-vs-40
 segmentation, and only then proceed to source-only query/relation calibration.
+
+---
+
+## 17. Superseded on 2026-09-19 — Gate C executed
+
+Sections 12 and 16 are preserved as history, not as the live task list. That task is complete:
+the frozen 140-item packet was rated by three blinded, materially different model families,
+cross-model agreement was scored, and the **40-word** segmentation target was selected.
+
+Current state lives in `AI_JUDGE_CALIBRATION_RESULTS_2026-09-19.md` and `STATUS.md`.
+**Do not reopen the 20-vs-40 choice.** Resume from Gate D implementation, and derive any boundary
+label from ≥2-of-3 model consensus.

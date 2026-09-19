@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import statistics
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -22,6 +23,12 @@ FIELDS = (
     "mixed_unrelated_topics",
     "recommended_action",
 )
+# The judge answer that marks a window as failing that criterion.
+FAILING_FLAGS = {
+    "coherent_boundary": "no",
+    "sufficient_nontrivial": "no",
+    "mixed_unrelated_topics": "yes",
+}
 
 
 def load_tsv(path: Path) -> dict[str, dict[str, str]]:
@@ -99,6 +106,98 @@ def usable(row: dict[str, str]) -> bool:
     )
 
 
+def condition_stats(
+    items: list[str], labels: list[str], judges: dict, key: dict
+) -> dict:
+    """Per-strategy rates for one ensemble of judges (leave-one-out sensitivity reuses this)."""
+    by_condition = defaultdict(
+        lambda: {"n": 0, "judge_usable": Counter(), "judge_modified": Counter(),
+                 "field_yes": defaultdict(Counter), "majority_usable": 0,
+                 "unanimous_usable": 0, "majority_modified": 0, "unanimous_modified": 0,
+                 "majority_flag": Counter()})
+    majority_n = len(labels) // 2 + 1
+    for i in items:
+        cond = key["items"][i]["condition"]
+        d = by_condition[cond]
+        d["n"] += 1
+        flags = [usable(judges[label][i]) for label in labels]
+        modified = [
+            judges[label][i]["recommended_action"].strip().lower() in {"merge", "split", "reject"}
+            for label in labels
+        ]
+        for k, label in enumerate(labels):
+            d["judge_usable"][label] += int(flags[k])
+            d["judge_modified"][label] += int(modified[k])
+            for field in FIELDS[:3]:
+                d["field_yes"][field][label] += int(
+                    judges[label][i].get(field, "").strip().lower() == "yes")
+        for field, wanted in FAILING_FLAGS.items():
+            d["majority_flag"][field] += int(
+                sum(1 for label in labels
+                    if judges[label][i].get(field, "").strip().lower() == wanted) >= majority_n)
+        d["majority_usable"] += int(sum(flags) >= majority_n)
+        d["unanimous_usable"] += int(all(flags))
+        d["majority_modified"] += int(sum(modified) >= majority_n)
+        d["unanimous_modified"] += int(all(modified))
+
+    words = defaultdict(list)
+    for i in items:
+        words[key["items"][i]["condition"]].append(key["items"][i]["participant_words"])
+
+    summary = {}
+    for cond, d in sorted(by_condition.items()):
+        n = d["n"]
+        w = words[cond]
+
+        def rate(x: int) -> float | None:
+            return round(x / n, 4) if n else None
+
+        summary[cond] = {
+            "target_participant_words": key["condition_map"][cond],
+            "n": n,
+            "judge_usable_rate": {label: rate(d["judge_usable"][label]) for label in labels},
+            "judge_modified_action_rate": {
+                label: rate(d["judge_modified"][label]) for label in labels
+            },
+            "field_yes_rate": {
+                field: {label: rate(d["field_yes"][field][label]) for label in labels}
+                for field in FIELDS[:3]
+            },
+            "majority_flag_rate": {field: rate(d["majority_flag"][field]) for field in FAILING_FLAGS},
+            "majority_usable_rate": rate(d["majority_usable"]),
+            "unanimous_usable_rate": rate(d["unanimous_usable"]),
+            "majority_modified_rate": rate(d["majority_modified"]),
+            "unanimous_modified_rate": rate(d["unanimous_modified"]),
+            "realised_participant_words": {
+                "median": statistics.median(w) if w else None,
+                "min": min(w) if w else None,
+                "max": max(w) if w else None,
+            },
+        }
+    return summary
+
+
+def judge_response_stats(items: list[str], labels: list[str], judges: dict) -> dict:
+    """Per-judge self-reported confidence and note usage, for outlier diagnosis."""
+    stats = {}
+    for label in labels:
+        confidences = []
+        notes = 0
+        for i in items:
+            row = judges[label][i]
+            try:
+                confidences.append(int(str(row.get("confidence_1_5", "")).strip()))
+            except ValueError:
+                pass
+            notes += int(bool(str(row.get("notes", "")).strip()))
+        stats[label] = {
+            "mean_confidence_1_5": round(statistics.mean(confidences), 4) if confidences else None,
+            "confidence_values": sorted(Counter(confidences).items()),
+            "note_rate": round(notes / len(items), 4) if items else None,
+        }
+    return stats
+
+
 def unique_labels(paths: list[Path]) -> list[str]:
     labels, seen = [], Counter()
     for p in paths:
@@ -128,6 +227,7 @@ def main() -> None:
     for rows in judges.values():
         common &= set(rows)
     regular = sorted(i for i in common if key["items"][i]["stratum"] == "regular")
+    stress = sorted(i for i in common if key["items"][i]["stratum"] == "stress")
 
     agreement = {}
     pairwise = {}
@@ -141,34 +241,16 @@ def main() -> None:
                 [judges[lb][i].get(field, "") for i in regular],
             )
 
-    by_condition = defaultdict(lambda: {"n": 0, "judge_usable": Counter(), "majority_usable": 0, "unanimous_usable": 0})
-    majority_n = len(labels) // 2 + 1
-    for i in regular:
-        cond = key["items"][i]["condition"]
-        flags = {label: usable(judges[label][i]) for label in labels}
-        d = by_condition[cond]
-        d["n"] += 1
-        for label, flag in flags.items():
-            d["judge_usable"][label] += int(flag)
-        n_usable = sum(flags.values())
-        d["majority_usable"] += int(n_usable >= majority_n)
-        d["unanimous_usable"] += int(n_usable == len(labels))
-
-    condition_summary = {}
-    for cond, d in sorted(by_condition.items()):
-        n = d["n"]
-        condition_summary[cond] = {
-            "target_participant_words": key["condition_map"][cond],
-            "n": n,
-            "judge_usable_rate": {
-                label: round(d["judge_usable"][label] / n, 4) if n else None for label in labels
-            },
-            "majority_usable_rate": round(d["majority_usable"] / n, 4) if n else None,
-            "unanimous_usable_rate": round(d["unanimous_usable"] / n, 4) if n else None,
-        }
+    condition_summary = condition_stats(regular, labels, judges, key)
+    leave_one_out = {}
+    for dropped in labels:
+        subset = [label for label in labels if label != dropped]
+        if len(subset) < 2:
+            continue
+        leave_one_out[f"without_{dropped}"] = condition_stats(regular, subset, judges, key)
 
     actions = {}
-    for cond in sorted(by_condition):
+    for cond in condition_summary:
         ids = [i for i in regular if key["items"][i]["condition"] == cond]
         actions[cond] = {
             label: dict(Counter(judges[label][i]["recommended_action"].strip().lower() for i in ids))
@@ -182,6 +264,9 @@ def main() -> None:
         "agreement": agreement,
         "pairwise_agreement": pairwise,
         "by_condition": condition_summary,
+        "judge_response_stats": judge_response_stats(regular, labels, judges),
+        "stress_descriptive": condition_stats(stress, labels, judges, key),
+        "sensitivity_leave_one_out": leave_one_out,
         "recommended_action_counts": actions,
         "interpretation_boundary": (
             "Automated engineering calibration only. Cross-model agreement is not human "
@@ -194,15 +279,53 @@ def main() -> None:
     mout.parent.mkdir(parents=True, exist_ok=True)
     jout.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
 
-    strategy_header = "| Condition | Target words | N | " + " | ".join(labels) + " | Majority usable | Unanimous usable |"
-    strategy_sep = "|---|---:|---:|" + "|".join(["---:"] * len(labels)) + "|---:|---:|"
+    strategy_header = ("| Condition | Target words | N | " + " | ".join(labels)
+                       + " | Majority usable | Unanimous usable | Majority modified | Unanimous modified |")
+    strategy_sep = "|---|---:|---:|" + "|".join(["---:"] * len(labels)) + "|---:|---:|---:|---:|"
     strategy_rows = []
     for cond, d in condition_summary.items():
         vals = [str(d["judge_usable_rate"][label]) for label in labels]
         strategy_rows.append(
             f"| {cond} | {d['target_participant_words']} | {d['n']} | "
             + " | ".join(vals)
-            + f" | {d['majority_usable_rate']} | {d['unanimous_usable_rate']} |"
+            + f" | {d['majority_usable_rate']} | {d['unanimous_usable_rate']} "
+            + f"| {d['majority_modified_rate']} | {d['unanimous_modified_rate']} |"
+        )
+
+    loo_rows = []
+    for dropped, stats in leave_one_out.items():
+        for cond, d in stats.items():
+            loo_rows.append(
+                f"| {dropped} | {cond} | {d['target_participant_words']} | {d['n']} "
+                f"| {d['unanimous_usable_rate']} | {d['unanimous_modified_rate']} |"
+            )
+
+    detail_header = (
+        "| Condition | Target words | N | Majority usable | Unanimous usable "
+        "| Majority modified | Unanimous modified | "
+        + " | ".join(f"≥majority fail on {f}" for f in FAILING_FLAGS)
+        + " | Realised participant words |"
+    )
+    detail_sep = "|---|---:|---:|---:|---:|---:|---:|" + "---:|" * len(FAILING_FLAGS) + "---:|"
+
+    def detail_rows(stats: dict) -> list[str]:
+        rows = []
+        for cond, d in stats.items():
+            w = d["realised_participant_words"]
+            rows.append(
+                f"| {cond} | {d['target_participant_words']} | {d['n']} "
+                f"| {d['majority_usable_rate']} | {d['unanimous_usable_rate']} "
+                f"| {d['majority_modified_rate']} | {d['unanimous_modified_rate']} "
+                + "".join(f" | {d['majority_flag_rate'][f]}" for f in FAILING_FLAGS)
+                + f" | median {w['median']}, range {w['min']}-{w['max']} |"
+            )
+        return rows
+
+    resp_rows = []
+    for label, d in result["judge_response_stats"].items():
+        counts = ", ".join(f"{value}x{count}" for value, count in d["confidence_values"])
+        resp_rows.append(
+            f"| {label} | {d['mean_confidence_1_5']} | {d['note_rate']} | {counts} |"
         )
 
     agr_rows = []
@@ -213,6 +336,21 @@ def main() -> None:
     for field, pairs in pairwise.items():
         for pair, d in pairs.items():
             pair_rows.append(f"| {field} | {pair} | {d['n']} | {d['agreement']} | {d['ac1']} |")
+
+    yes_header = "| Condition | Field | Target words | " + " | ".join(labels) + " |"
+    yes_sep = "|---|---|---:|" + "|".join(["---:"] * len(labels)) + "|"
+    yes_rows = []
+    for cond, d in condition_summary.items():
+        for field in FIELDS[:3]:
+            vals = [str(d["field_yes_rate"][field][label]) for label in labels]
+            yes_rows.append(f"| {cond} | {field} | {d['target_participant_words']} | " + " | ".join(vals) + " |")
+
+    mod_header = "| Condition | Target words | " + " | ".join(labels) + " |"
+    mod_sep = "|---|---:|" + "|".join(["---:"] * len(labels)) + "|"
+    mod_rows = []
+    for cond, d in condition_summary.items():
+        vals = [str(d["judge_modified_action_rate"][label]) for label in labels]
+        mod_rows.append(f"| {cond} | {d['target_participant_words']} | " + " | ".join(vals) + " |")
 
     md = f"""# ARIS4C009 · AI boundary calibration summary
 
@@ -233,6 +371,50 @@ def main() -> None:
 | Field | Judge pair | N | Percent agreement | Gwet AC1 |
 |---|---|---:|---:|---:|
 {chr(10).join(pair_rows)}
+
+## Per-field "yes" rate by blinded strategy
+
+Higher is better for `coherent_boundary` and `sufficient_nontrivial`; lower is better for `mixed_unrelated_topics`.
+
+{yes_header}
+{yes_sep}
+{chr(10).join(yes_rows)}
+
+## Modified-action (merge/split/reject) rate per judge
+
+{mod_header}
+{mod_sep}
+{chr(10).join(mod_rows)}
+
+## Ensemble failure flags and realised window size (regular items)
+
+{detail_header}
+{detail_sep}
+{chr(10).join(detail_rows(condition_summary))}
+
+## Stress stratum, descriptive only
+
+These windows are excluded from the primary comparison. They sample below-target tails and
+>250-word windows, so a usable rate that collapses here is the rubric working as intended.
+
+{detail_header}
+{detail_sep}
+{chr(10).join(detail_rows(result["stress_descriptive"]))}
+
+## Judge response behaviour on regular items
+
+| Judge | Mean confidence (1-5) | Note written | Confidence value counts |
+|---|---:|---:|---|
+{chr(10).join(resp_rows)}
+
+## Leave-one-judge-out sensitivity (full agreement within each reduced ensemble)
+
+With two remaining judges, majority and unanimous consensus coincide; these columns are
+the strict-agreement view and test whether the strategy ordering depends on one family.
+
+| Ensemble | Condition | Target words | N | Strict usable | Strict modified |
+|---|---|---:|---:|---:|---:|
+{chr(10).join(loo_rows)}
 
 ## Interpretation boundary
 
