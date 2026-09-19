@@ -92,12 +92,12 @@
       "blocker": "Historical table image replay/qualification remains the object-level gate"
     },
     "012": {
-      "progress": 63,
-      "stage": "Pilot 0A complete · Coder B gate",
-      "activity": "gated",
-      "evidence": "165-record reproducible retrieval + Coder A + prior-art saturation audit + methods/schema work",
-      "next_gate": "Ingest genuinely independent WorkBuddy Coder B and adjudicate reliability",
-      "blocker": "Independent Coder B output missing"
+      "progress": 66,
+      "stage": "Pilot 0B complete · adjudication gate",
+      "activity": "active",
+      "evidence": "165-record reproducible retrieval + Coder A + genuinely independent 30-record Coder B; reliability summary READY_FOR_ADJUDICATION with 141 disagreement cells",
+      "next_gate": "Adjudicate disagreements, reconcile mechanism taxonomy, and freeze post-adjudication reliability before broader claims",
+      "blocker": "No missing independent coder; current gate is substantive adjudication, especially low-agreement mechanism/causal-strength fields"
     },
     "013": {
       "progress": 50,
