@@ -201,5 +201,5 @@ python tools/portfolio_queue.py
 
 ---
 
-Maintainer: **Cochrane Kang**  
+Maintainer: **CochraneK**  
 Research hub: **https://cochranek.github.io/ARIS4C/**
