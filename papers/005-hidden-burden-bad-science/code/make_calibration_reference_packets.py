@@ -84,6 +84,7 @@ def build_packets(
             "P_HIGH_REVIEW",
             "P_REVIEW",
             "N_PROCESS_REVIEW",
+            "N_ERROR_REVIEW",
         }:
             continue
 
