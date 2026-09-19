@@ -101,3 +101,29 @@ A fresh different-family reviewer wrote `MANUSCRIPT_REVIEW_RECEIPT.md`. Verdict 
 ### Next step
 
 **Target-journal formatting / submission preparation (editorial only).** The maximum permitted claim is frozen at the bounded wording in §Scientific freeze; it may be narrowed during formatting but not broadened without a new review cycle. No further primary-executor scientific expansion should be added merely to keep the project moving. Any new substantive model family (e.g. torus/multi-cycle) is a new hypothesis and should not be introduced post hoc into Paper 002.
+
+
+## Submission-package gate · 2026-09-19
+
+**State:** TECHNICAL PACKAGE COMPLETE
+
+Primary target: **Linguistic Typology**
+
+Completed:
+- independent manuscript review: `PASS_SUBMISSION_PREP`;
+- journal-specific blinded manuscript formatting;
+- 160-word abstract + 5 keywords;
+- six in-manuscript tables;
+- three in-manuscript and separately uploadable figures;
+- title-page / cover-letter / declarations templates;
+- anonymised Stage 0–1I supplement;
+- pinned contemporary reproduction environment;
+- supplement CI;
+- DOCX/PDF generation workflow;
+- full 31-page final visual QA;
+- anonymisation scans;
+- final artifact provenance recorded in `submission/linguistic-typology/SUBMISSION_QA.md`.
+
+**Remaining hard gate:** author-supplied submission metadata and explicit declarations, followed by ScholarOne upload/submit.
+
+No additional scientific analysis or manuscript expansion is currently required.
