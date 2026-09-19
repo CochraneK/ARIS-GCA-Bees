@@ -15,7 +15,9 @@
 
 ## P1 · Confirmatory transition
 
-- [ ] Expand the time-safe corpus beyond the development examples.
+- [x] Freeze a first detector-output-blind broader-corpus feasibility frame: 80 records across 20 balanced 2016–2025 × correction/retraction strata, with all 42 development-exposed DOIs excluded.
+- [ ] Build manager-only issue-adjudication packets for the frozen 80 records; assign issue family / ground-truth tier / required artifact role without detector outputs.
+- [ ] Run time-safe artifact qualification on the adjudicated frame and freeze SAFE_EXACT / PROXY_ONLY / BLOCKED attrition before any performance scoring.
 - [ ] Freeze grouped and temporal split manifests.
 - [ ] Freeze detector versions, known-defect registry, applicability rules and thresholds.
 - [ ] Validate that no label-bearing metadata reaches model-visible features.
