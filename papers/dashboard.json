@@ -7,7 +7,7 @@
       "progress": 100,
       "stage": "Submission package ready · output gate PASS",
       "activity": "quiet",
-      "evidence": "Final EN + ZH manuscripts, reproducible synthesis, 3 figures, 3 tables, journal package",
+      "evidence": "Final EN + ZH manuscripts and PDFs, reproducible synthesis, 5 figures, 3 tables, journal package",
       "next_gate": "Author portal submission",
       "blocker": "None scientific; author-only portal/contact fields"
     },
@@ -15,7 +15,7 @@
       "progress": 100,
       "stage": "Submission package ready · output gate PASS",
       "activity": "quiet",
-      "evidence": "Final EN + ZH manuscripts; independent PASS_SUBMISSION_PREP; 3 figures; 6 tables; Linguistic Typology technical package PASS",
+      "evidence": "Final EN + ZH manuscripts and PDFs; independent PASS_SUBMISSION_PREP; 6 figures; 6 tables; Linguistic Typology technical package PASS",
       "next_gate": "Author metadata/declarations + ScholarOne submission",
       "blocker": "None scientific; author-only metadata/declarations and portal submission"
     },
