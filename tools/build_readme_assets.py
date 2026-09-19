@@ -225,7 +225,7 @@ def architecture(rows: list[dict]) -> str:
     # paper workspace sublayers
     subcards = [
         (385, 348, 195, 90, "Evidence", "data · code · provenance"),
-        (600, 348, 195, 90, "Bilingual paper", "English + 中文"),
+        (600, 348, 195, 90, "Bilingual paper", "EN + ZH"),
         (815, 348, 195, 90, "Visual narrative", "figures · tables"),
         (1030, 348, 120, 90, "Handoff", "8-file pack"),
     ]
