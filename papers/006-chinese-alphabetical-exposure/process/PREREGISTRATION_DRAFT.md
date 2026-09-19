@@ -294,6 +294,38 @@ Model:
 Secondary-2 estimand:
 - `beta3`.
 
+### Frozen H3 sampling frame
+
+H3 is nested inside the already frozen field-year-balanced primary work frame.
+
+Candidate seed authors are unique canonical authors who appear as focal rows in
+the primary frame during 2014–2020.
+
+A candidate is retained only when full-history reconstruction verifies that:
+- their first observed eligible article/conference-paper year is `e` in 2014–2020;
+- they have at least one primary-frame focal row in that same entry year `e`;
+- an eligible entry-year work contains a CN-affiliated authorship;
+- the 3-year clean lookback and frozen identity rules pass.
+
+Authors sampled only after their true entry year are excluded, preventing later
+survival from becoming a route into the confirmatory H3 cohort.
+
+There is no second-stage outcome-dependent author sampling: all validated
+entrants are retained subject to frozen exclusions.
+
+Before H3 may run, the outcome-blind cohort build must contain:
+- >=1,000 validated entry authors before the early-exposure requirement;
+- >=750 authors after all frozen H3 focal-variable requirements;
+- all 7 entry years;
+- >=20 of 26 entry primary fields;
+- >=100 ORCID-anchored authors;
+- >=500 low-identity-risk authors.
+
+If these structural thresholds fail, H3 is removed from the confirmatory family
+rather than changing the sampling rule after persistence is observed.
+
+Full rule: `LONGITUDINAL_SAMPLING_RULE.md`.
+
 This is interpreted associationally/mechanistically.
 
 ## 14. Structural supportive model
