@@ -304,7 +304,7 @@ python tools/portfolio_queue.py
 
 ---
 
-Maintainer: **Cochrane Kang**  
+Maintainer: **CochraneK**  
 Research hub: **https://cochranek.github.io/ARIS4C/**
 """
 
@@ -488,7 +488,7 @@ python tools/sync_paper_handoffs.py
 
 ---
 
-维护者：**Cochrane Kang**  
+维护者：**CochraneK**  
 Research hub：**https://cochranek.github.io/ARIS4C/**
 """
 
