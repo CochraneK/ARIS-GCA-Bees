@@ -226,6 +226,17 @@ def build_mechanism_cohort(
                         author_count=paper.author_count,
                         early_citation_count=early_count,
                         source_id=paper.source_id,
+                        annual_citation_counts=counts,
+                        robust_sleep_years=(
+                            robust.van_raan.sleep_years
+                            if robust.robust_sb
+                            else None
+                        ),
+                        robust_sleep_rate=(
+                            robust.van_raan.sleep_rate
+                            if robust.robust_sb
+                            else None
+                        ),
                     )
                 )
 
