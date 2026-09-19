@@ -116,12 +116,12 @@
       "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
     },
     "015": {
-      "progress": 83,
-      "stage": "Track M · case-definition harmonization rerun",
+      "progress": 86,
+      "stage": "Track M · event-time risk-set balance gate",
       "activity": "active",
-      "evidence": "Track A: 13 retrospective robust-gate candidates/150. Artifact audit found some have high early-attention percentiles; canonical SB now requires robust gate + early-low + late-high versus unselected field/year reference.",
-      "next_gate": "Complete corrected canonical-state rerun; only then assess control-support expansion",
-      "blocker": "Absolute robust gate and cohort-relative mechanism state must agree before substantive matching"
+      "evidence": "Pilot M v3: 153 real OpenAlex papers, 5 robust SB, all 3 literature-reference cases recovered, 5/5 at-risk-dormant matches; risk-set max abs SMD 0.950; latest code CI PASS",
+      "next_gate": "Expand at-risk control reservoir without relaxing SMD<0.10; then validate OpenAlex B against SciSciNet-v2/independent source",
+      "blocker": "Observed-covariate balance still fails and OpenAlex B calibration remains provisional"
     },
     "016": {
       "progress": 55,
