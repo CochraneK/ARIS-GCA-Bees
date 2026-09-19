@@ -1,0 +1,86 @@
+{
+  "classification": "SB1_EARLY_CITATION_BASELINE_ENGINEERING_NOT_CAUSAL",
+  "target": "outcome_awakening_within_horizon_after_landmark",
+  "rows_eligible": 200,
+  "positives": 56,
+  "prevalence": 0.28,
+  "feature_columns": [
+    "feature_citations_cumulative",
+    "feature_citations_last_year",
+    "feature_citations_max_annual",
+    "feature_citations_mean_annual",
+    "feature_zero_citation_years",
+    "feature_positive_citation_years",
+    "feature_citation_slope"
+  ],
+  "validation": "publication-year-blocked out-of-fold",
+  "folds_requested": 5,
+  "folds_realized": 5,
+  "metrics": {
+    "auc": 0.6139012896825397,
+    "brier": 0.19733870195136421,
+    "log_loss": 0.5817412407209631,
+    "prevalence_baseline_brier": 0.20450035927253485,
+    "prevalence_baseline_log_loss": 0.6002341598066596,
+    "brier_improvement_vs_prevalence_baseline": 0.007161657321170634
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "test_year_min": 1990,
+      "test_year_max": 1993,
+      "train_n": 169,
+      "test_n": 31,
+      "train_prevalence": 0.2958579881656805,
+      "test_prevalence": 0.1935483870967742,
+      "model_status": "LOGISTIC"
+    },
+    {
+      "fold": 1,
+      "test_year_min": 1994,
+      "test_year_max": 1996,
+      "train_n": 163,
+      "test_n": 37,
+      "train_prevalence": 0.3006134969325153,
+      "test_prevalence": 0.1891891891891892,
+      "model_status": "LOGISTIC"
+    },
+    {
+      "fold": 2,
+      "test_year_min": 1997,
+      "test_year_max": 1999,
+      "train_n": 164,
+      "test_n": 36,
+      "train_prevalence": 0.27439024390243905,
+      "test_prevalence": 0.3055555555555556,
+      "model_status": "LOGISTIC"
+    },
+    {
+      "fold": 3,
+      "test_year_min": 2000,
+      "test_year_max": 2002,
+      "train_n": 152,
+      "test_n": 48,
+      "train_prevalence": 0.25,
+      "test_prevalence": 0.375,
+      "model_status": "LOGISTIC"
+    },
+    {
+      "fold": 4,
+      "test_year_min": 2003,
+      "test_year_max": 2005,
+      "train_n": 152,
+      "test_n": 48,
+      "train_prevalence": 0.27631578947368424,
+      "test_prevalence": 0.2916666666666667,
+      "model_status": "LOGISTIC"
+    }
+  ],
+  "warnings": [
+    "Only whitelisted feature_* columns are used; full-history outcomes are excluded from predictors.",
+    "This small engineering pilot is not a final predictive model.",
+    "Prediction does not identify causal suppression by integrity failures.",
+    "Current features are early citation trajectory only; semantic/network predictors must be frozen at the same landmark before addition.",
+    "No universal Sleeping Beauty threshold is used."
+  ]
+}
