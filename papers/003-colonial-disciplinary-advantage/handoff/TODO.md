@@ -9,10 +9,10 @@
 - [x] Correct dyad denominator to use all identifiable countries before analysis-universe restriction.
 - [x] Diagnose first monolithic OpenAlex failure (run 35423271792): invalid DuckDB `WITH ... COPY` syntax in country materializer.
 - [x] Fix that parser defect in commit `fe82cb54af0c1c0f349d7dfbf16f5eaf636627c3`.
-- [ ] Validate the repaired country materializer on a real OpenAlex shard.
-- [ ] Dispatch `.github/workflows/aris4c003-openalex-sharded-fallback.yml` (32-way deterministic manifest-balanced country + dyad extraction).
-- [ ] Require exact shard aggregation and build zero-filled country/dyad panels.
-- [ ] Let `.github/workflows/aris4c003-models.yml` auto-chain only from a successful materialization run.
+- [x] Validate the repaired country materializer on a real OpenAlex shard (shard 000 PASS; 9,226 rows across two parquet outputs).
+- [x] Dispatch and complete `.github/workflows/aris4c003-openalex-sharded-fallback.yml` (run 35436625005; 32/32 country + 32/32 dyad shards PASS).
+- [x] Require exact shard aggregation and build zero-filled country/dyad panels; materialization audit PASS with `design_changed=false`.
+- [x] Let `.github/workflows/aris4c003-models.yml` auto-chain only from a successful materialization run; run 35438449846 is executing.
 - [ ] Require `FIRST_RESULT_LOCK.json` before any human interpretation of headline coefficients.
 - [ ] After lock: inspect 3 headline PPMLs, complete D01-D21 LOO, 3×999 fixed-seed IKES permutations, temporal profiles, and imperial-center corroboration.
 
