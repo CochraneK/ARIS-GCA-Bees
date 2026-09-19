@@ -1,0 +1,63 @@
+name: ARIS4C013 holdout and effect gate CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/code/effect_size.py'
+      - 'papers/013-birth-death-temporal-coupling/code/holdout_release_gate.py'
+      - 'papers/013-birth-death-temporal-coupling/code/pilot1_numident_holdout.py'
+      - 'papers/013-birth-death-temporal-coupling/code/pilot1_numident_raw.py'
+      - 'papers/013-birth-death-temporal-coupling/code/pilot1_bunmd_discovery.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_effect_size.py'
+      - 'papers/013-birth-death-temporal-coupling/code/test_holdout_release_gate.py'
+      - 'papers/013-birth-death-temporal-coupling/process/HOLDOUT_RELEASE.json'
+      - 'papers/013-birth-death-temporal-coupling/process/HOLDOUT_RELEASE_DECISION.json'
+      - '.github/workflows/aris4c013-holdout-gate-ci.yml'
+  pull_request:
+    paths:
+      - 'papers/013-birth-death-temporal-coupling/**'
+      - '.github/workflows/aris4c013-holdout-gate-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check pandas numpy
+
+      - name: Compile Pilot 1 code
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        run: |
+          python -m py_compile             effect_size.py             holdout_release_gate.py             pilot1_numident_raw.py             pilot1_numident_holdout.py             pilot1_bunmd_discovery.py
+
+      - name: Run unit tests
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        run: |
+          python -m unittest -v             test_effect_size.py             test_holdout_release_gate.py             test_pilot1_numident_raw.py
+
+      - name: Assert default holdout remains locked
+        working-directory: papers/013-birth-death-temporal-coupling/code
+        shell: bash
+        run: |
+          set +e
+          python holdout_release_gate.py --manifest ../process/HOLDOUT_RELEASE.json
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then
+            echo "Expected HOLDOUT_LOCKED exit code 2; got $code"
+            exit 1
+          fi
+          echo "Default holdout gate correctly remains locked."
