@@ -84,12 +84,12 @@
       "blocker": "External human-study gate: ethics/exemption determination, recruitment/platform setup, and real participant semantic calibration; LLM/synthetic responses cannot substitute"
     },
     "011": {
-      "progress": 80,
-      "stage": "Pilot 3 · formatting control passed · comparator construction",
+      "progress": 84,
+      "stage": "Pilot 3 · six development FLAGs · comparator freeze · confirmatory transition",
       "activity": "active",
-      "evidence": "Five SAFE_EXACT/time-safe development true-positive evaluations across F5/F3/F8/F3/F1 plus a SAFE_EXACT formatting/honest-error control: DOI 10.1371/journal.pone.0263337 yielded 10/10 PASS findings, 0 flags, review priority NONE, and no misconduct inference with correction metadata hidden",
-      "next_gate": "Build a small matched no-known-integrity-concern comparator set, then continue the unresolved voxel/Brodmann-area table acquisition and produce a descriptive development complementarity/abstention summary before confirmatory freeze",
-      "blocker": "No immediate hard blocker; confirmatory inference remains gated on a broader time-safe corpus, grouped/temporal split freeze, detector/version/applicability freeze, leakage audit, and human-review protocol"
+      "evidence": "Six time-safe pre-outcome development FLAG evaluations across five target papers (F5/F3/F8/F3/F1/F3); SAFE_EXACT formatting/honest-error control remains 10 PASS, 0 FLAG, review priority NONE; four matched no-known-integrity-concern development comparators selected independently of detector output passed notice screening and had retrieved full-text versions frozen by SHA-256. The descriptive development summary records complementarity and five real ABSTAIN checks without confirmatory performance claims.",
+      "next_gate": "Expand the broader time-safe comparator/case corpus, then freeze grouped/temporal splits, detector versions and applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring.",
+      "blocker": "No immediate hard blocker; confirmatory inference remains gated on broader time-safe corpus scale-up and a complete protocol freeze."
     },
     "012": {
       "progress": 66,
@@ -152,5 +152,6 @@
     "selection_rule": "continue active first; when additional genuine execution capacity is available, choose the highest-progress wait paper; exclude block and finish unless explicitly overridden",
     "checkpoint_rule": "commit each bounded substantive work unit and sync handoff before intentionally switching papers",
     "active_recency_default_hours": 2
-  }
+  },
+  "updated": "2026-09-19"
 }
