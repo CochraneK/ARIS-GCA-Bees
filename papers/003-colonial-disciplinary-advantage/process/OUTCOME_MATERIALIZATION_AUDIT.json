@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-09-19T10:49:30+00:00",
+  "status": "PASS",
+  "execution_mode": "32-way manifest-balanced exact shard aggregation",
+  "design_changed": false,
+  "country_panel": {
+    "rows": 15540,
+    "countries": 148,
+    "concepts": 21,
+    "periods": 5,
+    "sha256": "113d872cf3ca25182f1795626156d13c96bfba669d0cef76c7f8b7e8f0565043",
+    "bytes": 450263
+  },
+  "dyad_panel": {
+    "rows": 1269450,
+    "pairs": 12090,
+    "concepts": 21,
+    "periods": 5,
+    "sha256": "0443aa6b3f03ca89d01e5ee19b218b81456188d9425fa90f9139617ce2193889",
+    "bytes": 6489817
+  },
+  "modern_effect_estimates_inspected_at_this_stage": false
+}
