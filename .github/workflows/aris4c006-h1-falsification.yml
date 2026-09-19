@@ -49,6 +49,8 @@ jobs:
             --convention-contributions "../../frozen/convention/convention_work_contributions_all_fields.csv" \
             --out data/confirmatory/falsification/loao_frame.csv \
             --manifest data/confirmatory/falsification/loao_manifest.json
+      - name: Install Python falsification dependency
+        run: python -m pip install --disable-pip-version-check numpy==2.3.3
       - name: Build future placebo and 1000-permutation diagnostics
         working-directory: ${{ env.PAPER_DIR }}
         run: |
