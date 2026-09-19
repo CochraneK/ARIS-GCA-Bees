@@ -167,7 +167,7 @@ def showcase_card(p: dict, dashboard: dict) -> str:
     ])
     last_commit = p.get("_last_commit", "")
     return f"""
-      <article class="paper-card showcase-card" data-showcase-original="true" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-last-commit="{esc(last_commit)}" data-search="{esc(search_blob)}">
+      <article class="showcase-card" data-showcase-original="true" data-id="{esc(p.get('id'))}" data-progress="{progress}" data-activity="{esc(activity_class)}" data-last-commit="{esc(last_commit)}" data-search="{esc(search_blob)}">
         <div class="showcase-top">
           <span class="showcase-id">#{esc(p.get('id'))}</span>
           <span class="showcase-state"><i></i>{esc(activity_text)}</span>
@@ -184,6 +184,7 @@ def showcase_card(p: dict, dashboard: dict) -> str:
 
 def build(papers: list[dict], dashboard: dict) -> str:
     projects = dashboard.get("projects", {})
+    cards = "\n".join(card(p, dashboard) for p in papers)
     showcase = "\n".join(showcase_card(p, dashboard) for p in papers)
     progresses = [int(projects.get(str(p.get("id")), {}).get("progress", 0)) for p in papers]
     avg = round(sum(progresses) / len(progresses)) if progresses else 0
@@ -266,7 +267,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
           </div>
         </div>
 
-        <section class="showcase" aria-labelledby="showcaseTitle">
+        <section id="showcaseSection" class="showcase" aria-labelledby="showcaseTitle">
           <div class="showcase-head">
             <div>
               <p class="eyebrow">LIVE RESEARCH SHOWCASE</p>
@@ -279,13 +280,23 @@ def build(papers: list[dict], dashboard: dict) -> str:
             </div>
           </div>
           <div id="showcaseViewport" class="showcase-viewport" tabindex="0" aria-label="Rolling ARIS4C project showcase">
-            <div id="paperGrid" class="showcase-track">
+            <div id="showcaseTrack" class="showcase-track">
               {showcase}
             </div>
           </div>
         </section>
 
-        <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
+        <section id="portfolioSection" class="portfolio-panel hidden" aria-labelledby="portfolioTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="portfolioTitle">Project portfolio</h2>
+              <p>Idea → design → pilot → empirical analysis → manuscript → final</p>
+            </div>
+            <p>Management layer: <code>papers/dashboard.json</code></p>
+          </div>
+          <section id="paperGrid" class="grid">{cards}</section>
+          <div id="emptyState" class="empty-state hidden">No projects match this view.</div>
+        </section>
       </main>
 
       <footer>ARIS4C · Scientific metadata comes from <code>papers/*/paper.json</code>. Portfolio maturity comes from <code>papers/dashboard.json</code>. Public project cards expose only English and Chinese full-text paper entrances.</footer>
