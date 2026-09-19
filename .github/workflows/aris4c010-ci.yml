@@ -5,11 +5,13 @@ on:
     paths:
       - "papers/010-universal-concept-identification/code/**/*.py"
       - "papers/010-universal-concept-identification/data/**/*.json"
+      - "papers/010-universal-concept-identification/figures/**/*.svg"
       - ".github/workflows/aris4c010-ci.yml"
   pull_request:
     paths:
       - "papers/010-universal-concept-identification/code/**/*.py"
       - "papers/010-universal-concept-identification/data/**/*.json"
+      - "papers/010-universal-concept-identification/figures/**/*.svg"
       - ".github/workflows/aris4c010-ci.yml"
   workflow_dispatch:
 
@@ -38,6 +40,9 @@ jobs:
 
       - name: Unit tests
         run: python -m unittest -v test_query_complexity.py
+
+      - name: Validate pre-results figures
+        run: python validate_pre_results_figures.py
 
       - name: Validate constructed seed
         run: python validate_seed_data.py
