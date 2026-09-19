@@ -1,0 +1,10 @@
+{
+  "verified_people_n": 52,
+  "unique_work_records_n": 2956,
+  "manual_review_work_rows_n": 2230,
+  "fetch_errors_n": 0,
+  "work_shards_n": 8,
+  "shard_verified_people_sum": 52,
+  "mental_health_information_used": false,
+  "note": "Merged person-disjoint P3 work shards; manual-review queue includes all held VERIFIED identities."
+}

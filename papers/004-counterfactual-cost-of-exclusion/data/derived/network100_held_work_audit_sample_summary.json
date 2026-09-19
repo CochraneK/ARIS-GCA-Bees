@@ -1,0 +1,8 @@
+{
+  "held_verified_people_n": 39,
+  "people_with_sample_n": 37,
+  "sample_rows_n": 334,
+  "max_per_person": 12,
+  "mental_health_information_used": false,
+  "note": "Audit sample is deterministic triage. Any contamination escalates the person to full work review; passing the sample does not override the >=5 clean-work network-release rule."
+}
