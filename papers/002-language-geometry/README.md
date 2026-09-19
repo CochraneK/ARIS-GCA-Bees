@@ -1,6 +1,6 @@
 # Paper 002 · Testing the Periodic-Table Hypothesis of Human Language
 
-**Status:** scientific manuscript complete · independent manuscript review `PASS_SUBMISSION_PREP` · technical Linguistic Typology package `PASS` · author metadata/declarations pending  
+**Status:** scientific manuscript complete · independent manuscript review `PASS_SUBMISSION_PREP` · bilingual six-figure public output complete · Linguistic Typology package refresh + author metadata/declarations pending  
 **Canonical paper ID:** `002`  
 **Slug:** `language-geometry`
 
@@ -64,7 +64,7 @@ Future manuscript-facing artifacts should be developed inside this Paper 002 dir
 - Data provenance: `process/DATA_PROVENANCE.md`
 - Draft audit: `process/MANUSCRIPT_AUDIT.md`
 
-Draft v1 implements all manuscript-level boundaries required by the independent Hy3 secondary review. The independent **manuscript-stage** review is now complete with `PASS_SUBMISSION_PREP`, and the Linguistic Typology technical submission package has also passed QA. No further scientific expansion is required for Paper 002.
+Draft v1 implements all manuscript-level boundaries required by the independent Hy3 secondary review. The independent **manuscript-stage** review is complete with `PASS_SUBMISSION_PREP`. A Linguistic Typology technical package also passed QA at build commit `608bc871fd4a634a0906b93aeabcd47675e8cb08`; that historical QA covered a three-figure package. The canonical manuscript was later expanded to six figures, so the journal package must be rebuilt and re-QA'd before submission. No further scientific expansion is required for Paper 002.
 
 
 ## Bilingual manuscript
@@ -77,8 +77,9 @@ The Chinese version preserves the same numerical results, claim boundaries, and 
 
 ## Current finalization state
 
-Paper 002 is scientifically and technically submission-ready. Remaining blockers are intentionally human-only and are not evidence gaps:
+Paper 002 is scientifically complete and the repository-level output gate is complete. Before journal submission, one editorial synchronization step remains because the canonical manuscript was expanded from three to six figures after the last technical submission-package QA:
 
+- rebuild the Linguistic Typology package from the current six-figure manuscript and repeat technical/visual QA;
 - confirm author identity/contact metadata required by the journal;
 - confirm funding, conflict-of-interest, CRediT and originality declarations;
 - copy the confirmed metadata into ScholarOne and perform the actual submission.
