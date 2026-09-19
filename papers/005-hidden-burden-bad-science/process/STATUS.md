@@ -38,7 +38,7 @@ Scope remains frozen. The 10,000-work confirmatory audit, all 90 AI input batche
 
 - [x] GitHub Actions networked runner operational.
 - [x] OpenAlex core article+review universe extracted for 2000–2025.
-- [x] Frozen OpenAlex query returned **137,445,874** works under the target metadata definition.
+- [x] OpenAlex denominator is snapshot-dependent: an earlier frozen query returned **137,445,874** works; the latest Pilot A live snapshot on 2026-09-19 returned **137,434,060** under the same target metadata definition. Snapshot drift is retained rather than forced away.
 - [x] Annual counts and query provenance committed.
 - [x] Latest Retraction Watch snapshot pinned to Git commit `8324ad5ae03519e1f213d417c6cf3e02d7dc5d1f` (older snapshots retained in Git history).
 - [x] Snapshot summarized without redistributing raw CSV.
