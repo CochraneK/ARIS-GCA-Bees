@@ -82,6 +82,62 @@
     $("navNearCount").textContent=cards.filter(c=>Number(c.dataset.progress)>=85).length;
   }
 
+
+  function initShowcase(){
+    const viewport=$("showcaseViewport");
+    const track=$("showcaseTrack");
+    if(!viewport || !track) return;
+
+    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timer=null;
+    let paused=false;
+
+    const stepSize=()=>{
+      const card=track.querySelector(".showcase-card");
+      if(!card) return Math.min(viewport.clientWidth*.85,320);
+      const gap=parseFloat(getComputedStyle(track).gap||"12")||12;
+      return card.getBoundingClientRect().width+gap;
+    };
+
+    const go=dir=>{
+      const max=viewport.scrollWidth-viewport.clientWidth;
+      if(max<=2) return;
+      const next=viewport.scrollLeft + dir*stepSize();
+      if(dir>0 && next>=max-4){
+        viewport.scrollTo({left:0,behavior:prefersReduced?"auto":"smooth"});
+      }else if(dir<0 && next<=0){
+        viewport.scrollTo({left:max,behavior:prefersReduced?"auto":"smooth"});
+      }else{
+        viewport.scrollBy({left:dir*stepSize(),behavior:prefersReduced?"auto":"smooth"});
+      }
+    };
+
+    const stop=()=>{
+      if(timer){ clearInterval(timer); timer=null; }
+      paused=true;
+      document.querySelector(".showcase")?.classList.add("is-paused");
+    };
+    const start=()=>{
+      paused=false;
+      document.querySelector(".showcase")?.classList.remove("is-paused");
+      if(prefersReduced || timer) return;
+      timer=setInterval(()=>go(1),4200);
+    };
+
+    $("showcasePrev")?.addEventListener("click",()=>{stop();go(-1);});
+    $("showcaseNext")?.addEventListener("click",()=>{stop();go(1);});
+    viewport.addEventListener("mouseenter",stop);
+    viewport.addEventListener("mouseleave",start);
+    viewport.addEventListener("focusin",stop);
+    viewport.addEventListener("focusout",start);
+    viewport.addEventListener("pointerdown",stop,{passive:true});
+    viewport.addEventListener("touchstart",stop,{passive:true});
+    viewport.addEventListener("touchend",()=>setTimeout(start,900),{passive:true});
+    document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
+
+    start();
+  }
+
   function wire(){
     document.querySelectorAll("[data-filter]").forEach(btn=>{
       btn.addEventListener("click",()=>{
@@ -109,5 +165,6 @@
   counts();
   refreshCommitHeartbeats();
   apply();
+  initShowcase();
   setInterval(refreshCommitHeartbeats, 60000);
 })();
