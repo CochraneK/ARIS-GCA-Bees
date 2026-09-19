@@ -370,3 +370,58 @@ code{padding:2px 5px;border-radius:6px;background:var(--surface-3)}
 @media(prefers-reduced-motion:reduce){
   .showcase-viewport{scroll-behavior:auto}
 }
+
+
+/* Git-derived progress history */
+.progress-history-panel{
+  margin:16px 0 0;
+  padding:17px 18px 14px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  box-shadow:0 8px 26px rgba(30,45,42,.035);
+}
+.progress-history-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:8px;
+}
+.progress-history-head h2{margin:0;font-size:1.05rem;letter-spacing:-.025em}
+.progress-history-head p:not(.eyebrow){margin:3px 0 0;color:var(--muted);font-size:8.7px}
+.progress-history-select{
+  display:flex;align-items:center;gap:8px;
+  color:var(--faint);font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase
+}
+.progress-history-select select{
+  min-height:31px;max-width:290px;padding:0 28px 0 9px;
+  border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--muted);
+  font-size:8.5px;text-transform:none;letter-spacing:0
+}
+.progress-history-chart-wrap{
+  position:relative;
+  width:100%;
+  min-height:220px;
+  overflow:hidden;
+  border-radius:14px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--surface-2) 80%,transparent),transparent)
+}
+.progress-history-chart{display:block;width:100%;height:auto;min-height:220px;color:var(--teal)}
+.history-grid-line{stroke:var(--line);stroke-width:1}
+.history-axis-label{fill:var(--faint);font-size:10px;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+.history-line{fill:none;stroke:var(--teal);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.history-area{fill:color-mix(in srgb,var(--teal) 10%,transparent)}
+.history-dot{fill:var(--surface);stroke:var(--teal);stroke-width:2}
+.history-empty{fill:var(--muted);font-size:13px;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+.progress-history-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin-top:5px;color:var(--faint);font-size:7.8px
+}
+.progress-history-foot span:first-child{color:var(--muted);font-weight:700}
+@media(max-width:720px){
+  .progress-history-head{align-items:flex-start;flex-direction:column}
+  .progress-history-select{width:100%;justify-content:space-between}
+  .progress-history-select select{max-width:72vw}
+  .progress-history-foot{align-items:flex-start;flex-direction:column;gap:3px}
+}
