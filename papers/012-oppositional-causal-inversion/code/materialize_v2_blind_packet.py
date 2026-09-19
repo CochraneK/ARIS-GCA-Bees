@@ -185,15 +185,16 @@ def build_response_csv(template_path: Path, records: list[dict]) -> bytes:
     with template_path.open(encoding="utf-8",newline="") as f:
         reader=csv.DictReader(f)
         fields=reader.fieldnames or []
-    if "sample_id" not in fields or "title" not in fields:
-        raise AssertionError("v2 coding template must contain sample_id and title")
+    id_field = "sample_id" if "sample_id" in fields else ("record_id" if "record_id" in fields else "")
+    if not id_field or "title" not in fields:
+        raise AssertionError("v2 coding template must contain sample_id or record_id, plus title")
     import io
     buf=io.StringIO(newline="")
     w=csv.DictWriter(buf,fieldnames=fields,lineterminator="\\n")
     w.writeheader()
     for r in sorted(records,key=lambda x:x["sample_id"]):
         row={k:"" for k in fields}
-        row["sample_id"]=r["sample_id"]
+        row[id_field]=r["sample_id"]
         row["title"]=r["title"]
         w.writerow(row)
     return buf.getvalue().encode("utf-8")
