@@ -192,7 +192,6 @@ def build(papers: list[dict], dashboard: dict) -> str:
     gated = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "gated")
     quiet = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "quiet")
     blocked = sum(1 for p in papers if projects.get(str(p.get("id")), {}).get("activity") == "blocked")
-    near_final = sum(1 for v in progresses if v >= 85)
     mature = sum(1 for v in progresses if v >= 45)
 
     return f"""<!doctype html>
@@ -210,20 +209,19 @@ def build(papers: list[dict], dashboard: dict) -> str:
   <div class="app">
     <aside class="sidebar" aria-label="Research portfolio navigation">
       <div class="identity"><span class="avatar">A4</span><div class="identity-copy"><strong>ARIS4C</strong><span>Research command center</span></div></div>
-      <nav class="nav" aria-label="Project views">
+      <nav class="nav" aria-label="MECE project status">
         <button class="nav-item is-active" type="button" data-filter="all" data-label="All projects"><span class="nav-icon">◉</span><span>All projects</span><span id="navAllCount" class="nav-count">{len(papers)}</span></button>
         <button class="nav-item" type="button" data-filter="active" data-label="Active"><span class="nav-icon">↗</span><span>Active</span><span id="navActiveCount" class="nav-count">{active}</span></button>
         <button class="nav-item" type="button" data-filter="gated" data-label="At gate"><span class="nav-icon">◇</span><span>At gate</span><span id="navGatedCount" class="nav-count">{gated}</span></button>
         <button class="nav-item" type="button" data-filter="quiet" data-label="Quiet"><span class="nav-icon">○</span><span>Quiet</span><span id="navQuietCount" class="nav-count">{quiet}</span></button>
         <button class="nav-item" type="button" data-filter="blocked" data-label="Blocked"><span class="nav-icon">×</span><span>Blocked</span><span id="navBlockedCount" class="nav-count">{blocked}</span></button>
-        <button class="nav-item" type="button" data-filter="near-final" data-label="Near final"><span class="nav-icon">✓</span><span>Near final</span><span id="navNearCount" class="nav-count">{near_final}</span></button>
       </nav>
       <div class="sidebar-section">
         <p class="sidebar-label">Heartbeat semantics</p>
         <div class="legend">
           <div class="legend-row"><i class="dot active"></i><span>Active execution</span></div>
           <div class="legend-row"><i class="dot gated"></i><span>Scientific / review gate</span></div>
-          <div class="legend-row"><i class="dot quiet"></i><span>Quiet / paused</span></div>
+          <div class="legend-row"><i class="dot quiet"></i><span>Near-final / complete</span></div>
           <div class="legend-row"><i class="dot blocked"></i><span>Hard blocker</span></div>
         </div>
       </div>
@@ -254,7 +252,7 @@ def build(papers: list[dict], dashboard: dict) -> str:
             <div class="metric"><strong>{len(papers)}</strong><span>tracked projects</span></div>
             <div class="metric"><strong>{avg}%</strong><span>mean portfolio maturity</span></div>
             <div class="metric"><strong>{active}</strong><span>active execution tracks</span></div>
-            <div class="metric"><strong>{near_final}</strong><span>near-final manuscripts</span></div>
+            <div class="metric"><strong>{quiet}</strong><span>quiet tracks</span></div>
           </div>
           <div class="portfolio-progress"><div class="row"><span>Portfolio maturity · {mature} projects at ≥45% · {gated + blocked} at gate/blocker</span><strong>{avg}%</strong></div><div class="progress-track"><span style="width:{avg}%"></span></div></div>
         </section>
