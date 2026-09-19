@@ -1,0 +1,12 @@
+{
+  "analysis": "ARIS4C011 manager first-pass patch merge",
+  "source_packet_rows": 80,
+  "patch_files": [],
+  "patched_record_count": 0,
+  "state_counts": {
+    "UNASSESSED": 80
+  },
+  "source_fields_modified": false,
+  "confirmatory_eligibility_inferred": false,
+  "applied": []
+}
