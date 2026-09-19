@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-09-19",
+  "source": {
+    "repository": "https://github.com/dmort27/epitran",
+    "note": "Language/script support verified against the official Epitran README and tests. Epitran availability is a feasibility signal, not a pronunciation-quality guarantee."
+  },
+  "rules": {
+    "no_silent_fallback": true,
+    "emit_raw_lexical_forms_publicly": false,
+    "special_dependency_failure_status": "BLOCKED_BY_DEPENDENCY",
+    "transliteration_empty_status": "EMPTY_OR_UNSUPPORTED",
+    "multiword_policy": "audit separately; do not assume tokenwise composition is phonologically valid",
+    "code_switching_policy": "flag for manual/language-aware review"
+  },
+  "languages": [
+    {
+      "language": "Yue Chinese",
+      "samples": [
+        "Cantonese (CN)"
+      ],
+      "iso639_3": "yue",
+      "primary_backend": "Epitran",
+      "primary_code": "yue-Hant",
+      "alternate_code": "yue-Latn",
+      "script": "Hant",
+      "dependency": "CC-Canto",
+      "dependency_required": true,
+      "caveat": "Official Epitran README warns character G2P requires CC-Canto and single characters may have multiple pronunciations."
+    },
+    {
+      "language": "Dutch",
+      "samples": [
+        "Dutch (BE)"
+      ],
+      "iso639_3": "nld",
+      "primary_backend": "Epitran",
+      "primary_code": "nld-Latn",
+      "script": "Latn",
+      "dependency_required": false
+    },
+    {
+      "language": "English",
+      "samples": [
+        "English (AU)",
+        "English (CA)",
+        "English (GB)",
+        "English (SG)",
+        "English (US)"
+      ],
+      "iso639_3": "eng",
+      "primary_backend": "Epitran",
+      "primary_code": "eng-Latn",
+      "script": "Latn",
+      "dependency": "Flite + lex_lookup",
+      "dependency_required": true,
+      "caveat": "Official Epitran README states English IPA requires Flite including lex_lookup; dialectal pronunciation is not represented by a single generic backend."
+    },
+    {
+      "language": "Finnish",
+      "samples": [
+        "Finnish (FI)"
+      ],
+      "iso639_3": "fin",
+      "primary_backend": "Epitran",
+      "primary_code": "fin-Latn",
+      "script": "Latn",
+      "dependency_required": false
+    },
+    {
+      "language": "French",
+      "samples": [
+        "French (FR)"
+      ],
+      "iso639_3": "fra",
+      "primary_backend": "Epitran",
+      "primary_code": "fra-Latn",
+      "alternate_code": "fra-Latn-p",
+      "script": "Latn",
+      "dependency_required": false
+    },
+    {
+      "language": "German",
+      "samples": [
+        "German (DE)"
+      ],
+      "iso639_3": "deu",
+      "primary_backend": "Epitran",
+      "primary_code": "deu-Latn",
+      "alternate_code": "deu-Latn-nar",
+      "script": "Latn",
+      "dependency_required": false
+    },
+    {
+      "language": "Italian",
+      "samples": [
+        "Italian (IT)"
+      ],
+      "iso639_3": "ita",
+      "primary_backend": "Epitran",
+      "primary_code": "ita-Latn",
+      "script": "Latn",
+      "dependency_required": false
+    },
+    {
+      "language": "Mandarin Chinese",
+      "samples": [
+        "Mandarin (CN)"
+      ],
+      "iso639_3": "cmn",
+      "primary_backend": "Epitran",
+      "primary_code": "cmn-Hans",
+      "alternate_code": "cmn-Hant",
+      "script": "Hans/Hant",
+      "dependency": "CC-CEDict",
+      "dependency_required": true,
+      "caveat": "Official Epitran README states Chinese character G2P requires CC-CEDict; actual source-script distribution must be checked before backend selection."
+    },
+    {
+      "language": "Serbian Standard",
+      "samples": [
+        "Serbian (RS)"
+      ],
+      "iso639_3": "srp",
+      "primary_backend": "Epitran",
+      "primary_code": "srp-Latn",
+      "alternate_code": "srp-Cyrl",
+      "script": "Latn/Cyrl",
+      "dependency_required": false,
+      "caveat": "Select backend per observed source script rather than forcing one script."
+    },
+    {
+      "language": "Tswana",
+      "samples": [
+        "Setswana (BW)"
+      ],
+      "iso639_3": "tsn",
+      "primary_backend": "Epitran",
+      "primary_code": "tsn-Latn",
+      "script": "Latn",
+      "dependency_required": false,
+      "caveat": "Official tests instantiate tsn-Latn."
+    },
+    {
+      "language": "Slovenian",
+      "samples": [
+        "Slovenian (SI)"
+      ],
+      "iso639_3": "slv",
+      "primary_backend": "Epitran",
+      "primary_code": "slv-Latn",
+      "script": "Latn",
+      "dependency_required": false
+    },
+    {
+      "language": "Spanish",
+      "samples": [
+        "Spanish (CL)",
+        "Spanish (ES)"
+      ],
+      "iso639_3": "spa",
+      "primary_backend": "Epitran",
+      "primary_code": "spa-Latn",
+      "alternate_code": "spa-Latn-eu",
+      "script": "Latn",
+      "dependency_required": false,
+      "caveat": "Use generic spa-Latn for primary cross-community comparability; Iberian-specific backend can be a Spain sensitivity analysis."
+    },
+    {
+      "language": "Thai",
+      "samples": [
+        "Thai (TH)"
+      ],
+      "iso639_3": "tha",
+      "primary_backend": "Epitran",
+      "primary_code": "tha-Thai",
+      "script": "Thai",
+      "dependency_required": false,
+      "caveat": "Official Epitran repository includes Thai tests and postprocessing rules."
+    }
+  ]
+}
