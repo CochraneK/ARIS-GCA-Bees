@@ -1,0 +1,25 @@
+priority,layer,nda_structure_or_family,visits,role_in_009,initial_request,rationale
+1,linkage,subject/cohort/site/language,all available,participant and visit linkage,yes,Required for participant-level splitting and measurement heterogeneity
+1,clinical,ampscz_psychs01,screening;baseline;month_1;month_2;month_3,structured psychosis-risk acquisition and intended-use comparator,yes,Core PSYCHS severity/criteria layer
+1,language,langsamp01_baseline_open,baseline,open-ended acquisition source,yes,Primary fixed-source Pilot-1 transcript
+1,language,langsamp01_month_2_open,month_2,longitudinal open-ended source,yes,Replication/retest source
+1,language,langsamp01_screening_psychs,screening,PSYCHS language acquisition,yes,Acquisition-divergence comparison
+1,language,langsamp01_baseline_psychs,baseline,PSYCHS language acquisition,yes,Visit-matched comparison with open interview
+1,language,langsamp01_month_1_psychs,month_1,longitudinal PSYCHS language acquisition,yes,Intermediate repeated acquisition
+1,language,langsamp01_month_2_psychs,month_2,PSYCHS language acquisition,yes,Visit-matched replication
+1,language,langsamp01_month_3_psychs,month_3,longitudinal PSYCHS language acquisition,yes,Later repeated acquisition
+1,language metadata,language-sample acquisition metadata,matching visits,transcription/acquisition provenance,yes,Needed to distinguish acquisition from encoding artifacts
+1,clinical covariate,bprs01,baseline;month_1;month_2;month_3,conventional symptom comparator,yes,Tests fidelity versus conventional clinical utility
+1,functioning,gfs01 or available functioning structures,baseline;follow-up,intended-use outcome/covariate,yes,Independent clinical-functioning channel
+1,treatment,medhi01;psycho_treat01,screening;floating,medication/treatment timing,yes,Context and longitudinal confounding
+2,language features,langsamp01_features_open,available,existing computational speech comparator,later,Tests whether fidelity adds beyond standard speech features
+2,language features,langsamp01_features_psychs,available,existing computational speech comparator,later,Acquisition-specific speech-feature comparator
+2,language features,langsamp01_features_diary,available,dense longitudinal speech feature stream,later,Useful after transcript-layer methods stabilize
+2,EMA,ampscz_sp_survey01,daily,first-person daily context,later,Context/temporal constraints
+2,actigraphy,actirec01,daily,sleep/activity physical context,later,Physical-context validation channel
+2,smartphone sensors,ampscz_sp_sensors01 collection 3705,daily,screen/accelerometry context,later,Derived context features preferred
+2,geolocation,ampscz_sp_sensors01 collection 4366,daily,coarse mobility context,later,Request only if derived/coarsened use is approved
+3,EEG,ampscz_eeg_featuresrest01,available,cross-level neural constraint,later,Derived neural features before raw EEG
+3,EEG,ampscz_eeg_featurestask01,available,cross-level neural constraint,later,Derived task features before raw EEG
+3,MRI,image03;imagingcollection01,baseline;month_2,cross-level imaging constraint,later,Request derived measures before raw imaging where possible
+3,raw modalities,raw EEG/MRI/audio/video,selected,mechanistic reprocessing,no initially,High burden/privacy and unnecessary for measurement Pilot-1
