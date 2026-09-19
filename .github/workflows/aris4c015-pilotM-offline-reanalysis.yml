@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/aris4c015-pilotM-offline-reanalysis.yml"
+      - "papers/015-sleeping-beauty-miner/code/reanalyze_pilotM_artifact.py"
+      - "papers/015-sleeping-beauty-miner/code/risk_set_matching.py"
 
 permissions:
   contents: read
@@ -58,6 +60,7 @@ jobs:
           ] is True
           print(json.dumps({
               "frozen_primary_case_ids": x["frozen_primary_case_ids"],
+              "support_diagnostics": x["support_diagnostics"],
               "one_to_one": {
                   "match_rate": x["contrasts"]["1:1"]["match_rate"],
                   "n_matches": len(x["contrasts"]["1:1"]["matches"]),
