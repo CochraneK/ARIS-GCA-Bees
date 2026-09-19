@@ -42,6 +42,14 @@ jobs:
       - name: Validate Coder B blind bundle
         run: python code/validate_coder_b_blind_bundle.py
 
+      - name: OpenAlex manifest shard-plan integrity
+        run: |
+          rm -rf /tmp/aris4c003-openalex-shards
+          python code/make_openalex_shards.py \
+            data/manifests/openalex_works_manifest.json \
+            --shards 32 \
+            --output-dir /tmp/aris4c003-openalex-shards
+
       - name: Data-builder smoke tests
         run: python code/test_data_builders.py
 
