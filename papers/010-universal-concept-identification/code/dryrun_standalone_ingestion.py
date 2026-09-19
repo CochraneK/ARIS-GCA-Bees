@@ -21,7 +21,7 @@ def h(text):
     return int(hashlib.sha256(text.encode()).hexdigest()[:8],16)
 
 
-def fake_export(form, participant, out_path):
+def fake_export(form, participant, out_path, training):
     rows=[]
     remembered={}
     for i,item in enumerate(form["items"],1):
