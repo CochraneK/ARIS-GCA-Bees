@@ -200,6 +200,10 @@ The most informative case was Grammar linear order. Its optimized circular model
 
 Grammatical categories was the only domain in which the optimized circular mean (0.252) exceeded the tree mean (0.229), but circular-order stability was 0.373, below the predeclared 0.40 threshold. Lexical, Grammar other and Phonology did not approach joint periodic competitiveness.
 
+![Figure 1. Local-domain periodicity gate](../figures/figure1_local_domain_gate.svg)
+
+**Figure 1. Local-domain periodicity gate.** Each predefined TLI domain is plotted by circular-order stability and the optimized-circle predictive advantage over the tree benchmark. The preregistered stability threshold is 0.40 and predictive competitiveness requires circle-minus-tree > 0. No domain occupies the joint pass region.
+
 ### 3.5 Held-out circularity diagnostics did not support global closure
 
 In Stage 1D, lower row-unimodality deviation indicates closer circular-Robinson-style compatibility. At 40 features the circular order scored 0.222 ± 0.012, compared with 0.209 ± 0.011 for the tree leaf order and 0.237 ± 0.009 for random orders. At 60 features the corresponding values were 0.297 ± 0.009, 0.284 ± 0.010 and 0.307 ± 0.009.
@@ -209,9 +213,9 @@ More directly, the mean circular wrap-around closure/internal-adjacency ratio wa
 These diagnostics are noisy-data sensitivities, not formal rejection tests for all circular-Robinson structures. Their value is that the negative periodic interpretation no longer depends solely on a higher-capacity tree outperforming a circle.
 
 
-![Figure 3. Held-out circular-Robinson-style sensitivity](../figures/figure3_circular_diagnostics.svg)
+![Figure 2. Held-out circular-Robinson-style sensitivity](../figures/figure2_circular_diagnostics.svg)
 
-**Figure 3. Held-out circular-Robinson-style sensitivity.** Mean row-unimodality violation for the learned circular order, an average-linkage tree leaf order and random orders at 40 and 60 TLI features; lower is better. The circular order improves on random order but does not outperform the tree order.
+**Figure 2. Held-out circular-Robinson-style sensitivity.** Mean row-unimodality violation for the learned circular order, an average-linkage tree leaf order and random orders at 40 and 60 TLI features; lower is better. The circular order improves on random order but does not outperform the tree order.
 
 ### 3.6 Tree-over-circle ranking was stable across repeated TLI family hold-outs
 
@@ -229,15 +233,19 @@ The paired tree-minus-circle difference was **+0.073**, with split-bootstrap 95%
 The bootstrap interval is a summary of split sensitivity, not phylogenetic uncertainty.
 
 
-![Figure 2. TLI repeated family-held-out paired contrasts](../figures/figure2_tli_paired_contrasts.svg)
+![Figure 3. TLI repeated family-held-out paired contrasts](../figures/figure3_tli_paired_contrasts.svg)
 
-**Figure 2. TLI repeated family-held-out paired contrasts.** Paired differences in held-out Spearman correlation across 20 TLI top-level-family hold-out splits. Error bars are 95% bootstrap intervals over split-level paired contrasts and should not be read as phylogenetic uncertainty intervals.
+**Figure 3. TLI repeated family-held-out paired contrasts.** Paired differences in held-out Spearman correlation across 20 TLI top-level-family hold-out splits. Error bars are 95% bootstrap intervals over split-level paired contrasts and should not be read as phylogenetic uncertainty intervals.
 
 ### 3.7 TLI geography blocks weakened all models, but the pattern was not universal
 
 When complete TLI macroareas were held out, all models performed weakly. Under the stricter geography-plus-family condition, the best non-periodic Spearman was approximately 0.056 while the optimized circle was approximately 0.000. Spatial-cluster-plus-family splits produced a best non-periodic mean of 0.085 and circular mean of 0.039.
 
 Matched-size calibration showed that the weak TLI geographic transfer was not simply caused by the smaller number of test languages. Across macroareas, the train–test association correlation averaged 0.088 for geographic blocks versus 0.363 for matched random test sets. Across coordinate clusters, the corresponding means were 0.106 versus 0.351. All ten geographic blocks had lower transfer than their matched random controls.
+
+![Figure 4. Geographic transfer calibration](../figures/figure4_geography_calibration.svg)
+
+**Figure 4. Geographic transfer calibration.** TLI train-test association transfer for real macroarea and coordinate-cluster blocks is contrasted with same-size random test blocks. The large gap shows that the TLI geographic degradation cannot be reduced to test-set size alone; the later WALS contradiction still prevents elevating this pattern to a universal cross-linguistic law.
 
 However, the separately processed WALS analysis later showed much stronger cross-macroarea transfer, so geographic collapse is **not** treated as a universal property of cross-linguistic structure.
 
@@ -264,9 +272,9 @@ Unlike TLI/GBI, WALS exhibited high cross-macroarea association transfer: **0.63
 Absolute Spearman magnitudes should not be compared directly across datasets because coverage, sparsity, feature definitions, feature selection and curation differ. The relevant replication is qualitative: in each representation, the optimized circle did not reverse the tree benchmark under family hold-out.
 
 
-![Figure 1. Family-held-out predictive ranking across representations](../figures/figure1_cross_dataset.svg)
+![Figure 5. Family-held-out predictive ranking across representations](../figures/figure5_cross_dataset.svg)
 
-**Figure 1. Family-held-out predictive ranking across representations.** Mean Spearman correlation between model-predicted and independently estimated held-out feature-association matrices for TLI, GBI and WALS. In each representation, the hierarchical-tree benchmark exceeds the directly optimized circular model; absolute magnitudes are not directly comparable across datasets.
+**Figure 5. Family-held-out predictive ranking across representations.** Mean Spearman correlation between model-predicted and independently estimated held-out feature-association matrices for TLI, GBI and WALS. In each representation, the hierarchical-tree benchmark exceeds the directly optimized circular model; absolute magnitudes are not directly comparable across datasets.
 
 ## 4. Discussion
 
@@ -300,6 +308,10 @@ The negative global result should not be read as evidence that circular structur
 One of the most useful findings is conceptual rather than simply negative. Grammar linear order showed high circular-order stability (0.811) and substantial circular prediction (0.401), yet tree/low-rank prediction was stronger (about 0.49). The 60-feature global optimized circle likewise had fairly stable order while showing almost no wrap-around closure.
 
 This suggests a general warning for studies that infer periodicity from circular embeddings or stable orderings alone. Reproducible order may reflect a gradient, hierarchy or manifold that can be drawn around a circle without possessing the defining closure expected of a genuine periodic system.
+
+![Figure 6. Stable order is not periodic closure](../figures/figure6_stable_order_not_closure.svg)
+
+**Figure 6. Stable order is not periodic closure.** The left panel depicts a reproducible open ordering; the right panel makes explicit the additional wrap-around edge required by a genuine cycle. The empirical contrast is motivated by the high Grammar-linear-order stability (0.811) alongside the very weak global 60-feature closure ratio (0.037 ± 0.091).
 
 ### 4.4 Geography is a representation-dependent secondary result
 
