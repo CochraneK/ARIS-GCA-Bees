@@ -53,7 +53,7 @@ def hero(rows,lang):
     subtitle="论文 · 证据 · 双语输出 · 审查门 · 跨 Agent 连续性" if zh else "Papers · evidence · bilingual outputs · review gates · cross-agent continuity"
     s=head(title,subtitle,1600,500)
     s += ['<path d="M0 370 C320 300 520 510 820 390 S1320 260 1600 360 V500 H0 Z" fill="#0b2748"/>']
-    labels=(["论文项目","平均成熟度","Active","Waiting","handoff ready"] if zh else ["tracked papers","mean maturity","Active","Waiting","handoff ready"])
+    labels=(["论文项目","平均成熟度","进行中","等待中","可接管"] if zh else ["tracked papers","mean maturity","Active","Waiting","handoff ready"])
     vals=[len(rows),f"{avg}%",counts["active"],counts["waiting"],f"{continuity}/{len(rows)}"]
     for i,(v,l) in enumerate(zip(vals,labels)):
         x=70+i*300; s += [f'<rect x="{x}" y="205" width="255" height="110" rx="20" fill="{PANEL}" stroke="{GRID}"/>',
@@ -64,7 +64,7 @@ def hero(rows,lang):
 
 def status(rows,lang):
     zh=lang=="zh"; counts={k:sum(r["activity"]==k for r in rows) for k in ("active","waiting","quiet")}
-    labels={"active":"Active","waiting":"Waiting","quiet":"Quiet"}; colors={"active":ACTIVE,"waiting":WAITING,"quiet":QUIET}
+    labels=({"active":"进行中","waiting":"等待中","quiet":"静默"} if zh else {"active":"Active","waiting":"Waiting","quiet":"Quiet"}); colors={"active":ACTIVE,"waiting":WAITING,"quiet":QUIET}
     title="Portfolio 当前状态" if zh else "Portfolio state"; subtitle="来自 papers/dashboard.json 的 MECE 管理状态" if zh else "MECE management states from papers/dashboard.json"
     s=head(title,subtitle,1600,420); x=80; total=len(rows); bar=1440
     for k in ("active","waiting","quiet"):
