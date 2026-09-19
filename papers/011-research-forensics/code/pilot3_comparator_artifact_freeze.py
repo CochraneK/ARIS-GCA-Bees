@@ -77,18 +77,21 @@ def text_content(node: ET.Element | None) -> str:
 def pubmed_to_pmcid(raw: bytes, *, expected_doi: str) -> str:
     root = ET.fromstring(raw)
     doi = expected_doi.lower()
+    main_ids = root.findall(
+        ".//PubmedData/ArticleIdList/ArticleId"
+    )
     found_dois = {
         (n.text or "").strip().lower()
-        for n in root.findall(".//ArticleId[@IdType='doi']")
-        if (n.text or "").strip()
+        for n in main_ids
+        if n.attrib.get("IdType") == "doi" and (n.text or "").strip()
     }
     if doi not in found_dois:
         raise ValueError(f"PubMed identity mismatch: expected DOI {doi}")
 
     pmcids = [
         (n.text or "").strip()
-        for n in root.findall(".//ArticleId[@IdType='pmc']")
-        if (n.text or "").strip()
+        for n in main_ids
+        if n.attrib.get("IdType") == "pmc" and (n.text or "").strip()
     ]
     if len(set(pmcids)) != 1:
         raise ValueError(
