@@ -198,12 +198,17 @@ def build(
         k=f'{r["calendar_stratum"]}:{r["update_type"]}'
         counts[k]=counts.get(k,0)+1
 
+    try:
+        exclusion_ref=str(exclusions.relative_to(ROOT))
+    except ValueError:
+        exclusion_ref=exclusions.name
+
     return {
         "analysis":"ARIS4C011 blinded confirmatory-feasibility frame v0",
         "state":"FEASIBILITY_ONLY_NOT_CONFIRMATORY",
         "generated_utc":dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),
         "source":"Crossref REST update-to metadata",
-        "development_exclusion_registry":str(exclusions.relative_to(ROOT)),
+        "development_exclusion_registry":exclusion_ref,
         "development_exclusion_count":len(excluded),
         "calendar_range":[start_year,end_year],
         "update_types":["correction","retraction"],
