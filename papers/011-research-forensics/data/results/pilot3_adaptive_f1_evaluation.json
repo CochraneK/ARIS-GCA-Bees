@@ -1,0 +1,10 @@
+{
+  "paper_id": "10.1371/journal.pone.0180395",
+  "detector_id": "F1_SIGNIFICANCE_P_DIRECTION_V1",
+  "detector_output": "FLAG",
+  "frozen_manager_label": "DOCUMENTED_SIGNIFICANCE_P_DIRECTION_ERROR",
+  "true_positive": true,
+  "false_negative": false,
+  "label_visible_to_detector": false,
+  "misconduct_inference": false
+}

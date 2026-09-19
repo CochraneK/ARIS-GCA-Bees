@@ -1,0 +1,35 @@
+{
+  "target_doi": "10.1371/journal.pone.0180395",
+  "artifact_role": "body_text",
+  "artifact_version_date": "2017-08-01",
+  "outcome_date": "2018-04-23",
+  "original_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5538738/",
+  "correction_url_manager_only": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5912759/",
+  "original_html_sha256": "1b83422e3af406dadd342f377eb32af3fdc1630e28fed097cf07d4751494cf85",
+  "correction_html_sha256": "5434c431e39e23692528494c292fca84b9e30536014429ffb92359a2af47a0a4",
+  "defect_state_preserved": true,
+  "manager_correction_confirms_direction_fix": true,
+  "generic_artifact_qualification": {
+    "status": "SAFE_EXACT",
+    "track_a_eligible": true,
+    "proxy_eligible": false,
+    "reasons": [],
+    "warnings": [
+      "Current bibliographic metadata contains an update relation; keep it outside Track A model-visible inputs."
+    ],
+    "evidence": {
+      "artifact_version_date": "2017-08-01",
+      "outcome_date": "2018-04-23",
+      "immutable_or_historical_snapshot": true,
+      "historical_equivalence": "preserved_original_published_version",
+      "provenance_source": "PubMed Central original article PMC5538738; correction preserved separately as PMC5912759",
+      "current_metadata_has_update_relation": true,
+      "title_status_hits": [],
+      "leading_banner_hits": [],
+      "path_label_hits": []
+    }
+  },
+  "qualification": "SAFE_EXACT",
+  "track_a_eligible": true,
+  "detector_may_see_outcome_metadata": false
+}

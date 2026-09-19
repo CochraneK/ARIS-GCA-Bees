@@ -1,0 +1,14 @@
+{
+  "track": "A_CONTENT_ONLY",
+  "detector_family": "F1",
+  "detector_id": "F1_SIGNIFICANCE_P_DIRECTION_V1",
+  "paper_id": "10.1371/journal.pone.0180395",
+  "finding": "FLAG",
+  "significance_claim_detected": true,
+  "p_greater_than_005_detected": true,
+  "detector_visible_text": "There were significant increases in the amount of imitation by people with dementia (p>.05) in Intervention sessions.",
+  "outcome_metadata_used": false,
+  "correction_metadata_used": false,
+  "misconduct_inference": false,
+  "interpretation": "Internal statistical-reporting inconsistency only; FLAG is not a misconduct judgment."
+}
