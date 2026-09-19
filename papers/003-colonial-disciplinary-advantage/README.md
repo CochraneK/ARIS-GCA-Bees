@@ -1,6 +1,6 @@
 # ARIS4C003 · Colonial Legacies and the Global Geography of Disciplinary Advantage
 
-**Status:** design locked / outcome locked · executable pipeline ready
+**Status:** design locked / outcome unlocked · OpenAlex materialization recovery (sharded fallback ready)
 
 **ARIS provenance:** v0.4.26 · `951654847b015585385b2448c5667dcd04e7b56b`
 
