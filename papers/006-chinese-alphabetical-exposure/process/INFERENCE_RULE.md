@@ -116,3 +116,22 @@ Always report:
 - work/team-size distribution.
 
 Do not report only significance stars.
+
+
+## H3 longitudinal inference
+
+For the frozen secondary longitudinal endpoint:
+
+`logit(Persistence5_i) = alpha + beta1 InitialRankNorm_i + beta2 MeanEarlyExposure_i + beta3(InitialRankNorm_i × MeanEarlyExposure_i) + EntryYearFE + EntryPrimaryFieldFE + log1p(EntryWorkCount_i)`
+
+Frozen rules:
+- `EntryWorkCount_i` enters as `log1p(EntryWorkCount_i)`;
+- primary H3 estimand is the interaction `beta3`;
+- two-sided test;
+- covariance is clustered by the composite `EntryPrimaryField × EntryYear`;
+- one row per canonical entrant;
+- H3 raw p-value is Holm-adjusted jointly with H2 as the two-member secondary confirmatory family.
+
+If the outcome-blind longitudinal structural-adequacy gate in
+`LONGITUDINAL_SAMPLING_RULE.md` fails, H3 is removed from the confirmatory
+family before Persistence5 is opened. H1/H2 inference is unchanged.
