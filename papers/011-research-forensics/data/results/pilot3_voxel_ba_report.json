@@ -1,0 +1,412 @@
+{
+  "report_version": "0.1.0",
+  "artifact_id": "plos-0163749-pmc-preserved-original-table2",
+  "mode": "track_a",
+  "artifact_safety": {
+    "time_safe": true,
+    "document_safe": true,
+    "title_safe": true,
+    "safety_class": "SAFE_EXACT_PRESERVED_ORIGINAL",
+    "extraction": {
+      "safe": true,
+      "structured_record_count": 6,
+      "failures": [],
+      "reason": "All structured records are source-anchored and verified."
+    },
+    "eligible": true,
+    "reason": "Artifact passed the requested mode's preflight."
+  },
+  "findings": [
+    {
+      "detector_id": "table_arithmetic",
+      "detector_version": "pilot1-0.1.0",
+      "family": "table_consistency",
+      "applicable": true,
+      "applicability_reason": "Supported table check type: integer_list_token.",
+      "status": "PASS",
+      "evidence_class": "E1",
+      "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+      "source_locator": "Original PMC Table 2 · cluster G · R superior Temporal Gyrus · BA",
+      "evidence": {
+        "reported_value": "22/42/41/21/40/13/43",
+        "normalized_token": "22/42/41/21/40/13/43",
+        "allow_blank": true,
+        "expected_syntax": "blank or slash-separated non-negative integer tokens",
+        "parsed_integer_values": [
+          22,
+          42,
+          41,
+          21,
+          40,
+          13,
+          43
+        ]
+      },
+      "reproducible": "yes",
+      "confidence": null,
+      "calibration_reference": null,
+      "benign_explanations": [],
+      "dependency_group": "table:Original PMC Table 2 · cluster G · R superior Temporal Gyrus · BA",
+      "next_action": null,
+      "misconduct_inference": false,
+      "finding_id": "f_bb870fe6b10cc1dc"
+    },
+    {
+      "detector_id": "table_arithmetic",
+      "detector_version": "pilot1-0.1.0",
+      "family": "table_consistency",
+      "applicable": true,
+      "applicability_reason": "Supported table check type: integer_list_token.",
+      "status": "PASS",
+      "evidence_class": "E1",
+      "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+      "source_locator": "Original PMC Table 2 · cluster G · R Middle Temporal Gyrus · BA",
+      "evidence": {
+        "reported_value": "2/6/4/3/40/43/1/44",
+        "normalized_token": "2/6/4/3/40/43/1/44",
+        "allow_blank": true,
+        "expected_syntax": "blank or slash-separated non-negative integer tokens",
+        "parsed_integer_values": [
+          2,
+          6,
+          4,
+          3,
+          40,
+          43,
+          1,
+          44
+        ]
+      },
+      "reproducible": "yes",
+      "confidence": null,
+      "calibration_reference": null,
+      "benign_explanations": [],
+      "dependency_group": "table:Original PMC Table 2 · cluster G · R Middle Temporal Gyrus · BA",
+      "next_action": null,
+      "misconduct_inference": false,
+      "finding_id": "f_d453557282bbede4"
+    },
+    {
+      "detector_id": "table_arithmetic",
+      "detector_version": "pilot1-0.1.0",
+      "family": "table_consistency",
+      "applicable": true,
+      "applicability_reason": "Supported table check type: integer_list_token.",
+      "status": "PASS",
+      "evidence_class": "E1",
+      "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+      "source_locator": "Original PMC Table 2 · cluster H · R Supra Maginal Gyrus · BA",
+      "evidence": {
+        "reported_value": "40/2/3/1/42/4",
+        "normalized_token": "40/2/3/1/42/4",
+        "allow_blank": true,
+        "expected_syntax": "blank or slash-separated non-negative integer tokens",
+        "parsed_integer_values": [
+          40,
+          2,
+          3,
+          1,
+          42,
+          4
+        ]
+      },
+      "reproducible": "yes",
+      "confidence": null,
+      "calibration_reference": null,
+      "benign_explanations": [],
+      "dependency_group": "table:Original PMC Table 2 · cluster H · R Supra Maginal Gyrus · BA",
+      "next_action": null,
+      "misconduct_inference": false,
+      "finding_id": "f_91e01b70469659eb"
+    },
+    {
+      "detector_id": "table_arithmetic",
+      "detector_version": "pilot1-0.1.0",
+      "family": "table_consistency",
+      "applicable": true,
+      "applicability_reason": "Supported table check type: integer_list_token.",
+      "status": "PASS",
+      "evidence_class": "E1",
+      "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+      "source_locator": "Original PMC Table 2 · cluster I · L Superior Parietal Lobule · BA",
+      "evidence": {
+        "reported_value": "",
+        "normalized_token": "",
+        "allow_blank": true,
+        "expected_syntax": "blank or slash-separated non-negative integer tokens",
+        "parsed_integer_values": []
+      },
+      "reproducible": "yes",
+      "confidence": null,
+      "calibration_reference": null,
+      "benign_explanations": [],
+      "dependency_group": "table:Original PMC Table 2 · cluster I · L Superior Parietal Lobule · BA",
+      "next_action": null,
+      "misconduct_inference": false,
+      "finding_id": "f_b4f8bed5c12ba5d7"
+    },
+    {
+      "detector_id": "table_arithmetic",
+      "detector_version": "pilot1-0.1.0",
+      "family": "table_consistency",
+      "applicable": true,
+      "applicability_reason": "Supported table check type: integer_list_token.",
+      "status": "FLAG",
+      "evidence_class": "E1",
+      "claim": "Displayed token is not structurally compatible with the prespecified integer-list field syntax.",
+      "source_locator": "Original PMC Table 2 · cluster I · L Supra Marginal Gyrus · BA",
+      "evidence": {
+        "reported_value": "9月8日",
+        "normalized_token": "9月8日",
+        "allow_blank": true,
+        "expected_syntax": "blank or slash-separated non-negative integer tokens",
+        "parsed_integer_values": []
+      },
+      "reproducible": "yes",
+      "confidence": null,
+      "calibration_reference": null,
+      "benign_explanations": [
+        "Different denominator or analysis population.",
+        "Rounding convention.",
+        "A display-only transcription or omission error.",
+        "Extraction error from the source table."
+      ],
+      "dependency_group": "table:Original PMC Table 2 · cluster I · L Supra Marginal Gyrus · BA",
+      "next_action": "Inspect the original table and recalculate from the displayed cells and stated denominator.",
+      "misconduct_inference": false,
+      "finding_id": "f_d76d98f1c02f1e8f"
+    },
+    {
+      "detector_id": "table_arithmetic",
+      "detector_version": "pilot1-0.1.0",
+      "family": "table_consistency",
+      "applicable": true,
+      "applicability_reason": "Supported table check type: integer_list_token.",
+      "status": "PASS",
+      "evidence_class": "E1",
+      "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+      "source_locator": "Original PMC Table 2 · cluster J · R Middle Frontal Gyrus · BA",
+      "evidence": {
+        "reported_value": "",
+        "normalized_token": "",
+        "allow_blank": true,
+        "expected_syntax": "blank or slash-separated non-negative integer tokens",
+        "parsed_integer_values": []
+      },
+      "reproducible": "yes",
+      "confidence": null,
+      "calibration_reference": null,
+      "benign_explanations": [],
+      "dependency_group": "table:Original PMC Table 2 · cluster J · R Middle Frontal Gyrus · BA",
+      "next_action": null,
+      "misconduct_inference": false,
+      "finding_id": "f_18d092e631f8a1c2"
+    }
+  ],
+  "coverage": {
+    "registered_families": [
+      "table_consistency"
+    ],
+    "applicable_families": [
+      "table_consistency"
+    ],
+    "executed_families": [
+      "table_consistency"
+    ],
+    "abstained_families": [],
+    "errored_families": []
+  },
+  "evidence_graph": {
+    "nodes": [
+      {
+        "detector_id": "table_arithmetic",
+        "detector_version": "pilot1-0.1.0",
+        "family": "table_consistency",
+        "applicable": true,
+        "applicability_reason": "Supported table check type: integer_list_token.",
+        "status": "PASS",
+        "evidence_class": "E1",
+        "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+        "source_locator": "Original PMC Table 2 · cluster G · R superior Temporal Gyrus · BA",
+        "evidence": {
+          "reported_value": "22/42/41/21/40/13/43",
+          "normalized_token": "22/42/41/21/40/13/43",
+          "allow_blank": true,
+          "expected_syntax": "blank or slash-separated non-negative integer tokens",
+          "parsed_integer_values": [
+            22,
+            42,
+            41,
+            21,
+            40,
+            13,
+            43
+          ]
+        },
+        "reproducible": "yes",
+        "confidence": null,
+        "calibration_reference": null,
+        "benign_explanations": [],
+        "dependency_group": "table:Original PMC Table 2 · cluster G · R superior Temporal Gyrus · BA",
+        "next_action": null,
+        "misconduct_inference": false,
+        "finding_id": "f_bb870fe6b10cc1dc"
+      },
+      {
+        "detector_id": "table_arithmetic",
+        "detector_version": "pilot1-0.1.0",
+        "family": "table_consistency",
+        "applicable": true,
+        "applicability_reason": "Supported table check type: integer_list_token.",
+        "status": "PASS",
+        "evidence_class": "E1",
+        "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+        "source_locator": "Original PMC Table 2 · cluster G · R Middle Temporal Gyrus · BA",
+        "evidence": {
+          "reported_value": "2/6/4/3/40/43/1/44",
+          "normalized_token": "2/6/4/3/40/43/1/44",
+          "allow_blank": true,
+          "expected_syntax": "blank or slash-separated non-negative integer tokens",
+          "parsed_integer_values": [
+            2,
+            6,
+            4,
+            3,
+            40,
+            43,
+            1,
+            44
+          ]
+        },
+        "reproducible": "yes",
+        "confidence": null,
+        "calibration_reference": null,
+        "benign_explanations": [],
+        "dependency_group": "table:Original PMC Table 2 · cluster G · R Middle Temporal Gyrus · BA",
+        "next_action": null,
+        "misconduct_inference": false,
+        "finding_id": "f_d453557282bbede4"
+      },
+      {
+        "detector_id": "table_arithmetic",
+        "detector_version": "pilot1-0.1.0",
+        "family": "table_consistency",
+        "applicable": true,
+        "applicability_reason": "Supported table check type: integer_list_token.",
+        "status": "PASS",
+        "evidence_class": "E1",
+        "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+        "source_locator": "Original PMC Table 2 · cluster H · R Supra Maginal Gyrus · BA",
+        "evidence": {
+          "reported_value": "40/2/3/1/42/4",
+          "normalized_token": "40/2/3/1/42/4",
+          "allow_blank": true,
+          "expected_syntax": "blank or slash-separated non-negative integer tokens",
+          "parsed_integer_values": [
+            40,
+            2,
+            3,
+            1,
+            42,
+            4
+          ]
+        },
+        "reproducible": "yes",
+        "confidence": null,
+        "calibration_reference": null,
+        "benign_explanations": [],
+        "dependency_group": "table:Original PMC Table 2 · cluster H · R Supra Maginal Gyrus · BA",
+        "next_action": null,
+        "misconduct_inference": false,
+        "finding_id": "f_91e01b70469659eb"
+      },
+      {
+        "detector_id": "table_arithmetic",
+        "detector_version": "pilot1-0.1.0",
+        "family": "table_consistency",
+        "applicable": true,
+        "applicability_reason": "Supported table check type: integer_list_token.",
+        "status": "PASS",
+        "evidence_class": "E1",
+        "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+        "source_locator": "Original PMC Table 2 · cluster I · L Superior Parietal Lobule · BA",
+        "evidence": {
+          "reported_value": "",
+          "normalized_token": "",
+          "allow_blank": true,
+          "expected_syntax": "blank or slash-separated non-negative integer tokens",
+          "parsed_integer_values": []
+        },
+        "reproducible": "yes",
+        "confidence": null,
+        "calibration_reference": null,
+        "benign_explanations": [],
+        "dependency_group": "table:Original PMC Table 2 · cluster I · L Superior Parietal Lobule · BA",
+        "next_action": null,
+        "misconduct_inference": false,
+        "finding_id": "f_b4f8bed5c12ba5d7"
+      },
+      {
+        "detector_id": "table_arithmetic",
+        "detector_version": "pilot1-0.1.0",
+        "family": "table_consistency",
+        "applicable": true,
+        "applicability_reason": "Supported table check type: integer_list_token.",
+        "status": "FLAG",
+        "evidence_class": "E1",
+        "claim": "Displayed token is not structurally compatible with the prespecified integer-list field syntax.",
+        "source_locator": "Original PMC Table 2 · cluster I · L Supra Marginal Gyrus · BA",
+        "evidence": {
+          "reported_value": "9月8日",
+          "normalized_token": "9月8日",
+          "allow_blank": true,
+          "expected_syntax": "blank or slash-separated non-negative integer tokens",
+          "parsed_integer_values": []
+        },
+        "reproducible": "yes",
+        "confidence": null,
+        "calibration_reference": null,
+        "benign_explanations": [
+          "Different denominator or analysis population.",
+          "Rounding convention.",
+          "A display-only transcription or omission error.",
+          "Extraction error from the source table."
+        ],
+        "dependency_group": "table:Original PMC Table 2 · cluster I · L Supra Marginal Gyrus · BA",
+        "next_action": "Inspect the original table and recalculate from the displayed cells and stated denominator.",
+        "misconduct_inference": false,
+        "finding_id": "f_d76d98f1c02f1e8f"
+      },
+      {
+        "detector_id": "table_arithmetic",
+        "detector_version": "pilot1-0.1.0",
+        "family": "table_consistency",
+        "applicable": true,
+        "applicability_reason": "Supported table check type: integer_list_token.",
+        "status": "PASS",
+        "evidence_class": "E1",
+        "claim": "Displayed token is structurally compatible with the prespecified integer-list field syntax.",
+        "source_locator": "Original PMC Table 2 · cluster J · R Middle Frontal Gyrus · BA",
+        "evidence": {
+          "reported_value": "",
+          "normalized_token": "",
+          "allow_blank": true,
+          "expected_syntax": "blank or slash-separated non-negative integer tokens",
+          "parsed_integer_values": []
+        },
+        "reproducible": "yes",
+        "confidence": null,
+        "calibration_reference": null,
+        "benign_explanations": [],
+        "dependency_group": "table:Original PMC Table 2 · cluster J · R Middle Frontal Gyrus · BA",
+        "next_action": null,
+        "misconduct_inference": false,
+        "finding_id": "f_18d092e631f8a1c2"
+      }
+    ],
+    "edges": []
+  },
+  "review_priority": "MODERATE",
+  "interpretation": "Review priority is triage only; it is not a probability of fraud or a finding of misconduct.",
+  "limitations": []
+}

@@ -1,0 +1,34 @@
+{
+  "paper": "ARIS4C011",
+  "pilot": "Pilot 3 voxel/Brodmann-area preserved-original table token",
+  "target_doi": "10.1371/journal.pone.0163749",
+  "artifact_id": "plos-0163749-pmc-preserved-original-table2",
+  "fixture_sha256": "dfd7a6a8eec9c50d89190e6cc26dbed5aa0c54bc7a16cb7e8962c0fd2f87f8ac",
+  "artifact_safety_class": "SAFE_EXACT_PRESERVED_ORIGINAL",
+  "detector_visible_correction_metadata": false,
+  "detector_family": "F3",
+  "detector_id": "table_arithmetic@pilot1-0.1.0",
+  "development_true_positive_scope": "malformed BA token only; later documented BA row-shift errors are not counted because they are not independently detectable by this correction-blind syntax check",
+  "finding_count": 6,
+  "pass_count": 5,
+  "flag_count": 1,
+  "review_priority": "MODERATE",
+  "checks": {
+    "track_a_eligible": true,
+    "extraction_safe": true,
+    "six_original_cells_evaluated": true,
+    "five_passes": true,
+    "exactly_one_flag": true,
+    "malformed_original_token_flagged": true,
+    "no_misconduct_inference": true
+  },
+  "manager_only_later_outcome": {
+    "correction_doi": "10.1371/journal.pone.0170146",
+    "published": "2017-01-09",
+    "confirmed_original_token": "9月8日",
+    "corrected_token": "9/8",
+    "used_by_detector": false
+  },
+  "status": "PASS",
+  "claim_boundary": "Development feasibility / issue decomposition only. This result does not estimate sensitivity, precision, specificity, or misconduct likelihood."
+}
