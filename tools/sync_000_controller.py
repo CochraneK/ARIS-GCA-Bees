@@ -33,7 +33,10 @@ def main() -> int:
     if active:
         dispatch = f"Continue **{active[0]}** first."
         if wait:
-            dispatch += f" When its Active slot becomes free, the next completion-first Wait candidate is **{wait[0]}**."
+            dispatch += (
+                f" The next completion-first Wait candidate is **{wait[0]}** "
+                "whenever additional genuine execution capacity becomes available."
+            )
     elif wait:
         dispatch = f"No paper is currently Active. Promote **{wait[0]}** next under completion-first scheduling."
     else:
@@ -47,7 +50,9 @@ def main() -> int:
 - **Scheduling:** {scheduling.get('policy', 'completion-first')}
 - **Canonical state:** {scheduling.get('canonical_state', 'git')}
 - **Default Active WIP:** {scheduling.get('default_active_wip', 1)}
-- **Maximum Active WIP:** {scheduling.get('max_active_wip', 3)}
+- **Active WIP policy:** {scheduling.get('active_wip_policy', 'adaptive')}
+- **Soft Active WIP reference:** {scheduling.get('soft_active_wip_reference', 3)}
+- **Fixed Maximum Active WIP:** {'none' if scheduling.get('max_active_wip') is None else scheduling.get('max_active_wip')}
 - **States:** Finish / Active / Wait / Block
 - **Paper switch rule:** checkpoint bounded substantive work to Git before switching
 
@@ -61,6 +66,10 @@ def main() -> int:
 ## Current dispatch
 
 {dispatch}
+
+A higher Active count is allowed when the current model/agent/tool setup can
+sustain genuine parallel research without weakening paper-level isolation,
+bounded Git checkpoints, supervision, or truthful live-state tracking.
 
 Recalculate from `papers/dashboard.json` after any material state change.
 """
