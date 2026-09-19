@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: aris4c-public-pdfs
+  group: aris4c-public-pdfs-v2-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
