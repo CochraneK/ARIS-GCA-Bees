@@ -1,0 +1,117 @@
+name: ARIS4C012 v2 blind evidence packet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c012-v2-blind-packet.yml"
+      - "papers/012-oppositional-causal-inversion/code/materialize_v2_blind_packet.py"
+      - "papers/012-oppositional-causal-inversion/code/tests/test_materialize_v2_blind_packet.py"
+      - "papers/012-oppositional-causal-inversion/data/v2_validation_sample_manifest.csv"
+      - "papers/012-oppositional-causal-inversion/data/v2_validation_coding_template.csv"
+      - "papers/012-oppositional-causal-inversion/process/SCHEMA_V2_FROZEN.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aris4c012-v2-blind-packet
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAPER_DIR: papers/012-oppositional-causal-inversion
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile and test blind-packet code
+        run: |
+          python -m compileall -q "$PAPER_DIR/code"
+          python -m unittest discover -s "$PAPER_DIR/code/tests" -p 'test_materialize_v2_blind_packet.py' -v
+
+      - name: Materialize packet once
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f "$PAPER_DIR/process/V2_BLIND_PACKET_FREEZE.json" ]; then
+            echo "Blind packet already frozen; validating immutable state only."
+          else
+            python "$PAPER_DIR/code/materialize_v2_blind_packet.py" \
+              --sample "$PAPER_DIR/data/v2_validation_sample_manifest.csv" \
+              --schema "$PAPER_DIR/process/SCHEMA_V2_FROZEN.md" \
+              --template "$PAPER_DIR/data/v2_validation_coding_template.csv" \
+              --out-dir "$PAPER_DIR/data/v2_blind" \
+              --freeze-dir "$PAPER_DIR/process" \
+              --sleep 0.2
+          fi
+
+      - name: Validate freeze and blinding invariants
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path("papers/012-oppositional-causal-inversion")
+          common=json.loads((p/"process/V2_BLIND_PACKET_FREEZE.json").read_text(encoding="utf-8"))
+          a=json.loads((p/"process/A2_INPUT_FREEZE.json").read_text(encoding="utf-8"))
+          b=json.loads((p/"process/B2_INPUT_FREEZE.json").read_text(encoding="utf-8"))
+          packet=(p/"data/v2_blind/common_evidence_packet.jsonl")
+          aform=(p/"data/v2_blind/A2_response.csv")
+          bform=(p/"data/v2_blind/B2_response.csv")
+          sha=lambda x: hashlib.sha256(x.read_bytes()).hexdigest()
+          assert common["sample_count"]==30
+          assert sha(packet)==common["evidence_packet_sha256"]
+          assert sha(aform)==sha(bform)==common["response_form_sha256"]
+          assert a["bundle_sha256"]==b["bundle_sha256"]==common["bundle_sha256"]
+          records=[json.loads(x) for x in packet.read_text(encoding="utf-8").splitlines() if x.strip()]
+          forbidden={"stratum","query_index","query","provider","provider_id","draw_score","selection_rank","oci_candidate","opposition_valid","primary_mechanism","adjudicated_value"}
+          assert len(records)==30 and len({r["sample_id"] for r in records})==30
+          assert all(not (forbidden & set(r)) for r in records)
+          print(json.dumps({
+            "bundle_sha256":common["bundle_sha256"],
+            "ready_for_independent_coding":common["ready_for_independent_coding"],
+            "evidence_packet_sha256":common["evidence_packet_sha256"],
+          },indent=2))
+          PY
+
+      - name: Persist first immutable packet freeze
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$PAPER_DIR/data/v2_blind" \
+                  "$PAPER_DIR/process/V2_BLIND_PACKET_FREEZE.json" \
+                  "$PAPER_DIR/process/A2_INPUT_FREEZE.json" \
+                  "$PAPER_DIR/process/B2_INPUT_FREEZE.json"
+          if git diff --cached --quiet; then
+            echo "No blind-packet change."
+            exit 0
+          fi
+          git commit -m "ARIS4C012 freeze v2 blind evidence packet [skip ci]"
+          pushed=0
+          for attempt in 1 2 3 4 5 6; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then pushed=1; break; fi
+            sleep $((attempt*2))
+          done
+          test "$pushed" -eq 1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c012-v2-blind-packet
+          path: |
+            papers/012-oppositional-causal-inversion/data/v2_blind
+            papers/012-oppositional-causal-inversion/process/V2_BLIND_PACKET_FREEZE.json
+            papers/012-oppositional-causal-inversion/process/A2_INPUT_FREEZE.json
+            papers/012-oppositional-causal-inversion/process/B2_INPUT_FREEZE.json
+          retention-days: 30
