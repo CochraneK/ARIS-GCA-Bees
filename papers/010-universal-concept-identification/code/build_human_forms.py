@@ -1,11 +1,11 @@
 """Build balanced participant forms for UCID human calibration.
 
 Inputs are blank calibration packets generated earlier in CI.
-Primary comparison: P2 versus P6.
+Primary comparison: P2 versus coarse P3 versus fine-grained P6.
 
 One complete cycle:
 - 36 base forms
-- duplicated across P2 and P6 => 72 participant forms
+- duplicated across P2, P3 and P6 => 108 participant forms
 - each main form: 60 lexical + 24 mixed-stress = 84 unique main trials
 - plus 8 within-rater retest trials = 92 presented trials
 
@@ -62,8 +62,11 @@ def compact(row, source, protocol, retest=False):
         "query_text":row["query_text"],
         "query_kind":row["query_kind"],
         "protocol":protocol,
-        "allowed_responses":["YES","NO"] if protocol=="P2" else
-            ["YES","NO","BORDERLINE","UNKNOWN","UNDEFINED","BOTH"],
+        "allowed_responses":(
+            ["YES","NO"] if protocol=="P2" else
+            ["YES","NO","MAYBE"] if protocol=="P3" else
+            ["YES","NO","BORDERLINE","UNKNOWN","UNDEFINED","BOTH"]
+        ),
         "is_retest":retest,
     }
 
@@ -79,10 +82,11 @@ def main():
     assert all(len(slot)==24 for slot in mix_slots)
 
     forms=[]
-    main_exposure={"P2":Counter(),"P6":Counter()}
-    retest_exposure={"P2":Counter(),"P6":Counter()}
+    protocols=("P2","P3","P6")
+    main_exposure={p:Counter() for p in protocols}
+    retest_exposure={p:Counter() for p in protocols}
 
-    for protocol in ("P2","P6"):
+    for protocol in protocols:
         for base in range(36):
             lex_slot=base%12
             mix_slot=base%9
@@ -131,7 +135,7 @@ def main():
             })
 
     # Balance guarantees for one full 36-form cycle per protocol.
-    for protocol in ("P2","P6"):
+    for protocol in protocols:
         lex_counts=[count for pid,count in main_exposure[protocol].items()
                     if pid.startswith("oewn2025:")]
         mix_counts=[count for pid,count in main_exposure[protocol].items()
@@ -141,13 +145,13 @@ def main():
 
     payload={
         "dataset_id":"ucid-human-calibration-forms-v0",
-        "design":"36 balanced base forms duplicated across P2/P6",
-        "protocols":["P2","P6"],
+        "design":"36 balanced base forms duplicated across P2/P3/P6",
+        "protocols":["P2","P3","P6"],
         "base_forms_per_protocol":36,
-        "total_forms":72,
+        "total_forms":108,
         "trials_per_form":{"main":84,"retest":8,"presented":92},
-        "one_cycle_participant_count_if_one_participant_per_form":72,
-        "sample_size_warning":"72 is a balanced-design cycle, not a powered sample-size recommendation. Replicate form cycles as required by the precision/power plan.",
+        "one_cycle_participant_count_if_one_participant_per_form":108,
+        "sample_size_warning":"108 is a balanced three-protocol design cycle, not a powered sample-size recommendation. Replicate form cycles as required by the precision/power plan.",
         "main_pair_exposure_per_protocol":{
             "lexical":3,
             "mixed_stress":4
