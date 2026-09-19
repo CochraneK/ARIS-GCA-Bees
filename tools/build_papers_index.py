@@ -229,8 +229,8 @@ def build(papers: list[dict], dashboard: dict, history: dict) -> str:
     mature = sum(1 for v in progresses if v >= 45)
     day_history = latest_day_history(history)
     history_json = json.dumps(day_history, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    css_version = asset_version(DOCS / "command-center.css")
-    js_version = asset_version(DOCS / "command-center.js")
+    css_version = asset_version(OUT.parent / "command-center.css")
+    js_version = asset_version(OUT.parent / "command-center.js")
     history_summary = (
         f"{day_history.get('date') or 'Today'} · {len(day_history.get('points', []))} checkpoints · "
         f"{len(papers)} papers on one chart"
