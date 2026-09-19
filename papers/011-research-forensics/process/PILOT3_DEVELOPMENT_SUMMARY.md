@@ -39,4 +39,4 @@ Matched no-known-integrity-concern development comparators were selected without
 
 ## Next gate
 
-Continue unresolved voxel/Brodmann-area structured-content acquisition, then expand and freeze the broader time-safe comparator corpus and confirmatory protocol.
+Expand and freeze the broader time-safe comparator corpus, grouped/temporal splits, detector versions/applicability rules, leakage audit, thresholds, and human-review protocol before confirmatory scoring.
