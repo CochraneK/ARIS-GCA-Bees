@@ -5,7 +5,7 @@
 **Handoff refreshed:** 2026-09-19  
 **Observed main SHA at refresh:** `92a6ba22391cc5511e32f68db3f57da56b63a1cd`
 
-This file is the recovery entry point for a new chat, another computer/account, WorkBuddy, Codex, or another agent. Read repository state before trusting the observed SHA above because ARIS4C is highly concurrent.
+This file is the recovery entry point for a new chat, another computer/account, WorkBuddy, Codex, or another agent. For the chronological ChatGPT/agent decision history, see `CHAT_HISTORY.md`. Read repository state before trusting the observed SHA above because ARIS4C is highly concurrent.
 
 ## 1. Current state
 
