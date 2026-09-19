@@ -63,3 +63,14 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Observation / design implication:** 25/80 current target titles contain a post-publication status marker and all 80 have current Crossref update relations. These are leakage-risk observations, not model features or performance signals. Track A therefore continues to require historical object qualification and the frozen content-only allowlist.
 
 **Next gate:** Manager-only issue adjudication assigns issue family, ground-truth tier, and required artifact role for the frozen frame before historical artifact qualification and SAFE_EXACT / PROXY_ONLY / BLOCKED attrition are frozen.
+
+
+## 2026-09-19 · Feasibility-frame target-uniqueness hardening
+
+**Finding:** The first 80-row feasibility-frame implementation could retain duplicate copies of the same target/event inside one stratum because the global `seen` set was updated only after selecting the stratum slice. Six duplicate target-event occupancies were detected before any confirmatory first-pass issue labels were committed.
+
+**Decision:** The feasibility frame now requires both globally unique target DOI and unique target-notice event key. Duplicate candidates are removed before ranking/slicing within each stratum, and replacements are drawn under the same frozen SHA-256 ranking rule until every 2016–2025 × correction/retraction stratum again contains four records.
+
+**Result:** The re-frozen frame has 80/80 unique target DOIs and 80/80 unique event keys while retaining all 20 balanced strata and the 42-DOI development exclusion. No detector output was used to repair or reseed the frame.
+
+**Metadata reconciliation:** The unique frame contains 79 journal-article targets and one proceedings-article target; the protocol did not freeze a journal-only population, so article type is retained as a matching/description variable rather than post-hoc exclusion. Workload signals are 79/80 Crossref full-text links, 37/80 abstracts, 28/80 current-title status markers, and 71 distinct containers.
