@@ -39,3 +39,16 @@ This file is append-oriented. Preserve superseded decisions when they explain wh
 **Observed control result:** 10/10 numeric-range findings PASS, 0 FLAG, review priority NONE, decimal-comma parsing preserved, and no misconduct inference.
 
 **Claim boundary:** This single enriched control demonstrates that the current reporting stack can conservatively non-escalate this locale-formatting case. It is **not** a specificity, false-positive-rate, or clean-control estimate. The next negative-side development unit must use the term **no-known-integrity-concern comparator** and keep selection independent of detector output.
+
+
+## 2026-09-19 · Comparator freeze, voxel completion, and development-cycle closure
+
+**Decision:** Negative-side development examples remain **matched no-known-integrity-concern comparators**, never “clean controls.” Four matches were selected independently of detector output, passed indexed Crossref/PubMed notice-negative screening, and had the retrieved PMC full-text version frozen by SHA-256. Their state is development provenance only; it does not support specificity, false-positive-rate, or superiority estimates.
+
+**Decision:** DOI `10.1371/journal.pone.0163749` contributes one additional development FLAG route only for the preserved-original malformed Brodmann-area token. The SAFE_EXACT PMC Table 2 fixture exposes six original BA cells, correction-blind F3 produces five PASS and one FLAG on `9月8日`, and correction metadata remains manager-only. Other later documented BA row-shift fixes are outside this syntax-check claim.
+
+**Decision:** Keep evaluation-run success distinct from detector output. For the voxel case, top-level evaluation `status=PASS` means the validation contract succeeded; detector evidence still contains exactly one `FLAG`. Downstream summaries must not collapse these two status layers.
+
+**Decision:** Close the enriched Pilot 2/3 acquisition-development loop at six pre-outcome FLAG evaluations across five target papers, one SAFE_EXACT formatting/honest-error non-escalation control, four matched development comparators, and a descriptive complementarity/abstention summary. Remaining low-yield Pilot 3 candidates are DEFER; the next work is broader time-safe corpus construction and confirmatory protocol freeze.
+
+**Claim boundary:** The enriched development set remains non-confirmatory. No sensitivity, precision, specificity, false-positive-rate, prevalence, superiority, intent, guilt, or misconduct estimate is authorized from this checkpoint.
