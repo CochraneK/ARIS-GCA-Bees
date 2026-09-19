@@ -7,6 +7,8 @@ on:
       - 'papers/**/paper.json'
       - 'papers/dashboard.json'
       - 'tools/build_papers_index.py'
+      - 'docs/command-center.css'
+      - 'docs/command-center.js'
       - 'tools/build_readme.py'
       - 'tools/build_readme_assets.py'
       - 'tools/audit_paper_outputs.py'
