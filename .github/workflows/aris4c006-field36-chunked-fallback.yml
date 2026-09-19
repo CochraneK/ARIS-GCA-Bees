@@ -5,13 +5,17 @@ on:
     workflows: ["ARIS4C006 field36 repair build"]
     types: [completed]
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "papers/006-chinese-alphabetical-exposure/process/TRIGGER_FIELD36_CHUNKED_FALLBACK"
 
 permissions:
   contents: read
 
 jobs:
   convention-chunks:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion != 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 75
     strategy:
@@ -108,7 +112,7 @@ jobs:
           retention-days: 30
 
   merge:
-    if: ${{ always() && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success') }}
+    if: ${{ always() && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion != 'success') }}
     needs: [convention-chunks, primary-chunks]
     runs-on: ubuntu-latest
     timeout-minutes: 15
