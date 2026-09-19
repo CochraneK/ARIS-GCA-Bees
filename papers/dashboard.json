@@ -28,12 +28,12 @@
       "blocker": "Independent Coder B; prior attempt intentionally invalidated for contamination"
     },
     "004": {
-      "progress": 68,
-      "stage": "Identity100 frozen · network100 acquisition",
+      "progress": 74,
+      "stage": "Network100 acquired · work audit + independent second review",
       "activity": "active",
-      "evidence": "100-person MH-blind first review: 52 verified, 38 no-graph, 8 collision, 2 identity errors; 40-case blind second-review packet frozen",
-      "next_gate": "Complete network100 work corpus + independent second-review judgments/adjudication",
-      "blocker": "Independent identity second review remains required before mental-health exposure coding"
+      "evidence": "Identity100: 52 verified; second-review blind set 40. Network100: 2,956 unique works, 0 fetch errors; 334-work deterministic triage sample across 37 held people.",
+      "next_gate": "Prioritize and audit the 334 held-work sample; complete independent 40-case identity second review",
+      "blocker": "Independent identity judgments and work-level contamination decisions are still required before exposure coding"
     },
     "005": {
       "progress": 68,
@@ -84,12 +84,12 @@
       "blocker": "Human semantic calibration before benchmark-scale claims"
     },
     "011": {
-      "progress": 69,
-      "stage": "Pilot 3 historical-artifact acquisition",
+      "progress": 72,
+      "stage": "Pilot 3 · object-level historical table qualification",
       "activity": "active",
-      "evidence": "Time-safe framework + first real FLAG + candidate queue + live CDX discovery for priority cases",
-      "next_gate": "Qualify newly discovered pre-correction objects for exact table/PDF equivalence",
-      "blocker": "SAFE_EXACT historical table objects remain scarce"
+      "evidence": "Priority PLOS case has frozen pre-correction t001 wrapper provenance; table-image object qualification is now separated from F3 value extraction",
+      "next_gate": "Qualify archived Table-1 image object as SAFE_EXACT, then run F3 content extraction",
+      "blocker": "Historical table image replay/qualification remains the object-level gate"
     },
     "012": {
       "progress": 63,
@@ -116,12 +116,12 @@
       "blocker": "Authoritative stable identifiers and source coverage vary by organization type"
     },
     "015": {
-      "progress": 79,
-      "stage": "Track-A retrospective case discovery",
+      "progress": 82,
+      "stage": "Track M · matched-control support gate",
       "activity": "active",
-      "evidence": "Random 500-paper mechanism yield = 0 robust SB; outcome-enriched 300-paper partial run found 25 strict robust SB across 3 fields",
-      "next_gate": "Complete throttled reproducible Track-A run, freeze robust cases, build unselected matched-control reservoir",
-      "blocker": "OpenAlex public API rate limit requires bounded serial acquisition; enriched sample cannot estimate prevalence"
+      "evidence": "Unselected 500-paper diagnostic: 0 strict SB; enriched Track A: 13 strict SB/150; first matched-control pass: 1/13 matched, 0/3 strata ready",
+      "next_gate": "Expand unselected control reservoir while holding matching caliper/variables fixed",
+      "blocker": "Control support is too sparse under the frozen matching rule; do not relax criteria post hoc"
     },
     "016": {
       "progress": 55,
