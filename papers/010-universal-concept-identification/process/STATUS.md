@@ -1,7 +1,7 @@
 # ARIS4C010 · STATUS
 
 **Updated:** 2026-09-19  
-**Stage:** HUMAN-CALIBRATION-READY · source, calibration, mixed-P6, form-generation and analysis plumbing CI-verified  
+**Stage:** HUMAN-CALIBRATION-READY · P2/P3/P6 mechanism design, source/calibration/forms/UI/analysis plumbing CI-verified  
 **Current claim strength:** provisional integration gap; not manuscript-frozen
 
 ## Completed
@@ -132,7 +132,7 @@ Pause or split the project if:
 
 **Empirical evidence:** Pilot 2 is source-derived but still exploratory because semantic responses are not human calibrated. Pilots 0–1 remain synthetic/combinatorial.
 
-**Next real evidence step:** collect Stage-A real human P2/P6 calibration responses; analyze reliability/category use; then decide whether P6 survives and which cells require additional ratings/adjudication before Benchmark v0 expansion.
+**Next real evidence step:** collect Stage-A real human P2/P3/P6 calibration responses; analyze reliability/category use; then decide whether P6 survives and which cells require additional ratings/adjudication before Benchmark v0 expansion.
 
 The project should not spend more time expanding ontology prose before that evidence step unless a literature collision forces redesign.
 
@@ -210,8 +210,8 @@ CI run #30 confirms:
 
 CI run #43 confirms:
 
-- 72 total forms;
-- P2/P6 = 36/36;
+- 108 total forms;
+- P2/P3/P6 = 36/36/36;
 - 84 unique main trials + 8 retests = 92 presented trials/form;
 - lexical pair main exposure = 3 per protocol per complete form cycle;
 - mixed-stress pair main exposure = 4 per protocol per complete form cycle;
@@ -226,7 +226,7 @@ No further code or ontology prose can substitute for the next evidence step:
 
 1. ethics/exemption determination as appropriate;
 2. recruitment/platform decision;
-3. real P2/P6 participant responses;
+3. real P2/P3/P6 participant responses;
 4. Stage-A reliability/category-use analysis;
 5. only then promotion of selected response cells from `unannotated` toward `human_annotated` / adjudication.
 
@@ -297,3 +297,40 @@ Illustrative retest sensitivity, assuming P2 consistency 0.80, 8 retests/person,
 - target P6=.90, ICC=.05 → ~34 participants/arm.
 
 These are crude design-effect approximations, not final sample-size requirements.
+
+
+## P3 mechanism baseline
+
+The 2026 prior-art pass showed that coarse non-binary answers such as YES/MAYBE/NO are already used in adaptive Twenty Questions research. Therefore “non-binary answering” itself is not a 010 novelty.
+
+The human calibration now uses three protocols:
+
+- **P2:** YES / NO;
+- **P3:** YES / NO / MAYBE;
+- **P6:** YES / NO / BORDERLINE / UNKNOWN / UNDEFINED / BOTH.
+
+Interpretation:
+
+- P2→P3 = value of allowing any coarse escape from binary forcing;
+- P3→P6 = incremental value of distinguishing why binary judgment fails;
+- P2→P6 = total protocol effect, but is not sufficient for the mechanism claim.
+
+CI run **#61** verifies the complete three-protocol chain:
+
+- 108 forms = 36 P2 + 36 P3 + 36 P6;
+- 84 unique main trials + 8 retests per form;
+- lexical pair exposure = 3 per protocol per complete cycle;
+- mixed-stress pair exposure = 4 per protocol per complete cycle;
+- 108 CSV forms and 108 standalone participant HTML pages;
+- synthetic analysis dry-run covers all three protocols.
+
+CI run **#62** verifies the updated power-sensitivity calculator.
+
+Illustrative retest-consistency sensitivity with 8 retests/person and ICC=.05:
+
+- P2 .80 → P3 .88: ~56 participants/arm;
+- P3 .85 → P6 .88: ~344 participants/arm;
+- P3 .85 → P6 .90: ~116 participants/arm;
+- P3 .85 → P6 .92: ~55 participants/arm.
+
+These are simple approximations, not final sample-size requirements. They show that a small P3→P6 effect can be much harder to detect than the broader P2→P6 contrast.
