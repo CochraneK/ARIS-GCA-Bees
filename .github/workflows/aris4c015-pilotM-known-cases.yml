@@ -1,0 +1,112 @@
+name: ARIS4C015 Pilot M known-SB case enrichment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/aris4c015-pilotM-known-cases.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  known-cases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run known-SB case-enriched pilot
+        working-directory: papers/015-sleeping-beauty-miner/code
+        run: |
+          python pilotM_known_case_enrichment.py             --controls-per-case-pool 50             --observation-end-year 2011             --output ../data/pilotM_known_cases_openalex.json
+
+      - name: Audit known cases and matching
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "papers/015-sleeping-beauty-miner/data/"
+              "pilotM_known_cases_openalex.json"
+          )
+          result = json.loads(path.read_text(encoding="utf-8"))
+
+          assert result["pilot_design"]["n_known_cases"] == 3
+          assert result["n_input_papers"] >= 120
+          assert len(result["known_case_assessment"]) == 3
+
+          summary = {
+              "n_input_papers": result["n_input_papers"],
+              "n_robust_sb": result["n_robust_sleeping_beauties"],
+              "state_counts": result["state_counts"],
+              "mechanism_ready": result["mechanism_ready"],
+              "mechanism_analysis_ready": result[
+                  "mechanism_analysis_ready"
+              ],
+              "analysis_block_reasons": result[
+                  "mechanism_analysis_block_reasons"
+              ],
+              "known_cases": [
+                  {
+                      "case_id": x["case_id"],
+                      "openalex_id": x["openalex_id"],
+                      "field_id": x["primary_field_id"],
+                      "state": x["mechanism_state"],
+                      "robust_sb": (
+                          x["robust_sb_gate"]["robust_sb"]
+                          if x["robust_sb_gate"]
+                          else None
+                      ),
+                      "B": (
+                          x["robust_sb_gate"]["beauty_coefficient"]
+                          if x["robust_sb_gate"]
+                          else None
+                      ),
+                      "sleep_years": (
+                          x["robust_sb_gate"]["van_raan"]["sleep_years"]
+                          if x["robust_sb_gate"]
+                          else None
+                      ),
+                  }
+                  for x in result["known_case_assessment"]
+              ],
+              "SB_vs_FORGOTTEN": {
+                  "match_rate": result["contrasts"][
+                      "SB_vs_FORGOTTEN"
+                  ]["match_rate"],
+                  "n_matches": len(
+                      result["contrasts"]["SB_vs_FORGOTTEN"]["matches"]
+                  ),
+                  "balance": result["contrasts"][
+                      "SB_vs_FORGOTTEN"
+                  ]["balance"],
+              },
+              "SB_vs_IMMEDIATE_HIT": {
+                  "match_rate": result["contrasts"][
+                      "SB_vs_IMMEDIATE_HIT"
+                  ]["match_rate"],
+                  "n_matches": len(
+                      result["contrasts"]["SB_vs_IMMEDIATE_HIT"]["matches"]
+                  ),
+                  "balance": result["contrasts"][
+                      "SB_vs_IMMEDIATE_HIT"
+                  ]["balance"],
+              },
+          }
+          print(json.dumps(summary, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aris4c015-pilotM-known-cases
+          path: papers/015-sleeping-beauty-miner/data/pilotM_known_cases_openalex.json
+          if-no-files-found: error
+          retention-days: 30
