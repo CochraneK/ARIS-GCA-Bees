@@ -93,9 +93,10 @@ No field is selected by outcome strength.
 ## 6. Early-exposure requirement
 
 After validated entry:
-- construct LOAO field exposure for eligible works in e through e+2;
-- require at least 2 exposure-defined eligible works;
-- MeanEarlyExposure_i is the arithmetic mean across those eligible works.
+- consider eligible article/conference-paper works in e through e+2 only when the focal author's own authorship on that work is CN-affiliated;
+- construct LOAO field exposure for those CN-affiliated early works;
+- require at least 2 exposure-defined CN-affiliated early works;
+- MeanEarlyExposure_i is the arithmetic mean across those retained early works.
 
 No weighting by later citation, persistence, venue prestige, or outcome is
 allowed.
