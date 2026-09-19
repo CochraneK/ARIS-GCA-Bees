@@ -144,11 +144,14 @@ def _corpus_paper(
 def run_known_case_enrichment(
     *,
     controls_per_case_pool: int = 50,
+    matched_controls_per_case: int = 1,
     observation_end_year: int = 2011,
     api_key: str | None = None,
 ) -> dict[str, Any]:
     if controls_per_case_pool < 20 or controls_per_case_pool > 1000:
         raise ValueError("controls_per_case_pool must be between 20 and 1000")
+    if matched_controls_per_case < 1 or matched_controls_per_case > 10:
+        raise ValueError("matched_controls_per_case must be between 1 and 10")
 
     papers: list[CorpusPaper] = []
     known_case_meta = []
@@ -263,7 +266,7 @@ def run_known_case_enrichment(
         sb_max_sleep_rate=2.0,
         sb_min_wake_rate=5.0,
         sb_min_total_citations=50,
-        controls_per_case=1,
+        controls_per_case=matched_controls_per_case,
         matching_early_percentile_caliper=0.15,
         matching_max_abs_smd=0.10,
         min_primary_match_rate=0.50,
@@ -313,6 +316,7 @@ def run_known_case_enrichment(
         "known_case_source": "Ke et al. 2015 PNAS",
         "n_known_cases": len(KNOWN_CASES),
         "controls_per_case_pool_requested": controls_per_case_pool,
+        "matched_controls_per_case": matched_controls_per_case,
         "control_sampling": control_sampling_meta,
         "observation_end_year": observation_end_year,
         "control_frame": "same publication year x current OpenAlex primary field",
@@ -328,6 +332,7 @@ def run_known_case_enrichment(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--controls-per-case-pool", type=int, default=50)
+    parser.add_argument("--matched-controls-per-case", type=int, default=1)
     parser.add_argument("--observation-end-year", type=int, default=2011)
     parser.add_argument("--api-key", default=None)
     parser.add_argument("--output", type=Path, required=True)
@@ -338,6 +343,7 @@ def main() -> None:
     args = parse_args()
     result = run_known_case_enrichment(
         controls_per_case_pool=args.controls_per_case_pool,
+        matched_controls_per_case=args.matched_controls_per_case,
         observation_end_year=args.observation_end_year,
         api_key=args.api_key,
     )
