@@ -65,8 +65,8 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 
 | ID | Project | State | Progress | Continue from | At a glance |
 |---|---|---:|---:|---|---:|
-| **001** | [Bee GCA × Uncertainty](papers/001-gca-bees/) | 🔵 Finish | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) | <a href="docs/assets/paper-at-a-glance/001.webp"><img src="docs/assets/paper-at-a-glance/001.webp" height="40" alt="One-page visual 001"></a> |
-| **002** | [Testing linguistic periodicity](papers/002-language-geometry/) | 🔵 Finish | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) | <a href="docs/assets/paper-at-a-glance/002.webp"><img src="docs/assets/paper-at-a-glance/002.webp" height="40" alt="One-page visual 002"></a> |
+| **001** | [Bee GCA × Uncertainty](papers/001-gca-bees/) | 🔵 Finish | 100% | [handoff](papers/001-gca-bees/handoff/AGENT_HANDOFF.md) | <a href="./docs/assets/paper-at-a-glance/001.webp"><img src="./docs/assets/paper-at-a-glance/001.webp" height="40" alt="One-page visual 001"></a> |
+| **002** | [Testing linguistic periodicity](papers/002-language-geometry/) | 🔵 Finish | 100% | [handoff](papers/002-language-geometry/handoff/AGENT_HANDOFF.md) | <a href="./docs/assets/paper-at-a-glance/002.webp"><img src="./docs/assets/paper-at-a-glance/002.webp" height="40" alt="One-page visual 002"></a> |
 | **003** | [Colonial Legacies × Disciplinary Advantage](papers/003-colonial-disciplinary-advantage/) | 🟢 Active | 78% | [handoff](papers/003-colonial-disciplinary-advantage/handoff/AGENT_HANDOFF.md) | — |
 | **004** | [Mental Health × Knowledge-Network Exclusion](papers/004-counterfactual-cost-of-exclusion/) | 🔴 Block | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) | — |
 | **005** | [Global Burden of Bad Science](papers/005-hidden-burden-bad-science/) | 🔴 Block | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) | — |
