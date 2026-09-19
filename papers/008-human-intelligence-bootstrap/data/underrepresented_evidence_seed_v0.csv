@@ -1,0 +1,11 @@
+scientific_name,module_id,evidence_state,source_id,trait_name,claim_limit
+Acris crepitans,C,positive,pmcid:PMC5617642,response to conspecific advertisement calls under degraded/attenuated signal conditions,Direct acoustic social communication; not vocal learning.
+Hyla versicolor,C,positive,pmid:12784054,socially regulated advertisement calling,Direct acoustic communication in social context; not vocal learning.
+Birgus latro,C,measured,pmid:31634694,sound production system and acoustic repertoire,Sound production is directly measured; communicative function/learning is not fully established by this source.
+Nephila clavipes,A,positive_proxy,pmid:25164624,prey-count tracking / numerosity-related memory,Supports quantitative memory/representation; not global generative cognition.
+Nephila clavipes,E,positive,pmcid:PMC7716925,orb-web construction under altered gravity,Persistent externalized web construction is direct; not cumulative construction.
+Paraponera clavata,C,positive_proxy,pmid:28313225,resource recruitment,Recruitment implies information transfer/coordination; signalling mechanism is not fully decomposed here.
+Paraponera clavata,F,positive,doi:10.1101/2022.07.03.498617,colony relocation and distributed social organization,Direct colony-level organization; source is a preprint and does not imply cumulative culture.
+Periplaneta americana,A,positive_proxy,pmid:14668320,associative learning and retention,Learning/memory proxy only; not generative problem solving.
+Periplaneta americana,C,positive,pmid:26313978,aggregation pheromone communication,Direct chemical communication; not symbolic/compositional signalling.
+Periplaneta americana,F,positive_proxy,pmcid:PMC10325095,collective shelter-choice memory,Group-level collective-memory dynamics; not evidence of distributed cultural knowledge across generations.
