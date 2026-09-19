@@ -71,7 +71,7 @@ ARIS 是研究引擎；**ARIS4C 是围绕论文建立的完整研究系统**：�
 | **004** | [排斥的反事实知识网络成本](papers/004-counterfactual-cost-of-exclusion/) | 🔴 阻塞 | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
 | **005** | [坏科学的全球隐性负担](papers/005-hidden-burden-bad-science/) | 🔴 阻塞 | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
 | **006** | [中国姓名字母顺序暴露](papers/006-chinese-alphabetical-exposure/) | 🟡 待推进 | 62% | [handoff](papers/006-chinese-alphabetical-exposure/handoff/AGENT_HANDOFF.md) |
-| **007** | [跨物种年龄等价](papers/007-cross-species-age-equivalence/) | 🟡 待推进 | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
+| **007** | [跨物种年龄等价](papers/007-cross-species-age-equivalence/) | 🟢 正在推进 | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
 | **008** | [人类高级智力演化 Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟡 待推进 | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) |
 | **009** | [现象学保持型计算精神病学](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟡 待推进 | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) |
 | **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🔴 阻塞 | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |

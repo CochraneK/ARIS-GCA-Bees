@@ -71,7 +71,7 @@ ARIS is the research engine. **ARIS4C is the canonical research system around it
 | **004** | [Mental Health × Knowledge-Network Exclusion](papers/004-counterfactual-cost-of-exclusion/) | 🔴 Block | 74% | [handoff](papers/004-counterfactual-cost-of-exclusion/handoff/AGENT_HANDOFF.md) |
 | **005** | [Global Burden of Bad Science](papers/005-hidden-burden-bad-science/) | 🔴 Block | 68% | [handoff](papers/005-hidden-burden-bad-science/handoff/AGENT_HANDOFF.md) |
 | **006** | [Chinese Surnames × Alphabetical Exposure](papers/006-chinese-alphabetical-exposure/) | 🟡 Wait | 62% | [handoff](papers/006-chinese-alphabetical-exposure/handoff/AGENT_HANDOFF.md) |
-| **007** | [Cross-Species Age Equivalence](papers/007-cross-species-age-equivalence/) | 🟡 Wait | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
+| **007** | [Cross-Species Age Equivalence](papers/007-cross-species-age-equivalence/) | 🟢 Active | 76% | [handoff](papers/007-cross-species-age-equivalence/handoff/AGENT_HANDOFF.md) |
 | **008** | [Human Intelligence Bootstrap](papers/008-human-intelligence-bootstrap/) | 🟡 Wait | 60% | [handoff](papers/008-human-intelligence-bootstrap/handoff/AGENT_HANDOFF.md) |
 | **009** | [Phenomenology-Preserving Computational Psychiatry](papers/009-phenomenology-preserving-computational-psychiatry/) | 🟡 Wait | 56% | [handoff](papers/009-phenomenology-preserving-computational-psychiatry/handoff/AGENT_HANDOFF.md) |
 | **010** | [Universal Concept Identification](papers/010-universal-concept-identification/) | 🔴 Block | 72% | [handoff](papers/010-universal-concept-identification/handoff/AGENT_HANDOFF.md) |
