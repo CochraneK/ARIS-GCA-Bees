@@ -4,7 +4,7 @@
 
 **Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening**
 
-A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct.
+A cross-disciplinary, auditable framework that routes scientific manuscripts to applicability-aware statistical, numerical, textual, image, citation, provenance, registration, metadata, and corpus-network checks, then fuses findings as an evidence graph for human review without equating anomalies with misconduct. Pilot 3 now includes five time-safe pre-outcome development true-positive evaluations plus a SAFE_EXACT formatting/honest-error control that correctly produced zero flags and review priority NONE; confirmatory performance inference remains frozen pending a broader comparator corpus and protocol lock.
 
 ## Current state
 

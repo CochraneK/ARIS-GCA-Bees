@@ -1,7 +1,7 @@
 # ARIS4C011 · Current status
 
 - **Title:** Research Forensics at Scale: An Auditable Multi-Evidence Framework for Scientific Integrity Screening
-- **Project status:** methods-draft-agent-skill-benchmark-seed
+- **Project status:** methods-draft-agent-skill-pilot3-control-passed
 - **Activity:** active
 - **Portfolio progress:** 80%
 - **Current stage:** Pilot 3 · formatting control passed · comparator construction
