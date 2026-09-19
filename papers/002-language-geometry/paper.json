@@ -98,7 +98,8 @@
       "status": "complete",
       "repo_path": "docs/assets/paper-at-a-glance/002.webp",
       "language": "zh-CN",
-      "purpose": "one-page visual explanation of the complete paper for the portfolio table"
+      "purpose": "one-page visual explanation of the complete paper for the portfolio table",
+      "thumbnail_path": "docs/assets/paper-at-a-glance/002-thumb.svg"
     }
   },
   "portfolio_id": "ARIS4C-002",
