@@ -39,3 +39,13 @@ For every future material conversation, append:
 - important user correction/constraint;
 - decision/result;
 - affected files/commits where known.
+
+## 2026-09-19 · 000 controller continuation
+
+- **Surface:** ARIS4C 000 controller / ChatGPT.
+- **User instruction:** continue work not already being run by the other ARIS4C controller threads, then keep going.
+- **Work taken:** ARIS4C012 because active 003/007/011/014 work was avoided.
+- **Completed:** exhaustive 141-cell v1 disagreement diagnosis; frozen controlled-vocabulary Schema v2; fresh deterministic 30-record validation draw; immutable blind evidence materialization; evidence-availability Amendments 01 and 02; final 30/30 abstract-level blind packet; coder freeze/reliability tooling and CI independence guards.
+- **Scientific constraint preserved:** raw v1 reliability was never rewritten; sample replacement happened before new labels existed and used only same-stratum deterministic order plus evidence availability.
+- **Current result:** A2 and B2 have byte-identical final input bundle SHA-256 `9f0d8b785b8f8f739cdd41cf7c6f9f6fc3f7fbdf2299587cbab6d732bdddfc51`.
+- **Gate:** current controller cannot impersonate two independent coders. Resume 012 only when genuinely independent A2/B2 execution surfaces are available; otherwise portfolio scheduling should move to another executable paper.
